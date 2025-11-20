@@ -3,8 +3,8 @@
 ## ✅ Progresso:
 
 - ✅ **1/14** - Firebase Web API Key (COMPLETO)
-- ⏳ **2/14** - Stripe Secret Key
-- ⏳ **3/14** - Stripe Webhook Secret
+- ✅ **2/14** - Stripe Secret Key (COMPLETO)
+- ✅ **3/14** - Stripe Webhook Secret (COMPLETO)
 - ⏳ **4/14** - Google API Key
 - ⏳ **5/14** - Google CSE ID
 - ⏳ **6/14** - DeHashed Email
