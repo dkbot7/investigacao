@@ -34,11 +34,10 @@ bucket = "./dist"
 [browser]
 binding = "BROWSER"
 
-# R2 Storage (habilitar no dashboard e criar bucket "investigaree-reports")
-# Descomentar após criar o bucket:
-# [[r2_buckets]]
-# binding = "R2"
-# bucket_name = "investigaree-reports"
+# R2 Storage (habilitado e bucket criado)
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "r2storage"
 
 # Environment variables (não-sensíveis)
 [vars]
