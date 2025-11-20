@@ -1,0 +1,107 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Cloudflare
+.wrangler
+wrangler.toml.bak
+.dev.vars
+
+# Firebase
+.firebase
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Supabase
+.supabase
+
+# Build outputs
+build
+out
+.next
+
+# Testing
+coverage
+.nyc_output
+
+# Misc
+.cache
+.parcel-cache
+.vercel
+.netlify
+
+# OS
+Thumbs.db
+Desktop.ini
+._*
+*.swp
+*~
+
+# Secrets (NUNCA COMMITAR)
+*.pem
+*.key
+*.cert
+*.p12
+*-key.json
+service-account*.json
+credentials*.json
+
+# Temp files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
