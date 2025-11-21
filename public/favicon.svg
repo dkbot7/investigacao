@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2B7BC5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0D5BA0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="url(#grad)"/>
+
+  <!-- Magnifying glass handle -->
+  <line x1="65" y1="65" x2="80" y2="80" stroke="white" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Magnifying glass circle -->
+  <circle cx="45" cy="45" r="20" fill="none" stroke="white" stroke-width="6"/>
+
+  <!-- Search dot in center -->
+  <circle cx="45" cy="45" r="4" fill="white"/>
+
+  <!-- Shield overlay (investigation + security) -->
+  <path d="M 35 30 L 45 25 L 55 30 L 55 42 Q 55 50 45 55 Q 35 50 35 42 Z"
+        fill="rgba(255,255,255,0.3)" stroke="white" stroke-width="1.5"/>
+</svg>

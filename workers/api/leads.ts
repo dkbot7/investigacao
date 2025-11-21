@@ -14,12 +14,11 @@ const app = new Hono<{ Bindings: Env }>()
 // ============================================
 
 const leadSchema = z.object({
-  whatsapp: z.string().regex(/^\+?[1-9]\d{1,14}$/, 'WhatsApp inválido'),
-  nome_empresa: z.string().min(2, 'Nome da empresa muito curto').optional(),
-  cnpj: z.string().regex(/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/, 'CNPJ inválido').optional(),
-  cpf_socio: z.string().regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, 'CPF inválido').optional(),
-  nome_socio: z.string().min(2, 'Nome do sócio muito curto').optional(),
-  email: z.string().email('Email inválido').optional(),
+  firebase_uid: z.string().min(1, 'Firebase UID é obrigatório'),
+  name: z.string().min(2, 'Nome muito curto').optional(),
+  email: z.string().email('Email inválido'),
+  phone: z.string().optional(),
+  consent: z.boolean().default(true),
   utm_source: z.string().optional(),
   utm_medium: z.string().optional(),
   utm_campaign: z.string().optional(),
@@ -39,46 +38,29 @@ app.post('/', async (c) => {
     const body = await c.req.json()
     const validated = leadSchema.parse(body)
 
-    // Normalizar WhatsApp (remover caracteres especiais)
-    const whatsappNormalized = validated.whatsapp.replace(/\D/g, '')
-
-    // Verificar se lead já existe (por WhatsApp)
-    const existingLead = await checkExistingLead(whatsappNormalized, c.env)
+    // Verificar se lead já existe (por email ou firebase_uid)
+    const existingLead = await checkExistingLead(validated.firebase_uid, validated.email, c.env)
 
     if (existingLead) {
-      // Se já existe, incrementar submit_count
-      await incrementSubmitCount(existingLead.id, c.env)
-
       return c.json(
         {
           success: true,
           lead_id: existingLead.id,
-          message: 'Você já está cadastrado em nossa base!',
+          message: 'Lead já cadastrado!',
           existing: true,
         },
         200
       )
     }
 
-    // Obter IP e User Agent
-    const ip = c.req.header('CF-Connecting-IP') || 'unknown'
-    const userAgent = c.req.header('User-Agent') || 'unknown'
-
     // Criar novo lead
     const leadData = {
-      whatsapp: whatsappNormalized,
-      nome_empresa: validated.nome_empresa || null,
-      cnpj: validated.cnpj || null,
-      cpf_socio: validated.cpf_socio || null,
-      nome_socio: validated.nome_socio || null,
-      email: validated.email || null,
-      fonte_captacao: 'landing',
-      status: 'novo',
-      utm_source: validated.utm_source || null,
-      utm_medium: validated.utm_medium || null,
-      utm_campaign: validated.utm_campaign || null,
-      ip_address: ip,
-      user_agent: userAgent,
+      firebase_uid: validated.firebase_uid,
+      name: validated.name || null,
+      email: validated.email,
+      phone: validated.phone || null,
+      origin: 'landing_page',
+      consent: validated.consent,
     }
 
     const lead = await createLead(leadData, c.env)
@@ -87,18 +69,11 @@ app.post('/', async (c) => {
       throw new Error('Falha ao criar lead')
     }
 
-    // TODO: Enviar email de boas-vindas
-    // await sendWelcomeEmail(lead.email, lead.nome_socio || 'Investidor')
-
-    // TODO: Notificar no Slack/Discord
-    // await notifyNewLead(lead)
-
     return c.json(
       {
         success: true,
         lead_id: lead.id,
         message: 'Lead cadastrado com sucesso!',
-        next_steps: 'Em breve, nosso chatbot entrará em contato via WhatsApp',
       },
       201
     )
@@ -181,10 +156,10 @@ app.get('/:id', async (c) => {
 /**
  * Verificar se lead já existe
  */
-async function checkExistingLead(whatsapp: string, env: Env) {
+async function checkExistingLead(firebaseUid: string, email: string, env: Env) {
   try {
     const response = await fetch(
-      `${env.SUPABASE_URL}/rest/v1/leads?whatsapp=eq.${whatsapp}&select=id,status,submit_count`,
+      `${env.SUPABASE_URL}/rest/v1/leads?or=(firebase_uid.eq.${firebaseUid},email.eq.${email})&select=id`,
       {
         headers: {
           apikey: env.SUPABASE_SERVICE_ROLE_KEY,
@@ -202,28 +177,6 @@ async function checkExistingLead(whatsapp: string, env: Env) {
   } catch (error) {
     console.error('[LEADS] Error checking existing:', error)
     return null
-  }
-}
-
-/**
- * Incrementar contador de submissões
- */
-async function incrementSubmitCount(leadId: string, env: Env) {
-  try {
-    await fetch(`${env.SUPABASE_URL}/rest/v1/leads?id=eq.${leadId}`, {
-      method: 'PATCH',
-      headers: {
-        apikey: env.SUPABASE_SERVICE_ROLE_KEY,
-        Authorization: `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        submit_count: 'submit_count + 1', // Incrementar usando expressão SQL
-        updated_at: new Date().toISOString(),
-      }),
-    })
-  } catch (error) {
-    console.error('[LEADS] Error incrementing count:', error)
   }
 }
 

@@ -117,7 +117,7 @@ BEGIN
     SELECT 1
     FROM users
     WHERE users.id = auth.uid()
-      AND users.email = 'contato@investigacaodigitalpericiaforense.com.br'
+      AND users.email = 'contato@investigaree.com.br'
   );
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;

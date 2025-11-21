@@ -73,7 +73,13 @@ app.use('*', async (c, next) => {
 
 // CORS
 app.use('*', cors({
-  origin: ['https://investigaree.com.br', 'http://localhost:5173'],
+  origin: [
+    'https://investigaree.com.br',
+    'https://www.investigaree.com.br',
+    'https://investigaree.pages.dev',
+    'https://*.investigaree.pages.dev',
+    'http://localhost:5173'
+  ],
   allowMethods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowHeaders: ['Content-Type', 'Authorization'],
   exposeHeaders: ['Content-Length', 'X-Request-Id'],
@@ -81,8 +87,9 @@ app.use('*', cors({
   credentials: true,
 }))
 
-// Rate Limiting (global)
-app.use('*', rateLimitMiddleware)
+// Rate Limiting (only for API routes, not static assets)
+app.use('/api/*', rateLimitMiddleware)
+app.use('/health', rateLimitMiddleware)
 
 // ============================================
 // HEALTH CHECK
@@ -97,12 +104,23 @@ app.get('/health', (c) => {
   })
 })
 
+// API Root
 app.get('/', (c) => {
   return c.json({
     name: 'investigaree API',
     version: c.env.APP_VERSION || '1.0.0',
     docs: 'https://investigaree.com.br/docs/api',
     status: 'operational',
+    endpoints: {
+      health: '/health',
+      leads: '/api/leads',
+      chatbot: '/api/chatbot/message',
+      reports: '/api/reports',
+      payments: '/api/payments',
+      webhooks: '/api/webhooks/stripe',
+      user: '/api/user',
+      lgpd: '/api/lgpd',
+    },
   })
 })
 
@@ -164,17 +182,23 @@ app.onError((err, c) => {
   )
 })
 
-// 404 Handler
+// 404 Handler for API routes only
 app.notFound((c) => {
-  return c.json(
-    {
-      error: true,
-      message: 'Endpoint not found',
-      path: c.req.path,
-      method: c.req.method,
-    },
-    404
-  )
+  // Only return JSON 404 for API routes
+  if (c.req.path.startsWith('/api/') || c.req.path === '/health') {
+    return c.json(
+      {
+        error: true,
+        message: 'Endpoint not found',
+        path: c.req.path,
+        method: c.req.method,
+      },
+      404
+    )
+  }
+
+  // For all other routes, this should not be reached due to static serving
+  return c.text('Not Found', 404)
 })
 
 // ============================================

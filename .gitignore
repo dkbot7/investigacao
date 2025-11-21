@@ -32,6 +32,9 @@ dist-ssr
 .env.test.local
 .env.production.local
 .env.*.local
+.env.automation
+.env.production
+.env.development
 
 # Cloudflare
 .wrangler

@@ -11,9 +11,9 @@ account_id = "ce11d202b2917777965b5131b5edc627"
 workers_dev = true
 
 # Build configuration
-[build]
-command = "npm run build"
-upload.format = "service-worker"
+# [build]
+# command = "npm run build"
+# upload.format = "service-worker"
 
 # KV Namespaces (para cache)
 [[kv_namespaces]]
@@ -21,14 +21,14 @@ binding = "KV"
 id = "afa4a891f4994709977bcd583fb3f285" # investigaree-rate-limits
 preview_id = "" # wrangler kv:namespace create "KV" --preview
 
-# Routes (produção)
+# Routes (produção) - API subdomain
 [[routes]]
-pattern = "investigaree.com.br/*"
+pattern = "api.investigaree.com.br/*"
 zone_name = "investigaree.com.br"
 
-# Static site configuration
-[site]
-bucket = "./dist"
+# Static site configuration (disabled - using Pages instead)
+# [site]
+# bucket = "./dist"
 
 # Browser Rendering (habilitar no dashboard)
 [browser]
@@ -73,20 +73,16 @@ enabled = true
 
 # ============================================
 # TRIGGERS (Cron Jobs para processar relatórios)
+# Desabilitado: Free tier permite apenas 5 cron triggers no total
 # ============================================
-[triggers]
-crons = ["0 */6 * * *"] # Rodar a cada 6 horas
+# [triggers]
+# crons = ["0 */6 * * *"] # Rodar a cada 6 horas
 
 # ============================================
-# USAGE MODEL
+# LIMITS (desabilitado para plano Free)
 # ============================================
-usage_model = "bundled" # ou "unbound" para workloads pesados
-
-# ============================================
-# LIMITS
-# ============================================
-[limits]
-cpu_ms = 50 # 50ms no free tier, até 50.000ms no paid
+# [limits]
+# cpu_ms = 50 # 50ms no free tier, até 50.000ms no paid
 
 # ============================================
 # SECRETS (adicionar via: wrangler secret put NOME_SECRET)

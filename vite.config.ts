@@ -17,23 +17,14 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
+    sourcemap: false,
+    minify: 'esbuild',
     rollupOptions: {
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-vendor': ['framer-motion', 'lucide-react'],
-          'form-vendor': ['react-hook-form', '@hookform/resolvers', 'zod'],
-          'supabase': ['@supabase/supabase-js'],
-          'firebase': ['firebase'],
-          'stripe': ['@stripe/stripe-js', '@stripe/react-stripe-js'],
+          'ui-vendor': ['lucide-react'],
+          'firebase': ['firebase/app', 'firebase/auth'],
         },
       },
     },
