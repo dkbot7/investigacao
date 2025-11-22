@@ -3,7 +3,12 @@
     "allow": [
       "Bash(npx wrangler pages deploy:*)",
       "Bash(curl:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(npx wrangler deploy)",
+      "Bash(git push:*)",
+      "WebFetch(domain:www.eloylacerda.com.br)",
+      "WebSearch",
+      "WebFetch(domain:www.linkedin.com)"
     ],
     "deny": [],
     "ask": []
