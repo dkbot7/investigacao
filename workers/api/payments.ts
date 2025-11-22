@@ -14,9 +14,13 @@ const app = new Hono<{ Bindings: Env }>()
 // ============================================
 
 const createPaymentSchema = z.object({
-  produto: z.enum(['relatorio-startup', 'assinatura-pro', 'assinatura-enterprise']),
+  produto: z.string().min(1, 'Produto é obrigatório'),
+  target_name: z.string().optional(),
+  target_document: z.string().optional(),
   startup_nome: z.string().optional(),
   startup_cnpj: z.string().optional(),
+  services: z.string().optional(),
+  urgency: z.string().optional(),
   amount: z.number().positive().optional(), // Será calculado se não fornecido
 })
 
@@ -33,7 +37,7 @@ const PRODUCT_PRICES: Record<string, number> = {
 
 /**
  * POST /api/payments/create-intent
- * Criar intenção de pagamento (Stripe Payment Intent)
+ * Criar sessão de checkout (Stripe Checkout Session)
  */
 app.post('/create-intent', async (c) => {
   try {
@@ -57,44 +61,52 @@ app.post('/create-intent', async (c) => {
     // Obter ou criar Stripe Customer
     const customerId = await getOrCreateStripeCustomer(userId, c.env)
 
-    // Criar Payment Intent via Stripe API
-    let paymentIntent
+    // Criar Checkout Session via Stripe API
+    let checkoutSession
 
     if (c.env.STRIPE_SECRET_KEY && !c.env.STRIPE_SECRET_KEY.startsWith('sk_test_mock')) {
-      // Integração real com Stripe
-      const stripeResponse = await fetch('https://api.stripe.com/v1/payment_intents', {
+      // Integração real com Stripe Checkout
+      const stripeResponse = await fetch('https://api.stripe.com/v1/checkout/sessions', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${c.env.STRIPE_SECRET_KEY}`,
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: new URLSearchParams({
-          amount: amount.toString(),
-          currency: 'brl',
           customer: customerId,
-          'automatic_payment_methods[enabled]': 'true',
+          'line_items[0][price_data][currency]': 'brl',
+          'line_items[0][price_data][unit_amount]': amount.toString(),
+          'line_items[0][price_data][product_data][name]': validated.produto,
+          'line_items[0][price_data][product_data][description]': `${validated.target_name || validated.startup_nome || 'Relatório de Due Diligence'}`,
+          'line_items[0][quantity]': '1',
+          mode: 'payment',
+          success_url: 'https://investigaree.com.br/obrigado?session_id={CHECKOUT_SESSION_ID}',
+          cancel_url: 'https://investigaree.com.br/reports/new',
           'metadata[user_id]': userId,
           'metadata[produto]': validated.produto,
+          'metadata[target_name]': validated.target_name || '',
+          'metadata[target_document]': validated.target_document || '',
+          'metadata[services]': validated.services || '',
+          'metadata[urgency]': validated.urgency || '',
           'metadata[startup_nome]': validated.startup_nome || '',
           'metadata[startup_cnpj]': validated.startup_cnpj || '',
-          description: `Pagamento de ${validated.produto}`,
         }),
       })
 
       if (!stripeResponse.ok) {
         const error = await stripeResponse.json()
         console.error('[PAYMENTS] Stripe error:', error)
-        throw new Error('Erro ao criar intenção de pagamento no Stripe')
+        throw new Error('Erro ao criar sessão de checkout no Stripe')
       }
 
-      paymentIntent = await stripeResponse.json()
+      checkoutSession = await stripeResponse.json()
     } else {
       // Mock response para desenvolvimento
-      console.warn('[PAYMENTS] Stripe not configured, using mock payment intent')
-      paymentIntent = {
-        id: `pi_mock_${Date.now()}`,
-        client_secret: `pi_mock_${Date.now()}_secret_mock`,
-        amount: amount,
+      console.warn('[PAYMENTS] Stripe not configured, using mock checkout session')
+      checkoutSession = {
+        id: `cs_mock_${Date.now()}`,
+        url: `https://checkout.stripe.com/pay/cs_mock_${Date.now()}`,
+        amount_total: amount,
         currency: 'brl',
         customer: customerId,
         metadata: {
@@ -110,26 +122,26 @@ app.post('/create-intent', async (c) => {
     await createPaymentRecord(
       {
         user_id: userId,
-        stripe_payment_intent_id: paymentIntent.id,
+        stripe_payment_intent_id: checkoutSession.id,
         amount: amount / 100, // converter para reais
         currency: 'BRL',
         status: 'pending',
         produto: validated.produto,
         descricao: `Pagamento de ${validated.produto}`,
-        metadata: paymentIntent.metadata,
+        metadata: checkoutSession.metadata,
       },
       c.env
     )
 
     return c.json({
       success: true,
-      payment_intent_id: paymentIntent.id,
-      client_secret: paymentIntent.client_secret,
+      sessionId: checkoutSession.id,
+      url: checkoutSession.url,
       amount: amount,
       currency: 'brl',
     })
   } catch (error) {
-    console.error('[PAYMENTS] Error creating intent:', error)
+    console.error('[PAYMENTS] Error creating checkout session:', error)
 
     if (error instanceof z.ZodError) {
       return c.json(
@@ -145,7 +157,7 @@ app.post('/create-intent', async (c) => {
     return c.json(
       {
         error: true,
-        message: 'Erro ao criar intenção de pagamento',
+        message: 'Erro ao criar sessão de checkout',
       },
       500
     )
@@ -171,7 +183,13 @@ app.get('/', async (c) => {
     )
 
     if (!response.ok) {
-      throw new Error('Erro ao buscar pagamentos')
+      const errorText = await response.text()
+      console.error('[PAYMENTS] Supabase error:', {
+        status: response.status,
+        statusText: response.statusText,
+        body: errorText,
+      })
+      throw new Error(`Erro ao buscar pagamentos: ${response.status} ${response.statusText}`)
     }
 
     const payments = await response.json()
@@ -261,6 +279,16 @@ async function getOrCreateStripeCustomer(userId: string, env: Env): Promise<stri
         },
       }
     )
+
+    if (!response.ok) {
+      const errorText = await response.text()
+      console.error('[PAYMENTS] Supabase error fetching user:', {
+        status: response.status,
+        statusText: response.statusText,
+        body: errorText,
+      })
+      throw new Error(`Erro ao buscar usuário: ${response.status} ${response.statusText}`)
+    }
 
     const users = await response.json()
     const user = users[0]

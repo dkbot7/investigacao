@@ -145,6 +145,40 @@ app.get('/', async (c) => {
 })
 
 /**
+ * GET /api/leads/stats
+ * Estatísticas de leads
+ * IMPORTANTE: Deve vir ANTES da rota /:id para não ser capturado como parâmetro
+ */
+app.get('/stats', async (c) => {
+  try {
+    const total = await c.env.DB.prepare(
+      'SELECT COUNT(*) as count FROM leads'
+    ).first()
+
+    const today = await c.env.DB.prepare(
+      "SELECT COUNT(*) as count FROM leads WHERE date(created_at) = date('now')"
+    ).first()
+
+    return c.json({
+      success: true,
+      stats: {
+        total: total?.count || 0,
+        today: today?.count || 0,
+      },
+    })
+  } catch (error) {
+    console.error('[LEADS] Error getting stats:', error)
+    return c.json(
+      {
+        error: true,
+        message: 'Erro ao buscar estatísticas',
+      },
+      500
+    )
+  }
+})
+
+/**
  * GET /api/leads/:id
  * Obter lead por ID
  */
@@ -175,39 +209,6 @@ app.get('/:id', async (c) => {
       {
         error: true,
         message: 'Erro ao buscar lead',
-      },
-      500
-    )
-  }
-})
-
-/**
- * GET /api/leads/stats
- * Estatísticas de leads
- */
-app.get('/stats', async (c) => {
-  try {
-    const total = await c.env.DB.prepare(
-      'SELECT COUNT(*) as count FROM leads'
-    ).first()
-
-    const today = await c.env.DB.prepare(
-      "SELECT COUNT(*) as count FROM leads WHERE date(created_at) = date('now')"
-    ).first()
-
-    return c.json({
-      success: true,
-      stats: {
-        total: total?.count || 0,
-        today: today?.count || 0,
-      },
-    })
-  } catch (error) {
-    console.error('[LEADS] Error getting stats:', error)
-    return c.json(
-      {
-        error: true,
-        message: 'Erro ao buscar estatísticas',
       },
       500
     )

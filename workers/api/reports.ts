@@ -43,7 +43,13 @@ app.get('/', async (c) => {
     )
 
     if (!response.ok) {
-      throw new Error('Erro ao buscar relatórios')
+      const errorText = await response.text()
+      console.error('[REPORTS] Supabase error:', {
+        status: response.status,
+        statusText: response.statusText,
+        body: errorText,
+      })
+      throw new Error(`Erro ao buscar relatórios: ${response.status} ${response.statusText}`)
     }
 
     const reports = await response.json()

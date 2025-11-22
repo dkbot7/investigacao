@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useApi } from '../contexts/ApiContext'
@@ -12,22 +12,22 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  useEffect(() => {
-    loadReports()
-  }, [])
-
-  const loadReports = async () => {
+  const loadReports = useCallback(async () => {
     try {
       setLoading(true)
       const data = await getReports()
-      setReports(data || [])
+      setReports(data.reports || [])
     } catch (err: any) {
       console.error('Erro ao carregar relatórios:', err)
       setError(err.message || 'Erro ao carregar relatórios')
     } finally {
       setLoading(false)
     }
-  }
+  }, [getReports])
+
+  useEffect(() => {
+    loadReports()
+  }, [loadReports])
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -143,8 +143,10 @@ export default function DashboardPage() {
                   >
                     <div className="flex justify-between items-center">
                       <div>
-                        <h3 className="font-semibold text-lg text-gray-900">{report.name}</h3>
-                        <p className="text-sm text-gray-600">Criado em {report.date}</p>
+                        <h3 className="font-semibold text-lg text-gray-900">{report.startup_nome}</h3>
+                        <p className="text-sm text-gray-600">
+                          Criado em {new Date(report.created_at).toLocaleDateString('pt-BR')}
+                        </p>
                       </div>
                       <div className="flex items-center gap-2">
                         {report.status === 'completed' ? (

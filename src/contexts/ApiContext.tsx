@@ -6,9 +6,14 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://investigaree.
 interface ApiContextType {
   apiCall: <T>(endpoint: string, options?: RequestInit) => Promise<T>
   createReport: (data: CreateReportData) => Promise<Report>
-  getReports: () => Promise<Report[]>
+  getReports: () => Promise<ReportsResponse>
   getReport: (id: string) => Promise<Report>
   createPayment: (data: CreatePaymentData) => Promise<PaymentSession>
+}
+
+interface ReportsResponse {
+  reports: Report[]
+  total: number
 }
 
 interface CreateReportData {
@@ -31,13 +36,15 @@ interface CreatePaymentData {
 
 interface Report {
   id: string
-  target_name: string
+  startup_nome: string
+  startup_cnpj: string
+  startup_setor?: string
   status: 'pending' | 'processing' | 'completed' | 'failed'
-  services: string[]
+  recomendacao?: string
+  score_integridade?: number
   created_at: string
-  updated_at: string
+  prazo_entrega?: string
   pdf_url?: string
-  result_summary?: string
 }
 
 interface PaymentSession {
@@ -82,8 +89,8 @@ export function ApiProvider({ children }: { children: ReactNode }) {
     })
   }
 
-  const getReports = async (): Promise<Report[]> => {
-    return apiCall<Report[]>('/api/reports')
+  const getReports = async (): Promise<ReportsResponse> => {
+    return apiCall<ReportsResponse>('/api/reports')
   }
 
   const getReport = async (id: string): Promise<Report> => {
