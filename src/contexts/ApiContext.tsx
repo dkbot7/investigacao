@@ -8,7 +8,7 @@ interface ApiContextType {
   createReport: (data: CreateReportData) => Promise<Report>
   getReports: () => Promise<Report[]>
   getReport: (id: string) => Promise<Report>
-  createPayment: (reportId: string) => Promise<PaymentSession>
+  createPayment: (data: CreatePaymentData) => Promise<PaymentSession>
 }
 
 interface CreateReportData {
@@ -18,6 +18,15 @@ interface CreateReportData {
   target_phone?: string
   services: string[]
   urgency: 'standard' | 'express'
+}
+
+interface CreatePaymentData {
+  produto: string
+  target_name: string
+  target_document?: string
+  services: string
+  urgency: string
+  amount: number
 }
 
 interface Report {
@@ -81,10 +90,10 @@ export function ApiProvider({ children }: { children: ReactNode }) {
     return apiCall<Report>(`/api/reports/${id}`)
   }
 
-  const createPayment = async (reportId: string): Promise<PaymentSession> => {
-    return apiCall<PaymentSession>('/api/payments/checkout', {
+  const createPayment = async (data: CreatePaymentData): Promise<PaymentSession> => {
+    return apiCall<PaymentSession>('/api/payments/create-intent', {
       method: 'POST',
-      body: JSON.stringify({ report_id: reportId }),
+      body: JSON.stringify(data),
     })
   }
 

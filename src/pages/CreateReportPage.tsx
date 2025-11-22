@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ArrowLeft, FileText, CheckCircle } from 'lucide-react'
+import { useApi } from '../contexts/ApiContext'
 import Logo from '../components/Logo'
 
 export default function CreateReportPage() {
@@ -8,7 +9,9 @@ export default function CreateReportPage() {
   const [targetDocument, setTargetDocument] = useState('')
   const [services, setServices] = useState<string[]>([])
   const [urgency, setUrgency] = useState<'standard' | 'express'>('standard')
-  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const { createPayment } = useApi()
 
   const serviceList = [
     { id: 'social_media', label: 'Redes Sociais' },
@@ -25,11 +28,35 @@ export default function CreateReportPage() {
     )
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulação - em produção chamaria API
-    alert(`Relatório criado!\nAlvo: ${targetName}\nServiços: ${services.length}\nValor: R$ ${urgency === 'express' ? '397' : '197'}`)
-    navigate('/dashboard')
+    setError('')
+    setLoading(true)
+
+    try {
+      const price = urgency === 'express' ? 397 : 197
+
+      // Criar payment intent com Stripe
+      const paymentData = await createPayment({
+        produto: 'relatorio-due-diligence',
+        target_name: targetName,
+        target_document: targetDocument,
+        services: services.join(','),
+        urgency,
+        amount: price * 100, // converter para centavos
+      })
+
+      // Redirecionar para Stripe Checkout
+      if (paymentData.url) {
+        window.location.href = paymentData.url
+      } else {
+        throw new Error('URL de pagamento não recebida')
+      }
+    } catch (err: any) {
+      console.error('Erro ao criar pagamento:', err)
+      setError(err.message || 'Erro ao processar pagamento')
+      setLoading(false)
+    }
   }
 
   const price = urgency === 'express' ? 397 : 197
@@ -163,14 +190,21 @@ export default function CreateReportPage() {
                 </p>
               </div>
 
+              {/* Error Message */}
+              {error && (
+                <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+                  {error}
+                </div>
+              )}
+
               {/* Submit */}
               <button
                 type="submit"
-                disabled={!targetName || services.length === 0}
+                disabled={!targetName || services.length === 0 || loading}
                 className="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 <FileText className="w-6 h-6" />
-                Criar Relatório e Pagar
+                {loading ? 'Processando...' : 'Criar Relatório e Pagar'}
               </button>
             </form>
           </div>

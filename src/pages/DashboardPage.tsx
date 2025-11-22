@@ -1,15 +1,33 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import { Plus, FileText, User, CreditCard, LogOut, Clock, CheckCircle } from 'lucide-react'
+import { useApi } from '../contexts/ApiContext'
+import { Plus, FileText, User, CreditCard, LogOut, Clock, CheckCircle, Loader } from 'lucide-react'
 import Logo from '../components/Logo'
 
 export default function DashboardPage() {
   const { user, logout } = useAuth()
+  const { getReports } = useApi()
+  const [reports, setReports] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
-  const mockReports = [
-    { id: '1', name: 'João Silva', status: 'completed', date: '20/11/2025' },
-    { id: '2', name: 'Maria Santos', status: 'processing', date: '21/11/2025' },
-  ]
+  useEffect(() => {
+    loadReports()
+  }, [])
+
+  const loadReports = async () => {
+    try {
+      setLoading(true)
+      const data = await getReports()
+      setReports(data || [])
+    } catch (err: any) {
+      console.error('Erro ao carregar relatórios:', err)
+      setError(err.message || 'Erro ao carregar relatórios')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -85,13 +103,28 @@ export default function DashboardPage() {
               </Link>
             </div>
 
-            {mockReports.length === 0 ? (
+            {loading ? (
+              <div className="text-center py-12">
+                <Loader className="w-12 h-12 text-blue-600 mx-auto mb-4 animate-spin" />
+                <p className="text-gray-600">Carregando relatórios...</p>
+              </div>
+            ) : error ? (
+              <div className="text-center py-12">
+                <p className="text-red-600 mb-4">{error}</p>
+                <button
+                  onClick={loadReports}
+                  className="text-blue-600 hover:text-blue-700 font-semibold"
+                >
+                  Tentar novamente
+                </button>
+              </div>
+            ) : reports.length === 0 ? (
               <div className="text-center py-12">
                 <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Nenhum relatório ainda
                 </h3>
-                <p className="text-gray-600 mb-6">Crie seu primeiro relatório</p>
+                <p className="text-gray-600 mb-6">Crie seu primeiro relatório de investigação</p>
                 <Link
                   to="/reports/new"
                   className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
@@ -102,7 +135,7 @@ export default function DashboardPage() {
               </div>
             ) : (
               <div className="space-y-4">
-                {mockReports.map((report) => (
+                {reports.map((report) => (
                   <Link
                     key={report.id}
                     to={`/reports/${report.id}`}

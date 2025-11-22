@@ -13,6 +13,7 @@ import { authMiddleware } from './middleware/auth'
 import { rateLimitMiddleware } from './middleware/rate-limit'
 
 // API Routes
+import authRoutes from './api/auth'
 import leadsRoutes from './api/leads'
 import reportsRoutes from './api/reports'
 import paymentsRoutes from './api/payments'
@@ -122,6 +123,7 @@ app.get('/', (c) => {
     status: 'operational',
     endpoints: {
       health: '/health',
+      auth: '/api/auth',
       leads: '/api/leads',
       chatbot: '/api/chatbot/message',
       reports: '/api/reports',
@@ -136,6 +138,9 @@ app.get('/', (c) => {
 // ============================================
 // API ROUTES (PUBLIC)
 // ============================================
+
+// Auth (Registration - no auth required)
+app.route('/api/auth', authRoutes)
 
 // Leads (Landing page - no auth required)
 app.route('/api/leads', leadsRoutes)

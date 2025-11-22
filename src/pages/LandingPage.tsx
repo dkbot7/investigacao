@@ -103,11 +103,34 @@ export default function LandingPage() {
         }),
       })
 
-      const data = await response.json()
+      const leadData = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.message || 'Erro ao cadastrar lead')
+        throw new Error(leadData.message || 'Erro ao cadastrar lead')
       }
+
+      // Criar usuário no sistema (D1 database)
+      const authResponse = await fetch(`${apiUrl}/api/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firebase_uid: firebaseUid,
+          email: tempFormData.email,
+          name: tempFormData.name,
+          phone: tempFormData.whatsapp,
+        }),
+      })
+
+      const authData = await authResponse.json()
+
+      if (!authResponse.ok && authResponse.status !== 200) {
+        console.warn('Erro ao criar usuário no sistema:', authData.message)
+        // Não bloquear o fluxo, apenas logar o erro
+      }
+
+      console.log('✅ Usuário criado:', authData)
 
       // Fechar modal e redirecionar para página de obrigado
       setShowPasswordModal(false)
