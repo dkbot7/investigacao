@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Search, Shield, FileText, Clock, Users, Globe, CheckCircle, X, Eye, EyeOff } from 'lucide-react'
+import { Search, Shield, FileText, CheckCircle, X, Eye, EyeOff, Heart, UserCheck, Gavel, Laptop, Building2, Briefcase, MapPin, Package } from 'lucide-react'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../lib/firebase'
 import Logo from '../components/Logo'
@@ -465,23 +465,58 @@ export default function LandingPage() {
       </section>
 
       {/* Services */}
-      <section className="container mx-auto px-4 py-16 bg-gray-50">
-        <h2 className="text-3xl font-bold text-center mb-12">Módulos Disponíveis</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {[
-            { icon: Globe, title: 'Redes Sociais', desc: 'Análise de perfis públicos' },
-            { icon: FileText, title: 'Documentos', desc: 'Validação de CPF, RG, CNH' },
-            { icon: Users, title: 'Antecedentes', desc: 'Busca em registros públicos' },
-            { icon: Shield, title: 'Data Breach', desc: 'Vazamentos de dados' },
-            { icon: Search, title: 'Google Search', desc: 'Busca inteligente na web' },
-            { icon: Clock, title: 'Histórico', desc: 'Timeline de atividades' },
-          ].map((service, idx) => (
-            <div key={idx} className="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-              <service.icon className="w-10 h-10 text-blue-600 mb-3" />
-              <h3 className="font-bold text-lg mb-2">{service.title}</h3>
-              <p className="text-gray-600 text-sm">{service.desc}</p>
+      <section className="bg-gray-900 text-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div className="h-px bg-yellow-500 w-24"></div>
+              <div className="w-2 h-2 bg-yellow-500 rotate-45"></div>
+              <div className="h-px bg-yellow-500 w-24"></div>
             </div>
-          ))}
+            <h2 className="text-4xl font-bold">Nossos Serviços</h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div className="flex items-start gap-3 group cursor-pointer">
+              <Heart className="w-5 h-5 text-yellow-500 mt-1 flex-shrink-0" />
+              <span className="text-lg group-hover:text-yellow-500 transition">Investigação Conjugal</span>
+            </div>
+
+            <div className="flex items-start gap-3 group cursor-pointer">
+              <UserCheck className="w-5 h-5 text-yellow-500 mt-1 flex-shrink-0" />
+              <span className="text-lg group-hover:text-yellow-500 transition">Investigação Defensiva</span>
+            </div>
+
+            <div className="flex items-start gap-3 group cursor-pointer">
+              <Gavel className="w-5 h-5 text-yellow-500 mt-1 flex-shrink-0" />
+              <span className="text-lg group-hover:text-yellow-500 transition">Investigação Criminal</span>
+            </div>
+
+            <div className="flex items-start gap-3 group cursor-pointer">
+              <Laptop className="w-5 h-5 text-yellow-500 mt-1 flex-shrink-0" />
+              <span className="text-lg group-hover:text-yellow-500 transition">Investigação Digital</span>
+            </div>
+
+            <div className="flex items-start gap-3 group cursor-pointer">
+              <Building2 className="w-5 h-5 text-yellow-500 mt-1 flex-shrink-0" />
+              <span className="text-lg group-hover:text-yellow-500 transition">Investigação Empresarial</span>
+            </div>
+
+            <div className="flex items-start gap-3 group cursor-pointer">
+              <Briefcase className="w-5 h-5 text-yellow-500 mt-1 flex-shrink-0" />
+              <span className="text-lg group-hover:text-yellow-500 transition">Investigação Trabalhista</span>
+            </div>
+
+            <div className="flex items-start gap-3 group cursor-pointer">
+              <MapPin className="w-5 h-5 text-yellow-500 mt-1 flex-shrink-0" />
+              <span className="text-lg group-hover:text-yellow-500 transition">Localizações de Pessoas</span>
+            </div>
+
+            <div className="flex items-start gap-3 group cursor-pointer">
+              <Package className="w-5 h-5 text-yellow-500 mt-1 flex-shrink-0" />
+              <span className="text-lg group-hover:text-yellow-500 transition">Localização de Bens</span>
+            </div>
+          </div>
         </div>
       </section>
 
