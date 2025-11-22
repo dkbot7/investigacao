@@ -5,7 +5,7 @@ interface LogoProps {
 export default function Logo({ className = 'w-8 h-8' }: LogoProps) {
   return (
     <img
-      src="/logo-investigaree.png"
+      src="/faviconinvestigaree/favicon.svg"
       alt="investigaree"
       className={className}
     />
