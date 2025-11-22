@@ -23,8 +23,17 @@ import lgpdRoutes from './api/lgpd'
 
 // Types
 export interface Env {
+  // D1 Database
+  DB: D1Database
+
   // KV Namespace
   KV: KVNamespace
+
+  // R2 Storage
+  R2: R2Bucket
+
+  // Browser Rendering
+  BROWSER: Fetcher
 
   // Secrets
   SUPABASE_URL: string

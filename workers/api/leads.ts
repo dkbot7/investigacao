@@ -1,5 +1,5 @@
 /**
- * Leads API Routes
+ * Leads API Routes - D1 Database
  * Captação de leads via landing page
  */
 
@@ -38,14 +38,21 @@ app.post('/', async (c) => {
     const body = await c.req.json()
     const validated = leadSchema.parse(body)
 
-    // Verificar se lead já existe (por email ou firebase_uid)
-    const existingLead = await checkExistingLead(validated.firebase_uid, validated.email, c.env)
+    console.log('[LEADS] Creating lead:', { email: validated.email })
 
-    if (existingLead) {
+    // Verificar se lead já existe
+    const existing = await c.env.DB.prepare(
+      'SELECT id FROM leads WHERE firebase_uid = ? OR email = ? LIMIT 1'
+    )
+      .bind(validated.firebase_uid, validated.email)
+      .first()
+
+    if (existing) {
+      console.log('[LEADS] Lead already exists:', existing.id)
       return c.json(
         {
           success: true,
-          lead_id: existingLead.id,
+          lead_id: existing.id,
           message: 'Lead já cadastrado!',
           existing: true,
         },
@@ -54,25 +61,33 @@ app.post('/', async (c) => {
     }
 
     // Criar novo lead
-    const leadData = {
-      firebase_uid: validated.firebase_uid,
-      name: validated.name || null,
-      email: validated.email,
-      phone: validated.phone || null,
-      origin: 'landing_page',
-      consent: validated.consent,
-    }
+    const id = crypto.randomUUID()
+    const result = await c.env.DB.prepare(
+      `INSERT INTO leads (id, firebase_uid, name, email, phone, origin, consent, created_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'))`
+    )
+      .bind(
+        id,
+        validated.firebase_uid,
+        validated.name || null,
+        validated.email,
+        validated.phone || null,
+        'landing_page',
+        validated.consent ? 1 : 0
+      )
+      .run()
 
-    const lead = await createLead(leadData, c.env)
-
-    if (!lead) {
+    if (!result.success) {
+      console.error('[LEADS] Failed to insert:', result)
       throw new Error('Falha ao criar lead')
     }
+
+    console.log('[LEADS] Lead created successfully:', id)
 
     return c.json(
       {
         success: true,
-        lead_id: lead.id,
+        lead_id: id,
         message: 'Lead cadastrado com sucesso!',
       },
       201
@@ -95,6 +110,34 @@ app.post('/', async (c) => {
       {
         error: true,
         message: 'Erro ao processar cadastro',
+        details: error instanceof Error ? error.message : 'Unknown error',
+      },
+      500
+    )
+  }
+})
+
+/**
+ * GET /api/leads
+ * Listar todos os leads (admin)
+ */
+app.get('/', async (c) => {
+  try {
+    const { results } = await c.env.DB.prepare(
+      'SELECT id, firebase_uid, name, email, phone, origin, created_at FROM leads ORDER BY created_at DESC LIMIT 100'
+    ).all()
+
+    return c.json({
+      success: true,
+      leads: results,
+      count: results.length,
+    })
+  } catch (error) {
+    console.error('[LEADS] Error listing:', error)
+    return c.json(
+      {
+        error: true,
+        message: 'Erro ao listar leads',
       },
       500
     )
@@ -103,28 +146,17 @@ app.post('/', async (c) => {
 
 /**
  * GET /api/leads/:id
- * Obter lead por ID (apenas para debug/admin)
+ * Obter lead por ID
  */
 app.get('/:id', async (c) => {
   try {
     const leadId = c.req.param('id')
 
-    const response = await fetch(
-      `${c.env.SUPABASE_URL}/rest/v1/leads?id=eq.${leadId}&select=*`,
-      {
-        headers: {
-          apikey: c.env.SUPABASE_SERVICE_ROLE_KEY,
-          Authorization: `Bearer ${c.env.SUPABASE_SERVICE_ROLE_KEY}`,
-        },
-      }
+    const lead = await c.env.DB.prepare(
+      'SELECT * FROM leads WHERE id = ? LIMIT 1'
     )
-
-    if (!response.ok) {
-      throw new Error('Erro ao buscar lead')
-    }
-
-    const leads = await response.json()
-    const lead = leads[0]
+      .bind(leadId)
+      .first()
 
     if (!lead) {
       return c.json(
@@ -138,7 +170,7 @@ app.get('/:id', async (c) => {
 
     return c.json(lead)
   } catch (error) {
-    console.error('[LEADS] Error:', error)
+    console.error('[LEADS] Error getting lead:', error)
     return c.json(
       {
         error: true,
@@ -149,65 +181,37 @@ app.get('/:id', async (c) => {
   }
 })
 
-// ============================================
-// HELPER FUNCTIONS
-// ============================================
-
 /**
- * Verificar se lead já existe
+ * GET /api/leads/stats
+ * Estatísticas de leads
  */
-async function checkExistingLead(firebaseUid: string, email: string, env: Env) {
+app.get('/stats', async (c) => {
   try {
-    const response = await fetch(
-      `${env.SUPABASE_URL}/rest/v1/leads?or=(firebase_uid.eq.${firebaseUid},email.eq.${email})&select=id`,
-      {
-        headers: {
-          apikey: env.SUPABASE_SERVICE_ROLE_KEY,
-          Authorization: `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`,
-        },
-      }
-    )
+    const total = await c.env.DB.prepare(
+      'SELECT COUNT(*) as count FROM leads'
+    ).first()
 
-    if (!response.ok) {
-      return null
-    }
+    const today = await c.env.DB.prepare(
+      "SELECT COUNT(*) as count FROM leads WHERE date(created_at) = date('now')"
+    ).first()
 
-    const leads = await response.json()
-    return leads[0] || null
-  } catch (error) {
-    console.error('[LEADS] Error checking existing:', error)
-    return null
-  }
-}
-
-/**
- * Criar novo lead
- */
-async function createLead(data: any, env: Env) {
-  try {
-    const response = await fetch(`${env.SUPABASE_URL}/rest/v1/leads`, {
-      method: 'POST',
-      headers: {
-        apikey: env.SUPABASE_SERVICE_ROLE_KEY,
-        Authorization: `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`,
-        'Content-Type': 'application/json',
-        Prefer: 'return=representation',
+    return c.json({
+      success: true,
+      stats: {
+        total: total?.count || 0,
+        today: today?.count || 0,
       },
-      body: JSON.stringify(data),
     })
-
-    if (!response.ok) {
-      const error = await response.text()
-      console.error('[LEADS] Supabase error:', error)
-      return null
-    }
-
-    const leads = await response.json()
-    return leads[0]
   } catch (error) {
-    console.error('[LEADS] Error creating:', error)
-    return null
+    console.error('[LEADS] Error getting stats:', error)
+    return c.json(
+      {
+        error: true,
+        message: 'Erro ao buscar estatísticas',
+      },
+      500
+    )
   }
-}
+})
 
 export default app

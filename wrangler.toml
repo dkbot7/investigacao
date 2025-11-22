@@ -39,6 +39,12 @@ binding = "BROWSER"
 binding = "R2"
 bucket_name = "r2storage"
 
+# D1 Database (SQLite nativo do Cloudflare)
+[[d1_databases]]
+binding = "DB"
+database_name = "investigaree-db"
+database_id = "4b9ddf13-d347-4337-8500-8ba37fd08f55"
+
 # Environment variables (não-sensíveis)
 [vars]
 ENVIRONMENT = "production"
