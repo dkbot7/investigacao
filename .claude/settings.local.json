@@ -8,7 +8,9 @@
       "Bash(git push:*)",
       "WebFetch(domain:www.eloylacerda.com.br)",
       "WebSearch",
-      "WebFetch(domain:www.linkedin.com)"
+      "WebFetch(domain:www.linkedin.com)",
+      "Bash(npx shadcn@latest add:*)",
+      "Bash(npm run dev:*)"
     ],
     "deny": [],
     "ask": []

@@ -6,7 +6,7 @@ export async function POST(request: Request) {
     const { name, email, whatsapp, timestamp } = await request.json();
 
     // Configuração do transporter (usando variáveis de ambiente do Cloudflare)
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: process.env.GMAIL_USER, // Será configurado no Cloudflare
