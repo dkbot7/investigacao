@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  :root {
+    /* Investigaree Forense - Navy + Gold Profissional */
+    --primary: 214 52% 25%; /* Navy 800 #1E3A5F */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 60% 10%; /* Navy 950 #0A1628 */
+    --secondary-foreground: 0 0% 100%;
+
+    /* Light Theme */
+    --background: 0 0% 100%;
+    --foreground: 210 60% 10%; /* Navy 950 */
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 60% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 60% 10%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 214 30% 40%;
+
+    --accent: 46 65% 52%; /* Gold 500 #D4AF37 */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 62%; /* #EB5757 */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 30% 90%;
+    --input: 210 30% 90%;
+    --ring: 214 52% 25%;
+
+    /* Chart colors - Navy + Gold */
+    --chart-1: 214 52% 25%; /* Navy 800 */
+    --chart-2: 46 65% 52%; /* Gold 500 */
+    --chart-3: 155 59% 44%; /* Success #27C685 */
+    --chart-4: 45 88% 63%; /* Warning #F2C94C */
+    --chart-5: 0 72% 62%; /* Destructive #EB5757 */
+
+    /* Sidebar - Navy */
+    --sidebar: 0 0% 100%;
+    --sidebar-foreground: 210 60% 10%;
+    --sidebar-primary: 214 52% 25%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 46 65% 52%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 210 30% 90%;
+    --sidebar-ring: 214 52% 25%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark Theme - Navy Profissional */
+    --primary: 214 52% 35%; /* Navy 700 lighter */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 60% 15%; /* Navy 900 */
+    --secondary-foreground: 0 0% 100%;
+
+    --background: 210 60% 10%; /* Navy 950 */
+    --foreground: 210 40% 98%;
+
+    --card: 210 60% 12%; /* Slightly lighter than bg */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 210 60% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --muted: 214 30% 20%;
+    --muted-foreground: 210 40% 70%;
+
+    --accent: 46 65% 52%; /* Gold 500 */
+    --accent-foreground: 210 60% 10%;
+
+    --destructive: 0 72% 62%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 30% 20%;
+    --input: 214 30% 20%;
+    --ring: 214 52% 35%;
+
+    /* Chart colors - Navy + Gold Dark */
+    --chart-1: 214 52% 35%; /* Navy lighter */
+    --chart-2: 46 65% 60%; /* Gold lighter */
+    --chart-3: 155 59% 54%; /* Success */
+    --chart-4: 45 88% 63%; /* Warning */
+    --chart-5: 0 72% 62%; /* Destructive */
+
+    /* Sidebar Dark */
+    --sidebar: 210 60% 12%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 214 52% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 46 65% 52%;
+    --sidebar-accent-foreground: 210 60% 10%;
+    --sidebar-border: 214 30% 20%;
+    --sidebar-ring: 214 52% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1, "kern" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  code, pre {
+    font-family: "JetBrains Mono", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+}
+
+@layer components {
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-muted/30 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+
+  /* Gradient text - Navy → Gold */
+  .gradient-text {
+    @apply bg-gradient-to-r from-navy-800 to-gold-500 bg-clip-text text-transparent;
+  }
+
+  /* Gradient premium - Gold highlight */
+  .gradient-premium {
+    @apply bg-gradient-to-r from-gold-500 to-gold-600;
+  }
+
+  /* Gradient hero - Navy professional */
+  .gradient-hero {
+    @apply bg-gradient-to-br from-navy-950 to-navy-800;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-black/30 backdrop-blur-lg border border-white/10;
+  }
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Navy Scale */
+  --color-navy-50: #F0F4F8;
+  --color-navy-100: #D9E2EC;
+  --color-navy-200: #BCCCDC;
+  --color-navy-300: #9FB3C8;
+  --color-navy-400: #829AB1;
+  --color-navy-500: #627D98;
+  --color-navy-600: #486581;
+  --color-navy-700: #334E68;
+  --color-navy-800: #1E3A5F;
+  --color-navy-900: #0F1F3A;
+  --color-navy-950: #0A1628;
+
+  /* Gold Scale */
+  --color-gold-50: #FDFBF7;
+  --color-gold-100: #F9F4E8;
+  --color-gold-200: #F3E9D1;
+  --color-gold-300: #E9D9AA;
+  --color-gold-400: #E5C158;
+  --color-gold-500: #D4AF37;
+  --color-gold-600: #C19A2E;
+  --color-gold-700: #A17F26;
+  --color-gold-800: #7D6220;
+  --color-gold-900: #614C1A;
+
+  /* Base colors */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+}
