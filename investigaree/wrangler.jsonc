@@ -2,5 +2,9 @@
   "name": "investigaree",
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-04-01",
-  "compatibility_flags": ["nodejs_compat"]
+  "compatibility_flags": ["nodejs_compat"],
+  "routes": [
+    { "pattern": "investigaree.com.br/*", "zone_name": "investigaree.com.br" },
+    { "pattern": "www.investigaree.com.br/*", "zone_name": "investigaree.com.br" }
+  ]
 }
