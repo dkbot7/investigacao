@@ -67,7 +67,7 @@ export default function AdvisoryBoard() {
                     <span className="font-semibold">ANPAJ</span>
                   </div>
                   <p className="text-xs text-center text-navy-200 mt-2">
-                    Associação Nacional dos Peritos em Análises Judiciais
+                    Associação Nacional dos Peritos Judiciais
                   </p>
                   {/* TODO: Replace with actual ANPAJ logo */}
                   {/* <img
@@ -83,14 +83,14 @@ export default function AdvisoryBoard() {
                 {/* Name & Title */}
                 <div>
                   <h3 className="text-3xl font-bold text-white mb-2">
-                    Ibsen José Baré Maciel
+                    Ibsen Rodrigues Maciel
                   </h3>
                   <div className="space-y-2">
                     <p className="text-lg text-gold-400 font-semibold">
-                      Perito Criminal Oficial
+                      Perito Criminal Oficial em Forense Computacional
                     </p>
                     <p className="text-base text-navy-100">
-                      Polícia Científica do Pará
+                      Polícia Científica do Estado do Pará
                     </p>
                     <p className="text-base text-navy-100">
                       Diretor Nacional de Perícias em Computação Forense - ANPAJ

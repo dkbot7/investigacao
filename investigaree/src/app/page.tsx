@@ -2,9 +2,7 @@ import Header from "@/components/landing/Header";
 import Hero from "@/components/landing/Hero";
 import AdvisoryBoard from "@/components/landing/AdvisoryBoard";
 import SocialProof from "@/components/landing/SocialProof";
-import ServicePortals from "@/components/landing/ServicePortals";
-import Pricing from "@/components/landing/Pricing";
-import FinalCTA from "@/components/landing/FinalCTA";
+import ProtectionAreas from "@/components/landing/ProtectionAreas";
 import Footer from "@/components/landing/Footer";
 
 export default function Home() {
@@ -15,9 +13,7 @@ export default function Home() {
         <Hero />
         <AdvisoryBoard />
         <SocialProof />
-        <ServicePortals />
-        <Pricing />
-        <FinalCTA />
+        <ProtectionAreas />
         <Footer />
       </main>
     </>

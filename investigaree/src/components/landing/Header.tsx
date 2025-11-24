@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Moon, Sun, Globe } from "lucide-react";
+import { Moon, Sun, Globe, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -11,6 +11,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [language, setLanguage] = useState<"pt" | "en">("pt");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Handle scroll for sticky header with blur
   useEffect(() => {
@@ -26,12 +27,28 @@ export default function Header() {
     document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
+
   const toggleTheme = () => {
     setTheme(prev => prev === "dark" ? "light" : "dark");
   };
 
   const toggleLanguage = () => {
     setLanguage(prev => prev === "pt" ? "en" : "pt");
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   const menuItems = {
@@ -124,34 +141,39 @@ export default function Header() {
             transition={{ delay: 0.4, duration: 0.5 }}
           >
             {[
-              { label: t.home, href: "#home" },
-              { label: t.services, href: "#servicos" },
-              { label: t.about, href: "#quem-somos" },
+              { label: t.home, href: "/" },
+              { label: t.services, href: "/servicos" },
+              { label: t.about, href: "/quemsomos" },
               { label: t.contact, href: "#contato" }
             ].map((item, index) => (
-              <motion.a
-                key={item.href}
-                href={item.href}
-                className="relative text-white/90 hover:text-white font-medium text-[15px] transition-all duration-200 group"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + index * 0.1, duration: 0.4 }}
-                whileHover={{ y: -2 }}
-              >
-                {item.label}
-                <motion.span
-                  className="absolute bottom-0 left-0 h-[2px] bg-gold-500"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: "100%" }}
-                  transition={{ duration: 0.2 }}
-                />
-              </motion.a>
+              <motion.div key={item.href}>
+                <Link
+                  href={item.href}
+                  className="relative text-white/90 hover:text-white font-medium text-[15px] transition-all duration-200 group inline-block"
+                >
+                  <motion.span
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 + index * 0.1, duration: 0.4 }}
+                    whileHover={{ y: -2 }}
+                    className="relative block"
+                  >
+                    {item.label}
+                    <motion.span
+                      className="absolute bottom-0 left-0 h-[2px] bg-gold-500"
+                      initial={{ width: 0 }}
+                      whileHover={{ width: "100%" }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  </motion.span>
+                </Link>
+              </motion.div>
             ))}
           </motion.div>
 
-          {/* Theme & Language Toggles */}
+          {/* Theme & Language Toggles - Desktop */}
           <motion.div
-            className="flex items-center gap-4"
+            className="hidden md:flex items-center gap-4"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
@@ -208,8 +230,163 @@ export default function Header() {
               </Button>
             </motion.div>
           </motion.div>
+
+          {/* Mobile Hamburger Menu Button */}
+          <motion.div
+            className="md:hidden"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+          >
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white/80 hover:text-white hover:bg-white/5 transition-all"
+              aria-label="Menu"
+            >
+              <AnimatePresence mode="wait">
+                {isMobileMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="w-6 h-6" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className="w-6 h-6" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </Button>
+          </motion.div>
         </nav>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 bg-navy-950/95 backdrop-blur-lg z-40 md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={closeMobileMenu}
+            />
+
+            {/* Mobile Menu Content */}
+            <motion.div
+              className="fixed top-[72px] left-0 right-0 bottom-0 z-50 md:hidden overflow-y-auto"
+              initial={{ x: "100%", opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: "100%", opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            >
+              <div className="container mx-auto px-4 py-8">
+                {/* Navigation Links */}
+                <nav className="space-y-2 mb-8">
+                  {[
+                    { label: t.home, href: "/" },
+                    { label: t.services, href: "/servicos" },
+                    { label: t.about, href: "/quemsomos" },
+                    { label: t.contact, href: "#contato" }
+                  ].map((item, index) => (
+                    <motion.div
+                      key={item.href}
+                      initial={{ x: 50, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: index * 0.1, duration: 0.3 }}
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={closeMobileMenu}
+                        className="block text-white text-2xl font-semibold py-4 px-6 rounded-lg hover:bg-white/5 transition-all border-b border-gold-500/10"
+                      >
+                        {item.label}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </nav>
+
+                {/* Theme & Language Controls */}
+                <motion.div
+                  className="space-y-4 px-6"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.4, duration: 0.3 }}
+                >
+                  {/* Theme Toggle */}
+                  <div className="flex items-center justify-between py-4 border-b border-gold-500/10">
+                    <span className="text-white/80 font-medium">{t.theme}</span>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={toggleTheme}
+                      className="text-white/80 hover:text-white hover:bg-white/5"
+                    >
+                      <AnimatePresence mode="wait">
+                        {theme === "dark" ? (
+                          <motion.div
+                            key="sun"
+                            initial={{ rotate: -90, opacity: 0 }}
+                            animate={{ rotate: 0, opacity: 1 }}
+                            exit={{ rotate: 90, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <Sun className="w-5 h-5" />
+                          </motion.div>
+                        ) : (
+                          <motion.div
+                            key="moon"
+                            initial={{ rotate: 90, opacity: 0 }}
+                            animate={{ rotate: 0, opacity: 1 }}
+                            exit={{ rotate: -90, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <Moon className="w-5 h-5" />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                      <span className="ml-2">
+                        {theme === "dark" ? "Claro" : "Escuro"}
+                      </span>
+                    </Button>
+                  </div>
+
+                  {/* Language Toggle */}
+                  <div className="flex items-center justify-between py-4">
+                    <span className="text-white/80 font-medium">{t.language}</span>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={toggleLanguage}
+                      className="text-white/80 hover:text-white hover:bg-white/5"
+                    >
+                      <Globe className="w-5 h-5 mr-2" />
+                      <span className="font-medium">
+                        {language === "pt" ? "PT 🇧🇷" : "EN 🇺🇸"}
+                      </span>
+                    </Button>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }
