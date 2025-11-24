@@ -10,7 +10,16 @@
       "WebSearch",
       "WebFetch(domain:www.linkedin.com)",
       "Bash(npx shadcn@latest add:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(gh secret:*)",
+      "Bash(gh workflow run:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh api:*)",
+      "Bash(gh workflow:*)",
+      "WebFetch(domain:investigaree.pages.dev)"
     ],
     "deny": [],
     "ask": []
