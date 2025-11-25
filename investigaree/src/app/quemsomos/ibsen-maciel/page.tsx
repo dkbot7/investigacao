@@ -35,14 +35,14 @@ export default function IbsenMacielPage() {
                     Ibsen Rodrigues Maciel
                   </h1>
                   <div className="flex flex-wrap gap-2 mb-4">
+                    <Badge className="bg-gold-500 text-navy-950 font-bold">
+                      Advisory Board investigaree
+                    </Badge>
                     <Badge className="bg-primary-500 text-white">
                       Perito Criminal Oficial
                     </Badge>
                     <Badge className="bg-blue-600 text-white">
                       Diretor Nacional ANPAJ
-                    </Badge>
-                    <Badge className="bg-green-600 text-white">
-                      Professor Academia de Polícia
                     </Badge>
                   </div>
                   <p className="text-xl text-neutral-600 dark:text-neutral-400">
@@ -103,9 +103,9 @@ export default function IbsenMacielPage() {
                       </div>
                     </div>
 
-                    <Button className="w-full" size="lg">
-                      Solicitar Consultoria
-                    </Button>
+                    <Badge className="w-full text-center py-3 bg-gold-500/20 border-gold-500/50 text-gold-600">
+                      Membro do Advisory Board
+                    </Badge>
                   </CardContent>
                 </Card>
               </div>

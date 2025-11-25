@@ -82,9 +82,14 @@ export default function AdvisoryBoard() {
               <div className="space-y-6">
                 {/* Name & Title */}
                 <div>
-                  <h3 className="text-3xl font-bold text-white mb-2">
-                    Ibsen Rodrigues Maciel
-                  </h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-3xl font-bold text-white">
+                      Ibsen Rodrigues Maciel
+                    </h3>
+                    <Badge className="bg-gold-500 text-navy-950 font-bold px-3 py-1">
+                      Advisory Board
+                    </Badge>
+                  </div>
                   <div className="space-y-2">
                     <p className="text-lg text-gold-400 font-semibold">
                       Perito Criminal Oficial em Forense Computacional
@@ -106,7 +111,7 @@ export default function AdvisoryBoard() {
                     de nível nacional."
                   </p>
                   <footer className="text-sm text-navy-200">
-                    — Ibsen Maciel, Perito Criminal Oficial
+                    — Ibsen Maciel, Membro do Advisory Board
                   </footer>
                 </blockquote>
 

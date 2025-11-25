@@ -16,19 +16,19 @@ const TEAM = [
   {
     id: "ibsen-maciel",
     nome: "Ibsen Rodrigues Maciel",
-    cargo: "Perito Criminal Oficial",
+    cargo: "Advisory Board",
     especialidade: "Forense Computacional",
     foto: "/team/ibsen-maciel.jpg", // placeholder
-    badges: ["Polícia Científica PA", "Diretor Nacional ANPAJ", "Professor Academia"],
-    resumo: "Um dos maiores especialistas em Perícia Forense Computacional do Brasil, com atuação destacada na Polícia Científica do Estado do Pará e reconhecimento nacional.",
+    badges: ["Advisory Board", "Perito Criminal Oficial", "Diretor Nacional ANPAJ"],
+    resumo: "Um dos maiores especialistas em Perícia Forense Computacional do Brasil, com atuação destacada na Polícia Científica do Estado do Pará e reconhecimento nacional. Membro do Advisory Board da investigaree.",
     experiencia: "15+ anos",
     casos: "500+ casos resolvidos",
     certificacoes: ["CELLEBRITE UFED", "XRY MSAB", "Magnet AXIOM"],
     destaques: [
+      "Membro do Advisory Board da investigaree",
       "Diretor Nacional de Perícias em Computação Forense da ANPAJ",
-      "Gestor do Núcleo de Fonética Forense e Extração de Dados",
-      "Professor Especialista em Cibercrimes da Academia de Polícia Civil",
-      "Coordenador de operações de repercussão nacional"
+      "Perito Criminal Oficial - Polícia Científica do Pará",
+      "Professor Especialista em Cibercrimes"
     ]
   },
   {
