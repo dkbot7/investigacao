@@ -14,9 +14,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://investigaree.com.br'),
-  title: "investigaree - Due Diligence Forense para Investidores Anjo",
-  description: "Investigação digital e perícia forense em 48 horas. Proteja seu patrimônio com análise completa de startups e founders. R$ 47M protegidos | 2.847 investigações realizadas.",
-  keywords: ["due diligence", "investigação digital", "investidor anjo", "background check", "perícia forense", "startup verification", "red flags"],
+  title: "investigaree - Due Diligence Digital com Rigor Forense",
+  description: "Investigação particular e due diligence digital com metodologia validada por Perito Criminal Oficial. Proteja seu patrimônio com análise completa de startups, founders e parceiros. Entrega em 48h.",
+  keywords: ["due diligence", "investigação particular", "investigação digital", "background check", "perícia forense", "OSINT", "proteção patrimonial", "verificação de antecedentes"],
   authors: [{ name: "investigaree" }],
   creator: "investigaree",
   publisher: "investigaree",
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: "https://investigaree.com.br",
     siteName: "investigaree",
-    title: "investigaree - Due Diligence Empresarial com Rigor Forense",
-    description: "Valide founders antes de transferir um único centavo. Análises forenses que evitaram R$ 47M em perdas em 2024. Entrega em 48h-7 dias.",
+    title: "investigaree - Due Diligence Digital com Rigor Forense",
+    description: "Investigação particular com metodologia validada por Perito Criminal Oficial. Advisory Board com Diretor Nacional da ANPAJ. Entrega em 48h.",
     images: [
       {
         url: "/web-app-manifest-512x512.png",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     site: "@investigaree",
     creator: "@investigaree",
     title: "investigaree - Due Diligence Forense",
-    description: "Proteja seu patrimônio com investigação profissional em 48h. R$ 47M protegidos | Metodologia ANPAJ",
+    description: "Proteja seu patrimônio com investigação profissional em 48h. Metodologia validada por Perito Criminal Oficial - ANPAJ",
     images: ["/web-app-manifest-512x512.png"],
   },
 
@@ -81,13 +81,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-
-  // Verificação e SEO
-  verification: {
-    google: "google-site-verification-code", // Adicionar após criar Google Search Console
-    // yandex: "yandex-verification-code",
-    // bing: "bing-verification-code",
   },
 
   // Dados estruturados (Schema.org)
