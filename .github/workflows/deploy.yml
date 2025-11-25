@@ -30,8 +30,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build with OpenNext
-        run: npx @opennextjs/cloudflare build
+      - name: Build static export
+        run: npm run build
         env:
           NODE_ENV: production
           NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
@@ -47,4 +47,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: investigaree
-          command: pages deploy .open-next --project-name=investigaree --commit-dirty=true
+          command: pages deploy out --project-name=investigaree --commit-dirty=true

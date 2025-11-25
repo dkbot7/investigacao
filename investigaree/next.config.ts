@@ -1,10 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: "export", // Static export for Cloudflare Pages
   images: {
-    unoptimized: true, // Disable built-in image optimization for Cloudflare Workers
+    unoptimized: true,
   },
+  trailingSlash: true,
 };
 
 export default nextConfig;
