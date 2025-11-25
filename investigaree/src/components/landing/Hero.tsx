@@ -8,7 +8,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import RegisterModal from "@/components/auth/RegisterModal";
 
 export default function Hero() {
-  const [liveCounter, setLiveCounter] = useState(11);
   const [headlineIndex, setHeadlineIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const prefersReducedMotion = useReducedMotion();
@@ -51,24 +50,6 @@ export default function Hero() {
       duration: `${3 + Math.random() * 2}s`
     })),
   []);
-
-  // Atualiza o contador de análises forenses em andamento
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setLiveCounter((prev) => {
-        const change = Math.random() > 0.6 ? 1 : -1;
-        const newValue = prev + change;
-
-        // Evita repetição (ex: 11 → 11 → 11)
-        if (newValue === prev) return prev + 1;
-
-        // Mantém intervalo realista entre 8 e 15
-        return Math.max(8, Math.min(15, newValue));
-      });
-    }, 12000); // Atualiza a cada 12s
-
-    return () => clearInterval(interval);
-  }, []);
 
   // 🔥 Rotação automática das headlines
   useEffect(() => {
@@ -289,30 +270,30 @@ export default function Hero() {
 
         </motion.div>
 
-        {/* Prova Social com Especificidade - DEPOIS DO BOTÃO */}
+        {/* Diferenciais - DEPOIS DO BOTÃO */}
         <motion.div
           className="text-center mb-3 sm:mb-4"
           variants={itemVariants}
         >
           <div className="flex flex-wrap justify-center gap-3 sm:gap-5 md:gap-6 text-xs sm:text-sm">
             <div className="flex items-center gap-1.5">
-              <span className="text-gold-400 text-base sm:text-lg md:text-xl font-bold">2.847</span>
-              <span className="text-white/70 text-xs sm:text-sm">investigações</span>
-            </div>
-            <div className="hidden sm:block text-white/30">•</div>
-            <div className="flex items-center gap-1.5">
-              <span className="text-gold-400 text-base sm:text-lg md:text-xl font-bold">R$ 47M</span>
-              <span className="text-white/70 text-xs sm:text-sm">protegidos</span>
+              <span className="text-gold-400 text-base sm:text-lg md:text-xl font-bold">100%</span>
+              <span className="text-white/70 text-xs sm:text-sm">LGPD compliant</span>
             </div>
             <div className="hidden sm:block text-white/30">•</div>
             <div className="flex items-center gap-1.5">
               <span className="text-gold-400 text-base sm:text-lg md:text-xl font-bold">48h</span>
               <span className="text-white/70 text-xs sm:text-sm">entrega Express</span>
             </div>
+            <div className="hidden sm:block text-white/30">•</div>
+            <div className="flex items-center gap-1.5">
+              <span className="text-gold-400 text-base sm:text-lg md:text-xl font-bold">Sigilo</span>
+              <span className="text-white/70 text-xs sm:text-sm">garantido</span>
+            </div>
           </div>
         </motion.div>
 
-        {/* Indicador de Atividade - DEPOIS DO BOTÃO */}
+        {/* Badge de Credibilidade */}
         <motion.div
           className="flex justify-center"
           variants={itemVariants}
@@ -320,25 +301,12 @@ export default function Hero() {
           <Badge
             variant="secondary"
             className="px-2.5 py-1.5 sm:px-3 sm:py-2 bg-white/5 border border-gold-500/30 backdrop-blur-sm"
-            role="status"
-            aria-live="polite"
-            aria-label={`${liveCounter} análises forenses em andamento agora`}
           >
             <span className="relative flex h-2.5 w-2.5 mr-1.5 sm:mr-2" aria-hidden="true">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
             </span>
-            <motion.span
-              className="text-white font-semibold text-xs sm:text-sm md:text-base"
-              key={liveCounter}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-            >
-              {liveCounter}
-            </motion.span>
-            <span className="text-white/80 ml-1 text-xs sm:text-sm">
-              análises forenses em andamento agora
+            <span className="text-white/80 text-xs sm:text-sm">
+              Advisory Board com Perito Criminal Oficial - ANPAJ
             </span>
           </Badge>
         </motion.div>

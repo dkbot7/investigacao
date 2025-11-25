@@ -52,24 +52,24 @@ export default function IbsenMacielPage() {
                   </p>
                 </div>
 
-                {/* Quick Stats */}
+                {/* Credenciais Verificadas */}
                 <div className="grid grid-cols-3 gap-4">
                   <Card>
                     <CardContent className="pt-6 text-center">
-                      <p className="text-3xl font-bold text-primary-600">15+</p>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Anos de Experiência</p>
+                      <p className="text-3xl font-bold text-primary-600">1º</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Lugar Concurso PC-PA 2019</p>
                     </CardContent>
                   </Card>
                   <Card>
                     <CardContent className="pt-6 text-center">
-                      <p className="text-3xl font-bold text-primary-600">500+</p>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Casos Resolvidos</p>
+                      <p className="text-3xl font-bold text-primary-600">ANPAJ</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Diretor Nacional</p>
                     </CardContent>
                   </Card>
                   <Card>
                     <CardContent className="pt-6 text-center">
                       <p className="text-3xl font-bold text-primary-600">3</p>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Certificações Premium</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Certificações Forenses</p>
                     </CardContent>
                   </Card>
                 </div>
@@ -431,17 +431,17 @@ export default function IbsenMacielPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-xl">Operação Nacional de Combate a Crimes Cibernéticos</CardTitle>
-                  <Badge variant="outline" className="w-fit">2024</Badge>
+                  <CardTitle className="text-xl">Operação Guardião Digital</CardTitle>
+                  <Badge variant="outline" className="w-fit">Julho 2025</Badge>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
-                    Ação integrada entre estados
+                    Ação integrada entre estados contra crimes cibernéticos
                   </p>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
                       <CheckCircle className="w-4 h-4 text-success mt-0.5" />
-                      <span className="text-sm">34 mandados de prisão cumpridos em SP</span>
+                      <span className="text-sm">34 mandados de prisão cumpridos em São Paulo</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle className="w-4 h-4 text-success mt-0.5" />

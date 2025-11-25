@@ -1,25 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx wrangler pages deploy:*)",
-      "Bash(curl:*)",
-      "Bash(npm run build:*)",
-      "Bash(npx wrangler deploy)",
-      "Bash(git push:*)",
-      "WebFetch(domain:www.eloylacerda.com.br)",
-      "WebSearch",
-      "WebFetch(domain:www.linkedin.com)",
-      "Bash(npx shadcn@latest add:*)",
-      "Bash(npm run dev:*)",
-      "Bash(gh secret:*)",
-      "Bash(gh workflow run:*)",
-      "Bash(gh run list:*)",
-      "Bash(gh run view:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(gh api:*)",
-      "Bash(gh workflow:*)",
-      "WebFetch(domain:investigaree.pages.dev)"
+      "Bash(Select-Object -ExpandProperty FullName)"
     ],
     "deny": [],
     "ask": []

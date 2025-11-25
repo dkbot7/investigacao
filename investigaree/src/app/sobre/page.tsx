@@ -144,27 +144,27 @@ export default function SobrePage() {
           </div>
         </section>
 
-        {/* Números */}
+        {/* Compromissos */}
         <section className="py-16">
           <div className="container max-w-5xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-white mb-8 text-center">Nossos Números</h2>
+            <h2 className="text-2xl font-bold text-white mb-8 text-center">Nossos Compromissos</h2>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <p className="text-4xl font-bold text-gold-400">2.847</p>
-                <p className="text-white/60 text-sm mt-1">Investigações realizadas</p>
-              </div>
-              <div className="text-center">
-                <p className="text-4xl font-bold text-gold-400">R$ 47M</p>
-                <p className="text-white/60 text-sm mt-1">Em patrimônio protegido</p>
-              </div>
               <div className="text-center">
                 <p className="text-4xl font-bold text-gold-400">48h</p>
                 <p className="text-white/60 text-sm mt-1">Entrega Express</p>
               </div>
               <div className="text-center">
                 <p className="text-4xl font-bold text-gold-400">100%</p>
+                <p className="text-white/60 text-sm mt-1">LGPD Compliant</p>
+              </div>
+              <div className="text-center">
+                <p className="text-4xl font-bold text-gold-400">100%</p>
                 <p className="text-white/60 text-sm mt-1">Sigilo garantido</p>
+              </div>
+              <div className="text-center">
+                <p className="text-4xl font-bold text-gold-400">ANPAJ</p>
+                <p className="text-white/60 text-sm mt-1">Advisory Board</p>
               </div>
             </div>
           </div>
