@@ -1,7 +1,7 @@
 ﻿# Cloudflare Workers Configuration
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/
 
-name = "investigaree"
+name = "investigaree-api"
 main = "workers/index.ts"
 compatibility_date = "2025-04-01"
 compatibility_flags = ["nodejs_compat"]
@@ -21,10 +21,14 @@ binding = "KV"
 id = "afa4a891f4994709977bcd583fb3f285" # investigaree-rate-limits
 preview_id = "" # wrangler kv:namespace create "KV" --preview
 
-# Routes (produção) - API subdomain
+# Routes (produção) - API subdomain only
 [[routes]]
 pattern = "api.investigaree.com.br/*"
 zone_name = "investigaree.com.br"
+
+# IMPORTANTE: O domínio principal investigaree.com.br deve ser configurado
+# no Cloudflare Pages Dashboard → Custom Domains
+# Não adicionar rota de Worker para o domínio principal!
 
 # Static site configuration (disabled - using Pages instead)
 # [site]
