@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import dynamic from "next/dynamic";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
-import CookieBanner from "@/components/CookieBanner";
-import WhatsAppWidget from "@/components/WhatsAppWidget";
+
+// Lazy load non-critical components for better performance
+const CookieBanner = dynamic(() => import("@/components/CookieBanner"), {
+  ssr: false,
+});
+const WhatsAppWidget = dynamic(() => import("@/components/WhatsAppWidget"), {
+  ssr: false,
+});
 
 const inter = Inter({
   variable: "--font-inter",
