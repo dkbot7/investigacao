@@ -18,35 +18,27 @@ const TEAM = [
     nome: "Ibsen Rodrigues Maciel",
     cargo: "Advisory Board",
     especialidade: "Forense Computacional",
-    foto: "/team/ibsen-maciel.jpg", // placeholder
-    badges: ["Advisory Board", "Perito Criminal Oficial", "Diretor Nacional ANPAJ"],
-    resumo: "Um dos maiores especialistas em Perícia Forense Computacional do Brasil, com atuação destacada na Polícia Científica do Estado do Pará e reconhecimento nacional. Membro do Advisory Board da investigaree.",
-    experiencia: "15+ anos",
-    casos: "500+ casos resolvidos",
+    badges: ["Advisory Board", "Perito Criminal Oficial", "ANPAJ"],
+    resumo: "Perito Criminal Oficial em Forense Computacional da Polícia Científica do Pará e Diretor Nacional de Perícias em Computação Forense da ANPAJ. Membro do Advisory Board da investigaree.",
     certificacoes: ["CELLEBRITE UFED", "XRY MSAB", "Magnet AXIOM"],
     destaques: [
       "Membro do Advisory Board da investigaree",
-      "Diretor Nacional de Perícias em Computação Forense da ANPAJ",
-      "Perito Criminal Oficial - Polícia Científica do Pará",
-      "Professor Especialista em Cibercrimes"
+      "Diretor Nacional de Perícias - ANPAJ",
+      "Perito Criminal Oficial - Polícia Científica do Pará"
     ]
   },
   {
     id: "dani-kaloi",
     nome: "Danielle Kaloi",
-    cargo: "Investigadora Particular",
-    especialidade: "Inteligência e Investigação Privada",
-    foto: "/team/dani-kaloi.jpg", // placeholder
-    badges: ["CEO investigaree", "Especialista OSINT", "Compliance Officer"],
-    resumo: "Especialista em investigações corporativas e due diligence, com vasta experiência em análise de riscos e inteligência empresarial para investidores e empresas.",
-    experiencia: "10+ anos",
-    casos: "300+ investigações",
-    certificacoes: ["OSINT Advanced", "Due Diligence", "Compliance"],
+    cargo: "CEO & Investigadora",
+    especialidade: "OSINT e Due Diligence",
+    badges: ["CEO investigaree", "Especialista OSINT"],
+    resumo: "Investigadora Particular especializada em Due Diligence, OSINT e Inteligência Empresarial. Graduanda em Criminologia.",
+    certificacoes: ["OSINT", "Due Diligence", "LGPD"],
     destaques: [
       "Fundadora e CEO da investigaree",
-      "Especialista em Due Diligence para investidores",
-      "Expertise em investigações corporativas",
-      "Referência em proteção patrimonial familiar"
+      "Especialista em Due Diligence",
+      "Graduanda em Criminologia"
     ]
   }
 ];
@@ -169,17 +161,6 @@ export default function QuemSomosPage() {
                         <p className="text-neutral-600 dark:text-neutral-400">
                           {member.resumo}
                         </p>
-
-                        <div className="flex gap-4 py-4 border-y border-neutral-200 dark:border-neutral-800">
-                          <div className="flex-1 text-center">
-                            <p className="text-2xl font-bold text-primary-600">{member.experiencia}</p>
-                            <p className="text-sm text-neutral-500">Experiência</p>
-                          </div>
-                          <div className="flex-1 text-center">
-                            <p className="text-2xl font-bold text-primary-600">{member.casos}</p>
-                            <p className="text-sm text-neutral-500">Cases</p>
-                          </div>
-                        </div>
 
                         <div className="space-y-3">
                           <h4 className="font-semibold text-sm text-neutral-700 dark:text-neutral-300">
