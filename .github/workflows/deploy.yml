@@ -1,8 +1,10 @@
-name: Deploy to Cloudflare Workers
+name: Deploy Frontend to Cloudflare Pages
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'investigaree/**'
   workflow_dispatch:
 
 defaults:
@@ -12,7 +14,7 @@ defaults:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Deploy to Cloudflare Workers
+    name: Deploy Frontend
 
     steps:
       - name: Checkout code
@@ -39,10 +41,10 @@ jobs:
           NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}
           NEXT_PUBLIC_FIREBASE_APP_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}
 
-      - name: Deploy to Cloudflare Workers
+      - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: investigaree
-          command: deploy --config wrangler.jsonc
+          command: pages deploy .open-next --project-name=investigaree --commit-dirty=true
