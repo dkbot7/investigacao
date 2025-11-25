@@ -1,4 +1,4 @@
-name: Deploy to Cloudflare Pages
+name: Deploy to Cloudflare Workers
 
 on:
   push:
@@ -23,14 +23,14 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build:worker
+      - name: Build with OpenNext
+        run: npx @opennextjs/cloudflare build
         env:
           NODE_ENV: production
 
-      - name: Deploy
+      - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy .open-next/assets --project-name=investigaree --commit-dirty=true
+          command: deploy --config wrangler.jsonc

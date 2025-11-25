@@ -1,4 +1,5 @@
 {
+  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "investigaree",
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-04-01",
@@ -6,6 +7,10 @@
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS",
-    "run_worker_first": true
-  }
+    "run_worker_first": false
+  },
+  "routes": [
+    { "pattern": "investigaree.com.br/*", "zone_name": "investigaree.com.br" },
+    { "pattern": "www.investigaree.com.br/*", "zone_name": "investigaree.com.br" }
+  ]
 }
