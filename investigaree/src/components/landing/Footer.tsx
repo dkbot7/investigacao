@@ -13,7 +13,7 @@ export default function Footer() {
               <span className="text-2xl font-bold text-white">investigaree</span>
             </div>
             <p className="text-sm">
-              Due Diligence Digital Premium
+              Investigação Digital com Inteligência
             </p>
           </div>
 

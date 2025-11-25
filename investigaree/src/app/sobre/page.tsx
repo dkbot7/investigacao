@@ -28,7 +28,7 @@ export default function SobrePage() {
               </div>
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold text-white">Sobre a investigaree</h1>
-                <p className="text-white/60">Due Diligence Digital Premium</p>
+                <p className="text-white/60">Investigação Digital com Inteligência</p>
               </div>
             </div>
 
