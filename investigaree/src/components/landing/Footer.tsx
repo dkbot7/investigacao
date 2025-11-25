@@ -1,4 +1,5 @@
 import { Shield } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -20,27 +21,27 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Serviços</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-primary-400 transition">Red Flag Express</a></li>
-              <li><a href="#" className="hover:text-primary-400 transition">Due Diligence Corporativo</a></li>
-              <li><a href="#" className="hover:text-primary-400 transition">Startup & Founders</a></li>
+              <li><a href="#servicos" className="hover:text-primary-400 transition">Red Flag Express</a></li>
+              <li><a href="#servicos" className="hover:text-primary-400 transition">Due Diligence Corporativo</a></li>
+              <li><a href="#servicos" className="hover:text-primary-400 transition">Startup & Founders</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-4">Empresa</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-primary-400 transition">Sobre</a></li>
-              <li><a href="#" className="hover:text-primary-400 transition">Blog</a></li>
-              <li><a href="#" className="hover:text-primary-400 transition">Contato</a></li>
+              <li><a href="#sobre" className="hover:text-primary-400 transition">Sobre</a></li>
+              <li><a href="#faq" className="hover:text-primary-400 transition">FAQ</a></li>
+              <li><a href="#contato" className="hover:text-primary-400 transition">Contato</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-4">Legal</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-primary-400 transition">Termos de Uso</a></li>
-              <li><a href="#" className="hover:text-primary-400 transition">Privacidade</a></li>
-              <li><a href="#" className="hover:text-primary-400 transition">LGPD</a></li>
+              <li><Link href="/termos" className="hover:text-primary-400 transition">Termos de Uso</Link></li>
+              <li><Link href="/privacidade" className="hover:text-primary-400 transition">Política de Privacidade</Link></li>
+              <li><Link href="/cookies" className="hover:text-primary-400 transition">Política de Cookies</Link></li>
             </ul>
           </div>
         </div>
@@ -48,7 +49,6 @@ export default function Footer() {
         {/* Bottom */}
         <div className="pt-8 border-t border-neutral-800 text-sm text-center">
           <p>© 2025 investigaree. Todos os direitos reservados.</p>
-          <p className="mt-2 text-xs">CNPJ: XX.XXX.XXX/0001-XX</p>
         </div>
       </div>
     </footer>
