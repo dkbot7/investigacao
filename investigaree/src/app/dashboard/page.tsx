@@ -37,8 +37,8 @@ export default function DashboardPage() {
           <h1 className="text-2xl font-bold gradient-text">investigaree</h1>
           <Button
             onClick={logout}
-            variant="outline"
-            className="border-navy-700 text-white hover:bg-navy-800"
+            variant="ghost"
+            className="border border-navy-700 text-white hover:bg-navy-800 hover:text-white"
           >
             Sair
           </Button>
