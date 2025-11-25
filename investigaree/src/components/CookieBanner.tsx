@@ -76,6 +76,9 @@ export default function CookieBanner() {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 100, opacity: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
+        role="dialog"
+        aria-labelledby="cookie-banner-title"
+        aria-describedby="cookie-banner-description"
       >
         <div className="max-w-4xl mx-auto bg-navy-900 rounded-2xl shadow-2xl border border-navy-700 overflow-hidden">
           {/* Header */}
@@ -85,10 +88,10 @@ export default function CookieBanner() {
                 <Cookie className="w-5 h-5 text-primary-400" />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-white mb-2">
+                <h3 id="cookie-banner-title" className="text-lg font-semibold text-white mb-2">
                   Utilizamos cookies
                 </h3>
-                <p className="text-sm text-white/70 leading-relaxed">
+                <p id="cookie-banner-description" className="text-sm text-white/70 leading-relaxed">
                   Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo.
                   Ao clicar em &quot;Aceitar todos&quot;, você concorda com o uso de cookies conforme descrito em nossa{" "}
                   <Link href="/cookies" className="text-primary-400 hover:underline">
@@ -131,6 +134,9 @@ export default function CookieBanner() {
                       </div>
                       <button
                         onClick={() => setPreferences((p) => ({ ...p, analytics: !p.analytics }))}
+                        role="switch"
+                        aria-checked={preferences.analytics}
+                        aria-label="Cookies de Desempenho"
                         className={`w-10 h-6 rounded-full flex items-center px-1 transition-colors ${
                           preferences.analytics ? "bg-primary-500 justify-end" : "bg-navy-700 justify-start"
                         }`}
@@ -147,6 +153,9 @@ export default function CookieBanner() {
                       </div>
                       <button
                         onClick={() => setPreferences((p) => ({ ...p, functionality: !p.functionality }))}
+                        role="switch"
+                        aria-checked={preferences.functionality}
+                        aria-label="Cookies de Funcionalidade"
                         className={`w-10 h-6 rounded-full flex items-center px-1 transition-colors ${
                           preferences.functionality ? "bg-primary-500 justify-end" : "bg-navy-700 justify-start"
                         }`}
