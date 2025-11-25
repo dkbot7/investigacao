@@ -144,7 +144,7 @@ export default function Header() {
               { label: t.home, href: "/" },
               { label: t.services, href: "/servicos" },
               { label: t.about, href: "/quemsomos" },
-              { label: t.contact, href: "#contato" }
+              { label: t.contact, href: "/contato" }
             ].map((item, index) => (
               <motion.div key={item.href}>
                 <Link
@@ -302,7 +302,7 @@ export default function Header() {
                     { label: t.home, href: "/" },
                     { label: t.services, href: "/servicos" },
                     { label: t.about, href: "/quemsomos" },
-                    { label: t.contact, href: "#contato" }
+                    { label: t.contact, href: "/contato" }
                   ].map((item, index) => (
                     <motion.div
                       key={item.href}
