@@ -5,7 +5,12 @@ on:
     branches: [main]
     paths:
       - 'investigaree/**'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch:
+
+env:
+  NODE_VERSION: '20'
+  PROJECT_NAME: investigaree
 
 defaults:
   run:
@@ -15,6 +20,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy Frontend
+    timeout-minutes: 15
 
     steps:
       - name: Checkout code
@@ -23,12 +29,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
           cache-dependency-path: investigaree/package-lock.json
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci --prefer-offline --no-audit
 
       - name: Build static export
         run: npm run build
@@ -41,10 +47,33 @@ jobs:
           NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}
           NEXT_PUBLIC_FIREBASE_APP_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}
 
+      - name: Verify build output
+        run: |
+          if [ ! -d "out" ]; then
+            echo "❌ Build failed: 'out' directory not found"
+            exit 1
+          fi
+          if [ ! -f "out/index.html" ]; then
+            echo "❌ Build failed: index.html not found"
+            exit 1
+          fi
+          echo "✅ Build verified: $(find out -type f | wc -l) files"
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: investigaree
-          command: pages deploy out --project-name=investigaree --commit-dirty=true
+          command: pages deploy out --project-name=${{ env.PROJECT_NAME }} --commit-dirty=true
+
+      - name: Verify deployment
+        run: |
+          echo "⏳ Waiting for deployment to propagate..."
+          sleep 10
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://investigaree.com.br)
+          if [ "$HTTP_STATUS" != "200" ]; then
+            echo "⚠️ Warning: Site returned HTTP $HTTP_STATUS (may still be propagating)"
+          else
+            echo "✅ Deployment verified: https://investigaree.com.br is live"
+          fi

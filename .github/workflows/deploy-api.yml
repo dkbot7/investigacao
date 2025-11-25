@@ -6,12 +6,18 @@ on:
     paths:
       - 'workers/**'
       - 'wrangler.toml'
+      - 'package.json'
+      - '.github/workflows/deploy-api.yml'
   workflow_dispatch:
+
+env:
+  NODE_VERSION: '20'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy API
+    timeout-minutes: 10
 
     steps:
       - name: Checkout code
@@ -20,16 +26,41 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
           cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Verify worker files
+        run: |
+          if [ ! -f "workers/index.ts" ]; then
+            echo "❌ Worker source not found: workers/index.ts"
+            exit 1
+          fi
+          if [ ! -f "wrangler.toml" ]; then
+            echo "❌ Wrangler config not found: wrangler.toml"
+            exit 1
+          fi
+          echo "✅ Worker files verified"
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --env=""
+          command: deploy
+
+      - name: Verify deployment
+        run: |
+          echo "⏳ Waiting for deployment to propagate..."
+          sleep 5
+          RESPONSE=$(curl -s https://api.investigaree.com.br/health)
+          if echo "$RESPONSE" | grep -q '"status":"ok"'; then
+            echo "✅ API deployment verified: https://api.investigaree.com.br/health"
+            echo "$RESPONSE"
+          else
+            echo "⚠️ Warning: API health check returned unexpected response"
+            echo "$RESPONSE"
+          fi
