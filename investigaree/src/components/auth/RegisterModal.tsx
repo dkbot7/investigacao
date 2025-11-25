@@ -87,7 +87,22 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
       window.location.href = "/dashboard";
     } catch (err: any) {
       console.error("Erro ao criar conta:", err);
-      setError(err.message || "Erro ao criar conta. Tente novamente.");
+
+      // Traduzir mensagens de erro do Firebase
+      let errorMessage = "Erro ao criar conta. Tente novamente.";
+      if (err.code === "auth/email-already-in-use") {
+        errorMessage = "Este email já está cadastrado. Tente fazer login.";
+      } else if (err.code === "auth/invalid-email") {
+        errorMessage = "Email inválido. Verifique o formato.";
+      } else if (err.code === "auth/weak-password") {
+        errorMessage = "Senha muito fraca. Use pelo menos 6 caracteres.";
+      } else if (err.code === "auth/network-request-failed") {
+        errorMessage = "Erro de conexão. Verifique sua internet.";
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
+
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
