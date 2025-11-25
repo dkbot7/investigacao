@@ -209,7 +209,7 @@ export default function TermosPage() {
             <h2 className="text-xl font-bold text-white mb-4">13. Legislação Aplicável e Foro</h2>
             <p className="text-white/80">
               Estes Termos de Uso são regidos pela legislação brasileira. Fica eleito o foro da Comarca de
-              São Paulo/SP para dirimir quaisquer controvérsias, renunciando as partes a qualquer outro,
+              Itajaí/SC para dirimir quaisquer controvérsias, renunciando as partes a qualquer outro,
               por mais privilegiado que seja.
             </p>
           </section>

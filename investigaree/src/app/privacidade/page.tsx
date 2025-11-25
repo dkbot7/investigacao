@@ -45,7 +45,7 @@ export default function PrivacidadePage() {
             <div className="bg-navy-900 p-6 rounded-lg border border-navy-800">
               <p className="text-white/80 mb-2"><strong>Razão Social:</strong> investigaree Serviços de Investigação Digital LTDA</p>
               <p className="text-white/80 mb-2"><strong>E-mail do Encarregado (DPO):</strong> privacidade@investigaree.com.br</p>
-              <p className="text-white/80"><strong>Endereço:</strong> São Paulo, SP - Brasil</p>
+              <p className="text-white/80"><strong>Endereço:</strong> Itapema, SC - Brasil</p>
             </div>
           </section>
 
