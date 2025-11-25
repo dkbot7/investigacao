@@ -24,7 +24,7 @@ export default function Hero() {
       sub: "Aqui não! Investigação com provas digitais"
     },
     {
-      main: "VAI DAR DINHEIRO PARA UM MENTIROSO?",
+      main: "VAI INVESTIR NUMA STARTUP?",
       sub: "Investigue antes de investir"
     },
     {
