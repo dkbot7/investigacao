@@ -19,8 +19,6 @@ const PORTALS = [
       "Score de risco 0-100",
       "Relatório digital executivo"
     ],
-    priceFrom: "R$ 1.500",
-    priceTo: "R$ 2.500",
     cta: "Análise Express",
     badge: "MAIS RÁPIDO"
   },
@@ -35,11 +33,9 @@ const PORTALS = [
       "50-100 horas de investigação",
       "20+ referências verificadas",
       "Background internacional completo",
-      "Análise psicológica de perfil",
+      "Análise de perfil profissional",
       "Relatório forense blindado"
     ],
-    priceFrom: "R$ 10.000",
-    priceTo: "R$ 15.000",
     cta: "Investigação Profunda",
     popular: true
   },
@@ -51,14 +47,12 @@ const PORTALS = [
     gradient: "from-navy-800 to-navy-950",
     bgGradient: "from-navy-50 to-navy-100 dark:from-navy-950/20 dark:to-navy-900/20",
     services: [
-      "0.3-0.5% do valor do deal",
+      "Análise proporcional ao deal",
       "Equipe multidisciplinar dedicada",
       "Suporte pós-deal incluído",
       "Relatórios para stakeholders",
       "Due diligence completa 360°"
     ],
-    priceFrom: "R$ 30.000",
-    priceTo: "Sob consulta",
     cta: "Falar com Especialista",
     badge: "M&A"
   }
@@ -131,26 +125,15 @@ export default function ServicePortals() {
                     ))}
                   </ul>
 
-                  {/* Price Badge */}
+                  {/* Sob Consulta */}
                   <div className="pt-4 border-t border-navy-200 dark:border-navy-700">
                     <div className="text-center">
                       <p className="text-sm text-navy-600 dark:text-navy-400 mb-2">
                         Investimento
                       </p>
                       <p className="text-2xl font-bold text-navy-900 dark:text-white">
-                        {portal.priceFrom}
-                        {portal.priceTo !== "Sob consulta" && (
-                          <>
-                            <span className="text-lg text-navy-500 dark:text-navy-400 mx-2">a</span>
-                            {portal.priceTo}
-                          </>
-                        )}
+                        Sob consulta
                       </p>
-                      {portal.priceTo === "Sob consulta" && (
-                        <p className="text-sm text-gold-600 dark:text-gold-400 mt-1 font-semibold">
-                          Mínimo R$ 30.000
-                        </p>
-                      )}
                     </div>
                   </div>
                 </CardContent>

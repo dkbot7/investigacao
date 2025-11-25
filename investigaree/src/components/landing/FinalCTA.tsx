@@ -23,7 +23,7 @@ export default function FinalCTA() {
 
         {/* Main Headline */}
         <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-          Due Diligence que evita desastres de R$ 2M
+          Due Diligence que protege seu patrimônio
         </h2>
 
         <p className="text-xl md:text-2xl text-navy-100 mb-12 max-w-3xl mx-auto">
@@ -52,8 +52,8 @@ export default function FinalCTA() {
         </div>
 
         <p className="text-navy-200 text-base mb-8">
-          A partir de <span className="text-gold-400 font-bold text-xl">R$ 1.500</span>
-          {" "}—{" "}Conforme documento PRICING_REAL_MERCADO_BRASIL_2025.md
+          Investimento <span className="text-gold-400 font-bold text-xl">sob consulta</span>
+          {" "}— Fale conosco para um orçamento personalizado
         </p>
 
         {/* Trust Elements */}

@@ -11,8 +11,6 @@ const AREAS = [
     name: "Proteção Familiar",
     badge: "MAIS RÁPIDO",
     icon: Home,
-    price: "2.997",
-    priceRange: { min: "1.500", max: "5.000" },
     delivery: "48 horas garantidas",
     description: "Blindagem completa para sua família",
     features: [
@@ -31,8 +29,6 @@ const AREAS = [
     name: "Proteção Empresarial",
     badge: "RECOMENDADO",
     icon: Building2,
-    price: "10.000",
-    priceRange: { min: "10.000", max: "15.000" },
     delivery: "Análise profunda para empresas",
     description: "Due diligence corporativa completa",
     features: [
@@ -43,7 +39,7 @@ const AREAS = [
       "Relatório forense blindado"
     ],
     highlight: "Proteção contra fraudes corporativas",
-    cta: "Análise Express",
+    cta: "Solicitar Proposta",
     popular: true,
     color: "primary"
   },
@@ -51,13 +47,10 @@ const AREAS = [
     name: "Proteção de Investimentos",
     badge: "M&A",
     icon: TrendingUp,
-    price: "30.000",
-    priceRange: null,
-    minPrice: "Mínimo R$ 30.000",
     delivery: "Proteção em fusões e aquisições",
     description: "Investigação completa para investimentos",
     features: [
-      "0.3-0.5% do valor do deal",
+      "Análise proporcional ao deal",
       "Equipe multidisciplinar dedicada",
       "Suporte pós-deal incluído",
       "Relatórios para stakeholders",
@@ -140,34 +133,15 @@ export default function ProtectionAreas() {
               </CardContent>
 
               <CardFooter className="flex flex-col gap-4 px-6 pb-8 pt-6">
-                {/* Price */}
+                {/* Sob Consulta */}
                 <div className="text-center">
                   <p className="text-slate-400 text-sm mb-2">Investimento</p>
-                  {area.priceRange ? (
-                    <div className="flex items-baseline justify-center gap-2">
-                      <span className="text-2xl font-bold text-white">
-                        R$ {area.priceRange.min}
-                      </span>
-                      <span className="text-slate-400">a</span>
-                      <span className="text-2xl font-bold text-white">
-                        R$ {area.priceRange.max}
-                      </span>
-                    </div>
-                  ) : area.minPrice ? (
-                    <div>
-                      <span className="text-3xl font-bold text-white">
-                        R$ {area.price}
-                      </span>
-                      <p className="text-slate-400 text-xs mt-1">{area.minPrice}</p>
-                    </div>
-                  ) : (
-                    <span className="text-3xl font-bold text-white">
-                      R$ {area.price}
-                    </span>
-                  )}
+                  <span className="text-2xl font-bold text-white">
+                    Sob consulta
+                  </span>
                 </div>
 
-                <Link href="/servicos" className="w-full">
+                <Link href="/contato" className="w-full">
                   <Button
                     className={`w-full py-3 ${
                       area.popular

@@ -10,8 +10,6 @@ const PLANS = [
     name: "Proteção Familiar",
     badge: "MAIS RÁPIDO",
     icon: Home,
-    price: "2.997",
-    priceRange: { min: "1.500", max: "2.500" },
     delivery: "48 horas garantidas",
     description: "Blindagem completa para sua família",
     features: [
@@ -30,8 +28,6 @@ const PLANS = [
     name: "Proteção Empresarial",
     badge: "RECOMENDADO",
     icon: Building2,
-    price: "10.000",
-    priceRange: { min: "10.000", max: "15.000" },
     delivery: "Análise profunda para empresas",
     description: "Due diligence corporativa completa",
     features: [
@@ -42,7 +38,7 @@ const PLANS = [
       "Relatório forense blindado"
     ],
     highlight: "Proteção contra fraudes corporativas",
-    cta: "Análise Express",
+    cta: "Solicitar Proposta",
     popular: true,
     color: "primary"
   },
@@ -50,13 +46,10 @@ const PLANS = [
     name: "Due Diligence M&A",
     badge: "M&A",
     icon: TrendingUp,
-    price: "30.000",
-    priceRange: null,
-    minPrice: "Mínimo R$ 30.000",
     delivery: "Proteção em fusões e aquisições",
     description: "Investigação completa para investimentos",
     features: [
-      "0.3-0.5% do valor do deal",
+      "Análise proporcional ao deal",
       "Equipe multidisciplinar dedicada",
       "Suporte pós-deal incluído",
       "Relatórios para stakeholders",
@@ -144,31 +137,12 @@ export default function Pricing() {
               </CardContent>
 
               <CardFooter className="flex flex-col gap-4 px-6 pb-8 pt-6">
-                {/* Price */}
+                {/* Sob Consulta */}
                 <div className="text-center">
                   <p className="text-slate-400 text-sm mb-2">Investimento</p>
-                  {plan.priceRange ? (
-                    <div className="flex items-baseline justify-center gap-2">
-                      <span className="text-2xl font-bold text-white">
-                        R$ {plan.priceRange.min}
-                      </span>
-                      <span className="text-slate-400">a</span>
-                      <span className="text-2xl font-bold text-white">
-                        R$ {plan.priceRange.max}
-                      </span>
-                    </div>
-                  ) : plan.minPrice ? (
-                    <div>
-                      <span className="text-3xl font-bold text-white">
-                        R$ {plan.price}
-                      </span>
-                      <p className="text-slate-400 text-xs mt-1">{plan.minPrice}</p>
-                    </div>
-                  ) : (
-                    <span className="text-3xl font-bold text-white">
-                      R$ {plan.price}
-                    </span>
-                  )}
+                  <span className="text-2xl font-bold text-white">
+                    Sob consulta
+                  </span>
                 </div>
 
                 <Button
