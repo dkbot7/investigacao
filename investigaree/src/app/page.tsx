@@ -11,9 +11,9 @@ export default function Home() {
       <Header />
       <main className="min-h-screen">
         <Hero />
+        <ProtectionAreas />
         <AdvisoryBoard />
         <SocialProof />
-        <ProtectionAreas />
         <Footer />
       </main>
     </>
