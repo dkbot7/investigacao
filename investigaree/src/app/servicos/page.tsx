@@ -66,8 +66,8 @@ const SERVICOS_FAMILIARES = [
     descricao: "Proteção individual voltada para cada filho adolescente",
     icon: Users,
     caracteristicas: [
-      "Monitoramento de redes",
-      "Acompanhamento psicológico especializado",
+      "Monitoramento de redes sociais",
+      "Análise de comportamento digital",
       "Alertas de ameaça",
       "Investigação de contatos suspeitos"
     ],
