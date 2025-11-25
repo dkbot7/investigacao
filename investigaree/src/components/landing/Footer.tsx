@@ -21,17 +21,18 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Serviços</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#servicos" className="hover:text-primary-400 transition">Red Flag Express</a></li>
-              <li><a href="#servicos" className="hover:text-primary-400 transition">Due Diligence Corporativo</a></li>
-              <li><a href="#servicos" className="hover:text-primary-400 transition">Startup & Founders</a></li>
+              <li><Link href="/servicos" className="hover:text-primary-400 transition">Red Flag Express</Link></li>
+              <li><Link href="/servicos" className="hover:text-primary-400 transition">Due Diligence Corporativo</Link></li>
+              <li><Link href="/servicos" className="hover:text-primary-400 transition">Startup & Founders</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-4">Empresa</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#sobre" className="hover:text-primary-400 transition">Sobre</a></li>
-              <li><a href="#faq" className="hover:text-primary-400 transition">FAQ</a></li>
+              <li><Link href="/sobre" className="hover:text-primary-400 transition">Sobre</Link></li>
+              <li><Link href="/quemsomos" className="hover:text-primary-400 transition">Equipe</Link></li>
+              <li><Link href="/faq" className="hover:text-primary-400 transition">FAQ</Link></li>
               <li>
                 <a
                   href="https://wa.me/5547992611117?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20de%20investiga%C3%A7%C3%A3o%20da%20investigaree."
