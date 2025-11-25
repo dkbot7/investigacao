@@ -3,7 +3,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Shield, Award, CheckCircle2, ExternalLink } from "lucide-react";
+import { Shield, Award, CheckCircle2, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function AdvisoryBoard() {
   return (
@@ -164,13 +165,15 @@ export default function AdvisoryBoard() {
 
                 {/* CTA */}
                 <div className="pt-4">
-                  <Button
-                    variant="outline"
-                    className="w-full sm:w-auto border-2 border-gold-500 bg-gold-500/10 hover:bg-gold-500/20 text-gold-400 hover:text-gold-300 font-semibold"
-                  >
-                    Conheça nosso Advisory Board
-                    <ExternalLink className="ml-2 w-4 h-4" />
-                  </Button>
+                  <Link href="/quemsomos/ibsen-maciel">
+                    <Button
+                      variant="outline"
+                      className="w-full sm:w-auto border-2 border-gold-500 bg-gold-500/10 hover:bg-gold-500/20 text-gold-400 hover:text-gold-300 font-semibold"
+                    >
+                      Ver perfil completo
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
