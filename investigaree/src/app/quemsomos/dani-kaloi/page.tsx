@@ -7,7 +7,7 @@ import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import Link from "next/link";
 import {
-  ArrowLeft, Award, Briefcase, GraduationCap,
+  ArrowLeft, Briefcase, GraduationCap,
   Shield, CheckCircle, MapPin,
   FileSearch, Search, Users
 } from "lucide-react";
@@ -194,7 +194,7 @@ export default function DaniKaloiPage() {
                     <div>
                       <CardTitle>Tecnólogo em Criminologia</CardTitle>
                       <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                        Cruzeiro do Sul Virtual • Em andamento (previsão: 2025)
+                        Cruzeiro do Sul Virtual • Em andamento
                       </p>
                     </div>
                   </div>
@@ -210,11 +210,11 @@ export default function DaniKaloiPage() {
           </div>
         </section>
 
-        {/* Certificações Relevantes */}
+        {/* Foco Profissional */}
         <section className="py-20">
           <div className="container max-w-7xl px-4">
             <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-12">
-              Certificações e Qualificações
+              Foco Profissional
             </h2>
 
             <div className="max-w-3xl">
@@ -222,24 +222,24 @@ export default function DaniKaloiPage() {
                 <CardContent className="pt-6">
                   <ul className="space-y-4">
                     <li className="flex items-start gap-3">
-                      <Award className="w-5 h-5 text-primary-500 mt-0.5" />
+                      <CheckCircle className="w-5 h-5 text-primary-500 mt-0.5" />
                       <div>
-                        <p className="font-medium">Especialização em OSINT</p>
-                        <p className="text-sm text-neutral-600 dark:text-neutral-400">Open Source Intelligence e Investigação Digital</p>
+                        <p className="font-medium">Investigação em Fontes Abertas (OSINT)</p>
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">Coleta e análise de informações públicas para investigações</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
-                      <Award className="w-5 h-5 text-primary-500 mt-0.5" />
+                      <CheckCircle className="w-5 h-5 text-primary-500 mt-0.5" />
                       <div>
                         <p className="font-medium">Due Diligence Corporativa</p>
-                        <p className="text-sm text-neutral-600 dark:text-neutral-400">Metodologias de investigação empresarial</p>
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">Verificação de antecedentes e análise de riscos empresariais</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
-                      <Award className="w-5 h-5 text-primary-500 mt-0.5" />
+                      <CheckCircle className="w-5 h-5 text-primary-500 mt-0.5" />
                       <div>
-                        <p className="font-medium">Compliance e LGPD</p>
-                        <p className="text-sm text-neutral-600 dark:text-neutral-400">Conformidade legal em investigações</p>
+                        <p className="font-medium">Conformidade com LGPD</p>
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">Investigações realizadas em conformidade com a legislação brasileira</p>
                       </div>
                     </li>
                   </ul>
