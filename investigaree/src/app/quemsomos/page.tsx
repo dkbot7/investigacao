@@ -265,9 +265,15 @@ export default function QuemSomosPage() {
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
-              <Button size="lg" variant="outline">
-                Agendar Conversa
-              </Button>
+              <a
+                href="https://wa.me/5547992611117?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20conversa%20com%20a%20investigaree."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button size="lg" variant="outline">
+                  Agendar Conversa
+                </Button>
+              </a>
             </div>
           </div>
         </section>
