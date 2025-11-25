@@ -23,7 +23,7 @@ export default function AdvisoryBoard() {
             Advisory Board
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold">
-            Validado por Perícia Criminal Oficial
+            Validado por Perito Criminal Oficial
           </h2>
           <p className="text-xl text-navy-100 max-w-3xl mx-auto">
             Nossa metodologia é certificada pelos mesmos profissionais que conduzem
