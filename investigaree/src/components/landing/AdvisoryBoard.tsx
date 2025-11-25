@@ -177,15 +177,6 @@ export default function AdvisoryBoard() {
           </CardContent>
         </Card>
 
-        {/* Trust Elements */}
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-gold-500/30 rounded-full px-6 py-3">
-            <Shield className="w-5 h-5 text-gold-500" />
-            <span className="text-sm font-semibold text-white">
-              Metodologia validada por Perito Criminal com atuação em casos de nível nacional
-            </span>
-          </div>
-        </div>
       </div>
     </section>
   );

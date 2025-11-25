@@ -50,11 +50,11 @@ const AREAS = [
     delivery: "Proteção em fusões e aquisições",
     description: "Investigação completa para investimentos",
     features: [
-      "Análise proporcional ao deal",
+      "Due diligence completa 360°",
       "Equipe multidisciplinar dedicada",
-      "Suporte pós-deal incluído",
+      "Verificação de sócios e founders",
       "Relatórios para stakeholders",
-      "Due diligence completa 360°"
+      "Suporte pós-deal incluído"
     ],
     highlight: "Proteção total do seu investimento",
     cta: "Falar com Especialista",
@@ -70,13 +70,13 @@ export default function ProtectionAreas() {
         {/* Section Header */}
         <div className="text-center mb-16 space-y-4">
           <Badge variant="outline" className="mb-4 text-amber-400 border-amber-400/30">
-            3 Níveis de Proteção
+            3 Áreas de Proteção
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-white">
-            Invista 0,1% para proteger 100%
+            Protegemos o que mais importa
           </h2>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            Due diligence empresarial com rigor de perícia forense
+            Sua família, suas empresas e seus investimentos
           </p>
         </div>
 
