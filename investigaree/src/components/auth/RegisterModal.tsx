@@ -138,18 +138,22 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
           animate={{ scale: 1, y: 0 }}
           exit={{ scale: 0.9, y: 20 }}
           onClick={(e) => e.stopPropagation()}
+          role="dialog"
+          aria-labelledby="register-modal-title"
+          aria-modal="true"
         >
           {/* Close button */}
           <button
             onClick={onClose}
             className="absolute top-4 right-4 text-white/60 hover:text-white transition-colors"
+            aria-label="Fechar modal"
           >
             <X className="w-5 h-5" />
           </button>
 
           {/* Header */}
           <div className="p-6 border-b border-navy-700">
-            <h2 className="text-2xl font-bold text-white">
+            <h2 id="register-modal-title" className="text-2xl font-bold text-white">
               {step === "contact" ? "Solicitar Investigação" : "Criar sua senha"}
             </h2>
             <p className="text-sm text-white/60 mt-1">
