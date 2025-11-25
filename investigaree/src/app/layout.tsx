@@ -1,16 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import dynamic from "next/dynamic";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
-
-// Lazy load non-critical components for better performance
-const CookieBanner = dynamic(() => import("@/components/CookieBanner"), {
-  ssr: false,
-});
-const WhatsAppWidget = dynamic(() => import("@/components/WhatsAppWidget"), {
-  ssr: false,
-});
+import ClientWidgets from "@/components/ClientWidgets";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -114,8 +106,7 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased`}>
         <AuthProvider>
           {children}
-          <WhatsAppWidget />
-          <CookieBanner />
+          <ClientWidgets />
         </AuthProvider>
       </body>
     </html>
