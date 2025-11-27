@@ -21,6 +21,10 @@ import webhooksRoutes from './api/webhooks'
 import chatbotRoutes from './api/chatbot'
 import userRoutes from './api/user'
 import lgpdRoutes from './api/lgpd'
+import investigationRoutes from './api/investigation'
+import consultasPublicasRoutes from './api/consultas-publicas'
+import infosimplesRoutes from './api/consultas-infosimples'
+import transparenciaRoutes from './api/consultas-transparencia'
 
 // Types
 export interface Env {
@@ -37,6 +41,7 @@ export interface Env {
   BROWSER: Fetcher
 
   // Secrets
+  RESEND_API_KEY: string
   SUPABASE_URL: string
   SUPABASE_SERVICE_ROLE_KEY: string
   FIREBASE_WEB_API_KEY: string
@@ -52,6 +57,13 @@ export interface Env {
   DEHASHED_API_KEY: string
   URL_SECRET: string
   JWT_SECRET: string
+
+  // APIs de Consulta
+  INFOSIMPLES_API_TOKEN: string
+  PORTAL_TRANSPARENCIA_API_KEY: string
+
+  // PDF Generation (fallback)
+  HTML2PDF_API_KEY?: string
 
   // Variables
   ENVIRONMENT: string
@@ -131,6 +143,9 @@ app.get('/', (c) => {
       webhooks: '/api/webhooks/stripe',
       user: '/api/user',
       lgpd: '/api/lgpd',
+      consultas: '/api/consultas',
+      infosimples: '/api/infosimples',
+      transparencia: '/api/transparencia',
     },
   })
 })
@@ -147,6 +162,18 @@ app.route('/api/leads', leadsRoutes)
 
 // Chatbot (pode ser usado antes de autenticar)
 app.route('/api/chatbot', chatbotRoutes)
+
+// Investigation requests (public - sends email)
+app.route('/api/investigation', investigationRoutes)
+
+// Consultas públicas (APIs gratuitas - Brasil API, TSE, Receita)
+app.route('/api/consultas', consultasPublicasRoutes)
+
+// Consultas Infosimples (API paga - CPF, CNPJ, processos, doações)
+app.route('/api/infosimples', infosimplesRoutes)
+
+// Consultas Portal da Transparência (servidores, CEIS, CNEP, CEAF)
+app.route('/api/transparencia', transparenciaRoutes)
 
 // Webhooks (validação via signature)
 app.route('/api/webhooks', webhooksRoutes)

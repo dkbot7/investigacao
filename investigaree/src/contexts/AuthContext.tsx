@@ -7,7 +7,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  updateProfile
+  updateProfile,
+  sendPasswordResetEmail
 } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 
@@ -17,6 +18,7 @@ interface AuthContextType {
   signup: (email: string, password: string, userData: { name: string; whatsapp: string }) => Promise<void>;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -85,12 +87,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   };
 
+  const resetPassword = async (email: string) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (error: any) {
+      console.error("Erro ao enviar email de recuperacao:", error);
+      throw error;
+    }
+  };
+
   const value: AuthContextType = {
     user,
     loading,
     signup,
     login,
-    logout
+    logout,
+    resetPassword
   };
 
   return (

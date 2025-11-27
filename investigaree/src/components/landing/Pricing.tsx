@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -22,7 +23,8 @@ const PLANS = [
     highlight: "Red flags principais identificados",
     cta: "Proteger Família",
     popular: false,
-    color: "neutral"
+    color: "neutral",
+    tab: "familiar"
   },
   {
     name: "Proteção Empresarial",
@@ -40,10 +42,11 @@ const PLANS = [
     highlight: "Proteção contra fraudes corporativas",
     cta: "Solicitar Proposta",
     popular: true,
-    color: "primary"
+    color: "primary",
+    tab: "empresarial"
   },
   {
-    name: "Due Diligence M&A",
+    name: "Proteção de Investimentos",
     badge: "M&A",
     icon: TrendingUp,
     delivery: "Proteção em fusões e aquisições",
@@ -58,7 +61,8 @@ const PLANS = [
     highlight: "Proteção total do seu investimento",
     cta: "Falar com Especialista",
     popular: false,
-    color: "secondary"
+    color: "secondary",
+    tab: "investimentos"
   }
 ];
 
@@ -145,16 +149,18 @@ export default function Pricing() {
                   </span>
                 </div>
 
-                <Button
-                  className={`w-full py-3 ${
-                    plan.popular
-                      ? "bg-amber-500 hover:bg-amber-600 text-black"
-                      : "bg-slate-700 hover:bg-slate-600 text-white border border-slate-600"
-                  } font-semibold rounded-lg transition-all`}
-                >
-                  {plan.cta}
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
+                <Link href={`/servicos/?tab=${plan.tab}`} className="w-full">
+                  <Button
+                    className={`w-full py-3 ${
+                      plan.popular
+                        ? "bg-amber-500 hover:bg-amber-600 text-black"
+                        : "bg-slate-700 hover:bg-slate-600 text-white border border-slate-600"
+                    } font-semibold rounded-lg transition-all`}
+                  >
+                    {plan.cta}
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
               </CardFooter>
             </Card>
           ))}

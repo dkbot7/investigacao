@@ -2,10 +2,10 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Ibsen Rodrigues Maciel - Advisory Board | investigaree",
-  description: "Perito Criminal Oficial em Forense Computacional da Polícia Científica do Pará. Diretor Nacional de Perícias em Computação Forense da ANPAJ. Membro do Advisory Board da investigaree.",
+  description: "Referência nacional em Perícia Forense Computacional. Diretor Nacional de Perícias em Computação Forense da ANPAJ. 1º lugar Concurso PC-PA 2019. Membro do Comitê do Instituto de Defesa Cibernética.",
   openGraph: {
     title: "Ibsen Rodrigues Maciel - Advisory Board | investigaree",
-    description: "Perito Criminal Oficial, Diretor Nacional ANPAJ, especialista em Forense Computacional. Certificações: CELLEBRITE UFED, XRY MSAB, Magnet AXIOM.",
+    description: "Perito Criminal Oficial, Diretor Nacional ANPAJ, 1º lugar PC-PA 2019, 1º lugar Exército 2017/18. Especialista em Forense Computacional com certificações CELLEBRITE UFED, XRY MSAB, Magnet AXIOM.",
   },
 };
 

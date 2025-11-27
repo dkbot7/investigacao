@@ -1,17 +1,21 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Moon, Sun, Globe, Menu, X } from "lucide-react";
+import { Globe, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { ModeToggle } from "@/components/mode-toggle";
+import LoginModal from "@/components/auth/LoginModal";
+import RegisterModal from "@/components/auth/RegisterModal";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [language, setLanguage] = useState<"pt" | "en">("pt");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
 
   // Handle scroll for sticky header with blur
   useEffect(() => {
@@ -21,11 +25,6 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Apply theme to document
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-  }, [theme]);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -38,10 +37,6 @@ export default function Header() {
       document.body.style.overflow = "unset";
     };
   }, [isMobileMenuOpen]);
-
-  const toggleTheme = () => {
-    setTheme(prev => prev === "dark" ? "light" : "dark");
-  };
 
   const toggleLanguage = () => {
     setLanguage(prev => prev === "pt" ? "en" : "pt");
@@ -58,7 +53,9 @@ export default function Header() {
       about: "Quem Somos",
       contact: "Contato",
       theme: "Tema",
-      language: "Idioma"
+      language: "Idioma",
+      login: "Entrar",
+      signup: "Criar Conta"
     },
     en: {
       home: "Home",
@@ -66,7 +63,9 @@ export default function Header() {
       about: "About",
       contact: "Contact",
       theme: "Theme",
-      language: "Language"
+      language: "Language",
+      login: "Login",
+      signup: "Sign Up"
     }
   };
 
@@ -171,7 +170,7 @@ export default function Header() {
             ))}
           </motion.div>
 
-          {/* Theme & Language Toggles - Desktop */}
+          {/* Theme, Language & Auth Buttons - Desktop */}
           <motion.div
             className="hidden md:flex items-center gap-4"
             initial={{ opacity: 0, x: 20 }}
@@ -180,38 +179,7 @@ export default function Header() {
           >
             {/* Theme Toggle */}
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleTheme}
-                className="text-white/80 hover:text-white hover:bg-white/5 transition-all"
-                title={theme === "dark" ? "Alternar para modo claro" : "Alternar para modo escuro"}
-              >
-                <AnimatePresence mode="wait">
-                  {theme === "dark" ? (
-                    <motion.div
-                      key="sun"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Sun className="w-4 h-4" />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="moon"
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Moon className="w-4 h-4" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-                <span className="ml-2 hidden sm:inline text-sm">{t.theme}</span>
-              </Button>
+              <ModeToggle />
             </motion.div>
 
             {/* Language Toggle */}
@@ -227,6 +195,32 @@ export default function Header() {
                 <span className="ml-2 text-sm font-medium">
                   {language === "pt" ? "PT 🇧🇷" : "EN 🇺🇸"}
                 </span>
+              </Button>
+            </motion.div>
+
+            {/* Divider */}
+            <div className="h-6 w-px bg-white/20" />
+
+            {/* Login Button */}
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-white/90 hover:text-white hover:bg-white/10 transition-all font-medium"
+                onClick={() => setIsLoginModalOpen(true)}
+              >
+                {t.login}
+              </Button>
+            </motion.div>
+
+            {/* Sign Up Button */}
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                size="sm"
+                className="bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold transition-all"
+                onClick={() => setIsRegisterModalOpen(true)}
+              >
+                {t.signup}
               </Button>
             </motion.div>
           </motion.div>
@@ -321,6 +315,34 @@ export default function Header() {
                   ))}
                 </nav>
 
+                {/* Auth Buttons - Mobile */}
+                <motion.div
+                  className="flex flex-col gap-3 px-6 mb-6"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.35, duration: 0.3 }}
+                >
+                  <Button
+                    variant="outline"
+                    className="w-full text-white border-gold-500/50 hover:bg-gold-500/10 hover:border-gold-500 font-medium py-6 text-lg"
+                    onClick={() => {
+                      closeMobileMenu();
+                      setIsLoginModalOpen(true);
+                    }}
+                  >
+                    {t.login}
+                  </Button>
+                  <Button
+                    className="w-full bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold py-6 text-lg"
+                    onClick={() => {
+                      closeMobileMenu();
+                      setIsRegisterModalOpen(true);
+                    }}
+                  >
+                    {t.signup}
+                  </Button>
+                </motion.div>
+
                 {/* Theme & Language Controls */}
                 <motion.div
                   className="space-y-4 px-6"
@@ -331,39 +353,7 @@ export default function Header() {
                   {/* Theme Toggle */}
                   <div className="flex items-center justify-between py-4 border-b border-gold-500/10">
                     <span className="text-white/80 font-medium">{t.theme}</span>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={toggleTheme}
-                      className="text-white/80 hover:text-white hover:bg-white/5"
-                    >
-                      <AnimatePresence mode="wait">
-                        {theme === "dark" ? (
-                          <motion.div
-                            key="sun"
-                            initial={{ rotate: -90, opacity: 0 }}
-                            animate={{ rotate: 0, opacity: 1 }}
-                            exit={{ rotate: 90, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            <Sun className="w-5 h-5" />
-                          </motion.div>
-                        ) : (
-                          <motion.div
-                            key="moon"
-                            initial={{ rotate: 90, opacity: 0 }}
-                            animate={{ rotate: 0, opacity: 1 }}
-                            exit={{ rotate: -90, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            <Moon className="w-5 h-5" />
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                      <span className="ml-2">
-                        {theme === "dark" ? "Claro" : "Escuro"}
-                      </span>
-                    </Button>
+                    <ModeToggle />
                   </div>
 
                   {/* Language Toggle */}
@@ -387,6 +377,22 @@ export default function Header() {
           </>
         )}
       </AnimatePresence>
+
+      {/* Login Modal */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onSwitchToRegister={() => {
+          setIsLoginModalOpen(false);
+          setIsRegisterModalOpen(true);
+        }}
+      />
+
+      {/* Register Modal */}
+      <RegisterModal
+        isOpen={isRegisterModalOpen}
+        onClose={() => setIsRegisterModalOpen(false)}
+      />
     </motion.header>
   );
 }

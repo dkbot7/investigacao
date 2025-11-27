@@ -1,9 +1,11 @@
-﻿/**
+/**
  * PDF Generator Service
  * Geração de relatórios em PDF com design profissional
+ * Usa Cloudflare Browser Rendering API (Puppeteer)
  */
 
 import { Env } from '../index'
+import puppeteer from '@cloudflare/puppeteer'
 
 export interface ReportData {
   company_name: string
@@ -68,71 +70,306 @@ export interface ReportData {
 }
 
 /**
- * Gerar PDF de relatório
- * PLACEHOLDER: Implementar geração real de PDF
+ * Gerar PDF de relatório usando Cloudflare Browser Rendering
  *
  * @param data - Dados do relatório
  * @param env - Environment variables
  * @returns URL do PDF gerado ou null
- *
- * Opções de implementação:
- * 1. Puppeteer (Chromium headless) - Mais completo, mas pesado
- * 2. PDFKit - Leve, mas requer mais código para layout
- * 3. jsPDF - Cliente-side, mas pode ser usado no Worker
- * 4. Serviço externo (DocRaptor, PDF.co) - $$ mas robusto
- *
- * Recomendação: Puppeteer via Cloudflare Browser Rendering API
- * Docs: https://developers.cloudflare.com/browser-rendering/
- * Custo: $5/milhão de segundos de renderização
  */
 export async function generateReportPDF(
   data: ReportData,
   env: Env
 ): Promise<string | null> {
   try {
-    // TODO: Implementar geração real de PDF
-    /*
-    // Opção 1: Usando Cloudflare Browser Rendering + Puppeteer
-    const browser = await puppeteer.launch(env.BROWSER)
-    const page = await browser.newPage()
+    console.log('[PDF_GENERATOR] Starting PDF generation for:', data.company_name)
 
     // Gerar HTML do relatório
     const html = generateReportHTML(data)
-    await page.setContent(html)
+
+    // Usar Cloudflare Browser Rendering para gerar PDF
+    const browser = await puppeteer.launch(env.BROWSER)
+    const page = await browser.newPage()
+
+    // Configurar viewport para A4
+    await page.setViewport({
+      width: 794,  // A4 width em pixels (210mm at 96dpi)
+      height: 1123, // A4 height em pixels (297mm at 96dpi)
+      deviceScaleFactor: 2, // Alta qualidade
+    })
+
+    // Carregar HTML
+    await page.setContent(html, {
+      waitUntil: 'networkidle0',
+    })
+
+    // Aguardar fontes carregarem
+    await page.evaluateHandle('document.fonts.ready')
 
     // Gerar PDF
     const pdfBuffer = await page.pdf({
       format: 'A4',
       printBackground: true,
       margin: {
-        top: '20mm',
+        top: '15mm',
         right: '15mm',
-        bottom: '20mm',
+        bottom: '15mm',
         left: '15mm',
       },
+      displayHeaderFooter: true,
+      headerTemplate: `
+        <div style="width: 100%; font-size: 9px; padding: 5px 15mm; color: #666; display: flex; justify-content: space-between;">
+          <span>investigaree - Relatório de Due Diligence</span>
+          <span>${data.company_name}</span>
+        </div>
+      `,
+      footerTemplate: `
+        <div style="width: 100%; font-size: 9px; padding: 5px 15mm; color: #666; display: flex; justify-content: space-between;">
+          <span>Confidencial - ID: ${data.report_id}</span>
+          <span>Página <span class="pageNumber"></span> de <span class="totalPages"></span></span>
+        </div>
+      `,
     })
 
     await browser.close()
 
-    // Upload para R2 (Cloudflare Object Storage)
+    console.log('[PDF_GENERATOR] PDF generated, size:', pdfBuffer.byteLength, 'bytes')
+
+    // Upload para R2 Storage
     const fileName = `reports/${data.report_id}.pdf`
-    await env.R2.put(fileName, pdfBuffer, {
+    const pdfUrl = await uploadPDFToStorage(pdfBuffer, fileName, env)
+
+    if (!pdfUrl) {
+      throw new Error('Falha ao fazer upload do PDF')
+    }
+
+    console.log('[PDF_GENERATOR] PDF uploaded successfully:', pdfUrl)
+
+    return pdfUrl
+  } catch (error) {
+    console.error('[PDF_GENERATOR] Error:', error)
+
+    // Fallback: tentar geração simplificada sem Browser Rendering
+    try {
+      console.log('[PDF_GENERATOR] Trying fallback method...')
+      return await generatePDFFallback(data, env)
+    } catch (fallbackError) {
+      console.error('[PDF_GENERATOR] Fallback also failed:', fallbackError)
+      return null
+    }
+  }
+}
+
+/**
+ * Método fallback: gerar PDF via serviço externo (html2pdf.app)
+ * Usado quando Browser Rendering não está disponível
+ */
+async function generatePDFFallback(
+  data: ReportData,
+  env: Env
+): Promise<string | null> {
+  try {
+    const html = generateReportHTML(data)
+
+    // Usar API gratuita html2pdf.app
+    const response = await fetch('https://api.html2pdf.app/v1/generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        html: html,
+        apiKey: env.HTML2PDF_API_KEY || '', // Opcional para uso básico
+        options: {
+          format: 'A4',
+          margin: {
+            top: '15mm',
+            right: '15mm',
+            bottom: '15mm',
+            left: '15mm',
+          },
+        },
+      }),
+    })
+
+    if (!response.ok) {
+      throw new Error(`html2pdf API error: ${response.status}`)
+    }
+
+    const pdfBuffer = await response.arrayBuffer()
+
+    // Upload para R2
+    const fileName = `reports/${data.report_id}.pdf`
+    return await uploadPDFToStorage(pdfBuffer, fileName, env)
+  } catch (error) {
+    console.error('[PDF_GENERATOR] Fallback error:', error)
+    return null
+  }
+}
+
+/**
+ * Upload de PDF para Cloudflare R2 Storage
+ */
+export async function uploadPDFToStorage(
+  pdfBuffer: ArrayBuffer | Uint8Array,
+  fileName: string,
+  env: Env
+): Promise<string | null> {
+  try {
+    // Converter para Uint8Array se necessário
+    const buffer = pdfBuffer instanceof Uint8Array
+      ? pdfBuffer
+      : new Uint8Array(pdfBuffer)
+
+    // Upload para R2
+    await env.R2.put(fileName, buffer, {
       httpMetadata: {
         contentType: 'application/pdf',
+        cacheControl: 'private, max-age=86400', // Cache por 24h
+      },
+      customMetadata: {
+        uploadedAt: new Date().toISOString(),
+        reportId: fileName.split('/')[1]?.replace('.pdf', '') || '',
       },
     })
 
-    // Retornar URL
-    return `${env.R2_PUBLIC_URL}/${fileName}`
-    */
+    // Retornar URL pública ou signed URL
+    // Se R2 bucket tem custom domain configurado:
+    const publicUrl = `https://storage.investigaree.com.br/${fileName}`
 
-    // PLACEHOLDER: Retornar URL mock
-    console.log('[PDF_GENERATOR] PLACEHOLDER - Generating PDF for:', data.company_name)
+    console.log('[PDF_GENERATOR] Uploaded to R2:', fileName)
 
-    const mockPdfUrl = `https://storage.investigaree.com.br/reports/${data.report_id}.pdf`
-    return mockPdfUrl
+    return publicUrl
   } catch (error) {
-    console.error('[PDF_GENERATOR] Error:', error)
+    console.error('[PDF_GENERATOR] R2 upload error:', error)
+    return null
+  }
+}
+
+/**
+ * Gerar URL assinada para download seguro do PDF
+ */
+export async function generateSignedPDFUrl(
+  reportId: string,
+  userId: string,
+  env: Env,
+  expiresInSeconds: number = 3600 // 1 hora
+): Promise<string | null> {
+  try {
+    const fileName = `reports/${reportId}.pdf`
+
+    // Verificar se arquivo existe
+    const object = await env.R2.head(fileName)
+    if (!object) {
+      console.error('[PDF_GENERATOR] PDF not found:', fileName)
+      return null
+    }
+
+    // Gerar token de acesso seguro
+    const expiresAt = Date.now() + (expiresInSeconds * 1000)
+    const payload = `${reportId}:${userId}:${expiresAt}`
+
+    // Criar HMAC para validação
+    const encoder = new TextEncoder()
+    const keyData = encoder.encode(env.URL_SECRET || 'default-secret-change-me')
+    const key = await crypto.subtle.importKey(
+      'raw',
+      keyData,
+      { name: 'HMAC', hash: 'SHA-256' },
+      false,
+      ['sign']
+    )
+
+    const signature = await crypto.subtle.sign(
+      'HMAC',
+      key,
+      encoder.encode(payload)
+    )
+
+    const token = btoa(String.fromCharCode(...new Uint8Array(signature)))
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=/g, '')
+
+    // Retornar URL com token
+    return `https://api.investigaree.com.br/api/reports/${reportId}/download?token=${token}&expires=${expiresAt}`
+  } catch (error) {
+    console.error('[PDF_GENERATOR] Error generating signed URL:', error)
+    return null
+  }
+}
+
+/**
+ * Validar token de download
+ */
+export async function validateDownloadToken(
+  reportId: string,
+  userId: string,
+  token: string,
+  expiresAt: number,
+  env: Env
+): Promise<boolean> {
+  try {
+    // Verificar expiração
+    if (Date.now() > expiresAt) {
+      console.log('[PDF_GENERATOR] Token expired')
+      return false
+    }
+
+    // Recalcular token esperado
+    const payload = `${reportId}:${userId}:${expiresAt}`
+
+    const encoder = new TextEncoder()
+    const keyData = encoder.encode(env.URL_SECRET || 'default-secret-change-me')
+    const key = await crypto.subtle.importKey(
+      'raw',
+      keyData,
+      { name: 'HMAC', hash: 'SHA-256' },
+      false,
+      ['sign']
+    )
+
+    const expectedSignature = await crypto.subtle.sign(
+      'HMAC',
+      key,
+      encoder.encode(payload)
+    )
+
+    const expectedToken = btoa(String.fromCharCode(...new Uint8Array(expectedSignature)))
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=/g, '')
+
+    return token === expectedToken
+  } catch (error) {
+    console.error('[PDF_GENERATOR] Token validation error:', error)
+    return false
+  }
+}
+
+/**
+ * Obter PDF do R2 para download
+ */
+export async function getPDFFromStorage(
+  reportId: string,
+  env: Env
+): Promise<{ buffer: ArrayBuffer; size: number } | null> {
+  try {
+    const fileName = `reports/${reportId}.pdf`
+    const object = await env.R2.get(fileName)
+
+    if (!object) {
+      console.error('[PDF_GENERATOR] PDF not found:', fileName)
+      return null
+    }
+
+    const buffer = await object.arrayBuffer()
+
+    return {
+      buffer,
+      size: object.size,
+    }
+  } catch (error) {
+    console.error('[PDF_GENERATOR] Error getting PDF:', error)
     return null
   }
 }
@@ -142,18 +379,74 @@ export async function generateReportPDF(
  * Este HTML será convertido em PDF
  */
 export function generateReportHTML(data: ReportData): string {
-  const severityColors = {
+  const severityColors: Record<string, string> = {
     baixa: '#4CAF50',
     media: '#FF9800',
     alta: '#FF5722',
     critica: '#D32F2F',
   }
 
-  const scoreColor = (score: number) => {
+  const severityLabels: Record<string, string> = {
+    baixa: 'BAIXA',
+    media: 'MÉDIA',
+    alta: 'ALTA',
+    critica: 'CRÍTICA',
+  }
+
+  const recomendacaoColors: Record<string, string> = {
+    recomendado: '#4CAF50',
+    com_ressalvas: '#FF9800',
+    nao_recomendado: '#D32F2F',
+  }
+
+  const recomendacaoLabels: Record<string, string> = {
+    recomendado: '✓ RECOMENDADO',
+    com_ressalvas: '⚠ COM RESSALVAS',
+    nao_recomendado: '✗ NÃO RECOMENDADO',
+  }
+
+  const scoreColor = (score: number): string => {
     if (score >= 80) return '#4CAF50'
     if (score >= 60) return '#FF9800'
     if (score >= 40) return '#FF5722'
     return '#D32F2F'
+  }
+
+  const formatCPF = (cpf: string): string => {
+    if (!cpf) return '***.***.***-**'
+    const clean = cpf.replace(/\D/g, '')
+    if (clean.length !== 11) return cpf
+    return `${clean.slice(0, 3)}.${clean.slice(3, 6)}.${clean.slice(6, 9)}-${clean.slice(9)}`
+  }
+
+  const formatCNPJ = (cnpj: string): string => {
+    if (!cnpj) return ''
+    const clean = cnpj.replace(/\D/g, '')
+    if (clean.length !== 14) return cnpj
+    return `${clean.slice(0, 2)}.${clean.slice(2, 5)}.${clean.slice(5, 8)}/${clean.slice(8, 12)}-${clean.slice(12)}`
+  }
+
+  const formatCurrency = (value: number): string => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(value)
+  }
+
+  const formatDate = (dateStr: string): string => {
+    try {
+      return new Date(dateStr).toLocaleDateString('pt-BR')
+    } catch {
+      return dateStr
+    }
+  }
+
+  const formatDateTime = (dateStr: string): string => {
+    try {
+      return new Date(dateStr).toLocaleString('pt-BR')
+    } catch {
+      return dateStr
+    }
   }
 
   return `
@@ -163,9 +456,10 @@ export function generateReportHTML(data: ReportData): string {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Relatório de Due Diligence - ${data.company_name}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
     * {
       margin: 0;
       padding: 0;
@@ -173,396 +467,716 @@ export function generateReportHTML(data: ReportData): string {
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      font-size: 11pt;
-      line-height: 1.6;
-      color: #333;
-    }
-
-    .page {
-      padding: 20mm;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 10pt;
+      line-height: 1.5;
+      color: #1a1a2e;
       background: white;
     }
 
-    .header {
-      background: linear-gradient(135deg, #0A4D8C 0%, #052340 100%);
-      color: white;
-      padding: 30px;
-      border-radius: 8px;
-      margin-bottom: 30px;
+    .page {
+      padding: 0;
+      background: white;
+      min-height: 100vh;
     }
 
-    .header h1 {
-      font-size: 28pt;
+    /* Cover Page */
+    .cover {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0a192f 0%, #112240 50%, #1d3461 100%);
+      color: white;
+      text-align: center;
+      padding: 40px;
+      page-break-after: always;
+    }
+
+    .cover-logo {
+      font-size: 48pt;
+      font-weight: 800;
+      letter-spacing: -2px;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #c9a227 0%, #e8d48b 50%, #c9a227 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cover-tagline {
+      font-size: 12pt;
+      opacity: 0.8;
+      margin-bottom: 60px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .cover-title {
+      font-size: 14pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #c9a227;
+      margin-bottom: 20px;
+    }
+
+    .cover-company {
+      font-size: 32pt;
+      font-weight: 700;
       margin-bottom: 10px;
     }
 
-    .header .subtitle {
+    .cover-cnpj {
       font-size: 14pt;
-      opacity: 0.9;
+      opacity: 0.7;
+      margin-bottom: 60px;
     }
 
-    .metadata {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 30px;
-      padding: 15px;
-      background: #f5f5f5;
-      border-radius: 6px;
+    .cover-meta {
+      margin-top: auto;
       font-size: 10pt;
+      opacity: 0.6;
     }
 
+    .cover-meta p {
+      margin: 5px 0;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
+      color: white;
+      padding: 25px 30px;
+      margin-bottom: 25px;
+    }
+
+    .header h1 {
+      font-size: 20pt;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .header .subtitle {
+      font-size: 11pt;
+      opacity: 0.8;
+    }
+
+    /* Content */
+    .content {
+      padding: 0 30px 30px;
+    }
+
+    /* Section */
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
     .section h2 {
-      color: #052340;
-      font-size: 18pt;
-      border-bottom: 3px solid #0A4D8C;
-      padding-bottom: 10px;
+      color: #0a192f;
+      font-size: 14pt;
+      font-weight: 700;
+      border-bottom: 3px solid #c9a227;
+      padding-bottom: 8px;
       margin-bottom: 15px;
     }
 
     .section h3 {
-      color: #0A4D8C;
-      font-size: 14pt;
-      margin-top: 20px;
-      margin-bottom: 10px;
+      color: #112240;
+      font-size: 11pt;
+      font-weight: 600;
+      margin: 15px 0 10px;
     }
 
-    .score-box {
-      display: inline-block;
-      padding: 15px 25px;
+    /* Executive Summary Box */
+    .summary-box {
+      background: #f8f9fa;
+      border-left: 4px solid #c9a227;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .summary-box p {
+      font-size: 11pt;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    /* Score Cards */
+    .scores-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .score-card {
+      flex: 1;
       background: white;
-      border: 3px solid;
-      border-radius: 8px;
-      text-align: center;
-      margin: 10px;
-    }
-
-    .score-box .label {
-      font-size: 10pt;
-      font-weight: 600;
-      margin-bottom: 5px;
-    }
-
-    .score-box .value {
-      font-size: 32pt;
-      font-weight: 700;
-    }
-
-    .risk-item {
-      padding: 15px;
-      margin-bottom: 15px;
-      border-left: 5px solid;
-      background: #fafafa;
-      border-radius: 4px;
-    }
-
-    .risk-item h4 {
-      font-size: 12pt;
-      margin-bottom: 5px;
-    }
-
-    .risk-item .severity {
-      display: inline-block;
-      padding: 3px 10px;
+      border: 2px solid #e0e0e0;
       border-radius: 12px;
-      color: white;
-      font-size: 9pt;
-      font-weight: 600;
-      margin-bottom: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s;
     }
 
+    .score-card .label {
+      font-size: 8pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .score-card .value {
+      font-size: 28pt;
+      font-weight: 800;
+    }
+
+    .score-card .indicator {
+      font-size: 8pt;
+      margin-top: 5px;
+      font-weight: 500;
+    }
+
+    /* Recommendation Box */
+    .recommendation-box {
+      padding: 25px;
+      border-radius: 12px;
+      margin: 25px 0;
+      text-align: center;
+    }
+
+    .recommendation-box .title {
+      font-size: 18pt;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .recommendation-box .justification {
+      font-size: 11pt;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Info Grid */
     .info-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 15px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 15px 0;
     }
 
     .info-item {
-      padding: 10px;
-      background: #f9f9f9;
-      border-radius: 4px;
+      background: #f8f9fa;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border-left: 3px solid #c9a227;
     }
 
     .info-item .label {
+      font-size: 8pt;
       font-weight: 600;
-      color: #0A4D8C;
-      font-size: 9pt;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      color: #666;
+      margin-bottom: 4px;
     }
 
     .info-item .value {
-      font-size: 11pt;
-      margin-top: 5px;
+      font-size: 10pt;
+      font-weight: 500;
+      color: #1a1a2e;
     }
 
+    /* Table */
     table {
       width: 100%;
       border-collapse: collapse;
       margin: 15px 0;
+      font-size: 9pt;
     }
 
     table th {
-      background: #0A4D8C;
+      background: #0a192f;
       color: white;
-      padding: 10px;
+      padding: 12px 15px;
       text-align: left;
-      font-size: 10pt;
+      font-weight: 600;
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    table th:first-child {
+      border-radius: 8px 0 0 0;
+    }
+
+    table th:last-child {
+      border-radius: 0 8px 0 0;
     }
 
     table td {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-      font-size: 10pt;
+      padding: 12px 15px;
+      border-bottom: 1px solid #e0e0e0;
     }
 
-    .recommendation-box {
-      padding: 20px;
-      background: #E3F2FD;
-      border: 2px solid #0A4D8C;
-      border-radius: 8px;
-      margin: 20px 0;
+    table tr:last-child td:first-child {
+      border-radius: 0 0 0 8px;
     }
 
-    .recommendation-box .title {
-      font-size: 14pt;
-      font-weight: 700;
-      color: #052340;
+    table tr:last-child td:last-child {
+      border-radius: 0 0 8px 0;
+    }
+
+    table tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    /* Risk Items */
+    .risk-item {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-left: 5px solid;
+      border-radius: 0 8px 8px 0;
+      padding: 15px 20px;
+      margin-bottom: 12px;
+    }
+
+    .risk-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 10px;
     }
 
-    ul {
-      margin-left: 20px;
-      margin-top: 10px;
+    .risk-item h4 {
+      font-size: 11pt;
+      font-weight: 600;
+      color: #1a1a2e;
     }
 
-    li {
+    .severity-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      color: white;
+      font-size: 8pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .risk-item p {
+      font-size: 10pt;
+      color: #444;
       margin-bottom: 8px;
     }
 
-    .footer {
-      margin-top: 50px;
-      padding-top: 20px;
-      border-top: 2px solid #ddd;
-      text-align: center;
+    .risk-item .recommendation {
       font-size: 9pt;
-      color: #666;
+      color: #0a192f;
+      background: #e8f4fd;
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin-top: 10px;
     }
 
+    .risk-item .recommendation strong {
+      color: #0a192f;
+    }
+
+    /* Breach Summary */
+    .breach-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin: 15px 0;
+    }
+
+    .breach-stat {
+      background: #fff5f5;
+      border: 1px solid #ffcccc;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .breach-stat .value {
+      font-size: 24pt;
+      font-weight: 700;
+      color: #d32f2f;
+    }
+
+    .breach-stat .label {
+      font-size: 9pt;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    /* Digital Presence */
+    .presence-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin: 15px 0;
+    }
+
+    .presence-item {
+      background: #f0f7ff;
+      border: 1px solid #cce0ff;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .presence-item .icon {
+      font-size: 24pt;
+      margin-bottom: 8px;
+    }
+
+    .presence-item .value {
+      font-size: 18pt;
+      font-weight: 700;
+      color: #0a192f;
+    }
+
+    .presence-item .label {
+      font-size: 9pt;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    /* Next Steps */
+    .next-steps {
+      background: #f0f7ff;
+      border: 2px solid #0a192f;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .next-steps h3 {
+      color: #0a192f;
+      margin-bottom: 15px;
+    }
+
+    .next-steps ol {
+      margin-left: 20px;
+    }
+
+    .next-steps li {
+      margin-bottom: 10px;
+      font-size: 10pt;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .document-footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 2px solid #e0e0e0;
+      text-align: center;
+      color: #666;
+      font-size: 9pt;
+    }
+
+    .document-footer .logo {
+      font-size: 14pt;
+      font-weight: 700;
+      color: #0a192f;
+      margin-bottom: 10px;
+    }
+
+    .document-footer p {
+      margin: 5px 0;
+    }
+
+    /* Page Break */
     .page-break {
       page-break-after: always;
+    }
+
+    /* Print optimizations */
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .cover {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .header {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Cover Page -->
+  <div class="cover">
+    <div class="cover-logo">investigaree</div>
+    <div class="cover-tagline">Inteligência • Investigação • Proteção</div>
+
+    <div class="cover-title">Relatório de Due Diligence</div>
+    <div class="cover-company">${data.company_name}</div>
+    <div class="cover-cnpj">CNPJ: ${formatCNPJ(data.cnpj)}</div>
+
+    <div class="cover-meta">
+      <p><strong>Preparado para:</strong> ${data.investor_name}</p>
+      <p><strong>Data de emissão:</strong> ${formatDateTime(data.generated_at)}</p>
+      <p><strong>ID do Relatório:</strong> ${data.report_id}</p>
+    </div>
+  </div>
+
   <div class="page">
     <!-- Header -->
     <div class="header">
-      <h1>Relatório de Due Diligence</h1>
-      <div class="subtitle">${data.company_name}</div>
+      <h1>Resumo Executivo</h1>
+      <div class="subtitle">${data.company_name} • CNPJ ${formatCNPJ(data.cnpj)}</div>
     </div>
 
-    <!-- Metadata -->
-    <div class="metadata">
-      <div>
-        <strong>CNPJ:</strong> ${data.cnpj}<br>
-        <strong>ID do Relatório:</strong> ${data.report_id}
-      </div>
-      <div style="text-align: right;">
-        <strong>Gerado em:</strong> ${new Date(data.generated_at).toLocaleDateString('pt-BR')}<br>
-        <strong>Investidor:</strong> ${data.investor_name}
-      </div>
-    </div>
-
-    <!-- Resumo Executivo -->
-    <div class="section">
-      <h2>Resumo Executivo</h2>
-      <p>${data.analysis.resumo_executivo}</p>
-    </div>
-
-    <!-- Scores -->
-    <div class="section">
-      <h2>Scores de Avaliação</h2>
-      <div style="text-align: center;">
-        <div class="score-box" style="border-color: ${scoreColor(data.analysis.score_geral)};">
-          <div class="label">SCORE GERAL</div>
-          <div class="value" style="color: ${scoreColor(data.analysis.score_geral)};">${data.analysis.score_geral}</div>
-        </div>
-        <div class="score-box" style="border-color: ${scoreColor(data.analysis.score_integridade)};">
-          <div class="label">INTEGRIDADE</div>
-          <div class="value" style="color: ${scoreColor(data.analysis.score_integridade)};">${data.analysis.score_integridade}</div>
-        </div>
-        <div class="score-box" style="border-color: ${scoreColor(data.analysis.score_seguranca)};">
-          <div class="label">SEGURANÇA</div>
-          <div class="value" style="color: ${scoreColor(data.analysis.score_seguranca)};">${data.analysis.score_seguranca}</div>
-        </div>
-        <div class="score-box" style="border-color: ${scoreColor(data.analysis.score_reputacao)};">
-          <div class="label">REPUTAÇÃO</div>
-          <div class="value" style="color: ${scoreColor(data.analysis.score_reputacao)};">${data.analysis.score_reputacao}</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Recomendação -->
-    <div class="recommendation-box">
-      <div class="title">Recomendação de Investimento: ${data.analysis.recomendacao.toUpperCase().replace(/_/g, ' ')}</div>
-      <p>${data.analysis.justificativa}</p>
-    </div>
-
-    <div class="page-break"></div>
-
-    <!-- Dados Cadastrais -->
-    <div class="section">
-      <h2>Dados Cadastrais</h2>
-
-      <div class="info-grid">
-        <div class="info-item">
-          <div class="label">Razão Social</div>
-          <div class="value">${data.cadastral.razao_social}</div>
-        </div>
-        <div class="info-item">
-          <div class="label">Nome Fantasia</div>
-          <div class="value">${data.cadastral.nome_fantasia}</div>
-        </div>
-        <div class="info-item">
-          <div class="label">Situação</div>
-          <div class="value">${data.cadastral.situacao}</div>
-        </div>
-        <div class="info-item">
-          <div class="label">Data de Abertura</div>
-          <div class="value">${new Date(data.cadastral.data_abertura).toLocaleDateString('pt-BR')}</div>
-        </div>
-        <div class="info-item">
-          <div class="label">Capital Social</div>
-          <div class="value">R$ ${data.cadastral.capital_social.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>
-        </div>
-        <div class="info-item">
-          <div class="label">Porte</div>
-          <div class="value">${data.cadastral.porte}</div>
+    <div class="content">
+      <!-- Executive Summary -->
+      <div class="section">
+        <div class="summary-box">
+          <p>${data.analysis.resumo_executivo}</p>
         </div>
       </div>
 
-      <h3>Sócios</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>Participação</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${data.cadastral.socios.map(socio => `
+      <!-- Scores -->
+      <div class="section">
+        <h2>Avaliação Geral</h2>
+        <div class="scores-container">
+          <div class="score-card" style="border-color: ${scoreColor(data.analysis.score_geral)};">
+            <div class="label">Score Geral</div>
+            <div class="value" style="color: ${scoreColor(data.analysis.score_geral)};">${data.analysis.score_geral}</div>
+            <div class="indicator">de 100 pontos</div>
+          </div>
+          <div class="score-card" style="border-color: ${scoreColor(data.analysis.score_integridade)};">
+            <div class="label">Integridade</div>
+            <div class="value" style="color: ${scoreColor(data.analysis.score_integridade)};">${data.analysis.score_integridade}</div>
+            <div class="indicator">de 100 pontos</div>
+          </div>
+          <div class="score-card" style="border-color: ${scoreColor(data.analysis.score_seguranca)};">
+            <div class="label">Segurança</div>
+            <div class="value" style="color: ${scoreColor(data.analysis.score_seguranca)};">${data.analysis.score_seguranca}</div>
+            <div class="indicator">de 100 pontos</div>
+          </div>
+          <div class="score-card" style="border-color: ${scoreColor(data.analysis.score_reputacao)};">
+            <div class="label">Reputação</div>
+            <div class="value" style="color: ${scoreColor(data.analysis.score_reputacao)};">${data.analysis.score_reputacao}</div>
+            <div class="indicator">de 100 pontos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommendation -->
+      <div class="recommendation-box" style="background: ${recomendacaoColors[data.analysis.recomendacao]}15; border: 2px solid ${recomendacaoColors[data.analysis.recomendacao]};">
+        <div class="title" style="color: ${recomendacaoColors[data.analysis.recomendacao]};">
+          ${recomendacaoLabels[data.analysis.recomendacao] || data.analysis.recomendacao}
+        </div>
+        <div class="justification">${data.analysis.justificativa}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <div class="page">
+    <div class="header">
+      <h1>Dados Cadastrais</h1>
+      <div class="subtitle">Informações da empresa junto à Receita Federal</div>
+    </div>
+
+    <div class="content">
+      <div class="section">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">Razão Social</div>
+            <div class="value">${data.cadastral.razao_social}</div>
+          </div>
+          <div class="info-item">
+            <div class="label">Nome Fantasia</div>
+            <div class="value">${data.cadastral.nome_fantasia || '-'}</div>
+          </div>
+          <div class="info-item">
+            <div class="label">Situação Cadastral</div>
+            <div class="value">${data.cadastral.situacao}</div>
+          </div>
+          <div class="info-item">
+            <div class="label">Data de Abertura</div>
+            <div class="value">${formatDate(data.cadastral.data_abertura)}</div>
+          </div>
+          <div class="info-item">
+            <div class="label">Capital Social</div>
+            <div class="value">${formatCurrency(data.cadastral.capital_social)}</div>
+          </div>
+          <div class="info-item">
+            <div class="label">Porte</div>
+            <div class="value">${data.cadastral.porte}</div>
+          </div>
+          <div class="info-item" style="grid-column: span 2;">
+            <div class="label">Atividade Principal (CNAE)</div>
+            <div class="value">${data.cadastral.cnae}</div>
+          </div>
+          <div class="info-item" style="grid-column: span 2;">
+            <div class="label">Endereço</div>
+            <div class="value">${data.cadastral.endereco}</div>
+          </div>
+        </div>
+
+        <h3>Quadro Societário</h3>
+        <table>
+          <thead>
             <tr>
-              <td>${socio.nome}</td>
-              <td>${socio.cpf}</td>
-              <td>${socio.percentual}%</td>
+              <th style="width: 50%;">Nome do Sócio</th>
+              <th style="width: 30%;">CPF</th>
+              <th style="width: 20%; text-align: right;">Participação</th>
             </tr>
-          `).join('')}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            ${data.cadastral.socios.map(socio => `
+              <tr>
+                <td>${socio.nome}</td>
+                <td>${formatCPF(socio.cpf)}</td>
+                <td style="text-align: right; font-weight: 600;">${socio.percentual}%</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <div class="page">
+    <div class="header">
+      <h1>Riscos Identificados</h1>
+      <div class="subtitle">Análise detalhada de riscos e recomendações</div>
     </div>
 
-    <!-- Riscos Identificados -->
-    <div class="section">
-      <h2>Riscos Identificados</h2>
-      ${data.risks.map(risk => `
-        <div class="risk-item" style="border-color: ${severityColors[risk.severidade]};">
-          <span class="severity" style="background: ${severityColors[risk.severidade]};">
-            ${risk.severidade.toUpperCase()}
-          </span>
-          <h4>${risk.categoria}</h4>
-          <p>${risk.descricao}</p>
-          <p><strong>Recomendação:</strong> ${risk.recomendacao}</p>
-        </div>
-      `).join('')}
+    <div class="content">
+      <div class="section">
+        ${data.risks.length > 0 ? data.risks.map(risk => `
+          <div class="risk-item" style="border-left-color: ${severityColors[risk.severidade]};">
+            <div class="risk-header">
+              <h4>${risk.categoria}</h4>
+              <span class="severity-badge" style="background: ${severityColors[risk.severidade]};">
+                ${severityLabels[risk.severidade] || risk.severidade}
+              </span>
+            </div>
+            <p>${risk.descricao}</p>
+            <div class="recommendation">
+              <strong>💡 Recomendação:</strong> ${risk.recomendacao}
+            </div>
+          </div>
+        `).join('') : `
+          <div class="summary-box" style="border-left-color: #4CAF50;">
+            <p style="color: #4CAF50; font-weight: 600;">✓ Nenhum risco significativo identificado durante a análise.</p>
+          </div>
+        `}
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <div class="page">
+    <div class="header">
+      <h1>Análise de Segurança Digital</h1>
+      <div class="subtitle">Verificação de vazamentos de dados e exposição</div>
     </div>
 
-    <div class="page-break"></div>
+    <div class="content">
+      <div class="section">
+        <div class="breach-summary">
+          <div class="breach-stat">
+            <div class="value">${data.breaches.total}</div>
+            <div class="label">Vazamentos Encontrados</div>
+          </div>
+          <div class="breach-stat">
+            <div class="value">${data.breaches.socios_afetados}</div>
+            <div class="label">Sócios Afetados</div>
+          </div>
+          <div class="breach-stat">
+            <div class="value" style="font-size: 14pt;">${data.breaches.nivel_risco}</div>
+            <div class="label">Nível de Risco</div>
+          </div>
+        </div>
 
-    <!-- Análise de Segurança -->
-    <div class="section">
-      <h2>Análise de Segurança Digital</h2>
-      <div class="info-grid">
-        <div class="info-item">
-          <div class="label">Total de Vazamentos</div>
-          <div class="value">${data.breaches.total}</div>
-        </div>
-        <div class="info-item">
-          <div class="label">Sócios Afetados</div>
-          <div class="value">${data.breaches.socios_afetados}</div>
-        </div>
-        <div class="info-item">
-          <div class="label">Nível de Risco</div>
-          <div class="value">${data.breaches.nivel_risco}</div>
+        <div class="summary-box" style="border-left-color: ${data.breaches.total > 0 ? '#FF5722' : '#4CAF50'};">
+          <p><strong>Recomendação:</strong> ${data.breaches.recomendacao}</p>
         </div>
       </div>
-      <p><strong>Recomendação:</strong> ${data.breaches.recomendacao}</p>
+
+      <div class="section">
+        <h2>Presença Digital</h2>
+        <div class="presence-grid">
+          <div class="presence-item">
+            <div class="icon">📰</div>
+            <div class="value">${data.digital_presence.news_count}</div>
+            <div class="label">Notícias Encontradas</div>
+          </div>
+          <div class="presence-item">
+            <div class="icon">${data.digital_presence.social_presence ? '✅' : '❌'}</div>
+            <div class="value">${data.digital_presence.social_presence ? 'Sim' : 'Não'}</div>
+            <div class="label">Presença Social</div>
+          </div>
+          <div class="presence-item">
+            <div class="icon">⚖️</div>
+            <div class="value">${data.digital_presence.legal_issues_count}</div>
+            <div class="label">Questões Legais</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <div class="page">
+    <div class="header">
+      <h1>Próximos Passos</h1>
+      <div class="subtitle">Recomendações para o investidor</div>
     </div>
 
-    <!-- Presença Digital -->
-    <div class="section">
-      <h2>Presença Digital</h2>
-      <ul>
-        <li><strong>Notícias encontradas:</strong> ${data.digital_presence.news_count}</li>
-        <li><strong>Presença em redes sociais:</strong> ${data.digital_presence.social_presence ? 'Sim' : 'Não'}</li>
-        <li><strong>Questões legais identificadas:</strong> ${data.digital_presence.legal_issues_count}</li>
-      </ul>
-    </div>
+    <div class="content">
+      <div class="section">
+        <div class="next-steps">
+          <h3>📋 Ações Recomendadas</h3>
+          <ol>
+            ${data.next_steps.map(step => `<li>${step}</li>`).join('')}
+          </ol>
+        </div>
+      </div>
 
-    <!-- Próximos Passos -->
-    <div class="section">
-      <h2>Próximos Passos Recomendados</h2>
-      <ul>
-        ${data.next_steps.map(step => `<li>${step}</li>`).join('')}
-      </ul>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-      <p><strong>investigaree</strong> - Investigação Digital e Due Diligence</p>
-      <p>Este relatório é confidencial e destinado exclusivamente ao solicitante.</p>
-      <p>Gerado em ${new Date(data.generated_at).toLocaleString('pt-BR')}</p>
+      <!-- Document Footer -->
+      <div class="document-footer">
+        <div class="logo">investigaree</div>
+        <p><strong>Inteligência • Investigação • Proteção</strong></p>
+        <p>Este relatório é confidencial e destinado exclusivamente ao solicitante.</p>
+        <p>As informações contidas neste documento foram obtidas de fontes públicas e privadas.</p>
+        <p style="margin-top: 15px;">
+          <strong>ID:</strong> ${data.report_id} |
+          <strong>Gerado em:</strong> ${formatDateTime(data.generated_at)}
+        </p>
+        <p style="margin-top: 10px; font-size: 8pt; color: #999;">
+          © ${new Date().getFullYear()} investigaree - Todos os direitos reservados
+        </p>
+      </div>
     </div>
   </div>
 </body>
 </html>
   `
-}
-
-/**
- * Upload de PDF para storage (R2)
- * PLACEHOLDER: Implementar upload real
- */
-export async function uploadPDFToStorage(
-  pdfBuffer: ArrayBuffer,
-  fileName: string,
-  env: Env
-): Promise<string | null> {
-  try {
-    // TODO: Implementar upload para Cloudflare R2
-    /*
-    await env.R2.put(`reports/${fileName}`, pdfBuffer, {
-      httpMetadata: {
-        contentType: 'application/pdf',
-      },
-      customMetadata: {
-        uploadedAt: new Date().toISOString(),
-      },
-    })
-
-    return `${env.R2_PUBLIC_URL}/reports/${fileName}`
-    */
-
-    console.log('[PDF_GENERATOR] PLACEHOLDER - Uploading PDF:', fileName)
-    return `https://storage.investigaree.com.br/reports/${fileName}`
-  } catch (error) {
-    console.error('[PDF_GENERATOR] Error uploading:', error)
-    return null
-  }
 }

@@ -7,6 +7,7 @@ import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import Link from "next/link";
 import Image from "next/image";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import {
   Shield, Award, BookOpen, Users, Target, CheckCircle,
   ArrowRight, Briefcase, GraduationCap, Globe, UserCheck
@@ -18,25 +19,25 @@ const TEAM = [
     nome: "Ibsen Rodrigues Maciel",
     cargo: "Advisory Board",
     especialidade: "Forense Computacional",
-    badges: ["Advisory Board", "Perito Criminal Oficial", "ANPAJ"],
-    resumo: "Perito Criminal Oficial em Forense Computacional da Polícia Científica do Pará e Diretor Nacional de Perícias em Computação Forense da ANPAJ. Membro do Advisory Board da investigaree.",
+    badges: ["Advisory Board", "Perito Criminal Oficial", "Diretor ANPAJ"],
+    resumo: "Referência nacional em Perícia Forense Computacional. Diretor Nacional de Perícias em Computação Forense da ANPAJ. 1º lugar no concurso da PC-PA 2019 e 1º lugar como Oficial do Exército 2017/18.",
     certificacoes: ["CELLEBRITE UFED", "XRY MSAB", "Magnet AXIOM"],
     destaques: [
-      "Membro do Advisory Board da investigaree",
-      "Diretor Nacional de Perícias - ANPAJ",
-      "Perito Criminal Oficial - Polícia Científica do Pará"
+      "1º Lugar Concurso Polícia Científica PA (2019)",
+      "Diretor Nacional de Perícias - ANPAJ (6.000+ associados)",
+      "Membro do Comitê do Instituto de Defesa Cibernética"
     ]
   },
   {
     id: "dani-kaloi",
     nome: "Danielle Kaloi",
-    cargo: "CEO & Investigadora",
+    cargo: "Fundadora & Investigadora",
     especialidade: "OSINT e Due Diligence",
-    badges: ["CEO investigaree", "Especialista OSINT"],
+    badges: ["Fundadora", "Especialista OSINT"],
     resumo: "Investigadora Particular especializada em Due Diligence, OSINT e Inteligência Empresarial. Graduanda em Criminologia.",
     certificacoes: ["OSINT", "Due Diligence", "LGPD"],
     destaques: [
-      "Fundadora e CEO da investigaree",
+      "Fundadora da investigaree",
       "Especialista em Due Diligence",
       "Graduanda em Criminologia"
     ]
@@ -265,15 +266,13 @@ export default function QuemSomosPage() {
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
-              <a
-                href="https://wa.me/5547992611117?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20conversa%20com%20a%20investigaree."
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppButton
+                message="Olá! Gostaria de agendar uma conversa com a investigaree."
+                source="quemsomos"
+                className="px-8 py-6 text-lg border-2 border-neutral-300 dark:border-neutral-700 bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-lg"
               >
-                <Button size="lg" variant="outline">
-                  Agendar Conversa
-                </Button>
-              </a>
+                Agendar Conversa
+              </WhatsAppButton>
             </div>
           </div>
         </section>

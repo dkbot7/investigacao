@@ -24,9 +24,107 @@ const leadSchema = z.object({
   utm_campaign: z.string().optional(),
 })
 
+// Schema para leads do WhatsApp (mais simples)
+const whatsappLeadSchema = z.object({
+  nome: z.string().min(2, 'Nome muito curto'),
+  contato: z.string().min(5, 'Contato inválido'), // Email ou telefone
+  mensagem: z.string().optional(),
+  origem: z.string().optional(),
+  pagina: z.string().optional(),
+})
+
 // ============================================
 // ROUTES
 // ============================================
+
+/**
+ * POST /api/leads/whatsapp
+ * Criar lead via modal do WhatsApp (simplificado)
+ */
+app.post('/whatsapp', async (c) => {
+  try {
+    const body = await c.req.json()
+    const validated = whatsappLeadSchema.parse(body)
+
+    console.log('[LEADS/WHATSAPP] Creating lead:', { nome: validated.nome, origem: validated.origem })
+
+    // Verificar se lead já existe pelo contato
+    const existing = await c.env.DB.prepare(
+      'SELECT id FROM whatsapp_leads WHERE contato = ? LIMIT 1'
+    )
+      .bind(validated.contato)
+      .first()
+
+    if (existing) {
+      // Atualizar último contato
+      await c.env.DB.prepare(
+        `UPDATE whatsapp_leads SET
+          nome = ?,
+          mensagem = ?,
+          origem = ?,
+          pagina = ?,
+          updated_at = datetime('now'),
+          total_contatos = total_contatos + 1
+         WHERE id = ?`
+      )
+        .bind(
+          validated.nome,
+          validated.mensagem || null,
+          validated.origem || 'whatsapp',
+          validated.pagina || '/',
+          existing.id
+        )
+        .run()
+
+      return c.json({ success: true, lead_id: existing.id, existing: true }, 200)
+    }
+
+    // Criar novo lead
+    const id = crypto.randomUUID()
+    await c.env.DB.prepare(
+      `INSERT INTO whatsapp_leads (id, nome, contato, mensagem, origem, pagina, created_at, updated_at, total_contatos)
+       VALUES (?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'), 1)`
+    )
+      .bind(
+        id,
+        validated.nome,
+        validated.contato,
+        validated.mensagem || null,
+        validated.origem || 'whatsapp',
+        validated.pagina || '/'
+      )
+      .run()
+
+    console.log('[LEADS/WHATSAPP] Lead created:', id)
+
+    return c.json({ success: true, lead_id: id }, 201)
+  } catch (error) {
+    console.error('[LEADS/WHATSAPP] Error:', error)
+
+    if (error instanceof z.ZodError) {
+      return c.json({ error: true, message: 'Dados inválidos', details: error.errors }, 400)
+    }
+
+    return c.json({ error: true, message: 'Erro ao processar' }, 500)
+  }
+})
+
+/**
+ * GET /api/leads/whatsapp
+ * Listar leads do WhatsApp
+ */
+app.get('/whatsapp', async (c) => {
+  try {
+    const { results } = await c.env.DB.prepare(
+      'SELECT * FROM whatsapp_leads ORDER BY updated_at DESC LIMIT 100'
+    ).all()
+
+    return c.json({ success: true, leads: results, count: results.length })
+  } catch (error) {
+    console.error('[LEADS/WHATSAPP] Error listing:', error)
+    return c.json({ error: true, message: 'Erro ao listar leads' }, 500)
+  }
+})
 
 /**
  * POST /api/leads

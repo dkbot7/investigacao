@@ -2,7 +2,8 @@
 
 @plugin "tailwindcss-animate";
 
-@custom-variant dark (&:is(.dark *));
+/* Tailwind v4: Selector strategy para dark mode com next-themes */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   :root {
@@ -128,6 +129,11 @@
 }
 
 @layer components {
+  /* Container sempre centralizado */
+  .container {
+    @apply mx-auto;
+  }
+
   /* Custom scrollbar */
   .custom-scrollbar::-webkit-scrollbar {
     width: 8px;

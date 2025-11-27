@@ -6,6 +6,13 @@
 import { Hono } from 'hono'
 import { z } from 'zod'
 import { Env } from '../index'
+import {
+  generateSignedPDFUrl,
+  validateDownloadToken,
+  getPDFFromStorage,
+  generateReportPDF,
+  ReportData,
+} from '../services/pdf-generator.service'
 
 const app = new Hono<{ Bindings: Env }>()
 
@@ -54,11 +61,15 @@ app.get('/', async (c) => {
 
     const reports = await response.json()
 
-    // Gerar URLs seguras para PDFs
-    const reportsWithUrls = reports.map((report: any) => ({
-      ...report,
-      pdf_url: report.pdf_url ? generateSecureURL(report.id, userId, c.env) : null,
-    }))
+    // Gerar URLs seguras para PDFs (assíncrono)
+    const reportsWithUrls = await Promise.all(
+      reports.map(async (report: any) => ({
+        ...report,
+        pdf_url_secure: report.pdf_url
+          ? await generateSecureURL(report.id, userId, c.env)
+          : null,
+      }))
+    )
 
     return c.json({
       reports: reportsWithUrls,
@@ -354,20 +365,258 @@ async function getReportById(reportId: string, env: Env) {
 }
 
 /**
- * Gerar URL segura para PDF com expiração
+ * Gerar URL segura para PDF com expiração (usando serviço)
  */
-function generateSecureURL(reportId: string, userId: string, env: Env): string {
-  const expiresAt = Date.now() + 7 * 24 * 60 * 60 * 1000 // 7 dias
-
-  // TODO: Implementar HMAC-SHA256
-  // const token = crypto.createHmac('sha256', env.URL_SECRET)
-  //   .update(`${reportId}:${userId}:${expiresAt}`)
-  //   .digest('hex')
-
-  // PLACEHOLDER: Token mock (SUBSTITUIR EM PRODUÇÃO)
-  const token = `mock-${reportId}-${userId}-${expiresAt}`
-
-  return `/api/reports/${reportId}/download?token=${token}&expires=${expiresAt}`
+async function generateSecureURL(reportId: string, userId: string, env: Env): Promise<string> {
+  const url = await generateSignedPDFUrl(reportId, userId, env, 7 * 24 * 60 * 60) // 7 dias
+  return url || `/api/reports/${reportId}/download`
 }
+
+/**
+ * GET /api/reports/:id/download
+ * Download seguro do PDF do relatório
+ */
+app.get('/:id/download', async (c) => {
+  try {
+    const reportId = c.req.param('id')
+    const token = c.req.query('token')
+    const expiresAt = parseInt(c.req.query('expires') || '0')
+
+    // Se não tem token, verificar se usuário está autenticado
+    let userId: string | null = null
+
+    if (!token) {
+      // Tentar pegar userId do contexto (auth middleware)
+      userId = c.get('userId') as string | null
+
+      if (!userId) {
+        return c.json(
+          {
+            error: true,
+            message: 'Autenticação necessária ou token de download inválido',
+          },
+          401
+        )
+      }
+
+      // Verificar ownership do relatório
+      const report = await getReportById(reportId, c.env)
+      if (!report || report.user_id !== userId) {
+        return c.json(
+          {
+            error: true,
+            message: 'Relatório não encontrado ou sem permissão',
+          },
+          404
+        )
+      }
+    } else {
+      // Validar token
+      // Precisamos pegar o userId do relatório para validar
+      const report = await getReportById(reportId, c.env)
+      if (!report) {
+        return c.json(
+          {
+            error: true,
+            message: 'Relatório não encontrado',
+          },
+          404
+        )
+      }
+
+      userId = report.user_id
+
+      const isValid = await validateDownloadToken(
+        reportId,
+        userId,
+        token,
+        expiresAt,
+        c.env
+      )
+
+      if (!isValid) {
+        return c.json(
+          {
+            error: true,
+            message: 'Token de download inválido ou expirado',
+          },
+          403
+        )
+      }
+    }
+
+    // Buscar PDF do R2
+    const pdfResult = await getPDFFromStorage(reportId, c.env)
+
+    if (!pdfResult) {
+      return c.json(
+        {
+          error: true,
+          message: 'PDF não encontrado. O relatório pode ainda estar sendo processado.',
+        },
+        404
+      )
+    }
+
+    // Retornar PDF
+    return new Response(pdfResult.buffer, {
+      headers: {
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': `attachment; filename="relatorio-${reportId}.pdf"`,
+        'Content-Length': pdfResult.size.toString(),
+        'Cache-Control': 'private, max-age=3600',
+      },
+    })
+  } catch (error) {
+    console.error('[REPORTS] Error downloading PDF:', error)
+    return c.json(
+      {
+        error: true,
+        message: 'Erro ao baixar PDF',
+      },
+      500
+    )
+  }
+})
+
+/**
+ * POST /api/reports/:id/regenerate-pdf
+ * Regenerar PDF de um relatório existente
+ */
+app.post('/:id/regenerate-pdf', async (c) => {
+  try {
+    const reportId = c.req.param('id')
+    const userId = c.get('userId') as string
+
+    // Buscar relatório
+    const report = await getReportById(reportId, c.env)
+
+    if (!report || report.user_id !== userId) {
+      return c.json(
+        {
+          error: true,
+          message: 'Relatório não encontrado ou sem permissão',
+        },
+        404
+      )
+    }
+
+    // Verificar se tem dados completos para regenerar
+    if (!report.dados_completos) {
+      return c.json(
+        {
+          error: true,
+          message: 'Dados insuficientes para regenerar PDF',
+        },
+        400
+      )
+    }
+
+    // Regenerar PDF
+    const pdfUrl = await generateReportPDF(report.dados_completos as ReportData, c.env)
+
+    if (!pdfUrl) {
+      return c.json(
+        {
+          error: true,
+          message: 'Falha ao regenerar PDF',
+        },
+        500
+      )
+    }
+
+    // Atualizar URL no banco
+    await fetch(`${c.env.SUPABASE_URL}/rest/v1/reports?id=eq.${reportId}`, {
+      method: 'PATCH',
+      headers: {
+        apikey: c.env.SUPABASE_SERVICE_ROLE_KEY,
+        Authorization: `Bearer ${c.env.SUPABASE_SERVICE_ROLE_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        pdf_url: pdfUrl,
+        updated_at: new Date().toISOString(),
+      }),
+    })
+
+    return c.json({
+      success: true,
+      message: 'PDF regenerado com sucesso',
+      pdf_url: pdfUrl,
+    })
+  } catch (error) {
+    console.error('[REPORTS] Error regenerating PDF:', error)
+    return c.json(
+      {
+        error: true,
+        message: 'Erro ao regenerar PDF',
+      },
+      500
+    )
+  }
+})
+
+/**
+ * GET /api/reports/:id/signed-url
+ * Obter URL assinada para download do PDF
+ */
+app.get('/:id/signed-url', async (c) => {
+  try {
+    const reportId = c.req.param('id')
+    const userId = c.get('userId') as string
+
+    // Verificar ownership
+    const report = await getReportById(reportId, c.env)
+
+    if (!report || report.user_id !== userId) {
+      return c.json(
+        {
+          error: true,
+          message: 'Relatório não encontrado ou sem permissão',
+        },
+        404
+      )
+    }
+
+    if (!report.pdf_url) {
+      return c.json(
+        {
+          error: true,
+          message: 'PDF ainda não foi gerado para este relatório',
+        },
+        404
+      )
+    }
+
+    // Gerar URL assinada (válida por 1 hora)
+    const signedUrl = await generateSignedPDFUrl(reportId, userId, c.env, 3600)
+
+    if (!signedUrl) {
+      return c.json(
+        {
+          error: true,
+          message: 'Falha ao gerar URL de download',
+        },
+        500
+      )
+    }
+
+    return c.json({
+      success: true,
+      download_url: signedUrl,
+      expires_in: 3600,
+      expires_at: new Date(Date.now() + 3600000).toISOString(),
+    })
+  } catch (error) {
+    console.error('[REPORTS] Error generating signed URL:', error)
+    return c.json(
+      {
+        error: true,
+        message: 'Erro ao gerar URL de download',
+      },
+      500
+    )
+  }
+})
 
 export default app

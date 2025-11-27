@@ -39,17 +39,13 @@ export default function AdvisoryBoard() {
               {/* Photo + ANPAJ Badge */}
               <div className="space-y-6">
                 <div className="relative">
-                  {/* Placeholder for professional photo */}
+                  {/* Professional photo */}
                   <div className="w-full aspect-[3/4] bg-gradient-to-br from-navy-800 to-navy-900 rounded-2xl overflow-hidden border-4 border-gold-500/50">
-                    <div className="w-full h-full flex items-center justify-center">
-                      <Shield className="w-24 h-24 text-gold-500/30" />
-                    </div>
-                    {/* TODO: Replace with actual photo */}
-                    {/* <img
+                    <img
                       src="/images/ibsen-maciel.jpg"
-                      alt="Ibsen José Baré Maciel"
+                      alt="Ibsen Rodrigues Maciel - Perito Criminal Oficial"
                       className="w-full h-full object-cover"
-                    /> */}
+                    />
                   </div>
 
                   {/* Verified Badge */}
@@ -96,10 +92,10 @@ export default function AdvisoryBoard() {
                       Perito Criminal Oficial em Forense Computacional
                     </p>
                     <p className="text-base text-navy-100">
-                      Polícia Científica do Estado do Pará
+                      Diretor Nacional de Perícias em Computação Forense - ANPAJ
                     </p>
                     <p className="text-base text-navy-100">
-                      Diretor Nacional de Perícias em Computação Forense - ANPAJ
+                      1º Lugar Concurso PC-PA 2019 • 1º Lugar Oficial Exército 2017/18
                     </p>
                   </div>
                 </div>
@@ -146,11 +142,11 @@ export default function AdvisoryBoard() {
                   <div className="flex flex-wrap gap-2">
                     {[
                       "Perícia Forense Digital",
-                      "Investigação Criminal",
-                      "Compliance LGPD",
-                      "Cybercrime Investigation",
-                      "E-Discovery",
-                      "Chain of Custody"
+                      "Cibersegurança",
+                      "OSINT",
+                      "Guerra Cibernética",
+                      "Extração de Dados Mobile",
+                      "Cadeia de Custódia"
                     ].map((area, i) => (
                       <Badge
                         key={i}

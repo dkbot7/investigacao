@@ -1,451 +1,1455 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
+import Image from "next/image";
+import { useWhatsApp } from "@/components/WhatsAppLeadModal";
 import {
   Home, Building2, TrendingUp, Shield, Users, Search,
   FileSearch, AlertCircle, Clock, Phone, CheckCircle2,
-  ArrowRight, Info
+  ArrowRight, Info, X, MessageCircle, Target, Lock,
+  Eye, Zap, FileText, UserCheck, ShieldCheck, AlertTriangle
 } from "lucide-react";
 
-// Dados dos serviços
-const SERVICOS_FAMILIARES = [
+// Interface do serviço
+interface Servico {
+  id: string;
+  nome: string;
+  descricao: string;
+  icon: any;
+  destaque?: boolean;
+  caracteristicas: string[];
+  formato: string;
+  idealPara?: string;
+  preco?: string;
+  precoExpress?: string;
+  detalhes?: {
+    oqueFazemos: string[];
+    comoFunciona: string[];
+    entregaveis: string[];
+    prazo?: string;
+    casos?: string[];
+  };
+}
+
+// Dados dos serviços com detalhes expandidos
+// Preços baseados em pesquisa de mercado Brasil 2024-2025 (fontes: Cronoshare, Detetives007, Business Screen)
+const SERVICOS_FAMILIARES: Servico[] = [
   {
     id: "protecao-total-familia",
     nome: "Proteção Total da Família",
-    descricao: "Proteção completa da família contra riscos físicos, digitais e sociais",
+    descricao: "Proteção 360° da família contra riscos físicos, digitais e sociais. Programa completo para famílias de alto patrimônio.",
     icon: Shield,
     destaque: true,
     caracteristicas: [
-      "Auditoria de vulnerabilidades da rotina",
-      "Mapeamento de exposição digital",
-      "Monitoramento de ameaças",
-      "Plano de crise familiar",
-      "Verificação contínua de funcionários",
-      "Inteligência preventiva + acompanhamento mensal"
+      "Auditoria de vulnerabilidades da rotina familiar",
+      "Mapeamento de exposição digital de todos os membros",
+      "Monitoramento 24/7 de ameaças e alertas",
+      "Plano de crise e evacuação de emergência",
+      "Verificação contínua de funcionários domésticos",
+      "Inteligência preventiva + relatórios mensais"
     ],
-    formato: "Mensal ou Anual",
-    idealPara: "Família inteira, rotina sensível, alto patrimônio"
+    formato: "Mensal (R$ 14.997) ou Anual (R$ 149.997)",
+    preco: "R$ 14.997/mês",
+    idealPara: "Famílias que valorizam segurança e privacidade",
+    detalhes: {
+      oqueFazemos: [
+        "Análise completa da rotina familiar identificando pontos de vulnerabilidade",
+        "Mapeamento de toda a exposição digital da família nas redes sociais",
+        "Verificação de background de todas as pessoas com acesso à família (domésticas, motorista, personal)",
+        "Monitoramento contínuo de ameaças com alertas em tempo real via app",
+        "Criação de protocolos de segurança e evacuação personalizados"
+      ],
+      comoFunciona: [
+        "Reunião inicial para entender a dinâmica e rotina familiar (2h)",
+        "Auditoria presencial e digital completa (7-14 dias)",
+        "Entrega do relatório com vulnerabilidades e plano de ação",
+        "Implementação do plano de proteção com treinamento da família",
+        "Acompanhamento mensal com relatórios e atualizações contínuas"
+      ],
+      entregaveis: [
+        "Relatório de Vulnerabilidades (50+ páginas)",
+        "Plano de Proteção Familiar personalizado",
+        "Manual de Crise com protocolos de emergência",
+        "Dashboard de monitoramento (acesso 24/7)",
+        "Linha direta exclusiva com especialista"
+      ],
+      prazo: "Implementação em 14 dias, proteção contínua mensal",
+      casos: [
+        "Família de empresário protegida após identificação de exposição por funcionário",
+        "Proteção de adolescentes contra predadores online identificados"
+      ]
+    }
   },
   {
     id: "verificacao-pessoas-casa",
     nome: "Verificação das Pessoas da Casa",
-    descricao: "Checagem completa de todos que trabalham ou convivem na casa",
+    descricao: "Checagem completa de todos que trabalham ou convivem na residência. Domésticas, motorista, personal, jardineiro.",
     icon: Users,
+    preco: "R$ 997/pessoa ou R$ 3.997 (pacote 5 pessoas)",
     caracteristicas: [
-      "Antecedentes criminais",
-      "Dívidas, vínculos, processos",
-      "Histórico profissional e referências",
-      "Análise comportamental",
-      "Pacote para 5 pessoas (domésticas + motorista + personal)"
+      "Antecedentes criminais em todos os estados + federal",
+      "Análise de dívidas, protestos e restrições",
+      "Histórico profissional e empregos anteriores",
+      "Verificação real de referências via ligação",
+      "Análise de redes sociais e comportamento"
     ],
-    formato: "Por pessoa ou pacote"
+    formato: "Por pessoa (R$ 997) ou Pacote 5 pessoas (R$ 3.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Verificação de antecedentes criminais em todas as esferas (estadual e federal)",
+        "Análise financeira completa (dívidas, protestos, restrições de crédito)",
+        "Checagem de processos judiciais (trabalhistas, cíveis, criminais)",
+        "Verificação real de referências com empregadores anteriores via ligação",
+        "Análise de redes sociais e comportamento digital"
+      ],
+      comoFunciona: [
+        "Coleta de CPF e dados básicos da pessoa a ser verificada",
+        "Pesquisa em mais de 50 bases de dados públicas e privadas",
+        "Ligações discretas para 2-3 referências de empregos anteriores",
+        "Análise comportamental baseada em padrões de risco",
+        "Entrega de relatório com score de confiabilidade"
+      ],
+      entregaveis: [
+        "Relatório Individual completo por pessoa",
+        "Score de Confiabilidade (0-100)",
+        "Lista de Red Flags encontrados",
+        "Histórico de empregos verificado",
+        "Recomendação final: Contratar / Não Contratar / Com Ressalvas"
+      ],
+      prazo: "3-5 dias úteis por pessoa"
+    }
   },
   {
     id: "protecao-digital-familia",
     nome: "Proteção Digital da Família",
-    descricao: "Blindagem contra riscos online, especialmente para filhos adolescentes",
+    descricao: "Blindagem completa contra riscos online. Monitoramento de exposição, predadores, cyberbullying e vazamentos.",
     icon: Shield,
+    preco: "R$ 7.997 (auditoria única) ou R$ 2.997/mês (monitoramento)",
     caracteristicas: [
-      "Monitoramento de exposição",
+      "Auditoria de 20 anos de histórico digital",
+      "Monitoramento de exposição em redes sociais",
       "Alertas de predadores, cyberbullying e sextortion",
-      "Auditoria completa de redes sociais",
-      "Educação digital",
-      "Plano de limpeza de dados sensíveis"
+      "Detecção de vazamentos na dark web",
+      "Plano de limpeza e remoção de dados sensíveis"
     ],
-    formato: "Mensal"
+    formato: "Auditoria única (R$ 7.997) ou Mensal (R$ 2.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Auditoria de 20 anos de histórico digital (posts deletados, archive.org)",
+        "Monitoramento de todas as redes sociais da família",
+        "Detecção de perfis falsos e contatos suspeitos",
+        "Alertas de vazamento de dados na dark web",
+        "Remoção de informações sensíveis expostas online"
+      ],
+      comoFunciona: [
+        "Auditoria inicial de presença digital de cada membro (48-72h)",
+        "Mapeamento de vulnerabilidades e exposições",
+        "Configuração de alertas personalizados por tipo de ameaça",
+        "Monitoramento contínuo 24/7 com relatórios semanais",
+        "Ações imediatas de contenção quando detectada ameaça"
+      ],
+      entregaveis: [
+        "Relatório de Exposição Digital (30+ páginas)",
+        "Dashboard de Monitoramento Familiar",
+        "Alertas em tempo real via WhatsApp e app",
+        "Plano de Limpeza Digital com priorização",
+        "Guia de Segurança Digital para toda família"
+      ],
+      prazo: "Auditoria em 5-7 dias, setup de monitoramento em 48h"
+    }
   },
   {
     id: "protecao-digital-filhos",
     nome: "Proteção Digital dos Filhos",
-    descricao: "Proteção individual voltada para cada filho adolescente",
+    descricao: "Monitoramento individual de adolescentes. Instagram, TikTok, WhatsApp, Discord. Proteção contra predadores e cyberbullying.",
     icon: Users,
+    preco: "R$ 2.997/mês por filho",
     caracteristicas: [
-      "Monitoramento de redes sociais",
-      "Análise de comportamento digital",
-      "Alertas de ameaça",
-      "Investigação de contatos suspeitos"
+      "Monitoramento de Instagram, TikTok, WhatsApp, Discord",
+      "Detecção de contatos suspeitos e predadores",
+      "Alertas de cyberbullying e sextortion",
+      "Análise de padrões de comportamento",
+      "Relatórios mensais para os pais"
     ],
-    formato: "Mensal por adolescente"
+    formato: "Mensal por adolescente (R$ 2.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Monitoramento discreto das principais redes sociais do adolescente",
+        "Análise de padrões de comportamento e mudanças de rotina",
+        "Identificação de contatos potencialmente perigosos via IA",
+        "Detecção de sinais de cyberbullying, assédio ou sextortion",
+        "Verificação de exposição a conteúdo inadequado ou grupos de risco"
+      ],
+      comoFunciona: [
+        "Reunião inicial com os pais para entender preocupações específicas",
+        "Mapeamento de todas as redes e aplicativos utilizados pelo adolescente",
+        "Configuração de monitoramento respeitando privacidade adequada",
+        "Alertas em tempo real configurados conforme perfil de risco",
+        "Relatórios mensais detalhados para os pais com orientações"
+      ],
+      entregaveis: [
+        "Dashboard de Monitoramento individual",
+        "Relatório Mensal de Atividade Digital",
+        "Alertas em tempo real de comportamento de risco",
+        "Verificação de novos contatos com score de risco",
+        "Guia de orientação para conversa com o filho (se necessário)"
+      ],
+      prazo: "Setup em 24h, monitoramento contínuo"
+    }
   },
   {
     id: "checagem-funcionarios",
     nome: "Checagem de Funcionários Domésticos",
-    descricao: "Verificação detalhada de todos os funcionários domésticos",
+    descricao: "Verificação pré-contratação completa. Antecedentes, referências reais, histórico de processos trabalhistas.",
     icon: Search,
+    preco: "R$ 697/pessoa (prestadores) ou R$ 997/pessoa (domésticos fixos)",
     caracteristicas: [
-      "Checagem criminal",
-      "Verificação financeira",
-      "Histórico de processos",
-      "Checagem de referências reais",
-      "Comportamento de risco"
+      "Antecedentes criminais em 27 estados + federal",
+      "Análise de dívidas e restrições financeiras",
+      "Verificação de processos trabalhistas anteriores",
+      "Checagem real de referências via ligação",
+      "Análise de redes sociais e comportamento"
     ],
-    formato: "Por funcionário"
+    formato: "Por funcionário (R$ 697 a R$ 997)",
+    detalhes: {
+      oqueFazemos: [
+        "Verificação de antecedentes criminais em todos os 27 estados + federal",
+        "Análise de situação financeira (dívidas, protestos, SPC/Serasa)",
+        "Checagem de histórico de processos trabalhistas anteriores",
+        "Verificação real de 2-3 referências com empregadores anteriores",
+        "Análise de redes sociais e identificação de comportamentos de risco"
+      ],
+      comoFunciona: [
+        "Coleta de CPF, RG e autorização do candidato",
+        "Pesquisa em bases de dados públicas e privadas especializadas",
+        "Ligações discretas para referências de empregos anteriores",
+        "Análise cruzada de padrões e identificação de red flags",
+        "Entrega de relatório com recomendação clara"
+      ],
+      entregaveis: [
+        "Relatório Completo de Background Check",
+        "Score de Confiabilidade (0-100)",
+        "Histórico de empregos verificado com feedback real",
+        "Lista de alertas e red flags identificados",
+        "Recomendação: Contratar / Não Contratar / Com Ressalvas"
+      ],
+      prazo: "24h (express) ou 3-5 dias úteis (standard)"
+    }
   },
   {
     id: "avaliacao-seguranca-casa",
     nome: "Avaliação de Segurança da Casa",
-    descricao: "Mapeamento 360° das vulnerabilidades da residência",
+    descricao: "Auditoria presencial 360° de vulnerabilidades. Rotas, acessos, funcionários, exposição involuntária.",
     icon: Home,
+    preco: "R$ 9.997 (residência) ou R$ 14.997 (residência + casa de praia)",
     caracteristicas: [
-      "Acesso, rotas, horários",
-      "Funcionários, prestadores e visitantes",
-      "Padrões de exposição involuntária",
-      "Plano de reforço de segurança e privacidade"
+      "Análise de todos os pontos de acesso",
+      "Mapeamento de rotas e horários da família",
+      "Verificação de prestadores e visitantes",
+      "Detecção de exposição involuntária",
+      "Plano de reforço de segurança com orçamento"
     ],
-    formato: "Única vez"
+    formato: "Única vez (R$ 9.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Análise presencial de todos os pontos de acesso à residência",
+        "Mapeamento detalhado de rotas, horários e padrões da família",
+        "Verificação de todos os prestadores de serviço com acesso",
+        "Análise de exposição involuntária (lixo, correspondência, entregas)",
+        "Avaliação técnica de sistemas de segurança existentes"
+      ],
+      comoFunciona: [
+        "Visita técnica presencial à residência (4-6 horas)",
+        "Entrevistas discretas com todos os moradores",
+        "Análise de documentação, contratos e acessos",
+        "Teste de vulnerabilidades físicas e digitais",
+        "Entrega de relatório completo com plano de ação priorizado"
+      ],
+      entregaveis: [
+        "Relatório de Vulnerabilidades (30+ páginas)",
+        "Mapa de Riscos da Residência ilustrado",
+        "Plano de Reforço de Segurança priorizado",
+        "Lista de Recomendações com urgência",
+        "Orçamento estimado para implementação das melhorias"
+      ],
+      prazo: "7-10 dias úteis após visita presencial"
+    }
   },
   {
     id: "verificacao-relacionamentos",
     nome: "Verificação de Relacionamentos",
-    descricao: "Investigação discreta e respeitosa para garantir integridade em relações pessoais",
+    descricao: "Investigação discreta de cônjuge, namorado(a) dos filhos ou pessoas próximas. Proteção patrimonial e emocional.",
     icon: Users,
+    preco: "R$ 4.997 (namorado dos filhos) a R$ 9.997 (conjugal completa)",
     caracteristicas: [
-      "Relação conjugal",
-      "Namorado(a) dos filhos",
-      "Pessoas próximas que entram na casa"
+      "Verificação de histórico pessoal e familiar",
+      "Análise de situação financeira e patrimonial",
+      "Checagem de relacionamentos anteriores",
+      "Verificação discreta de rotinas e padrões",
+      "Análise de redes sociais e comportamento"
     ],
-    formato: "Por investigação"
+    formato: "Por investigação (R$ 4.997 a R$ 9.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Verificação completa de histórico pessoal e familiar da pessoa",
+        "Análise de situação financeira (dívidas, patrimônio, capacidade)",
+        "Checagem de relacionamentos e separações anteriores",
+        "Verificação de antecedentes criminais e processos judiciais",
+        "Análise profunda de redes sociais e padrões de comportamento"
+      ],
+      comoFunciona: [
+        "Briefing 100% confidencial com o cliente (presencial ou videocall)",
+        "Pesquisa discreta em múltiplas fontes públicas e privadas",
+        "Análise de padrões comportamentais e rotinas",
+        "Verificação de compatibilidade das informações declaradas",
+        "Entrega de dossiê sigiloso com conclusões claras"
+      ],
+      entregaveis: [
+        "Dossiê Confidencial completo (20+ páginas)",
+        "Análise de compatibilidade de informações declaradas vs. reais",
+        "Lista de Red Flags e alertas identificados",
+        "Análise patrimonial e financeira",
+        "Recomendações de precaução ou próximos passos"
+      ],
+      prazo: "5-10 dias úteis (standard) ou 48h (express +100%)"
+    }
   },
   {
     id: "auditoria-trabalhista-casa",
-    nome: "Auditoria Trabalhista da Casa",
-    descricao: "Verificação legal e preventiva para evitar ações trabalhistas",
+    nome: "Auditoria Trabalhista Doméstica",
+    descricao: "Prevenção de processos trabalhistas milionários. Análise de contratos, conformidade legal, estratégia de desligamento.",
     icon: FileSearch,
+    preco: "R$ 4.997 (até 5 funcionários) ou R$ 2.997/desligamento",
     caracteristicas: [
-      "Análise de contratos",
-      "Histórico de litígios",
-      "Riscos trabalhistas",
-      "Estratégia segura de desligamento"
+      "Revisão de todos os contratos de trabalho",
+      "Verificação de conformidade com legislação vigente",
+      "Análise de histórico de processos dos funcionários",
+      "Identificação de vulnerabilidades trabalhistas",
+      "Estratégia de desligamento seguro"
     ],
-    formato: "Por auditoria"
+    formato: "Por auditoria (R$ 4.997) ou Desligamento (R$ 2.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Revisão completa de todos os contratos de trabalho doméstico",
+        "Verificação de conformidade com legislação trabalhista vigente",
+        "Pesquisa de histórico de processos trabalhistas dos funcionários",
+        "Identificação de vulnerabilidades e riscos de passivos",
+        "Orientação jurídica para regularização ou desligamento"
+      ],
+      comoFunciona: [
+        "Coleta de toda a documentação trabalhista existente",
+        "Análise jurídica por advogado trabalhista especializado",
+        "Pesquisa de histórico judicial de cada funcionário",
+        "Identificação de vulnerabilidades com matriz de risco",
+        "Entrega de plano de regularização ou desligamento seguro"
+      ],
+      entregaveis: [
+        "Relatório de Conformidade Trabalhista",
+        "Matriz de Riscos por funcionário com valores estimados",
+        "Plano de Regularização com cronograma",
+        "Guia de Boas Práticas para empregador doméstico",
+        "Estratégia de Desligamento Seguro (se aplicável)"
+      ],
+      prazo: "10-15 dias úteis"
+    }
   },
   {
     id: "atendimento-emergencia",
     nome: "Atendimento de Emergência 24h",
-    descricao: "Atuação imediata em situações de risco",
+    descricao: "Linha direta 24/7 para crises. Resposta em 15 minutos. Gestão de crises, coordenação com autoridades.",
     icon: Phone,
+    preco: "R$ 7.997/ano (preventivo) ou R$ 14.997 (emergencial imediato)",
     caracteristicas: [
-      "Linha direta 24/7",
-      "Gestão de crise",
-      "Coordenação com autoridades",
-      "Contenção digital e física"
+      "Linha direta exclusiva 24/7",
+      "Resposta garantida em até 15 minutos",
+      "Gestão de crise com especialistas",
+      "Coordenação com autoridades e segurança",
+      "Contenção de crises digitais e físicas"
     ],
-    formato: "Anual"
+    formato: "Anual (R$ 7.997) ou Emergencial (R$ 14.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Disponibilização de linha direta exclusiva 24/7",
+        "Resposta imediata a incidentes de segurança (até 15 min)",
+        "Coordenação com forças de segurança e autoridades",
+        "Contenção de crises digitais (vazamentos, exposição, difamação)",
+        "Gestão profissional de comunicação em situações críticas"
+      ],
+      comoFunciona: [
+        "Contrato anual de atendimento prioritário",
+        "Cadastro de todos os membros da família com foto e dados",
+        "Criação de protocolos de emergência personalizados",
+        "Acionamento via telefone, WhatsApp ou botão de pânico no app",
+        "Resposta garantida em até 15 minutos com especialista"
+      ],
+      entregaveis: [
+        "Linha Direta Exclusiva 24/7 com especialista",
+        "App de Emergência com botão de pânico",
+        "Protocolos de Crise personalizados para cada cenário",
+        "Coordenação com empresa de segurança privada",
+        "Relatório detalhado pós-incidente"
+      ],
+      prazo: "Ativação em 24h após contratação"
+    }
   }
 ];
 
-const SERVICOS_EMPRESARIAIS = [
+const SERVICOS_EMPRESARIAIS: Servico[] = [
   {
     id: "protecao-completa-empresa",
     nome: "Proteção Completa da Empresa",
-    descricao: "Programa anual de proteção completa para holdings e empresas",
+    descricao: "Programa anual de proteção corporativa. Contrainteligência, prevenção de vazamentos, verificação de funcionários-chave.",
     icon: Building2,
     destaque: true,
+    preco: "PME: R$ 29.997/mês | Média: R$ 49.997/mês | Enterprise: R$ 99.997/mês",
     caracteristicas: [
-      "Contrainteligência empresarial",
-      "Prevenção de vazamentos",
-      "Monitoramento de riscos internos",
-      "Verificação de funcionários-chave",
+      "Programa de contrainteligência empresarial",
+      "Prevenção e detecção de vazamentos",
+      "Monitoramento de riscos internos 24/7",
+      "Verificação contínua de funcionários-chave",
       "Análise de ameaças competitivas",
-      "Gestão de crise"
+      "Gestão de crise corporativa"
     ],
-    formato: "Anual",
-    idealPara: "Holdings, empresas médias e grandes"
+    formato: "Mensal (a partir de R$ 29.997)",
+    idealPara: "Holdings, empresas médias e grandes",
+    detalhes: {
+      oqueFazemos: [
+        "Implementação de programa de contrainteligência corporativa",
+        "Monitoramento contínuo de vazamentos de informação confidencial",
+        "Verificação periódica de funcionários em posições estratégicas",
+        "Análise de ameaças competitivas e tentativas de espionagem",
+        "Gestão profissional de crises corporativas"
+      ],
+      comoFunciona: [
+        "Diagnóstico inicial de segurança corporativa (15-30 dias)",
+        "Implementação de protocolos e ferramentas de proteção",
+        "Treinamento de equipes em segurança da informação",
+        "Monitoramento contínuo com relatórios mensais",
+        "Ações corretivas imediatas quando detectada ameaça"
+      ],
+      entregaveis: [
+        "Diagnóstico de Segurança Corporativa (50+ páginas)",
+        "Programa de Contrainteligência personalizado",
+        "Dashboard de Monitoramento em tempo real",
+        "Relatórios Mensais de status e incidentes",
+        "Suporte prioritário 24/7 com SLA de 1h"
+      ],
+      prazo: "Implementação em 30 dias, proteção contínua"
+    }
   },
   {
     id: "investigacao-compra-empresa",
-    nome: "Investigação para Compra de Empresa",
-    descricao: "Investigação profunda para processos de compra, fusão ou parceria",
+    nome: "Due Diligence para M&A",
+    descricao: "Investigação profunda para aquisições, fusões ou JVs. Padrão internacional de verificação.",
     icon: FileSearch,
+    preco: "R$ 99.997 (até R$ 10M) | R$ 199.997 (R$ 10M-50M) | 0,3% acima de R$ 50M",
     caracteristicas: [
-      "Análise total da empresa-alvo",
-      "Sócios, executivos, histórico societário",
-      "Passivos ocultos",
-      "Projeção de riscos",
-      "Relatório executivo + apresentação"
+      "Due diligence completa da empresa-alvo",
+      "Investigação de todos os sócios e executivos",
+      "Levantamento de passivos ocultos e contingências",
+      "Análise de histórico societário completo",
+      "Apresentação board-ready + recomendações"
     ],
-    formato: "Por projeto"
+    formato: "Por projeto (a partir de R$ 99.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Due diligence investigativa completa da empresa-alvo",
+        "Investigação de background de todos os sócios e executivos-chave",
+        "Levantamento de passivos ocultos, contingências e riscos não declarados",
+        "Análise de histórico societário, alterações e movimentações suspeitas",
+        "Projeção de riscos futuros baseada em padrões identificados"
+      ],
+      comoFunciona: [
+        "Kick-off call com briefing sobre a transação pretendida",
+        "Coleta de documentação e acesso ao data room (se disponível)",
+        "Investigação em múltiplas frentes simultâneas (15-30 dias)",
+        "Análise cruzada de informações com identificação de inconsistências",
+        "Apresentação executiva para o board com recomendações"
+      ],
+      entregaveis: [
+        "Relatório de Due Diligence Investigativa (100+ páginas)",
+        "Matriz de Riscos da Transação com valores estimados",
+        "Dossiê individual de cada sócio e executivo-chave",
+        "Apresentação executiva para o board (20 slides)",
+        "Recomendações de negociação e ajuste de valuation"
+      ],
+      prazo: "15-30 dias úteis (JV: 10 dias | Parceria: 7 dias)"
+    }
   },
   {
     id: "protecao-ataques-vazamentos",
-    nome: "Proteção Contra Ataques e Vazamentos",
-    descricao: "Proteção contra espionagem, concorrentes, ex-funcionários",
+    nome: "Proteção Contra Espionagem e Vazamentos",
+    descricao: "Detecção de espiões internos, vazamentos de informação, ameaças de concorrentes e ex-funcionários.",
     icon: Shield,
+    preco: "R$ 19.997/mês (setup inicial: R$ 29.997)",
     caracteristicas: [
-      "Detecção de espiões internos",
-      "Análise de vazamentos",
-      "Varreduras digitais",
-      "Proteção de executivos",
-      "Planos de contingência"
+      "Detecção de espiões e informantes internos",
+      "Monitoramento de vazamentos de informação",
+      "Varreduras digitais mensais",
+      "Proteção de dados de executivos",
+      "Planos de contingência e resposta"
     ],
-    formato: "Mensal"
+    formato: "Mensal (R$ 19.997) + Setup (R$ 29.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Monitoramento contínuo de vazamentos de informação confidencial",
+        "Detecção de comportamentos suspeitos e anômalos internos",
+        "Varreduras digitais mensais em sistemas e comunicações",
+        "Proteção de informações sensíveis de executivos",
+        "Investigação imediata de incidentes detectados"
+      ],
+      comoFunciona: [
+        "Avaliação inicial de vulnerabilidades e gaps de segurança",
+        "Implementação de ferramentas de monitoramento",
+        "Varreduras mensais com relatório de achados",
+        "Alertas em tempo real quando detectada anomalia",
+        "Investigação profunda de incidentes com relatório forense"
+      ],
+      entregaveis: [
+        "Relatório Mensal de Segurança da Informação",
+        "Dashboard de Alertas de Vazamento",
+        "Relatórios de Investigação de Incidentes",
+        "Recomendações de Melhoria e Hardening",
+        "Plano de Contingência atualizado"
+      ],
+      prazo: "Setup em 7 dias, proteção contínua"
+    }
   },
   {
     id: "checagem-funcionarios-diretores",
-    nome: "Checagem de Funcionários e Diretores",
-    descricao: "Verificação de integridade de executivos e contratações estratégicas",
+    nome: "Background Check Corporativo",
+    descricao: "Verificação pré-contratação em 3 níveis. Operacional, Gerencial e Executivo (C-Level).",
     icon: Users,
+    preco: "Level 1: R$ 497 | Level 2: R$ 1.997 | Level 3: R$ 9.997",
     caracteristicas: [
-      "Level 1 – Operacional",
-      "Level 2 – Gerencial",
-      "Level 3 – Executivo",
-      "Bundles empresariais disponíveis"
+      "Level 1 – Operacional (criminal + referências)",
+      "Level 2 – Gerencial (completo + financeiro + digital)",
+      "Level 3 – Executivo (full + internacional + psicológico)",
+      "Pacotes empresariais com desconto"
     ],
-    formato: "Por pessoa ou pacote"
+    formato: "Por pessoa (R$ 497 a R$ 9.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Level 1: Antecedentes criminais + referências básicas (assistentes, júniors)",
+        "Level 2: Criminal completo + financeiro + digital + referências detalhadas (gerentes)",
+        "Level 3: Full investigation + internacional + análise psicológica (C-Level, diretores)",
+        "Verificação de conflitos de interesse em todas as empresas",
+        "Análise de redes de relacionamento e conexões suspeitas"
+      ],
+      comoFunciona: [
+        "Definição do nível de checagem adequado ao cargo",
+        "Coleta de dados, documentos e autorizações do candidato",
+        "Pesquisa em bases públicas e privadas especializadas",
+        "Verificação de referências profissionais (2-5 conforme nível)",
+        "Entrega de relatório classificado com recomendação"
+      ],
+      entregaveis: [
+        "Relatório de Background Check adequado ao nível",
+        "Score de Integridade e Confiabilidade (0-100)",
+        "Análise de Conflitos de Interesse",
+        "Lista de Red Flags identificados",
+        "Recomendação: Contratar / Não Contratar / Com Ressalvas"
+      ],
+      prazo: "Level 1: 3 dias | Level 2: 5-7 dias | Level 3: 10-15 dias"
+    }
   },
   {
     id: "protecao-imagem-empresa",
-    nome: "Proteção da Imagem da Empresa",
-    descricao: "Proteção reputacional corporativa e dos executivos",
+    nome: "Gestão de Reputação Corporativa",
+    descricao: "Monitoramento 24/7 de marca e executivos. Detecção de ataques, remoção de conteúdo, inteligência competitiva.",
     icon: Shield,
+    preco: "R$ 14.997/mês (marca) + R$ 9.997/mês por executivo",
     caracteristicas: [
-      "Monitoramento de marca",
-      "Reputação de executivos",
-      "Inteligência competitiva",
-      "Remoção de conteúdo negativo",
-      "Alertas em tempo real"
+      "Monitoramento 24/7 de menções à marca",
+      "Proteção de reputação de executivos",
+      "Inteligência competitiva em tempo real",
+      "Remoção de conteúdo difamatório",
+      "Alertas e gestão de crises"
     ],
-    formato: "Mensal"
+    formato: "Mensal (R$ 14.997 + R$ 9.997/executivo)",
+    detalhes: {
+      oqueFazemos: [
+        "Monitoramento 24/7 de todas as menções à marca online",
+        "Acompanhamento de reputação individual de executivos-chave",
+        "Detecção precoce de ataques reputacionais e fake news",
+        "Remoção de conteúdo difamatório e negativo",
+        "Gestão profissional de crises de imagem"
+      ],
+      comoFunciona: [
+        "Setup de monitoramento com palavras-chave e alertas",
+        "Definição de gatilhos de alerta por tipo e severidade",
+        "Monitoramento contínuo com dashboard em tempo real",
+        "Ações imediatas de contenção quando detectada ameaça",
+        "Relatórios semanais com análise de sentimento"
+      ],
+      entregaveis: [
+        "Dashboard de Reputação em tempo real",
+        "Alertas instantâneos via WhatsApp e email",
+        "Relatórios Semanais de Menções e Sentimento",
+        "Ações de Contenção documentadas",
+        "Relatório de Inteligência Competitiva mensal"
+      ],
+      prazo: "Setup em 48h, monitoramento contínuo"
+    }
   },
   {
     id: "auditoria-trabalhista-empresa",
-    nome: "Auditoria Trabalhista da Empresa",
-    descricao: "Análise de riscos trabalhistas que podem custar milhões",
+    nome: "Auditoria de Riscos Trabalhistas",
+    descricao: "Prevenção de passivos milionários. Análise de contratos, histórico de processos, compliance trabalhista.",
     icon: FileSearch,
+    preco: "R$ 49.997 (até 50 funcionários) | R$ 19.997 por investigação de denúncia",
     caracteristicas: [
-      "Histórico judicial de colaboradores",
-      "Padrões de litígio",
-      "Auditoria contratual",
-      "Mitigações legais"
+      "Histórico de processos de colaboradores-chave",
+      "Identificação de padrões de litígio",
+      "Auditoria completa de contratos",
+      "Análise de práticas de risco",
+      "Plano de mitigação com valores"
     ],
-    formato: "Por projeto"
+    formato: "Por projeto (R$ 49.997 até 50 func.)",
+    detalhes: {
+      oqueFazemos: [
+        "Análise de histórico trabalhista de colaboradores-chave",
+        "Identificação de padrões de litígio e colaboradores litigiosos",
+        "Auditoria completa de contratos de trabalho e práticas",
+        "Análise de riscos de passivo trabalhista com valores estimados",
+        "Recomendações de mitigação priorizadas por valor de risco"
+      ],
+      comoFunciona: [
+        "Levantamento de toda a documentação trabalhista da empresa",
+        "Pesquisa de histórico de processos de cada colaborador",
+        "Análise de contratos, políticas e práticas de RH",
+        "Identificação de vulnerabilidades com matriz de risco",
+        "Entrega de plano de ação para mitigação"
+      ],
+      entregaveis: [
+        "Relatório de Riscos Trabalhistas (50+ páginas)",
+        "Matriz de Vulnerabilidades por colaborador e valor",
+        "Plano de Mitigação priorizado",
+        "Recomendações de Compliance Trabalhista",
+        "Estratégia de Desligamento Seguro (se aplicável)"
+      ],
+      prazo: "15-30 dias úteis"
+    }
   },
   {
     id: "verificacao-riscos-familiares-executivos",
-    nome: "Verificação de Riscos Familiares de Executivos",
-    descricao: "Análise de estabilidade conjugal e riscos pessoais de executivos",
+    nome: "Análise de Riscos Pessoais de Executivos",
+    descricao: "Divórcio pode mudar estrutura societária. Análise de estabilidade conjugal e riscos pessoais de C-Level.",
     icon: Users,
+    preco: "R$ 19.997/executivo | R$ 29.997 (M&A - verificação de founders)",
     caracteristicas: [
-      "Verificação de histórico",
-      "Riscos associados a crises conjugais",
-      "Regime de bens e implicações societárias"
+      "Análise de estabilidade conjugal",
+      "Verificação de regime de bens",
+      "Implicações societárias de crises pessoais",
+      "Verificação de exposição patrimonial",
+      "Riscos de distração e decisões emocionais"
     ],
-    formato: "Por executivo"
+    formato: "Por executivo (R$ 19.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Análise de situação conjugal de executivos-chave",
+        "Verificação de regime de bens e implicações em caso de divórcio",
+        "Análise de riscos de crises pessoais afetarem a empresa",
+        "Verificação de exposição patrimonial e dívidas pessoais",
+        "Avaliação de risco de distração e decisões emocionais"
+      ],
+      comoFunciona: [
+        "Briefing confidencial sobre a situação do executivo",
+        "Pesquisa discreta em cartórios e registros públicos",
+        "Análise de implicações societárias em diferentes cenários",
+        "Avaliação de riscos com score de probabilidade",
+        "Recomendações de blindagem patrimonial"
+      ],
+      entregaveis: [
+        "Relatório de Riscos Pessoais do Executivo",
+        "Análise de Implicações Societárias",
+        "Cenários de Risco e Probabilidades",
+        "Recomendações de Proteção e Blindagem"
+      ],
+      prazo: "7-14 dias úteis"
+    }
   },
   {
     id: "blindagem-socio",
     nome: "Blindagem do Sócio",
-    descricao: "Proteção jurídica e reputacional em conflitos empresariais",
+    descricao: "Proteção quando sócio descobre fraude ou entra em conflito. Dossiê defensivo, proteção reputacional, coordenação jurídica.",
     icon: Shield,
+    preco: "R$ 14.997 (preventivo) | R$ 29.997 (emergencial/conflito ativo)",
     caracteristicas: [
-      "Dossiê defensivo",
-      "Estratégia reputacional",
-      "Plano de proteção jurídica",
-      "Gestão de ataques"
+      "Dossiê defensivo completo",
+      "Estratégia de proteção reputacional",
+      "Coordenação com assessoria jurídica",
+      "Monitoramento de ataques",
+      "Gestão de crise em tempo real"
     ],
-    formato: "Por projeto"
+    formato: "Por projeto (R$ 14.997 a R$ 29.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Criação de dossiê defensivo completo com evidências",
+        "Desenvolvimento de estratégia de proteção reputacional",
+        "Coordenação com assessoria jurídica para ações legais",
+        "Monitoramento e contenção de ataques online e offline",
+        "Gestão profissional de crise em tempo real"
+      ],
+      comoFunciona: [
+        "Análise emergencial da situação e conflito",
+        "Coleta de toda documentação defensiva disponível",
+        "Desenvolvimento de estratégia de proteção multi-frente",
+        "Implementação de monitoramento e ações de contenção",
+        "Acompanhamento contínuo até resolução do conflito"
+      ],
+      entregaveis: [
+        "Dossiê Defensivo completo com evidências",
+        "Estratégia de Proteção documentada",
+        "Plano de Comunicação de Crise",
+        "Dashboard de Monitoramento de Ataques",
+        "Relatórios de acompanhamento do caso"
+      ],
+      prazo: "Ações emergenciais em 24h, projeto completo em 7 dias"
+    }
   },
   {
     id: "raio-x-cnpj",
-    nome: "Raio-X Completo do CNPJ",
-    descricao: "Due diligence completa da empresa e dos sócios",
+    nome: "Corporate Skeleton Scanner",
+    descricao: "Rastreamento de TODAS as empresas de um CPF/CNPJ. Sócios ocultos, laranjas, dívidas fiscais e trabalhistas, falências.",
     icon: Search,
+    preco: "R$ 4.997 (standard 7 dias) | R$ 7.997 (express 48h) | R$ 14.997 (urgente 24h)",
     caracteristicas: [
-      "Histórico societário",
-      "Dívidas, processos, laranjas",
-      "Relatórios profundos"
+      "Rastreamento de todas as empresas (até as esquecidas)",
+      "Identificação de sócios ocultos e laranjas",
+      "Levantamento de dívidas fiscais e trabalhistas",
+      "Mapeamento de falências não declaradas",
+      "Mapa societário completo"
     ],
-    formato: "Por investigação"
+    formato: "Por investigação (R$ 4.997 a R$ 14.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Rastreamento de TODAS as empresas vinculadas ao CPF/CNPJ (até as esquecidas)",
+        "Identificação de sócios ocultos, laranjas e estruturas de blindagem",
+        "Levantamento completo de dívidas fiscais e trabalhistas",
+        "Mapeamento de falências, recuperações judiciais e processos",
+        "Análise de relacionamentos empresariais e conexões suspeitas"
+      ],
+      comoFunciona: [
+        "Identificação do CPF ou CNPJ a ser investigado",
+        "Pesquisa em mais de 50 bases de dados públicas e privadas",
+        "Análise cruzada de informações e identificação de inconsistências",
+        "Identificação de red flags e padrões de fraude",
+        "Entrega de relatório completo com mapa societário"
+      ],
+      entregaveis: [
+        "Relatório Raio-X completo (50+ páginas)",
+        "Mapa Societário visual de todas as empresas",
+        "Lista completa de Processos, Dívidas e Protestos",
+        "Análise de Red Flags com score de risco",
+        "Recomendação Go/No-Go documentada"
+      ],
+      prazo: "7 dias (standard) | 48h (express) | 24h (urgente)"
+    }
   },
   {
     id: "analise-trabalhista-lider",
-    nome: "Análise Trabalhista do Líder",
-    descricao: "Identifica padrões de assédio, má gestão e riscos trabalhistas",
+    nome: "Labor Risk Analyzer",
+    descricao: "Founder/líder que explora funcionário, explora investidor. Histórico de processos trabalhistas e padrões de violação.",
     icon: FileSearch,
+    preco: "R$ 1.497 (básica) | R$ 2.997 (profunda com empresas anteriores)",
     caracteristicas: [
-      "Histórico de processos",
-      "Padrões comportamentais",
-      "Riscos futuros"
+      "Histórico de todos os processos trabalhistas",
+      "Identificação de padrões de violação",
+      "Verificação de casos de assédio moral/sexual",
+      "Análise de empresas anteriores",
+      "Projeção de riscos futuros"
     ],
-    formato: "Por análise"
+    formato: "Por análise (R$ 1.497 a R$ 2.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Levantamento de todos os processos trabalhistas do líder",
+        "Identificação de padrões de violação (serial offender?)",
+        "Verificação de alegações de assédio moral e sexual",
+        "Análise de histórico em todas as empresas anteriores",
+        "Projeção de riscos futuros baseada em padrões"
+      ],
+      comoFunciona: [
+        "Identificação do líder/founder a ser analisado",
+        "Pesquisa de histórico processual em todas as varas trabalhistas",
+        "Análise de padrões de alegações e valores",
+        "Verificação de empresas anteriores e ex-sócios",
+        "Entrega de relatório com red flags e recomendações"
+      ],
+      entregaveis: [
+        "Relatório de Histórico Trabalhista completo",
+        "Análise de Padrões de Violação",
+        "Score de Risco Trabalhista (0-100)",
+        "Projeção de Passivos Futuros",
+        "Recomendação documentada"
+      ],
+      prazo: "5-7 dias úteis"
+    }
   },
   {
     id: "busca-socios-escondidos",
-    nome: "Busca de Sócios Escondidos",
-    descricao: "Localiza co-founders, sócios ocultos e personagens críticos",
+    nome: "Phantom Partner Finder",
+    descricao: "Localiza co-founders que sumiram, sócios ocultos com direitos pendentes. Ex-sócio pode aparecer no IPO querendo milhões.",
     icon: Search,
+    preco: "R$ 3.997 (nacional) | R$ 9.997 (internacional)",
     caracteristicas: [
-      "Localização nacional e internacional",
+      "Localização de ex-sócios e co-founders",
       "Verificação de direitos pendentes",
-      "Documentação completa"
+      "Análise de risco de retorno",
+      "Documentação de acordos existentes",
+      "Suporte para resolução"
     ],
-    formato: "Por busca"
+    formato: "Por busca (R$ 3.997 a R$ 9.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Localização de ex-sócios e co-founders desaparecidos",
+        "Verificação de direitos pendentes e participações veladas",
+        "Análise de risco de retorno à sociedade ou processo",
+        "Levantamento de patrimônio atual da pessoa",
+        "Documentação completa para acordos ou ações judiciais"
+      ],
+      comoFunciona: [
+        "Briefing sobre a pessoa procurada e histórico da relação",
+        "Pesquisa em bases nacionais e internacionais",
+        "Investigação de campo quando necessário",
+        "Verificação de paradeiro atual e situação financeira",
+        "Documentação dos achados para uso jurídico"
+      ],
+      entregaveis: [
+        "Relatório de Localização completo",
+        "Endereços, contatos e situação atual",
+        "Análise de patrimônio e capacidade financeira",
+        "Análise de Riscos de litígio",
+        "Recomendações para acordo ou ação judicial"
+      ],
+      prazo: "7-15 dias (nacional) | 15-21 dias (internacional)"
+    }
   },
   {
     id: "verificacao-parceiros-fornecedores",
-    nome: "Verificação de Parceiros e Fornecedores",
-    descricao: "Verificação pré-parceria e pré-fornecimento",
+    nome: "Verificação de Fornecedores",
+    descricao: "Due diligence pré-contrato. Saúde financeira, capacidade de entrega, histórico de litígios. Prevenção de fraudes de R$ 184k (média).",
     icon: Users,
+    preco: "R$ 3.500 (básica) | R$ 6.000 (completa com referências)",
     caracteristicas: [
-      "Análise de idoneidade",
-      "Histórico empresarial",
-      "Capacidade de entrega"
+      "Análise de saúde financeira",
+      "Verificação de litígios e processos",
+      "Checagem de capacidade de entrega",
+      "Referências comerciais verificadas",
+      "Score de risco e recomendação"
     ],
-    formato: "Por verificação"
+    formato: "Por verificação (R$ 3.500 a R$ 6.000)",
+    detalhes: {
+      oqueFazemos: [
+        "Verificação completa de idoneidade e saúde financeira",
+        "Análise de histórico de entregas e problemas com clientes",
+        "Checagem de referências comerciais via ligação",
+        "Verificação de processos judiciais e administrativos",
+        "Análise de capacidade técnica e financeira de entrega"
+      ],
+      comoFunciona: [
+        "Upload da proposta comercial ou CNPJ do fornecedor",
+        "Pesquisa em bases empresariais especializadas",
+        "Verificação de 3-5 referências comerciais",
+        "Análise de capacidade e certificações",
+        "Entrega de relatório com score e recomendação"
+      ],
+      entregaveis: [
+        "Relatório de Due Diligence do Fornecedor",
+        "Score de Confiabilidade e Risco (0-100)",
+        "Referências Comerciais Verificadas",
+        "Sugestão de Garantias (se necessário)",
+        "Recomendação: Aprovar / Reprovar / Com Ressalvas"
+      ],
+      prazo: "3-5 dias úteis (standard) | 72h (express)"
+    }
   }
 ];
 
-const SERVICOS_INVESTIMENTOS = [
+const SERVICOS_INVESTIMENTOS: Servico[] = [
   {
     id: "checagem-rapida-founder",
-    nome: "Checagem Rápida do Founder",
-    descricao: "Análise rápida em 48h para saber se o founder é confiável",
+    nome: "Red Flag Express",
+    descricao: "O mais vendido. 3 verificações críticas em 48h para decisões rápidas. 90% dos investidores começam aqui.",
     icon: Clock,
     destaque: true,
+    preco: "R$ 1.997 (nacional) | R$ 3.997 (express 24h)",
     caracteristicas: [
-      "3 verificações críticas",
-      "Principais red flags",
-      "Score inicial de confiabilidade",
-      "Entrega em 48 horas"
+      "Founder Check (CPF e histórico)",
+      "Empresa Check (CNPJ e dívidas)",
+      "Reputation Check (internet e redes)",
+      "Entrega garantida em 48h"
     ],
-    formato: "Por análise",
-    idealPara: "Decisões rápidas, primeira análise"
+    formato: "Por análise (R$ 1.997)",
+    idealPara: "Primeira análise, decisões rápidas, tickets até R$ 1M",
+    detalhes: {
+      oqueFazemos: [
+        "FOUNDER CHECK: Verificação de CPF, antecedentes criminais e histórico",
+        "EMPRESA CHECK: Análise de CNPJ, dívidas fiscais e trabalhistas",
+        "REPUTATION CHECK: Scan de internet, redes sociais e menções",
+        "Identificação dos principais red flags em 48h",
+        "Score de confiabilidade comparativo com 847+ founders verificados"
+      ],
+      comoFunciona: [
+        "Envie apenas: nome do founder + nome da startup + LinkedIn ou site",
+        "Nossa IA + peritos iniciam verificação em 3 frentes simultâneas",
+        "Análise cruzada de informações e detecção de inconsistências",
+        "Notificação imediata se red flag crítico encontrado",
+        "Entrega de relatório Go/No-Go em 48h"
+      ],
+      entregaveis: [
+        "Relatório Executivo (10 páginas) com sinal Verde/Amarelo/Vermelho",
+        "Score de Confiabilidade (0-100)",
+        "Lista de Red Flags encontrados com evidências",
+        "Comparativo: Melhor que X% dos founders verificados",
+        "Recomendação clara: Investir / Cuidado / Fugir"
+      ],
+      prazo: "48h garantidas ou grátis | Express 24h (+R$ 500)"
+    }
   },
   {
     id: "investigacao-completa-founder",
-    nome: "Investigação Completa do Founder",
-    descricao: "Verificação profunda, padrão VC Tier-1",
+    nome: "Founder Full Scan",
+    descricao: "Investigação padrão VC Tier-1. Para tickets acima de R$ 1M ou follow-on. Tudo que o Red Flag Express não pega.",
     icon: FileSearch,
+    preco: "R$ 4.997 (nacional) | R$ 9.997 (internacional)",
     caracteristicas: [
-      "Histórico completo",
-      "Empresas anteriores",
-      "Processos judiciais",
-      "Passivos ocultos",
-      "Laranjas / sócios",
-      "Reputação digital",
-      "Recomendações executivas"
+      "Histórico completo de 20+ anos",
+      "Todas as empresas anteriores verificadas",
+      "Todos os processos judiciais",
+      "Passivos ocultos e laranjas",
+      "Reputação digital profunda",
+      "10+ referências verificadas"
     ],
-    formato: "Por investigação"
+    formato: "Por investigação (R$ 4.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Verificação completa de histórico pessoal dos últimos 20+ anos",
+        "Análise de TODAS as empresas anteriores (inclusive as falidas)",
+        "Levantamento de todos os processos judiciais (cíveis, criminais, trabalhistas)",
+        "Identificação de passivos ocultos, dívidas pessoais e laranjas",
+        "Verificação de sócios ocultos e estruturas de blindagem",
+        "Análise de reputação digital profunda (dark web incluída)"
+      ],
+      comoFunciona: [
+        "Briefing sobre o founder, startup e suas preocupações específicas",
+        "Pesquisa em mais de 100 bases de dados nacionais e internacionais",
+        "Análise de histórico empresarial com timeline de eventos",
+        "Verificação de 10+ referências profissionais",
+        "Entrega de dossiê completo com recomendações de negociação"
+      ],
+      entregaveis: [
+        "Dossiê Completo do Founder (50+ páginas)",
+        "Timeline de todas as empresas e eventos relevantes",
+        "Mapa de relacionamentos empresariais e conexões",
+        "Score de Integridade e Confiabilidade (0-100)",
+        "Recomendações de due diligence adicional ou negociação"
+      ],
+      prazo: "5-7 dias úteis (nacional) | 10-14 dias (internacional)"
+    }
   },
   {
     id: "investigacao-profunda-founder",
-    nome: "Investigação Profunda do Founder",
-    descricao: "Investigação aprofundada de 50–100 horas",
+    nome: "Deep Dive Founder",
+    descricao: "Para checks acima de R$ 10M ou Série B+. 50-100 horas de investigação. Análise psicológica e 20+ referências.",
     icon: Search,
+    preco: "R$ 14.997 (nacional) | R$ 29.997 (internacional + deep web)",
     caracteristicas: [
-      "20+ referências verificadas",
-      "Deep web/dark web",
-      "Análise psicológica comportamental",
-      "Auditoria digital completa"
+      "50-100 horas de investigação",
+      "20+ referências verificadas e gravadas",
+      "Deep web e dark web scan",
+      "Análise psicológica comportamental (DISC)",
+      "Auditoria digital de 20 anos"
     ],
-    formato: "Por investigação"
+    formato: "Por investigação (R$ 14.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Verificação de 20+ referências profissionais (com gravação autorizada)",
+        "Pesquisa em deep web e dark web por menções e vazamentos",
+        "Análise psicológica comportamental (DISC, MBTI, red flags psicológicos)",
+        "Auditoria digital completa de 20 anos (archive.org, posts deletados)",
+        "Investigação de campo quando necessário (ex-sócios, ex-funcionários)"
+      ],
+      comoFunciona: [
+        "Briefing detalhado sobre suas preocupações e perguntas específicas",
+        "50-100 horas de investigação por equipe de especialistas",
+        "Múltiplas frentes de pesquisa simultâneas",
+        "Análise comportamental por psicólogo forense",
+        "Apresentação executiva dos resultados com Q&A ao vivo"
+      ],
+      entregaveis: [
+        "Dossiê Premium do Founder (100+ páginas)",
+        "20+ referências verificadas com resumo de cada conversa",
+        "Análise Comportamental completa (DISC + MBTI)",
+        "Relatório de Deep Web e Dark Web",
+        "Apresentação board-ready (30 slides) + sessão Q&A de 2h"
+      ],
+      prazo: "15-21 dias úteis"
+    }
   },
   {
     id: "raio-x-startup",
-    nome: "Raio-X Completo da Startup",
-    descricao: "Análise completa da startup (não só do founder)",
+    nome: "Startup Integrity Check",
+    descricao: "Análise da empresa, não só do founder. Cap table, métricas, passivos, indicadores de fraude. Para Séries A+.",
     icon: Building2,
+    preco: "R$ 9.997 (até R$ 10M de faturamento) | R$ 19.997 (acima)",
     caracteristicas: [
-      "Cap table completo",
-      "Métricas e números",
-      "Histórico societário",
-      "Passivos ocultos",
-      "Indicadores de fraude"
+      "Análise completa do cap table",
+      "Verificação de métricas declaradas vs. reais",
+      "Histórico societário e movimentações",
+      "Passivos fiscais e trabalhistas ocultos",
+      "Indicadores de fraude contábil"
     ],
-    formato: "Por análise"
+    formato: "Por análise (R$ 9.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Análise completa do cap table e acordos de sócios",
+        "Verificação de métricas declaradas vs. dados reais disponíveis",
+        "Levantamento de histórico societário e todas as alterações",
+        "Identificação de passivos fiscais, trabalhistas e contingências",
+        "Análise de indicadores de fraude contábil e inconsistências"
+      ],
+      comoFunciona: [
+        "Coleta de documentação da startup (pitch deck, data room)",
+        "Análise de dados financeiros e métricas declaradas",
+        "Verificação de informações em bases públicas e privadas",
+        "Pesquisa de passivos ocultos e contingências",
+        "Entrega de relatório com score de integridade"
+      ],
+      entregaveis: [
+        "Relatório Raio-X da Startup (30+ páginas)",
+        "Análise de Cap Table com flags de risco",
+        "Verificação de Métricas (consistentes vs. infladas)",
+        "Lista de Passivos Ocultos encontrados",
+        "Score de Integridade da Startup (0-100)"
+      ],
+      prazo: "7-10 dias úteis"
+    }
   },
   {
     id: "raio-x-cnpj-startup",
-    nome: "Raio-X do CNPJ da Startup",
-    descricao: "Raio-X empresarial do CNPJ da startup",
+    nome: "CNPJ Deep Scan",
+    descricao: "Raio-X empresarial focado em startups. Estrutura societária, passivos ocultos, sócios escondidos.",
     icon: FileSearch,
+    preco: "R$ 4.997 (standard) | R$ 7.997 (express 48h)",
     caracteristicas: [
-      "Estrutura societária",
+      "Estrutura societária completa",
       "Passivos fiscais e trabalhistas",
-      "Sócios ocultos",
-      "Dívidas e pendências"
+      "Identificação de sócios ocultos",
+      "Dívidas e pendências em execução",
+      "Falências e recuperações não declaradas"
     ],
-    formato: "Por investigação"
+    formato: "Por investigação (R$ 4.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Análise completa da estrutura societária atual e histórica",
+        "Levantamento de passivos fiscais em todas as esferas",
+        "Verificação de passivos trabalhistas e reclamações",
+        "Identificação de sócios ocultos e participações cruzadas",
+        "Checagem de dívidas, protestos e pendências em execução"
+      ],
+      comoFunciona: [
+        "Identificação do CNPJ da startup a ser verificada",
+        "Pesquisa em bases empresariais especializadas",
+        "Análise de documentação societária disponível",
+        "Levantamento de passivos em múltiplas fontes",
+        "Entrega de relatório com mapa societário visual"
+      ],
+      entregaveis: [
+        "Relatório Raio-X do CNPJ (30+ páginas)",
+        "Mapa Societário visual com histórico",
+        "Lista completa de Passivos e Contingências",
+        "Análise de Red Flags empresariais",
+        "Score de Saúde da Empresa (0-100)"
+      ],
+      prazo: "5-7 dias úteis (standard) | 48h (express)"
+    }
   },
   {
     id: "blindagem-investidor",
-    nome: "Blindagem do Investidor",
-    descricao: "Blindagem para quando descobre uma fraude",
+    nome: "Investor Shield",
+    descricao: "Descobriu uma fraude? Blindagem emergencial. Dossiê defensivo, proteção reputacional, estratégia de saída.",
     icon: Shield,
+    preco: "R$ 14.997 (preventivo) | R$ 29.997 (emergencial/fraude descoberta)",
     caracteristicas: [
-      "Dossiê defensivo",
-      "Proteção reputacional",
-      "Documentação jurídica",
-      "Estratégia de saída"
+      "Dossiê defensivo com evidências",
+      "Proteção de reputação do investidor",
+      "Documentação para ações jurídicas",
+      "Estratégia de saída e recuperação",
+      "Coordenação com advogados"
     ],
-    formato: "Por projeto"
+    formato: "Por projeto (R$ 14.997 a R$ 29.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Criação de dossiê defensivo completo com todas as evidências",
+        "Proteção da reputação do investidor frente a outros stakeholders",
+        "Documentação completa para ações jurídicas e criminais",
+        "Estratégia de saída do investimento (tag along, drag along, venda)",
+        "Coordenação com advogados especializados em direito societário"
+      ],
+      comoFunciona: [
+        "Análise emergencial da situação de fraude",
+        "Coleta e preservação de todas as evidências",
+        "Criação de estratégia de proteção multi-frente",
+        "Implementação de blindagem reputacional e jurídica",
+        "Acompanhamento até resolução do caso"
+      ],
+      entregaveis: [
+        "Dossiê Defensivo completo com evidências",
+        "Cronologia documentada dos eventos",
+        "Estratégia de Saída com cenários",
+        "Plano de Proteção Reputacional",
+        "Relatório para advogados e autoridades"
+      ],
+      prazo: "Ações emergenciais em 24h, projeto completo em 7 dias"
+    }
   },
   {
     id: "busca-verificacao-ex-socios",
-    nome: "Busca e Verificação de Ex-Sócios",
-    descricao: "Localização e verificação de co-founders desaparecidos",
+    nome: "Co-Founder Ghost Hunter",
+    descricao: "Co-founder sumiu e pode aparecer no exit querendo milhões? Localização + verificação de direitos pendentes.",
     icon: Search,
+    preco: "R$ 3.997 (nacional) | R$ 9.997 (internacional)",
     caracteristicas: [
-      "Localização nacional",
-      "Verificação de direitos",
-      "Análise de risco de retorno",
-      "Documentação de acordos"
+      "Localização de co-founders desaparecidos",
+      "Verificação de direitos e participações",
+      "Análise de risco de retorno no exit",
+      "Levantamento de patrimônio atual",
+      "Suporte para acordo ou ação"
     ],
-    formato: "Por busca"
+    formato: "Por busca (R$ 3.997 a R$ 9.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Localização de ex-sócios e co-founders que sumiram",
+        "Verificação de direitos pendentes, opções e participações",
+        "Análise de risco de retorno no exit ou rodada de investimento",
+        "Levantamento de patrimônio e situação financeira atual",
+        "Documentação completa para acordos ou ações judiciais"
+      ],
+      comoFunciona: [
+        "Briefing sobre a pessoa procurada e histórico da relação",
+        "Pesquisa de localização em bases nacionais e internacionais",
+        "Verificação de situação atual (empregos, empresas, patrimônio)",
+        "Análise de riscos jurídicos e implicações",
+        "Documentação dos achados para uso em negociações"
+      ],
+      entregaveis: [
+        "Relatório de Localização completo",
+        "Análise de Direitos Pendentes e implicações",
+        "Avaliação de Riscos de litígio",
+        "Situação patrimonial e financeira atual",
+        "Recomendações para acordo ou ação judicial"
+      ],
+      prazo: "7-15 dias (nacional) | 15-21 dias (internacional)"
+    }
   },
   {
     id: "analise-trabalhista-founder",
-    nome: "Análise Trabalhista do Founder",
-    descricao: "Avalia padrão de processos anteriores que sinalizam má gestão",
+    nome: "Founder Labor Risk",
+    descricao: "Founder que explora funcionário, explora investidor. Histórico de processos trabalhistas e padrões de violação.",
     icon: FileSearch,
+    preco: "R$ 1.497 (básica) | R$ 2.997 (completa + empresas anteriores)",
     caracteristicas: [
-      "Histórico de processos",
-      "Padrões de violação",
-      "Casos de assédio",
-      "Projeção de riscos"
+      "Histórico de todos os processos trabalhistas",
+      "Identificação de padrões de violação",
+      "Casos de assédio moral/sexual",
+      "Verificação em empresas anteriores",
+      "Score de risco trabalhista"
     ],
-    formato: "Por análise"
+    formato: "Por análise (R$ 1.497 a R$ 2.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Levantamento de TODOS os processos trabalhistas do founder",
+        "Identificação de padrões de violação (é serial offender?)",
+        "Verificação de alegações de assédio moral e sexual",
+        "Análise de histórico em todas as empresas anteriores",
+        "Projeção de riscos trabalhistas para a startup investida"
+      ],
+      comoFunciona: [
+        "Identificação do founder a ser analisado",
+        "Pesquisa de processos em todas as varas trabalhistas",
+        "Análise de padrões de alegações e valores",
+        "Verificação de depoimentos e decisões judiciais",
+        "Entrega de relatório com score de risco"
+      ],
+      entregaveis: [
+        "Relatório de Histórico Trabalhista completo",
+        "Análise de Padrões de Violação",
+        "Score de Risco Trabalhista (0-100)",
+        "Projeção de Passivos Futuros",
+        "Recomendação e red flags identificados"
+      ],
+      prazo: "5-7 dias úteis"
+    }
   },
   {
     id: "monitoramento-portfolio",
-    nome: "Monitoramento do Portfolio",
-    descricao: "Monitoramento mensal de todas as startups investidas",
+    nome: "Portfolio Watch",
+    descricao: "Monitoramento contínuo de todas as startups investidas. Alertas de processos, mudanças societárias, riscos emergentes.",
     icon: TrendingUp,
+    preco: "R$ 497/mês por startup | R$ 2.997/mês (até 10 startups)",
     caracteristicas: [
-      "Alertas automáticos",
-      "Atualização de processos",
-      "Mudanças societárias",
-      "Riscos emergentes",
-      "Dashboard online"
+      "Alertas automáticos em tempo real",
+      "Monitoramento de novos processos",
+      "Acompanhamento de mudanças societárias",
+      "Detecção de riscos emergentes",
+      "Dashboard de portfolio online"
     ],
-    formato: "Mensal"
+    formato: "Mensal (R$ 497/startup ou R$ 2.997 até 10)",
+    detalhes: {
+      oqueFazemos: [
+        "Monitoramento contínuo de todas as startups do portfolio",
+        "Alertas imediatos de novos processos, dívidas e protestos",
+        "Acompanhamento de mudanças societárias e alterações de cap table",
+        "Identificação de riscos emergentes e red flags",
+        "Atualização de status dos founders e executivos-chave"
+      ],
+      comoFunciona: [
+        "Cadastro de todas as startups do portfolio no sistema",
+        "Configuração de alertas por tipo de evento e severidade",
+        "Monitoramento automático 24/7",
+        "Relatórios mensais consolidados",
+        "Dashboard online com acesso em tempo real"
+      ],
+      entregaveis: [
+        "Dashboard de Portfolio em tempo real",
+        "Alertas instantâneos via WhatsApp e email",
+        "Relatório Mensal de Status do Portfolio",
+        "Análise de Riscos Emergentes identificados",
+        "Score de Saúde de cada startup (0-100)"
+      ],
+      prazo: "Setup em 48h, monitoramento contínuo"
+    }
   },
   {
     id: "plano-mensal-investidor",
-    nome: "Plano Mensal do Investidor",
-    descricao: "Pacote recorrente sob medida para investidores",
+    nome: "Investor Protection Plan",
+    descricao: "Plano mensal para investidores ativos. 5 Red Flags + 1 Deep Dive + Portfolio Watch. Economia de 40%.",
     icon: TrendingUp,
+    preco: "R$ 9.997/mês (economia de R$ 6.000 vs. avulso)",
     caracteristicas: [
-      "5 Red Flags mensais",
-      "1 Deep Dive/mês",
-      "Dashboard do portfolio",
-      "Suporte prioritário"
+      "5 Red Flag Express inclusos/mês",
+      "1 Founder Full Scan incluso/mês",
+      "Portfolio Watch de até 10 startups",
+      "Suporte prioritário 24/7",
+      "Créditos acumuláveis por 3 meses"
     ],
-    formato: "Mensal"
+    formato: "Mensal (R$ 9.997)",
+    idealPara: "Investidores-anjo e VCs com dealflow ativo",
+    detalhes: {
+      oqueFazemos: [
+        "5 checagens Red Flag Express de founders por mês (valor avulso: R$ 9.985)",
+        "1 investigação Founder Full Scan por mês (valor avulso: R$ 4.997)",
+        "Monitoramento Portfolio Watch de até 10 startups",
+        "Suporte prioritário para decisões urgentes de investimento"
+      ],
+      comoFunciona: [
+        "Contrato mensal de serviços com renovação automática",
+        "Créditos de checagem mensais (acumuláveis por até 3 meses)",
+        "Acesso prioritário à equipe via WhatsApp dedicado",
+        "Dashboard de portfolio em tempo real",
+        "Relatórios mensais de uso e achados"
+      ],
+      entregaveis: [
+        "5 Relatórios Red Flag Express/mês",
+        "1 Dossiê Founder Full Scan/mês",
+        "Dashboard de Portfolio Watch",
+        "Linha direta 24/7 com especialista",
+        "Relatório mensal consolidado de dealflow"
+      ],
+      prazo: "Serviço contínuo com renovação mensal"
+    }
   }
 ];
 
-export default function ServicosPage() {
-  const [activeTab, setActiveTab] = useState("familiar");
-  const [selectedService, setSelectedService] = useState<any>(null);
+// Componente do Modal de Serviço
+function ServiceModal({ service, isOpen, onClose }: { service: Servico | null; isOpen: boolean; onClose: () => void }) {
+  const { openWhatsAppModal } = useWhatsApp();
 
-  const getServicesForTab = (tab: string) => {
+  if (!service) return null;
+
+  const handleWhatsAppClick = () => {
+    openWhatsAppModal(
+      `Olá! Tenho interesse no serviço "${service.nome}". Gostaria de mais informações.`,
+      `servico-${service.id}`
+    );
+    onClose();
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <div className="flex items-start gap-4">
+            <div className="p-3 bg-primary-100 dark:bg-primary-900/20 rounded-xl">
+              <service.icon className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+            </div>
+            <div className="flex-1">
+              <DialogTitle className="text-2xl">{service.nome}</DialogTitle>
+              <DialogDescription className="mt-2 text-base">
+                {service.descricao}
+              </DialogDescription>
+              <div className="flex flex-wrap gap-2 mt-3">
+                <Badge variant="outline">{service.formato}</Badge>
+                {service.destaque && (
+                  <Badge className="bg-primary-500 text-white">Mais Procurado</Badge>
+                )}
+                {service.idealPara && (
+                  <Badge variant="secondary">{service.idealPara}</Badge>
+                )}
+              </div>
+            </div>
+          </div>
+        </DialogHeader>
+
+        <div className="space-y-6 mt-6">
+          {/* O que fazemos */}
+          {service.detalhes?.oqueFazemos && (
+            <div>
+              <h3 className="text-lg font-semibold flex items-center gap-2 mb-3">
+                <Target className="w-5 h-5 text-primary-500" />
+                O que fazemos
+              </h3>
+              <ul className="space-y-2">
+                {service.detalhes.oqueFazemos.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-neutral-700 dark:text-neutral-300">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Como funciona */}
+          {service.detalhes?.comoFunciona && (
+            <div className="bg-neutral-50 dark:bg-neutral-900 rounded-xl p-5">
+              <h3 className="text-lg font-semibold flex items-center gap-2 mb-3">
+                <Zap className="w-5 h-5 text-gold-500" />
+                Como funciona
+              </h3>
+              <ol className="space-y-3">
+                {service.detalhes.comoFunciona.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-primary-500 text-white text-sm flex items-center justify-center flex-shrink-0">
+                      {idx + 1}
+                    </span>
+                    <span className="text-neutral-700 dark:text-neutral-300">{item}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
+
+          {/* Entregáveis */}
+          {service.detalhes?.entregaveis && (
+            <div>
+              <h3 className="text-lg font-semibold flex items-center gap-2 mb-3">
+                <FileText className="w-5 h-5 text-blue-500" />
+                O que você recebe
+              </h3>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {service.detalhes.entregaveis.map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3">
+                    <ShieldCheck className="w-4 h-4 text-blue-500 flex-shrink-0" />
+                    <span className="text-sm text-neutral-700 dark:text-neutral-300">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Preço e Prazo */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            {service.preco && (
+              <div className="flex items-center gap-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl p-4">
+                <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-800/30 rounded-lg flex items-center justify-center">
+                  <span className="text-emerald-600 dark:text-emerald-400 font-bold text-lg">R$</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-emerald-700 dark:text-emerald-400">Investimento</p>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">{service.preco}</p>
+                </div>
+              </div>
+            )}
+            {service.detalhes?.prazo && (
+              <div className="flex items-center gap-3 bg-gold-50 dark:bg-gold-900/20 rounded-xl p-4">
+                <Clock className="w-6 h-6 text-gold-600" />
+                <div>
+                  <p className="font-semibold text-gold-700 dark:text-gold-400">Prazo de Entrega</p>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">{service.detalhes.prazo}</p>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Características */}
+          <div>
+            <h3 className="text-lg font-semibold flex items-center gap-2 mb-3">
+              <Eye className="w-5 h-5 text-purple-500" />
+              Características incluídas
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {service.caracteristicas.map((item, idx) => (
+                <Badge key={idx} variant="outline" className="py-1.5 px-3">
+                  {item}
+                </Badge>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="pt-4 border-t border-neutral-200 dark:border-neutral-700">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button
+                onClick={handleWhatsAppClick}
+                className="flex-1 bg-green-600 hover:bg-green-700 text-white"
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Solicitar Orçamento via WhatsApp
+              </Button>
+              <Button variant="outline" onClick={onClose}>
+                Fechar
+              </Button>
+            </div>
+            <p className="text-xs text-center text-neutral-500 mt-3">
+              Valores sob consulta • Atendimento personalizado
+            </p>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function ServicosContent() {
+  const searchParams = useSearchParams();
+  const [activeTab, setActiveTab] = useState("familiar");
+  const [selectedService, setSelectedService] = useState<Servico | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const tab = searchParams.get("tab");
+    if (tab && ["familiar", "empresarial", "investimentos"].includes(tab)) {
+      setActiveTab(tab);
+    }
+  }, [searchParams]);
+
+  const getServicesForTab = (tab: string): Servico[] => {
     switch(tab) {
       case "familiar":
         return SERVICOS_FAMILIARES;
@@ -458,10 +1462,18 @@ export default function ServicosPage() {
     }
   };
 
+  const handleServiceClick = (service: Servico) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedService(null);
+  };
+
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-white dark:bg-neutral-950">
+    <main className="min-h-screen bg-white dark:bg-neutral-950">
         {/* Hero Section */}
         <section className="py-20 bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-950">
           <div className="container max-w-7xl px-4">
@@ -514,15 +1526,15 @@ export default function ServicosPage() {
               {["familiar", "empresarial", "investimentos"].map(tabValue => (
                 <TabsContent key={tabValue} value={tabValue} className="space-y-8">
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {getServicesForTab(tabValue).map((service: any) => (
+                    {getServicesForTab(tabValue).map((service) => (
                       <Card
                         key={service.id}
-                        className={`relative hover:shadow-xl transition-all cursor-pointer ${
+                        className={`relative hover:shadow-xl transition-all cursor-pointer group ${
                           service.destaque
                             ? "border-2 border-primary-500 shadow-lg"
                             : "border border-neutral-200 dark:border-neutral-800"
                         }`}
-                        onClick={() => setSelectedService(service)}
+                        onClick={() => handleServiceClick(service)}
                       >
                         {service.destaque && (
                           <Badge className="absolute -top-3 left-4 bg-primary-500 text-white">
@@ -531,7 +1543,7 @@ export default function ServicosPage() {
                         )}
                         <CardHeader>
                           <div className="flex items-start gap-4">
-                            <div className="p-3 bg-primary-100 dark:bg-primary-900/20 rounded-lg">
+                            <div className="p-3 bg-primary-100 dark:bg-primary-900/20 rounded-lg group-hover:bg-primary-200 dark:group-hover:bg-primary-900/30 transition-colors">
                               <service.icon className="w-6 h-6 text-primary-600 dark:text-primary-400" />
                             </div>
                             <div className="flex-1">
@@ -545,7 +1557,7 @@ export default function ServicosPage() {
                         <CardContent>
                           <div className="space-y-4">
                             <ul className="space-y-2">
-                              {service.caracteristicas.slice(0, 3).map((item: string, idx: number) => (
+                              {service.caracteristicas.slice(0, 3).map((item, idx) => (
                                 <li key={idx} className="flex items-start gap-2">
                                   <CheckCircle2 className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
                                   <span className="text-sm text-neutral-600 dark:text-neutral-400">
@@ -564,7 +1576,7 @@ export default function ServicosPage() {
                                 <Badge variant="outline" className="text-xs">
                                   {service.formato}
                                 </Badge>
-                                <Button size="sm" variant="ghost">
+                                <Button size="sm" variant="ghost" className="group-hover:bg-primary-100 dark:group-hover:bg-primary-900/20">
                                   Ver mais <ArrowRight className="w-3 h-3 ml-1" />
                                 </Button>
                               </div>
@@ -602,12 +1614,53 @@ export default function ServicosPage() {
             <div className="pt-6">
               <Badge variant="outline" className="text-sm py-2 px-4">
                 <Info className="w-4 h-4 mr-2 inline" />
-                Atendemos investidores com patrimônio acima de R$ 10M
+                Atendimento personalizado para cada perfil e necessidade
               </Badge>
+            </div>
+
+            {/* Advisory Board Badge */}
+            <div className="pt-8 flex items-center justify-center gap-4">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-primary-500/50">
+                <Image
+                  src="/images/ibsen-maciel.jpg"
+                  alt="Ibsen Rodrigues Maciel"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="text-left">
+                <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
+                  Metodologia validada por Perito Criminal Oficial
+                </p>
+                <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                  Ibsen Maciel • Advisory Board • ANPAJ
+                </p>
+              </div>
             </div>
           </div>
         </section>
-      </main>
+
+        {/* Modal */}
+        <ServiceModal
+          service={selectedService}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
+    </main>
+  );
+}
+
+export default function ServicosPage() {
+  return (
+    <>
+      <Header />
+      <Suspense fallback={
+        <main className="min-h-screen bg-white dark:bg-neutral-950 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500" />
+        </main>
+      }>
+        <ServicosContent />
+      </Suspense>
       <Footer />
     </>
   );

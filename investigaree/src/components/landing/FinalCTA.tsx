@@ -87,7 +87,7 @@ export default function FinalCTA() {
             ))}
           </div>
           <p className="text-navy-100 text-lg">
-            Validado por <strong className="text-gold-400">Ibsen Maciel</strong> - Perito Criminal Oficial
+            Validado por <strong className="text-gold-400">Ibsen Maciel</strong> - Perito Criminal Oficial • Diretor Nacional ANPAJ
           </p>
         </div>
       </div>

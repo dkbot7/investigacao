@@ -36,7 +36,7 @@ export default function DaniKaloiPage() {
                   </h1>
                   <div className="flex flex-wrap gap-2 mb-4">
                     <Badge className="bg-primary-500 text-white">
-                      CEO investigaree
+                      Fundadora investigaree
                     </Badge>
                     <Badge className="bg-blue-600 text-white">
                       Investigadora Particular
@@ -64,7 +64,7 @@ export default function DaniKaloiPage() {
                       <div className="flex items-center gap-2 text-sm">
                         <Briefcase className="w-4 h-4 text-primary-500" />
                         <span className="text-neutral-600 dark:text-neutral-400">
-                          CEO investigaree
+                          Fundadora investigaree
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
