@@ -133,10 +133,19 @@ export default function QuemSomosPage() {
                     className="overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group"
                   >
                     <Link href={`/quemsomos/${member.id}`}>
-                      <div className="relative h-64 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900 dark:to-primary-800">
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <UserCheck className="w-24 h-24 text-primary-500/30" />
-                        </div>
+                      <div className="relative h-64 bg-gradient-to-br from-navy-900 to-navy-950">
+                        {member.id === "ibsen-maciel" ? (
+                          <Image
+                            src="/images/ibsen-maciel.jpg"
+                            alt={member.nome}
+                            fill
+                            className="object-cover object-top"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <UserCheck className="w-24 h-24 text-primary-500/30" />
+                          </div>
+                        )}
                         <div className="absolute top-4 left-4 flex flex-wrap gap-2">
                           {member.badges.slice(0, 2).map((badge, idx) => (
                             <Badge key={idx} className="bg-white/90 text-neutral-800">
