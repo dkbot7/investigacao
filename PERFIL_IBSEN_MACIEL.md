@@ -1,9 +1,10 @@
-# 👤 PERFIL PROFISSIONAL - IBSEN RODRIGUES MACIEL
+# PERFIL PROFISSIONAL - IBSEN RODRIGUES MACIEL
 
-**Data do Relatório**: 22 de Novembro de 2025
+**Data do Relatorio**: 22 de Novembro de 2025
+**Ultima atualizacao**: 29 de Novembro de 2025
 **Tipo**: Deep Research - Consultor Investigador
-**Fontes**: LinkedIn, ANPAJ, Agência Pará, Escavador, Q Concursos
-**Status**: ✅ Verificado e Validado
+**Fontes**: LinkedIn, ANPAJ, Agencia Para, Escavador, Q Concursos
+**Status**: Verificado e Validado - MEMBRO DO ADVISORY BOARD
 
 ---
 
@@ -11,12 +12,15 @@
 
 **Ibsen Rodrigues Maciel** é um dos maiores especialistas em **Perícia Forense Computacional** do Brasil, com atuação destacada na Polícia Científica do Estado do Pará e reconhecimento nacional como referência em investigações digitais e combate ao cibercrime.
 
-### Posição Atual
+### Posicao Atual
 - **Cargo**: Perito Criminal Oficial em Forense Computacional
-- **Instituição**: Polícia Científica do Estado do Pará
-- **Função Adicional**: Gestor do Núcleo de Fonética Forense e Extração de Dados
-- **Unidade**: DECCC - Diretoria Estadual de Combate a Crimes Cibernéticos
-- **Laboratório**: LABCEDF - Laboratório de Computação e Extração de Dados Forense
+- **Instituicao**: Policia Cientifica do Estado do Para (PCE-PA) - aprovado em 1o lugar no concurso de 2019
+- **Local de trabalho**: Policia Civil do Estado do Para (PC-PA)
+- **Funcao Atual**: Membro do LABCEDF - Laboratorio de Computacao e Extracao de Dados Forenses
+- **Funcao Anterior**: Ex-Gerente do Nucleo de Fonetica Forense e Extracao de Dados (2022-2024)
+- **Unidade**: DECCC - Diretoria Estadual de Combate a Crimes Ciberneticos
+
+**IMPORTANTE**: PCE-PA (Policia Cientifica) e PC-PA (Policia Civil) sao instituicoes distintas. O concurso foi para PCE-PA, mas atualmente trabalha na PC-PA.
 
 ### Posições de Liderança
 - **Diretor Nacional de Perícias em Computação Forense** da ANPAJ (Associação Nacional dos Peritos Judiciais)
@@ -64,13 +68,13 @@
 
 ## 💼 EXPERIÊNCIA PROFISSIONAL
 
-### Cargo Atual: Perito Criminal Oficial (2023 - Presente)
-**Polícia Científica do Estado do Pará**
+### Cargo Atual: Perito Criminal Oficial (2019 - Presente)
+**Policia Cientifica do Estado do Para (PCE-PA) - atuando na PC-PA**
 
 **Responsabilidades:**
-- Gestor do Núcleo de Fonética Forense e Extração de Dados
-- Atuação na DECCC (Diretoria Estadual de Combate a Crimes Cibernéticos)
-- Coordenação do LABCEDF (Laboratório de Computação e Extração de Dados Forense)
+- Membro do LABCEDF - Laboratorio de Computacao e Extracao de Dados Forenses (PC-PA)
+- Ex-Gerente do Nucleo de Fonetica Forense e Extracao de Dados (2022-2024)
+- Atuacao na DECCC (Diretoria Estadual de Combate a Crimes Ciberneticos)
 - Análise forense de dispositivos móveis e mídias de armazenamento
 - Extração e análise de dados em investigações criminais
 - Perícias em crimes cibernéticos de alta complexidade
@@ -441,15 +445,18 @@ Ibsen Maciel compartilhou em palestras que trabalhou em **3 casos forenses de re
 **Exemplo 1: Hero Section**
 > "Metodologia validada por **Ibsen Maciel**, Diretor Nacional de Perícias em Computação Forense da ANPAJ e Perito Criminal Oficial da Polícia Científica do Pará."
 
-**Exemplo 2: Seção "Nosso Time"**
+**Exemplo 2: Secao "Nosso Time"**
 > **Ibsen Rodrigues Maciel**
-> Diretor de Perícia Forense (Advisory)
+> Diretor de Pericia Forense (Advisory Board)
 >
-> - Perito Criminal Oficial - Polícia Científica do Pará
-> - Diretor Nacional de Perícias em Computação Forense - ANPAJ
-> - Especialista Certificado em CELLEBRITE, XRY e Magnet AXIOM
-> - Professor de Cibercrimes - Academia de Polícia Civil do Pará
-> - Experiência em casos de repercussão nacional
+> - Perito Criminal Oficial - Policia Cientifica do Estado do Para (PCE-PA)
+> - Membro do LABCEDF - Laboratorio de Computacao e Extracao de Dados Forenses (PC-PA)
+> - Ex-Gerente do Nucleo de Fonetica Forense e Extracao de Dados (2022-2024)
+> - Diretor Nacional de Pericias em Computacao Forense - ANPAJ (6.000+ associados)
+> - Especialista Certificado em CELLEBRITE UFED, XRY MSAB e Magnet AXIOM
+> - Professor de Cibercrimes - Academia de Policia Civil do Para
+> - 1o Lugar no Concurso PCE-PA 2019
+> - Experiencia em casos de repercussao nacional
 
 **Exemplo 3: Selo de Qualidade**
 > ✅ **Processos Validados por Perito Criminal Oficial**

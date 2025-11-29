@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# investigaree - Frontend
 
-## Getting Started
+**Ultima atualizacao**: 29 de Novembro de 2025
 
-First, run the development server:
+Plataforma SaaS de Due Diligence Digital e Investigacao Forense.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Stack
+
+- **Framework**: Next.js 16.0.3
+- **UI Library**: React 19.2.0
+- **Linguagem**: TypeScript 5.x
+- **Estilizacao**: Tailwind CSS 4.x
+- **Componentes**: Shadcn UI
+- **Animacoes**: Framer Motion 12.x
+- **Autenticacao**: Firebase Auth 12.x
+- **Deploy**: Cloudflare Pages
+
+## Estrutura
+
+```
+src/
+├── app/                    # App Router (paginas)
+│   ├── dashboard/          # Area logada
+│   │   ├── admin/          # Painel administrativo
+│   │   ├── obitos/         # Consulta de obitos
+│   │   ├── candidatos/     # Candidatos TSE
+│   │   ├── doadores/       # Doadores de campanha
+│   │   ├── sancionados/    # CEIS/CNEP
+│   │   ├── vinculos/       # Vinculos empresariais
+│   │   ├── beneficios/     # Beneficios sociais
+│   │   ├── funcionarios/   # Lista de funcionarios
+│   │   ├── analitico/      # Relatorios analiticos
+│   │   └── exportar/       # Exportacao de dados
+│   ├── quemsomos/          # Pagina institucional
+│   │   └── ibsen-maciel/   # Perfil do advisor
+│   ├── servicos/           # Servicos oferecidos
+│   └── ...                 # Outras paginas publicas
+├── components/             # Componentes React
+│   ├── dashboard/          # Componentes do dashboard
+│   ├── landing/            # Componentes da landing page
+│   └── ui/                 # Shadcn UI components
+├── contexts/               # Context API (Auth, Theme)
+├── hooks/                  # Custom Hooks
+│   └── useTenant.ts        # Hook de tenant multi-tenant
+├── lib/                    # Utilitarios
+│   ├── api.ts              # Cliente API
+│   └── admin-api.ts        # API administrativa
+└── public/                 # Assets estaticos
+    └── images/             # Imagens (incluindo fotos do time)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Desenvolvimento
+npm run dev
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Build para producao
+npm run build
 
-## Learn More
+# Lint
+npm run lint
 
-To learn more about Next.js, take a look at the following resources:
+# Type check
+npm run typecheck
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Variaveis de Ambiente
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```env
+# Firebase
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
 
-## Deploy on Vercel
+# API Backend
+NEXT_PUBLIC_API_URL=https://api.investigaree.com.br
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# (Local)
+NEXT_PUBLIC_API_URL=http://localhost:8787
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Features
+
+### Dashboard Multi-Tenant
+- Sistema de controle de acesso por tenant
+- Cada cliente ve apenas seus dados
+- Roles: admin, editor, viewer
+
+### Modulos do Dashboard
+- **Obitos**: Verificacao de funcionarios falecidos
+- **Candidatos**: Historico de candidaturas TSE
+- **Doadores**: Doacoes de campanha eleitoral
+- **Sancionados**: CEIS/CNEP (impedidos de contratar)
+- **Vinculos**: Participacao societaria em empresas
+- **Beneficios**: Auxilio emergencial, Bolsa Familia, etc
+
+### Admin Panel
+- Gerenciamento de usuarios
+- Controle de acesso a tenants
+- Alertas de novos cadastros
+- Estatisticas do sistema
+
+### Landing Page
+- Secao de servicos
+- Advisory Board (Ibsen Maciel)
+- Integracao WhatsApp
+- Formulario de contato
+
+## Advisory Board
+
+A plataforma conta com o suporte tecnico de:
+
+**Ibsen Rodrigues Maciel**
+- Perito Criminal Oficial - PCE-PA (1o lugar concurso 2019)
+- Membro do LABCEDF - PC-PA
+- Ex-Gerente do Nucleo de Fonetica Forense (2022-2024)
+- Diretor Nacional de Pericias - ANPAJ (6.000+ associados)
+- Certificacoes: CELLEBRITE UFED, XRY MSAB, Magnet AXIOM
+
+## Deploy
+
+O deploy e automatico via GitHub Actions para Cloudflare Pages.
+
+```bash
+# Build local
+npm run build
+
+# O deploy acontece automaticamente no push para main
+```
+
+## Documentacao
+
+- [Documentacao Tecnica](../docs/README.md)
+- [API Reference](../docs/API.md)
+- [Sistema Multi-Tenant](../docs/MULTI-TENANT.md)

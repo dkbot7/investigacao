@@ -1,8 +1,19 @@
 # investigaree - Documentacao Tecnica
 
+**Ultima atualizacao**: 29 de Novembro de 2025
+
 ## Visao Geral
 
 **investigaree** e uma plataforma SaaS de Due Diligence Digital e Investigacao Forense. Permite verificacao de integridade de pessoas e empresas atraves de cruzamento de dados de multiplas fontes publicas brasileiras.
+
+### Advisory Board
+
+A plataforma conta com o suporte tecnico de **Ibsen Rodrigues Maciel**, referencia nacional em Pericia Forense Computacional:
+- Perito Criminal Oficial - Policia Cientifica do Estado do Para (PCE-PA)
+- Membro do LABCEDF - Laboratorio de Computacao e Extracao de Dados Forenses (PC-PA)
+- Diretor Nacional de Pericias em Computacao Forense - ANPAJ (6.000+ associados)
+- Ex-Gerente do Nucleo de Fonetica Forense e Extracao de Dados (2022-2024)
+- Certificacoes: CELLEBRITE UFED, XRY MSAB, Magnet AXIOM
 
 ## Arquitetura
 
@@ -23,6 +34,9 @@
 │  │    Auth     │  │   Tenant    │  │   Admin     │  │  Consultas  │   │
 │  │   Routes    │  │    Data     │  │   Routes    │  │   Publicas  │   │
 │  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘   │
+│  ┌─────────────┐                                                        │
+│  │Notifications│  (Email via Resend + Alertas Admin)                   │
+│  └─────────────┘                                                        │
 └─────────────────────────────┬───────────────────────────────────────────┘
                               │
           ┌───────────────────┼───────────────────┐
@@ -62,11 +76,18 @@
 |---------|-----|
 | Firebase Auth | Autenticacao de usuarios |
 | Stripe | Pagamentos |
-| Resend | Email transacional |
+| Resend | Email transacional (notificacoes de novos usuarios) |
 | OpenAI | Analise de dados |
 | Brasil API | Consultas publicas |
 | Infosimples | CPF/CNPJ/Processos |
 | Portal Transparencia | Servidores/Sancoes |
+
+### Sistema de Notificacoes
+
+Quando um novo usuario se cadastra:
+1. Email enviado para administradores via Resend API
+2. Alerta criado no dashboard admin
+3. Destinatarios: dkbotdani@gmail.com, ibsenmaciel@gmail.com, contato@investigaree.com.br
 
 ## Estrutura de Diretorios
 
@@ -85,13 +106,14 @@ investigaree/
 │
 ├── workers/                   # Backend Cloudflare
 │   ├── api/                  # Endpoints da API
-│   │   ├── auth.ts          # Autenticacao
-│   │   ├── admin.ts         # Gerenciamento
+│   │   ├── auth.ts          # Autenticacao + notificacoes
+│   │   ├── admin.ts         # Gerenciamento + alertas
 │   │   ├── tenant-data.ts   # Dados multi-tenant
 │   │   └── ...              # Outros endpoints
 │   ├── middleware/           # Middlewares
 │   ├── services/             # Servicos externos
-│   ├── migrations/           # SQL migrations
+│   │   └── notifications.service.ts  # Email + Alertas
+│   ├── migrations/           # SQL migrations (001-008)
 │   └── index.ts              # Entry point
 │
 ├── clientes/                  # Dados de clientes
@@ -195,6 +217,38 @@ CREATE TABLE tenant_funcionarios (
 - `tenant_obitos` - Obitos verificados
 - `tenant_beneficios` - Beneficios sociais
 
+### Tabelas Administrativas
+
+#### admin_alerts
+Alertas para administradores (novos cadastros, etc).
+
+```sql
+CREATE TABLE admin_alerts (
+    id TEXT PRIMARY KEY,
+    type TEXT NOT NULL,           -- 'new_user', 'new_tenant', etc
+    title TEXT NOT NULL,
+    message TEXT,
+    data TEXT,                    -- JSON com dados adicionais
+    is_read INTEGER DEFAULT 0,
+    created_at TEXT,
+    read_at TEXT
+);
+```
+
+#### admin_users
+Usuarios com permissoes administrativas globais.
+
+```sql
+CREATE TABLE admin_users (
+    id TEXT PRIMARY KEY,
+    user_id TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
+    role TEXT DEFAULT 'admin',    -- 'super_admin', 'admin'
+    created_at TEXT,
+    updated_at TEXT
+);
+```
+
 ## Autenticacao
 
 ### Fluxo de Login
@@ -274,6 +328,9 @@ wrangler d1 create investigaree-db
 # 5. Rodar migrations
 wrangler d1 execute investigaree-db --local --file=workers/migrations/004_tenant_data.sql
 wrangler d1 execute investigaree-db --local --file=workers/migrations/005_user_tenants.sql
+wrangler d1 execute investigaree-db --local --file=workers/migrations/006_seed_admin_access.sql
+wrangler d1 execute investigaree-db --local --file=workers/migrations/007_admin_alerts.sql
+wrangler d1 execute investigaree-db --local --file=workers/migrations/008_create_admin_users.sql
 
 # 6. Iniciar desenvolvimento
 npm run dev          # Frontend (porta 3000)
@@ -297,6 +354,7 @@ SUPABASE_URL=
 SUPABASE_SERVICE_ROLE_KEY=
 STRIPE_SECRET_KEY=
 OPENAI_API_KEY=
+RESEND_API_KEY=         # Para envio de emails de notificacao
 ```
 
 ## Deploy

@@ -1,5 +1,7 @@
 # Sistema Multi-Tenant - investigaree
 
+**Ultima atualizacao**: 29 de Novembro de 2025
+
 ## Visão Geral
 
 O sistema multi-tenant permite que múltiplos clientes usem a mesma plataforma com isolamento total de dados. Cada cliente (tenant) tem seus próprios funcionários, relatórios e dados de investigação.
@@ -188,6 +190,11 @@ GET  /api/admin/pending-users   # Usuários aguardando liberação
 POST /api/admin/tenants         # Criar novo tenant
 POST /api/admin/grant-access    # Conceder acesso
 DELETE /api/admin/revoke-access # Revogar acesso
+GET  /api/admin/alerts          # Lista alertas do sistema
+POST /api/admin/alerts/:id/read # Marcar alerta como lido
+POST /api/admin/alerts/read-all # Marcar todos como lidos
+GET  /api/admin/alerts/count    # Contagem de nao lidos
+GET  /api/admin/stats           # Estatisticas do sistema
 ```
 
 ## Componentes do Frontend
@@ -229,7 +236,29 @@ wrangler d1 execute investigaree-db --file=workers/migrations/005_user_tenants.s
 
 # 3. Seed do admin (após ter usuário admin cadastrado)
 wrangler d1 execute investigaree-db --file=workers/migrations/006_seed_admin_access.sql
+
+# 4. Tabela de alertas admin
+wrangler d1 execute investigaree-db --file=workers/migrations/007_admin_alerts.sql
+
+# 5. Usuarios admin master
+wrangler d1 execute investigaree-db --file=workers/migrations/008_create_admin_users.sql
 ```
+
+## Sistema de Notificacoes
+
+Quando um novo usuario se cadastra:
+
+1. **Email automatico**: Enviado via Resend API para:
+   - dkbotdani@gmail.com
+   - ibsenmaciel@gmail.com
+   - contato@investigaree.com.br
+
+2. **Alerta no dashboard**: Criado na tabela `admin_alerts` com tipo `new_user`
+
+3. **Dashboard admin**: Visualizacao em `/dashboard/admin` com:
+   - Lista de alertas nao lidos
+   - Acoes para marcar como lido
+   - Estatisticas gerais do sistema
 
 ### Associar Admin Manualmente
 

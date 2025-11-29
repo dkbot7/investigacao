@@ -1,5 +1,7 @@
 # API Reference - investigaree
 
+**Ultima atualizacao**: 29 de Novembro de 2025
+
 Base URL: `https://api.investigaree.com.br`
 
 ## Autenticacao
@@ -723,6 +725,101 @@ Authorization: Bearer <token>
 {
   "success": true,
   "message": "Acesso revogado"
+}
+```
+
+### Listar Alertas
+
+Lista alertas do sistema (novos usuarios, etc).
+
+```
+GET /api/admin/alerts
+Authorization: Bearer <token>
+```
+
+**Query Parameters:**
+| Param | Tipo | Descricao |
+|-------|------|-----------|
+| unread_only | boolean | Apenas nao lidos (default: false) |
+| limit | number | Limite de resultados (default: 50) |
+
+**Response:**
+```json
+{
+  "alerts": [
+    {
+      "id": "uuid",
+      "type": "new_user",
+      "title": "Novo usuario cadastrado",
+      "message": "usuario@email.com se cadastrou",
+      "data": "{\"email\":\"usuario@email.com\",\"name\":\"Nome\"}",
+      "is_read": 0,
+      "created_at": "2025-11-29T12:00:00.000Z"
+    }
+  ],
+  "total": 10
+}
+```
+
+### Marcar Alerta como Lido
+
+```
+POST /api/admin/alerts/:id/read
+Authorization: Bearer <token>
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "Alerta marcado como lido"
+}
+```
+
+### Marcar Todos como Lidos
+
+```
+POST /api/admin/alerts/read-all
+Authorization: Bearer <token>
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "Todos os alertas marcados como lidos",
+  "count": 5
+}
+```
+
+### Contagem de Alertas Nao Lidos
+
+```
+GET /api/admin/alerts/count
+Authorization: Bearer <token>
+```
+
+**Response:**
+```json
+{
+  "unread_count": 3
+}
+```
+
+### Estatisticas do Sistema
+
+```
+GET /api/admin/stats
+Authorization: Bearer <token>
+```
+
+**Response:**
+```json
+{
+  "total_users": 15,
+  "total_tenants": 2,
+  "pending_users": 3,
+  "active_tenants": 2
 }
 ```
 
