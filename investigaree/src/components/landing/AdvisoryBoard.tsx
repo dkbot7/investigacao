@@ -92,10 +92,13 @@ export default function AdvisoryBoard() {
                       Perito Criminal Oficial em Forense Computacional
                     </p>
                     <p className="text-base text-navy-100">
-                      Diretor Nacional de Perícias em Computação Forense - ANPAJ
+                      LABCEDF - Laboratório de Computação e Extração de Dados Forenses
                     </p>
                     <p className="text-base text-navy-100">
-                      1º Lugar Concurso PC-PA 2019 • 1º Lugar Oficial Exército 2017/18
+                      Polícia Civil do Estado do Pará
+                    </p>
+                    <p className="text-base text-navy-100">
+                      1º Lugar Concurso PCE-PA 2019 • 1º Lugar Oficial Exército 2017/18
                     </p>
                   </div>
                 </div>

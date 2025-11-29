@@ -20,12 +20,12 @@ const TEAM = [
     cargo: "Advisory Board",
     especialidade: "Forense Computacional",
     badges: ["Advisory Board", "Perito Criminal Oficial", "Diretor ANPAJ"],
-    resumo: "Referência nacional em Perícia Forense Computacional. Diretor Nacional de Perícias em Computação Forense da ANPAJ. 1º lugar no concurso da PC-PA 2019 e 1º lugar como Oficial do Exército 2017/18.",
+    resumo: "Referência nacional em Perícia Forense Computacional. Diretor Nacional de Perícias em Computação Forense da ANPAJ. 1º lugar no concurso da PCE-PA 2019 e 1º lugar como Oficial do Exército 2017/18. Integrante do LABCEDF - Laboratório de Computação e Extração de Dados Forenses da Polícia Civil do Estado do Pará.",
     certificacoes: ["CELLEBRITE UFED", "XRY MSAB", "Magnet AXIOM"],
     destaques: [
-      "1º Lugar Concurso Polícia Científica PA (2019)",
-      "Diretor Nacional de Perícias - ANPAJ (6.000+ associados)",
-      "Membro do Comitê do Instituto de Defesa Cibernética"
+      "1º Lugar Concurso PCE-PA (2019)",
+      "LABCEDF - Polícia Civil do Estado do Pará",
+      "Diretor Nacional de Perícias - ANPAJ (6.000+ associados)"
     ]
   },
   {

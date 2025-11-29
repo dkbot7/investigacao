@@ -63,7 +63,7 @@ export default function IbsenMacielPage() {
                   <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center">
                     <Trophy className="w-5 h-5 text-gold-400 mx-auto mb-1" />
                     <p className="text-2xl font-bold text-white">1º</p>
-                    <p className="text-xs text-white/60">PC-PA 2019</p>
+                    <p className="text-xs text-white/60">PCE-PA 2019</p>
                   </div>
                   <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center">
                     <Medal className="w-5 h-5 text-gold-400 mx-auto mb-1" />
@@ -96,8 +96,8 @@ export default function IbsenMacielPage() {
                   </h1>
                   <p className="text-lg text-white/70 leading-relaxed max-w-2xl">
                     Referência nacional em Perícia Forense Computacional, com atuação destacada em
-                    operações de combate ao crime organizado e cibercrime. Gerente do Núcleo de
-                    Fonética Forense e Extração de Dados da Polícia Científica do Pará.
+                    operações de combate ao crime organizado e cibercrime. Integrante do LABCEDF -
+                    Laboratório de Computação e Extração de Dados Forenses da Polícia Civil do Estado do Pará.
                   </p>
                 </div>
 
@@ -109,7 +109,7 @@ export default function IbsenMacielPage() {
                   </Badge>
                   <Badge className="bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 px-3 py-1">
                     <Database className="w-3 h-3 mr-1" />
-                    LABCEDF - DECCC/PC-PA
+                    LABCEDF - DECC/PC-PA
                   </Badge>
                   <Badge className="bg-gold-500/20 text-gold-300 border border-gold-500/30 px-3 py-1">
                     <Award className="w-3 h-3 mr-1" />
@@ -161,7 +161,7 @@ export default function IbsenMacielPage() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { pos: "1º", title: "Polícia Científica PA", year: "2019", desc: "Perito Criminal - Processamento de Dados", highlight: true },
+                { pos: "1º", title: "Polícia Científica do Pará (PCE-PA)", year: "2019", desc: "Perito Criminal - Processamento de Dados", highlight: true },
                 { pos: "1º", title: "Oficial Exército 1RM", year: "2017/18", desc: "Informática - Analista de Segurança", highlight: true },
                 { pos: "4º", title: "IBGE", year: "2017", desc: "Analista de Sistemas - Suporte a Redes", highlight: false },
                 { pos: "9º", title: "Oficial Exército 1RM", year: "2016/17", desc: "Informática - Analista de Sistemas", highlight: false },
@@ -284,7 +284,7 @@ export default function IbsenMacielPage() {
                   <Badge className="bg-gold-500/20 text-gold-300 border-gold-500/30">2019</Badge>
                 </div>
                 <h3 className="text-lg font-bold mb-1 text-white">1º Colocado - Perito Criminal</h3>
-                <p className="text-primary-400 font-medium text-sm mb-3">Polícia Científica do Estado do Pará</p>
+                <p className="text-primary-400 font-medium text-sm mb-3">Polícia Científica do Estado do Pará (PCE-PA)</p>
                 <p className="text-white/60 text-sm mb-4">
                   Aprovado em 1º lugar no concurso para Perito Criminal - Processamento de Dados do Centro de Perícias Renato Chaves.
                 </p>
@@ -455,7 +455,7 @@ export default function IbsenMacielPage() {
                     </Card>
                   </div>
 
-                  {/* Polícia Científica */}
+                  {/* Polícia Civil - LABCEDF */}
                   <div className="relative flex gap-4 md:gap-8">
                     <div className="relative">
                       <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center z-10 shadow-lg shadow-primary-500/30 ring-4 ring-white dark:ring-neutral-900">
@@ -479,10 +479,10 @@ export default function IbsenMacielPage() {
                               </Badge>
                             </div>
                             <p className="text-primary-600 dark:text-primary-400 font-semibold">
-                              Polícia Científica do Pará - Centro de Perícias Renato Chaves
+                              Polícia Civil do Estado do Pará (PC-PA)
                             </p>
                             <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
-                              Gerente do Núcleo de Fonética Forense e Extração de Dados
+                              LABCEDF - Laboratório de Computação e Extração de Dados Forenses - DECC
                             </p>
                           </div>
                           <Badge variant="outline" className="px-3">2019 - Atual</Badge>
@@ -493,11 +493,11 @@ export default function IbsenMacielPage() {
                           <div className="grid md:grid-cols-2 gap-3">
                             <div className="flex items-start gap-2">
                               <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                              <span className="text-sm text-neutral-600 dark:text-neutral-400">Lotado na DECCC - Diretoria Estadual de Combate a Crimes Cibernéticos</span>
+                              <span className="text-sm text-neutral-600 dark:text-neutral-400">Integrante do LABCEDF - Laboratório de Computação e Extração de Dados Forenses</span>
                             </div>
                             <div className="flex items-start gap-2">
                               <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                              <span className="text-sm text-neutral-600 dark:text-neutral-400">Integrante do LABCEDF - Laboratório de Computação e Extração de Dados Forense da DECCC - Polícia Civil do Estado do Pará</span>
+                              <span className="text-sm text-neutral-600 dark:text-neutral-400">DECC - Diretoria Estadual de Combate à Corrupção da PC-PA</span>
                             </div>
                             <div className="flex items-start gap-2">
                               <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />

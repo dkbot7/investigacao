@@ -13,6 +13,13 @@ import {
   AlertCircle,
   Loader2,
   RefreshCw,
+  Bell,
+  BellRing,
+  CheckCheck,
+  User,
+  MessageSquare,
+  AlertTriangle,
+  Info,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -24,13 +31,23 @@ import {
   getPendingUsers,
   grantAccess,
   revokeAccess,
+  getAdminAlerts,
+  markAlertAsRead,
+  markAllAlertsAsRead,
+  getAdminStats,
   AdminUser,
   AdminTenant,
   PendingUser,
+  AdminAlert,
+  AdminStats,
 } from "@/lib/admin-api";
 
 // Admin emails permitidos
-const ADMIN_EMAILS = ["contato@investigaree.com.br"];
+const ADMIN_EMAILS = [
+  "dkbotdani@gmail.com",
+  "ibsenmaciel@gmail.com",
+  "contato@investigaree.com.br"
+];
 
 export default function AdminPage() {
   const { user } = useAuth();
@@ -40,6 +57,9 @@ export default function AdminPage() {
   const [users, setUsers] = useState<AdminUser[]>([]);
   const [tenants, setTenants] = useState<AdminTenant[]>([]);
   const [pendingUsers, setPendingUsers] = useState<PendingUser[]>([]);
+  const [alerts, setAlerts] = useState<AdminAlert[]>([]);
+  const [stats, setStats] = useState<AdminStats | null>(null);
+  const [unreadCount, setUnreadCount] = useState(0);
 
   const [showGrantModal, setShowGrantModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState<PendingUser | null>(null);
@@ -48,6 +68,7 @@ export default function AdminPage() {
     role: "viewer" as "admin" | "editor" | "viewer",
   });
   const [granting, setGranting] = useState(false);
+  const [activeTab, setActiveTab] = useState<'overview' | 'alerts' | 'users'>('overview');
 
   // Verificar se e admin
   const isAdmin = user?.email && ADMIN_EMAILS.includes(user.email);
@@ -65,20 +86,63 @@ export default function AdminPage() {
     setError(null);
 
     try {
-      const [usersRes, tenantsRes, pendingRes] = await Promise.all([
+      const [usersRes, tenantsRes, pendingRes, alertsRes, statsRes] = await Promise.all([
         getAdminUsers(),
         getAdminTenants(),
         getPendingUsers(),
+        getAdminAlerts(),
+        getAdminStats(),
       ]);
 
       setUsers(usersRes.users || []);
       setTenants(tenantsRes.tenants || []);
       setPendingUsers(pendingRes.pending_users || []);
+      setAlerts(alertsRes.alerts || []);
+      setUnreadCount(alertsRes.unread_count || 0);
+      setStats(statsRes);
     } catch (err: any) {
       console.error("Erro ao carregar dados admin:", err);
       setError(err.message || "Erro ao carregar dados");
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleMarkAsRead(alertId: string) {
+    try {
+      await markAlertAsRead(alertId);
+      setAlerts(alerts.map(a => a.id === alertId ? { ...a, is_read: 1 } : a));
+      setUnreadCount(Math.max(0, unreadCount - 1));
+    } catch (err) {
+      console.error("Erro ao marcar alerta:", err);
+    }
+  }
+
+  async function handleMarkAllAsRead() {
+    try {
+      await markAllAlertsAsRead();
+      setAlerts(alerts.map(a => ({ ...a, is_read: 1 })));
+      setUnreadCount(0);
+    } catch (err) {
+      console.error("Erro ao marcar alertas:", err);
+    }
+  }
+
+  function getAlertIcon(type: string) {
+    switch (type) {
+      case 'new_user': return <User className="w-5 h-5 text-blue-400" />;
+      case 'new_lead': return <MessageSquare className="w-5 h-5 text-green-400" />;
+      case 'error': return <AlertTriangle className="w-5 h-5 text-red-400" />;
+      default: return <Info className="w-5 h-5 text-gray-400" />;
+    }
+  }
+
+  function getSeverityColor(severity: string) {
+    switch (severity) {
+      case 'error': return 'border-red-500/30 bg-red-500/10';
+      case 'warning': return 'border-amber-500/30 bg-amber-500/10';
+      case 'success': return 'border-green-500/30 bg-green-500/10';
+      default: return 'border-blue-500/30 bg-blue-500/10';
     }
   }
 
@@ -176,12 +240,12 @@ export default function AdminPage() {
         )}
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
               <Users className="w-8 h-8 text-blue-400" />
               <div>
-                <p className="text-2xl font-bold text-white">{users.length}</p>
+                <p className="text-2xl font-bold text-white">{stats?.total_users || users.length}</p>
                 <p className="text-sm text-white/60">Usuarios Totais</p>
               </div>
             </div>
@@ -190,7 +254,7 @@ export default function AdminPage() {
             <div className="flex items-center gap-3">
               <Building2 className="w-8 h-8 text-emerald-400" />
               <div>
-                <p className="text-2xl font-bold text-white">{tenants.length}</p>
+                <p className="text-2xl font-bold text-white">{stats?.active_tenants || tenants.length}</p>
                 <p className="text-sm text-white/60">Tenants Ativos</p>
               </div>
             </div>
@@ -199,13 +263,142 @@ export default function AdminPage() {
             <div className="flex items-center gap-3">
               <Clock className="w-8 h-8 text-amber-400" />
               <div>
-                <p className="text-2xl font-bold text-white">{pendingUsers.length}</p>
+                <p className="text-2xl font-bold text-white">{stats?.pending_users || pendingUsers.length}</p>
                 <p className="text-sm text-white/60">Aguardando Liberacao</p>
+              </div>
+            </div>
+          </div>
+          <div
+            className="bg-navy-900 border border-navy-700 rounded-xl p-4 cursor-pointer hover:border-gold-500/50 transition-colors"
+            onClick={() => setActiveTab('alerts')}
+          >
+            <div className="flex items-center gap-3">
+              {unreadCount > 0 ? (
+                <BellRing className="w-8 h-8 text-red-400 animate-pulse" />
+              ) : (
+                <Bell className="w-8 h-8 text-gray-400" />
+              )}
+              <div>
+                <p className="text-2xl font-bold text-white">{unreadCount}</p>
+                <p className="text-sm text-white/60">Alertas Nao Lidos</p>
               </div>
             </div>
           </div>
         </div>
 
+        {/* Tabs */}
+        <div className="flex gap-2 border-b border-navy-700">
+          <button
+            onClick={() => setActiveTab('overview')}
+            className={`px-4 py-2 text-sm font-medium transition-colors ${
+              activeTab === 'overview'
+                ? 'text-gold-400 border-b-2 border-gold-400'
+                : 'text-white/60 hover:text-white'
+            }`}
+          >
+            Visao Geral
+          </button>
+          <button
+            onClick={() => setActiveTab('alerts')}
+            className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-2 ${
+              activeTab === 'alerts'
+                ? 'text-gold-400 border-b-2 border-gold-400'
+                : 'text-white/60 hover:text-white'
+            }`}
+          >
+            Alertas
+            {unreadCount > 0 && (
+              <span className="bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
+                {unreadCount}
+              </span>
+            )}
+          </button>
+          <button
+            onClick={() => setActiveTab('users')}
+            className={`px-4 py-2 text-sm font-medium transition-colors ${
+              activeTab === 'users'
+                ? 'text-gold-400 border-b-2 border-gold-400'
+                : 'text-white/60 hover:text-white'
+            }`}
+          >
+            Usuarios e Tenants
+          </button>
+        </div>
+
+        {/* Tab Content: Alerts */}
+        {activeTab === 'alerts' && (
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                <Bell className="w-5 h-5 text-gold-400" />
+                Alertas do Sistema
+              </h3>
+              {unreadCount > 0 && (
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="border-navy-600 text-white/70"
+                  onClick={handleMarkAllAsRead}
+                >
+                  <CheckCheck className="w-4 h-4 mr-2" />
+                  Marcar Todos como Lidos
+                </Button>
+              )}
+            </div>
+
+            {alerts.length === 0 ? (
+              <div className="bg-navy-900 border border-navy-700 rounded-xl p-8 text-center">
+                <Bell className="w-12 h-12 text-white/20 mx-auto mb-3" />
+                <p className="text-white/50">Nenhum alerta no momento</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {alerts.map((alert) => (
+                  <div
+                    key={alert.id}
+                    className={`rounded-xl p-4 border ${getSeverityColor(alert.severity)} ${
+                      alert.is_read ? 'opacity-60' : ''
+                    }`}
+                  >
+                    <div className="flex items-start gap-3">
+                      {getAlertIcon(alert.type)}
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <h4 className="font-medium text-white">{alert.title}</h4>
+                          <span className="text-xs text-white/40">
+                            {new Date(alert.created_at).toLocaleString('pt-BR')}
+                          </span>
+                        </div>
+                        <p className="text-sm text-white/70 mt-1">{alert.message}</p>
+                        {alert.data && (
+                          <div className="mt-2 text-xs text-white/50 bg-navy-900/50 rounded p-2">
+                            {alert.data.email && <p>Email: {alert.data.email}</p>}
+                            {alert.data.phone && <p>Telefone: {alert.data.phone}</p>}
+                            {alert.data.name && <p>Nome: {alert.data.name}</p>}
+                          </div>
+                        )}
+                      </div>
+                      {!alert.is_read && (
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="text-white/50 hover:text-white"
+                          onClick={() => handleMarkAsRead(alert.id)}
+                        >
+                          <Check className="w-4 h-4" />
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Tab Content: Overview & Users */}
+        {(activeTab === 'overview' || activeTab === 'users') && (
+          <>
         {/* Usuarios Pendentes */}
         {pendingUsers.length > 0 && (
           <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6">
@@ -337,6 +530,8 @@ export default function AdminPage() {
             ))}
           </div>
         </div>
+          </>
+        )}
       </motion.div>
 
       {/* Modal Conceder Acesso */}

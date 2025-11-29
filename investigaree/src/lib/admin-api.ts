@@ -34,6 +34,26 @@ export interface PendingUser {
   created_at: string;
 }
 
+export interface AdminAlert {
+  id: string;
+  type: string;
+  title: string;
+  message: string;
+  data: Record<string, any> | null;
+  severity: string;
+  is_read: number;
+  read_by: string | null;
+  read_at: string | null;
+  created_at: string;
+}
+
+export interface AdminStats {
+  total_users: number;
+  active_tenants: number;
+  pending_users: number;
+  unread_alerts: number;
+}
+
 // ============================================
 // API FUNCTIONS
 // ============================================
@@ -98,4 +118,36 @@ export async function revokeAccess(data: {
   return fetchAPI(`/api/admin/revoke-access?${params}`, {
     method: 'DELETE',
   });
+}
+
+/**
+ * Lista alertas do sistema
+ */
+export async function getAdminAlerts(showRead = false): Promise<{ alerts: AdminAlert[]; unread_count: number }> {
+  return fetchAPI(`/api/admin/alerts?show_read=${showRead}`);
+}
+
+/**
+ * Marca um alerta como lido
+ */
+export async function markAlertAsRead(alertId: string): Promise<{ success: boolean }> {
+  return fetchAPI(`/api/admin/alerts/${alertId}/read`, {
+    method: 'POST',
+  });
+}
+
+/**
+ * Marca todos os alertas como lidos
+ */
+export async function markAllAlertsAsRead(): Promise<{ success: boolean; message: string }> {
+  return fetchAPI('/api/admin/alerts/read-all', {
+    method: 'POST',
+  });
+}
+
+/**
+ * Retorna estatisticas do admin
+ */
+export async function getAdminStats(): Promise<AdminStats> {
+  return fetchAPI('/api/admin/stats');
 }
