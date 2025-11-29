@@ -6,6 +6,7 @@
 import { Hono } from 'hono'
 import { z } from 'zod'
 import { Env } from '../index'
+import { notifyNewUser } from '../services/notifications.service'
 
 const app = new Hono<{ Bindings: Env }>()
 
@@ -80,6 +81,16 @@ app.post('/register', async (c) => {
     }
 
     console.log('[AUTH] User created successfully:', userId)
+
+    // Notificar admins sobre novo cadastro (async, não bloqueia a resposta)
+    c.executionCtx.waitUntil(
+      notifyNewUser(c.env, {
+        email: validated.email,
+        name: validated.name,
+        phone: validated.phone,
+        created_at: now
+      })
+    )
 
     return c.json(
       {

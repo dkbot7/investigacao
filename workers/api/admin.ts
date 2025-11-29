@@ -2,17 +2,18 @@
  * Admin API Routes
  * Endpoints administrativos para gerenciar usuários e tenants
  *
- * ACESSO: Apenas admins (contato@investigaree.com.br)
+ * ACESSO: Apenas admins master
  */
 
 import { Hono } from 'hono'
 import { z } from 'zod'
 import { Env } from '../index'
+import { ADMIN_EMAILS } from '../services/notifications.service'
 
 const app = new Hono<{ Bindings: Env }>()
 
-// Lista de emails admin
-const ADMIN_EMAILS = ['contato@investigaree.com.br']
+// Lista de emails admin master (importada do notifications.service)
+// Inclui: dkbotdani@gmail.com, ibsenmaciel@gmail.com, contato@investigaree.com.br
 
 // Middleware para verificar se é admin
 async function isAdmin(c: any): Promise<boolean> {
@@ -320,6 +321,160 @@ app.get('/pending-users', async (c) => {
   } catch (err) {
     console.error('[ADMIN] Error listing pending users:', err)
     return c.json({ error: true, message: 'Erro ao listar usuários pendentes' }, 500)
+  }
+})
+
+// ============================================
+// ALERTS ROUTES
+// ============================================
+
+/**
+ * GET /api/admin/alerts
+ * Lista alertas do sistema (não lidos primeiro)
+ */
+app.get('/alerts', async (c) => {
+  if (!await isAdmin(c)) {
+    return c.json({ error: true, message: 'Acesso negado' }, 403)
+  }
+
+  try {
+    const limit = parseInt(c.req.query('limit') || '50')
+    const showRead = c.req.query('show_read') === 'true'
+
+    let query = `
+      SELECT id, type, title, message, data, severity, is_read, read_by, read_at, created_at
+      FROM admin_alerts
+    `
+    if (!showRead) {
+      query += ' WHERE is_read = 0'
+    }
+    query += ' ORDER BY created_at DESC LIMIT ?'
+
+    const alerts = await c.env.DB.prepare(query).bind(limit).all()
+
+    // Contar não lidos
+    const unreadCount = await c.env.DB.prepare(
+      'SELECT COUNT(*) as count FROM admin_alerts WHERE is_read = 0'
+    ).first() as { count: number }
+
+    return c.json({
+      alerts: alerts.results.map((a: any) => ({
+        ...a,
+        data: a.data ? JSON.parse(a.data) : null
+      })),
+      unread_count: unreadCount?.count || 0
+    })
+  } catch (err) {
+    console.error('[ADMIN] Error listing alerts:', err)
+    return c.json({ error: true, message: 'Erro ao listar alertas' }, 500)
+  }
+})
+
+/**
+ * POST /api/admin/alerts/:id/read
+ * Marca um alerta como lido
+ */
+app.post('/alerts/:id/read', async (c) => {
+  if (!await isAdmin(c)) {
+    return c.json({ error: true, message: 'Acesso negado' }, 403)
+  }
+
+  try {
+    const alertId = c.req.param('id')
+    const adminEmail = c.get('userEmail') as string
+
+    await c.env.DB.prepare(`
+      UPDATE admin_alerts
+      SET is_read = 1, read_by = ?, read_at = datetime('now')
+      WHERE id = ?
+    `).bind(adminEmail, alertId).run()
+
+    return c.json({ success: true, message: 'Alerta marcado como lido' })
+  } catch (err) {
+    console.error('[ADMIN] Error marking alert as read:', err)
+    return c.json({ error: true, message: 'Erro ao marcar alerta' }, 500)
+  }
+})
+
+/**
+ * POST /api/admin/alerts/read-all
+ * Marca todos os alertas como lidos
+ */
+app.post('/alerts/read-all', async (c) => {
+  if (!await isAdmin(c)) {
+    return c.json({ error: true, message: 'Acesso negado' }, 403)
+  }
+
+  try {
+    const adminEmail = c.get('userEmail') as string
+
+    const result = await c.env.DB.prepare(`
+      UPDATE admin_alerts
+      SET is_read = 1, read_by = ?, read_at = datetime('now')
+      WHERE is_read = 0
+    `).bind(adminEmail).run()
+
+    return c.json({
+      success: true,
+      message: `${result.meta.changes} alertas marcados como lidos`
+    })
+  } catch (err) {
+    console.error('[ADMIN] Error marking all alerts as read:', err)
+    return c.json({ error: true, message: 'Erro ao marcar alertas' }, 500)
+  }
+})
+
+/**
+ * GET /api/admin/alerts/count
+ * Retorna contagem de alertas não lidos (para badge no dashboard)
+ */
+app.get('/alerts/count', async (c) => {
+  if (!await isAdmin(c)) {
+    return c.json({ error: true, message: 'Acesso negado' }, 403)
+  }
+
+  try {
+    const result = await c.env.DB.prepare(
+      'SELECT COUNT(*) as count FROM admin_alerts WHERE is_read = 0'
+    ).first() as { count: number }
+
+    return c.json({ unread_count: result?.count || 0 })
+  } catch (err) {
+    console.error('[ADMIN] Error counting alerts:', err)
+    return c.json({ error: true, message: 'Erro ao contar alertas' }, 500)
+  }
+})
+
+/**
+ * GET /api/admin/stats
+ * Retorna estatísticas gerais do sistema
+ */
+app.get('/stats', async (c) => {
+  if (!await isAdmin(c)) {
+    return c.json({ error: true, message: 'Acesso negado' }, 403)
+  }
+
+  try {
+    const [users, tenants, pendingUsers, unreadAlerts] = await Promise.all([
+      c.env.DB.prepare('SELECT COUNT(*) as count FROM users').first() as Promise<{ count: number }>,
+      c.env.DB.prepare('SELECT COUNT(*) as count FROM tenants WHERE status = ?').bind('active').first() as Promise<{ count: number }>,
+      c.env.DB.prepare(`
+        SELECT COUNT(*) as count FROM users u
+        LEFT JOIN user_tenants ut ON u.id = ut.user_id AND ut.is_active = 1
+        WHERE ut.id IS NULL
+      `).first() as Promise<{ count: number }>,
+      c.env.DB.prepare('SELECT COUNT(*) as count FROM admin_alerts WHERE is_read = 0').first() as Promise<{ count: number }>
+    ])
+
+    return c.json({
+      total_users: users?.count || 0,
+      active_tenants: tenants?.count || 0,
+      pending_users: pendingUsers?.count || 0,
+      unread_alerts: unreadAlerts?.count || 0
+    })
+  } catch (err) {
+    console.error('[ADMIN] Error getting stats:', err)
+    return c.json({ error: true, message: 'Erro ao buscar estatísticas' }, 500)
   }
 })
 
