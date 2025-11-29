@@ -108,3 +108,16 @@ $RECYCLE.BIN/
 *~
 .directory
 .Trash-*
+clientes/CLIENTE_01/documentos/nul
+
+# Dados de clientes (confidenciais)
+clientes/
+
+# Arquivos temporarios
+nul
+*.jpg
+*.jpeg
+*.png
+
+# Consultas SERPRO (dados sensiveis)
+serpro-consultas/

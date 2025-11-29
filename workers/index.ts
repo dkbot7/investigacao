@@ -25,6 +25,8 @@ import investigationRoutes from './api/investigation'
 import consultasPublicasRoutes from './api/consultas-publicas'
 import infosimplesRoutes from './api/consultas-infosimples'
 import transparenciaRoutes from './api/consultas-transparencia'
+import tenantDataRoutes from './api/tenant-data'
+import adminRoutes from './api/admin'
 
 // Types
 export interface Env {
@@ -187,6 +189,8 @@ app.use('/api/reports/*', authMiddleware)
 app.use('/api/payments/*', authMiddleware)
 app.use('/api/user/*', authMiddleware)
 app.use('/api/lgpd/*', authMiddleware)
+app.use('/api/tenant/*', authMiddleware)
+app.use('/api/admin/*', authMiddleware)
 
 // Reports
 app.route('/api/reports', reportsRoutes)
@@ -199,6 +203,12 @@ app.route('/api/user', userRoutes)
 
 // LGPD (direitos dos titulares)
 app.route('/api/lgpd', lgpdRoutes)
+
+// Tenant Data (dados multi-tenant com isolamento)
+app.route('/api/tenant', tenantDataRoutes)
+
+// Admin (gerenciamento de usuários e tenants)
+app.route('/api/admin', adminRoutes)
 
 // ============================================
 // ERROR HANDLING

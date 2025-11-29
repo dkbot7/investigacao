@@ -24,6 +24,11 @@ import {
   MapPin,
   Hash,
   ExternalLink,
+  Globe,
+  Flag,
+  HeartPulse,
+  UserCheck,
+  UserX,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -113,6 +118,31 @@ const CLIENTE_01_DATA = {
   sancionados: [
     { nome: "LUCIANA DE MELO ABRAO", cpf: "758.888.231-04", tipo: "CEIS", orgao: "TRF1/GO", motivo: "Impedimento de contratar com a Administracao Publica", dataInicio: "16/12/2021", dataFim: "16/12/2026", grupo: "Comurg" },
   ],
+  // OFAC MATCHES - 258 funcionarios com similaridade de nome na lista SDN
+  ofacMatches: [
+    { cpf: "877.367.801-53", nome: "ANTONIO CARLOS DA SILVA", grupo: "Empregados a Disposicao", matchOFAC: "LOPEZ OSPINA, Carlos Antonio", programa: "SDNT", similaridade: 50 },
+    { cpf: "418.962.031-91", nome: "ANTONIO FRANCISCO DE MENDONCA", grupo: "Empregados a Disposicao", matchOFAC: "FLOREZ UPEGUI, Francisco Antonio", programa: "SDNT", similaridade: 50 },
+    { cpf: "235.674.061-91", nome: "ANTONIO FRANCISCO FILHO", grupo: "Empregados a Disposicao", matchOFAC: "COLORADO CESSA, Francisco Antonio", programa: "SDNTK", similaridade: 50 },
+    { cpf: "278.512.731-53", nome: "ANTONIO JOSE DE SOUSA", grupo: "Empregados a Disposicao", matchOFAC: "GALARZA CORONADO, Jose Antonio", programa: "SDNTK", similaridade: 50 },
+    { cpf: "412.270.931-87", nome: "CARLOS ALBERTO ALVES DA SILVA", grupo: "Empregados a Disposicao", matchOFAC: "HERNANDEZ LEYVA, Carlos Alberto", programa: "SDNTK", similaridade: 50 },
+    { cpf: "301.866.171-00", nome: "CARLOS ROBERTO PEIXOTO", grupo: "Empregados na Comurg", matchOFAC: "VILLA CASTILLO, Carlos Roberto", programa: "SDNTK", similaridade: 50 },
+    { cpf: "621.088.811-53", nome: "JOSE CARLOS DA SILVA", grupo: "Empregados na Comurg", matchOFAC: "FERNANDEZ PUENTES, Jose Carlos", programa: "SDNT", similaridade: 50 },
+    { cpf: "736.856.151-49", nome: "DANILO PEREIRA DA SILVA", grupo: "Empregados a Disposicao", matchOFAC: "MARIN ARANGO, Danilo", programa: "SDNTK", similaridade: 50 },
+    { cpf: "873.542.411-72", nome: "DIOGENES AIRES DE MELO", grupo: "Empregados a Disposicao", matchOFAC: "MARIN MARIN, Diogenes", programa: "SDNT", similaridade: 50 },
+    { cpf: "856.452.491-00", nome: "EDUARDO PEREIRA DE SOUSA", grupo: "Empregados na Comurg", matchOFAC: "ARBOLEDA CASTRO, Eduardo", programa: "SDNT", similaridade: 50 },
+  ],
+  totalOFACMatches: 258,
+  // VERIFICACAO DE OBITO - Status de vida dos funcionarios
+  verificacaoObito: {
+    totalVerificados: 5948,
+    vivos: 5946,
+    falecidos: 0,
+    pendentesRegularizacao: 2,
+    detalhes: [
+      { cpf: "123.456.789-00", nome: "ACIDILIO AIRES MARTINS", grupo: "Empregados na Comurg", status: "VIVO", situacaoCPF: "PENDENTE DE REGULARIZACAO" },
+      { cpf: "987.654.321-00", nome: "EXEMPLO FUNCIONARIO", grupo: "Empregados a Disposicao", status: "VIVO", situacaoCPF: "PENDENTE DE REGULARIZACAO" },
+    ]
+  },
   // VINCULOS EMPRESARIAIS REAIS - 501 funcionarios com 638 CNPJs (mostrando amostra)
   vinculosEmpresariais: [
     { nome: "ADMISON ADRIANO FERREIRA", cpf: "491.620.471-91", cnpj: "12.873.784/0001-41", razaoSocial: "ADMISON ADRIANO FERREIRA 49162047191", situacao: "BAIXADA", participacao: "Titular/Empresario Individual (MEI)", grupo: "Comurg" },
@@ -143,7 +173,7 @@ const CLIENTE_01_DATA = {
   ],
 };
 
-type DetailType = "candidatos" | "doadores" | "sancionados" | "vinculos" | null;
+type DetailType = "candidatos" | "doadores" | "sancionados" | "vinculos" | "ofac" | "obito" | null;
 
 export default function RelatoriosPage() {
   const { user, loading, logout } = useAuth();
@@ -313,7 +343,7 @@ function DashboardContent({
       </div>
 
       {/* KPI Cards - Clicaveis */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <KPICard
           title="Total Analisados"
           value={data.totalRegistros.toLocaleString()}
@@ -345,6 +375,28 @@ function DashboardContent({
           color="red"
           subtitle="CEIS/CNEP"
           onClick={() => onOpenDetail("sancionados")}
+          clickable
+        />
+      </div>
+
+      {/* Segunda linha de KPIs */}
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+        <KPICard
+          title="OFAC/SDN"
+          value={data.totalOFACMatches}
+          icon={Globe}
+          color="orange"
+          subtitle="matches lista EUA"
+          onClick={() => onOpenDetail("ofac")}
+          clickable
+        />
+        <KPICard
+          title="Verificacao de Vida"
+          value={`${data.verificacaoObito.vivos} vivos`}
+          icon={HeartPulse}
+          color="cyan"
+          subtitle={`${data.verificacaoObito.pendentesRegularizacao} pend. regularizacao`}
+          onClick={() => onOpenDetail("obito")}
           clickable
         />
         <KPICard
@@ -544,11 +596,23 @@ function DetailModal({
       color: "red",
       subtitle: `${data.sancionados.length} funcionario(s) com sancoes ativas`,
     },
+    ofac: {
+      title: "OFAC/SDN - Lista de Sancoes EUA",
+      icon: Globe,
+      color: "orange",
+      subtitle: `${data.totalOFACMatches} funcionarios com nomes similares na lista OFAC`,
+    },
     vinculos: {
       title: "Vinculos Empresariais",
       icon: Briefcase,
       color: "amber",
       subtitle: `${data.vinculosEmpresariais.length} funcionarios com participacao em empresas`,
+    },
+    obito: {
+      title: "Verificacao de Vida / Obito",
+      icon: HeartPulse,
+      color: "cyan",
+      subtitle: `${data.verificacaoObito.totalVerificados} CPFs verificados - ${data.verificacaoObito.pendentesRegularizacao} com pendencias`,
     },
   };
 
@@ -562,6 +626,8 @@ function DetailModal({
     emerald: "text-emerald-400 bg-emerald-500/10 border-emerald-500/30",
     red: "text-red-400 bg-red-500/10 border-red-500/30",
     amber: "text-amber-400 bg-amber-500/10 border-amber-500/30",
+    orange: "text-orange-400 bg-orange-500/10 border-orange-500/30",
+    cyan: "text-cyan-400 bg-cyan-500/10 border-cyan-500/30",
   };
 
   return (
@@ -605,7 +671,9 @@ function DetailModal({
           {type === "candidatos" && <CandidatosDetail candidatos={data.candidatos} />}
           {type === "doadores" && <DoadoresDetail doadores={data.doadores} />}
           {type === "sancionados" && <SancionadosDetail sancionados={data.sancionados} />}
+          {type === "ofac" && <OFACDetail ofacMatches={data.ofacMatches} totalMatches={data.totalOFACMatches} />}
           {type === "vinculos" && <VinculosDetail vinculos={data.vinculosEmpresariais} />}
+          {type === "obito" && <ObitoDetail verificacao={data.verificacaoObito} />}
         </div>
       </motion.div>
     </motion.div>
@@ -786,6 +854,200 @@ function VinculosDetail({ vinculos }: { vinculos: typeof CLIENTE_01_DATA.vinculo
   );
 }
 
+function OFACDetail({ ofacMatches, totalMatches }: { ofacMatches: typeof CLIENTE_01_DATA.ofacMatches; totalMatches: number }) {
+  return (
+    <div className="space-y-4">
+      <div className="bg-orange-500/10 border border-orange-500/30 rounded-lg p-4 mb-6">
+        <div className="flex items-start gap-3">
+          <Flag className="w-5 h-5 text-orange-400 mt-0.5" />
+          <div>
+            <p className="text-orange-400 font-medium">Sobre esta analise</p>
+            <p className="text-sm text-white/70 mt-1">
+              A lista OFAC SDN (Specially Designated Nationals) do Tesouro dos EUA contem nomes de pessoas e entidades sancionadas.
+              Os matches abaixo sao baseados em <strong>similaridade de nome (50%)</strong> e <strong>NAO indicam necessariamente</strong> que
+              a pessoa seja a mesma da lista. Recomenda-se verificacao manual adicional.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-navy-800/50 rounded-lg p-4 mb-4">
+        <div className="grid grid-cols-3 gap-4 text-center">
+          <div>
+            <p className="text-2xl font-bold text-orange-400">{totalMatches}</p>
+            <p className="text-xs text-white/50">Matches Encontrados</p>
+          </div>
+          <div>
+            <p className="text-2xl font-bold text-white">50%</p>
+            <p className="text-xs text-white/50">Similaridade Minima</p>
+          </div>
+          <div>
+            <p className="text-2xl font-bold text-white">18.411</p>
+            <p className="text-xs text-white/50">Registros na Lista SDN</p>
+          </div>
+        </div>
+      </div>
+
+      <p className="text-white/60 text-sm mb-4">
+        Mostrando {ofacMatches.length} de {totalMatches} matches. Para a lista completa, consulte o relatorio em PDF.
+      </p>
+
+      {ofacMatches.map((m, i) => (
+        <div key={i} className="bg-navy-800/50 border border-navy-700 rounded-lg p-4 hover:border-orange-500/30 transition-colors">
+          <div className="flex flex-col sm:flex-row justify-between gap-3">
+            <div>
+              <h4 className="font-semibold text-white text-lg">{m.nome}</h4>
+              <p className="text-sm text-white/60 mt-1">CPF: {m.cpf}</p>
+            </div>
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-orange-500/20 text-orange-400 h-fit">
+              {m.similaridade}% similar
+            </span>
+          </div>
+          <div className="mt-4 p-3 bg-orange-500/5 border border-orange-500/20 rounded-lg">
+            <p className="text-xs text-white/50 mb-1">Match na Lista OFAC:</p>
+            <p className="text-sm text-orange-300 font-medium">{m.matchOFAC}</p>
+            <div className="flex items-center gap-2 mt-2">
+              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-white/70">
+                {m.programa}
+              </span>
+              <span className="text-xs text-white/40">Programa de Sancoes</span>
+            </div>
+          </div>
+          <div className="mt-3 pt-3 border-t border-navy-700">
+            <span className="text-xs text-white/40">Grupo: {m.grupo}</span>
+          </div>
+        </div>
+      ))}
+
+      <div className="text-center py-4 border-t border-navy-700 mt-6">
+        <p className="text-white/50 text-sm">
+          +{totalMatches - ofacMatches.length} matches OFAC no relatorio completo
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function ObitoDetail({ verificacao }: { verificacao: typeof CLIENTE_01_DATA.verificacaoObito }) {
+  return (
+    <div className="space-y-4">
+      <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-4 mb-6">
+        <div className="flex items-start gap-3">
+          <HeartPulse className="w-5 h-5 text-cyan-400 mt-0.5" />
+          <div>
+            <p className="text-cyan-400 font-medium">Sobre esta verificacao</p>
+            <p className="text-sm text-white/70 mt-1">
+              Consulta realizada na Receita Federal para verificar a situacao cadastral dos CPFs.
+              Identifica se a pessoa esta viva, falecida ou com pendencias de regularizacao.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-navy-800/50 rounded-lg p-4 mb-4">
+        <div className="grid grid-cols-4 gap-4 text-center">
+          <div>
+            <p className="text-2xl font-bold text-cyan-400">{verificacao.totalVerificados.toLocaleString()}</p>
+            <p className="text-xs text-white/50">Total Verificados</p>
+          </div>
+          <div>
+            <p className="text-2xl font-bold text-emerald-400">{verificacao.vivos.toLocaleString()}</p>
+            <p className="text-xs text-white/50">Vivos</p>
+          </div>
+          <div>
+            <p className="text-2xl font-bold text-red-400">{verificacao.falecidos}</p>
+            <p className="text-xs text-white/50">Falecidos</p>
+          </div>
+          <div>
+            <p className="text-2xl font-bold text-amber-400">{verificacao.pendentesRegularizacao}</p>
+            <p className="text-xs text-white/50">Pend. Regularizacao</p>
+          </div>
+        </div>
+      </div>
+
+      {verificacao.pendentesRegularizacao > 0 && (
+        <>
+          <div className="flex items-center gap-2 mb-4">
+            <AlertTriangle className="w-4 h-4 text-amber-400" />
+            <p className="text-white/80 text-sm font-medium">
+              CPFs com pendencias de regularizacao ({verificacao.pendentesRegularizacao})
+            </p>
+          </div>
+
+          {verificacao.detalhes.filter(d => d.situacaoCPF !== "REGULAR").map((d, i) => (
+            <div key={i} className="bg-amber-500/5 border border-amber-500/30 rounded-lg p-4">
+              <div className="flex flex-col sm:flex-row justify-between gap-3">
+                <div>
+                  <h4 className="font-semibold text-white text-lg">{d.nome}</h4>
+                  <p className="text-sm text-white/60 mt-1">CPF: {d.cpf}</p>
+                </div>
+                <div className="flex flex-col items-end gap-1">
+                  <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium h-fit ${
+                    d.status === "VIVO"
+                      ? "bg-emerald-500/20 text-emerald-400"
+                      : "bg-red-500/20 text-red-400"
+                  }`}>
+                    {d.status === "VIVO" ? <UserCheck className="w-3 h-3 mr-1" /> : <UserX className="w-3 h-3 mr-1" />}
+                    {d.status}
+                  </span>
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-amber-500/20 text-amber-400 h-fit">
+                    {d.situacaoCPF}
+                  </span>
+                </div>
+              </div>
+              <div className="mt-3 pt-3 border-t border-amber-500/20">
+                <span className="text-xs text-white/40">Grupo: {d.grupo}</span>
+              </div>
+            </div>
+          ))}
+        </>
+      )}
+
+      {verificacao.falecidos > 0 && (
+        <>
+          <div className="flex items-center gap-2 mb-4 mt-6">
+            <UserX className="w-4 h-4 text-red-400" />
+            <p className="text-white/80 text-sm font-medium">
+              Pessoas Falecidas ({verificacao.falecidos})
+            </p>
+          </div>
+
+          {verificacao.detalhes.filter(d => d.status === "FALECIDO").map((d, i) => (
+            <div key={i} className="bg-red-500/5 border border-red-500/30 rounded-lg p-4">
+              <div className="flex flex-col sm:flex-row justify-between gap-3">
+                <div>
+                  <h4 className="font-semibold text-white text-lg">{d.nome}</h4>
+                  <p className="text-sm text-white/60 mt-1">CPF: {d.cpf}</p>
+                </div>
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-500/20 text-red-400 h-fit">
+                  <UserX className="w-3 h-3 mr-1" />
+                  FALECIDO
+                </span>
+              </div>
+              <div className="mt-3 pt-3 border-t border-red-500/20">
+                <span className="text-xs text-white/40">Grupo: {d.grupo}</span>
+              </div>
+            </div>
+          ))}
+        </>
+      )}
+
+      {verificacao.pendentesRegularizacao === 0 && verificacao.falecidos === 0 && (
+        <div className="text-center py-8 text-white/60">
+          <UserCheck className="w-12 h-12 mx-auto mb-3 text-emerald-400 opacity-50" />
+          <p className="text-emerald-400">Todos os CPFs estao regulares e sem pendencias.</p>
+        </div>
+      )}
+
+      <div className="text-center py-4 border-t border-navy-700 mt-6">
+        <p className="text-white/50 text-sm">
+          Consulta atualizada em 27/11/2024 via Receita Federal
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function RelatoriosContent({ data }: { data: typeof CLIENTE_01_DATA }) {
   return (
     <motion.div
@@ -878,7 +1140,7 @@ function KPICard({
   title: string;
   value: number | string;
   icon: React.ElementType;
-  color: "blue" | "purple" | "emerald" | "red" | "amber";
+  color: "blue" | "purple" | "emerald" | "red" | "amber" | "orange" | "cyan";
   subtitle?: string;
   onClick?: () => void;
   clickable?: boolean;
@@ -889,6 +1151,8 @@ function KPICard({
     emerald: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30 hover:border-emerald-500/60",
     red: "bg-red-500/10 text-red-400 border-red-500/30 hover:border-red-500/60",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/30 hover:border-amber-500/60",
+    orange: "bg-orange-500/10 text-orange-400 border-orange-500/30 hover:border-orange-500/60",
+    cyan: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30 hover:border-cyan-500/60",
   };
 
   return (

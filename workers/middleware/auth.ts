@@ -65,6 +65,7 @@ export async function authMiddleware(c: Context<{ Bindings: Env }>, next: Next) 
     c.set('user', user)
     c.set('userId', user.id)
     c.set('firebaseUid', decodedToken.uid)
+    c.set('userEmail', decodedToken.email) // Para isolamento multi-tenant
 
     // Log de auditoria (LGPD)
     await logAuditEvent(c, user.id, 'api_access')
