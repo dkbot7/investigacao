@@ -26,9 +26,8 @@ import {
   BarChart3,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-import { useTenant } from "@/hooks/useTenant";
+import { useUserAccess } from "@/hooks/useUserData";
 import { Button } from "@/components/ui/button";
-import NoAccessScreen from "@/components/dashboard/NoAccessScreen";
 
 interface NavItem {
   label: string;
@@ -39,7 +38,11 @@ interface NavItem {
 }
 
 // Admin emails
-const ADMIN_EMAILS = ["contato@investigaree.com.br"];
+const ADMIN_EMAILS = [
+  "dkbotdani@gmail.com",
+  "ibsenmaciel@gmail.com",
+  "contato@investigaree.com.br"
+];
 
 const navItems: NavItem[] = [
   { label: "Dashboard", href: "/dashboard/relatorios", icon: LayoutDashboard },
@@ -69,7 +72,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const { user, loading: authLoading, logout } = useAuth();
-  const { tenant, hasAccess, loading: tenantLoading } = useTenant();
+  const { userInfo, hasAccess, loading: userLoading } = useUserAccess();
   const router = useRouter();
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -82,7 +85,7 @@ export default function DashboardLayout({
   }, [user, authLoading, router]);
 
   // Loading state
-  if (authLoading || tenantLoading) {
+  if (authLoading || userLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-navy-950 to-navy-900 flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gold-500" />
@@ -95,18 +98,14 @@ export default function DashboardLayout({
     return null;
   }
 
-  // Autenticado mas sem acesso a tenant
-  if (!hasAccess || !tenant) {
-    return (
-      <NoAccessScreen
-        userName={user.displayName || undefined}
-        userEmail={user.email || undefined}
-      />
-    );
-  }
+  // Usuario autenticado SEMPRE tem acesso aos seus proprios dados
+  // Verificar se é admin
+  const isAdmin = user.email && ADMIN_EMAILS.includes(user.email);
 
-  // Criar tenantInfo a partir do tenant da API
-  const tenantInfo = tenant ? { code: tenant.code, name: tenant.name } : null;
+  // Info do usuario para exibir
+  const userDisplayInfo = userInfo?.settings?.empresa_nome
+    ? { name: userInfo.settings.empresa_nome, plano: userInfo.settings.plano }
+    : null;
 
   const isActiveRoute = (href: string) => {
     if (href === "/dashboard/relatorios") {
@@ -130,18 +129,20 @@ export default function DashboardLayout({
           </div>
         </div>
 
-        {/* Tenant Info */}
-        {tenantInfo && (
-          <div className="px-4 py-3 border-b border-navy-800">
-            <div className="bg-navy-800/50 rounded-lg px-3 py-2">
-              <div className="flex items-center gap-2">
-                <Building2 className="w-4 h-4 text-gold-400" />
-                <span className="text-sm font-medium text-white">{tenantInfo.code}</span>
-              </div>
-              <p className="text-xs text-white/50 mt-1">{tenantInfo.name}</p>
+        {/* User Info */}
+        <div className="px-4 py-3 border-b border-navy-800">
+          <div className="bg-navy-800/50 rounded-lg px-3 py-2">
+            <div className="flex items-center gap-2">
+              <Building2 className="w-4 h-4 text-gold-400" />
+              <span className="text-sm font-medium text-white">
+                {userDisplayInfo?.name || "Minha Conta"}
+              </span>
             </div>
+            <p className="text-xs text-white/50 mt-1">
+              Plano: {userDisplayInfo?.plano || "Free"}
+            </p>
           </div>
-        )}
+        </div>
 
         {/* Navigation */}
         <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
@@ -269,17 +270,19 @@ export default function DashboardLayout({
                 </Button>
               </div>
 
-              {tenantInfo && (
-                <div className="px-4 py-3 border-b border-navy-800">
-                  <div className="bg-navy-800/50 rounded-lg px-3 py-2">
-                    <div className="flex items-center gap-2">
-                      <Building2 className="w-4 h-4 text-gold-400" />
-                      <span className="text-sm font-medium text-white">{tenantInfo.code}</span>
-                    </div>
-                    <p className="text-xs text-white/50 mt-1">{tenantInfo.name}</p>
+              <div className="px-4 py-3 border-b border-navy-800">
+                <div className="bg-navy-800/50 rounded-lg px-3 py-2">
+                  <div className="flex items-center gap-2">
+                    <Building2 className="w-4 h-4 text-gold-400" />
+                    <span className="text-sm font-medium text-white">
+                      {userDisplayInfo?.name || "Minha Conta"}
+                    </span>
                   </div>
+                  <p className="text-xs text-white/50 mt-1">
+                    Plano: {userDisplayInfo?.plano || "Free"}
+                  </p>
                 </div>
-              )}
+              </div>
 
               <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
                 {navItems.map((item) => {

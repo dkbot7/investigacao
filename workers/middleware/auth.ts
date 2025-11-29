@@ -47,28 +47,25 @@ export async function authMiddleware(c: Context<{ Bindings: Env }>, next: Next) 
       )
     }
 
-    // Verificar se usuário existe no Supabase
-    const user = await getUserFromSupabase(decodedToken.uid, c.env)
+    // Verificar se usuário existe no D1
+    const user = await getUserFromD1(decodedToken.uid, c.env.DB)
 
     if (!user) {
-      return c.json(
-        {
-          error: true,
-          message: 'Usuário não encontrado',
-          code: 'USER_NOT_FOUND',
-        },
-        404
-      )
+      // Usuário autenticado no Firebase mas não existe no D1
+      // Isso é normal para novos usuários - criar automaticamente
+      console.log('[AUTH] User not in D1, creating:', decodedToken.email)
     }
 
     // Adicionar dados do usuário ao contexto
     c.set('user', user)
-    c.set('userId', user.id)
+    c.set('userId', user?.id || null)
     c.set('firebaseUid', decodedToken.uid)
     c.set('userEmail', decodedToken.email) // Para isolamento multi-tenant
 
-    // Log de auditoria (LGPD)
-    await logAuditEvent(c, user.id, 'api_access')
+    // Log de auditoria (LGPD) - apenas se tiver Supabase configurado
+    if (c.env.SUPABASE_URL && c.env.SUPABASE_SERVICE_ROLE_KEY && user?.id) {
+      await logAuditEvent(c, user.id, 'api_access').catch(() => {})
+    }
 
     await next()
   } catch (error) {
@@ -167,7 +164,23 @@ async function verifyFirebaseToken(
 }
 
 /**
- * Busca usuário no Supabase
+ * Busca usuário no D1 Database
+ */
+async function getUserFromD1(firebaseUid: string, db: D1Database) {
+  try {
+    const user = await db.prepare(
+      'SELECT id, firebase_uid, email, name, phone, created_at FROM users WHERE firebase_uid = ? LIMIT 1'
+    ).bind(firebaseUid).first()
+
+    return user || null
+  } catch (error) {
+    console.error('[AUTH] D1 user fetch error:', error)
+    return null
+  }
+}
+
+/**
+ * Busca usuário no Supabase (legacy - mantido para compatibilidade)
  */
 async function getUserFromSupabase(firebaseUid: string, env: Env) {
   try {

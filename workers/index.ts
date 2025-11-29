@@ -27,6 +27,7 @@ import infosimplesRoutes from './api/consultas-infosimples'
 import transparenciaRoutes from './api/consultas-transparencia'
 import tenantDataRoutes from './api/tenant-data'
 import adminRoutes from './api/admin'
+import userDataRoutes from './api/user-data'
 
 // Types
 export interface Env {
@@ -191,6 +192,7 @@ app.use('/api/user/*', authMiddleware)
 app.use('/api/lgpd/*', authMiddleware)
 app.use('/api/tenant/*', authMiddleware)
 app.use('/api/admin/*', authMiddleware)
+app.use('/api/userdata/*', authMiddleware)
 
 // Reports
 app.route('/api/reports', reportsRoutes)
@@ -209,6 +211,9 @@ app.route('/api/tenant', tenantDataRoutes)
 
 // Admin (gerenciamento de usuários e tenants)
 app.route('/api/admin', adminRoutes)
+
+// User Data (dados individuais do usuario - isolados por user_id)
+app.route('/api/userdata', userDataRoutes)
 
 // ============================================
 // ERROR HANDLING
