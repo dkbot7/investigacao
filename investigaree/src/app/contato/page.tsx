@@ -3,13 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, MessageCircle, Mail, Send, User, FileText, CheckCircle } from "lucide-react";
+import { ArrowLeft, MessageCircle, Mail, Send, User, FileText, CheckCircle, Brain, Shield, Landmark, Scale, Building2, TrendingUp, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import Header from "@/components/landing/Header";
+import Footer from "@/components/landing/Footer";
 
 const EMAIL_IBSEN = "ibsenmaciel@gmail.com";
 const EMAIL_DANI = "kaloidani@gmail.com";
@@ -49,24 +51,36 @@ export default function ContatoPage() {
   };
 
   return (
-    <main className="min-h-screen bg-navy-950">
-      {/* Header */}
-      <header className="bg-navy-900 border-b border-navy-800">
-        <div className="container max-w-6xl mx-auto px-4 py-6">
-          <Link href="/" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition mb-4">
-            <ArrowLeft className="w-4 h-4" />
-            Voltar ao início
-          </Link>
-          <div className="flex items-center gap-3">
-            <MessageCircle className="w-8 h-8 text-primary-400" />
-            <h1 className="text-2xl font-bold text-white">Contato</h1>
+    <>
+      <Header />
+      <main className="min-h-screen bg-navy-950 pt-20">
+        {/* Hero Section */}
+        <section className="py-16 bg-gradient-to-br from-navy-900 to-navy-950">
+          <div className="container max-w-6xl mx-auto px-4">
+            <div className="text-center space-y-4">
+              <Badge variant="outline" className="text-gold-400 border-gold-500/30 bg-gold-500/10">
+                Fale Conosco
+              </Badge>
+              <h1 className="text-4xl md:text-5xl font-bold text-white">
+                Investigação com IA em Escala
+              </h1>
+              <p className="text-xl text-navy-200 max-w-3xl mx-auto">
+                <span className="text-gold-400">+100 mil registros</span> processados por investigação.
+                Fale com nossa equipe especializada.
+              </p>
+              <div className="flex flex-wrap justify-center gap-2 pt-4">
+                <Badge className="bg-navy-800 text-white"><Landmark className="w-3 h-3 mr-1" />Políticos</Badge>
+                <Badge className="bg-navy-800 text-white"><Scale className="w-3 h-3 mr-1" />Divórcios</Badge>
+                <Badge className="bg-navy-800 text-white"><Building2 className="w-3 h-3 mr-1" />Empresas</Badge>
+                <Badge className="bg-navy-800 text-white"><TrendingUp className="w-3 h-3 mr-1" />Investidores</Badge>
+                <Badge className="bg-navy-800 text-white"><Home className="w-3 h-3 mr-1" />Famílias</Badge>
+              </div>
+            </div>
           </div>
-          <p className="text-white/60 mt-2">Escolha a melhor forma de falar conosco</p>
-        </div>
-      </header>
+        </section>
 
-      {/* Content */}
-      <div className="container max-w-6xl mx-auto px-4 py-12">
+        {/* Content */}
+        <div className="container max-w-6xl mx-auto px-4 py-12">
 
         {/* Options Grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
@@ -138,11 +152,16 @@ export default function ContatoPage() {
               </div>
               <CardTitle className="text-white">Dani Kaloi</CardTitle>
               <CardDescription className="text-white/60">
-                Fundadora & Investigadora
+                Fundadora & Arquiteta de IA
               </CardDescription>
-              <Badge variant="outline" className="mt-2 text-xs border-gold-500/50 text-gold-400">
-                OSINT & Due Diligence
-              </Badge>
+              <div className="flex flex-wrap justify-center gap-1 mt-2">
+                <Badge variant="outline" className="text-xs border-gold-500/50 text-gold-400">
+                  <Brain className="w-3 h-3 mr-1" />GPT-5
+                </Badge>
+                <Badge variant="outline" className="text-xs border-gold-500/50 text-gold-400">
+                  Claude Opus
+                </Badge>
+              </div>
             </CardHeader>
             <CardContent className="text-center">
               <a
@@ -273,21 +292,9 @@ export default function ContatoPage() {
           </CardContent>
         </Card>
 
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-navy-900 border-t border-navy-800 py-8 mt-12">
-        <div className="container max-w-6xl mx-auto px-4 text-center">
-          <p className="text-white/60 text-sm">
-            © 2025 investigaree. Todos os direitos reservados.
-          </p>
-          <div className="flex justify-center gap-6 mt-4 text-sm">
-            <Link href="/privacidade" className="text-white/60 hover:text-primary-400 transition">Política de Privacidade</Link>
-            <Link href="/termos" className="text-white/60 hover:text-primary-400 transition">Termos de Uso</Link>
-            <Link href="/cookies" className="text-white/60 hover:text-primary-400 transition">Política de Cookies</Link>
-          </div>
         </div>
-      </footer>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }
