@@ -21,7 +21,8 @@ import {
   Home, Building2, TrendingUp, Shield, Users, Search,
   FileSearch, AlertCircle, Clock, Phone, CheckCircle2,
   ArrowRight, Info, X, MessageCircle, Target, Lock,
-  Eye, Zap, FileText, UserCheck, ShieldCheck, AlertTriangle
+  Eye, Zap, FileText, UserCheck, ShieldCheck, AlertTriangle,
+  Landmark, Heart, Vote, Scale
 } from "lucide-react";
 
 // Interface do serviço
@@ -880,6 +881,498 @@ const SERVICOS_EMPRESARIAIS: Servico[] = [
   }
 ];
 
+// Serviços para Setor Político
+const SERVICOS_POLITICOS: Servico[] = [
+  {
+    id: "due-diligence-candidatos",
+    nome: "Due Diligence de Candidatos",
+    descricao: "Verificação em massa de todos os candidatos do partido. Compliance eleitoral + antecedentes + dívidas. Evite escândalos.",
+    icon: Users,
+    destaque: true,
+    preco: "R$ 297/candidato (pacote 100+) | R$ 497/candidato (avulso)",
+    caracteristicas: [
+      "Processamento de +1.000 candidatos/dia com IA",
+      "Antecedentes criminais em 27 estados + federal",
+      "Dívidas fiscais, trabalhistas e protestos",
+      "Histórico de candidaturas e filiações TSE",
+      "Score de risco eleitoral automatizado",
+      "Relatório consolidado por região"
+    ],
+    formato: "Por candidato (a partir de R$ 297)",
+    idealPara: "Partidos políticos, coligações e candidaturas",
+    detalhes: {
+      oqueFazemos: [
+        "Processamento em massa de milhares de candidatos com GPT-5 e Claude Opus 4.5",
+        "Verificação de antecedentes criminais em todas as esferas",
+        "Análise de dívidas fiscais, trabalhistas e protestos",
+        "Cruzamento com bases do TSE (candidaturas, doações, filiações)",
+        "Identificação automática de red flags com IA generativa",
+        "Score de risco eleitoral para cada candidato"
+      ],
+      comoFunciona: [
+        "Upload de planilha com CPFs dos candidatos (Excel, CSV)",
+        "Processamento automatizado em 15+ bases de dados",
+        "Análise de IA para identificação de padrões de risco",
+        "Dashboard em tempo real com status de cada candidato",
+        "Entrega de relatório consolidado em 48-72h"
+      ],
+      entregaveis: [
+        "Dashboard de Candidatos com score de risco",
+        "Relatório individual por candidato",
+        "Consolidado por região/estado",
+        "Lista de Red Flags críticos para decisão",
+        "Recomendação: Aprovar / Reprovar / Investigar mais"
+      ],
+      prazo: "48-72h para até 500 candidatos | 5-7 dias para 1.000+"
+    }
+  },
+  {
+    id: "verificacao-servidores-publicos",
+    nome: "Auditoria de Servidores Públicos",
+    descricao: "Verificação de folha de pagamento completa. Funcionários fantasmas, óbitos, acúmulos ilegais, vínculos suspeitos.",
+    icon: FileSearch,
+    preco: "R$ 97/servidor (pacote 1.000+) | R$ 197/servidor (até 500)",
+    caracteristicas: [
+      "Cruzamento com base de óbitos DATASUS",
+      "Verificação de acúmulos de cargo ilegais",
+      "Identificação de vínculos societários suspeitos",
+      "Análise de endereços incompatíveis",
+      "Detecção de funcionários fantasmas",
+      "Relatório para TCE/TCU"
+    ],
+    formato: "Por servidor (a partir de R$ 97)",
+    detalhes: {
+      oqueFazemos: [
+        "Cruzamento de folha com base de óbitos DATASUS (SIM)",
+        "Verificação de acúmulos de cargo em outras prefeituras/estados",
+        "Análise de vínculos societários em empresas contratadas",
+        "Identificação de endereços incompatíveis ou inexistentes",
+        "Detecção de padrões de fraude com IA generativa",
+        "Preparação de relatório com padrão TCE/TCU"
+      ],
+      comoFunciona: [
+        "Upload da folha de pagamento (Excel, CSV, PDF)",
+        "Processamento em bases governamentais (DATASUS, SIAPE, CNIS)",
+        "Cruzamento com Portal da Transparência",
+        "Análise de padrões suspeitos com GPT-5",
+        "Dashboard com achados categorizados por gravidade"
+      ],
+      entregaveis: [
+        "Dashboard de Auditoria com filtros",
+        "Lista de Óbitos identificados na folha",
+        "Lista de Acúmulos Ilegais",
+        "Vínculos Societários Suspeitos",
+        "Relatório formatado para TCE/TCU"
+      ],
+      prazo: "5-10 dias úteis para até 10.000 servidores"
+    }
+  },
+  {
+    id: "verificacao-filiados",
+    nome: "Verificação de Filiados",
+    descricao: "Análise completa da base de filiados do partido. Óbitos, duplicidades, filiações conflitantes, reputação.",
+    icon: Users,
+    preco: "R$ 47/filiado (pacote 10.000+) | R$ 97/filiado (até 5.000)",
+    caracteristicas: [
+      "Verificação de óbitos na base de filiados",
+      "Detecção de filiações conflitantes (outros partidos)",
+      "Análise de antecedentes criminais",
+      "Identificação de duplicidades e inconsistências",
+      "Cruzamento com doadores de campanha"
+    ],
+    formato: "Por filiado (a partir de R$ 47)",
+    detalhes: {
+      oqueFazemos: [
+        "Cruzamento com base de óbitos DATASUS",
+        "Verificação de filiação em outros partidos (TSE)",
+        "Análise de antecedentes criminais básicos",
+        "Identificação de CPFs duplicados ou inválidos",
+        "Cruzamento com histórico de doações de campanha"
+      ],
+      comoFunciona: [
+        "Upload da base de filiados (Excel, CSV)",
+        "Processamento automatizado em bases do TSE",
+        "Cruzamento com DATASUS e bases criminais",
+        "Geração de relatório de inconsistências",
+        "Dashboard interativo com filtros por região"
+      ],
+      entregaveis: [
+        "Dashboard de Filiados com status",
+        "Lista de Óbitos identificados",
+        "Lista de Filiações Conflitantes",
+        "Duplicidades e CPFs inválidos",
+        "Relatório consolidado por diretório"
+      ],
+      prazo: "3-5 dias para até 50.000 filiados"
+    }
+  },
+  {
+    id: "verificacao-doadores-campanha",
+    nome: "Análise de Doadores de Campanha",
+    descricao: "Verificação de idoneidade de doadores. Compliance com TSE, CPCs sancionados, empresas impedidas (CEIS/CNEP).",
+    icon: AlertTriangle,
+    preco: "R$ 197/doador | R$ 97/doador (pacote 100+)",
+    caracteristicas: [
+      "Verificação de sanções CEIS/CNEP/CEAF",
+      "Análise de CPCs e empresas impedidas",
+      "Identificação de laranjas e testas-de-ferro",
+      "Cruzamento com dívida ativa da União",
+      "Histórico de doações em eleições anteriores"
+    ],
+    formato: "Por doador (a partir de R$ 97)",
+    detalhes: {
+      oqueFazemos: [
+        "Verificação de sanções no Portal da Transparência (CEIS, CNEP, CEAF)",
+        "Análise de empresas impedidas de contratar com o governo",
+        "Identificação de padrões de doações suspeitas (laranjas)",
+        "Cruzamento com dívida ativa da União (SERPRO)",
+        "Histórico completo de doações no TSE"
+      ],
+      comoFunciona: [
+        "Lista de doadores (CPF ou CNPJ)",
+        "Processamento em bases governamentais",
+        "Análise de padrões com IA generativa",
+        "Score de risco por doador",
+        "Relatório para prestação de contas"
+      ],
+      entregaveis: [
+        "Dashboard de Doadores com score de risco",
+        "Lista de Sancionados identificados",
+        "Padrões suspeitos de doações",
+        "Relatório para prestação de contas TSE",
+        "Recomendações de compliance"
+      ],
+      prazo: "48-72h para até 500 doadores"
+    }
+  },
+  {
+    id: "monitoramento-opositores",
+    nome: "Inteligência Competitiva Política",
+    descricao: "Monitoramento de oposição, candidatos adversários, movimentos políticos. Alertas em tempo real.",
+    icon: Eye,
+    preco: "R$ 4.997/mês (5 alvos) | R$ 997/alvo adicional",
+    caracteristicas: [
+      "Monitoramento de redes sociais e imprensa",
+      "Alertas de movimentações e declarações",
+      "Análise de alianças e articulações",
+      "Dossiês atualizados de adversários",
+      "Relatórios semanais de inteligência"
+    ],
+    formato: "Mensal (R$ 4.997 para 5 alvos)",
+    detalhes: {
+      oqueFazemos: [
+        "Monitoramento 24/7 de alvos políticos definidos",
+        "Análise de redes sociais, imprensa e fontes abertas",
+        "Identificação de articulações e alianças emergentes",
+        "Dossiês atualizados de cada adversário",
+        "Alertas em tempo real de declarações e movimentos"
+      ],
+      comoFunciona: [
+        "Definição dos alvos a serem monitorados",
+        "Configuração de alertas por tipo de evento",
+        "Monitoramento automatizado com IA",
+        "Análise humana de eventos relevantes",
+        "Relatórios semanais com insights estratégicos"
+      ],
+      entregaveis: [
+        "Dashboard de Monitoramento Político",
+        "Alertas em tempo real via WhatsApp/Email",
+        "Dossiês atualizados de cada alvo",
+        "Relatório Semanal de Inteligência",
+        "Análise de Cenários Políticos"
+      ],
+      prazo: "Setup em 48h, monitoramento contínuo"
+    }
+  },
+  {
+    id: "compliance-eleitoral-completo",
+    nome: "Programa de Compliance Eleitoral",
+    descricao: "Consultoria completa de compliance para campanhas. Prevenção de irregularidades, treinamento de equipe, auditoria contínua.",
+    icon: Shield,
+    preco: "R$ 29.997/campanha (vereador) | R$ 49.997 (prefeito) | R$ 99.997 (governador/senador)",
+    caracteristicas: [
+      "Auditoria inicial de compliance",
+      "Verificação de toda a equipe de campanha",
+      "Monitoramento de prestação de contas",
+      "Treinamento de coordenadores",
+      "Suporte durante toda a campanha"
+    ],
+    formato: "Por campanha (a partir de R$ 29.997)",
+    idealPara: "Candidatos e partidos que valorizam compliance",
+    detalhes: {
+      oqueFazemos: [
+        "Auditoria completa de compliance eleitoral inicial",
+        "Verificação de background de toda a equipe de campanha",
+        "Monitoramento contínuo de prestação de contas",
+        "Treinamento de coordenadores sobre regras eleitorais",
+        "Suporte e consultoria durante toda a campanha"
+      ],
+      comoFunciona: [
+        "Diagnóstico inicial da estrutura de campanha",
+        "Verificação de todos os envolvidos (100+ pessoas)",
+        "Implementação de processos de compliance",
+        "Treinamento presencial/online de equipe",
+        "Acompanhamento até prestação de contas final"
+      ],
+      entregaveis: [
+        "Manual de Compliance Eleitoral",
+        "Relatório de Background da Equipe",
+        "Dashboard de Prestação de Contas",
+        "Certificado de Treinamento",
+        "Suporte WhatsApp durante campanha"
+      ],
+      prazo: "Setup em 7 dias, acompanhamento até fim da campanha"
+    }
+  }
+];
+
+// Serviços para Proteção em Divórcios
+const SERVICOS_DIVORCIOS: Servico[] = [
+  {
+    id: "investigacao-patrimonial-divorcio",
+    nome: "Investigação Patrimonial Pré-Divórcio",
+    descricao: "Levantamento completo de bens do cônjuge. Imóveis, veículos, empresas, contas. 70% dos divórcios têm ocultação patrimonial.",
+    icon: Search,
+    destaque: true,
+    preco: "R$ 9.997 (standard) | R$ 19.997 (completo com empresas)",
+    caracteristicas: [
+      "Levantamento de imóveis em 27 estados",
+      "Veículos em nome próprio e de terceiros",
+      "Participações societárias e empresas",
+      "Contas bancárias e investimentos",
+      "Bens no exterior (se aplicável)",
+      "Movimentações suspeitas recentes"
+    ],
+    formato: "Por investigação (R$ 9.997 a R$ 19.997)",
+    idealPara: "Mulheres em processo de divórcio ou planejando separação",
+    detalhes: {
+      oqueFazemos: [
+        "Levantamento completo de imóveis em cartórios de todos os estados",
+        "Verificação de veículos (próprios e em nome de terceiros/laranjas)",
+        "Mapeamento de TODAS as empresas e participações societárias",
+        "Identificação de movimentações patrimoniais suspeitas recentes",
+        "Análise de padrão de vida vs. patrimônio declarado"
+      ],
+      comoFunciona: [
+        "Briefing confidencial sobre a situação conjugal",
+        "Pesquisa em cartórios, juntas comerciais e bases de dados",
+        "Análise de movimentações dos últimos 2 anos",
+        "Identificação de bens ocultos e transferências suspeitas",
+        "Entrega de dossiê completo para advogado"
+      ],
+      entregaveis: [
+        "Dossiê Patrimonial Completo (50+ páginas)",
+        "Lista de Imóveis com matrículas e valores estimados",
+        "Lista de Veículos (próprios e suspeitos)",
+        "Mapa Societário de empresas",
+        "Movimentações Suspeitas documentadas",
+        "Orientações para advogado sobre partilha"
+      ],
+      prazo: "10-15 dias úteis",
+      casos: [
+        "Identificamos R$ 3,2M em imóveis não declarados em nome de empresa laranja",
+        "Encontramos 4 veículos de luxo em nome de parentes próximos"
+      ]
+    }
+  },
+  {
+    id: "localizacao-bens-ocultos",
+    nome: "Localização de Bens Ocultos",
+    descricao: "Encontre patrimônio escondido em nome de laranjas, empresas e familiares. Especialistas em narcisistas e golpistas.",
+    icon: Eye,
+    preco: "R$ 14.997 (nacional) | R$ 29.997 (internacional)",
+    caracteristicas: [
+      "Rastreamento de transferências recentes",
+      "Identificação de laranjas e testas-de-ferro",
+      "Análise de empresas de fachada",
+      "Verificação de bens em nome de familiares",
+      "Patrimônio no exterior (Panamá, Uruguai, EUA)"
+    ],
+    formato: "Por investigação (R$ 14.997 a R$ 29.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Rastreamento de todas as transferências patrimoniais dos últimos 5 anos",
+        "Identificação de laranjas (pessoas que receberam bens suspeitos)",
+        "Análise de empresas de fachada criadas para esconder patrimônio",
+        "Verificação de bens em nome de familiares (pais, irmãos, filhos)",
+        "Pesquisa de patrimônio no exterior quando há indícios"
+      ],
+      comoFunciona: [
+        "Análise do patrimônio conhecido e padrão de vida",
+        "Rastreamento reverso de transferências",
+        "Investigação de rede de relacionamentos (familiares, sócios)",
+        "Pesquisa em bases internacionais (se aplicável)",
+        "Documentação de todas as evidências para uso judicial"
+      ],
+      entregaveis: [
+        "Relatório de Bens Ocultos encontrados",
+        "Mapa de Transferências Suspeitas",
+        "Lista de Laranjas identificados com vínculos",
+        "Empresas de Fachada documentadas",
+        "Evidências formatadas para petição judicial"
+      ],
+      prazo: "15-21 dias úteis (nacional) | 30+ dias (internacional)"
+    }
+  },
+  {
+    id: "perfil-comportamental-conjuge",
+    nome: "Perfil Comportamental do Cônjuge",
+    descricao: "Análise de padrões narcisistas, manipuladores e abusivos. Documentação para processo de guarda e alienação parental.",
+    icon: UserCheck,
+    preco: "R$ 7.997 (análise) | R$ 14.997 (com monitoramento 30 dias)",
+    caracteristicas: [
+      "Análise de padrões de comportamento online",
+      "Identificação de traços narcisistas/manipuladores",
+      "Documentação de comportamentos abusivos",
+      "Monitoramento de redes sociais",
+      "Relatório para processo de guarda"
+    ],
+    formato: "Por análise (R$ 7.997 a R$ 14.997)",
+    detalhes: {
+      oqueFazemos: [
+        "Análise profunda de comportamento em redes sociais",
+        "Identificação de padrões narcisistas e manipuladores",
+        "Documentação de comportamentos abusivos ou inadequados",
+        "Análise de comunicações disponíveis",
+        "Preparação de relatório para uso em processo de guarda"
+      ],
+      comoFunciona: [
+        "Coleta de informações disponíveis sobre o cônjuge",
+        "Análise de comportamento online com IA",
+        "Identificação de padrões de acordo com DSM-5",
+        "Documentação de evidências relevantes",
+        "Entrega de relatório técnico"
+      ],
+      entregaveis: [
+        "Relatório de Perfil Comportamental",
+        "Evidências de Comportamentos Inadequados",
+        "Análise de Risco para Guarda",
+        "Timeline de eventos documentados",
+        "Orientações para advogado"
+      ],
+      prazo: "7-14 dias úteis"
+    }
+  },
+  {
+    id: "monitoramento-movimentacoes",
+    nome: "Monitoramento de Movimentações",
+    descricao: "Alertas em tempo real de transferências de bens, abertura de empresas, viagens. Evite surpresas durante o processo.",
+    icon: AlertCircle,
+    preco: "R$ 2.997/mês",
+    caracteristicas: [
+      "Alertas de alterações societárias",
+      "Monitoramento de cartórios de imóveis",
+      "Alertas de transferências de veículos",
+      "Viagens internacionais (quando possível)",
+      "Abertura de novas empresas"
+    ],
+    formato: "Mensal (R$ 2.997/mês)",
+    detalhes: {
+      oqueFazemos: [
+        "Monitoramento contínuo de alterações societárias do cônjuge",
+        "Alertas de transferências em cartórios de imóveis",
+        "Acompanhamento de transferências de veículos no Detran",
+        "Detecção de abertura de novas empresas",
+        "Alertas de movimentações suspeitas"
+      ],
+      comoFunciona: [
+        "Cadastro do cônjuge e seus dados no sistema",
+        "Configuração de alertas por tipo de evento",
+        "Monitoramento automatizado 24/7",
+        "Alertas imediatos via WhatsApp quando detectada movimentação",
+        "Relatório mensal consolidado"
+      ],
+      entregaveis: [
+        "Dashboard de Monitoramento em tempo real",
+        "Alertas instantâneos via WhatsApp",
+        "Relatório Mensal de Movimentações",
+        "Documentação de cada evento detectado"
+      ],
+      prazo: "Setup em 24h, monitoramento contínuo"
+    }
+  },
+  {
+    id: "dossie-para-partilha",
+    nome: "Dossiê Completo para Partilha",
+    descricao: "Pacote completo: patrimônio + bens ocultos + perfil comportamental. Tudo que seu advogado precisa para a partilha justa.",
+    icon: FileText,
+    preco: "R$ 29.997 (standard) | R$ 49.997 (premium com internacional)",
+    caracteristicas: [
+      "Investigação patrimonial completa",
+      "Localização de bens ocultos",
+      "Perfil comportamental do cônjuge",
+      "Monitoramento de 60 dias incluso",
+      "Suporte ao advogado durante processo"
+    ],
+    formato: "Pacote completo (R$ 29.997 a R$ 49.997)",
+    idealPara: "Divórcios de alto patrimônio ou com suspeita de ocultação",
+    detalhes: {
+      oqueFazemos: [
+        "Investigação patrimonial completa (imóveis, veículos, empresas)",
+        "Localização de bens ocultos e laranjas",
+        "Análise de perfil comportamental do cônjuge",
+        "Monitoramento de movimentações por 60 dias",
+        "Suporte técnico ao advogado durante todo o processo"
+      ],
+      comoFunciona: [
+        "Reunião inicial para entender a situação completa",
+        "Execução paralela de todas as frentes de investigação",
+        "Apresentação de relatório preliminar em 15 dias",
+        "Relatório final completo em 30 dias",
+        "Suporte ao advogado até conclusão do processo"
+      ],
+      entregaveis: [
+        "Dossiê Patrimonial Completo (100+ páginas)",
+        "Relatório de Bens Ocultos",
+        "Perfil Comportamental",
+        "Dashboard de Monitoramento (60 dias)",
+        "Suporte ao advogado por email/WhatsApp",
+        "Atualização do dossiê quando necessário"
+      ],
+      prazo: "Entrega preliminar em 15 dias, final em 30 dias"
+    }
+  },
+  {
+    id: "protecao-contra-alienacao",
+    nome: "Proteção Contra Alienação Parental",
+    descricao: "Documentação de comportamentos de alienação parental. Evidências para guarda e regime de convivência.",
+    icon: Shield,
+    preco: "R$ 9.997 (análise) | R$ 4.997/mês (monitoramento)",
+    caracteristicas: [
+      "Análise de comunicações com os filhos",
+      "Documentação de manipulações",
+      "Monitoramento de redes sociais",
+      "Relatório para processo de guarda",
+      "Orientações para psicólogo judicial"
+    ],
+    formato: "Por análise ou mensal",
+    detalhes: {
+      oqueFazemos: [
+        "Análise de comunicações entre cônjuge e filhos (quando disponível)",
+        "Documentação de comportamentos de alienação parental",
+        "Monitoramento de postagens em redes sociais",
+        "Identificação de padrões de manipulação",
+        "Preparação de relatório técnico para processo de guarda"
+      ],
+      comoFunciona: [
+        "Coleta de evidências disponíveis",
+        "Análise técnica de comportamentos",
+        "Categorização conforme Lei 12.318/2010",
+        "Documentação cronológica de eventos",
+        "Entrega de relatório para advogado e psicólogo"
+      ],
+      entregaveis: [
+        "Relatório de Alienação Parental",
+        "Timeline de eventos documentados",
+        "Evidências categorizadas",
+        "Orientações para psicólogo judicial",
+        "Sugestões de quesitos para perícia"
+      ],
+      prazo: "10-15 dias úteis"
+    }
+  }
+];
+
 const SERVICOS_INVESTIMENTOS: Servico[] = [
   {
     id: "checagem-rapida-founder",
@@ -1444,7 +1937,7 @@ function ServicosContent() {
 
   useEffect(() => {
     const tab = searchParams.get("tab");
-    if (tab && ["familiar", "empresarial", "investimentos"].includes(tab)) {
+    if (tab && ["familiar", "empresarial", "investimentos", "politicos", "divorcios"].includes(tab)) {
       setActiveTab(tab);
     }
   }, [searchParams]);
@@ -1457,6 +1950,10 @@ function ServicosContent() {
         return SERVICOS_EMPRESARIAIS;
       case "investimentos":
         return SERVICOS_INVESTIMENTOS;
+      case "politicos":
+        return SERVICOS_POLITICOS;
+      case "divorcios":
+        return SERVICOS_DIVORCIOS;
       default:
         return [];
     }
@@ -1473,58 +1970,58 @@ function ServicosContent() {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-neutral-950">
+    <main className="min-h-screen bg-white dark:bg-navy-950">
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-950">
+        <section className="py-20 bg-gradient-to-br from-navy-50 to-navy-100 dark:from-navy-900 dark:to-navy-950">
           <div className="container max-w-7xl px-4">
             <div className="text-center space-y-6">
-              <Badge variant="outline" className="text-primary-600 dark:text-primary-400">
+              <Badge variant="outline" className="text-gold-600 dark:text-gold-400 border-gold-300 dark:border-gold-600">
                 Servicos Especializados
               </Badge>
-              <h1 className="text-5xl md:text-6xl font-bold text-neutral-900 dark:text-neutral-100">
+              <h1 className="text-5xl md:text-6xl font-bold text-navy-900 dark:text-white">
                 Investigacao com IA em Escala
               </h1>
-              <p className="text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto">
-                Processamos <strong>+100 mil registros</strong> com GPT-5, Claude Opus 4.5 e Gemini 3.
+              <p className="text-xl text-navy-600 dark:text-navy-300 max-w-3xl mx-auto">
+                Processamos <strong className="text-gold-600 dark:text-gold-400">+100 mil registros</strong> com GPT-5, Claude Opus 4.5 e Gemini 3.
                 Protecao para <strong>familias</strong>, <strong>empresas</strong>, <strong>investidores</strong> e <strong>orgaos publicos</strong>.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-4">
-                <Badge className="bg-purple-600 text-white">IA Generativa</Badge>
-                <Badge className="bg-blue-600 text-white">50+ Bases de Dados</Badge>
-                <Badge className="bg-amber-600 text-white">Perito Criminal Oficial</Badge>
-                <Badge className="bg-green-600 text-white">100% LGPD</Badge>
+                <Badge className="bg-navy-800 text-white">IA Generativa</Badge>
+                <Badge className="bg-gold-500 text-navy-900">50+ Bases de Dados</Badge>
+                <Badge className="bg-navy-600 text-white">Perito Criminal Oficial</Badge>
+                <Badge className="bg-success text-white">100% LGPD</Badge>
               </div>
             </div>
           </div>
         </section>
 
         {/* Diferencial Section */}
-        <section className="py-12 bg-gradient-to-r from-primary-600 to-purple-600">
+        <section className="py-12 bg-gradient-to-r from-navy-800 to-navy-900">
           <div className="container max-w-6xl px-4">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="text-white space-y-4">
                 <h2 className="text-2xl font-bold">Tecnologia + Pericia Forense</h2>
-                <p className="text-primary-100">
-                  Combinacao unica no Brasil: <strong>Arquiteta de IA</strong> com 16+ certificacoes em Machine Learning +
-                  <strong> Perito Criminal Oficial</strong> (1o lugar PCE-PA 2019) no Advisory Board.
+                <p className="text-navy-200">
+                  Combinacao unica no Brasil: <strong className="text-gold-400">Arquiteta de IA</strong> com 16+ certificacoes em Machine Learning +
+                  <strong className="text-gold-400"> Perito Criminal Oficial</strong> (1o lugar PCE-PA 2019) no Advisory Board.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <Badge className="bg-white/20 text-white border-white/30">GPT-5</Badge>
-                  <Badge className="bg-white/20 text-white border-white/30">Claude Opus 4.5</Badge>
-                  <Badge className="bg-white/20 text-white border-white/30">Gemini 3</Badge>
-                  <Badge className="bg-white/20 text-white border-white/30">Validade Judicial</Badge>
+                  <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">GPT-5</Badge>
+                  <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Claude Opus 4.5</Badge>
+                  <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Gemini 3</Badge>
+                  <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Validade Judicial</Badge>
                 </div>
               </div>
               <div className="flex justify-center gap-4">
                 <div className="text-center">
-                  <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-2">
-                    <UserCheck className="w-10 h-10 text-white" />
+                  <div className="w-20 h-20 rounded-full bg-gold-500/20 flex items-center justify-center mx-auto mb-2 border-2 border-gold-500/30">
+                    <UserCheck className="w-10 h-10 text-gold-400" />
                   </div>
                   <p className="text-white font-semibold">Dani Kaloi</p>
-                  <p className="text-primary-200 text-sm">Arquiteta de IA</p>
+                  <p className="text-gold-400 text-sm">Arquiteta de IA</p>
                 </div>
                 <div className="text-center">
-                  <div className="relative w-20 h-20 rounded-full overflow-hidden mx-auto mb-2 border-2 border-white/50">
+                  <div className="relative w-20 h-20 rounded-full overflow-hidden mx-auto mb-2 border-2 border-gold-500/50">
                     <Image
                       src="/images/ibsen-maciel.jpg"
                       alt="Ibsen Maciel"
@@ -1533,7 +2030,7 @@ function ServicosContent() {
                     />
                   </div>
                   <p className="text-white font-semibold">Ibsen Maciel</p>
-                  <p className="text-primary-200 text-sm">Perito Criminal</p>
+                  <p className="text-gold-400 text-sm">Perito Criminal</p>
                 </div>
               </div>
             </div>
@@ -1544,34 +2041,50 @@ function ServicosContent() {
         <section className="py-20">
           <div className="container max-w-7xl px-4">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
-              <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 h-auto p-1 bg-neutral-100 dark:bg-neutral-800">
+              <TabsList className="grid w-full max-w-5xl mx-auto grid-cols-3 md:grid-cols-5 h-auto p-1 bg-navy-100 dark:bg-navy-900">
                 <TabsTrigger
                   value="familiar"
-                  className="flex items-center gap-2 py-4 data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-900"
+                  className="flex items-center gap-2 py-3 md:py-4 data-[state=active]:bg-white dark:data-[state=active]:bg-navy-800 data-[state=active]:text-navy-900 dark:data-[state=active]:text-white"
                 >
-                  <Home className="w-5 h-5" />
-                  <span className="hidden md:inline">Proteção Familiar</span>
-                  <span className="md:hidden">Familiar</span>
+                  <Home className="w-4 h-4 md:w-5 md:h-5" />
+                  <span className="hidden lg:inline">Proteção Familiar</span>
+                  <span className="lg:hidden text-xs md:text-sm">Familiar</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="empresarial"
-                  className="flex items-center gap-2 py-4 data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-900"
+                  className="flex items-center gap-2 py-3 md:py-4 data-[state=active]:bg-white dark:data-[state=active]:bg-navy-800 data-[state=active]:text-navy-900 dark:data-[state=active]:text-white"
                 >
-                  <Building2 className="w-5 h-5" />
-                  <span className="hidden md:inline">Proteção Empresarial</span>
-                  <span className="md:hidden">Empresarial</span>
+                  <Building2 className="w-4 h-4 md:w-5 md:h-5" />
+                  <span className="hidden lg:inline">Proteção Empresarial</span>
+                  <span className="lg:hidden text-xs md:text-sm">Empresarial</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="investimentos"
-                  className="flex items-center gap-2 py-4 data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-900"
+                  className="flex items-center gap-2 py-3 md:py-4 data-[state=active]:bg-white dark:data-[state=active]:bg-navy-800 data-[state=active]:text-navy-900 dark:data-[state=active]:text-white"
                 >
-                  <TrendingUp className="w-5 h-5" />
-                  <span className="hidden md:inline">Proteção de Investimentos</span>
-                  <span className="md:hidden">Investimentos</span>
+                  <TrendingUp className="w-4 h-4 md:w-5 md:h-5" />
+                  <span className="hidden lg:inline">Proteção de Investimentos</span>
+                  <span className="lg:hidden text-xs md:text-sm">Investimentos</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="politicos"
+                  className="flex items-center gap-2 py-3 md:py-4 data-[state=active]:bg-white dark:data-[state=active]:bg-navy-800 data-[state=active]:text-navy-900 dark:data-[state=active]:text-white"
+                >
+                  <Landmark className="w-4 h-4 md:w-5 md:h-5" />
+                  <span className="hidden lg:inline">Setor Político</span>
+                  <span className="lg:hidden text-xs md:text-sm">Políticos</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="divorcios"
+                  className="flex items-center gap-2 py-3 md:py-4 data-[state=active]:bg-white dark:data-[state=active]:bg-navy-800 data-[state=active]:text-navy-900 dark:data-[state=active]:text-white"
+                >
+                  <Scale className="w-4 h-4 md:w-5 md:h-5" />
+                  <span className="hidden lg:inline">Proteção em Divórcios</span>
+                  <span className="lg:hidden text-xs md:text-sm">Divórcios</span>
                 </TabsTrigger>
               </TabsList>
 
-              {["familiar", "empresarial", "investimentos"].map(tabValue => (
+              {["familiar", "empresarial", "investimentos", "politicos", "divorcios"].map(tabValue => (
                 <TabsContent key={tabValue} value={tabValue} className="space-y-8">
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {getServicesForTab(tabValue).map((service) => (
@@ -1641,28 +2154,28 @@ function ServicosContent() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-primary-600 to-purple-600">
+        <section className="py-20 bg-gradient-to-r from-navy-800 via-navy-900 to-navy-950">
           <div className="container max-w-4xl px-4 text-center space-y-6">
             <h2 className="text-4xl font-bold text-white">
               Precisa investigar grandes volumes?
             </h2>
-            <p className="text-lg text-primary-100">
+            <p className="text-lg text-navy-200">
               Folhas de pagamento, candidatos, filiados, fornecedores, funcionarios...
               <br />Nossa IA processa qualquer volume com precisao e velocidade.
             </p>
             <div className="flex flex-wrap gap-3 justify-center pb-4">
-              <Badge className="bg-white/20 text-white border-white/30">Orgaos Publicos</Badge>
-              <Badge className="bg-white/20 text-white border-white/30">Partidos Politicos</Badge>
-              <Badge className="bg-white/20 text-white border-white/30">Mulheres em Divorcio</Badge>
-              <Badge className="bg-white/20 text-white border-white/30">Empresas</Badge>
-              <Badge className="bg-white/20 text-white border-white/30">Investidores</Badge>
+              <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Orgaos Publicos</Badge>
+              <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Partidos Politicos</Badge>
+              <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Mulheres em Divorcio</Badge>
+              <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Empresas</Badge>
+              <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Investidores</Badge>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button size="lg" className="bg-white text-primary-700 hover:bg-primary-50">
+              <Button size="lg" className="bg-gold-500 text-navy-900 hover:bg-gold-400 font-semibold">
                 Solicitar Orcamento
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" className="border-gold-500/50 text-gold-400 hover:bg-gold-500/10">
                 <Phone className="mr-2 w-4 h-4" />
                 Falar com Especialista
               </Button>
@@ -1671,14 +2184,14 @@ function ServicosContent() {
             {/* Team Badge */}
             <div className="pt-8 flex items-center justify-center gap-6">
               <div className="text-center">
-                <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-2">
-                  <UserCheck className="w-7 h-7 text-white" />
+                <div className="w-14 h-14 rounded-full bg-gold-500/20 flex items-center justify-center mx-auto mb-2 border-2 border-gold-500/30">
+                  <UserCheck className="w-7 h-7 text-gold-400" />
                 </div>
                 <p className="text-white text-sm font-semibold">Dani Kaloi</p>
-                <p className="text-primary-200 text-xs">Arquiteta de IA</p>
+                <p className="text-gold-400 text-xs">Arquiteta de IA</p>
               </div>
               <div className="text-center">
-                <div className="relative w-14 h-14 rounded-full overflow-hidden mx-auto mb-2 border-2 border-white/50">
+                <div className="relative w-14 h-14 rounded-full overflow-hidden mx-auto mb-2 border-2 border-gold-500/50">
                   <Image
                     src="/images/ibsen-maciel.jpg"
                     alt="Ibsen Maciel"
@@ -1687,7 +2200,7 @@ function ServicosContent() {
                   />
                 </div>
                 <p className="text-white text-sm font-semibold">Ibsen Maciel</p>
-                <p className="text-primary-200 text-xs">Perito Criminal</p>
+                <p className="text-gold-400 text-xs">Perito Criminal</p>
               </div>
             </div>
           </div>
