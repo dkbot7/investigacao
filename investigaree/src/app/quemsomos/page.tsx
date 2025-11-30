@@ -30,16 +30,16 @@ const TEAM = [
   },
   {
     id: "dani-kaloi",
-    nome: "Danielle Kaloi",
-    cargo: "Fundadora & Investigadora",
-    especialidade: "OSINT e Due Diligence",
-    badges: ["Fundadora", "Especialista OSINT"],
-    resumo: "Investigadora Particular especializada em Due Diligence, OSINT e Inteligência Empresarial. Graduanda em Criminologia.",
-    certificacoes: ["OSINT", "Due Diligence", "LGPD"],
+    nome: "Dani Kaloi",
+    cargo: "Fundadora & CTO",
+    especialidade: "IA Generativa & Investigacao em Massa",
+    badges: ["Fundadora", "Arquiteta de IA", "OSINT Expert"],
+    resumo: "Referencia nacional em investigacao digital com IA. Arquiteta de sistemas de automacao que processam milhares de registros simultaneamente, cruzando dados de 15+ fontes publicas. Especialista em investigacao de agentes politicos, servidores publicos e compliance eleitoral.",
+    certificacoes: ["IA Generativa AWS", "OSINT", "LGPD DPO", "Machine Learning"],
     destaques: [
-      "Fundadora da investigaree",
-      "Especialista em Due Diligence",
-      "Graduanda em Criminologia"
+      "Processamento de +100.000 registros/investigacao",
+      "15+ APIs governamentais integradas (TSE, SERPRO, CGU)",
+      "Automacoes com GPT-5, Claude Opus 4.5 e Gemini 3"
     ]
   }
 ];
@@ -57,12 +57,19 @@ export default function QuemSomosPage() {
                 Quem Somos
               </Badge>
               <h1 className="text-5xl md:text-6xl font-bold text-neutral-900 dark:text-neutral-100">
-                Expertise que Protege seu Patrimônio
+                Investigacao Digital com IA em Escala
               </h1>
               <p className="text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto">
-                Combinamos a precisão da perícia forense oficial com a agilidade da investigação privada
-                para oferecer a mais completa proteção patrimonial do Brasil.
+                Processamos <strong>+100 mil registros</strong> com GPT-5, Claude Opus 4.5 e Gemini 3.
+                Especializados em <strong>politicos, servidores publicos</strong> e
+                <strong> protecao patrimonial para mulheres em divorcios</strong>.
               </p>
+              <div className="flex flex-wrap justify-center gap-3 pt-4">
+                <Badge className="bg-blue-600 text-white">50+ Bases de Dados</Badge>
+                <Badge className="bg-purple-600 text-white">IA Generativa</Badge>
+                <Badge className="bg-pink-600 text-white">Protecao Patrimonial</Badge>
+                <Badge className="bg-amber-600 text-white">Perito Criminal Oficial</Badge>
+              </div>
             </div>
           </div>
         </section>
@@ -71,41 +78,50 @@ export default function QuemSomosPage() {
         <section className="py-20">
           <div className="container max-w-7xl px-4">
             <div className="grid md:grid-cols-3 gap-8 mb-20 max-w-6xl mx-auto">
-              <Card className="border-neutral-200 dark:border-neutral-800">
+              <Card className="border-2 border-blue-500/30 bg-gradient-to-br from-blue-950 to-blue-900 hover:border-blue-400/50 transition-all">
                 <CardHeader className="text-center">
-                  <Target className="w-10 h-10 text-primary-500 mb-4 mx-auto" />
-                  <CardTitle>Nossa Missão</CardTitle>
+                  <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Target className="w-8 h-8 text-blue-400" />
+                  </div>
+                  <CardTitle className="text-white">Nossa Missao</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-neutral-600 dark:text-neutral-400 text-center">
-                    Proteger o patrimônio de famílias e empresas através de investigações profundas
-                    e metodologias forenses, prevenindo fraudes e mitigando riscos.
+                  <p className="text-blue-100/80 text-center">
+                    Processar <strong className="text-blue-300">grandes volumes de dados</strong> com IA generativa
+                    para proteger orgaos publicos, partidos politicos e
+                    <strong className="text-blue-300"> mulheres em divorcios</strong> contra fraudes e ocultacao patrimonial.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-neutral-200 dark:border-neutral-800">
+              <Card className="border-2 border-purple-500/30 bg-gradient-to-br from-purple-950 to-purple-900 hover:border-purple-400/50 transition-all">
                 <CardHeader className="text-center">
-                  <Shield className="w-10 h-10 text-primary-500 mb-4 mx-auto" />
-                  <CardTitle>Nossos Valores</CardTitle>
+                  <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-8 h-8 text-purple-400" />
+                  </div>
+                  <CardTitle className="text-white">Nossa Tecnologia</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-neutral-600 dark:text-neutral-400 text-center">
-                    Ética, confidencialidade, precisão técnica e compromisso com a verdade.
-                    Cada investigação segue rigorosos padrões de compliance e LGPD.
+                  <p className="text-purple-100/80 text-center">
+                    <strong className="text-purple-300">GPT-5, Claude Opus 4.5 e Gemini 3</strong> integrados
+                    com 50+ bases de dados nacionais e internacionais. Processamento de
+                    <strong className="text-purple-300"> +100 mil registros</strong> em horas, nao semanas.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-neutral-200 dark:border-neutral-800">
+              <Card className="border-2 border-amber-500/30 bg-gradient-to-br from-amber-950 to-amber-900 hover:border-amber-400/50 transition-all">
                 <CardHeader className="text-center">
-                  <Award className="w-10 h-10 text-primary-500 mb-4 mx-auto" />
-                  <CardTitle>Nossa Diferença</CardTitle>
+                  <div className="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Award className="w-8 h-8 text-amber-400" />
+                  </div>
+                  <CardTitle className="text-white">Nossa Credibilidade</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-neutral-600 dark:text-neutral-400 text-center">
-                    Única empresa com Perito Criminal Oficial no Advisory Board,
-                    garantindo metodologia forense e credibilidade judicial em todas as investigações.
+                  <p className="text-amber-100/80 text-center">
+                    <strong className="text-amber-300">Perito Criminal Oficial</strong> no Advisory Board
+                    (1o lugar PCE-PA 2019). Metodologia forense com validade judicial.
+                    <strong className="text-amber-300"> 100% LGPD compliant.</strong>
                   </p>
                 </CardContent>
               </Card>
@@ -118,11 +134,11 @@ export default function QuemSomosPage() {
                   Nosso Time
                 </Badge>
                 <h2 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100">
-                  Liderança com Credibilidade Comprovada
+                  Pericia Forense + Automacao com IA
                 </h2>
                 <p className="text-lg text-neutral-600 dark:text-neutral-400 mt-4 max-w-2xl mx-auto">
-                  Nossa equipe combina décadas de experiência em perícia forense,
-                  investigação privada e inteligência empresarial.
+                  Combinacao unica: <strong>Perito Criminal Oficial</strong> (1o lugar PCE-PA) +
+                  <strong> Arquiteta de IA</strong> com 16+ certificacoes em Machine Learning.
                 </p>
               </div>
 
@@ -211,47 +227,55 @@ export default function QuemSomosPage() {
                 Por que escolher a investigaree
               </Badge>
               <h2 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100">
-                Metodologia Forense + Agilidade Privada
+                IA Generativa + Metodologia Forense
               </h2>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              <Card className="text-center border-neutral-200 dark:border-neutral-800">
+              <Card className="text-center border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-shadow">
                 <CardContent className="pt-6">
-                  <Shield className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-                  <h3 className="font-semibold mb-2">100% LGPD Compliant</h3>
+                  <div className="w-14 h-14 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Target className="w-7 h-7 text-purple-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2">+100 mil Registros</h3>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    Todas as investigações seguem rigorosos padrões de compliance
+                    Processamento em massa com GPT-5, Claude e Gemini 3
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="text-center border-neutral-200 dark:border-neutral-800">
+              <Card className="text-center border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-shadow">
                 <CardContent className="pt-6">
-                  <Award className="w-12 h-12 text-primary-500 mx-auto mb-4" />
+                  <div className="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Globe className="w-7 h-7 text-blue-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2">50+ Bases de Dados</h3>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                    Fontes nacionais (TSE, SERPRO, CGU) e internacionais
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-shadow">
+                <CardContent className="pt-6">
+                  <div className="w-14 h-14 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Award className="w-7 h-7 text-amber-600" />
+                  </div>
                   <h3 className="font-semibold mb-2">Validade Judicial</h3>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    Metodologia pericial aceita em processos judiciais
+                    Perito Criminal Oficial no Advisory Board
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="text-center border-neutral-200 dark:border-neutral-800">
+              <Card className="text-center border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-shadow">
                 <CardContent className="pt-6">
-                  <Globe className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-                  <h3 className="font-semibold mb-2">Alcance Nacional</h3>
+                  <div className="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-7 h-7 text-green-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2">100% LGPD</h3>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    Investigações em todo território nacional e internacional
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="text-center border-neutral-200 dark:border-neutral-800">
-                <CardContent className="pt-6">
-                  <Users className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-                  <h3 className="font-semibold mb-2">Equipe Certificada</h3>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    Profissionais com certificações internacionais
+                    Compliance total com fontes publicas e audit trail
                   </p>
                 </CardContent>
               </Card>
@@ -260,27 +284,34 @@ export default function QuemSomosPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20">
+        <section className="py-20 bg-gradient-to-r from-primary-600 to-purple-600">
           <div className="container max-w-4xl px-4 text-center space-y-6">
-            <h2 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100">
-              Pronto para proteger seu patrimônio?
+            <h2 className="text-4xl font-bold text-white">
+              Precisa investigar milhares de pessoas?
             </h2>
-            <p className="text-lg text-neutral-600 dark:text-neutral-400">
-              Converse com nossos especialistas e descubra como podemos ajudar.
+            <p className="text-lg text-primary-100">
+              Folhas de pagamento, candidatos, filiados, fornecedores, funcionarios...
+              <br />Nossa IA processa qualquer volume com precisao e velocidade.
             </p>
+            <div className="flex flex-wrap gap-3 justify-center pb-4">
+              <Badge className="bg-white/20 text-white border-white/30">Orgaos Publicos</Badge>
+              <Badge className="bg-white/20 text-white border-white/30">Partidos Politicos</Badge>
+              <Badge className="bg-white/20 text-white border-white/30">Mulheres em Divorcio</Badge>
+              <Badge className="bg-white/20 text-white border-white/30">Empresas</Badge>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link href="/servicos">
-                <Button size="lg" className="bg-primary-600 hover:bg-primary-700">
-                  Conhecer Serviços
+                <Button size="lg" className="bg-white text-primary-700 hover:bg-primary-50">
+                  Ver Servicos
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
               <WhatsAppButton
-                message="Olá! Gostaria de agendar uma conversa com a investigaree."
+                message="Ola! Preciso de uma investigacao em grande volume. Gostaria de um orcamento."
                 source="quemsomos"
-                className="px-8 py-6 text-lg border-2 border-neutral-300 dark:border-neutral-700 bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-lg"
+                className="px-8 py-6 text-lg border-2 border-white/50 bg-transparent hover:bg-white/10 text-white rounded-lg"
               >
-                Agendar Conversa
+                Solicitar Orcamento
               </WhatsAppButton>
             </div>
           </div>
