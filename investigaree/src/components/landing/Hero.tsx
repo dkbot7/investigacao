@@ -12,31 +12,31 @@ export default function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
-  // 🔥 Headlines rotativas focadas nas dores do Roberto
+  // 🔥 Headlines rotativas focadas nos públicos-alvo
   const headlines = useMemo(() => [
     {
-      main: "INVESTIGAÇÃO PARTICULAR",
-      sub: "com Rigor de Perícia Forense"
+      main: "INVESTIGAÇÃO COM IA EM ESCALA",
+      sub: "+100 mil registros processados com GPT-5, Claude e Gemini"
     },
     {
-      main: "SEMPRE O ÚLTIMO A SABER?",
-      sub: "Aqui não! Investigação com provas digitais"
+      main: "PARTIDO POLÍTICO?",
+      sub: "Verificamos todos os candidatos e filiados em 48h"
+    },
+    {
+      main: "PROTEÇÃO PATRIMONIAL EM DIVÓRCIO",
+      sub: "70% dos divórcios têm ocultação de bens. Não seja a vítima."
     },
     {
       main: "VAI INVESTIR NUMA STARTUP?",
-      sub: "Investigue antes de investir"
+      sub: "Investigue o founder antes de investir"
     },
     {
-      main: "VAI CONTRATAR ALGUÉM?",
-      sub: "Só um exame médico não basta, INVESTIGUE!"
+      main: "AUDITORIA DE SERVIDORES PÚBLICOS",
+      sub: "Folha de pagamento x Óbitos x Acúmulos ilegais"
     },
     {
-      main: "ACUSADO INJUSTAMENTE?",
-      sub: "Reunimos as provas digitais com validação legal que vão te salvar"
-    },
-    {
-      main: "VOCÊS SERÃO SEQUESTRADOS.",
-      sub: "Consultoria de segurança digital nas redes sociais para seus filhos e cônjuge"
+      main: "PROTEÇÃO COMPLETA DA FAMÍLIA",
+      sub: "Funcionários domésticos, segurança digital dos filhos"
     }
   ], []);
 
@@ -221,13 +221,13 @@ export default function Hero() {
           </motion.h2>
         </motion.div>
 
-        {/* Subheadline - 3 Áreas da Vida de Roberto */}
+        {/* Subheadline - 5 Áreas de Proteção */}
         <motion.div
           className="text-center mb-6 sm:mb-8"
           variants={itemVariants}
         >
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 font-medium px-4 max-w-3xl mx-auto">
-            Reunimos as provas necessárias para proteger sua família, suas empresas e seus investimentos.
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 font-medium px-4 max-w-4xl mx-auto">
+            Protegemos <span className="text-gold-400">famílias</span>, <span className="text-gold-400">empresas</span>, <span className="text-gold-400">investidores</span>, <span className="text-gold-400">partidos políticos</span> e <span className="text-gold-400">mulheres em divórcio</span>.
           </p>
         </motion.div>
 
@@ -295,7 +295,7 @@ export default function Hero() {
 
         {/* Badge de Credibilidade */}
         <motion.div
-          className="flex justify-center"
+          className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4"
           variants={itemVariants}
         >
           <Badge
@@ -306,7 +306,18 @@ export default function Hero() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
             </span>
             <span className="text-white/80 text-xs sm:text-sm">
-              Advisory Board com Perito Criminal Oficial - ANPAJ
+              Arquiteta de IA com 16+ certificações
+            </span>
+          </Badge>
+          <Badge
+            variant="secondary"
+            className="px-2.5 py-1.5 sm:px-3 sm:py-2 bg-white/5 border border-gold-500/30 backdrop-blur-sm"
+          >
+            <span className="relative flex h-2.5 w-2.5 mr-1.5 sm:mr-2" aria-hidden="true">
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-gold-400"></span>
+            </span>
+            <span className="text-white/80 text-xs sm:text-sm">
+              Perito Criminal Oficial no Advisory Board
             </span>
           </Badge>
         </motion.div>

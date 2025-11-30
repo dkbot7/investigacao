@@ -3,13 +3,13 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, ArrowRight, Home, Building2, TrendingUp } from "lucide-react";
+import { Check, ArrowRight, Home, Building2, TrendingUp, Landmark, Scale } from "lucide-react";
 import Link from "next/link";
 
 const AREAS = [
   {
     name: "Proteção Familiar",
-    badge: "MAIS RÁPIDO",
+    badge: "48H",
     icon: Home,
     delivery: "48 horas garantidas",
     description: "Blindagem completa para sua família",
@@ -17,114 +17,147 @@ const AREAS = [
       "Verificação de funcionários domésticos",
       "Proteção digital dos filhos",
       "Análise de vulnerabilidades da residência",
-      "Score de risco 0-100",
-      "Relatório confidencial executivo"
+      "Score de risco 0-100"
     ],
-    highlight: "Red flags principais identificados",
     cta: "Proteger Família",
     popular: false,
-    color: "neutral"
+    color: "neutral",
+    href: "/servicos?tab=familiar"
+  },
+  {
+    name: "Setor Político",
+    badge: "+1000/DIA",
+    icon: Landmark,
+    delivery: "Processamento em massa com IA",
+    description: "Due diligence de candidatos e filiados",
+    features: [
+      "Verificação de +1.000 candidatos/dia",
+      "Auditoria de servidores públicos",
+      "Compliance eleitoral TSE",
+      "Relatório para TCE/TCU"
+    ],
+    cta: "Verificar Candidatos",
+    popular: true,
+    color: "primary",
+    href: "/servicos?tab=politicos"
+  },
+  {
+    name: "Proteção em Divórcios",
+    badge: "PATRIMONIAL",
+    icon: Scale,
+    delivery: "Localização de bens ocultos",
+    description: "70% dos divórcios têm ocultação",
+    features: [
+      "Investigação patrimonial completa",
+      "Localização de bens ocultos",
+      "Perfil comportamental do cônjuge",
+      "Dossiê para partilha justa"
+    ],
+    cta: "Proteger Patrimônio",
+    popular: false,
+    color: "secondary",
+    href: "/servicos?tab=divorcios"
   },
   {
     name: "Proteção Empresarial",
-    badge: "RECOMENDADO",
+    badge: "CORPORATIVO",
     icon: Building2,
-    delivery: "Análise profunda para empresas",
-    description: "Due diligence corporativa completa",
+    delivery: "Due diligence corporativa",
+    description: "Proteção contra fraudes e vazamentos",
     features: [
-      "50-100 horas de investigação",
-      "20+ referências verificadas",
-      "Background internacional completo",
-      "Análise de riscos trabalhistas",
+      "Background check corporativo",
+      "Proteção contra espionagem",
+      "Due diligence M&A",
       "Relatório forense blindado"
     ],
-    highlight: "Proteção contra fraudes corporativas",
     cta: "Solicitar Proposta",
-    popular: true,
-    color: "primary"
+    popular: false,
+    color: "neutral",
+    href: "/servicos?tab=empresarial"
   },
   {
     name: "Proteção de Investimentos",
-    badge: "M&A",
+    badge: "VC/ANJO",
     icon: TrendingUp,
-    delivery: "Proteção em fusões e aquisições",
-    description: "Investigação completa para investimentos",
+    delivery: "Proteção para investidores",
+    description: "Verificação de founders e startups",
     features: [
-      "Due diligence completa 360°",
-      "Equipe multidisciplinar dedicada",
-      "Verificação de sócios e founders",
-      "Relatórios para stakeholders",
-      "Suporte pós-deal incluído"
+      "Red Flag Express em 48h",
+      "Founder Full Scan",
+      "Startup Integrity Check",
+      "Portfolio Watch contínuo"
     ],
-    highlight: "Proteção total do seu investimento",
-    cta: "Falar com Especialista",
+    cta: "Proteger Investimento",
     popular: false,
-    color: "secondary"
+    color: "neutral",
+    href: "/servicos?tab=investimentos"
   }
 ];
 
 export default function ProtectionAreas() {
   return (
-    <section className="py-32 bg-gradient-to-br from-slate-900 to-slate-950">
+    <section className="py-24 bg-gradient-to-br from-navy-900 to-navy-950">
       <div className="container max-w-7xl px-4">
         {/* Section Header */}
-        <div className="text-center mb-16 space-y-4">
-          <Badge variant="outline" className="mb-4 text-amber-400 border-amber-400/30">
-            3 Áreas de Proteção
+        <div className="text-center mb-12 space-y-4">
+          <Badge variant="outline" className="mb-4 text-gold-400 border-gold-500/30 bg-gold-500/10">
+            5 Áreas de Proteção
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-white">
-            Protegemos o que mais importa
+            Investigação com IA em Escala
           </h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            Sua família, suas empresas e seus investimentos
+          <p className="text-xl text-navy-200 max-w-4xl mx-auto">
+            <span className="text-gold-400">+100 mil registros</span> processados com GPT-5, Claude Opus 4.5 e Gemini 3
           </p>
         </div>
 
-        {/* Cards Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        {/* Cards Grid - 5 columns on large screens */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
           {AREAS.map((area) => (
             <Card
               key={area.name}
               className={`relative overflow-hidden transition-all hover:scale-105 ${
                 area.popular
-                  ? "border-2 border-amber-500 shadow-2xl bg-gradient-to-br from-slate-800 to-slate-900"
-                  : "border border-slate-700 bg-gradient-to-br from-slate-800/90 to-slate-900/90"
+                  ? "border-2 border-gold-500 shadow-2xl bg-gradient-to-br from-navy-800 to-navy-900"
+                  : "border border-navy-700 bg-gradient-to-br from-navy-800/90 to-navy-900/90"
               }`}
             >
               {/* Badge */}
-              <div className="absolute top-4 left-4 z-10">
+              <div className="absolute top-3 left-3 z-10">
                 <Badge className={`${
                   area.popular
-                    ? "bg-amber-500 text-black font-bold px-4 py-1"
-                    : area.badge === "M&A"
-                    ? "bg-blue-600 text-white font-bold px-4 py-1"
-                    : "bg-gray-600 text-white font-bold px-4 py-1"
+                    ? "bg-gold-500 text-navy-900 font-bold px-3 py-1 text-xs"
+                    : "bg-navy-600 text-white font-bold px-3 py-1 text-xs"
                 }`}>
                   {area.badge}
                 </Badge>
               </div>
 
-              <CardHeader className="text-center pt-12 pb-6">
+              <CardHeader className="text-center pt-10 pb-4">
                 {/* Icon Circle */}
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center bg-slate-700/50 border-2 border-slate-600">
-                  <area.icon className="w-10 h-10 text-white" />
+                <div className={`w-14 h-14 mx-auto mb-3 rounded-full flex items-center justify-center ${
+                  area.popular
+                    ? "bg-gold-500/20 border-2 border-gold-500/50"
+                    : "bg-navy-700/50 border-2 border-navy-600"
+                }`}>
+                  <area.icon className={`w-7 h-7 ${area.popular ? "text-gold-400" : "text-white"}`} />
                 </div>
 
-                <CardTitle className="text-2xl mb-3 text-white font-bold">
+                <CardTitle className="text-lg mb-2 text-white font-bold">
                   {area.name}
                 </CardTitle>
-                <CardDescription className="text-slate-300 text-sm mb-4">
-                  {area.delivery}
+                <CardDescription className="text-navy-300 text-xs">
+                  {area.description}
                 </CardDescription>
               </CardHeader>
 
-              <CardContent className="space-y-4 px-6">
+              <CardContent className="space-y-3 px-4">
                 {/* Features List */}
-                <ul className="space-y-3">
+                <ul className="space-y-2">
                   {area.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-slate-300 text-sm">
+                    <li key={i} className="flex items-start gap-2">
+                      <Check className={`w-4 h-4 flex-shrink-0 mt-0.5 ${area.popular ? "text-gold-400" : "text-success"}`} />
+                      <span className="text-navy-200 text-xs">
                         {feature}
                       </span>
                     </li>
@@ -132,30 +165,47 @@ export default function ProtectionAreas() {
                 </ul>
               </CardContent>
 
-              <CardFooter className="flex flex-col gap-4 px-6 pb-8 pt-6">
-                {/* Sob Consulta */}
-                <div className="text-center">
-                  <p className="text-slate-400 text-sm mb-2">Investimento</p>
-                  <span className="text-2xl font-bold text-white">
-                    Sob consulta
-                  </span>
-                </div>
-
-                <Link href="/contato" className="w-full">
+              <CardFooter className="flex flex-col gap-3 px-4 pb-6 pt-4">
+                <Link href={area.href} className="w-full">
                   <Button
-                    className={`w-full py-3 ${
+                    className={`w-full py-2 text-sm ${
                       area.popular
-                        ? "bg-amber-500 hover:bg-amber-600 text-black"
-                        : "bg-slate-700 hover:bg-slate-600 text-white border border-slate-600"
+                        ? "bg-gold-500 hover:bg-gold-400 text-navy-900"
+                        : "bg-navy-700 hover:bg-navy-600 text-white border border-navy-600"
                     } font-semibold rounded-lg transition-all`}
                   >
                     {area.cta}
-                    <ArrowRight className="ml-2 w-4 h-4" />
+                    <ArrowRight className="ml-2 w-3 h-3" />
                   </Button>
                 </Link>
               </CardFooter>
             </Card>
           ))}
+        </div>
+
+        {/* Team Badge */}
+        <div className="text-center">
+          <div className="flex items-center justify-center gap-6">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-full bg-gold-500/20 flex items-center justify-center border border-gold-500/30">
+                <span className="text-gold-400 text-sm font-bold">DK</span>
+              </div>
+              <div className="text-left">
+                <p className="text-white text-sm font-semibold">Dani Kaloi</p>
+                <p className="text-gold-400 text-xs">Arquiteta de IA</p>
+              </div>
+            </div>
+            <div className="h-8 w-px bg-navy-700" />
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-full bg-gold-500/20 flex items-center justify-center border border-gold-500/30 overflow-hidden">
+                <img src="/images/ibsen-maciel.jpg" alt="Ibsen Maciel" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-left">
+                <p className="text-white text-sm font-semibold">Ibsen Maciel</p>
+                <p className="text-gold-400 text-xs">Perito Criminal</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
