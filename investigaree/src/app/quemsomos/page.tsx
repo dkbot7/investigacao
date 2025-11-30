@@ -48,56 +48,56 @@ export default function QuemSomosPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-white dark:bg-neutral-950">
+      <main className="min-h-screen bg-white dark:bg-navy-950">
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-950">
+        <section className="py-20 bg-gradient-to-br from-navy-50 to-navy-100 dark:from-navy-900 dark:to-navy-950">
           <div className="container max-w-7xl px-4">
             <div className="text-center space-y-6">
-              <Badge variant="outline" className="text-primary-600 dark:text-primary-400">
+              <Badge variant="outline" className="text-gold-600 dark:text-gold-400 border-gold-300 dark:border-gold-500">
                 Quem Somos
               </Badge>
-              <h1 className="text-5xl md:text-6xl font-bold text-neutral-900 dark:text-neutral-100">
+              <h1 className="text-5xl md:text-6xl font-bold text-navy-900 dark:text-white">
                 Investigacao Digital com IA em Escala
               </h1>
-              <p className="text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto">
-                Processamos <strong>+100 mil registros</strong> com GPT-5, Claude Opus 4.5 e Gemini 3.
+              <p className="text-xl text-navy-600 dark:text-navy-200 max-w-3xl mx-auto">
+                Processamos <strong className="text-gold-600 dark:text-gold-400">+100 mil registros</strong> com GPT-5, Claude Opus 4.5 e Gemini 3.
                 Especializados em <strong>politicos, servidores publicos</strong> e
                 <strong> protecao patrimonial para mulheres em divorcios</strong>.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-4">
-                <Badge className="bg-blue-600 text-white">50+ Bases de Dados</Badge>
-                <Badge className="bg-purple-600 text-white">IA Generativa</Badge>
-                <Badge className="bg-pink-600 text-white">Protecao Patrimonial</Badge>
-                <Badge className="bg-amber-600 text-white">Perito Criminal Oficial</Badge>
+                <Badge className="bg-navy-800 text-white">50+ Bases de Dados</Badge>
+                <Badge className="bg-gold-500 text-navy-900">IA Generativa</Badge>
+                <Badge className="bg-navy-600 text-white">Protecao Patrimonial</Badge>
+                <Badge className="bg-gold-600 text-white">Perito Criminal Oficial</Badge>
               </div>
             </div>
           </div>
         </section>
 
         {/* Mission & Values */}
-        <section className="py-20">
+        <section className="py-20 bg-navy-50 dark:bg-navy-900/50">
           <div className="container max-w-7xl px-4">
             <div className="grid md:grid-cols-3 gap-8 mb-20 max-w-6xl mx-auto">
-              <Card className="border-2 border-blue-500/30 bg-gradient-to-br from-blue-950 to-blue-900 hover:border-blue-400/50 transition-all">
+              <Card className="border-2 border-navy-500/30 bg-gradient-to-br from-navy-800 to-navy-900 hover:border-gold-500/50 transition-all">
                 <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Target className="w-8 h-8 text-blue-400" />
+                  <div className="w-16 h-16 bg-gold-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Target className="w-8 h-8 text-gold-400" />
                   </div>
                   <CardTitle className="text-white">Nossa Missao</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-blue-100/80 text-center">
-                    Processar <strong className="text-blue-300">grandes volumes de dados</strong> com IA generativa
+                  <p className="text-navy-200 text-center">
+                    Processar <strong className="text-gold-400">grandes volumes de dados</strong> com IA generativa
                     para proteger orgaos publicos, partidos politicos e
-                    <strong className="text-blue-300"> mulheres em divorcios</strong> contra fraudes e ocultacao patrimonial.
+                    <strong className="text-gold-400"> mulheres em divorcios</strong> contra fraudes e ocultacao patrimonial.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-purple-500/30 bg-gradient-to-br from-purple-950 to-purple-900 hover:border-purple-400/50 transition-all">
+              <Card className="border-2 border-gold-500/30 bg-gradient-to-br from-navy-800 to-navy-900 hover:border-gold-500/50 transition-all">
                 <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Shield className="w-8 h-8 text-purple-400" />
+                  <div className="w-16 h-16 bg-gold-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-8 h-8 text-gold-400" />
                   </div>
                   <CardTitle className="text-white">Nossa Tecnologia</CardTitle>
                 </CardHeader>
