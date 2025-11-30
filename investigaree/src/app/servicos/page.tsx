@@ -1479,15 +1479,63 @@ function ServicosContent() {
           <div className="container max-w-7xl px-4">
             <div className="text-center space-y-6">
               <Badge variant="outline" className="text-primary-600 dark:text-primary-400">
-                Serviços Especializados
+                Servicos Especializados
               </Badge>
               <h1 className="text-5xl md:text-6xl font-bold text-neutral-900 dark:text-neutral-100">
-                Proteção Completa em 3 Áreas
+                Investigacao com IA em Escala
               </h1>
               <p className="text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto">
-                Investigação profissional para proteger sua <strong>família</strong>, suas <strong>empresas</strong> e seus <strong>investimentos</strong>.
-                Todos os valores sob consulta personalizada.
+                Processamos <strong>+100 mil registros</strong> com GPT-5, Claude Opus 4.5 e Gemini 3.
+                Protecao para <strong>familias</strong>, <strong>empresas</strong>, <strong>investidores</strong> e <strong>orgaos publicos</strong>.
               </p>
+              <div className="flex flex-wrap justify-center gap-3 pt-4">
+                <Badge className="bg-purple-600 text-white">IA Generativa</Badge>
+                <Badge className="bg-blue-600 text-white">50+ Bases de Dados</Badge>
+                <Badge className="bg-amber-600 text-white">Perito Criminal Oficial</Badge>
+                <Badge className="bg-green-600 text-white">100% LGPD</Badge>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Diferencial Section */}
+        <section className="py-12 bg-gradient-to-r from-primary-600 to-purple-600">
+          <div className="container max-w-6xl px-4">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="text-white space-y-4">
+                <h2 className="text-2xl font-bold">Tecnologia + Pericia Forense</h2>
+                <p className="text-primary-100">
+                  Combinacao unica no Brasil: <strong>Arquiteta de IA</strong> com 16+ certificacoes em Machine Learning +
+                  <strong> Perito Criminal Oficial</strong> (1o lugar PCE-PA 2019) no Advisory Board.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <Badge className="bg-white/20 text-white border-white/30">GPT-5</Badge>
+                  <Badge className="bg-white/20 text-white border-white/30">Claude Opus 4.5</Badge>
+                  <Badge className="bg-white/20 text-white border-white/30">Gemini 3</Badge>
+                  <Badge className="bg-white/20 text-white border-white/30">Validade Judicial</Badge>
+                </div>
+              </div>
+              <div className="flex justify-center gap-4">
+                <div className="text-center">
+                  <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-2">
+                    <UserCheck className="w-10 h-10 text-white" />
+                  </div>
+                  <p className="text-white font-semibold">Dani Kaloi</p>
+                  <p className="text-primary-200 text-sm">Arquiteta de IA</p>
+                </div>
+                <div className="text-center">
+                  <div className="relative w-20 h-20 rounded-full overflow-hidden mx-auto mb-2 border-2 border-white/50">
+                    <Image
+                      src="/images/ibsen-maciel.jpg"
+                      alt="Ibsen Maciel"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="text-white font-semibold">Ibsen Maciel</p>
+                  <p className="text-primary-200 text-sm">Perito Criminal</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -1593,48 +1641,53 @@ function ServicosContent() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-neutral-900 dark:to-neutral-950">
+        <section className="py-20 bg-gradient-to-r from-primary-600 to-purple-600">
           <div className="container max-w-4xl px-4 text-center space-y-6">
-            <h2 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100">
-              Todos os valores sob consulta
+            <h2 className="text-4xl font-bold text-white">
+              Precisa investigar grandes volumes?
             </h2>
-            <p className="text-lg text-neutral-600 dark:text-neutral-400">
-              Cada situação é única. Entre em contato para uma proposta personalizada baseada nas suas necessidades específicas.
+            <p className="text-lg text-primary-100">
+              Folhas de pagamento, candidatos, filiados, fornecedores, funcionarios...
+              <br />Nossa IA processa qualquer volume com precisao e velocidade.
             </p>
+            <div className="flex flex-wrap gap-3 justify-center pb-4">
+              <Badge className="bg-white/20 text-white border-white/30">Orgaos Publicos</Badge>
+              <Badge className="bg-white/20 text-white border-white/30">Partidos Politicos</Badge>
+              <Badge className="bg-white/20 text-white border-white/30">Mulheres em Divorcio</Badge>
+              <Badge className="bg-white/20 text-white border-white/30">Empresas</Badge>
+              <Badge className="bg-white/20 text-white border-white/30">Investidores</Badge>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button size="lg" className="bg-primary-600 hover:bg-primary-700">
-                Solicitar Orçamento
+              <Button size="lg" className="bg-white text-primary-700 hover:bg-primary-50">
+                Solicitar Orcamento
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
                 <Phone className="mr-2 w-4 h-4" />
                 Falar com Especialista
               </Button>
             </div>
-            <div className="pt-6">
-              <Badge variant="outline" className="text-sm py-2 px-4">
-                <Info className="w-4 h-4 mr-2 inline" />
-                Atendimento personalizado para cada perfil e necessidade
-              </Badge>
-            </div>
 
-            {/* Advisory Board Badge */}
-            <div className="pt-8 flex items-center justify-center gap-4">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-primary-500/50">
-                <Image
-                  src="/images/ibsen-maciel.jpg"
-                  alt="Ibsen Rodrigues Maciel"
-                  fill
-                  className="object-cover"
-                />
+            {/* Team Badge */}
+            <div className="pt-8 flex items-center justify-center gap-6">
+              <div className="text-center">
+                <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-2">
+                  <UserCheck className="w-7 h-7 text-white" />
+                </div>
+                <p className="text-white text-sm font-semibold">Dani Kaloi</p>
+                <p className="text-primary-200 text-xs">Arquiteta de IA</p>
               </div>
-              <div className="text-left">
-                <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
-                  Metodologia validada por Perito Criminal Oficial
-                </p>
-                <p className="text-xs text-neutral-600 dark:text-neutral-400">
-                  Ibsen Maciel • Advisory Board • ANPAJ
-                </p>
+              <div className="text-center">
+                <div className="relative w-14 h-14 rounded-full overflow-hidden mx-auto mb-2 border-2 border-white/50">
+                  <Image
+                    src="/images/ibsen-maciel.jpg"
+                    alt="Ibsen Maciel"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <p className="text-white text-sm font-semibold">Ibsen Maciel</p>
+                <p className="text-primary-200 text-xs">Perito Criminal</p>
               </div>
             </div>
           </div>
