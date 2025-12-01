@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, MessageCircle, Mail, Send, User, FileText, CheckCircle, Brain, Shield, Landmark, Scale, Building2, TrendingUp, Home } from "lucide-react";
+import { ArrowLeft, MessageCircle, Mail, Send, User, FileText, CheckCircle, Brain, Shield, Scale, Building2, TrendingUp, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -69,7 +69,6 @@ export default function ContatoPage() {
                 Fale com nossa equipe especializada.
               </p>
               <div className="flex flex-wrap justify-center gap-2 pt-4">
-                <Badge className="bg-navy-800 text-white"><Landmark className="w-3 h-3 mr-1" />Políticos</Badge>
                 <Badge className="bg-navy-800 text-white"><Scale className="w-3 h-3 mr-1" />Divórcios</Badge>
                 <Badge className="bg-navy-800 text-white"><Building2 className="w-3 h-3 mr-1" />Empresas</Badge>
                 <Badge className="bg-navy-800 text-white"><TrendingUp className="w-3 h-3 mr-1" />Investidores</Badge>
@@ -152,14 +151,14 @@ export default function ContatoPage() {
               </div>
               <CardTitle className="text-white">Dani Kaloi</CardTitle>
               <CardDescription className="text-white/60">
-                Fundadora & Arquiteta de IA
+                Fundadora & Arquiteta de Sistemas
               </CardDescription>
               <div className="flex flex-wrap justify-center gap-1 mt-2">
                 <Badge variant="outline" className="text-xs border-gold-500/50 text-gold-400">
-                  <Brain className="w-3 h-3 mr-1" />GPT-5
+                  <Brain className="w-3 h-3 mr-1" />Automacao
                 </Badge>
                 <Badge variant="outline" className="text-xs border-gold-500/50 text-gold-400">
-                  Claude Opus
+                  OSINT
                 </Badge>
               </div>
             </CardHeader>

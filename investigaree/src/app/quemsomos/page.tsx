@@ -32,14 +32,14 @@ const TEAM = [
     id: "dani-kaloi",
     nome: "Dani Kaloi",
     cargo: "Fundadora & CTO",
-    especialidade: "IA Generativa & Investigacao em Massa",
-    badges: ["Fundadora", "Arquiteta de IA", "OSINT Expert"],
-    resumo: "Referencia nacional em investigacao digital com IA. Arquiteta de sistemas de automacao que processam milhares de registros simultaneamente, cruzando dados de 15+ fontes publicas. Especialista em investigacao de agentes politicos, servidores publicos e compliance eleitoral.",
-    certificacoes: ["IA Generativa AWS", "OSINT", "LGPD DPO", "Machine Learning"],
+    especialidade: "Investigacao Digital & Automacao",
+    badges: ["Fundadora", "Arquiteta de Sistemas", "OSINT Expert"],
+    resumo: "Referencia nacional em investigacao digital. Arquiteta de sistemas de automacao que processam milhares de registros simultaneamente, cruzando dados de multiplas fontes publicas. Especialista em due diligence empresarial e protecao patrimonial.",
+    certificacoes: ["Automacao", "OSINT", "LGPD DPO", "Integracao de Dados"],
     destaques: [
       "Processamento de +100.000 registros/investigacao",
-      "15+ APIs governamentais integradas (TSE, SERPRO, CGU)",
-      "Automacoes com GPT-5, Claude Opus 4.5 e Gemini 3"
+      "Multiplas fontes de dados integradas",
+      "Automacoes avancadas de investigacao"
     ]
   }
 ];
@@ -57,16 +57,16 @@ export default function QuemSomosPage() {
                 Quem Somos
               </Badge>
               <h1 className="text-5xl md:text-6xl font-bold text-navy-900 dark:text-white">
-                Investigacao Digital com IA em Escala
+                Investigacao Digital em Escala
               </h1>
               <p className="text-xl text-navy-600 dark:text-navy-200 max-w-3xl mx-auto">
-                Processamos <strong className="text-gold-600 dark:text-gold-400">+100 mil registros</strong> com GPT-5, Claude Opus 4.5 e Gemini 3.
-                Especializados em <strong>politicos, servidores publicos</strong> e
+                Processamos <strong className="text-gold-600 dark:text-gold-400">+100 mil registros</strong> com tecnologia de ponta.
+                Especializados em <strong>due diligence empresarial</strong> e
                 <strong> protecao patrimonial para mulheres em divorcios</strong>.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-4">
-                <Badge className="bg-navy-800 text-white">50+ Bases de Dados</Badge>
-                <Badge className="bg-gold-500 text-navy-900">IA Generativa</Badge>
+                <Badge className="bg-navy-800 text-white">Multiplas Bases de Dados</Badge>
+                <Badge className="bg-gold-500 text-navy-900">Automacao Avancada</Badge>
                 <Badge className="bg-navy-600 text-white">Protecao Patrimonial</Badge>
                 <Badge className="bg-gold-600 text-white">Perito Criminal Oficial</Badge>
               </div>
@@ -77,8 +77,8 @@ export default function QuemSomosPage() {
         {/* Mission & Values */}
         <section className="py-20 bg-navy-50 dark:bg-navy-900/50">
           <div className="container max-w-7xl px-4">
-            <div className="grid md:grid-cols-3 gap-8 mb-20 max-w-6xl mx-auto">
-              <Card className="border-2 border-navy-500/30 bg-gradient-to-br from-navy-800 to-navy-900 hover:border-gold-500/50 transition-all">
+            <div className="grid md:grid-cols-2 gap-8 mb-20 max-w-4xl mx-auto">
+              <Card className="border-2 border-gold-500/30 bg-gradient-to-br from-navy-800 to-navy-900 hover:border-gold-500/50 transition-all">
                 <CardHeader className="text-center">
                   <div className="w-16 h-16 bg-gold-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Target className="w-8 h-8 text-gold-400" />
@@ -87,25 +87,9 @@ export default function QuemSomosPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-navy-200 text-center">
-                    Processar <strong className="text-gold-400">grandes volumes de dados</strong> com IA generativa
-                    para proteger orgaos publicos, partidos politicos e
-                    <strong className="text-gold-400"> mulheres em divorcios</strong> contra fraudes e ocultacao patrimonial.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-2 border-gold-500/30 bg-gradient-to-br from-navy-800 to-navy-900 hover:border-gold-500/50 transition-all">
-                <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-gold-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Shield className="w-8 h-8 text-gold-400" />
-                  </div>
-                  <CardTitle className="text-white">Nossa Tecnologia</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-purple-100/80 text-center">
-                    <strong className="text-purple-300">GPT-5, Claude Opus 4.5 e Gemini 3</strong> integrados
-                    com 50+ bases de dados nacionais e internacionais. Processamento de
-                    <strong className="text-purple-300"> +100 mil registros</strong> em horas, nao semanas.
+                    Proteger <strong className="text-gold-400">empresas</strong>, <strong className="text-gold-400">familias</strong> e
+                    <strong className="text-gold-400"> mulheres em divorcios</strong> contra fraudes e ocultacao patrimonial
+                    atraves de due diligence completa.
                   </p>
                 </CardContent>
               </Card>
@@ -138,7 +122,7 @@ export default function QuemSomosPage() {
                 </h2>
                 <p className="text-lg text-neutral-600 dark:text-neutral-400 mt-4 max-w-2xl mx-auto">
                   Combinacao unica: <strong>Perito Criminal Oficial</strong> (1o lugar PCE-PA) +
-                  <strong> Arquiteta de IA</strong> com 16+ certificacoes em Machine Learning.
+                  <strong> Arquiteta de Sistemas</strong> especialista em automacao.
                 </p>
               </div>
 
@@ -149,17 +133,17 @@ export default function QuemSomosPage() {
                     className="overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group"
                   >
                     <Link href={`/quemsomos/${member.id}`}>
-                      <div className="relative h-64 bg-gradient-to-br from-navy-900 to-navy-950">
+                      <div className="relative h-72 bg-gradient-to-br from-navy-900 to-navy-950">
                         {member.id === "ibsen-maciel" ? (
                           <Image
                             src="/images/ibsen-maciel.jpg"
                             alt={member.nome}
                             fill
-                            className="object-cover object-top"
+                            className="object-cover object-[center_20%]"
                           />
                         ) : (
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <UserCheck className="w-24 h-24 text-primary-500/30" />
+                            <UserCheck className="w-24 h-24 text-gold-500/50" />
                           </div>
                         )}
                         <div className="absolute top-4 left-4 flex flex-wrap gap-2">
@@ -227,7 +211,7 @@ export default function QuemSomosPage() {
                 Por que escolher a investigaree
               </Badge>
               <h2 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100">
-                IA Generativa + Metodologia Forense
+                Automacao Avancada + Metodologia Forense
               </h2>
             </div>
 
@@ -239,7 +223,7 @@ export default function QuemSomosPage() {
                   </div>
                   <h3 className="font-semibold mb-2">+100 mil Registros</h3>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    Processamento em massa com GPT-5, Claude e Gemini 3
+                    Processamento em massa com tecnologia de ponta
                   </p>
                 </CardContent>
               </Card>
@@ -249,9 +233,9 @@ export default function QuemSomosPage() {
                   <div className="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Globe className="w-7 h-7 text-blue-600" />
                   </div>
-                  <h3 className="font-semibold mb-2">50+ Bases de Dados</h3>
+                  <h3 className="font-semibold mb-2">Multiplas Bases de Dados</h3>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    Fontes nacionais (TSE, SERPRO, CGU) e internacionais
+                    Fontes nacionais e internacionais integradas
                   </p>
                 </CardContent>
               </Card>
@@ -290,14 +274,14 @@ export default function QuemSomosPage() {
               Precisa investigar milhares de pessoas?
             </h2>
             <p className="text-lg text-primary-100">
-              Folhas de pagamento, candidatos, filiados, fornecedores, funcionarios...
-              <br />Nossa IA processa qualquer volume com precisao e velocidade.
+              Folhas de pagamento, funcionarios, fornecedores, socios...
+              <br />Processamos qualquer volume com precisao e velocidade.
             </p>
             <div className="flex flex-wrap gap-3 justify-center pb-4">
-              <Badge className="bg-white/20 text-white border-white/30">Orgaos Publicos</Badge>
-              <Badge className="bg-white/20 text-white border-white/30">Partidos Politicos</Badge>
-              <Badge className="bg-white/20 text-white border-white/30">Mulheres em Divorcio</Badge>
               <Badge className="bg-white/20 text-white border-white/30">Empresas</Badge>
+              <Badge className="bg-white/20 text-white border-white/30">Familias</Badge>
+              <Badge className="bg-white/20 text-white border-white/30">Mulheres em Divorcio</Badge>
+              <Badge className="bg-white/20 text-white border-white/30">Investidores</Badge>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link href="/servicos">

@@ -902,11 +902,11 @@ const SERVICOS_POLITICOS: Servico[] = [
     idealPara: "Partidos políticos, coligações e candidaturas",
     detalhes: {
       oqueFazemos: [
-        "Processamento em massa de milhares de candidatos com GPT-5 e Claude Opus 4.5",
+        "Processamento em massa de milhares de candidatos com tecnologia de ponta",
         "Verificação de antecedentes criminais em todas as esferas",
         "Análise de dívidas fiscais, trabalhistas e protestos",
         "Cruzamento com bases do TSE (candidaturas, doações, filiações)",
-        "Identificação automática de red flags com IA generativa",
+        "Identificação automática de red flags com automacao avancada",
         "Score de risco eleitoral para cada candidato"
       ],
       comoFunciona: [
@@ -947,14 +947,14 @@ const SERVICOS_POLITICOS: Servico[] = [
         "Verificação de acúmulos de cargo em outras prefeituras/estados",
         "Análise de vínculos societários em empresas contratadas",
         "Identificação de endereços incompatíveis ou inexistentes",
-        "Detecção de padrões de fraude com IA generativa",
+        "Detecção de padrões de fraude com automacao avancada",
         "Preparação de relatório com padrão TCE/TCU"
       ],
       comoFunciona: [
         "Upload da folha de pagamento (Excel, CSV, PDF)",
         "Processamento em bases governamentais (DATASUS, SIAPE, CNIS)",
         "Cruzamento com Portal da Transparência",
-        "Análise de padrões suspeitos com GPT-5",
+        "Análise de padrões suspeitos com automação avançada",
         "Dashboard com achados categorizados por gravidade"
       ],
       entregaveis: [
@@ -1031,7 +1031,7 @@ const SERVICOS_POLITICOS: Servico[] = [
       comoFunciona: [
         "Lista de doadores (CPF ou CNPJ)",
         "Processamento em bases governamentais",
-        "Análise de padrões com IA generativa",
+        "Análise de padrões com automacao avancada",
         "Score de risco por doador",
         "Relatório para prestação de contas"
       ],
@@ -1937,7 +1937,7 @@ function ServicosContent() {
 
   useEffect(() => {
     const tab = searchParams.get("tab");
-    if (tab && ["familiar", "empresarial", "investimentos", "politicos", "divorcios"].includes(tab)) {
+    if (tab && ["familiar", "empresarial", "investimentos", "divorcios"].includes(tab)) {
       setActiveTab(tab);
     }
   }, [searchParams]);
@@ -1982,11 +1982,11 @@ function ServicosContent() {
                 Investigacao com IA em Escala
               </h1>
               <p className="text-xl text-navy-600 dark:text-navy-300 max-w-3xl mx-auto">
-                Processamos <strong className="text-gold-600 dark:text-gold-400">+100 mil registros</strong> com GPT-5, Claude Opus 4.5 e Gemini 3.
+                Processamos <strong className="text-gold-600 dark:text-gold-400">+100 mil registros</strong> com tecnologia de ponta.
                 Protecao para <strong>familias</strong>, <strong>empresas</strong>, <strong>investidores</strong> e <strong>orgaos publicos</strong>.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-4">
-                <Badge className="bg-navy-800 text-white">IA Generativa</Badge>
+                <Badge className="bg-navy-800 text-white">Automacao Avancada</Badge>
                 <Badge className="bg-gold-500 text-navy-900">50+ Bases de Dados</Badge>
                 <Badge className="bg-navy-600 text-white">Perito Criminal Oficial</Badge>
                 <Badge className="bg-success text-white">100% LGPD</Badge>
@@ -2002,13 +2002,13 @@ function ServicosContent() {
               <div className="text-white space-y-4">
                 <h2 className="text-2xl font-bold">Tecnologia + Pericia Forense</h2>
                 <p className="text-navy-200">
-                  Combinacao unica no Brasil: <strong className="text-gold-400">Arquiteta de IA</strong> com 16+ certificacoes em Machine Learning +
+                  Combinacao unica no Brasil: <strong className="text-gold-400">Arquiteta de Sistemas</strong> especialista em automacao +
                   <strong className="text-gold-400"> Perito Criminal Oficial</strong> (1o lugar PCE-PA 2019) no Advisory Board.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">GPT-5</Badge>
-                  <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Claude Opus 4.5</Badge>
-                  <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Gemini 3</Badge>
+                  <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Automacao</Badge>
+                  <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">50+ Bases</Badge>
+                  <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">OSINT</Badge>
                   <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Validade Judicial</Badge>
                 </div>
               </div>
@@ -2018,7 +2018,7 @@ function ServicosContent() {
                     <UserCheck className="w-10 h-10 text-gold-400" />
                   </div>
                   <p className="text-white font-semibold">Dani Kaloi</p>
-                  <p className="text-gold-400 text-sm">Arquiteta de IA</p>
+                  <p className="text-gold-400 text-sm">Arquiteta de Sistemas</p>
                 </div>
                 <div className="text-center">
                   <div className="relative w-20 h-20 rounded-full overflow-hidden mx-auto mb-2 border-2 border-gold-500/50">
@@ -2067,14 +2067,6 @@ function ServicosContent() {
                   <span className="lg:hidden text-xs md:text-sm">Investimentos</span>
                 </TabsTrigger>
                 <TabsTrigger
-                  value="politicos"
-                  className="flex items-center gap-2 py-3 md:py-4 data-[state=active]:bg-white dark:data-[state=active]:bg-navy-800 data-[state=active]:text-navy-900 dark:data-[state=active]:text-white"
-                >
-                  <Landmark className="w-4 h-4 md:w-5 md:h-5" />
-                  <span className="hidden lg:inline">Setor Político</span>
-                  <span className="lg:hidden text-xs md:text-sm">Políticos</span>
-                </TabsTrigger>
-                <TabsTrigger
                   value="divorcios"
                   className="flex items-center gap-2 py-3 md:py-4 data-[state=active]:bg-white dark:data-[state=active]:bg-navy-800 data-[state=active]:text-navy-900 dark:data-[state=active]:text-white"
                 >
@@ -2084,7 +2076,7 @@ function ServicosContent() {
                 </TabsTrigger>
               </TabsList>
 
-              {["familiar", "empresarial", "investimentos", "politicos", "divorcios"].map(tabValue => (
+              {["familiar", "empresarial", "investimentos", "divorcios"].map(tabValue => (
                 <TabsContent key={tabValue} value={tabValue} className="space-y-8">
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {getServicesForTab(tabValue).map((service) => (
@@ -2160,14 +2152,13 @@ function ServicosContent() {
               Precisa investigar grandes volumes?
             </h2>
             <p className="text-lg text-navy-200">
-              Folhas de pagamento, candidatos, filiados, fornecedores, funcionarios...
-              <br />Nossa IA processa qualquer volume com precisao e velocidade.
+              Folhas de pagamento, funcionarios, fornecedores, socios...
+              <br />Processamos qualquer volume com precisao e velocidade.
             </p>
             <div className="flex flex-wrap gap-3 justify-center pb-4">
-              <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Orgaos Publicos</Badge>
-              <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Partidos Politicos</Badge>
-              <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Mulheres em Divorcio</Badge>
               <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Empresas</Badge>
+              <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Familias</Badge>
+              <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Mulheres em Divorcio</Badge>
               <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">Investidores</Badge>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -2188,7 +2179,7 @@ function ServicosContent() {
                   <UserCheck className="w-7 h-7 text-gold-400" />
                 </div>
                 <p className="text-white text-sm font-semibold">Dani Kaloi</p>
-                <p className="text-gold-400 text-xs">Arquiteta de IA</p>
+                <p className="text-gold-400 text-xs">Arquiteta de Sistemas</p>
               </div>
               <div className="text-center">
                 <div className="relative w-14 h-14 rounded-full overflow-hidden mx-auto mb-2 border-2 border-gold-500/50">

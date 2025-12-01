@@ -15,12 +15,8 @@ export default function Hero() {
   // 🔥 Headlines rotativas focadas nos públicos-alvo
   const headlines = useMemo(() => [
     {
-      main: "INVESTIGAÇÃO COM IA EM ESCALA",
-      sub: "+100 mil registros processados com GPT-5, Claude e Gemini"
-    },
-    {
-      main: "PARTIDO POLÍTICO?",
-      sub: "Verificamos todos os candidatos e filiados em 48h"
+      main: "INVESTIGAÇÃO DIGITAL EM ESCALA",
+      sub: "Due diligence completa com tecnologia de ponta"
     },
     {
       main: "PROTEÇÃO PATRIMONIAL EM DIVÓRCIO",
@@ -31,12 +27,16 @@ export default function Hero() {
       sub: "Investigue o founder antes de investir"
     },
     {
-      main: "AUDITORIA DE SERVIDORES PÚBLICOS",
+      main: "AUDITORIA DE FUNCIONÁRIOS",
       sub: "Folha de pagamento x Óbitos x Acúmulos ilegais"
     },
     {
       main: "PROTEÇÃO COMPLETA DA FAMÍLIA",
       sub: "Funcionários domésticos, segurança digital dos filhos"
+    },
+    {
+      main: "DUE DILIGENCE EMPRESARIAL",
+      sub: "Background check completo para contratações seguras"
     }
   ], []);
 
@@ -227,7 +227,7 @@ export default function Hero() {
           variants={itemVariants}
         >
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 font-medium px-4 max-w-4xl mx-auto">
-            Protegemos <span className="text-gold-400">famílias</span>, <span className="text-gold-400">empresas</span>, <span className="text-gold-400">investidores</span>, <span className="text-gold-400">partidos políticos</span> e <span className="text-gold-400">mulheres em divórcio</span>.
+            Protegemos <span className="text-gold-400">famílias</span>, <span className="text-gold-400">empresas</span>, <span className="text-gold-400">investidores</span>, <span className="text-gold-400">patrimônios</span> e <span className="text-gold-400">mulheres em divórcio</span>.
           </p>
         </motion.div>
 
@@ -306,7 +306,7 @@ export default function Hero() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
             </span>
             <span className="text-white/80 text-xs sm:text-sm">
-              Arquiteta de IA com 16+ certificações
+              Arquiteta de Sistemas especialista em automacao
             </span>
           </Badge>
           <Badge

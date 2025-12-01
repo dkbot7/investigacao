@@ -25,23 +25,6 @@ const AREAS = [
     href: "/servicos?tab=familiar"
   },
   {
-    name: "Setor Político",
-    badge: "+1000/DIA",
-    icon: Landmark,
-    delivery: "Processamento em massa com IA",
-    description: "Due diligence de candidatos e filiados",
-    features: [
-      "Verificação de +1.000 candidatos/dia",
-      "Auditoria de servidores públicos",
-      "Compliance eleitoral TSE",
-      "Relatório para TCE/TCU"
-    ],
-    cta: "Verificar Candidatos",
-    popular: true,
-    color: "primary",
-    href: "/servicos?tab=politicos"
-  },
-  {
     name: "Proteção em Divórcios",
     badge: "PATRIMONIAL",
     icon: Scale,
@@ -54,8 +37,8 @@ const AREAS = [
       "Dossiê para partilha justa"
     ],
     cta: "Proteger Patrimônio",
-    popular: false,
-    color: "secondary",
+    popular: true,
+    color: "primary",
     href: "/servicos?tab=divorcios"
   },
   {
@@ -65,7 +48,7 @@ const AREAS = [
     delivery: "Due diligence corporativa",
     description: "Proteção contra fraudes e vazamentos",
     features: [
-      "Background check corporativo",
+      "Background check de funcionários",
       "Proteção contra espionagem",
       "Due diligence M&A",
       "Relatório forense blindado"
@@ -101,18 +84,18 @@ export default function ProtectionAreas() {
         {/* Section Header */}
         <div className="text-center mb-12 space-y-4">
           <Badge variant="outline" className="mb-4 text-gold-400 border-gold-500/30 bg-gold-500/10">
-            5 Áreas de Proteção
+            4 Áreas de Proteção
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-white">
-            Investigação com IA em Escala
+            Investigação Digital em Escala
           </h2>
           <p className="text-xl text-navy-200 max-w-4xl mx-auto">
-            <span className="text-gold-400">+100 mil registros</span> processados com GPT-5, Claude Opus 4.5 e Gemini 3
+            Due diligence completa com <span className="text-gold-400">tecnologia de ponta</span> e metodologia forense
           </p>
         </div>
 
-        {/* Cards Grid - 5 columns on large screens */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
+        {/* Cards Grid - 4 columns on large screens */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {AREAS.map((area) => (
             <Card
               key={area.name}
@@ -192,7 +175,7 @@ export default function ProtectionAreas() {
               </div>
               <div className="text-left">
                 <p className="text-white text-sm font-semibold">Dani Kaloi</p>
-                <p className="text-gold-400 text-xs">Arquiteta de IA</p>
+                <p className="text-gold-400 text-xs">Arquiteta de Sistemas</p>
               </div>
             </div>
             <div className="h-8 w-px bg-navy-700" />

@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Shield, Award, CheckCircle2, ArrowRight, Cpu, Database, Brain, UserCheck } from "lucide-react";
+import { Shield, Award, CheckCircle2, ArrowRight, Cpu, Database, UserCheck } from "lucide-react";
 import Link from "next/link";
 
 export default function AdvisoryBoard() {
@@ -24,10 +24,10 @@ export default function AdvisoryBoard() {
             Nosso Time
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold">
-            IA Generativa + Perícia Forense
+            Automacao Avancada + Pericia Forense
           </h2>
           <p className="text-xl text-navy-100 max-w-3xl mx-auto">
-            Combinação única no Brasil: <span className="text-gold-400">Arquiteta de IA</span> com 16+ certificações + <span className="text-gold-400">Perito Criminal Oficial</span> (1º lugar PCE-PA)
+            Combinacao unica no Brasil: <span className="text-gold-400">Arquiteta de Sistemas</span> especialista em automacao + <span className="text-gold-400">Perito Criminal Oficial</span> (1o lugar PCE-PA)
           </p>
         </div>
 
@@ -54,26 +54,26 @@ export default function AdvisoryBoard() {
                       Dani Kaloi
                     </h3>
                     <p className="text-gold-400 font-semibold">
-                      Fundadora & Arquiteta de IA
+                      Fundadora & Arquiteta de Sistemas
                     </p>
                   </div>
                 </div>
 
                 {/* Description */}
                 <p className="text-navy-200 text-sm">
-                  Referência nacional em investigação digital com IA. Processa <span className="text-gold-400 font-semibold">+100 mil registros</span> por investigação cruzando dados de 50+ fontes públicas.
+                  Referencia nacional em investigacao digital. Processa <span className="text-gold-400 font-semibold">+100 mil registros</span> por investigacao cruzando dados de 50+ fontes publicas.
                 </p>
 
-                {/* IAs */}
+                {/* Tecnologias */}
                 <div className="space-y-2">
                   <h4 className="text-xs font-semibold text-gold-400 uppercase tracking-wider">
-                    IAs Utilizadas
+                    Tecnologias
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {["GPT-5", "Claude Opus 4.5", "Gemini 3", "AWS Bedrock"].map((ia, i) => (
+                    {["Automacao", "OSINT", "Web Scraping", "APIs Publicas"].map((tech, i) => (
                       <Badge key={i} className="bg-navy-800 text-white text-xs">
-                        <Brain className="w-3 h-3 mr-1" />
-                        {ia}
+                        <Database className="w-3 h-3 mr-1" />
+                        {tech}
                       </Badge>
                     ))}
                   </div>
@@ -97,7 +97,7 @@ export default function AdvisoryBoard() {
 
                 {/* Expertise */}
                 <div className="flex flex-wrap gap-2">
-                  {["Investigação em Massa", "Políticos", "Divórcios", "OSINT"].map((area, i) => (
+                  {["Investigacao em Massa", "Empresas", "Divorcios", "OSINT"].map((area, i) => (
                     <Badge key={i} variant="outline" className="bg-white/5 border-navy-700 text-navy-100 text-xs">
                       {area}
                     </Badge>

@@ -17,49 +17,36 @@ import {
 
 const STATS = [
   { value: "100.000+", label: "Registros por investigacao", icon: Database },
-  { value: "50+", label: "Bases de dados exclusivas", icon: Landmark },
+  { value: "Multiplas", label: "Bases de dados", icon: Landmark },
   { value: "27", label: "Estados + Internacional", icon: MapPin },
   { value: "48h", label: "Entrega expressa", icon: BarChart3 },
 ];
 
 const EXPERTISE_AREAS = [
   {
-    icon: Vote,
-    title: "Investigacao Politica & Eleitoral",
-    subtitle: "Compliance para campanhas e partidos",
-    color: "blue",
-    items: [
-      "Verificacao de candidatos e filiados",
-      "Analise de doacoes eleitorais (TSE)",
-      "Historico de candidaturas desde 2012",
-      "Cruzamento com CEIS/CNEP/CEAF",
-      "Identificacao de laranjas eleitorais"
-    ]
-  },
-  {
     icon: Building2,
-    title: "Auditoria de Servidores Publicos",
-    subtitle: "Orgaos municipais, estaduais e federais",
+    title: "Due Diligence Empresarial",
+    subtitle: "Background check corporativo",
     color: "green",
     items: [
-      "Verificacao de obitos em folhas de pagamento",
-      "Cruzamento com beneficios sociais",
+      "Verificacao de funcionarios e candidatos",
       "Analise de vinculos empresariais",
-      "Deteccao de acumulo ilegal de cargos",
-      "Identificacao de funcionarios fantasmas"
+      "Cruzamento com bases de sancoes",
+      "Deteccao de conflitos de interesse",
+      "Verificacao de antecedentes"
     ]
   },
   {
     icon: Brain,
-    title: "Automacao com IA Generativa",
-    subtitle: "Multiplas IAs de ultima geracao",
+    title: "Automacao Avancada",
+    subtitle: "Tecnologia de ponta para investigacao",
     color: "purple",
     items: [
-      "OpenAI GPT-5 e GPT-5.1 para analise de dados",
-      "Anthropic Claude Opus 4.5 para relatorios",
-      "Google Gemini 3 para processamento multimodal",
-      "AWS Bedrock para escala enterprise",
-      "Agentes autonomos de IA para monitoramento"
+      "Processamento em massa de registros",
+      "Cruzamento automatico de bases de dados",
+      "Geracao automatica de relatorios",
+      "Monitoramento continuo",
+      "Integracao com multiplas fontes"
     ]
   },
   {
@@ -130,33 +117,33 @@ const EXPERTISE_AREAS = [
 ];
 
 const CERTIFICATIONS = [
-  { name: "IA Generativa com AWS", institution: "Amazon Web Services", year: "2024" },
-  { name: "Machine Learning Essentials", institution: "AWS", year: "2024" },
-  { name: "Amazon SageMaker", institution: "AWS", year: "2024" },
-  { name: "Formacao Consultor de IA", institution: "AnaTex", year: "2024" },
+  { name: "Automacao AWS", institution: "Amazon Web Services", year: "2024" },
+  { name: "Data Analytics Essentials", institution: "AWS", year: "2024" },
+  { name: "Amazon Cloud Services", institution: "AWS", year: "2024" },
+  { name: "Formacao Consultor de Dados", institution: "AnaTex", year: "2024" },
   { name: "ClickUp 3.0 + Flow Pro", institution: "Bravy Training", year: "2024" },
-  { name: "Agentes de IA - Zaia", institution: "Zaia", year: "2024" },
-  { name: "IA na Pratica", institution: "Trybe", year: "2024" },
+  { name: "Automacao Avancada", institution: "Zaia", year: "2024" },
+  { name: "Data Science na Pratica", institution: "Trybe", year: "2024" },
 ];
 
 const TECH_STACK = [
-  { category: "IA Generativa", techs: ["OpenAI GPT-5", "Claude Opus 4.5", "Google Gemini 3", "AWS Bedrock"] },
-  { category: "Backend", techs: ["Cloudflare Workers", "Hono.js", "D1 SQLite", "Supabase"] },
-  { category: "Frontend", techs: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS"] },
-  { category: "APIs Gov", techs: ["SERPRO", "InfoSimples", "Portal Transparencia", "TSE"] },
   { category: "Automacao", techs: ["Python", "Selenium", "Pandas", "BeautifulSoup"] },
+  { category: "Backend", techs: ["Cloudflare Workers", "Hono.js", "D1 SQLite", "Supabase"] },
+  { category: "Frontend", techs: ["Next.js", "React", "TypeScript", "Tailwind CSS"] },
+  { category: "Dados", techs: ["APIs Publicas", "Web Scraping", "Bases Abertas", "Integracao"] },
+  { category: "Seguranca", techs: ["LGPD", "Audit Trail", "Criptografia", "Compliance"] },
 ];
 
 const CASES = [
   {
     title: "Auditoria de Folha de Pagamento",
-    description: "Cruzamento de servidores com bases de obitos (DATASUS), beneficios sociais (Portal Transparencia) e vinculos empresariais (Receita Federal). Metodologia aplicavel a qualquer orgao publico.",
+    description: "Cruzamento de funcionarios com bases de obitos, beneficios sociais e vinculos empresariais. Metodologia aplicavel a qualquer empresa.",
     result: "Deteccao de irregularidades",
     duration: "72 horas"
   },
   {
-    title: "Compliance Eleitoral",
-    description: "Verificacao de candidatos e filiados em bases do TSE (candidaturas desde 2012), CEIS/CNEP/CEAF, processos judiciais e doacoes eleitorais. Prevencao de riscos reputacionais.",
+    title: "Due Diligence Empresarial",
+    description: "Verificacao completa de funcionarios, fornecedores e parceiros comerciais. Cruzamento com bases de sancoes e analise de antecedentes.",
     result: "Relatorio individual por pessoa",
     duration: "Conforme volume"
   },
@@ -172,12 +159,12 @@ export default function DaniKaloiPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-white dark:bg-neutral-950">
+      <main className="min-h-screen bg-navy-950">
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-neutral-900 dark:to-neutral-950">
+        <section className="py-20 bg-gradient-to-br from-navy-900 to-navy-950">
           <div className="container max-w-7xl px-4">
             <Link href="/quemsomos">
-              <Button variant="ghost" className="mb-6">
+              <Button variant="ghost" className="mb-6 text-navy-200 hover:text-white hover:bg-navy-800">
                 <ArrowLeft className="mr-2 w-4 h-4" />
                 Voltar para Quem Somos
               </Button>
@@ -187,44 +174,44 @@ export default function DaniKaloiPage() {
               {/* Profile Summary */}
               <div className="md:col-span-2 space-y-6">
                 <div>
-                  <Badge className="bg-amber-500 text-white mb-4">
-                    Referencia Nacional em Investigacao Digital
+                  <Badge className="bg-gold-500 text-navy-900 mb-4">
+                    Referencia Nacional em Investigacao Digital com IA
                   </Badge>
-                  <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
+                  <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
                     Dani Kaloi
                   </h1>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    <Badge className="bg-primary-500 text-white">
+                    <Badge className="bg-navy-700 text-gold-400 border border-gold-500/30">
                       Fundadora & CTO
                     </Badge>
-                    <Badge className="bg-purple-600 text-white">
-                      Arquiteta de IA
+                    <Badge className="bg-navy-700 text-gold-400 border border-gold-500/30">
+                      Arquiteta de Sistemas
                     </Badge>
-                    <Badge className="bg-blue-600 text-white">
+                    <Badge className="bg-navy-700 text-gold-400 border border-gold-500/30">
                       OSINT Expert
                     </Badge>
-                    <Badge className="bg-green-600 text-white">
+                    <Badge className="bg-navy-700 text-gold-400 border border-gold-500/30">
                       +16 Certificacoes
                     </Badge>
                   </div>
-                  <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                    Pioneira em investigacao digital com Inteligencia Artificial no Brasil.
+                  <p className="text-xl text-navy-200 leading-relaxed">
+                    Pioneira em investigacao digital no Brasil.
                     Desenvolvedora Full Stack e Arquiteta de sistemas que processam
-                    <strong className="text-neutral-900 dark:text-neutral-100"> +100.000 registros simultaneamente</strong>,
-                    cruzando <strong className="text-neutral-900 dark:text-neutral-100">50+ bases de dados exclusivas</strong> -
+                    <strong className="text-gold-400"> +100.000 registros simultaneamente</strong>,
+                    cruzando <strong className="text-gold-400">multiplas bases de dados</strong> -
                     governamentais, autorais e sigilosas, nacionais e internacionais.
-                    Especialista em investigacao de agentes politicos, servidores publicos e
-                    <strong className="text-neutral-900 dark:text-neutral-100"> protecao patrimonial para mulheres em divorcios com narcisistas</strong>.
+                    Especialista em due diligence empresarial e
+                    <strong className="text-gold-400"> protecao patrimonial para mulheres em divorcios</strong>.
                   </p>
                 </div>
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
                   {STATS.map((stat, idx) => (
-                    <div key={idx} className="text-center p-4 bg-white dark:bg-neutral-800 rounded-lg shadow-sm">
-                      <stat.icon className="w-6 h-6 text-primary-500 mx-auto mb-2" />
-                      <p className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{stat.value}</p>
-                      <p className="text-xs text-neutral-600 dark:text-neutral-400">{stat.label}</p>
+                    <div key={idx} className="text-center p-4 bg-navy-800 border border-navy-700 rounded-lg">
+                      <stat.icon className="w-6 h-6 text-gold-400 mx-auto mb-2" />
+                      <p className="text-2xl font-bold text-gold-400">{stat.value}</p>
+                      <p className="text-xs text-navy-300">{stat.label}</p>
                     </div>
                   ))}
                 </div>
@@ -232,39 +219,39 @@ export default function DaniKaloiPage() {
 
               {/* Contact Card */}
               <div>
-                <Card className="sticky top-20">
+                <Card className="sticky top-20 bg-navy-800 border-navy-700">
                   <CardHeader>
-                    <CardTitle>Informacoes Profissionais</CardTitle>
+                    <CardTitle className="text-white">Informacoes Profissionais</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="space-y-3">
                       <div className="flex items-center gap-2 text-sm">
-                        <Briefcase className="w-4 h-4 text-primary-500" />
-                        <span className="text-neutral-600 dark:text-neutral-400">
+                        <Briefcase className="w-4 h-4 text-gold-400" />
+                        <span className="text-navy-200">
                           Fundadora & CTO - investigaree
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
-                        <MapPin className="w-4 h-4 text-primary-500" />
-                        <span className="text-neutral-600 dark:text-neutral-400">
+                        <MapPin className="w-4 h-4 text-gold-400" />
+                        <span className="text-navy-200">
                           Itapema, Santa Catarina, Brasil
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
-                        <Brain className="w-4 h-4 text-primary-500" />
-                        <span className="text-neutral-600 dark:text-neutral-400">
-                          IA Generativa & Automacao
+                        <Brain className="w-4 h-4 text-gold-400" />
+                        <span className="text-navy-200">
+                          Automacao & Integracao de Dados
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
-                        <GraduationCap className="w-4 h-4 text-primary-500" />
-                        <span className="text-neutral-600 dark:text-neutral-400">
+                        <GraduationCap className="w-4 h-4 text-gold-400" />
+                        <span className="text-navy-200">
                           Tecnologo em Criminologia
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
-                        <Award className="w-4 h-4 text-primary-500" />
-                        <span className="text-neutral-600 dark:text-neutral-400">
+                        <Award className="w-4 h-4 text-gold-400" />
+                        <span className="text-navy-200">
                           +12 anos no mercado
                         </span>
                       </div>
@@ -272,12 +259,12 @@ export default function DaniKaloiPage() {
 
                     <div className="pt-2 space-y-2">
                       <Link href="/contato" className="block">
-                        <Button className="w-full" size="lg">
+                        <Button className="w-full bg-gold-500 hover:bg-gold-600 text-navy-900" size="lg">
                           Solicitar Investigacao
                         </Button>
                       </Link>
                       <Link href="/servicos" className="block">
-                        <Button variant="outline" className="w-full" size="lg">
+                        <Button variant="outline" className="w-full border-gold-500/50 text-gold-400 hover:bg-gold-500/10" size="lg">
                           Ver Servicos
                         </Button>
                       </Link>
@@ -289,55 +276,54 @@ export default function DaniKaloiPage() {
           </div>
         </section>
 
-        {/* Diferencial - IA + Volume */}
-        <section className="py-16 bg-gradient-to-r from-purple-600 to-blue-600">
+        {/* Diferencial - Automacao + Volume */}
+        <section className="py-16 bg-gradient-to-r from-gold-600 to-gold-500">
           <div className="container max-w-7xl px-4">
-            <div className="text-center text-white space-y-4">
-              <Cpu className="w-12 h-12 mx-auto opacity-80" />
+            <div className="text-center text-navy-900 space-y-4">
+              <Cpu className="w-12 h-12 mx-auto text-navy-800" />
               <h2 className="text-3xl font-bold">
-                Investigacao Potencializada por IA Generativa
+                Investigacao Potencializada por Automacao
               </h2>
-              <p className="text-lg opacity-90 max-w-3xl mx-auto">
+              <p className="text-lg text-navy-800 max-w-3xl mx-auto">
                 Enquanto investigadores tradicionais analisam dezenas de registros por dia,
-                nossos sistemas automatizados com <strong>GPT-5, Claude Opus 4.5, Gemini 3 e agentes autonomos de IA</strong> processam
+                nossos sistemas automatizados processam
                 <strong> milhares de registros em minutos</strong>, gerando relatorios executivos
                 com insights que seriam impossiveis de detectar manualmente.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-4">
-                <Badge className="bg-white/20 text-white border-white/30">OpenAI GPT-5</Badge>
-                <Badge className="bg-white/20 text-white border-white/30">Claude Opus 4.5</Badge>
-                <Badge className="bg-white/20 text-white border-white/30">Google Gemini 3</Badge>
-                <Badge className="bg-white/20 text-white border-white/30">AWS Bedrock</Badge>
-                <Badge className="bg-white/20 text-white border-white/30">Agentes Autonomos</Badge>
+                <Badge className="bg-navy-900 text-gold-400">Processamento em Massa</Badge>
+                <Badge className="bg-navy-900 text-gold-400">Multiplas Fontes</Badge>
+                <Badge className="bg-navy-900 text-gold-400">Relatorios Automaticos</Badge>
+                <Badge className="bg-navy-900 text-gold-400">Monitoramento Continuo</Badge>
               </div>
             </div>
           </div>
         </section>
 
         {/* Areas de Expertise */}
-        <section className="py-20">
+        <section className="py-20 bg-navy-900">
           <div className="container max-w-7xl px-4">
             <div className="text-center mb-12">
-              <Badge variant="outline" className="mb-4">Especializacoes</Badge>
-              <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
+              <Badge variant="outline" className="mb-4 text-gold-400 border-gold-500/30">Especializacoes</Badge>
+              <h2 className="text-3xl font-bold text-white">
                 Areas de Expertise
               </h2>
-              <p className="text-neutral-600 dark:text-neutral-400 mt-2 max-w-2xl mx-auto">
+              <p className="text-navy-300 mt-2 max-w-2xl mx-auto">
                 Combinacao unica de conhecimento investigativo, tecnologia de ponta e automacao inteligente
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {EXPERTISE_AREAS.map((area, idx) => (
-                <Card key={idx} className="hover:shadow-lg transition-shadow">
+                <Card key={idx} className="bg-navy-800 border-navy-700 hover:border-gold-500/30 transition-all">
                   <CardHeader>
                     <div className="flex items-center gap-3">
-                      <div className={`p-3 bg-${area.color}-100 dark:bg-${area.color}-900/20 rounded-lg`}>
-                        <area.icon className={`w-6 h-6 text-${area.color}-600`} />
+                      <div className="p-3 bg-gold-500/10 rounded-lg">
+                        <area.icon className="w-6 h-6 text-gold-400" />
                       </div>
                       <div>
-                        <CardTitle className="text-lg">{area.title}</CardTitle>
-                        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                        <CardTitle className="text-lg text-white">{area.title}</CardTitle>
+                        <p className="text-sm text-navy-300">
                           {area.subtitle}
                         </p>
                       </div>
@@ -346,8 +332,8 @@ export default function DaniKaloiPage() {
                   <CardContent>
                     <ul className="space-y-2">
                       {area.items.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
-                          <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                        <li key={i} className="flex items-start gap-2 text-sm text-navy-200">
+                          <CheckCircle className="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0" />
                           {item}
                         </li>
                       ))}
@@ -360,33 +346,33 @@ export default function DaniKaloiPage() {
         </section>
 
         {/* Cases de Sucesso */}
-        <section className="py-20 bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-950">
+        <section className="py-20 bg-navy-950">
           <div className="container max-w-7xl px-4">
             <div className="text-center mb-12">
-              <Badge variant="outline" className="mb-4">Resultados Comprovados</Badge>
-              <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
+              <Badge variant="outline" className="mb-4 text-gold-400 border-gold-500/30">Resultados Comprovados</Badge>
+              <h2 className="text-3xl font-bold text-white">
                 Cases de Sucesso
               </h2>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {CASES.map((case_, idx) => (
-                <Card key={idx} className="border-l-4 border-l-primary-500">
+                <Card key={idx} className="bg-navy-800 border-navy-700 border-l-4 border-l-gold-500">
                   <CardHeader>
-                    <CardTitle className="text-lg">{case_.title}</CardTitle>
+                    <CardTitle className="text-lg text-white">{case_.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                    <p className="text-sm text-navy-200">
                       {case_.description}
                     </p>
-                    <div className="flex justify-between items-center pt-2 border-t">
+                    <div className="flex justify-between items-center pt-2 border-t border-navy-700">
                       <div>
-                        <p className="text-xs text-neutral-500">Resultado</p>
-                        <p className="font-semibold text-green-600">{case_.result}</p>
+                        <p className="text-xs text-navy-400">Resultado</p>
+                        <p className="font-semibold text-gold-400">{case_.result}</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-xs text-neutral-500">Prazo</p>
-                        <p className="font-semibold">{case_.duration}</p>
+                        <p className="text-xs text-navy-400">Prazo</p>
+                        <p className="font-semibold text-white">{case_.duration}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -436,7 +422,7 @@ export default function DaniKaloiPage() {
             <div className="text-center mb-12">
               <Badge variant="outline" className="mb-4">Qualificacoes</Badge>
               <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
-                Certificacoes em IA & Machine Learning
+                Certificacoes em Automacao & Dados
               </h2>
             </div>
 
@@ -476,21 +462,21 @@ export default function DaniKaloiPage() {
               <Card className="border-2 border-blue-200 dark:border-blue-800">
                 <CardContent className="pt-6">
                   <h3 className="font-semibold text-lg flex items-center gap-2 mb-4">
-                    <Vote className="w-5 h-5 text-blue-600" />
-                    Setor Politico & Eleitoral
+                    <Building2 className="w-5 h-5 text-blue-600" />
+                    Empresas
                   </h3>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2 text-sm">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
-                      Partidos politicos e coligacoes
+                      Due diligence de funcionarios
                     </li>
                     <li className="flex items-start gap-2 text-sm">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
-                      Campanhas eleitorais (compliance)
+                      Verificacao de fornecedores
                     </li>
                     <li className="flex items-start gap-2 text-sm">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
-                      Gabinetes de parlamentares
+                      Background check corporativo
                     </li>
                   </ul>
                 </CardContent>
@@ -499,21 +485,21 @@ export default function DaniKaloiPage() {
               <Card className="border-2 border-green-200 dark:border-green-800">
                 <CardContent className="pt-6">
                   <h3 className="font-semibold text-lg flex items-center gap-2 mb-4">
-                    <Building2 className="w-5 h-5 text-green-600" />
-                    Setor Publico
+                    <Users className="w-5 h-5 text-green-600" />
+                    Familias
                   </h3>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2 text-sm">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
-                      Prefeituras e camaras municipais
+                      Verificacao de funcionarios domesticos
                     </li>
                     <li className="flex items-start gap-2 text-sm">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
-                      Governos estaduais
+                      Protecao digital
                     </li>
                     <li className="flex items-start gap-2 text-sm">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
-                      Tribunais de contas
+                      Analise de riscos
                     </li>
                   </ul>
                 </CardContent>
@@ -575,7 +561,7 @@ export default function DaniKaloiPage() {
               Precisa investigar milhares de pessoas?
             </h2>
             <p className="text-lg text-primary-100">
-              Folhas de pagamento, bases de filiados, fornecedores, candidatos...
+              Folhas de pagamento, funcionarios, fornecedores, parceiros...
               <br />Nossa tecnologia processa qualquer volume com precisao e velocidade.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
