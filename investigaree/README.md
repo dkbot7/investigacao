@@ -1,99 +1,170 @@
 # investigaree - Frontend
 
-**Ultima atualizacao**: 29 de Novembro de 2025
+**Ultima atualizacao**: 30 de Novembro de 2025
+**Versao**: 0.1.0
 
 Plataforma SaaS de Due Diligence Digital e Investigacao Forense.
 
-## Stack
+---
 
-- **Framework**: Next.js 16.0.3
-- **UI Library**: React 19.2.0
-- **Linguagem**: TypeScript 5.x
-- **Estilizacao**: Tailwind CSS 4.x
-- **Componentes**: Shadcn UI
-- **Animacoes**: Framer Motion 12.x
-- **Autenticacao**: Firebase Auth 12.x
-- **Deploy**: Cloudflare Pages
+## Stack Tecnologico
 
-## Estrutura
+| Tecnologia | Versao | Uso |
+|------------|--------|-----|
+| **Next.js** | 16.0.3 | Framework React com App Router |
+| **React** | 19.2.0 | UI Library |
+| **TypeScript** | 5.x | Tipagem estatica |
+| **Tailwind CSS** | 4.x | Estilizacao utility-first |
+| **Shadcn UI** | latest | Componentes acessiveis |
+| **Framer Motion** | 12.x | Animacoes |
+| **Firebase Auth** | 12.x | Autenticacao de usuarios |
+| **React Hook Form** | 7.66.1 | Gerenciamento de formularios |
+| **Zod** | 4.1.12 | Validacao de schemas |
+| **Deploy** | Cloudflare Pages | Hospedagem |
+
+---
+
+## Estrutura do Projeto
 
 ```
 src/
-├── app/                    # App Router (paginas)
-│   ├── dashboard/          # Area logada
-│   │   ├── admin/          # Painel administrativo
-│   │   ├── obitos/         # Consulta de obitos
-│   │   ├── candidatos/     # Candidatos TSE
-│   │   ├── doadores/       # Doadores de campanha
-│   │   ├── sancionados/    # CEIS/CNEP
-│   │   ├── vinculos/       # Vinculos empresariais
-│   │   ├── beneficios/     # Beneficios sociais
-│   │   ├── funcionarios/   # Lista de funcionarios
-│   │   ├── analitico/      # Relatorios analiticos
-│   │   └── exportar/       # Exportacao de dados
-│   ├── quemsomos/          # Pagina institucional
-│   │   └── ibsen-maciel/   # Perfil do advisor
-│   ├── servicos/           # Servicos oferecidos
-│   └── ...                 # Outras paginas publicas
-├── components/             # Componentes React
-│   ├── dashboard/          # Componentes do dashboard
-│   ├── landing/            # Componentes da landing page
-│   └── ui/                 # Shadcn UI components
-├── contexts/               # Context API (Auth, Theme)
-├── hooks/                  # Custom Hooks
-│   └── useTenant.ts        # Hook de tenant multi-tenant
-├── lib/                    # Utilitarios
-│   ├── api.ts              # Cliente API
-│   └── admin-api.ts        # API administrativa
-└── public/                 # Assets estaticos
-    └── images/             # Imagens (incluindo fotos do time)
+├── app/                        # App Router (paginas)
+│   ├── page.tsx                # Homepage (landing page)
+│   ├── dashboard/              # Area logada multi-tenant
+│   │   ├── page.tsx            # Dashboard principal
+│   │   ├── admin/              # Painel administrativo
+│   │   ├── funcionarios/       # Lista de funcionarios
+│   │   ├── obitos/             # Verificacao de obitos
+│   │   ├── candidatos/         # Candidatos TSE
+│   │   ├── doadores/           # Doadores de campanha
+│   │   ├── sancionados/        # CEIS/CNEP
+│   │   ├── ofac/               # Lista OFAC (sancoes internacionais)
+│   │   ├── vinculos/           # Vinculos empresariais
+│   │   ├── beneficios/         # Beneficios sociais
+│   │   ├── analitico/          # Graficos e estatisticas
+│   │   ├── relatorios/         # Relatorios de due diligence
+│   │   └── exportar/           # Exportacao CSV/Excel
+│   ├── quemsomos/              # Pagina institucional
+│   │   ├── page.tsx            # Equipe
+│   │   ├── dani-kaloi/         # Perfil fundadora
+│   │   └── ibsen-maciel/       # Perfil advisor
+│   ├── servicos/               # Catalogo de servicos
+│   ├── contato/                # Formulario de contato
+│   ├── sobre/                  # Sobre a empresa
+│   ├── loginadmin/             # Login administrativo
+│   ├── privacidade/            # Politica de privacidade
+│   ├── termos/                 # Termos de uso
+│   ├── cookies/                # Politica de cookies
+│   └── faq/                    # Perguntas frequentes
+│
+├── components/                 # Componentes React
+│   ├── dashboard/              # Componentes do dashboard
+│   │   ├── Sidebar.tsx
+│   │   ├── StatsCard.tsx
+│   │   ├── DataTable.tsx
+│   │   └── ...
+│   ├── landing/                # Landing page sections
+│   │   ├── Hero.tsx
+│   │   ├── Services.tsx
+│   │   ├── Team.tsx
+│   │   └── ...
+│   ├── ui/                     # Shadcn UI components
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── input.tsx
+│   │   └── ...
+│   └── auth/                   # Componentes de autenticacao
+│       ├── LoginForm.tsx
+│       ├── RegisterForm.tsx
+│       └── ...
+│
+├── contexts/                   # Context API
+│   ├── AuthContext.tsx         # Estado de autenticacao
+│   └── ThemeContext.tsx        # Tema (dark/light)
+│
+├── hooks/                      # Custom Hooks
+│   ├── useTenant.ts            # Hook multi-tenant
+│   ├── useAuth.ts              # Hook de autenticacao
+│   └── useApi.ts               # Hook para chamadas API
+│
+├── lib/                        # Utilitarios
+│   ├── api.ts                  # Cliente API autenticado
+│   ├── admin-api.ts            # API administrativa
+│   ├── user-api.ts             # API do usuario
+│   ├── firebase.ts             # Inicializacao Firebase
+│   └── utils.ts                # Funcoes auxiliares
+│
+└── public/                     # Assets estaticos
+    ├── images/                 # Imagens (fotos do time, etc)
+    ├── favicon.ico
+    └── ...
 ```
 
-## Scripts
+---
+
+## Scripts Disponiveis
 
 ```bash
-# Desenvolvimento
+# Desenvolvimento com hot reload
 npm run dev
 
 # Build para producao
 npm run build
 
-# Lint
+# Iniciar servidor de producao
+npm run start
+
+# Linting
 npm run lint
 
-# Type check
+# Type checking
 npm run typecheck
 ```
 
+---
+
 ## Variaveis de Ambiente
 
+Crie um arquivo `.env.local` na pasta `investigaree/`:
+
 ```env
-# Firebase
-NEXT_PUBLIC_FIREBASE_API_KEY=
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+# Firebase Auth
+NEXT_PUBLIC_FIREBASE_API_KEY=sua_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=seu_projeto.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=seu_projeto
 
 # API Backend
 NEXT_PUBLIC_API_URL=https://api.investigaree.com.br
 
-# (Local)
-NEXT_PUBLIC_API_URL=http://localhost:8787
+# Desenvolvimento local
+# NEXT_PUBLIC_API_URL=http://localhost:8787
 ```
 
-## Features
+---
+
+## Features Principais
 
 ### Dashboard Multi-Tenant
-- Sistema de controle de acesso por tenant
+- Sistema de controle de acesso por tenant (cliente)
 - Cada cliente ve apenas seus dados
 - Roles: admin, editor, viewer
+- Tela de "Aguardando acesso" para usuarios novos
 
 ### Modulos do Dashboard
-- **Obitos**: Verificacao de funcionarios falecidos
-- **Candidatos**: Historico de candidaturas TSE
-- **Doadores**: Doacoes de campanha eleitoral
-- **Sancionados**: CEIS/CNEP (impedidos de contratar)
-- **Vinculos**: Participacao societaria em empresas
-- **Beneficios**: Auxilio emergencial, Bolsa Familia, etc
+
+| Modulo | Descricao |
+|--------|-----------|
+| **Funcionarios** | Lista completa com filtros e busca |
+| **Obitos** | Funcionarios falecidos verificados |
+| **Candidatos** | Historico de candidaturas TSE |
+| **Doadores** | Doacoes de campanha eleitoral |
+| **Sancionados** | CEIS/CNEP (impedidos de contratar) |
+| **OFAC** | Lista OFAC (sancoes internacionais) |
+| **Vinculos** | Participacao societaria em empresas |
+| **Beneficios** | Auxilio emergencial, BPC, etc |
+| **Analitico** | Graficos e estatisticas |
+| **Relatorios** | Due diligence reports |
+| **Exportar** | Download CSV/Excel |
 
 ### Admin Panel
 - Gerenciamento de usuarios
@@ -102,10 +173,13 @@ NEXT_PUBLIC_API_URL=http://localhost:8787
 - Estatisticas do sistema
 
 ### Landing Page
+- Design navy/gold profissional
 - Secao de servicos
-- Advisory Board (Ibsen Maciel)
+- Advisory Board
 - Integracao WhatsApp
 - Formulario de contato
+
+---
 
 ## Advisory Board
 
@@ -113,24 +187,101 @@ A plataforma conta com o suporte tecnico de:
 
 **Ibsen Rodrigues Maciel**
 - Perito Criminal Oficial - PCE-PA (1o lugar concurso 2019)
-- Membro do LABCEDF - PC-PA
+- Membro do LABCEDF - Laboratorio de Computacao e Extracao de Dados Forenses
 - Ex-Gerente do Nucleo de Fonetica Forense (2022-2024)
 - Diretor Nacional de Pericias - ANPAJ (6.000+ associados)
 - Certificacoes: CELLEBRITE UFED, XRY MSAB, Magnet AXIOM
+
+---
+
+## Autenticacao
+
+O sistema usa Firebase Auth para autenticacao:
+
+```typescript
+// contexts/AuthContext.tsx
+const { user, loading, signIn, signOut } = useAuth();
+
+// Verificar se esta logado
+if (!user) {
+  redirect('/login');
+}
+
+// Obter token para API
+const token = await user.getIdToken();
+```
+
+### Hook useTenant
+
+```typescript
+// hooks/useTenant.ts
+const { tenant, hasAccess, loading, error } = useTenant();
+
+if (loading) return <LoadingSpinner />;
+if (!hasAccess) return <NoAccessScreen />;
+
+return <Dashboard tenant={tenant} />;
+```
+
+---
 
 ## Deploy
 
 O deploy e automatico via GitHub Actions para Cloudflare Pages.
 
+### Build Manual
+
 ```bash
-# Build local
+# Build
 npm run build
 
-# O deploy acontece automaticamente no push para main
+# O output fica em out/ (export estatico)
 ```
 
-## Documentacao
+### Configuracao Next.js
 
-- [Documentacao Tecnica](../docs/README.md)
-- [API Reference](../docs/API.md)
-- [Sistema Multi-Tenant](../docs/MULTI-TENANT.md)
+```typescript
+// next.config.ts
+const nextConfig = {
+  output: 'export',  // Static export para Cloudflare Pages
+  images: {
+    unoptimized: true
+  }
+};
+```
+
+---
+
+## Documentacao Relacionada
+
+| Documento | Descricao |
+|-----------|-----------|
+| [docs/README.md](../docs/README.md) | Documentacao tecnica completa |
+| [docs/API.md](../docs/API.md) | Referencia da API |
+| [docs/MULTI-TENANT.md](../docs/MULTI-TENANT.md) | Sistema multi-tenant |
+| [docs/openapi.yaml](../docs/openapi.yaml) | Especificacao OpenAPI |
+
+---
+
+## Troubleshooting
+
+### Erro de CORS
+
+Verifique se `NEXT_PUBLIC_API_URL` esta correto e se o backend esta rodando.
+
+### Token invalido
+
+1. Limpe o cache do navegador
+2. Faca logout e login novamente
+3. Verifique se Firebase esta configurado corretamente
+
+### Tela de "Aguardando acesso"
+
+Usuario novo ainda nao tem associacao com tenant. Um admin precisa liberar via:
+```
+POST /api/admin/grant-access
+```
+
+---
+
+**Mantido por**: Equipe investigaree

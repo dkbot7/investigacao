@@ -1,12 +1,41 @@
 # API Reference - investigaree
 
-**Ultima atualizacao**: 29 de Novembro de 2025
+**Ultima atualizacao**: 30 de Novembro de 2025
+**Versao**: 1.0.0
 
 Base URL: `https://api.investigaree.com.br`
 
+> **Nota**: A especificacao completa OpenAPI 3.1 esta disponivel em [openapi.yaml](./openapi.yaml).
+> Pode ser importada no Swagger UI, Postman ou outras ferramentas de API.
+
+---
+
+## Indice de Endpoints
+
+| Grupo | Rota Base | Autenticacao | Descricao |
+|-------|-----------|--------------|-----------|
+| Health | `/`, `/health` | Nao | Status da API |
+| Auth | `/api/auth` | Nao | Registro e sincronizacao |
+| Leads | `/api/leads` | Nao | Captacao de leads |
+| Chatbot | `/api/chatbot` | Nao | Assistente de vendas |
+| Investigation | `/api/investigation` | Nao | Solicitacoes de investigacao |
+| Consultas Publicas | `/api/consultas` | Nao | CEP, CNPJ (Brasil API) |
+| Infosimples | `/api/infosimples` | Sim | CPF, CNPJ, processos |
+| Transparencia | `/api/transparencia` | Sim | Servidores, CEIS, CNEP |
+| Webhooks | `/api/webhooks` | Signature | Stripe webhooks |
+| Reports | `/api/reports` | Sim | Relatorios de due diligence |
+| Payments | `/api/payments` | Sim | Pagamentos Stripe |
+| User | `/api/user` | Sim | Perfil do usuario |
+| LGPD | `/api/lgpd` | Sim | Direitos do titular |
+| Tenant Data | `/api/tenant` | Sim | Dados multi-tenant (B2B) |
+| User Data | `/api/userdata` | Sim | Dados individuais (B2C) |
+| Admin | `/api/admin` | Sim (admin) | Gerenciamento do sistema |
+
+---
+
 ## Autenticacao
 
-Todas as rotas protegidas requerem header de autorizacao:
+Rotas protegidas requerem header de autorizacao:
 
 ```
 Authorization: Bearer <firebase_id_token>
@@ -16,6 +45,8 @@ Para obter o token:
 ```javascript
 const token = await firebase.auth().currentUser.getIdToken();
 ```
+
+---
 
 ## Endpoints Publicos
 
@@ -51,8 +82,15 @@ GET /
     "health": "/health",
     "auth": "/api/auth",
     "leads": "/api/leads",
-    "tenant": "/api/tenant",
-    "admin": "/api/admin"
+    "chatbot": "/api/chatbot/message",
+    "reports": "/api/reports",
+    "payments": "/api/payments",
+    "webhooks": "/api/webhooks/stripe",
+    "user": "/api/user",
+    "lgpd": "/api/lgpd",
+    "consultas": "/api/consultas",
+    "infosimples": "/api/infosimples",
+    "transparencia": "/api/transparencia"
   }
 }
 ```
@@ -62,8 +100,6 @@ GET /
 ## Autenticacao (`/api/auth`)
 
 ### Registrar Usuario
-
-Cria registro no D1 apos cadastro no Firebase.
 
 ```
 POST /api/auth/register
@@ -88,19 +124,7 @@ POST /api/auth/register
 }
 ```
 
-**Response (200) - Usuario ja existe:**
-```json
-{
-  "success": true,
-  "user_id": "uuid-existente",
-  "message": "Usuario ja cadastrado",
-  "existing": true
-}
-```
-
 ### Sincronizar Usuario
-
-Sincroniza dados do Firebase com D1 (idempotente).
 
 ```
 POST /api/auth/sync
@@ -115,16 +139,6 @@ POST /api/auth/sync
 }
 ```
 
-**Response:**
-```json
-{
-  "success": true,
-  "user_id": "uuid",
-  "synced": true,
-  "created": false
-}
-```
-
 ### Obter Usuario Atual
 
 ```
@@ -132,694 +146,144 @@ GET /api/auth/me
 Authorization: Bearer <token>
 ```
 
+---
+
+## Leads (`/api/leads`)
+
+Captacao de leads via landing page e WhatsApp.
+
+### Criar Lead (Landing Page)
+
+```
+POST /api/leads
+```
+
+**Request Body:**
+```json
+{
+  "firebase_uid": "abc123",
+  "email": "usuario@email.com",
+  "name": "Nome",
+  "phone": "(62) 99999-9999",
+  "consent": true,
+  "utm_source": "google",
+  "utm_medium": "cpc",
+  "utm_campaign": "brand"
+}
+```
+
+**Response (201):**
+```json
+{
+  "success": true,
+  "lead_id": "uuid",
+  "message": "Lead cadastrado com sucesso!"
+}
+```
+
+### Criar Lead (WhatsApp)
+
+```
+POST /api/leads/whatsapp
+```
+
+**Request Body:**
+```json
+{
+  "nome": "Nome do Lead",
+  "contato": "email@ou.telefone",
+  "mensagem": "Mensagem opcional",
+  "origem": "whatsapp",
+  "pagina": "/servicos"
+}
+```
+
+### Listar Leads
+
+```
+GET /api/leads
+```
+
+### Estatisticas de Leads
+
+```
+GET /api/leads/stats
+```
+
 **Response:**
 ```json
 {
   "success": true,
-  "user": {
-    "id": "uuid",
-    "firebase_uid": "abc123",
-    "email": "usuario@email.com",
-    "name": "Nome",
-    "phone": "(62) 99999-9999",
-    "created_at": "2025-11-29T12:00:00.000Z"
-  }
-}
-```
-
----
-
-## Tenant (`/api/tenant`)
-
-### Informacoes do Tenant
-
-Retorna tenant(s) que o usuario tem acesso.
-
-```
-GET /api/tenant/info
-Authorization: Bearer <token>
-```
-
-**Response (com acesso):**
-```json
-{
-  "hasAccess": true,
-  "tenant": {
-    "id": "tenant_cliente_01",
-    "code": "CLIENTE_01",
-    "name": "COMURG - Companhia de Urbanizacao de Goiania",
-    "role": "viewer"
-  },
-  "tenants": [
-    {
-      "id": "tenant_cliente_01",
-      "code": "CLIENTE_01",
-      "name": "COMURG",
-      "role": "viewer"
-    }
-  ],
-  "role": "viewer"
-}
-```
-
-**Response (sem acesso):**
-```json
-{
-  "hasAccess": false,
-  "tenant": null,
-  "tenants": [],
-  "message": "Aguardando liberacao de acesso"
-}
-```
-
-### Dashboard
-
-Dados consolidados para o dashboard principal.
-
-```
-GET /api/tenant/dashboard
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "tenant": {
-    "code": "CLIENTE_01",
-    "name": "COMURG"
-  },
   "stats": {
-    "total_funcionarios": 5948,
-    "total_obitos": 50,
-    "total_beneficiarios": 4,
-    "total_sancionados": 1,
-    "total_doadores": 81,
-    "total_candidatos": 8,
-    "total_socios": 501
-  },
-  "grupos": [
-    {
-      "grupo": "Comurg",
-      "registros": 4590,
-      "obitos": 50,
-      "candidatos": 8,
-      "doadores": 62,
-      "sancionados": 1,
-      "socios": 381
-    },
-    {
-      "grupo": "Disposicao",
-      "registros": 1358,
-      "obitos": 0,
-      "candidatos": 0,
-      "doadores": 19,
-      "sancionados": 0,
-      "socios": 120
-    }
-  ],
-  "vinculos": {
-    "total": 638,
-    "cnpjs": 638
-  },
-  "doacoes": {
-    "total_valor": 193648.84,
-    "total_doacoes": 81
-  },
-  "updated_at": "2025-11-29T12:00:00.000Z"
-}
-```
-
-### Funcionarios
-
-Lista funcionarios com filtros e paginacao.
-
-```
-GET /api/tenant/funcionarios
-Authorization: Bearer <token>
-```
-
-**Query Parameters:**
-| Param | Tipo | Descricao |
-|-------|------|-----------|
-| grupo | string | Filtrar por grupo (ex: "Comurg") |
-| busca | string | Busca por nome ou CPF |
-| alerta | string | Tipo de alerta: obito, beneficio, sancionado, doador, candidato, socio |
-| page | number | Pagina (default: 1) |
-| limit | number | Itens por pagina (default: 50) |
-
-**Exemplo:**
-```
-GET /api/tenant/funcionarios?grupo=Comurg&alerta=obito&page=1&limit=20
-```
-
-**Response:**
-```json
-{
-  "funcionarios": [
-    {
-      "id": "uuid",
-      "cadastro": "12345",
-      "nome": "JOAO DA SILVA",
-      "cpf": "12345678901",
-      "grupo": "Comurg",
-      "cargo": "Auxiliar",
-      "salario": 1500.00,
-      "esta_vivo": "NAO",
-      "esta_morto": "SIM - Ano: 2023",
-      "ano_obito": 2023,
-      "recebe_beneficio": 0,
-      "socio_empresa": 1,
-      "doador_campanha": 0,
-      "candidato": 0,
-      "sancionado_ceis": 0
-    }
-  ],
-  "pagination": {
-    "total": 50,
-    "page": 1,
-    "limit": 20,
-    "pages": 3
+    "total": 150,
+    "today": 5
   }
 }
 ```
 
-### Detalhes do Funcionario
+### Obter Lead por ID
 
 ```
-GET /api/tenant/funcionario/:id
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "funcionario": {
-    "id": "uuid",
-    "nome": "JOAO DA SILVA",
-    "cpf": "12345678901",
-    "grupo": "Comurg",
-    "cargo": "Auxiliar",
-    "salario": 1500.00,
-    "data_admissao": "2010-01-15",
-    "esta_morto": "SIM - Ano: 2023"
-  },
-  "candidaturas": [
-    {
-      "cargo": "VEREADOR",
-      "partido": "PT",
-      "uf": "GO",
-      "ano": 2020,
-      "situacao": "Nao Eleito",
-      "votos": 150
-    }
-  ],
-  "doacoes": [
-    {
-      "nome_candidato": "CANDIDATO X",
-      "partido": "MDB",
-      "ano": 2022,
-      "valor": 500.00
-    }
-  ],
-  "vinculos": [
-    {
-      "cnpj": "12345678000199",
-      "razao_social": "EMPRESA LTDA",
-      "qualificacao": "Socio-Administrador",
-      "situacao_cadastral": "ATIVA"
-    }
-  ],
-  "sancoes": [],
-  "beneficios": []
-}
-```
-
-### Obitos
-
-Lista funcionarios falecidos.
-
-```
-GET /api/tenant/obitos
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "obitos": [
-    {
-      "id": "uuid",
-      "cadastro": "12345",
-      "nome": "JOAO DA SILVA",
-      "cpf": "12345678901",
-      "grupo": "Comurg",
-      "cargo": "Auxiliar",
-      "ano_obito": 2023,
-      "data_obito": "2023-05-15",
-      "fonte": "INFOSIMPLES"
-    }
-  ],
-  "total": 50
-}
-```
-
-### Candidatos
-
-Lista funcionarios que foram candidatos.
-
-```
-GET /api/tenant/candidatos
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "candidatos": [
-    {
-      "funcionario_id": "uuid",
-      "nome": "MARIA SILVA",
-      "cpf": "98765432101",
-      "grupo": "Comurg",
-      "cargo": "DEPUTADO ESTADUAL",
-      "partido": "PT",
-      "uf": "GO",
-      "ano": 2022,
-      "situacao": "Suplente",
-      "votos": 5000
-    }
-  ],
-  "total": 8
-}
-```
-
-### Doadores
-
-Lista funcionarios que doaram para campanhas.
-
-```
-GET /api/tenant/doadores
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "doadores": [
-    {
-      "funcionario_id": "uuid",
-      "nome_doador": "JOSE SANTOS",
-      "cpf_doador": "11122233344",
-      "grupo": "Comurg",
-      "nome_candidato": "CANDIDATO Y",
-      "partido": "MDB",
-      "cargo": "PREFEITO",
-      "ano": 2024,
-      "valor": 5000.00
-    }
-  ],
-  "total": 81,
-  "valor_total": 193648.84
-}
-```
-
-### Sancionados
-
-Lista funcionarios com sancoes.
-
-```
-GET /api/tenant/sancionados
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "sancionados": [
-    {
-      "funcionario_id": "uuid",
-      "nome": "FULANO DE TAL",
-      "cpf": "55566677788",
-      "grupo": "Comurg",
-      "tipo_sancao": "CEIS",
-      "orgao_sancionador": "TRF1/GO",
-      "fundamentacao": "Impedimento de contratar",
-      "data_inicio": "2021-12-16",
-      "data_fim": "2026-12-16"
-    }
-  ],
-  "total": 1
-}
-```
-
-### Vinculos Empresariais
-
-Lista vinculos de funcionarios com empresas.
-
-```
-GET /api/tenant/vinculos
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "vinculos": [
-    {
-      "funcionario_id": "uuid",
-      "nome_socio": "CARLOS SILVA",
-      "cpf_socio": "99988877766",
-      "grupo": "Comurg",
-      "cnpj": "12345678000199",
-      "razao_social": "SILVA COMERCIO LTDA",
-      "nome_fantasia": "LOJA SILVA",
-      "qualificacao": "Socio-Administrador",
-      "situacao_cadastral": "ATIVA",
-      "capital_social": 50000.00
-    }
-  ],
-  "total": 638,
-  "cnpjs_unicos": 500
-}
-```
-
-### Beneficios
-
-Lista funcionarios que recebem beneficios sociais.
-
-```
-GET /api/tenant/beneficios
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "beneficios": [
-    {
-      "funcionario_id": "uuid",
-      "nome": "ANA SOUZA",
-      "cpf": "44455566677",
-      "grupo": "Comurg",
-      "cargo": "Auxiliar",
-      "salario": 1500.00,
-      "tipo_beneficio": "AUXILIO_EMERGENCIAL",
-      "valor": 600.00,
-      "ano_referencia": 2020
-    }
-  ],
-  "total": 4
-}
-```
-
-### Exportar Dados
-
-Exporta dados em formato CSV.
-
-```
-GET /api/tenant/export/:type
-Authorization: Bearer <token>
-```
-
-**Tipos disponiveis:**
-- `funcionarios`
-- `obitos`
-- `candidatos`
-- `doadores`
-- `vinculos`
-
-**Query Parameters:**
-| Param | Tipo | Descricao |
-|-------|------|-----------|
-| grupo | string | Filtrar por grupo |
-| alerta | string | Filtrar por tipo de alerta |
-
-**Exemplo:**
-```
-GET /api/tenant/export/funcionarios?grupo=Comurg&alerta=obito
-```
-
-**Response:**
-```
-Content-Type: text/csv; charset=utf-8
-Content-Disposition: attachment; filename="obitos.csv"
-
-cadastro;nome;cpf;grupo;cargo;salario;ano_obito
-12345;JOAO DA SILVA;12345678901;Comurg;Auxiliar;1500.00;2023
+GET /api/leads/:id
 ```
 
 ---
 
-## Admin (`/api/admin`)
+## Chatbot (`/api/chatbot`)
 
-Endpoints administrativos. Requer role `admin`.
+Assistente de vendas com OpenAI.
 
-### Listar Usuarios
-
-```
-GET /api/admin/users
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "users": [
-    {
-      "id": "uuid",
-      "email": "usuario@email.com",
-      "name": "Nome",
-      "phone": "(62) 99999-9999",
-      "created_at": "2025-11-29T12:00:00.000Z",
-      "tenants": [
-        { "code": "CLIENTE_01", "role": "viewer" }
-      ]
-    }
-  ]
-}
-```
-
-### Listar Tenants
+### Enviar Mensagem
 
 ```
-GET /api/admin/tenants
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "tenants": [
-    {
-      "id": "tenant_cliente_01",
-      "code": "CLIENTE_01",
-      "name": "COMURG",
-      "status": "active",
-      "created_at": "2025-11-28T00:00:00.000Z",
-      "user_count": 3
-    }
-  ]
-}
-```
-
-### Usuarios Pendentes
-
-Lista usuarios sem acesso a nenhum tenant.
-
-```
-GET /api/admin/pending-users
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "pending_users": [
-    {
-      "id": "uuid",
-      "email": "novo@usuario.com",
-      "name": "Usuario Novo",
-      "phone": "(62) 88888-8888",
-      "created_at": "2025-11-29T10:00:00.000Z"
-    }
-  ]
-}
-```
-
-### Criar Tenant
-
-```
-POST /api/admin/tenants
-Authorization: Bearer <token>
+POST /api/chatbot/message
 ```
 
 **Request Body:**
 ```json
 {
-  "code": "CLIENTE_02",
-  "name": "Nome do Novo Cliente"
+  "lead_id": "uuid-opcional",
+  "message": "Quero saber sobre due diligence",
+  "thread_id": "thread_id_existente"
 }
 ```
 
-**Response (201):**
+**Response:**
 ```json
 {
-  "success": true,
-  "tenant": {
-    "id": "tenant_cliente_02",
-    "code": "CLIENTE_02",
-    "name": "Nome do Novo Cliente"
-  }
+  "message": "Resposta do assistente...",
+  "thread_id": "thread_123",
+  "intencao_detectada": "interesse",
+  "lead_score": 65
 }
 ```
 
-### Conceder Acesso
+---
+
+## Investigation (`/api/investigation`)
+
+Solicitacoes de investigacao via email.
+
+### Enviar Solicitacao
 
 ```
-POST /api/admin/grant-access
-Authorization: Bearer <token>
+POST /api/investigation/request
 ```
 
 **Request Body:**
 ```json
 {
-  "user_email": "usuario@email.com",
-  "tenant_code": "CLIENTE_01",
-  "role": "viewer",
-  "expires_at": "2025-12-31T23:59:59.000Z"
+  "userEmail": "cliente@email.com",
+  "subject": "Investigacao de Background",
+  "description": "Descricao detalhada da investigacao solicitada..."
 }
-```
-
-**Roles disponiveis:**
-- `admin` - Acesso total
-- `editor` - Visualizar e editar
-- `viewer` - Apenas visualizar
-
-**Response (201):**
-```json
-{
-  "success": true,
-  "message": "Acesso concedido",
-  "action": "created"
-}
-```
-
-**Response (200) - Atualizado:**
-```json
-{
-  "success": true,
-  "message": "Acesso atualizado",
-  "action": "updated"
-}
-```
-
-### Revogar Acesso
-
-```
-DELETE /api/admin/revoke-access?user_email=x@y.com&tenant_code=CLIENTE_01
-Authorization: Bearer <token>
 ```
 
 **Response:**
 ```json
 {
   "success": true,
-  "message": "Acesso revogado"
-}
-```
-
-### Listar Alertas
-
-Lista alertas do sistema (novos usuarios, etc).
-
-```
-GET /api/admin/alerts
-Authorization: Bearer <token>
-```
-
-**Query Parameters:**
-| Param | Tipo | Descricao |
-|-------|------|-----------|
-| unread_only | boolean | Apenas nao lidos (default: false) |
-| limit | number | Limite de resultados (default: 50) |
-
-**Response:**
-```json
-{
-  "alerts": [
-    {
-      "id": "uuid",
-      "type": "new_user",
-      "title": "Novo usuario cadastrado",
-      "message": "usuario@email.com se cadastrou",
-      "data": "{\"email\":\"usuario@email.com\",\"name\":\"Nome\"}",
-      "is_read": 0,
-      "created_at": "2025-11-29T12:00:00.000Z"
-    }
-  ],
-  "total": 10
-}
-```
-
-### Marcar Alerta como Lido
-
-```
-POST /api/admin/alerts/:id/read
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "success": true,
-  "message": "Alerta marcado como lido"
-}
-```
-
-### Marcar Todos como Lidos
-
-```
-POST /api/admin/alerts/read-all
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "success": true,
-  "message": "Todos os alertas marcados como lidos",
-  "count": 5
-}
-```
-
-### Contagem de Alertas Nao Lidos
-
-```
-GET /api/admin/alerts/count
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "unread_count": 3
-}
-```
-
-### Estatisticas do Sistema
-
-```
-GET /api/admin/stats
-Authorization: Bearer <token>
-```
-
-**Response:**
-```json
-{
-  "total_users": 15,
-  "total_tenants": 2,
-  "pending_users": 3,
-  "active_tenants": 2
+  "message": "Solicitacao enviada com sucesso"
 }
 ```
 
@@ -859,10 +323,735 @@ GET /api/consultas/cnpj/:cnpj
   "razao_social": "EMPRESA LTDA",
   "nome_fantasia": "LOJA",
   "situacao_cadastral": "ATIVA",
-  "data_abertura": "2010-01-01",
-  "atividade_principal": "Comercio varejista"
+  "data_abertura": "2010-01-01"
 }
 ```
+
+---
+
+## Reports (`/api/reports`)
+
+Relatorios de due diligence. **Requer autenticacao.**
+
+### Listar Relatorios
+
+```
+GET /api/reports
+Authorization: Bearer <token>
+```
+
+**Response:**
+```json
+{
+  "reports": [
+    {
+      "id": "uuid",
+      "startup_nome": "Startup XYZ",
+      "startup_cnpj": "12.345.678/0001-99",
+      "status": "concluido",
+      "recomendacao": "APROVADO",
+      "score_integridade": 85,
+      "created_at": "2025-11-29T12:00:00.000Z",
+      "pdf_url_secure": "https://..."
+    }
+  ],
+  "total": 5
+}
+```
+
+### Obter Relatorio
+
+```
+GET /api/reports/:id
+Authorization: Bearer <token>
+```
+
+### Criar Relatorio
+
+```
+POST /api/reports
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+```json
+{
+  "startup_nome": "Startup XYZ",
+  "startup_cnpj": "12.345.678/0001-99",
+  "startup_setor": "Fintech",
+  "startup_website": "https://startup.com"
+}
+```
+
+**Response (201):**
+```json
+{
+  "success": true,
+  "report_id": "uuid",
+  "message": "Relatorio criado com sucesso",
+  "prazo_entrega": "2025-12-02T12:00:00.000Z",
+  "status": "pendente"
+}
+```
+
+### Atualizar Relatorio
+
+```
+PATCH /api/reports/:id
+Authorization: Bearer <token>
+```
+
+### Download PDF
+
+```
+GET /api/reports/:id/download
+Authorization: Bearer <token>
+```
+
+Retorna arquivo PDF.
+
+### URL Assinada para Download
+
+```
+GET /api/reports/:id/signed-url
+Authorization: Bearer <token>
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "download_url": "https://...",
+  "expires_in": 3600,
+  "expires_at": "2025-11-29T13:00:00.000Z"
+}
+```
+
+### Regenerar PDF
+
+```
+POST /api/reports/:id/regenerate-pdf
+Authorization: Bearer <token>
+```
+
+---
+
+## Payments (`/api/payments`)
+
+Integracao com Stripe. **Requer autenticacao.**
+
+### Criar Checkout Session
+
+```
+POST /api/payments/create-intent
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+```json
+{
+  "produto": "relatorio-startup",
+  "startup_nome": "Startup XYZ",
+  "startup_cnpj": "12.345.678/0001-99"
+}
+```
+
+**Produtos disponiveis:**
+| Produto | Preco |
+|---------|-------|
+| `relatorio-startup` | R$ 10.000,00 |
+| `assinatura-pro` | R$ 2.500,00/mes |
+| `assinatura-enterprise` | R$ 5.000,00/mes |
+
+**Response:**
+```json
+{
+  "success": true,
+  "sessionId": "cs_xxx",
+  "url": "https://checkout.stripe.com/...",
+  "amount": 1000000,
+  "currency": "brl"
+}
+```
+
+### Listar Pagamentos
+
+```
+GET /api/payments
+Authorization: Bearer <token>
+```
+
+### Obter Pagamento
+
+```
+GET /api/payments/:id
+Authorization: Bearer <token>
+```
+
+---
+
+## User (`/api/user`)
+
+Gerenciamento de perfil. **Requer autenticacao.**
+
+### Obter Perfil
+
+```
+GET /api/user/profile
+Authorization: Bearer <token>
+```
+
+### Atualizar Perfil
+
+```
+PATCH /api/user/profile
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+```json
+{
+  "nome_completo": "Nome Atualizado",
+  "telefone": "+5562999999999",
+  "empresa": "Empresa LTDA",
+  "cargo": "Diretor"
+}
+```
+
+### Atualizar Consentimentos
+
+```
+PATCH /api/user/consents
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+```json
+{
+  "lgpd_consent": true,
+  "marketing_consent": false,
+  "newsletter_consent": true
+}
+```
+
+### Estatisticas do Usuario
+
+```
+GET /api/user/stats
+Authorization: Bearer <token>
+```
+
+**Response:**
+```json
+{
+  "reports": {
+    "total": 5,
+    "pendente": 1,
+    "em_andamento": 1,
+    "concluido": 3
+  },
+  "payments": {
+    "total": 5,
+    "total_spent": 50000,
+    "pending": 0,
+    "succeeded": 5
+  }
+}
+```
+
+### Historico de Atividades
+
+```
+GET /api/user/activity?limit=50&offset=0
+Authorization: Bearer <token>
+```
+
+### Remover Avatar
+
+```
+DELETE /api/user/avatar
+Authorization: Bearer <token>
+```
+
+---
+
+## LGPD (`/api/lgpd`)
+
+Direitos do titular de dados (LGPD Art. 18). **Requer autenticacao.**
+
+### Criar Solicitacao LGPD
+
+```
+POST /api/lgpd/request
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+```json
+{
+  "request_type": "export",
+  "reason": "Quero uma copia dos meus dados"
+}
+```
+
+**Tipos de solicitacao:**
+| Tipo | Descricao | Prazo |
+|------|-----------|-------|
+| `export` | Exportar todos os dados | 24h |
+| `delete` | Excluir conta e dados | 30 dias |
+| `anonymize` | Anonimizar dados pessoais | 3 dias |
+| `rectify` | Corrigir dados | 2 dias |
+
+**Response (201):**
+```json
+{
+  "success": true,
+  "request_id": "uuid",
+  "message": "Solicitacao registrada com sucesso",
+  "status": "pending",
+  "estimated_completion": "2025-11-30T12:00:00.000Z"
+}
+```
+
+### Listar Solicitacoes
+
+```
+GET /api/lgpd/requests
+Authorization: Bearer <token>
+```
+
+### Exportar Dados
+
+```
+GET /api/lgpd/export
+Authorization: Bearer <token>
+```
+
+Retorna JSON com todos os dados do usuario.
+
+### Anonimizar Dados
+
+```
+POST /api/lgpd/anonymize
+Authorization: Bearer <token>
+```
+
+### Excluir Conta
+
+```
+DELETE /api/lgpd/delete-account
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+```json
+{
+  "confirm_token": "DELETE_MY_ACCOUNT"
+}
+```
+
+### Historico de Consentimentos
+
+```
+GET /api/lgpd/consents
+Authorization: Bearer <token>
+```
+
+---
+
+## Tenant Data (`/api/tenant`)
+
+Dados multi-tenant para clientes B2B. **Requer autenticacao.**
+
+### Informacoes do Tenant
+
+```
+GET /api/tenant/info
+Authorization: Bearer <token>
+```
+
+**Response (com acesso):**
+```json
+{
+  "hasAccess": true,
+  "tenant": {
+    "id": "tenant_cliente_01",
+    "code": "CLIENTE_01",
+    "name": "COMURG",
+    "role": "viewer"
+  },
+  "tenants": [...],
+  "role": "viewer"
+}
+```
+
+**Response (sem acesso):**
+```json
+{
+  "hasAccess": false,
+  "tenant": null,
+  "tenants": [],
+  "message": "Aguardando liberacao de acesso"
+}
+```
+
+### Dashboard
+
+```
+GET /api/tenant/dashboard
+Authorization: Bearer <token>
+```
+
+### Funcionarios
+
+```
+GET /api/tenant/funcionarios?grupo=Comurg&alerta=obito&page=1&limit=50
+Authorization: Bearer <token>
+```
+
+**Query Parameters:**
+| Param | Tipo | Descricao |
+|-------|------|-----------|
+| grupo | string | Filtrar por grupo |
+| busca | string | Busca por nome ou CPF |
+| alerta | string | obito, beneficio, sancionado, doador, candidato, socio |
+| page | number | Pagina (default: 1) |
+| limit | number | Itens por pagina (default: 50) |
+
+### Detalhes do Funcionario
+
+```
+GET /api/tenant/funcionario/:id
+Authorization: Bearer <token>
+```
+
+### Obitos
+
+```
+GET /api/tenant/obitos
+Authorization: Bearer <token>
+```
+
+### Candidatos
+
+```
+GET /api/tenant/candidatos
+Authorization: Bearer <token>
+```
+
+### Doadores
+
+```
+GET /api/tenant/doadores
+Authorization: Bearer <token>
+```
+
+### Sancionados
+
+```
+GET /api/tenant/sancionados
+Authorization: Bearer <token>
+```
+
+### Vinculos Empresariais
+
+```
+GET /api/tenant/vinculos
+Authorization: Bearer <token>
+```
+
+### Beneficios
+
+```
+GET /api/tenant/beneficios
+Authorization: Bearer <token>
+```
+
+### Exportar Dados
+
+```
+GET /api/tenant/export/:type?grupo=Comurg
+Authorization: Bearer <token>
+```
+
+**Tipos:** `funcionarios`, `obitos`, `candidatos`, `doadores`, `vinculos`
+
+Retorna CSV.
+
+---
+
+## User Data (`/api/userdata`)
+
+Dados individuais por usuario (B2C). **Requer autenticacao.**
+
+### Informacoes do Usuario
+
+```
+GET /api/userdata/info
+Authorization: Bearer <token>
+```
+
+**Response:**
+```json
+{
+  "hasAccess": true,
+  "user": {
+    "id": "uuid",
+    "email": "usuario@email.com"
+  },
+  "settings": {
+    "plano": "free",
+    "limite_funcionarios": 100
+  },
+  "stats": {
+    "total_funcionarios": 50
+  }
+}
+```
+
+### Dashboard
+
+```
+GET /api/userdata/dashboard
+Authorization: Bearer <token>
+```
+
+### Funcionarios
+
+```
+GET /api/userdata/funcionarios?grupo=&busca=&alerta=&page=1&limit=50
+Authorization: Bearer <token>
+```
+
+### Adicionar Funcionario
+
+```
+POST /api/userdata/funcionarios
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+```json
+{
+  "nome": "JOAO DA SILVA",
+  "cpf": "12345678901",
+  "grupo": "Administrativo",
+  "cargo": "Analista",
+  "salario": 5000
+}
+```
+
+### Importar Funcionarios
+
+```
+POST /api/userdata/funcionarios/import
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+```json
+{
+  "funcionarios": [
+    { "nome": "JOAO", "cpf": "123...", "grupo": "..." },
+    { "nome": "MARIA", "cpf": "456...", "grupo": "..." }
+  ]
+}
+```
+
+### Detalhes do Funcionario
+
+```
+GET /api/userdata/funcionario/:id
+Authorization: Bearer <token>
+```
+
+### Obitos
+
+```
+GET /api/userdata/obitos
+Authorization: Bearer <token>
+```
+
+### Candidatos
+
+```
+GET /api/userdata/candidatos
+Authorization: Bearer <token>
+```
+
+### Doadores
+
+```
+GET /api/userdata/doadores
+Authorization: Bearer <token>
+```
+
+### Sancionados
+
+```
+GET /api/userdata/sancionados
+Authorization: Bearer <token>
+```
+
+### Vinculos
+
+```
+GET /api/userdata/vinculos
+Authorization: Bearer <token>
+```
+
+### Beneficios
+
+```
+GET /api/userdata/beneficios
+Authorization: Bearer <token>
+```
+
+### Atualizar Configuracoes
+
+```
+PUT /api/userdata/settings
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+```json
+{
+  "empresa_nome": "Minha Empresa",
+  "empresa_cnpj": "12.345.678/0001-99"
+}
+```
+
+---
+
+## Admin (`/api/admin`)
+
+Gerenciamento do sistema. **Requer role `admin`.**
+
+### Listar Usuarios
+
+```
+GET /api/admin/users
+Authorization: Bearer <token>
+```
+
+### Listar Tenants
+
+```
+GET /api/admin/tenants
+Authorization: Bearer <token>
+```
+
+### Usuarios Pendentes
+
+```
+GET /api/admin/pending-users
+Authorization: Bearer <token>
+```
+
+### Criar Tenant
+
+```
+POST /api/admin/tenants
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+```json
+{
+  "code": "CLIENTE_02",
+  "name": "Nome do Cliente"
+}
+```
+
+### Conceder Acesso
+
+```
+POST /api/admin/grant-access
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+```json
+{
+  "user_email": "usuario@email.com",
+  "tenant_code": "CLIENTE_01",
+  "role": "viewer",
+  "expires_at": "2025-12-31T23:59:59.000Z"
+}
+```
+
+**Roles:** `admin`, `editor`, `viewer`
+
+### Revogar Acesso
+
+```
+DELETE /api/admin/revoke-access?user_email=x@y.com&tenant_code=CLIENTE_01
+Authorization: Bearer <token>
+```
+
+### Listar Alertas
+
+```
+GET /api/admin/alerts?unread_only=true&limit=50
+Authorization: Bearer <token>
+```
+
+### Marcar Alerta como Lido
+
+```
+POST /api/admin/alerts/:id/read
+Authorization: Bearer <token>
+```
+
+### Marcar Todos como Lidos
+
+```
+POST /api/admin/alerts/read-all
+Authorization: Bearer <token>
+```
+
+### Contagem de Alertas
+
+```
+GET /api/admin/alerts/count
+Authorization: Bearer <token>
+```
+
+### Estatisticas do Sistema
+
+```
+GET /api/admin/stats
+Authorization: Bearer <token>
+```
+
+**Response:**
+```json
+{
+  "total_users": 15,
+  "total_tenants": 2,
+  "pending_users": 3,
+  "active_tenants": 2
+}
+```
+
+---
+
+## Webhooks (`/api/webhooks`)
+
+Webhooks de servicos externos.
+
+### Stripe Webhook
+
+```
+POST /api/webhooks/stripe
+Stripe-Signature: <signature>
+```
+
+Processa eventos do Stripe:
+- `checkout.session.completed`
+- `payment_intent.succeeded`
+- `payment_intent.payment_failed`
 
 ---
 
@@ -889,6 +1078,9 @@ GET /api/consultas/cnpj/:cnpj
 | USER_NOT_FOUND | 404 | Usuario nao encontrado |
 | NO_TENANT_ACCESS | 403 | Usuario sem acesso a tenant |
 | ADMIN_ONLY | 403 | Apenas administradores |
+| PAYMENT_REQUIRED | 402 | Pagamento necessario |
+| ACTIVE_DATA_EXISTS | 409 | Dados ativos impedem acao |
+| PENDING_PAYMENTS | 409 | Pagamentos pendentes |
 | VALIDATION_ERROR | 400 | Dados invalidos |
 | NOT_FOUND | 404 | Recurso nao encontrado |
 | INTERNAL_ERROR | 500 | Erro interno |
@@ -909,9 +1101,27 @@ Origens permitidas:
 - `https://investigaree.com.br`
 - `https://www.investigaree.com.br`
 - `https://investigaree.pages.dev`
+- `https://*.investigaree.pages.dev`
 - `http://localhost:5173` (desenvolvimento)
 
-## Versionamento
+---
 
-A API atual e v1. Futuras versoes serao disponibilizadas em:
-- `/v2/api/...`
+## Arquivos de Implementacao
+
+| Endpoint | Arquivo |
+|----------|---------|
+| `/api/auth` | `workers/api/auth.ts` |
+| `/api/leads` | `workers/api/leads.ts` |
+| `/api/chatbot` | `workers/api/chatbot.ts` |
+| `/api/investigation` | `workers/api/investigation.ts` |
+| `/api/consultas` | `workers/api/consultas-publicas.ts` |
+| `/api/infosimples` | `workers/api/consultas-infosimples.ts` |
+| `/api/transparencia` | `workers/api/consultas-transparencia.ts` |
+| `/api/webhooks` | `workers/api/webhooks.ts` |
+| `/api/reports` | `workers/api/reports.ts` |
+| `/api/payments` | `workers/api/payments.ts` |
+| `/api/user` | `workers/api/user.ts` |
+| `/api/lgpd` | `workers/api/lgpd.ts` |
+| `/api/tenant` | `workers/api/tenant-data.ts` |
+| `/api/userdata` | `workers/api/user-data.ts` |
+| `/api/admin` | `workers/api/admin.ts` |

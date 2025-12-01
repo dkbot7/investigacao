@@ -1,253 +1,381 @@
 # investigaree - Documentacao Tecnica
 
-**Ultima atualizacao**: 29 de Novembro de 2025
+**Ultima atualizacao**: 30 de Novembro de 2025
+**Versao**: 1.0.0
+
+---
+
+## Indice
+
+1. [Visao Geral](#visao-geral)
+2. [Arquitetura](#arquitetura)
+3. [Stack Tecnologico](#stack-tecnologico)
+4. [Estrutura de Diretorios](#estrutura-de-diretorios)
+5. [API Backend](#api-backend)
+6. [Banco de Dados](#banco-de-dados)
+7. [Autenticacao](#autenticacao)
+8. [Sistema Multi-Tenant](#sistema-multi-tenant)
+9. [APIs Externas](#apis-externas)
+10. [Desenvolvimento](#desenvolvimento)
+11. [Deploy](#deploy)
+12. [Documentacao Adicional](#documentacao-adicional)
+
+---
 
 ## Visao Geral
 
 **investigaree** e uma plataforma SaaS de Due Diligence Digital e Investigacao Forense. Permite verificacao de integridade de pessoas e empresas atraves de cruzamento de dados de multiplas fontes publicas brasileiras.
 
+### Principais Funcionalidades
+
+| Modulo | Descricao |
+|--------|-----------|
+| **Verificacao de Obitos** | Identifica funcionarios falecidos ainda na folha |
+| **Candidaturas TSE** | Historico de candidaturas eleitorais |
+| **Doacoes de Campanha** | Rastreamento de doacoes a candidatos |
+| **Sancoes CEIS/CNEP** | Empresas e pessoas impedidas de contratar |
+| **Sancoes OFAC** | Lista de sancoes internacionais (EUA) |
+| **Vinculos Empresariais** | Participacao societaria em empresas |
+| **Beneficios Sociais** | Auxilio Emergencial, BPC, Bolsa Familia |
+| **Relatorios PDF** | Geracao automatica de relatorios |
+
 ### Advisory Board
 
 A plataforma conta com o suporte tecnico de **Ibsen Rodrigues Maciel**, referencia nacional em Pericia Forense Computacional:
+
 - Perito Criminal Oficial - Policia Cientifica do Estado do Para (PCE-PA)
-- Membro do LABCEDF - Laboratorio de Computacao e Extracao de Dados Forenses (PC-PA)
+- Membro do LABCEDF - Laboratorio de Computacao e Extracao de Dados Forenses
 - Diretor Nacional de Pericias em Computacao Forense - ANPAJ (6.000+ associados)
 - Ex-Gerente do Nucleo de Fonetica Forense e Extracao de Dados (2022-2024)
 - Certificacoes: CELLEBRITE UFED, XRY MSAB, Magnet AXIOM
 
+---
+
 ## Arquitetura
 
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                           FRONTEND                                       │
-│                     Next.js 16 + React 19                               │
-│                     Cloudflare Pages                                     │
-│                   investigaree.com.br                                    │
-└─────────────────────────────┬───────────────────────────────────────────┘
-                              │ HTTPS
-                              ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│                            BACKEND                                       │
-│                    Cloudflare Workers + Hono                            │
-│                   api.investigaree.com.br                               │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐   │
-│  │    Auth     │  │   Tenant    │  │   Admin     │  │  Consultas  │   │
-│  │   Routes    │  │    Data     │  │   Routes    │  │   Publicas  │   │
-│  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘   │
-│  ┌─────────────┐                                                        │
-│  │Notifications│  (Email via Resend + Alertas Admin)                   │
-│  └─────────────┘                                                        │
-└─────────────────────────────┬───────────────────────────────────────────┘
-                              │
-          ┌───────────────────┼───────────────────┐
-          ▼                   ▼                   ▼
-┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
-│       D1        │  │       R2        │  │       KV        │
-│    (SQLite)     │  │    (Storage)    │  │  (Rate Limit)   │
-│   Cloudflare    │  │   Cloudflare    │  │   Cloudflare    │
-└─────────────────┘  └─────────────────┘  └─────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              FRONTEND                                        │
+│                        Next.js 16.0.3 + React 19.2.0                        │
+│                        Cloudflare Pages                                      │
+│                      investigaree.com.br                                     │
+└───────────────────────────────┬─────────────────────────────────────────────┘
+                                │ HTTPS
+                                ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                               BACKEND                                        │
+│                       Cloudflare Workers + Hono 4.6.0                       │
+│                      api.investigaree.com.br                                │
+│                                                                              │
+│  ┌────────────┐  ┌────────────┐  ┌────────────┐  ┌────────────┐            │
+│  │    Auth    │  │   Tenant   │  │   Admin    │  │ Consultas  │            │
+│  │   Routes   │  │    Data    │  │   Routes   │  │   APIs     │            │
+│  └────────────┘  └────────────┘  └────────────┘  └────────────┘            │
+│  ┌────────────┐  ┌────────────┐  ┌────────────┐  ┌────────────┐            │
+│  │   Leads    │  │  Chatbot   │  │  Reports   │  │  Payments  │            │
+│  │   Routes   │  │   (AI)     │  │   (PDF)    │  │  (Stripe)  │            │
+│  └────────────┘  └────────────┘  └────────────┘  └────────────┘            │
+│                                                                              │
+│  ┌────────────────────────────────────────────────────────────────┐        │
+│  │  Middleware: Auth (Firebase) | Rate Limit (KV) | CORS          │        │
+│  └────────────────────────────────────────────────────────────────┘        │
+└───────────────────────────────┬─────────────────────────────────────────────┘
+                                │
+            ┌───────────────────┼───────────────────┐
+            ▼                   ▼                   ▼
+┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐
+│       D1        │   │       R2        │   │       KV        │
+│    (SQLite)     │   │    (Storage)    │   │  (Rate Limit)   │
+│   Cloudflare    │   │   Cloudflare    │   │   Cloudflare    │
+└─────────────────┘   └─────────────────┘   └─────────────────┘
 ```
+
+---
 
 ## Stack Tecnologico
 
 ### Frontend
+
 | Tecnologia | Versao | Uso |
 |------------|--------|-----|
-| Next.js | 16.0.3 | Framework React |
+| Next.js | 16.0.3 | Framework React com App Router |
 | React | 19.2.0 | UI Library |
-| TypeScript | 5.x | Tipagem |
-| Tailwind CSS | 4.x | Estilizacao |
-| Framer Motion | 12.x | Animacoes |
-| Firebase Auth | 12.x | Autenticacao |
-| Shadcn UI | - | Componentes |
+| TypeScript | 5.x | Tipagem estatica |
+| Tailwind CSS | 4.x | Estilizacao utility-first |
+| Framer Motion | 12.23.24 | Animacoes |
+| Firebase | 12.6.0 | Autenticacao de usuarios |
+| Radix UI | latest | Componentes acessiveis (Accordion, Dialog, Tabs) |
+| React Hook Form | 7.66.1 | Gerenciamento de formularios |
+| Zod | 4.1.12 | Validacao de schemas |
+| Lucide React | 0.554.0 | Icones |
+| next-themes | 0.4.6 | Dark/Light mode |
 
 ### Backend
+
 | Tecnologia | Versao | Uso |
 |------------|--------|-----|
-| Cloudflare Workers | - | Runtime |
-| Hono | 4.6.0 | Web Framework |
-| D1 | - | Banco SQLite |
-| R2 | - | Object Storage |
-| KV | - | Cache/Rate Limit |
-| Zod | 3.23.0 | Validacao |
+| Cloudflare Workers | - | Runtime serverless |
+| Hono | 4.6.0 | Web framework leve e rapido |
+| Wrangler | 4.42.0 | CLI Cloudflare |
+| D1 | - | Banco SQLite nativo Cloudflare |
+| R2 | - | Object storage (PDFs, relatorios) |
+| KV | - | Cache e rate limiting |
+| Browser Rendering | - | Scraping server-side |
+| Zod | 3.23.0 | Validacao de inputs |
+| PDFKit | 0.17.2 | Geracao de PDFs |
+| XLSX | 0.18.5 | Processamento de Excel |
 
 ### Servicos Externos
+
 | Servico | Uso |
 |---------|-----|
 | Firebase Auth | Autenticacao de usuarios |
-| Stripe | Pagamentos |
-| Resend | Email transacional (notificacoes de novos usuarios) |
-| OpenAI | Analise de dados |
-| Brasil API | Consultas publicas |
-| Infosimples | CPF/CNPJ/Processos |
-| Portal Transparencia | Servidores/Sancoes |
+| Stripe | Processamento de pagamentos |
+| Resend | Email transacional (notificacoes) |
+| OpenAI | Chat e analise com IA |
+| Infosimples | Consultas CPF/CNPJ/Obito |
+| Portal Transparencia | Beneficios, CEIS, CNEP, CEAF |
+| TSE | Candidaturas e doacoes |
+| BrasilAPI | CNPJ/CEP gratuito |
 
-### Sistema de Notificacoes
-
-Quando um novo usuario se cadastra:
-1. Email enviado para administradores via Resend API
-2. Alerta criado no dashboard admin
-3. Destinatarios: dkbotdani@gmail.com, ibsenmaciel@gmail.com, contato@investigaree.com.br
+---
 
 ## Estrutura de Diretorios
 
 ```
 investigaree/
-├── investigaree/              # Frontend Next.js
+│
+├── investigaree/                 # Frontend Next.js
 │   ├── src/
-│   │   ├── app/              # App Router (paginas)
-│   │   │   ├── dashboard/    # Area logada
-│   │   │   └── ...          # Paginas publicas
-│   │   ├── components/       # Componentes React
-│   │   ├── contexts/         # Context API
-│   │   ├── hooks/            # Custom Hooks
-│   │   └── lib/              # Utilitarios
-│   └── public/               # Assets estaticos
+│   │   ├── app/                 # App Router (paginas)
+│   │   │   ├── page.tsx         # Homepage
+│   │   │   ├── dashboard/       # Area logada multi-tenant
+│   │   │   │   ├── page.tsx     # Dashboard principal
+│   │   │   │   ├── admin/       # Painel administrativo
+│   │   │   │   ├── funcionarios/
+│   │   │   │   ├── obitos/
+│   │   │   │   ├── candidatos/
+│   │   │   │   ├── doadores/
+│   │   │   │   ├── sancionados/
+│   │   │   │   ├── vinculos/
+│   │   │   │   ├── beneficios/
+│   │   │   │   ├── ofac/        # Sancoes OFAC
+│   │   │   │   ├── analitico/
+│   │   │   │   ├── relatorios/  # Geracao de relatorios
+│   │   │   │   └── exportar/
+│   │   │   ├── quemsomos/       # Pagina institucional
+│   │   │   │   ├── dani-kaloi/
+│   │   │   │   └── ibsen-maciel/
+│   │   │   ├── servicos/        # Catalogo de servicos
+│   │   │   ├── contato/         # Formulario de contato
+│   │   │   ├── sobre/           # Sobre a empresa
+│   │   │   ├── loginadmin/      # Login administrativo
+│   │   │   ├── privacidade/     # Politica de privacidade
+│   │   │   ├── termos/          # Termos de uso
+│   │   │   ├── cookies/         # Politica de cookies
+│   │   │   └── faq/             # Perguntas frequentes
+│   │   │
+│   │   ├── components/          # Componentes React
+│   │   │   ├── dashboard/       # Componentes do dashboard
+│   │   │   │   ├── FichaFuncionario.tsx
+│   │   │   │   └── NoAccessScreen.tsx
+│   │   │   ├── landing/         # Landing page sections
+│   │   │   │   ├── Hero.tsx
+│   │   │   │   ├── Header.tsx
+│   │   │   │   ├── Footer.tsx
+│   │   │   │   ├── AdvisoryBoard.tsx
+│   │   │   │   ├── ProtectionAreas.tsx
+│   │   │   │   ├── ServicePortals.tsx
+│   │   │   │   ├── SocialProof.tsx
+│   │   │   │   ├── Pricing.tsx
+│   │   │   │   └── FinalCTA.tsx
+│   │   │   ├── auth/            # Autenticacao
+│   │   │   │   ├── LoginModal.tsx
+│   │   │   │   └── RegisterModal.tsx
+│   │   │   ├── ui/              # Radix UI components
+│   │   │   │   ├── button.tsx
+│   │   │   │   ├── card.tsx
+│   │   │   │   ├── input.tsx
+│   │   │   │   ├── dialog.tsx
+│   │   │   │   ├── tabs.tsx
+│   │   │   │   ├── accordion.tsx
+│   │   │   │   └── ...
+│   │   │   ├── WhatsAppWidget.tsx
+│   │   │   ├── WhatsAppButton.tsx
+│   │   │   ├── WhatsAppLeadModal.tsx
+│   │   │   ├── CookieBanner.tsx
+│   │   │   ├── Providers.tsx
+│   │   │   └── ClientWidgets.tsx
+│   │   │
+│   │   ├── hooks/               # Custom Hooks
+│   │   │   ├── useTenant.ts     # Hook multi-tenant
+│   │   │   ├── useDashboardData.ts
+│   │   │   └── useUserData.ts
+│   │   │
+│   │   └── lib/                 # Utilitarios
+│   │       ├── api.ts           # Cliente API autenticado
+│   │       ├── admin-api.ts     # API administrativa
+│   │       ├── user-api.ts      # API do usuario
+│   │       ├── firebase.ts      # Inicializacao Firebase
+│   │       └── utils.ts         # Funcoes auxiliares
+│   │
+│   └── public/                  # Assets estaticos
 │
-├── workers/                   # Backend Cloudflare
-│   ├── api/                  # Endpoints da API
-│   │   ├── auth.ts          # Autenticacao + notificacoes
-│   │   ├── admin.ts         # Gerenciamento + alertas
-│   │   ├── tenant-data.ts   # Dados multi-tenant
-│   │   └── ...              # Outros endpoints
-│   ├── middleware/           # Middlewares
-│   ├── services/             # Servicos externos
-│   │   └── notifications.service.ts  # Email + Alertas
-│   ├── migrations/           # SQL migrations (001-008)
-│   └── index.ts              # Entry point
+├── workers/                      # Backend Cloudflare Workers
+│   ├── index.ts                 # Entry point Hono (router principal)
+│   ├── api/                     # Endpoints da API
+│   │   ├── auth.ts              # Autenticacao + registro
+│   │   ├── admin.ts             # Gerenciamento de usuarios/tenants
+│   │   ├── tenant-data.ts       # Dados multi-tenant
+│   │   ├── user-data.ts         # Dados individuais do usuario
+│   │   ├── user.ts              # Perfil do usuario
+│   │   ├── leads.ts             # Captura de leads
+│   │   ├── chatbot.ts           # Chat com IA (OpenAI)
+│   │   ├── reports.ts           # Geracao de relatorios PDF
+│   │   ├── payments.ts          # Stripe integration
+│   │   ├── webhooks.ts          # Webhooks (Stripe, etc)
+│   │   ├── investigation.ts     # Pedidos de investigacao
+│   │   ├── lgpd.ts              # Direitos LGPD
+│   │   ├── consultas-publicas.ts     # APIs gratuitas
+│   │   ├── consultas-infosimples.ts  # APIs Infosimples
+│   │   └── consultas-transparencia.ts # Portal Transparencia
+│   ├── middleware/              # Middlewares
+│   │   ├── auth.ts              # Validacao Firebase
+│   │   └── rate-limit.ts        # Limitacao por IP
+│   ├── services/                # Servicos externos
+│   │   └── notifications.ts     # Email via Resend
+│   ├── cron/                    # Tarefas agendadas
+│   │   └── process-reports.ts   # Processar relatorios pendentes
+│   └── migrations/              # SQL migrations (001-009)
 │
-├── clientes/                  # Dados de clientes
-│   └── CLIENTE_01/           # COMURG
-│       ├── scripts/          # Scripts de processamento
-│       └── dados-*/          # Dados brutos
+├── APIs/                         # Documentacao APIs externas
+│   ├── CATALOGO_APIS_INVESTIGACAO.md
+│   ├── SERPRO/
+│   ├── INFOSIMPLES/
+│   ├── ESCAVADOR/
+│   ├── PORTAL_TRANSPARENCIA/
+│   ├── TSE/
+│   ├── CGU/
+│   └── exemplos_python/
 │
-├── docs/                      # Documentacao
-│   ├── README.md             # Este arquivo
-│   ├── API.md                # Documentacao da API
-│   └── MULTI-TENANT.md       # Sistema multi-tenant
+├── clientes/                     # Dados de clientes
+│   ├── CLIENTE_01/              # COMURG
+│   └── CLIENTE_02/
 │
-└── wrangler.toml              # Config Cloudflare
+├── docs/                         # Documentacao tecnica
+│   ├── README.md                # Este arquivo
+│   ├── API.md                   # Referencia da API
+│   ├── MULTI-TENANT.md          # Sistema multi-tenant
+│   ├── DATABASE_ER_DIAGRAM.md   # Diagrama ER (Mermaid)
+│   ├── MIGRATIONS_CHANGELOG.md  # Historico de migrations
+│   └── openapi.yaml             # Especificacao OpenAPI 3.1
+│
+├── scripts/                      # Scripts de automacao
+├── wrangler.toml                 # Config Cloudflare Workers
+├── .env.example                  # Template de variaveis
+├── package.json                  # Dependencias backend/raiz
+└── DOCUMENTATION_INDEX.md        # Indice central de docs
 ```
+
+---
+
+## API Backend
+
+### Endpoints Publicos (sem autenticacao)
+
+| Rota | Metodo | Descricao |
+|------|--------|-----------|
+| `/health` | GET | Health check |
+| `/` | GET | Info da API |
+| `/api/auth/register` | POST | Registrar usuario |
+| `/api/auth/sync` | POST | Sincronizar usuario |
+| `/api/leads` | POST | Capturar lead |
+| `/api/chatbot/message` | POST | Chat com IA |
+| `/api/investigation` | POST | Solicitar investigacao |
+| `/api/consultas/cep/:cep` | GET | Consultar CEP |
+| `/api/consultas/cnpj/:cnpj` | GET | Consultar CNPJ |
+| `/api/infosimples/*` | GET/POST | Consultas Infosimples |
+| `/api/transparencia/*` | GET | Portal Transparencia |
+| `/api/webhooks/stripe` | POST | Webhook Stripe |
+
+### Endpoints Autenticados (Bearer Token)
+
+| Rota | Metodo | Descricao |
+|------|--------|-----------|
+| `/api/auth/me` | GET | Usuario atual |
+| `/api/user/profile` | GET/PUT | Perfil do usuario |
+| `/api/tenant/info` | GET | Info do tenant |
+| `/api/tenant/dashboard` | GET | Dados do dashboard |
+| `/api/tenant/funcionarios` | GET | Lista funcionarios |
+| `/api/tenant/funcionario/:id` | GET | Detalhes funcionario |
+| `/api/tenant/obitos` | GET | Lista obitos |
+| `/api/tenant/candidatos` | GET | Lista candidatos |
+| `/api/tenant/doadores` | GET | Lista doadores |
+| `/api/tenant/sancionados` | GET | Lista sancionados |
+| `/api/tenant/vinculos` | GET | Lista vinculos |
+| `/api/tenant/beneficios` | GET | Lista beneficios |
+| `/api/tenant/export/:type` | GET | Exportar CSV |
+| `/api/userdata/*` | GET/POST | Dados individuais |
+| `/api/reports/*` | GET/POST | Relatorios PDF |
+| `/api/payments/*` | GET/POST | Pagamentos |
+| `/api/lgpd/*` | GET/POST | Direitos LGPD |
+| `/api/admin/*` | GET/POST/DELETE | Administrativo |
+
+Documentacao completa em **[API.md](./API.md)** e **[openapi.yaml](./openapi.yaml)**.
+
+---
 
 ## Banco de Dados
 
+O banco de dados utiliza Cloudflare D1 (SQLite). Para detalhes completos:
+
+- **[DATABASE_ER_DIAGRAM.md](./DATABASE_ER_DIAGRAM.md)** - Diagrama visual
+- **[MIGRATIONS_CHANGELOG.md](./MIGRATIONS_CHANGELOG.md)** - Historico
+
 ### Tabelas Principais
 
-#### users
-Usuarios do sistema (sincronizado com Firebase).
+#### Core (Autenticacao)
 
-```sql
-CREATE TABLE users (
-    id TEXT PRIMARY KEY,
-    firebase_uid TEXT UNIQUE,
-    email TEXT UNIQUE NOT NULL,
-    name TEXT,
-    phone TEXT,
-    created_at TEXT,
-    updated_at TEXT
-);
-```
+| Tabela | Descricao |
+|--------|-----------|
+| `users` | Usuarios sincronizados com Firebase |
+| `tenants` | Clientes/organizacoes |
+| `user_tenants` | Controle de acesso usuario-tenant |
 
-#### tenants
-Clientes/organizacoes do sistema.
+#### Dados do Tenant
 
-```sql
-CREATE TABLE tenants (
-    id TEXT PRIMARY KEY,
-    code TEXT UNIQUE NOT NULL,     -- 'CLIENTE_01'
-    name TEXT NOT NULL,            -- 'COMURG'
-    email TEXT,
-    status TEXT DEFAULT 'active',
-    config TEXT,                   -- JSON
-    created_at TEXT,
-    updated_at TEXT
-);
-```
+| Tabela | Descricao |
+|--------|-----------|
+| `tenant_funcionarios` | Base de funcionarios |
+| `tenant_candidaturas` | Candidaturas eleitorais TSE |
+| `tenant_doacoes` | Doacoes de campanha |
+| `tenant_vinculos` | Vinculos empresariais (QSA) |
+| `tenant_sancoes` | Sancoes CEIS/CNEP/OFAC |
+| `tenant_obitos` | Obitos verificados |
+| `tenant_beneficios` | Beneficios sociais |
 
-#### user_tenants
-Associacao usuarios-tenants (controle de acesso).
+#### Dados do Usuario Individual
 
-```sql
-CREATE TABLE user_tenants (
-    id TEXT PRIMARY KEY,
-    user_id TEXT NOT NULL,
-    tenant_id TEXT NOT NULL,
-    role TEXT DEFAULT 'viewer',    -- admin, editor, viewer
-    granted_by TEXT,
-    expires_at TEXT,
-    is_active INTEGER DEFAULT 1,
-    created_at TEXT,
-    UNIQUE(user_id, tenant_id)
-);
-```
+| Tabela | Descricao |
+|--------|-----------|
+| `user_funcionarios` | Funcionarios do usuario |
+| `user_obitos` | Obitos do usuario |
+| `user_candidaturas` | Candidaturas do usuario |
+| `user_doacoes` | Doacoes do usuario |
+| `user_vinculos` | Vinculos do usuario |
+| `user_sancoes` | Sancoes do usuario |
+| `user_beneficios` | Beneficios do usuario |
+| `user_settings` | Configuracoes do usuario |
 
-#### tenant_funcionarios
-Funcionarios de cada tenant.
+#### Administrativo
 
-```sql
-CREATE TABLE tenant_funcionarios (
-    id TEXT PRIMARY KEY,
-    tenant_id TEXT NOT NULL,
-    cadastro TEXT,
-    nome TEXT NOT NULL,
-    cpf TEXT NOT NULL,
-    grupo TEXT NOT NULL,
-    cargo TEXT,
-    salario REAL,
-    -- Flags de verificacao
-    esta_vivo TEXT,
-    esta_morto TEXT,
-    ano_obito INTEGER,
-    recebe_beneficio INTEGER,
-    socio_empresa INTEGER,
-    doador_campanha INTEGER,
-    candidato INTEGER,
-    sancionado_ceis INTEGER,
-    -- ...
-    FOREIGN KEY (tenant_id) REFERENCES tenants(id)
-);
-```
+| Tabela | Descricao |
+|--------|-----------|
+| `admin_alerts` | Sistema de alertas |
+| `admin_notification_settings` | Preferencias de notificacao |
+| `whatsapp_leads` | Leads do WhatsApp |
 
-### Tabelas de Dados Relacionados
-
-- `tenant_candidaturas` - Candidaturas TSE
-- `tenant_doacoes` - Doacoes de campanha
-- `tenant_vinculos` - Vinculos empresariais
-- `tenant_sancoes` - Sancoes CEIS/CNEP
-- `tenant_obitos` - Obitos verificados
-- `tenant_beneficios` - Beneficios sociais
-
-### Tabelas Administrativas
-
-#### admin_alerts
-Alertas para administradores (novos cadastros, etc).
-
-```sql
-CREATE TABLE admin_alerts (
-    id TEXT PRIMARY KEY,
-    type TEXT NOT NULL,           -- 'new_user', 'new_tenant', etc
-    title TEXT NOT NULL,
-    message TEXT,
-    data TEXT,                    -- JSON com dados adicionais
-    is_read INTEGER DEFAULT 0,
-    created_at TEXT,
-    read_at TEXT
-);
-```
-
-#### admin_users
-Usuarios com permissoes administrativas globais.
-
-```sql
-CREATE TABLE admin_users (
-    id TEXT PRIMARY KEY,
-    user_id TEXT NOT NULL UNIQUE,
-    email TEXT NOT NULL UNIQUE,
-    role TEXT DEFAULT 'admin',    -- 'super_admin', 'admin'
-    created_at TEXT,
-    updated_at TEXT
-);
-```
+---
 
 ## Autenticacao
 
@@ -257,10 +385,10 @@ CREATE TABLE admin_users (
 1. Usuario entra email/senha no frontend
 2. Firebase Auth valida credenciais
 3. Firebase retorna ID Token (JWT)
-4. Frontend armazena token em memoria
+4. Frontend armazena token em memoria (nao localStorage)
 5. Requisicoes incluem header: Authorization: Bearer <token>
 6. Backend valida token com Firebase REST API
-7. Backend busca usuario no D1 e verifica permissoes
+7. Backend busca usuario no D1 e verifica permissoes tenant
 ```
 
 ### Middleware de Auth
@@ -270,14 +398,12 @@ CREATE TABLE admin_users (
 export async function authMiddleware(c, next) {
   const token = c.req.header('Authorization')?.replace('Bearer ', '');
 
-  // Validar com Firebase
   const decoded = await verifyFirebaseToken(token, c.env);
 
   if (!decoded) {
     return c.json({ error: 'Token invalido' }, 401);
   }
 
-  // Adicionar ao contexto
   c.set('firebaseUid', decoded.uid);
   c.set('userEmail', decoded.email);
 
@@ -285,9 +411,13 @@ export async function authMiddleware(c, next) {
 }
 ```
 
+---
+
 ## Sistema Multi-Tenant
 
-Ver documentacao completa em [MULTI-TENANT.md](./MULTI-TENANT.md).
+O sistema permite multiplos clientes com isolamento total de dados.
+
+Documentacao completa em **[MULTI-TENANT.md](./MULTI-TENANT.md)**.
 
 ### Resumo
 
@@ -297,16 +427,51 @@ Ver documentacao completa em [MULTI-TENANT.md](./MULTI-TENANT.md).
 - Novos usuarios sem associacao veem tela de "Aguardando"
 - Admin pode conceder/revogar acessos via API
 
-## Desenvolvimento Local
+### Roles (Papeis)
+
+| Role | Permissoes |
+|------|------------|
+| `admin` | Acesso total: visualizar, editar, exportar, gerenciar usuarios |
+| `editor` | Visualizar, editar e exportar dados |
+| `viewer` | Apenas visualizacao |
+
+---
+
+## APIs Externas
+
+Catalogo completo em **[../APIs/CATALOGO_APIS_INVESTIGACAO.md](../APIs/CATALOGO_APIS_INVESTIGACAO.md)**.
+
+### APIs Utilizadas
+
+| API | Tipo | Uso Principal | Custo |
+|-----|------|---------------|-------|
+| **Infosimples** | Paga | CPF/CNPJ/Obito | R$ 0,20-0,24/consulta |
+| **Portal Transparencia** | Gratuita | Beneficios, CEIS/CNEP/CEAF | Gratis |
+| **BrasilAPI** | Gratuita | CNPJ, CEP | Gratis |
+| **TSE Dados Abertos** | Gratuita | Candidaturas, Doacoes | Gratis |
+| **CGU** | Gratuita | CEIS/CNEP (arquivos) | Gratis |
+| **SERPRO** | Paga | CPF/CNPJ oficial | R$ 0,66/consulta |
+| **Escavador** | Paga | Processos judiciais | R$ 0,10-0,20/processo |
+| **BigDataCorp** | Paga | Dados enriquecidos | R$ 0,05/consulta |
+
+### Exemplos de Codigo
+
+- **JavaScript**: `APIs/*/exemplo-*.js`
+- **Python**: `APIs/exemplos_python/`
+- **TypeScript**: `APIs/*/consultas-*.ts`
+
+---
+
+## Desenvolvimento
 
 ### Pre-requisitos
 
 - Node.js 18+
 - npm ou pnpm
-- Wrangler CLI (`npm i -g wrangler`)
+- Wrangler CLI 4.x (`npm i -g wrangler`)
 - Conta Cloudflare
 
-### Setup
+### Setup Local
 
 ```bash
 # 1. Clonar repositorio
@@ -316,25 +481,21 @@ cd investigaree
 # 2. Instalar dependencias
 npm install
 cd investigaree && npm install
-cd ../workers && npm install
 
 # 3. Configurar variaveis de ambiente
 cp .env.example .env.local
-# Editar .env.local com suas chaves
 
 # 4. Criar banco D1 local
 wrangler d1 create investigaree-db
 
 # 5. Rodar migrations
-wrangler d1 execute investigaree-db --local --file=workers/migrations/004_tenant_data.sql
-wrangler d1 execute investigaree-db --local --file=workers/migrations/005_user_tenants.sql
-wrangler d1 execute investigaree-db --local --file=workers/migrations/006_seed_admin_access.sql
-wrangler d1 execute investigaree-db --local --file=workers/migrations/007_admin_alerts.sql
-wrangler d1 execute investigaree-db --local --file=workers/migrations/008_create_admin_users.sql
+for file in workers/migrations/*.sql; do
+  wrangler d1 execute investigaree-db --local --file="$file"
+done
 
 # 6. Iniciar desenvolvimento
-npm run dev          # Frontend (porta 3000)
-wrangler dev         # Backend (porta 8787)
+cd investigaree && npm run dev    # Frontend (porta 3000)
+wrangler dev                      # Backend (porta 8787)
 ```
 
 ### Variaveis de Ambiente
@@ -350,12 +511,15 @@ NEXT_PUBLIC_API_URL=http://localhost:8787
 
 # Secrets (wrangler secret put)
 FIREBASE_WEB_API_KEY=
-SUPABASE_URL=
-SUPABASE_SERVICE_ROLE_KEY=
+RESEND_API_KEY=
 STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
 OPENAI_API_KEY=
-RESEND_API_KEY=         # Para envio de emails de notificacao
+INFOSIMPLES_API_TOKEN=
+PORTAL_TRANSPARENCIA_API_KEY=
 ```
+
+---
 
 ## Deploy
 
@@ -364,7 +528,7 @@ RESEND_API_KEY=         # Para envio de emails de notificacao
 ```bash
 cd investigaree
 npm run build
-# Deploy via Cloudflare Dashboard ou CLI
+npm run deploy
 ```
 
 ### Backend (Cloudflare Workers)
@@ -372,11 +536,9 @@ npm run build
 ```bash
 # Configurar secrets
 wrangler secret put FIREBASE_WEB_API_KEY
+wrangler secret put RESEND_API_KEY
 wrangler secret put STRIPE_SECRET_KEY
 # ... outros secrets
-
-# Rodar migrations em producao
-wrangler d1 execute investigaree-db --file=workers/migrations/005_user_tenants.sql
 
 # Deploy
 wrangler deploy
@@ -384,67 +546,58 @@ wrangler deploy
 
 ### CI/CD (GitHub Actions)
 
-Os workflows estao em `.github/workflows/`:
-- `deploy.yml` - Deploy do frontend
-- `deploy-api.yml` - Deploy do backend
+Workflows em `.github/workflows/`:
+- `deploy.yml` - Deploy automatico do frontend
+- `deploy-api.yml` - Deploy automatico do backend
 
-## Testes
+---
 
-```bash
-# Frontend
-cd investigaree
-npm run test        # Jest
-npm run test:e2e    # Playwright (se configurado)
+## Documentacao Adicional
 
-# Backend
-cd workers
-npm run test        # Vitest
-```
+| Documento | Descricao |
+|-----------|-----------|
+| **[API.md](./API.md)** | Referencia completa da API REST |
+| **[MULTI-TENANT.md](./MULTI-TENANT.md)** | Sistema multi-tenant detalhado |
+| **[DATABASE_ER_DIAGRAM.md](./DATABASE_ER_DIAGRAM.md)** | Diagrama ER visual (Mermaid) |
+| **[MIGRATIONS_CHANGELOG.md](./MIGRATIONS_CHANGELOG.md)** | Historico de alteracoes do banco |
+| **[openapi.yaml](./openapi.yaml)** | Especificacao OpenAPI 3.1 |
+| **[../APIs/CATALOGO_APIS_INVESTIGACAO.md](../APIs/CATALOGO_APIS_INVESTIGACAO.md)** | Catalogo de APIs externas |
+| **[../APIs/exemplos_python/README.md](../APIs/exemplos_python/README.md)** | Exemplos em Python |
+| **[../DOCUMENTATION_INDEX.md](../DOCUMENTATION_INDEX.md)** | Indice central de documentacao |
 
-## Monitoramento
-
-- **Logs**: `wrangler tail` para logs em tempo real
-- **Metricas**: Cloudflare Dashboard
-- **Erros**: Sentry (configurar em producao)
+---
 
 ## Seguranca
 
 ### Boas Praticas Implementadas
 
-1. **Autenticacao**: Firebase Auth com validacao de token
+1. **Autenticacao**: Firebase Auth com validacao de token JWT
 2. **Autorizacao**: Verificacao de tenant em cada requisicao
-3. **Rate Limiting**: KV-based por IP
+3. **Rate Limiting**: KV-based por IP (rotas /api/* e /health)
 4. **CORS**: Configurado para dominios especificos
 5. **Validacao**: Zod em todos os inputs
-6. **Audit Logs**: Registro de acessos (LGPD)
-7. **Secrets**: Armazenados no Cloudflare
+6. **Secrets**: Armazenados no Cloudflare (nunca no codigo)
+7. **HTTPS**: Forcado em todas as conexoes
 
-### Headers de Seguranca
+### Dominios CORS Permitidos
 
-```typescript
-// Configurados no Cloudflare Pages
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-X-XSS-Protection: 1; mode=block
+```
+https://investigaree.com.br
+https://www.investigaree.com.br
+https://investigaree.pages.dev
+https://*.investigaree.pages.dev
+http://localhost:5173 (dev)
 ```
 
-## Contribuicao
-
-1. Criar branch: `git checkout -b feature/nome`
-2. Fazer commits: `git commit -m "feat: descricao"`
-3. Push: `git push origin feature/nome`
-4. Abrir Pull Request
-
-### Convencoes de Commit
-
-- `feat:` Nova funcionalidade
-- `fix:` Correcao de bug
-- `docs:` Documentacao
-- `refactor:` Refatoracao
-- `test:` Testes
-- `chore:` Manutencao
+---
 
 ## Suporte
 
-- Email: contato@investigaree.com.br
-- Issues: GitHub Issues
+- **Email**: contato@investigaree.com.br
+- **WhatsApp**: Link no site
+- **Issues**: GitHub Issues
+
+---
+
+**Documento mantido por**: Equipe investigaree
+**Ultima atualizacao**: 30 de Novembro de 2025

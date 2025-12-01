@@ -1,6 +1,12 @@
 # Sistema Multi-Tenant - investigaree
 
-**Ultima atualizacao**: 29 de Novembro de 2025
+**Ultima atualizacao**: 30 de Novembro de 2025
+**Versao**: 1.0.0
+
+> **Documentacao relacionada**:
+> - [Diagrama ER do Banco](./DATABASE_ER_DIAGRAM.md)
+> - [Historico de Migrations](./MIGRATIONS_CHANGELOG.md)
+> - [API Reference](./API.md)
 
 ## Visão Geral
 

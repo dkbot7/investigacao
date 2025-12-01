@@ -121,3 +121,6 @@ nul
 
 # Consultas SERPRO (dados sensiveis)
 serpro-consultas/
+
+# Bases de dados locais (muito grandes)
+bases_dados/

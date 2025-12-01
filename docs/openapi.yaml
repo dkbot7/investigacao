@@ -1,0 +1,1393 @@
+openapi: 3.1.0
+info:
+  title: investigaree API
+  description: |
+    API de Due Diligence Digital e Investigação Forense.
+
+    ## Autenticação
+
+    Todas as rotas protegidas requerem autenticação via Firebase Auth.
+    Inclua o token no header Authorization:
+
+    ```
+    Authorization: Bearer <firebase_id_token>
+    ```
+
+    ## Rate Limiting
+
+    - 100 requisições por minuto por IP
+    - Headers de resposta incluem `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
+
+    ## Multi-Tenant
+
+    Os dados são isolados por tenant. Cada usuário pode ter acesso a um ou mais tenants.
+
+    ## Documentação Completa
+
+    Este arquivo OpenAPI contém os endpoints principais. Para documentação completa de todos os endpoints, consulte [API.md](./API.md).
+
+    **Endpoints adicionais documentados em API.md:**
+    - `/api/leads` - Captação de leads
+    - `/api/chatbot` - Chatbot com OpenAI
+    - `/api/investigation` - Solicitações de investigação
+    - `/api/reports` - Relatórios de due diligence
+    - `/api/payments` - Pagamentos Stripe
+    - `/api/user` - Perfil do usuário
+    - `/api/lgpd` - Direitos LGPD
+    - `/api/userdata` - Dados individuais (B2C)
+    - `/api/webhooks` - Webhooks Stripe
+    - `/api/infosimples` - Consultas Infosimples
+    - `/api/transparencia` - Portal da Transparência
+
+  version: 1.0.0
+  contact:
+    name: investigaree
+    email: contato@investigaree.com.br
+    url: https://investigaree.com.br
+
+servers:
+  - url: https://api.investigaree.com.br
+    description: Produção
+  - url: http://localhost:8787
+    description: Desenvolvimento
+
+tags:
+  - name: Health
+    description: Status da API
+  - name: Auth
+    description: Autenticação e registro de usuários
+  - name: Leads
+    description: Captação de leads (landing page e WhatsApp)
+  - name: Chatbot
+    description: Assistente de vendas com OpenAI
+  - name: Investigation
+    description: Solicitações de investigação por email
+  - name: Reports
+    description: Relatórios de due diligence
+  - name: Payments
+    description: Pagamentos via Stripe
+  - name: User
+    description: Perfil e configurações do usuário
+  - name: LGPD
+    description: Direitos do titular de dados (LGPD Art. 18)
+  - name: Tenant
+    description: Dados multi-tenant B2B (funcionários, verificações)
+  - name: UserData
+    description: Dados individuais B2C por usuário
+  - name: Admin
+    description: Endpoints administrativos
+  - name: Consultas
+    description: Consultas públicas (CEP, CNPJ)
+  - name: Webhooks
+    description: Webhooks de serviços externos
+
+paths:
+  # ===========================================================================
+  # HEALTH
+  # ===========================================================================
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Health Check
+      description: Verifica status da API
+      operationId: healthCheck
+      responses:
+        '200':
+          description: API está funcionando
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /:
+    get:
+      tags:
+        - Health
+      summary: API Info
+      description: Informações básicas da API
+      operationId: apiInfo
+      responses:
+        '200':
+          description: Informações da API
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiInfoResponse'
+
+  # ===========================================================================
+  # AUTH
+  # ===========================================================================
+  /api/auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Registrar Usuário
+      description: Cria registro no banco após cadastro no Firebase
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: Usuário criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterResponse'
+        '200':
+          description: Usuário já existe
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterExistingResponse'
+
+  /api/auth/sync:
+    post:
+      tags:
+        - Auth
+      summary: Sincronizar Usuário
+      description: Sincroniza dados do Firebase com banco (idempotente)
+      operationId: syncUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyncRequest'
+      responses:
+        '200':
+          description: Usuário sincronizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyncResponse'
+
+  /api/auth/me:
+    get:
+      tags:
+        - Auth
+      summary: Usuário Atual
+      description: Retorna dados do usuário autenticado
+      operationId: getCurrentUser
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Dados do usuário
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  # ===========================================================================
+  # TENANT
+  # ===========================================================================
+  /api/tenant/info:
+    get:
+      tags:
+        - Tenant
+      summary: Informações do Tenant
+      description: Retorna tenant(s) que o usuário tem acesso
+      operationId: getTenantInfo
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Informações do tenant
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantInfoResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/tenant/dashboard:
+    get:
+      tags:
+        - Tenant
+      summary: Dashboard
+      description: Dados consolidados para o dashboard principal
+      operationId: getDashboard
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Dados do dashboard
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/tenant/funcionarios:
+    get:
+      tags:
+        - Tenant
+      summary: Listar Funcionários
+      description: Lista funcionários com filtros e paginação
+      operationId: listFuncionarios
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: grupo
+          in: query
+          description: Filtrar por grupo
+          schema:
+            type: string
+            example: Comurg
+        - name: busca
+          in: query
+          description: Busca por nome ou CPF
+          schema:
+            type: string
+        - name: alerta
+          in: query
+          description: Tipo de alerta
+          schema:
+            type: string
+            enum: [obito, beneficio, sancionado, doador, candidato, socio]
+        - name: page
+          in: query
+          description: Página
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          description: Itens por página
+          schema:
+            type: integer
+            default: 50
+            maximum: 100
+      responses:
+        '200':
+          description: Lista de funcionários
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FuncionariosListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/tenant/funcionario/{id}:
+    get:
+      tags:
+        - Tenant
+      summary: Detalhes do Funcionário
+      description: Retorna todos os dados de um funcionário
+      operationId: getFuncionario
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do funcionário
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dados completos do funcionário
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FuncionarioDetailResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/tenant/obitos:
+    get:
+      tags:
+        - Tenant
+      summary: Listar Óbitos
+      description: Lista funcionários falecidos
+      operationId: listObitos
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de óbitos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObitosListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/tenant/candidatos:
+    get:
+      tags:
+        - Tenant
+      summary: Listar Candidatos
+      description: Lista funcionários que foram candidatos
+      operationId: listCandidatos
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de candidatos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CandidatosListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/tenant/doadores:
+    get:
+      tags:
+        - Tenant
+      summary: Listar Doadores
+      description: Lista funcionários que doaram para campanhas
+      operationId: listDoadores
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de doadores
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DoadoresListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/tenant/sancionados:
+    get:
+      tags:
+        - Tenant
+      summary: Listar Sancionados
+      description: Lista funcionários com sanções CEIS/CNEP/OFAC
+      operationId: listSancionados
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de sancionados
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SancionadosListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/tenant/vinculos:
+    get:
+      tags:
+        - Tenant
+      summary: Listar Vínculos
+      description: Lista vínculos empresariais dos funcionários
+      operationId: listVinculos
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de vínculos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VinculosListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/tenant/beneficios:
+    get:
+      tags:
+        - Tenant
+      summary: Listar Benefícios
+      description: Lista funcionários que recebem benefícios sociais
+      operationId: listBeneficios
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de benefícios
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeneficiosListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/tenant/export/{type}:
+    get:
+      tags:
+        - Tenant
+      summary: Exportar Dados
+      description: Exporta dados em formato CSV
+      operationId: exportData
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: type
+          in: path
+          required: true
+          description: Tipo de dados para exportar
+          schema:
+            type: string
+            enum: [funcionarios, obitos, candidatos, doadores, vinculos]
+        - name: grupo
+          in: query
+          description: Filtrar por grupo
+          schema:
+            type: string
+        - name: alerta
+          in: query
+          description: Filtrar por tipo de alerta
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Arquivo CSV
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  # ===========================================================================
+  # ADMIN
+  # ===========================================================================
+  /api/admin/users:
+    get:
+      tags:
+        - Admin
+      summary: Listar Usuários
+      description: Lista todos os usuários do sistema
+      operationId: listUsers
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de usuários
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/AdminOnly'
+
+  /api/admin/tenants:
+    get:
+      tags:
+        - Admin
+      summary: Listar Tenants
+      description: Lista todos os tenants
+      operationId: listTenants
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de tenants
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/AdminOnly'
+
+    post:
+      tags:
+        - Admin
+      summary: Criar Tenant
+      description: Cria um novo tenant
+      operationId: createTenant
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantRequest'
+      responses:
+        '201':
+          description: Tenant criado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTenantResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/AdminOnly'
+
+  /api/admin/pending-users:
+    get:
+      tags:
+        - Admin
+      summary: Usuários Pendentes
+      description: Lista usuários sem acesso a nenhum tenant
+      operationId: listPendingUsers
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de usuários pendentes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PendingUsersResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/AdminOnly'
+
+  /api/admin/grant-access:
+    post:
+      tags:
+        - Admin
+      summary: Conceder Acesso
+      description: Concede acesso de um usuário a um tenant
+      operationId: grantAccess
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GrantAccessRequest'
+      responses:
+        '201':
+          description: Acesso concedido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrantAccessResponse'
+        '200':
+          description: Acesso atualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrantAccessResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/AdminOnly'
+
+  /api/admin/revoke-access:
+    delete:
+      tags:
+        - Admin
+      summary: Revogar Acesso
+      description: Revoga acesso de um usuário a um tenant
+      operationId: revokeAccess
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: user_email
+          in: query
+          required: true
+          schema:
+            type: string
+            format: email
+        - name: tenant_code
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Acesso revogado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevokeAccessResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/AdminOnly'
+
+  /api/admin/alerts:
+    get:
+      tags:
+        - Admin
+      summary: Listar Alertas
+      description: Lista alertas do sistema
+      operationId: listAlerts
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: unread_only
+          in: query
+          description: Apenas não lidos
+          schema:
+            type: boolean
+            default: false
+        - name: limit
+          in: query
+          description: Limite de resultados
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: Lista de alertas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/AdminOnly'
+
+  /api/admin/alerts/{id}/read:
+    post:
+      tags:
+        - Admin
+      summary: Marcar Alerta como Lido
+      operationId: markAlertRead
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Alerta marcado como lido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/admin/alerts/read-all:
+    post:
+      tags:
+        - Admin
+      summary: Marcar Todos como Lidos
+      operationId: markAllAlertsRead
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Todos os alertas marcados como lidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarkAllReadResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/admin/alerts/count:
+    get:
+      tags:
+        - Admin
+      summary: Contagem de Alertas Não Lidos
+      operationId: getUnreadAlertsCount
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Contagem de alertas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertsCountResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/admin/stats:
+    get:
+      tags:
+        - Admin
+      summary: Estatísticas do Sistema
+      operationId: getAdminStats
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Estatísticas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminStatsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/AdminOnly'
+
+  # ===========================================================================
+  # CONSULTAS PÚBLICAS
+  # ===========================================================================
+  /api/consultas/cep/{cep}:
+    get:
+      tags:
+        - Consultas
+      summary: Consultar CEP
+      description: Consulta endereço por CEP
+      operationId: consultarCep
+      parameters:
+        - name: cep
+          in: path
+          required: true
+          description: CEP (com ou sem formatação)
+          schema:
+            type: string
+            example: "74000-000"
+      responses:
+        '200':
+          description: Dados do endereço
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CepResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/consultas/cnpj/{cnpj}:
+    get:
+      tags:
+        - Consultas
+      summary: Consultar CNPJ
+      description: Consulta dados de empresa por CNPJ
+      operationId: consultarCnpj
+      parameters:
+        - name: cnpj
+          in: path
+          required: true
+          description: CNPJ (com ou sem formatação)
+          schema:
+            type: string
+            example: "12345678000199"
+      responses:
+        '200':
+          description: Dados da empresa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CnpjResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+# =============================================================================
+# COMPONENTS
+# =============================================================================
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Token JWT do Firebase Auth
+
+  responses:
+    Unauthorized:
+      description: Token inválido ou não fornecido
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error: true
+            message: Token inválido ou expirado
+            code: AUTH_TOKEN_INVALID
+
+    Forbidden:
+      description: Usuário sem acesso a tenant
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error: true
+            message: Usuário sem acesso a este tenant
+            code: NO_TENANT_ACCESS
+
+    AdminOnly:
+      description: Apenas administradores
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error: true
+            message: Apenas administradores podem acessar
+            code: ADMIN_ONLY
+
+    NotFound:
+      description: Recurso não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error: true
+            message: Recurso não encontrado
+            code: NOT_FOUND
+
+  schemas:
+    # =========================================================================
+    # Common
+    # =========================================================================
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: boolean
+          example: true
+        message:
+          type: string
+        code:
+          type: string
+          enum:
+            - AUTH_TOKEN_MISSING
+            - AUTH_TOKEN_INVALID
+            - AUTH_REQUIRED
+            - USER_NOT_FOUND
+            - NO_TENANT_ACCESS
+            - ADMIN_ONLY
+            - VALIDATION_ERROR
+            - NOT_FOUND
+            - INTERNAL_ERROR
+        details:
+          type: object
+
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+        pages:
+          type: integer
+
+    # =========================================================================
+    # Health
+    # =========================================================================
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok
+        timestamp:
+          type: string
+          format: date-time
+        version:
+          type: string
+          example: "1.0.0"
+        environment:
+          type: string
+          example: production
+
+    ApiInfoResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          example: investigaree API
+        version:
+          type: string
+        status:
+          type: string
+        endpoints:
+          type: object
+
+    # =========================================================================
+    # Auth
+    # =========================================================================
+    RegisterRequest:
+      type: object
+      required:
+        - firebase_uid
+        - email
+      properties:
+        firebase_uid:
+          type: string
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        phone:
+          type: string
+
+    RegisterResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        user_id:
+          type: string
+        message:
+          type: string
+
+    RegisterExistingResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        user_id:
+          type: string
+        message:
+          type: string
+        existing:
+          type: boolean
+
+    SyncRequest:
+      type: object
+      required:
+        - firebase_uid
+        - email
+      properties:
+        firebase_uid:
+          type: string
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+
+    SyncResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        user_id:
+          type: string
+        synced:
+          type: boolean
+        created:
+          type: boolean
+
+    UserResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        user:
+          $ref: '#/components/schemas/User'
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        firebase_uid:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        phone:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+    # =========================================================================
+    # Tenant
+    # =========================================================================
+    TenantInfoResponse:
+      type: object
+      properties:
+        hasAccess:
+          type: boolean
+        tenant:
+          $ref: '#/components/schemas/TenantBasic'
+        tenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/TenantBasic'
+        role:
+          type: string
+          enum: [admin, editor, viewer]
+        message:
+          type: string
+
+    TenantBasic:
+      type: object
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+
+    DashboardResponse:
+      type: object
+      properties:
+        tenant:
+          type: object
+          properties:
+            code:
+              type: string
+            name:
+              type: string
+        stats:
+          type: object
+          properties:
+            total_funcionarios:
+              type: integer
+            total_obitos:
+              type: integer
+            total_beneficiarios:
+              type: integer
+            total_sancionados:
+              type: integer
+            total_doadores:
+              type: integer
+            total_candidatos:
+              type: integer
+            total_socios:
+              type: integer
+        grupos:
+          type: array
+          items:
+            type: object
+        vinculos:
+          type: object
+        doacoes:
+          type: object
+        updated_at:
+          type: string
+          format: date-time
+
+    Funcionario:
+      type: object
+      properties:
+        id:
+          type: string
+        cadastro:
+          type: string
+        nome:
+          type: string
+        cpf:
+          type: string
+        grupo:
+          type: string
+        cargo:
+          type: string
+        salario:
+          type: number
+        esta_vivo:
+          type: string
+        esta_morto:
+          type: string
+        ano_obito:
+          type: integer
+        recebe_beneficio:
+          type: integer
+        socio_empresa:
+          type: integer
+        doador_campanha:
+          type: integer
+        candidato:
+          type: integer
+        sancionado_ceis:
+          type: integer
+
+    FuncionariosListResponse:
+      type: object
+      properties:
+        funcionarios:
+          type: array
+          items:
+            $ref: '#/components/schemas/Funcionario'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    FuncionarioDetailResponse:
+      type: object
+      properties:
+        funcionario:
+          $ref: '#/components/schemas/Funcionario'
+        candidaturas:
+          type: array
+          items:
+            type: object
+        doacoes:
+          type: array
+          items:
+            type: object
+        vinculos:
+          type: array
+          items:
+            type: object
+        sancoes:
+          type: array
+          items:
+            type: object
+        beneficios:
+          type: array
+          items:
+            type: object
+
+    ObitosListResponse:
+      type: object
+      properties:
+        obitos:
+          type: array
+          items:
+            type: object
+        total:
+          type: integer
+
+    CandidatosListResponse:
+      type: object
+      properties:
+        candidatos:
+          type: array
+          items:
+            type: object
+        total:
+          type: integer
+
+    DoadoresListResponse:
+      type: object
+      properties:
+        doadores:
+          type: array
+          items:
+            type: object
+        total:
+          type: integer
+        valor_total:
+          type: number
+
+    SancionadosListResponse:
+      type: object
+      properties:
+        sancionados:
+          type: array
+          items:
+            type: object
+        total:
+          type: integer
+
+    VinculosListResponse:
+      type: object
+      properties:
+        vinculos:
+          type: array
+          items:
+            type: object
+        total:
+          type: integer
+        cnpjs_unicos:
+          type: integer
+
+    BeneficiosListResponse:
+      type: object
+      properties:
+        beneficios:
+          type: array
+          items:
+            type: object
+        total:
+          type: integer
+
+    # =========================================================================
+    # Admin
+    # =========================================================================
+    UsersListResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserWithTenants'
+
+    UserWithTenants:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        phone:
+          type: string
+        created_at:
+          type: string
+        tenants:
+          type: array
+          items:
+            type: object
+
+    TenantsListResponse:
+      type: object
+      properties:
+        tenants:
+          type: array
+          items:
+            type: object
+
+    CreateTenantRequest:
+      type: object
+      required:
+        - code
+        - name
+      properties:
+        code:
+          type: string
+          example: CLIENTE_02
+        name:
+          type: string
+
+    CreateTenantResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        tenant:
+          type: object
+
+    PendingUsersResponse:
+      type: object
+      properties:
+        pending_users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+
+    GrantAccessRequest:
+      type: object
+      required:
+        - user_email
+        - tenant_code
+      properties:
+        user_email:
+          type: string
+          format: email
+        tenant_code:
+          type: string
+        role:
+          type: string
+          enum: [admin, editor, viewer]
+          default: viewer
+        expires_at:
+          type: string
+          format: date-time
+
+    GrantAccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        action:
+          type: string
+          enum: [created, updated]
+
+    RevokeAccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+
+    AlertsListResponse:
+      type: object
+      properties:
+        alerts:
+          type: array
+          items:
+            type: object
+        total:
+          type: integer
+
+    AlertsCountResponse:
+      type: object
+      properties:
+        unread_count:
+          type: integer
+
+    MarkAllReadResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        count:
+          type: integer
+
+    AdminStatsResponse:
+      type: object
+      properties:
+        total_users:
+          type: integer
+        total_tenants:
+          type: integer
+        pending_users:
+          type: integer
+        active_tenants:
+          type: integer
+
+    # =========================================================================
+    # Consultas
+    # =========================================================================
+    CepResponse:
+      type: object
+      properties:
+        cep:
+          type: string
+        logradouro:
+          type: string
+        bairro:
+          type: string
+        localidade:
+          type: string
+        uf:
+          type: string
+
+    CnpjResponse:
+      type: object
+      properties:
+        cnpj:
+          type: string
+        razao_social:
+          type: string
+        nome_fantasia:
+          type: string
+        situacao_cadastral:
+          type: string
+        data_abertura:
+          type: string
+        atividade_principal:
+          type: string

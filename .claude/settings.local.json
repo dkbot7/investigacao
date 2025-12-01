@@ -1,7 +1,16 @@
 {
   "permissions": {
     "allow": [
-      "Bash(Select-Object -ExpandProperty FullName)"
+      "Bash(node -e:*)",
+      "Bash(node scripts/verificar-obito.js:*)",
+      "Bash(node scripts/consultar-beneficios-sociais.js:*)",
+      "WebSearch",
+      "Bash(powershell -Command \"(Get-Content ''C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\clientes\\CLIENTE_01\\cpfs-para-consulta-obito.json'' | Measure-Object -Line).Lines\")",
+      "Bash(powershell -Command:*)",
+      "Bash(node scripts/consolidar-empregados-comurg.js:*)",
+      "Bash(find:*)",
+      "WebFetch(domain:dados.gov.br)",
+      "WebFetch(domain:dadosabertos.rfb.gov.br)"
     ],
     "deny": [],
     "ask": []
