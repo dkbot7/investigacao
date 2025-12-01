@@ -132,7 +132,7 @@ A plataforma conta com o suporte tecnico de **Ibsen Rodrigues Maciel**, referenc
 | Firebase Auth | Autenticacao de usuarios |
 | Stripe | Processamento de pagamentos |
 | Resend | Email transacional (notificacoes) |
-| OpenAI | Chat e analise com IA |
+| Automacao | Consultas e analise avancada |
 | Infosimples | Consultas CPF/CNPJ/Obito |
 | Portal Transparencia | Beneficios, CEIS, CNEP, CEAF |
 | TSE | Candidaturas e doacoes |
@@ -230,7 +230,7 @@ investigaree/
 │   │   ├── user-data.ts         # Dados individuais do usuario
 │   │   ├── user.ts              # Perfil do usuario
 │   │   ├── leads.ts             # Captura de leads
-│   │   ├── chatbot.ts           # Chat com IA (OpenAI)
+│   │   ├── chatbot.ts           # Consultor automatizado
 │   │   ├── reports.ts           # Geracao de relatorios PDF
 │   │   ├── payments.ts          # Stripe integration
 │   │   ├── webhooks.ts          # Webhooks (Stripe, etc)
@@ -290,7 +290,7 @@ investigaree/
 | `/api/auth/register` | POST | Registrar usuario |
 | `/api/auth/sync` | POST | Sincronizar usuario |
 | `/api/leads` | POST | Capturar lead |
-| `/api/chatbot/message` | POST | Chat com IA |
+| `/api/chatbot/message` | POST | Consultas automatizadas |
 | `/api/investigation` | POST | Solicitar investigacao |
 | `/api/consultas/cep/:cep` | GET | Consultar CEP |
 | `/api/consultas/cnpj/:cnpj` | GET | Consultar CNPJ |

@@ -118,7 +118,7 @@ export default function QuemSomosPage() {
                   Nosso Time
                 </Badge>
                 <h2 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100">
-                  Pericia Forense + Automacao com IA
+                  Pericia Forense + Automacao Avancada
                 </h2>
                 <p className="text-lg text-neutral-600 dark:text-neutral-400 mt-4 max-w-2xl mx-auto">
                   Combinacao unica: <strong>Perito Criminal Oficial</strong> (1o lugar PCE-PA) +
@@ -133,17 +133,17 @@ export default function QuemSomosPage() {
                     className="overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group"
                   >
                     <Link href={`/quemsomos/${member.id}`}>
-                      <div className="relative h-72 bg-gradient-to-br from-navy-900 to-navy-950">
+                      <div className="relative aspect-[4/3] bg-gradient-to-br from-navy-900 to-navy-950">
                         {member.id === "ibsen-maciel" ? (
                           <Image
                             src="/images/ibsen-maciel.jpg"
                             alt={member.nome}
                             fill
-                            className="object-cover object-[center_20%]"
+                            className="object-cover object-[center_25%]"
                           />
                         ) : (
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <UserCheck className="w-24 h-24 text-gold-500/50" />
+                            <UserCheck className="w-20 h-20 text-gold-500/50" />
                           </div>
                         )}
                         <div className="absolute top-4 left-4 flex flex-wrap gap-2">

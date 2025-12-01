@@ -129,7 +129,7 @@ export default function AdvisoryBoard() {
                       <img
                         src="/images/ibsen-maciel.jpg"
                         alt="Ibsen Rodrigues Maciel"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-top"
                       />
                     </div>
                     <div className="absolute -bottom-1 -right-1">

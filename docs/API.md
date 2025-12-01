@@ -17,7 +17,7 @@ Base URL: `https://api.investigaree.com.br`
 | Health | `/`, `/health` | Nao | Status da API |
 | Auth | `/api/auth` | Nao | Registro e sincronizacao |
 | Leads | `/api/leads` | Nao | Captacao de leads |
-| Chatbot | `/api/chatbot` | Nao | Assistente de vendas |
+| Consultor | `/api/chatbot` | Nao | Consultas automatizadas |
 | Investigation | `/api/investigation` | Nao | Solicitacoes de investigacao |
 | Consultas Publicas | `/api/consultas` | Nao | CEP, CNPJ (Brasil API) |
 | Infosimples | `/api/infosimples` | Sim | CPF, CNPJ, processos |
@@ -229,9 +229,9 @@ GET /api/leads/:id
 
 ---
 
-## Chatbot (`/api/chatbot`)
+## Consultor (`/api/chatbot`)
 
-Assistente de vendas com OpenAI.
+Sistema de consultas automatizadas para analise de integridade.
 
 ### Enviar Mensagem
 

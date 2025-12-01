@@ -39,7 +39,7 @@
 - **Arquivos**: 40 arquivos commitados
   - Backend completo (Workers + Hono)
   - 7 API routes com integrações reais
-  - 6 services (Google, CNPJ, DeHashed, OpenAI, Email, PDF)
+  - 6 services (Google, CNPJ, DeHashed, Analise, Email, PDF)
   - Database schema com RLS policies
   - Documentação completa
   - Scripts de automação
@@ -145,10 +145,9 @@ wrangler secret put DEHASHED_EMAIL
 wrangler secret put DEHASHED_API_KEY
 # API Key do DeHashed
 
-# OpenAI (AI Analysis)
-wrangler secret put OPENAI_API_KEY
-# Obter em: https://platform.openai.com/api-keys
-# Formato: sk-...
+# Analise Avancada
+wrangler secret put ANALYSIS_API_KEY
+# Credenciais de processamento avancado
 
 # Supabase (Database)
 wrangler secret put SUPABASE_URL
@@ -208,7 +207,7 @@ Consulte `SETUP_APIS.md` para guias detalhados de cada API:
 - [ ] **Stripe**: Criar conta + API keys + Webhook
 - [ ] **Google Cloud**: Projeto + Custom Search Engine
 - [ ] **DeHashed**: Criar conta + API key
-- [ ] **OpenAI**: Criar conta + API key
+- [ ] **Analise Avancada**: Configurar credenciais de processamento
 - [ ] **Supabase**: Criar projeto + executar migrations
 
 ---
