@@ -28,6 +28,7 @@ import transparenciaRoutes from './api/consultas-transparencia'
 import tenantDataRoutes from './api/tenant-data'
 import adminRoutes from './api/admin'
 import userDataRoutes from './api/user-data'
+import investigationsRoutes from './api/investigations'
 
 // Types
 export interface Env {
@@ -103,6 +104,7 @@ app.use('*', cors({
     'https://www.investigaree.com.br',
     'https://investigaree.pages.dev',
     'https://*.investigaree.pages.dev',
+    'http://localhost:3000',
     'http://localhost:5173'
   ],
   allowMethods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -193,6 +195,7 @@ app.use('/api/lgpd/*', authMiddleware)
 app.use('/api/tenant/*', authMiddleware)
 app.use('/api/admin/*', authMiddleware)
 app.use('/api/userdata/*', authMiddleware)
+app.use('/api/investigations/*', authMiddleware)
 
 // Reports
 app.route('/api/reports', reportsRoutes)
@@ -214,6 +217,9 @@ app.route('/api/admin', adminRoutes)
 
 // User Data (dados individuais do usuario - isolados por user_id)
 app.route('/api/userdata', userDataRoutes)
+
+// Investigations (investigações do usuário)
+app.route('/api/investigations', investigationsRoutes)
 
 // ============================================
 // ERROR HANDLING

@@ -93,7 +93,7 @@ export default function NoAccessScreen({ userName, userEmail }: NoAccessScreenPr
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href="https://wa.me/5562999999999"
+                href="https://wa.me/5547992602673"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-emerald-400 hover:bg-emerald-500/20 transition-colors text-sm"

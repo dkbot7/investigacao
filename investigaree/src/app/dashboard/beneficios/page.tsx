@@ -129,7 +129,7 @@ export default function BeneficiosPage() {
               Beneficiarios de Programas Sociais
             </h1>
             <p className="text-white/60 mt-1">
-              {CLIENTE_01_STATS.totais.beneficiarios} funcionarios beneficiarios identificados
+              {CLIENTE_01_STATS?.totais?.beneficiarios || 0} funcionarios beneficiarios identificados
             </p>
           </div>
 
@@ -171,7 +171,7 @@ export default function BeneficiosPage() {
           <div>
             <h3 className="text-cyan-400 font-semibold">Recebimento de Beneficios Sociais</h3>
             <p className="text-white/70 text-sm mt-1">
-              Foram identificados <strong className="text-white">{CLIENTE_01_STATS.totais.beneficiarios} funcionarios</strong> que
+              Foram identificados <strong className="text-white">{CLIENTE_01_STATS?.totais?.beneficiarios || 0} funcionarios</strong> que
               receberam beneficios de programas sociais como Auxilio Emergencial, Bolsa Familia, BPC, entre outros.
               Esta verificacao e importante para analise de compatibilidade com o vinculo empregaticio.
             </p>

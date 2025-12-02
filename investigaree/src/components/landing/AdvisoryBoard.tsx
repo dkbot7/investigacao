@@ -40,12 +40,16 @@ export default function AdvisoryBoard() {
                 {/* Photo + Badge */}
                 <div className="flex items-center gap-4">
                   <div className="relative">
-                    <div className="w-20 h-20 bg-gradient-to-br from-gold-500/20 to-gold-500/10 rounded-full overflow-hidden border-2 border-gold-500/50 flex items-center justify-center">
-                      <UserCheck className="w-10 h-10 text-gold-400" />
+                    <div className="w-20 h-20 bg-gradient-to-br from-gold-500/20 to-gold-500/10 rounded-full overflow-hidden border-2 border-gold-500/50">
+                      <img
+                        src="/dani-kaloi.png"
+                        alt="Dani Kaloi"
+                        className="w-full h-full object-cover object-center"
+                      />
                     </div>
                     <div className="absolute -bottom-1 -right-1">
                       <Badge className="bg-gold-500 text-navy-950 text-xs px-2 py-0.5">
-                        CTO
+                        Analista
                       </Badge>
                     </div>
                   </div>
@@ -54,14 +58,14 @@ export default function AdvisoryBoard() {
                       Dani Kaloi
                     </h3>
                     <p className="text-gold-400 font-semibold">
-                      Fundadora & Arquiteta de Sistemas
+                      Analista de Dados
                     </p>
                   </div>
                 </div>
 
                 {/* Description */}
                 <p className="text-navy-200 text-sm">
-                  Referencia nacional em investigacao digital. Processa <span className="text-gold-400 font-semibold">+100 mil registros</span> por investigacao cruzando dados de 50+ fontes publicas.
+                  Desenvolvedora Full Stack e Arquiteta de sistemas que processam <span className="text-gold-400 font-semibold">+100 mil registros simultaneamente</span>, cruzando multiplas bases de dados publicas.
                 </p>
 
                 {/* Tecnologias */}
@@ -86,18 +90,18 @@ export default function AdvisoryBoard() {
                     <p className="text-xs text-navy-300">Registros/Investigação</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-gold-400">50+</p>
+                    <p className="text-2xl font-bold text-gold-400">Multiplas</p>
                     <p className="text-xs text-navy-300">Bases de Dados</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-gold-400">16+</p>
+                    <p className="text-2xl font-bold text-gold-400">13+</p>
                     <p className="text-xs text-navy-300">Certificações</p>
                   </div>
                 </div>
 
                 {/* Expertise */}
                 <div className="flex flex-wrap gap-2">
-                  {["Investigacao em Massa", "Empresas", "Divorcios", "OSINT"].map((area, i) => (
+                  {["Due Diligence", "Empresas", "Divorcios", "Automacao"].map((area, i) => (
                     <Badge key={i} variant="outline" className="bg-white/5 border-navy-700 text-navy-100 text-xs">
                       {area}
                     </Badge>

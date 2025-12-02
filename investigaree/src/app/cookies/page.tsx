@@ -21,7 +21,7 @@ export default function CookiesPage() {
             <Cookie className="w-8 h-8 text-primary-400" />
             <h1 className="text-2xl font-bold text-white">Política de Cookies</h1>
           </div>
-          <p className="text-white/60 mt-2">Última atualização: 25 de novembro de 2025</p>
+          <p className="text-white/60 mt-2">Última atualização: 01 de dezembro de 2025</p>
         </div>
       </header>
 

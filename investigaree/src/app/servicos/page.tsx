@@ -16,6 +16,7 @@ import {
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import Image from "next/image";
+import Link from "next/link";
 import { useWhatsApp } from "@/components/WhatsAppLeadModal";
 import {
   Home, Building2, TrendingUp, Shield, Users, Search,
@@ -1931,7 +1932,7 @@ function ServiceModal({ service, isOpen, onClose }: { service: Servico | null; i
 
 function ServicosContent() {
   const searchParams = useSearchParams();
-  const [activeTab, setActiveTab] = useState("familiar");
+  const [activeTab, setActiveTab] = useState("empresarial");
   const [selectedService, setSelectedService] = useState<Servico | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -2002,7 +2003,7 @@ function ServicosContent() {
               <div className="text-white space-y-4">
                 <h2 className="text-2xl font-bold">Tecnologia + Pericia Forense</h2>
                 <p className="text-navy-200">
-                  Combinacao unica no Brasil: <strong className="text-gold-400">Arquiteta de Sistemas</strong> especialista em automacao +
+                  Combinacao unica no Brasil: <strong className="text-gold-400">Analista de Dados</strong> especialista em automacao +
                   <strong className="text-gold-400"> Perito Criminal Oficial</strong> (1o lugar PCE-PA 2019) no Advisory Board.
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -2013,25 +2014,30 @@ function ServicosContent() {
                 </div>
               </div>
               <div className="flex justify-center gap-4">
-                <div className="text-center">
-                  <div className="w-20 h-20 rounded-full bg-gold-500/20 flex items-center justify-center mx-auto mb-2 border-2 border-gold-500/30">
-                    <UserCheck className="w-10 h-10 text-gold-400" />
+                <Link href="/quemsomos/dani-kaloi" className="text-center group cursor-pointer">
+                  <div className="relative w-20 h-20 rounded-full overflow-hidden mx-auto mb-2 border-2 border-gold-500/50 group-hover:border-gold-400 transition-all group-hover:shadow-lg group-hover:shadow-gold-500/50">
+                    <Image
+                      src="/dani-kaloi.png"
+                      alt="Dani Kaloi"
+                      fill
+                      className="object-cover group-hover:brightness-110 group-hover:scale-105 transition-all duration-300"
+                    />
                   </div>
-                  <p className="text-white font-semibold">Dani Kaloi</p>
-                  <p className="text-gold-400 text-sm">Arquiteta de Sistemas</p>
-                </div>
-                <div className="text-center">
-                  <div className="relative w-20 h-20 rounded-full overflow-hidden mx-auto mb-2 border-2 border-gold-500/50">
+                  <p className="text-white font-semibold group-hover:text-gold-400 transition-colors">Dani Kaloi</p>
+                  <p className="text-gold-400 text-sm">Analista de Dados</p>
+                </Link>
+                <Link href="/quemsomos/ibsen-maciel" className="text-center group cursor-pointer">
+                  <div className="relative w-20 h-20 rounded-full overflow-hidden mx-auto mb-2 border-2 border-gold-500/50 group-hover:border-gold-400 transition-all group-hover:shadow-lg group-hover:shadow-gold-500/50">
                     <Image
                       src="/images/ibsen-maciel.jpg"
                       alt="Ibsen Maciel"
                       fill
-                      className="object-cover"
+                      className="object-cover group-hover:brightness-110 group-hover:scale-105 transition-all duration-300"
                     />
                   </div>
-                  <p className="text-white font-semibold">Ibsen Maciel</p>
+                  <p className="text-white font-semibold group-hover:text-gold-400 transition-colors">Ibsen Maciel</p>
                   <p className="text-gold-400 text-sm">Perito Criminal</p>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -2041,38 +2047,34 @@ function ServicosContent() {
         <section className="py-20">
           <div className="container max-w-7xl px-4">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
-              <TabsList className="grid w-full max-w-5xl mx-auto grid-cols-3 md:grid-cols-5 h-auto p-1 bg-navy-100 dark:bg-navy-900">
+              <TabsList className="grid w-full max-w-6xl mx-auto grid-cols-2 md:grid-cols-4 h-auto p-2 bg-navy-100 dark:bg-navy-900 gap-2">
                 <TabsTrigger
                   value="familiar"
-                  className="flex items-center gap-2 py-3 md:py-4 data-[state=active]:bg-white dark:data-[state=active]:bg-navy-800 data-[state=active]:text-navy-900 dark:data-[state=active]:text-white"
+                  className="flex flex-col md:flex-row items-center justify-center gap-2 py-4 md:py-5 px-4 text-sm md:text-base font-semibold data-[state=active]:bg-gold-500 data-[state=active]:text-navy-950 data-[state=inactive]:bg-white dark:data-[state=inactive]:bg-navy-800 data-[state=inactive]:text-navy-700 dark:data-[state=inactive]:text-navy-300 hover:bg-gold-400 dark:hover:bg-gold-600 transition-all"
                 >
-                  <Home className="w-4 h-4 md:w-5 md:h-5" />
-                  <span className="hidden lg:inline">Proteção Familiar</span>
-                  <span className="lg:hidden text-xs md:text-sm">Familiar</span>
+                  <Home className="w-5 h-5 md:w-6 md:h-6" />
+                  <span>Proteção Familiar</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="empresarial"
-                  className="flex items-center gap-2 py-3 md:py-4 data-[state=active]:bg-white dark:data-[state=active]:bg-navy-800 data-[state=active]:text-navy-900 dark:data-[state=active]:text-white"
+                  className="flex flex-col md:flex-row items-center justify-center gap-2 py-4 md:py-5 px-4 text-sm md:text-base font-semibold data-[state=active]:bg-gold-500 data-[state=active]:text-navy-950 data-[state=inactive]:bg-white dark:data-[state=inactive]:bg-navy-800 data-[state=inactive]:text-navy-700 dark:data-[state=inactive]:text-navy-300 hover:bg-gold-400 dark:hover:bg-gold-600 transition-all"
                 >
-                  <Building2 className="w-4 h-4 md:w-5 md:h-5" />
-                  <span className="hidden lg:inline">Proteção Empresarial</span>
-                  <span className="lg:hidden text-xs md:text-sm">Empresarial</span>
+                  <Building2 className="w-5 h-5 md:w-6 md:h-6" />
+                  <span>Proteção Empresarial</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="investimentos"
-                  className="flex items-center gap-2 py-3 md:py-4 data-[state=active]:bg-white dark:data-[state=active]:bg-navy-800 data-[state=active]:text-navy-900 dark:data-[state=active]:text-white"
+                  className="flex flex-col md:flex-row items-center justify-center gap-2 py-4 md:py-5 px-4 text-sm md:text-base font-semibold data-[state=active]:bg-gold-500 data-[state=active]:text-navy-950 data-[state=inactive]:bg-white dark:data-[state=inactive]:bg-navy-800 data-[state=inactive]:text-navy-700 dark:data-[state=inactive]:text-navy-300 hover:bg-gold-400 dark:hover:bg-gold-600 transition-all"
                 >
-                  <TrendingUp className="w-4 h-4 md:w-5 md:h-5" />
-                  <span className="hidden lg:inline">Proteção de Investimentos</span>
-                  <span className="lg:hidden text-xs md:text-sm">Investimentos</span>
+                  <TrendingUp className="w-5 h-5 md:w-6 md:h-6" />
+                  <span>Investimentos</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="divorcios"
-                  className="flex items-center gap-2 py-3 md:py-4 data-[state=active]:bg-white dark:data-[state=active]:bg-navy-800 data-[state=active]:text-navy-900 dark:data-[state=active]:text-white"
+                  className="flex flex-col md:flex-row items-center justify-center gap-2 py-4 md:py-5 px-4 text-sm md:text-base font-semibold data-[state=active]:bg-gold-500 data-[state=active]:text-navy-950 data-[state=inactive]:bg-white dark:data-[state=inactive]:bg-navy-800 data-[state=inactive]:text-navy-700 dark:data-[state=inactive]:text-navy-300 hover:bg-gold-400 dark:hover:bg-gold-600 transition-all"
                 >
-                  <Scale className="w-4 h-4 md:w-5 md:h-5" />
-                  <span className="hidden lg:inline">Proteção em Divórcios</span>
-                  <span className="lg:hidden text-xs md:text-sm">Divórcios</span>
+                  <Scale className="w-5 h-5 md:w-6 md:h-6" />
+                  <span>Divórcios</span>
                 </TabsTrigger>
               </TabsList>
 
@@ -2174,25 +2176,30 @@ function ServicosContent() {
 
             {/* Team Badge */}
             <div className="pt-8 flex items-center justify-center gap-6">
-              <div className="text-center">
-                <div className="w-14 h-14 rounded-full bg-gold-500/20 flex items-center justify-center mx-auto mb-2 border-2 border-gold-500/30">
-                  <UserCheck className="w-7 h-7 text-gold-400" />
+              <Link href="/quemsomos/dani-kaloi" className="text-center group cursor-pointer">
+                <div className="relative w-14 h-14 rounded-full overflow-hidden mx-auto mb-2 border-2 border-gold-500/50 group-hover:border-gold-400 transition-all group-hover:shadow-lg group-hover:shadow-gold-500/50">
+                  <Image
+                    src="/dani-kaloi.png"
+                    alt="Dani Kaloi"
+                    fill
+                    className="object-cover group-hover:brightness-110 group-hover:scale-105 transition-all duration-300"
+                  />
                 </div>
-                <p className="text-white text-sm font-semibold">Dani Kaloi</p>
-                <p className="text-gold-400 text-xs">Arquiteta de Sistemas</p>
-              </div>
-              <div className="text-center">
-                <div className="relative w-14 h-14 rounded-full overflow-hidden mx-auto mb-2 border-2 border-gold-500/50">
+                <p className="text-white text-sm font-semibold group-hover:text-gold-400 transition-colors">Dani Kaloi</p>
+                <p className="text-gold-400 text-xs">Analista de Dados</p>
+              </Link>
+              <Link href="/quemsomos/ibsen-maciel" className="text-center group cursor-pointer">
+                <div className="relative w-14 h-14 rounded-full overflow-hidden mx-auto mb-2 border-2 border-gold-500/50 group-hover:border-gold-400 transition-all group-hover:shadow-lg group-hover:shadow-gold-500/50">
                   <Image
                     src="/images/ibsen-maciel.jpg"
                     alt="Ibsen Maciel"
                     fill
-                    className="object-cover"
+                    className="object-cover group-hover:brightness-110 group-hover:scale-105 transition-all duration-300"
                   />
                 </div>
-                <p className="text-white text-sm font-semibold">Ibsen Maciel</p>
+                <p className="text-white text-sm font-semibold group-hover:text-gold-400 transition-colors">Ibsen Maciel</p>
                 <p className="text-gold-400 text-xs">Perito Criminal</p>
-              </div>
+              </Link>
             </div>
           </div>
         </section>

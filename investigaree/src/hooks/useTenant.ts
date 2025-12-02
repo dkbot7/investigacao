@@ -4,19 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { getTenantInfo, TenantInfo, TenantInfoResponse } from "@/lib/api";
 
-// Lista de emails admin que tem acesso ao CLIENTE_01 em desenvolvimento
-const ADMIN_EMAILS = [
-  "contato@investigaree.com.br",
-  "admin@investigaree.com.br",
-];
-
-// Mock data para desenvolvimento quando API não está disponível
-const MOCK_TENANT: TenantInfo = {
-  id: "tenant_cliente_01",
-  code: "CLIENTE_01",
-  name: "COMURG - Companhia de Urbanizacao de Goiania",
-  role: "admin",
-};
+// MOCK DATA REMOVIDO POR QUESTÕES DE SEGURANÇA
+// Usuários não devem ter acesso a dados de outros clientes em nenhuma circunstância
 
 interface UseTenantReturn {
   tenant: TenantInfo | null;
@@ -56,32 +45,16 @@ export function useTenant(): UseTenantReturn {
     } catch (err: any) {
       console.error("Erro ao buscar tenant:", err);
 
-      // Se for erro de autenticação, não mostrar erro
-      if (err.status === 401) {
-        setHasAccess(false);
-        setTenant(null);
-        setTenants([]);
-      } else if (err.message?.includes("fetch") || err.name === "TypeError") {
-        // API não disponível - usar mock para admins em desenvolvimento
-        console.warn("[useTenant] API indisponivel, verificando acesso local");
+      // NUNCA dar acesso a dados mockados - questão de segurança crítica
+      // Se API falhar, usuário não tem acesso
+      console.error("[useTenant] Erro ao verificar acesso:", err);
+      setHasAccess(false);
+      setTenant(null);
+      setTenants([]);
 
-        if (user.email && ADMIN_EMAILS.includes(user.email)) {
-          // Admin tem acesso ao mock
-          setHasAccess(true);
-          setTenant(MOCK_TENANT);
-          setTenants([MOCK_TENANT]);
-        } else {
-          // Usuário comum sem acesso
-          setHasAccess(false);
-          setTenant(null);
-          setTenants([]);
-        }
-      } else {
-        // Outro erro - usuário sem acesso
-        setHasAccess(false);
-        setTenant(null);
-        setTenants([]);
-        setError(err.message || "Erro ao verificar acesso");
+      // Apenas mostrar erro se não for erro de autenticação
+      if (err.status !== 401) {
+        setError(err.message || "Erro ao verificar acesso. Entre em contato com o suporte.");
       }
     } finally {
       setLoading(false);

@@ -3,25 +3,24 @@
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard,
   Users,
-  FileText,
-  AlertTriangle,
-  Briefcase,
   Shield,
-  Download,
-  Settings,
   LogOut,
   Menu,
   X,
   ChevronRight,
-  Building2,
-  HeartPulse,
-  Globe,
-  DollarSign,
   BarChart3,
+  Settings,
+  User,
+  Bell,
+  Key,
+  CreditCard,
+  HelpCircle,
+  ChevronDown,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useUserAccess } from "@/hooks/useUserData";
@@ -43,15 +42,9 @@ const ADMIN_EMAILS = [
 ];
 
 const navItems: NavItem[] = [
-  { label: "Dashboard", href: "/dashboard/relatorios", icon: LayoutDashboard },
-  { label: "Funcionarios", href: "/dashboard/funcionarios", icon: Users },
-  { label: "Obitos", href: "/dashboard/obitos", icon: HeartPulse, color: "text-red-400" },
-  { label: "Sancionados", href: "/dashboard/sancionados", icon: AlertTriangle, color: "text-red-400" },
-  { label: "Vinculos", href: "/dashboard/vinculos", icon: Briefcase, color: "text-amber-400" },
-  { label: "Beneficios", href: "/dashboard/beneficios", icon: DollarSign, color: "text-cyan-400" },
-  { label: "OFAC/PEP", href: "/dashboard/ofac", icon: Globe, color: "text-orange-400" },
-  { label: "Analitico", href: "/dashboard/analitico", icon: BarChart3, color: "text-blue-400" },
-  { label: "Exportar", href: "/dashboard/exportar", icon: Download },
+  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { label: "Investigações", href: "/dashboard/funcionarios", icon: Users },
+  { label: "Relatórios", href: "/dashboard/analitico", icon: BarChart3, color: "text-blue-400" },
 ];
 
 // Item admin (apenas para admins)
@@ -72,6 +65,7 @@ export default function DashboardLayout({
   const router = useRouter();
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   // Redirecionar se não autenticado
   useEffect(() => {
@@ -104,8 +98,8 @@ export default function DashboardLayout({
     : null;
 
   const isActiveRoute = (href: string) => {
-    if (href === "/dashboard/relatorios") {
-      return pathname === "/dashboard/relatorios" || pathname === "/dashboard";
+    if (href === "/dashboard") {
+      return pathname === "/dashboard";
     }
     return pathname.startsWith(href);
   };
@@ -115,30 +109,26 @@ export default function DashboardLayout({
       {/* Sidebar - Desktop */}
       <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 border-r border-navy-800 bg-navy-900/50 backdrop-blur-lg">
         {/* Logo */}
-        <div className="flex items-center gap-3 px-6 py-5 border-b border-navy-800">
-          <div className="w-10 h-10 bg-gold-500/20 rounded-lg flex items-center justify-center">
-            <Shield className="w-6 h-6 text-gold-400" />
-          </div>
-          <div>
-            <h1 className="text-lg font-bold gradient-text">investigaree</h1>
-            <p className="text-xs text-white/50">Due Diligence</p>
-          </div>
-        </div>
-
-        {/* User Info */}
-        <div className="px-4 py-3 border-b border-navy-800">
-          <div className="bg-navy-800/50 rounded-lg px-3 py-2">
-            <div className="flex items-center gap-2">
-              <Building2 className="w-4 h-4 text-gold-400" />
-              <span className="text-sm font-medium text-white">
-                {userDisplayInfo?.name || "Minha Conta"}
-              </span>
-            </div>
-            <p className="text-xs text-white/50 mt-1">
-              Plano: {userDisplayInfo?.plano || "Free"}
-            </p>
-          </div>
-        </div>
+        <Link href="/" className="flex items-center gap-3 px-6 py-5 border-b border-navy-800 hover:bg-navy-800/50 transition-colors">
+          <Image
+            src="/favicon.svg"
+            alt="investigaree logo"
+            width={36}
+            height={36}
+            className="w-9 h-9"
+          />
+          <span
+            className="text-xl font-bold"
+            style={{
+              background: "linear-gradient(135deg, #FFFFFF 0%, #9FB3C8 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text"
+            }}
+          >
+            investigaree
+          </span>
+        </Link>
 
         {/* Navigation */}
         <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
@@ -190,38 +180,106 @@ export default function DashboardLayout({
         </nav>
 
         {/* User Section */}
-        <div className="p-4 border-t border-navy-800">
-          <div className="flex items-center gap-3 mb-3">
+        <div className="p-4 border-t border-navy-800 relative">
+          <button
+            onClick={() => setUserMenuOpen(!userMenuOpen)}
+            className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-navy-800 transition-colors"
+          >
             <div className="w-10 h-10 bg-navy-700 rounded-full flex items-center justify-center">
               <span className="text-sm font-medium text-white">
                 {user.email?.charAt(0).toUpperCase()}
               </span>
             </div>
-            <div className="flex-1 min-w-0">
+            <div className="flex-1 min-w-0 text-left">
               <p className="text-sm font-medium text-white truncate">
-                {user.displayName || user.email}
+                {user.displayName || user.email?.split('@')[0]}
               </p>
               <p className="text-xs text-white/50 truncate">{user.email}</p>
             </div>
-          </div>
-          <Button
-            onClick={logout}
-            variant="ghost"
-            className="w-full justify-start text-white/60 hover:text-white hover:bg-navy-800"
-          >
-            <LogOut className="w-4 h-4 mr-2" />
-            Sair
-          </Button>
+            <ChevronDown className={`w-4 h-4 text-white/50 transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} />
+          </button>
+
+          {/* User Menu Dropdown */}
+          <AnimatePresence>
+            {userMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="absolute bottom-full left-4 right-4 mb-2 bg-navy-800 border border-navy-700 rounded-xl shadow-xl overflow-hidden"
+              >
+                <div className="p-2 space-y-1">
+                  <Link
+                    href="/dashboard/configuracoes"
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                  >
+                    <User className="w-4 h-4" />
+                    <span className="text-sm">Meu Perfil</span>
+                  </Link>
+                  <Link
+                    href="/dashboard/configuracoes?tab=notificacoes"
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                  >
+                    <Bell className="w-4 h-4" />
+                    <span className="text-sm">Notificações</span>
+                  </Link>
+                  <Link
+                    href="/dashboard/configuracoes?tab=seguranca"
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                  >
+                    <Key className="w-4 h-4" />
+                    <span className="text-sm">Segurança</span>
+                  </Link>
+                  <Link
+                    href="/dashboard/configuracoes?tab=assinatura"
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                  >
+                    <CreditCard className="w-4 h-4" />
+                    <span className="text-sm">Assinatura</span>
+                  </Link>
+                  <div className="border-t border-navy-700 my-1" />
+                  <Link
+                    href="/ajuda"
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                  >
+                    <HelpCircle className="w-4 h-4" />
+                    <span className="text-sm">Ajuda</span>
+                  </Link>
+                  <button
+                    onClick={() => {
+                      setUserMenuOpen(false);
+                      logout();
+                    }}
+                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    <span className="text-sm">Sair</span>
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </aside>
 
       {/* Mobile Header */}
       <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-navy-900/95 backdrop-blur-lg border-b border-navy-800">
         <div className="flex items-center justify-between px-4 py-3">
-          <div className="flex items-center gap-2">
-            <Shield className="w-6 h-6 text-gold-400" />
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/favicon.svg"
+              alt="investigaree logo"
+              width={28}
+              height={28}
+              className="w-7 h-7"
+            />
             <span className="font-bold text-white">investigaree</span>
-          </div>
+          </Link>
           <Button
             variant="ghost"
             size="sm"
@@ -252,10 +310,16 @@ export default function DashboardLayout({
               className="lg:hidden fixed inset-y-0 left-0 z-50 w-72 bg-navy-900 border-r border-navy-800"
             >
               <div className="flex items-center justify-between px-4 py-4 border-b border-navy-800">
-                <div className="flex items-center gap-2">
-                  <Shield className="w-6 h-6 text-gold-400" />
+                <Link href="/" className="flex items-center gap-2">
+                  <Image
+                    src="/favicon.svg"
+                    alt="investigaree logo"
+                    width={28}
+                    height={28}
+                    className="w-7 h-7"
+                  />
                   <span className="font-bold gradient-text">investigaree</span>
-                </div>
+                </Link>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -266,21 +330,7 @@ export default function DashboardLayout({
                 </Button>
               </div>
 
-              <div className="px-4 py-3 border-b border-navy-800">
-                <div className="bg-navy-800/50 rounded-lg px-3 py-2">
-                  <div className="flex items-center gap-2">
-                    <Building2 className="w-4 h-4 text-gold-400" />
-                    <span className="text-sm font-medium text-white">
-                      {userDisplayInfo?.name || "Minha Conta"}
-                    </span>
-                  </div>
-                  <p className="text-xs text-white/50 mt-1">
-                    Plano: {userDisplayInfo?.plano || "Free"}
-                  </p>
-                </div>
-              </div>
-
-              <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+              <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto border-t border-navy-800">
                 {navItems.map((item) => {
                   const Icon = item.icon;
                   const isActive = isActiveRoute(item.href);

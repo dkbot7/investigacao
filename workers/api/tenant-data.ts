@@ -275,6 +275,179 @@ app.get('/funcionarios', async (c) => {
 })
 
 /**
+ * POST /api/tenant/funcionarios
+ * Solicitar investigação (adicionar pessoa/empresa)
+ */
+app.post('/funcionarios', async (c) => {
+  const { tenant, error} = await verifyTenantAccess(c)
+  if (error) return error
+
+  try {
+    const body = await c.req.json()
+    const {
+      nome,
+      cpf,
+      cnpj,
+      tipo_pessoa,
+      categorias,
+      status_investigacao,
+      rg,
+      data_nascimento,
+      estado_civil,
+      profissao,
+      telefones,
+      email,
+      endereco,
+      redes_sociais,
+      motivo_investigacao,
+      nivel_urgencia,
+      escopo_investigacao,
+      prazo_desejado,
+      orcamento_maximo,
+      observacoes,
+      placa_veiculo,
+      local_trabalho,
+      grupo,
+      is_grupo,
+      grupo_documentos,
+      grupo_total_documentos,
+    } = body
+
+    // Validação de campos obrigatórios
+    if (!nome) {
+      return c.json({
+        error: true,
+        message: 'Campo obrigatório: nome'
+      }, 400)
+    }
+
+    // Validar CPF ou CNPJ (skip validation if it's a group)
+    const isGrupo = is_grupo === 1 || is_grupo === '1' || is_grupo === true
+    const tipoDoc = tipo_pessoa || 'fisica'
+    const docField = tipoDoc === 'fisica' ? cpf : cnpj
+
+    if (!docField && !isGrupo) {
+      return c.json({
+        error: true,
+        message: `Campo obrigatório: ${tipoDoc === 'fisica' ? 'CPF' : 'CNPJ'}`
+      }, 400)
+    }
+
+    const docLimpo = docField ? docField.replace(/\D/g, '') : '00000000000'
+    const docLength = tipoDoc === 'fisica' ? 11 : 14
+
+    if (!isGrupo && docLimpo.length !== docLength) {
+      return c.json({
+        error: true,
+        message: `${tipoDoc === 'fisica' ? 'CPF' : 'CNPJ'} deve ter ${docLength} dígitos`
+      }, 400)
+    }
+
+    // Verificar se documento já existe neste tenant (skip for groups)
+    if (!isGrupo) {
+      const query = tipoDoc === 'fisica'
+        ? 'SELECT id FROM tenant_funcionarios WHERE tenant_id = ? AND cpf = ? LIMIT 1'
+        : 'SELECT id FROM tenant_funcionarios WHERE tenant_id = ? AND cpf = ? LIMIT 1' // Ajustar para CNPJ depois
+
+      const existente = await c.env.DB.prepare(query)
+        .bind(tenant.id, docLimpo)
+        .first()
+
+      if (existente) {
+        return c.json({
+          error: true,
+          message: `${tipoDoc === 'fisica' ? 'CPF' : 'CNPJ'} já cadastrado no sistema`
+        }, 409)
+      }
+    }
+
+    // Gerar ID único
+    const id = crypto.randomUUID()
+
+    // Inserir pessoa/empresa
+    await c.env.DB.prepare(`
+      INSERT INTO tenant_funcionarios (
+        id, tenant_id, nome, cpf, grupo,
+        tipo_pessoa, categorias, status_investigacao,
+        rg, data_nascimento, estado_civil, profissao,
+        telefones, email, endereco, redes_sociais,
+        motivo_investigacao, nivel_urgencia, escopo_investigacao,
+        prazo_desejado, orcamento_maximo, observacoes,
+        placa_veiculo, local_trabalho,
+        is_grupo, grupo_documentos, grupo_total_documentos,
+        esta_vivo, esta_morto,
+        recebe_beneficio, socio_empresa, doador_campanha, candidato,
+        sancionado_ceis, sancionado_ofac,
+        created_at, updated_at
+      ) VALUES (
+        ?, ?, ?, ?, ?,
+        ?, ?, ?,
+        ?, ?, ?, ?,
+        ?, ?, ?, ?,
+        ?, ?, ?,
+        ?, ?, ?,
+        ?, ?,
+        ?, ?, ?,
+        'PENDENTE', 'PENDENTE',
+        0, 0, 0, 0,
+        0, 0,
+        datetime('now'), datetime('now')
+      )
+    `).bind(
+      id,
+      tenant.id,
+      nome.trim(),
+      docLimpo,
+      grupo || 'Sem grupo',
+      // Novos campos
+      tipoDoc,
+      categorias || '["funcionarios"]',
+      status_investigacao || 'investigar',
+      rg || null,
+      data_nascimento || null,
+      estado_civil || null,
+      profissao || null,
+      telefones || null,
+      email || null,
+      endereco || null,
+      redes_sociais || null,
+      motivo_investigacao || null,
+      nivel_urgencia || 'media',
+      escopo_investigacao || null,
+      prazo_desejado || null,
+      orcamento_maximo || null,
+      observacoes || null,
+      placa_veiculo || null,
+      local_trabalho || null,
+      // Campos de grupo
+      isGrupo ? 1 : 0,
+      grupo_documentos || null,
+      grupo_total_documentos || 0
+    ).run()
+
+    // Buscar a pessoa criada
+    const pessoaCriada = await c.env.DB.prepare(`
+      SELECT * FROM tenant_funcionarios WHERE id = ?
+    `).bind(id).first()
+
+    // TODO: Enviar notificação para admin
+    // TODO: Disparar investigação automática em background
+
+    return c.json({
+      success: true,
+      pessoa: pessoaCriada,
+      message: 'Investigação solicitada com sucesso. O admin será notificado.'
+    }, 201)
+  } catch (err) {
+    console.error('[TENANT-DATA] Add pessoa error:', err)
+    return c.json({
+      error: true,
+      message: 'Erro ao solicitar investigação'
+    }, 500)
+  }
+})
+
+/**
  * GET /api/tenant/funcionario/:id
  * Detalhes completos de um funcionário (ficha)
  */

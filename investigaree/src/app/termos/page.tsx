@@ -21,7 +21,7 @@ export default function TermosPage() {
             <FileText className="w-8 h-8 text-primary-400" />
             <h1 className="text-2xl font-bold text-white">Termos de Uso</h1>
           </div>
-          <p className="text-white/60 mt-2">Última atualização: 25 de novembro de 2025</p>
+          <p className="text-white/60 mt-2">Última atualização: 01 de dezembro de 2025</p>
         </div>
       </header>
 
@@ -231,7 +231,6 @@ export default function TermosPage() {
             </p>
             <div className="bg-navy-900 p-6 rounded-lg border border-navy-800">
               <p className="text-white/80 mb-2"><strong>E-mail:</strong> contato@investigaree.com.br</p>
-              <p className="text-white/80 mb-2"><strong>WhatsApp:</strong> (11) 99999-9999</p>
               <p className="text-white/80"><strong>Site:</strong> www.investigaree.com.br</p>
             </div>
           </section>

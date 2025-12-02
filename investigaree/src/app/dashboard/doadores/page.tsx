@@ -119,7 +119,7 @@ export default function DoadoresPage() {
               Doadores de Campanha
             </h1>
             <p className="text-white/60 mt-1">
-              {CLIENTE_01_STATS.totais.doadores} funcionarios doadores identificados
+              {CLIENTE_01_STATS?.totais?.doadores || 0} funcionarios doadores identificados
             </p>
           </div>
 
@@ -161,7 +161,7 @@ export default function DoadoresPage() {
           <div>
             <h3 className="text-emerald-400 font-semibold">Doacoes Eleitorais</h3>
             <p className="text-white/70 text-sm mt-1">
-              Foram identificados <strong className="text-white">{CLIENTE_01_STATS.totais.doadores} funcionarios</strong> que
+              Foram identificados <strong className="text-white">{CLIENTE_01_STATS?.totais?.doadores || 0} funcionarios</strong> que
               realizaram doacoes para campanhas eleitorais, totalizando{" "}
               <strong className="text-white">R$ {totalValor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>.
               Dados provenientes do TSE.
@@ -177,7 +177,7 @@ export default function DoadoresPage() {
                 <Users className="w-5 h-5 text-emerald-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{CLIENTE_01_STATS.totais.doadores}</p>
+                <p className="text-2xl font-bold text-white">{CLIENTE_01_STATS?.totais?.doadores || 0}</p>
                 <p className="text-xs text-white/50">Total Doadores</p>
               </div>
             </div>

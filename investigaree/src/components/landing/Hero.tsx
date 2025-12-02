@@ -269,58 +269,6 @@ export default function Hero() {
           </motion.div>
 
         </motion.div>
-
-        {/* Diferenciais - DEPOIS DO BOTÃO */}
-        <motion.div
-          className="text-center mb-3 sm:mb-4"
-          variants={itemVariants}
-        >
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-5 md:gap-6 text-xs sm:text-sm">
-            <div className="flex items-center gap-1.5">
-              <span className="text-gold-400 text-base sm:text-lg md:text-xl font-bold">100%</span>
-              <span className="text-white/70 text-xs sm:text-sm">LGPD compliant</span>
-            </div>
-            <div className="hidden sm:block text-white/30">•</div>
-            <div className="flex items-center gap-1.5">
-              <span className="text-gold-400 text-base sm:text-lg md:text-xl font-bold">48h</span>
-              <span className="text-white/70 text-xs sm:text-sm">entrega Express</span>
-            </div>
-            <div className="hidden sm:block text-white/30">•</div>
-            <div className="flex items-center gap-1.5">
-              <span className="text-gold-400 text-base sm:text-lg md:text-xl font-bold">Sigilo</span>
-              <span className="text-white/70 text-xs sm:text-sm">garantido</span>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Badge de Credibilidade */}
-        <motion.div
-          className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4"
-          variants={itemVariants}
-        >
-          <Badge
-            variant="secondary"
-            className="px-2.5 py-1.5 sm:px-3 sm:py-2 bg-white/5 border border-gold-500/30 backdrop-blur-sm"
-          >
-            <span className="relative flex h-2.5 w-2.5 mr-1.5 sm:mr-2" aria-hidden="true">
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
-            </span>
-            <span className="text-white/80 text-xs sm:text-sm">
-              Arquiteta de Sistemas especialista em automacao
-            </span>
-          </Badge>
-          <Badge
-            variant="secondary"
-            className="px-2.5 py-1.5 sm:px-3 sm:py-2 bg-white/5 border border-gold-500/30 backdrop-blur-sm"
-          >
-            <span className="relative flex h-2.5 w-2.5 mr-1.5 sm:mr-2" aria-hidden="true">
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-gold-400"></span>
-            </span>
-            <span className="text-white/80 text-xs sm:text-sm">
-              Perito Criminal Oficial no Advisory Board
-            </span>
-          </Badge>
-        </motion.div>
       </motion.div>
 
       {/* Scroll indicator - Sutil com animação */}

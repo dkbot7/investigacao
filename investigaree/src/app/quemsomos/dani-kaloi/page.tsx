@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowLeft, Briefcase, GraduationCap,
   Shield, CheckCircle, MapPin, Award,
@@ -117,13 +118,19 @@ const EXPERTISE_AREAS = [
 ];
 
 const CERTIFICATIONS = [
-  { name: "Automacao AWS", institution: "Amazon Web Services", year: "2024" },
-  { name: "Data Analytics Essentials", institution: "AWS", year: "2024" },
-  { name: "Amazon Cloud Services", institution: "AWS", year: "2024" },
-  { name: "Formacao Consultor de Dados", institution: "AnaTex", year: "2024" },
-  { name: "ClickUp 3.0 + Flow Pro", institution: "Bravy Training", year: "2024" },
-  { name: "Automacao Avancada", institution: "Zaia", year: "2024" },
-  { name: "Data Science na Pratica", institution: "Trybe", year: "2024" },
+  { name: "Criacao e Gerenciamento de Agentes de IA", institution: "Zaia", year: "2024" },
+  { name: "Formacao PARAISO DIGITAL (Consultoria de IA)", institution: "AnaTex", year: "2024" },
+  { name: "Formacao ClickUp 3.0 + Flow Pro", institution: "Bravy Training", year: "2024" },
+  { name: "Building a Machine Learning Ready Organization", institution: "AWS", year: "2024" },
+  { name: "Introduction to Amazon SageMaker", institution: "AWS", year: "2024" },
+  { name: "Introduction to Machine Learning", institution: "AWS", year: "2024" },
+  { name: "Introducao a IA Generativa com AWS", institution: "Trybe", year: "2024" },
+  { name: "ML Essentials for Business Decision Makers", institution: "AWS", year: "2024" },
+  { name: "Machine Learning Terminology and Process", institution: "AWS", year: "2024" },
+  { name: "Planning a Machine Learning Project", institution: "AWS", year: "2024" },
+  { name: "IA na Pratica", institution: "Trybe", year: "2024" },
+  { name: "Excel para Analise de Dados", institution: "Preditiva Analytics", year: "2023" },
+  { name: "Introduction to AWS IAM", institution: "AWS", year: "2022" },
 ];
 
 const TECH_STACK = [
@@ -170,6 +177,19 @@ export default function DaniKaloiPage() {
               </Button>
             </Link>
 
+            {/* Profile Photo */}
+            <div className="flex justify-center mb-8">
+              <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-gold-500 shadow-2xl">
+                <Image
+                  src="/dani-kaloi.png"
+                  alt="Dani Kaloi - Analista de Dados e OSINT Expert"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-3 gap-8">
               {/* Profile Summary */}
               <div className="md:col-span-2 space-y-6">
@@ -182,7 +202,7 @@ export default function DaniKaloiPage() {
                   </h1>
                   <div className="flex flex-wrap gap-2 mb-4">
                     <Badge className="bg-navy-700 text-gold-400 border border-gold-500/30">
-                      Fundadora & CTO
+                      Analista de Dados
                     </Badge>
                     <Badge className="bg-navy-700 text-gold-400 border border-gold-500/30">
                       Arquiteta de Sistemas
@@ -191,11 +211,10 @@ export default function DaniKaloiPage() {
                       OSINT Expert
                     </Badge>
                     <Badge className="bg-navy-700 text-gold-400 border border-gold-500/30">
-                      +16 Certificacoes
+                      +13 Certificacoes
                     </Badge>
                   </div>
                   <p className="text-xl text-navy-200 leading-relaxed">
-                    Pioneira em investigacao digital no Brasil.
                     Desenvolvedora Full Stack e Arquiteta de sistemas que processam
                     <strong className="text-gold-400"> +100.000 registros simultaneamente</strong>,
                     cruzando <strong className="text-gold-400">multiplas bases de dados</strong> -
@@ -228,13 +247,13 @@ export default function DaniKaloiPage() {
                       <div className="flex items-center gap-2 text-sm">
                         <Briefcase className="w-4 h-4 text-gold-400" />
                         <span className="text-navy-200">
-                          Fundadora & CTO - investigaree
+                          Analista de Dados - investigaree
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
                         <MapPin className="w-4 h-4 text-gold-400" />
                         <span className="text-navy-200">
-                          Itapema, Santa Catarina, Brasil
+                          Brasil
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
@@ -247,12 +266,6 @@ export default function DaniKaloiPage() {
                         <GraduationCap className="w-4 h-4 text-gold-400" />
                         <span className="text-navy-200">
                           Tecnologo em Criminologia
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <Award className="w-4 h-4 text-gold-400" />
-                        <span className="text-navy-200">
-                          +12 anos no mercado
                         </span>
                       </div>
                     </div>
@@ -566,7 +579,7 @@ export default function DaniKaloiPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link href="/contato">
-                <Button size="lg" className="bg-white text-primary-700 hover:bg-primary-50">
+                <Button size="lg" className="bg-gold-500 hover:bg-gold-600 text-navy-900">
                   Solicitar Orcamento
                 </Button>
               </Link>

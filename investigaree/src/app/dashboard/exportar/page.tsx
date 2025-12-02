@@ -50,7 +50,7 @@ export default function ExportarPage() {
       description: "Lista completa com todas as verificacoes",
       icon: Users,
       color: "text-blue-400",
-      count: CLIENTE_01_STATS.totalFuncionarios,
+      count: CLIENTE_01_STATS?.totalFuncionarios || 0,
     },
     {
       id: "obitos",
@@ -58,7 +58,7 @@ export default function ExportarPage() {
       description: "Funcionarios falecidos identificados",
       icon: HeartPulse,
       color: "text-red-400",
-      count: CLIENTE_01_STATS.totais.obitos,
+      count: CLIENTE_01_STATS?.totais?.obitos || 0,
     },
     {
       id: "candidatos",
@@ -66,7 +66,7 @@ export default function ExportarPage() {
       description: "Funcionarios que foram candidatos em eleicoes",
       icon: Vote,
       color: "text-purple-400",
-      count: CLIENTE_01_STATS.totais.candidatos,
+      count: CLIENTE_01_STATS?.totais?.candidatos || 0,
     },
     {
       id: "doadores",
@@ -74,7 +74,7 @@ export default function ExportarPage() {
       description: "Funcionarios que doaram para campanhas eleitorais",
       icon: Heart,
       color: "text-emerald-400",
-      count: CLIENTE_01_STATS.totais.doadores,
+      count: CLIENTE_01_STATS?.totais?.doadores || 0,
     },
     {
       id: "sancionados",
@@ -82,7 +82,7 @@ export default function ExportarPage() {
       description: "Funcionarios com sancoes CEIS/CNEP",
       icon: AlertTriangle,
       color: "text-red-400",
-      count: CLIENTE_01_STATS.totais.sancionados,
+      count: CLIENTE_01_STATS?.totais?.sancionados || 0,
     },
     {
       id: "vinculos",
@@ -90,7 +90,7 @@ export default function ExportarPage() {
       description: "Funcionarios socios de empresas",
       icon: Briefcase,
       color: "text-amber-400",
-      count: CLIENTE_01_STATS.totais.socios,
+      count: CLIENTE_01_STATS?.totais?.socios || 0,
     },
     {
       id: "beneficios",
@@ -98,7 +98,7 @@ export default function ExportarPage() {
       description: "Funcionarios que receberam beneficios sociais",
       icon: FileText,
       color: "text-cyan-400",
-      count: CLIENTE_01_STATS.totais.beneficiarios,
+      count: CLIENTE_01_STATS?.totais?.beneficiarios || 0,
     },
   ];
 
@@ -232,7 +232,7 @@ export default function ExportarPage() {
             >
               Todos os Grupos
             </button>
-            {CLIENTE_01_STATS.grupos.map(g => (
+            {(CLIENTE_01_STATS?.grupos || []).map(g => (
               <button
                 key={g.nome}
                 onClick={() => setGrupoFilter(g.nome)}

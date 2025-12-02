@@ -58,6 +58,11 @@ export default function Footer() {
               <li><Link href="/termos" className="hover:text-primary-400 transition">Termos de Uso</Link></li>
               <li><Link href="/privacidade" className="hover:text-primary-400 transition">Política de Privacidade</Link></li>
               <li><Link href="/cookies" className="hover:text-primary-400 transition">Política de Cookies</Link></li>
+              <li className="pt-2">
+                <a href="mailto:contato@investigaree.com.br" className="hover:text-primary-400 transition">
+                  contato@investigaree.com.br
+                </a>
+              </li>
             </ul>
           </div>
         </div>

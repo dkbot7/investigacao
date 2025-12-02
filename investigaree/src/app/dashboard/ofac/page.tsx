@@ -64,7 +64,7 @@ export default function OFACPage() {
   });
 
   // Stats
-  const totalMatches = CLIENTE_01_STATS.totais.ofacMatches;
+  const totalMatches = CLIENTE_01_STATS?.totais?.ofacMatches || 0;
   const mediasSimilaridade = CLIENTE_01_OFAC.reduce((sum, o) => sum + o.similaridade, 0) / CLIENTE_01_OFAC.length;
 
   // Exportar CSV

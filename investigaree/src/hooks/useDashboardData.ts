@@ -12,14 +12,8 @@ import {
   DashboardResponse,
 } from "@/lib/api";
 
-// Importar mock data como fallback
-import {
-  CLIENTE_01_STATS,
-  CLIENTE_01_OBITOS,
-  CLIENTE_01_CANDIDATOS,
-  CLIENTE_01_DOADORES,
-  CLIENTE_01_SANCIONADOS,
-} from "@/app/dashboard/_data/mock-data";
+// Mock data removido por questões de segurança
+// Nunca mostrar dados de outros clientes
 
 interface DashboardData {
   tenant: {
@@ -113,38 +107,6 @@ export function useDashboardData(): UseDashboardDataReturn {
   const [error, setError] = useState<string | null>(null);
   const [isUsingMockData, setIsUsingMockData] = useState(false);
 
-  const loadMockData = useCallback(() => {
-    console.log("[useDashboardData] Usando mock data");
-    setIsUsingMockData(true);
-
-    const mockData: DashboardData = {
-      tenant: CLIENTE_01_STATS.tenant,
-      stats: {
-        totalFuncionarios: CLIENTE_01_STATS.totalFuncionarios,
-        totais: CLIENTE_01_STATS.totais,
-        grupos: CLIENTE_01_STATS.grupos.map((g) => ({
-          nome: g.nome,
-          registros: g.registros,
-          obitos: g.obitos,
-          candidatos: g.candidatos,
-          doadores: g.doadores,
-          sancionados: g.sancionados,
-          socios: g.socios,
-          cnpjs: g.cnpjs,
-        })),
-        valorTotalDoacoes: CLIENTE_01_STATS.valorTotalDoacoes,
-        dataAtualizacao: CLIENTE_01_STATS.dataAtualizacao,
-      },
-      obitos: CLIENTE_01_OBITOS,
-      candidatos: CLIENTE_01_CANDIDATOS,
-      doadores: CLIENTE_01_DOADORES,
-      sancionados: CLIENTE_01_SANCIONADOS,
-    };
-
-    setData(mockData);
-    setLoading(false);
-  }, []);
-
   const fetchData = useCallback(async () => {
     if (!user || !hasAccess) {
       setData(null);
@@ -204,18 +166,14 @@ export function useDashboardData(): UseDashboardDataReturn {
     } catch (err: any) {
       console.error("[useDashboardData] Erro ao carregar da API:", err);
 
-      // Se API falhou, usar mock data
-      if (err.message?.includes("fetch") || err.name === "TypeError" || err.status >= 500) {
-        console.warn("[useDashboardData] API indisponivel, usando mock data");
-        loadMockData();
-        return;
-      }
-
+      // NUNCA usar mock data - questão de segurança
+      // Novos usuários não podem ver dados de outros clientes
       setError(err.message || "Erro ao carregar dados");
+      setData(null);
     } finally {
       setLoading(false);
     }
-  }, [user, hasAccess, loadMockData]);
+  }, [user, hasAccess]);
 
   useEffect(() => {
     if (hasAccess) {

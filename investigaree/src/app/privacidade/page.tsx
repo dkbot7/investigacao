@@ -21,7 +21,7 @@ export default function PrivacidadePage() {
             <Shield className="w-8 h-8 text-primary-400" />
             <h1 className="text-2xl font-bold text-white">Política de Privacidade</h1>
           </div>
-          <p className="text-white/60 mt-2">Última atualização: 25 de novembro de 2025</p>
+          <p className="text-white/60 mt-2">Última atualização: 01 de dezembro de 2025</p>
         </div>
       </header>
 
@@ -45,7 +45,7 @@ export default function PrivacidadePage() {
             <div className="bg-navy-900 p-6 rounded-lg border border-navy-800">
               <p className="text-white/80 mb-2"><strong>Razão Social:</strong> investigaree Serviços de Investigação Digital LTDA</p>
               <p className="text-white/80 mb-2"><strong>E-mail do Encarregado (DPO):</strong> privacidade@investigaree.com.br</p>
-              <p className="text-white/80"><strong>Endereço:</strong> Itapema, SC - Brasil</p>
+              <p className="text-white/80"><strong>Localização:</strong> Brasil</p>
             </div>
           </section>
 

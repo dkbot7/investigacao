@@ -11,7 +11,8 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.investigare
  */
 export async function fetchAPI<T>(
   endpoint: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
+  retryOnAuthError = true
 ): Promise<T> {
   const user = auth.currentUser
 
@@ -19,6 +20,7 @@ export async function fetchAPI<T>(
     throw new Error('Usuário não autenticado')
   }
 
+  // Get token (will auto-refresh if expired)
   const token = await user.getIdToken()
 
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
@@ -29,6 +31,35 @@ export async function fetchAPI<T>(
       ...options.headers,
     },
   })
+
+  // Handle 401 errors by forcing token refresh and retrying once
+  if (response.status === 401 && retryOnAuthError) {
+    console.log('[API] Token expirado, forçando refresh...')
+
+    // Force token refresh
+    const newToken = await user.getIdToken(true)
+
+    // Retry request with new token
+    const retryResponse = await fetch(`${API_BASE_URL}${endpoint}`, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${newToken}`,
+        ...options.headers,
+      },
+    })
+
+    if (!retryResponse.ok) {
+      const errorData = await retryResponse.json().catch(() => ({}))
+      throw new APIError(
+        errorData.message || `HTTP error ${retryResponse.status}`,
+        retryResponse.status,
+        errorData.code
+      )
+    }
+
+    return retryResponse.json()
+  }
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}))
@@ -197,4 +228,21 @@ export async function getBeneficios() {
  */
 export async function getFuncionarioDetails(id: string) {
   return fetchAPI(`/api/tenant/funcionario/${id}`)
+}
+
+/**
+ * Adiciona um novo funcionário
+ */
+export async function addFuncionario(data: {
+  nome: string
+  cpf: string
+  grupo: string
+  cargo?: string
+  salario?: number
+  cadastro?: string
+}) {
+  return fetchAPI('/api/tenant/funcionarios', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  })
 }

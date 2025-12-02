@@ -132,7 +132,7 @@ export default function VinculosPage() {
               Vinculos Empresariais
             </h1>
             <p className="text-white/60 mt-1">
-              {CLIENTE_01_STATS.totais.socios} funcionarios socios de empresas ({CLIENTE_01_STATS.totais.cnpjs} CNPJs)
+              {CLIENTE_01_STATS?.totais?.socios || 0} funcionarios socios de empresas ({CLIENTE_01_STATS?.totais?.cnpjs || 0} CNPJs)
             </p>
           </div>
 
@@ -174,8 +174,8 @@ export default function VinculosPage() {
           <div>
             <h3 className="text-amber-400 font-semibold">Participacoes Societarias</h3>
             <p className="text-white/70 text-sm mt-1">
-              Foram identificados <strong className="text-white">{CLIENTE_01_STATS.totais.socios} funcionarios</strong> com
-              vinculos societarios em <strong className="text-white">{CLIENTE_01_STATS.totais.cnpjs} empresas</strong>.
+              Foram identificados <strong className="text-white">{CLIENTE_01_STATS?.totais?.socios || 0} funcionarios</strong> com
+              vinculos societarios em <strong className="text-white">{CLIENTE_01_STATS?.totais?.cnpjs || 0} empresas</strong>.
               Dados provenientes da Receita Federal (QSA - Quadro de Socios e Administradores).
             </p>
           </div>

@@ -31,11 +31,11 @@ const TEAM = [
   {
     id: "dani-kaloi",
     nome: "Dani Kaloi",
-    cargo: "Fundadora & CTO",
+    cargo: "Analista de Dados",
     especialidade: "Investigacao Digital & Automacao",
-    badges: ["Fundadora", "Arquiteta de Sistemas", "OSINT Expert"],
-    resumo: "Referencia nacional em investigacao digital. Arquiteta de sistemas de automacao que processam milhares de registros simultaneamente, cruzando dados de multiplas fontes publicas. Especialista em due diligence empresarial e protecao patrimonial.",
-    certificacoes: ["Automacao", "OSINT", "LGPD DPO", "Integracao de Dados"],
+    badges: ["Analista de Dados", "Arquiteta de Sistemas", "OSINT Expert"],
+    resumo: "Desenvolvedora Full Stack e Arquiteta de sistemas que processam +100.000 registros simultaneamente, cruzando multiplas bases de dados - governamentais, autorais e sigilosas, nacionais e internacionais. Especialista em due diligence empresarial e protecao patrimonial para mulheres em divorcios.",
+    certificacoes: ["AWS Machine Learning", "IA Generativa", "Excel Analise de Dados", "+10 outras"],
     destaques: [
       "Processamento de +100.000 registros/investigacao",
       "Multiplas fontes de dados integradas",
@@ -65,67 +65,35 @@ export default function QuemSomosPage() {
                 <strong> protecao patrimonial para mulheres em divorcios</strong>.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-4">
-                <Badge className="bg-navy-800 text-white">Multiplas Bases de Dados</Badge>
-                <Badge className="bg-gold-500 text-navy-900">Automacao Avancada</Badge>
-                <Badge className="bg-navy-600 text-white">Protecao Patrimonial</Badge>
-                <Badge className="bg-gold-600 text-white">Perito Criminal Oficial</Badge>
+                <Link href="/servicos?tab=empresarial">
+                  <Button className="bg-navy-800 hover:bg-navy-700 text-white">
+                    Due Diligence Empresarial
+                  </Button>
+                </Link>
+                <Link href="/servicos?tab=familiar">
+                  <Button className="bg-gold-500 hover:bg-gold-600 text-navy-900">
+                    Protecao Familiar
+                  </Button>
+                </Link>
+                <Link href="/servicos?tab=divorcios">
+                  <Button className="bg-navy-600 hover:bg-navy-700 text-white">
+                    Protecao Patrimonial
+                  </Button>
+                </Link>
+                <Link href="/servicos?tab=investimentos">
+                  <Button className="bg-gold-600 hover:bg-gold-700 text-white">
+                    Investimentos
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Mission & Values */}
+        {/* Team Section */}
         <section className="py-20 bg-navy-50 dark:bg-navy-900/50">
           <div className="container max-w-7xl px-4">
-            <div className="grid md:grid-cols-2 gap-8 mb-20 max-w-4xl mx-auto">
-              <Card className="border-2 border-gold-500/30 bg-gradient-to-br from-navy-800 to-navy-900 hover:border-gold-500/50 transition-all">
-                <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-gold-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Target className="w-8 h-8 text-gold-400" />
-                  </div>
-                  <CardTitle className="text-white">Nossa Missao</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-navy-200 text-center">
-                    Proteger <strong className="text-gold-400">empresas</strong>, <strong className="text-gold-400">familias</strong> e
-                    <strong className="text-gold-400"> mulheres em divorcios</strong> contra fraudes e ocultacao patrimonial
-                    atraves de due diligence completa.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-2 border-amber-500/30 bg-gradient-to-br from-amber-950 to-amber-900 hover:border-amber-400/50 transition-all">
-                <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Award className="w-8 h-8 text-amber-400" />
-                  </div>
-                  <CardTitle className="text-white">Nossa Credibilidade</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-amber-100/80 text-center">
-                    <strong className="text-amber-300">Perito Criminal Oficial</strong> no Advisory Board
-                    (1o lugar PCE-PA 2019). Metodologia forense com validade judicial.
-                    <strong className="text-amber-300"> 100% LGPD compliant.</strong>
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Team Section */}
             <div className="space-y-8">
-              <div className="text-center mb-12">
-                <Badge variant="outline" className="mb-4">
-                  Nosso Time
-                </Badge>
-                <h2 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100">
-                  Pericia Forense + Automacao Avancada
-                </h2>
-                <p className="text-lg text-neutral-600 dark:text-neutral-400 mt-4 max-w-2xl mx-auto">
-                  Combinacao unica: <strong>Perito Criminal Oficial</strong> (1o lugar PCE-PA) +
-                  <strong> Arquiteta de Sistemas</strong> especialista em automacao.
-                </p>
-              </div>
-
               <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 {TEAM.map((member) => (
                   <Card
@@ -133,19 +101,33 @@ export default function QuemSomosPage() {
                     className="overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group"
                   >
                     <Link href={`/quemsomos/${member.id}`}>
-                      <div className="relative aspect-[4/3] bg-gradient-to-br from-navy-900 to-navy-950">
-                        {member.id === "ibsen-maciel" ? (
-                          <Image
-                            src="/images/ibsen-maciel.jpg"
-                            alt={member.nome}
-                            fill
-                            className="object-cover object-[center_25%]"
-                          />
-                        ) : (
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <UserCheck className="w-20 h-20 text-gold-500/50" />
+                      <div className="relative py-12 bg-gradient-to-br from-navy-900 to-navy-950">
+                        {/* Foto Circular Centralizada */}
+                        <div className="flex justify-center">
+                          <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-gold-500 shadow-2xl">
+                            {member.id === "ibsen-maciel" ? (
+                              <Image
+                                src="/images/ibsen-maciel.jpg"
+                                alt={member.nome}
+                                fill
+                                className="object-cover object-[center_25%]"
+                              />
+                            ) : member.id === "dani-kaloi" ? (
+                              <Image
+                                src="/dani-kaloi.png"
+                                alt={member.nome}
+                                fill
+                                className="object-cover object-center"
+                              />
+                            ) : (
+                              <div className="absolute inset-0 flex items-center justify-center bg-navy-800">
+                                <UserCheck className="w-20 h-20 text-gold-500/50" />
+                              </div>
+                            )}
                           </div>
-                        )}
+                        </div>
+
+                        {/* Badges */}
                         <div className="absolute top-4 left-4 flex flex-wrap gap-2">
                           {member.badges.slice(0, 2).map((badge, idx) => (
                             <Badge key={idx} className="bg-white/90 text-neutral-800">

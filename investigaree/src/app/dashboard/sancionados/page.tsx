@@ -108,7 +108,7 @@ export default function SancionadosPage() {
               Sancionados (CEIS/CNEP)
             </h1>
             <p className="text-white/60 mt-1">
-              {CLIENTE_01_STATS.totais.sancionados} funcionario(s) com sancoes identificadas
+              {CLIENTE_01_STATS?.totais?.sancionados || 0} funcionario(s) com sancoes identificadas
             </p>
           </div>
 
@@ -150,7 +150,7 @@ export default function SancionadosPage() {
           <div>
             <h3 className="text-red-400 font-semibold">Alerta de Integridade</h3>
             <p className="text-white/70 text-sm mt-1">
-              Foram identificados <strong className="text-white">{CLIENTE_01_STATS.totais.sancionados} funcionario(s)</strong> com
+              Foram identificados <strong className="text-white">{CLIENTE_01_STATS?.totais?.sancionados || 0} funcionario(s)</strong> com
               sancoes ativas no CEIS (Cadastro de Empresas Inidoineas e Suspensas) ou CNEP (Cadastro Nacional de Empresas Punidas).
               Recomenda-se verificacao imediata da compatibilidade com os cargos ocupados.
             </p>
@@ -165,7 +165,7 @@ export default function SancionadosPage() {
                 <AlertTriangle className="w-5 h-5 text-red-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{CLIENTE_01_STATS.totais.sancionados}</p>
+                <p className="text-2xl font-bold text-white">{CLIENTE_01_STATS?.totais?.sancionados || 0}</p>
                 <p className="text-xs text-white/50">Total Sancionados</p>
               </div>
             </div>

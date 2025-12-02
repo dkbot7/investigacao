@@ -42,18 +42,18 @@ export default function IbsenMacielPage() {
               {/* Photo Column */}
               <div className="lg:col-span-2 flex flex-col items-center lg:items-start">
                 <div className="relative">
-                  {/* Photo Frame */}
-                  <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-2xl overflow-hidden border-4 border-gold-500/30 shadow-2xl shadow-gold-500/10">
+                  {/* Photo Frame - Circular */}
+                  <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-gold-500 shadow-2xl">
                     <Image
                       src="/images/ibsen-maciel.jpg"
                       alt="Ibsen Rodrigues Maciel - Perito Criminal Oficial"
                       fill
-                      className="object-cover"
+                      className="object-cover object-[center_25%]"
                       priority
                     />
                   </div>
                   {/* Floating Badge */}
-                  <div className="absolute -bottom-4 -right-4 bg-gold-500 text-navy-950 px-4 py-2 rounded-full font-bold text-sm shadow-lg">
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gold-500 text-navy-950 px-4 py-2 rounded-full font-bold text-sm shadow-lg whitespace-nowrap">
                     Advisory Board
                   </div>
                 </div>

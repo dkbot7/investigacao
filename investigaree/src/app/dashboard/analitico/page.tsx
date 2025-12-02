@@ -1,69 +1,177 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
-  BarChart3,
-  PieChart,
-  TrendingUp,
-  Users,
-  AlertTriangle,
-  HeartPulse,
-  Vote,
-  Heart,
-  Briefcase,
-  Globe,
-  DollarSign,
-  Calendar,
-  Building2,
-  Download,
   FileText,
+  Search,
+  Download,
+  Eye,
+  Calendar,
+  Clock,
+  CheckCircle,
+  AlertCircle,
+  Plus,
+  ArrowRight,
+  Users,
+  FolderOpen,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  CLIENTE_01_STATS,
-  CLIENTE_01_OBITOS,
-  CLIENTE_01_CANDIDATOS,
-  CLIENTE_01_DOADORES,
-  CLIENTE_01_SANCIONADOS,
-  CLIENTE_01_BENEFICIOS,
-  CLIENTE_01_VINCULOS,
-  CLIENTE_01_OFAC,
-} from "../_data/mock-data";
+import Link from "next/link";
 
-export default function AnaliticoPage() {
-  // Calculos para os graficos
-  const totalFuncionarios = CLIENTE_01_STATS.totalFuncionarios;
-  const grupoComurg = CLIENTE_01_STATS.grupos.find(g => g.nome === "Comurg");
-  const grupoDisposicao = CLIENTE_01_STATS.grupos.find(g => g.nome === "Disposicao");
+interface Relatorio {
+  id: string;
+  titulo: string;
+  investigado: string;
+  tipo: "pessoa_fisica" | "pessoa_juridica" | "grupo";
+  status: "em_analise" | "concluido" | "pendente";
+  data_criacao: string;
+  data_conclusao?: string;
+  analista?: string;
+}
 
-  // Dados por ano de obito
-  const obitosPorAno = CLIENTE_01_OBITOS.reduce((acc, o) => {
-    acc[o.ano_obito] = (acc[o.ano_obito] || 0) + 1;
-    return acc;
-  }, {} as Record<number, number>);
+// Mock - por enquanto vazio para mostrar estado vazio
+const mockRelatorios: Relatorio[] = [];
 
-  // Dados por partido (candidatos)
-  const candidatosPorPartido = CLIENTE_01_CANDIDATOS.reduce((acc, c) => {
-    acc[c.partido] = (acc[c.partido] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
+export default function RelatoriosPage() {
+  const [relatorios, setRelatorios] = useState<Relatorio[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
-  // Dados por ano (doacoes)
-  const doacoesPorAno = CLIENTE_01_DOADORES.reduce((acc, d) => {
-    acc[d.ano] = (acc[d.ano] || 0) + d.valor;
-    return acc;
-  }, {} as Record<number, number>);
+  useEffect(() => {
+    // Simular carregamento
+    setTimeout(() => {
+      setRelatorios(mockRelatorios);
+      setLoading(false);
+    }, 500);
+  }, []);
 
-  // Situacao cadastral (vinculos)
-  const vinculosPorSituacao = CLIENTE_01_VINCULOS.reduce((acc, v) => {
-    acc[v.situacao_cadastral] = (acc[v.situacao_cadastral] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
+  const filteredRelatorios = relatorios.filter(r =>
+    r.titulo.toLowerCase().includes(search.toLowerCase()) ||
+    r.investigado.toLowerCase().includes(search.toLowerCase())
+  );
 
-  // Percentuais
-  const calcPercent = (value: number) => ((value / totalFuncionarios) * 100).toFixed(2);
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-96">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gold-500" />
+      </div>
+    );
+  }
 
+  // Estado vazio - mostrar instruções
+  if (relatorios.length === 0) {
+    return (
+      <div className="p-4 lg:p-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="space-y-6"
+        >
+          {/* Header */}
+          <div>
+            <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+              <FileText className="w-7 h-7 text-blue-400" />
+              Relatórios
+            </h1>
+            <p className="text-white/60 mt-1">
+              Acompanhe os relatórios das suas investigações
+            </p>
+          </div>
+
+          {/* Empty State com Instruções */}
+          <div className="flex items-center justify-center min-h-[60vh]">
+            <div className="max-w-2xl text-center">
+              <div className="w-24 h-24 bg-navy-800 rounded-full flex items-center justify-center mx-auto mb-6">
+                <FileText className="w-12 h-12 text-white/30" />
+              </div>
+
+              <h2 className="text-2xl font-bold text-white mb-4">
+                Nenhum relatório ainda
+              </h2>
+
+              <p className="text-white/60 mb-8 text-lg">
+                Você ainda não possui relatórios de investigação. Para receber um relatório,
+                primeiro é necessário solicitar uma investigação.
+              </p>
+
+              {/* Instruções */}
+              <div className="bg-navy-900 border border-navy-700 rounded-xl p-6 text-left mb-8">
+                <h3 className="text-lg font-semibold text-gold-400 mb-4">
+                  Como iniciar uma investigação
+                </h3>
+
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 bg-gold-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-gold-400 font-bold text-sm">1</span>
+                    </div>
+                    <div>
+                      <p className="text-white font-medium">Acesse "Investigações"</p>
+                      <p className="text-white/60 text-sm">
+                        No menu lateral, clique em "Investigações" para acessar a lista de investigações.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 bg-gold-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-gold-400 font-bold text-sm">2</span>
+                    </div>
+                    <div>
+                      <p className="text-white font-medium">Clique em "Adicionar"</p>
+                      <p className="text-white/60 text-sm">
+                        Escolha entre cadastrar uma Pessoa Física, Pessoa Jurídica ou enviar um arquivo
+                        com múltiplos CPFs/CNPJs para análise em lote.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 bg-gold-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-gold-400 font-bold text-sm">3</span>
+                    </div>
+                    <div>
+                      <p className="text-white font-medium">Preencha as informações</p>
+                      <p className="text-white/60 text-sm">
+                        Informe os dados da pessoa ou empresa a ser investigada, o motivo da investigação
+                        e o nível de urgência.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 bg-gold-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-gold-400 font-bold text-sm">4</span>
+                    </div>
+                    <div>
+                      <p className="text-white font-medium">Aguarde o relatório</p>
+                      <p className="text-white/60 text-sm">
+                        Nosso time de analistas irá processar sua solicitação. Quando concluído,
+                        o relatório aparecerá aqui para você visualizar e baixar.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA */}
+              <Link href="/dashboard/funcionarios?novo=true">
+                <Button className="bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold px-8 py-6 text-lg">
+                  <Plus className="w-5 h-5 mr-2" />
+                  Iniciar Nova Investigação
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
+  // Lista de relatórios
   return (
     <div className="p-4 lg:p-8">
       <motion.div
@@ -76,463 +184,102 @@ export default function AnaliticoPage() {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold text-white flex items-center gap-3">
-              <BarChart3 className="w-7 h-7 text-cyan-400" />
-              Visao Analitica
+              <FileText className="w-7 h-7 text-blue-400" />
+              Relatórios
             </h1>
             <p className="text-white/60 mt-1">
-              Analise consolidada de {totalFuncionarios.toLocaleString()} funcionarios
+              {relatorios.length} relatório{relatorios.length !== 1 ? 's' : ''} de investigação
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-sm text-white/60 bg-navy-800/50 px-4 py-2 rounded-lg">
-            <Calendar className="w-4 h-4" />
-            Atualizado em {CLIENTE_01_STATS.dataAtualizacao}
+          {/* Search */}
+          <div className="relative w-full lg:w-80">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+            <input
+              type="text"
+              placeholder="Buscar relatórios..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-10 pr-4 py-2.5 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500"
+            />
           </div>
         </div>
 
-        {/* Summary Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <SummaryCard
-            title="Total Analisados"
-            value={totalFuncionarios.toLocaleString()}
-            icon={Users}
-            color="blue"
-          />
-          <SummaryCard
-            title="Alertas Criticos"
-            value={(CLIENTE_01_STATS.totais.obitos + CLIENTE_01_STATS.totais.sancionados).toString()}
-            icon={AlertTriangle}
-            color="red"
-            subtitle="obitos + sancionados"
-          />
-          <SummaryCard
-            title="Vinculos Politicos"
-            value={(CLIENTE_01_STATS.totais.candidatos + CLIENTE_01_STATS.totais.doadores).toString()}
-            icon={Vote}
-            color="purple"
-            subtitle="candidatos + doadores"
-          />
-          <SummaryCard
-            title="Vinculos Empresariais"
-            value={CLIENTE_01_STATS.totais.socios.toString()}
-            icon={Briefcase}
-            color="amber"
-            subtitle={`${CLIENTE_01_STATS.totais.cnpjs} CNPJs`}
-          />
+        {/* Lista de Relatórios */}
+        <div className="space-y-4">
+          {filteredRelatorios.map((relatorio) => (
+            <motion.div
+              key={relatorio.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-navy-900 border border-navy-700 rounded-xl p-4 hover:border-gold-500/50 transition-all cursor-pointer"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className={`p-3 rounded-lg ${
+                    relatorio.tipo === 'grupo'
+                      ? 'bg-gold-500/20'
+                      : relatorio.tipo === 'pessoa_juridica'
+                      ? 'bg-purple-500/20'
+                      : 'bg-blue-500/20'
+                  }`}>
+                    {relatorio.tipo === 'grupo' ? (
+                      <FolderOpen className="w-6 h-6 text-gold-400" />
+                    ) : relatorio.tipo === 'pessoa_juridica' ? (
+                      <Users className="w-6 h-6 text-purple-400" />
+                    ) : (
+                      <FileText className="w-6 h-6 text-blue-400" />
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="text-white font-medium">{relatorio.titulo}</h3>
+                    <p className="text-white/60 text-sm">{relatorio.investigado}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  {/* Status */}
+                  <div className={`px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 ${
+                    relatorio.status === 'concluido'
+                      ? 'bg-emerald-500/20 text-emerald-400'
+                      : relatorio.status === 'em_analise'
+                      ? 'bg-blue-500/20 text-blue-400'
+                      : 'bg-amber-500/20 text-amber-400'
+                  }`}>
+                    {relatorio.status === 'concluido' ? (
+                      <CheckCircle className="w-3 h-3" />
+                    ) : relatorio.status === 'em_analise' ? (
+                      <Clock className="w-3 h-3" />
+                    ) : (
+                      <AlertCircle className="w-3 h-3" />
+                    )}
+                    {relatorio.status === 'concluido' ? 'Concluído' :
+                     relatorio.status === 'em_analise' ? 'Em Análise' : 'Pendente'}
+                  </div>
+
+                  {/* Data */}
+                  <div className="text-sm text-white/50 flex items-center gap-1">
+                    <Calendar className="w-4 h-4" />
+                    {relatorio.data_criacao}
+                  </div>
+
+                  {/* Ações */}
+                  <div className="flex gap-2">
+                    <Button variant="ghost" size="sm" className="text-white/60 hover:text-white">
+                      <Eye className="w-4 h-4" />
+                    </Button>
+                    {relatorio.status === 'concluido' && (
+                      <Button variant="ghost" size="sm" className="text-white/60 hover:text-white">
+                        <Download className="w-4 h-4" />
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
-
-        {/* Distribution by Group */}
-        <div className="grid lg:grid-cols-2 gap-6">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="bg-navy-900 border border-navy-700 rounded-xl p-6"
-          >
-            <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <PieChart className="w-5 h-5 text-gold-400" />
-              Distribuicao por Grupo
-            </h3>
-            <div className="space-y-4">
-              <div>
-                <div className="flex justify-between text-sm mb-1">
-                  <span className="text-white/70">Comurg</span>
-                  <span className="text-white font-medium">{grupoComurg?.registros.toLocaleString()} ({((grupoComurg?.registros || 0) / totalFuncionarios * 100).toFixed(1)}%)</span>
-                </div>
-                <div className="h-4 bg-navy-800 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${((grupoComurg?.registros || 0) / totalFuncionarios * 100)}%` }}
-                    transition={{ duration: 0.8 }}
-                    className="h-full bg-blue-500 rounded-full"
-                  />
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between text-sm mb-1">
-                  <span className="text-white/70">Disposicao</span>
-                  <span className="text-white font-medium">{grupoDisposicao?.registros.toLocaleString()} ({((grupoDisposicao?.registros || 0) / totalFuncionarios * 100).toFixed(1)}%)</span>
-                </div>
-                <div className="h-4 bg-navy-800 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${((grupoDisposicao?.registros || 0) / totalFuncionarios * 100)}%` }}
-                    transition={{ duration: 0.8, delay: 0.1 }}
-                    className="h-full bg-purple-500 rounded-full"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Comparacao detalhada */}
-            <div className="mt-6 pt-6 border-t border-navy-700">
-              <h4 className="text-sm font-medium text-white/70 mb-3">Comparativo de Apontamentos</h4>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center">
-                  <p className="text-xs text-white/50 mb-2">Comurg</p>
-                  <div className="space-y-1 text-xs">
-                    <p><span className="text-red-400">{grupoComurg?.obitos || 0}</span> obitos</p>
-                    <p><span className="text-purple-400">{grupoComurg?.candidatos || 0}</span> candidatos</p>
-                    <p><span className="text-emerald-400">{grupoComurg?.doadores || 0}</span> doadores</p>
-                    <p><span className="text-amber-400">{grupoComurg?.socios || 0}</span> socios</p>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <p className="text-xs text-white/50 mb-2">Disposicao</p>
-                  <div className="space-y-1 text-xs">
-                    <p><span className="text-red-400">{grupoDisposicao?.obitos || 0}</span> obitos</p>
-                    <p><span className="text-purple-400">{grupoDisposicao?.candidatos || 0}</span> candidatos</p>
-                    <p><span className="text-emerald-400">{grupoDisposicao?.doadores || 0}</span> doadores</p>
-                    <p><span className="text-amber-400">{grupoDisposicao?.socios || 0}</span> socios</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Alertas por Categoria */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="bg-navy-900 border border-navy-700 rounded-xl p-6"
-          >
-            <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <AlertTriangle className="w-5 h-5 text-red-400" />
-              Apontamentos por Categoria
-            </h3>
-            <div className="space-y-3">
-              <CategoryBar
-                icon={HeartPulse}
-                label="Obitos"
-                value={CLIENTE_01_STATS.totais.obitos}
-                percent={calcPercent(CLIENTE_01_STATS.totais.obitos)}
-                color="red"
-              />
-              <CategoryBar
-                icon={AlertTriangle}
-                label="Sancionados"
-                value={CLIENTE_01_STATS.totais.sancionados}
-                percent={calcPercent(CLIENTE_01_STATS.totais.sancionados)}
-                color="red"
-              />
-              <CategoryBar
-                icon={Vote}
-                label="Candidatos"
-                value={CLIENTE_01_STATS.totais.candidatos}
-                percent={calcPercent(CLIENTE_01_STATS.totais.candidatos)}
-                color="purple"
-              />
-              <CategoryBar
-                icon={Heart}
-                label="Doadores"
-                value={CLIENTE_01_STATS.totais.doadores}
-                percent={calcPercent(CLIENTE_01_STATS.totais.doadores)}
-                color="emerald"
-              />
-              <CategoryBar
-                icon={Briefcase}
-                label="Socios de Empresa"
-                value={CLIENTE_01_STATS.totais.socios}
-                percent={calcPercent(CLIENTE_01_STATS.totais.socios)}
-                color="amber"
-              />
-              <CategoryBar
-                icon={DollarSign}
-                label="Beneficiarios"
-                value={CLIENTE_01_STATS.totais.beneficiarios}
-                percent={calcPercent(CLIENTE_01_STATS.totais.beneficiarios)}
-                color="cyan"
-              />
-              <CategoryBar
-                icon={Globe}
-                label="Matches OFAC"
-                value={CLIENTE_01_STATS.totais.ofacMatches}
-                percent={calcPercent(CLIENTE_01_STATS.totais.ofacMatches)}
-                color="orange"
-              />
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Obitos por Ano */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.3 }}
-          className="bg-navy-900 border border-navy-700 rounded-xl p-6"
-        >
-          <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-            <HeartPulse className="w-5 h-5 text-red-400" />
-            Obitos por Ano
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {Object.entries(obitosPorAno)
-              .sort(([a], [b]) => Number(b) - Number(a))
-              .map(([ano, count]) => (
-                <div
-                  key={ano}
-                  className={`px-4 py-2 rounded-lg border ${
-                    Number(ano) >= 2024
-                      ? "bg-red-500/10 border-red-500/30 text-red-400"
-                      : Number(ano) >= 2020
-                      ? "bg-orange-500/10 border-orange-500/30 text-orange-400"
-                      : "bg-navy-800 border-navy-600 text-white/70"
-                  }`}
-                >
-                  <span className="font-bold text-lg">{ano}</span>
-                  <span className="ml-2 text-sm opacity-70">({count})</span>
-                </div>
-              ))}
-          </div>
-          <p className="text-xs text-white/50 mt-4">
-            Total: {CLIENTE_01_STATS.totais.obitos} funcionarios falecidos identificados ainda constando em registros
-          </p>
-        </motion.div>
-
-        {/* Doacoes e Candidatos */}
-        <div className="grid lg:grid-cols-2 gap-6">
-          {/* Doacoes por Ano */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.4 }}
-            className="bg-navy-900 border border-navy-700 rounded-xl p-6"
-          >
-            <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <Heart className="w-5 h-5 text-emerald-400" />
-              Doacoes por Ano Eleitoral
-            </h3>
-            <div className="space-y-3">
-              {Object.entries(doacoesPorAno)
-                .sort(([a], [b]) => Number(b) - Number(a))
-                .map(([ano, valor]) => (
-                  <div key={ano} className="bg-navy-800/50 rounded-lg p-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-white/70">{ano}</span>
-                      <span className="text-emerald-400 font-bold">
-                        R$ {valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                      </span>
-                    </div>
-                    <div className="h-2 bg-navy-700 rounded-full overflow-hidden mt-2">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${(valor / CLIENTE_01_STATS.valorTotalDoacoes * 100)}%` }}
-                        transition={{ duration: 0.8 }}
-                        className="h-full bg-emerald-500 rounded-full"
-                      />
-                    </div>
-                  </div>
-                ))}
-            </div>
-            <div className="mt-4 pt-4 border-t border-navy-700">
-              <p className="text-sm text-white/50">
-                Total doado: <span className="text-emerald-400 font-bold">R$ {CLIENTE_01_STATS.valorTotalDoacoes.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Candidatos por Partido */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.5 }}
-            className="bg-navy-900 border border-navy-700 rounded-xl p-6"
-          >
-            <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <Vote className="w-5 h-5 text-purple-400" />
-              Candidatos por Partido
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {Object.entries(candidatosPorPartido)
-                .sort(([, a], [, b]) => b - a)
-                .map(([partido, count]) => (
-                  <div
-                    key={partido}
-                    className="bg-purple-500/10 border border-purple-500/30 rounded-lg px-3 py-2"
-                  >
-                    <span className="text-purple-400 font-medium">{partido}</span>
-                    <span className="ml-2 text-white/70 text-sm">({count})</span>
-                  </div>
-                ))}
-            </div>
-            <div className="mt-4 pt-4 border-t border-navy-700">
-              <p className="text-sm text-white/50">
-                Total: {CLIENTE_01_STATS.totais.candidatos} funcionarios candidatos em eleicoes
-              </p>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Vinculos Empresariais */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.6 }}
-          className="bg-navy-900 border border-navy-700 rounded-xl p-6"
-        >
-          <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-            <Briefcase className="w-5 h-5 text-amber-400" />
-            Vinculos Empresariais - Situacao Cadastral
-          </h3>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {Object.entries(vinculosPorSituacao).map(([situacao, count]) => (
-              <div
-                key={situacao}
-                className={`rounded-xl p-4 text-center ${
-                  situacao === "ATIVA"
-                    ? "bg-emerald-500/10 border border-emerald-500/30"
-                    : situacao === "SUSPENSA"
-                    ? "bg-amber-500/10 border border-amber-500/30"
-                    : "bg-red-500/10 border border-red-500/30"
-                }`}
-              >
-                <p className={`text-3xl font-bold ${
-                  situacao === "ATIVA" ? "text-emerald-400" :
-                  situacao === "SUSPENSA" ? "text-amber-400" : "text-red-400"
-                }`}>
-                  {count}
-                </p>
-                <p className="text-xs text-white/60 mt-1">{situacao}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-4 pt-4 border-t border-navy-700">
-            <p className="text-sm text-white/50">
-              Total: {CLIENTE_01_STATS.totais.socios} funcionarios com vinculos em {CLIENTE_01_STATS.totais.cnpjs} empresas
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Resumo Final */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.7 }}
-          className="bg-gradient-to-r from-gold-500/10 to-gold-600/5 border border-gold-500/30 rounded-xl p-6"
-        >
-          <h3 className="text-lg font-semibold text-gold-400 mb-4 flex items-center gap-2">
-            <FileText className="w-5 h-5" />
-            Resumo Executivo
-          </h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div>
-              <h4 className="text-sm font-medium text-white/70 mb-2">Alertas Criticos</h4>
-              <ul className="text-sm text-white/60 space-y-1">
-                <li>• {CLIENTE_01_STATS.totais.obitos} funcionarios falecidos</li>
-                <li>• {CLIENTE_01_STATS.totais.sancionados} sancionado(s) CEIS/CNEP</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-sm font-medium text-white/70 mb-2">Vinculos Politicos</h4>
-              <ul className="text-sm text-white/60 space-y-1">
-                <li>• {CLIENTE_01_STATS.totais.candidatos} candidatos em eleicoes</li>
-                <li>• {CLIENTE_01_STATS.totais.doadores} doadores de campanha</li>
-                <li>• R$ {CLIENTE_01_STATS.valorTotalDoacoes.toLocaleString('pt-BR')} doados</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-sm font-medium text-white/70 mb-2">Outros Apontamentos</h4>
-              <ul className="text-sm text-white/60 space-y-1">
-                <li>• {CLIENTE_01_STATS.totais.socios} socios de empresas</li>
-                <li>• {CLIENTE_01_STATS.totais.beneficiarios} beneficiarios sociais</li>
-                <li>• {CLIENTE_01_STATS.totais.ofacMatches} matches OFAC</li>
-              </ul>
-            </div>
-          </div>
-        </motion.div>
       </motion.div>
-    </div>
-  );
-}
-
-function SummaryCard({
-  title,
-  value,
-  icon: Icon,
-  color,
-  subtitle,
-}: {
-  title: string;
-  value: string;
-  icon: React.ElementType;
-  color: "blue" | "red" | "purple" | "amber" | "emerald" | "cyan" | "orange";
-  subtitle?: string;
-}) {
-  const colorClasses = {
-    blue: "bg-blue-500/10 text-blue-400",
-    red: "bg-red-500/10 text-red-400",
-    purple: "bg-purple-500/10 text-purple-400",
-    amber: "bg-amber-500/10 text-amber-400",
-    emerald: "bg-emerald-500/10 text-emerald-400",
-    cyan: "bg-cyan-500/10 text-cyan-400",
-    orange: "bg-orange-500/10 text-orange-400",
-  };
-
-  return (
-    <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
-      <div className="flex items-center gap-3">
-        <div className={`p-2 rounded-lg ${colorClasses[color]}`}>
-          <Icon className="w-5 h-5" />
-        </div>
-        <div>
-          <p className="text-2xl font-bold text-white">{value}</p>
-          <p className="text-xs text-white/50">{title}</p>
-          {subtitle && <p className="text-xs text-white/40">{subtitle}</p>}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function CategoryBar({
-  icon: Icon,
-  label,
-  value,
-  percent,
-  color,
-}: {
-  icon: React.ElementType;
-  label: string;
-  value: number;
-  percent: string;
-  color: "red" | "purple" | "emerald" | "amber" | "cyan" | "orange";
-}) {
-  const colorClasses = {
-    red: "bg-red-500",
-    purple: "bg-purple-500",
-    emerald: "bg-emerald-500",
-    amber: "bg-amber-500",
-    cyan: "bg-cyan-500",
-    orange: "bg-orange-500",
-  };
-
-  const textColorClasses = {
-    red: "text-red-400",
-    purple: "text-purple-400",
-    emerald: "text-emerald-400",
-    amber: "text-amber-400",
-    cyan: "text-cyan-400",
-    orange: "text-orange-400",
-  };
-
-  return (
-    <div>
-      <div className="flex justify-between items-center text-sm mb-1">
-        <span className="text-white/70 flex items-center gap-2">
-          <Icon className={`w-4 h-4 ${textColorClasses[color]}`} />
-          {label}
-        </span>
-        <span className="text-white font-medium">{value} <span className="text-white/50">({percent}%)</span></span>
-      </div>
-      <div className="h-2 bg-navy-800 rounded-full overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: `${Math.min(Number(percent) * 10, 100)}%` }}
-          transition={{ duration: 0.8 }}
-          className={`h-full ${colorClasses[color]} rounded-full`}
-        />
-      </div>
     </div>
   );
 }
