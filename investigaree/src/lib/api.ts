@@ -246,3 +246,92 @@ export async function addFuncionario(data: {
     body: JSON.stringify(data),
   })
 }
+
+// ============================================
+// USER INVESTIGATIONS API
+// ============================================
+
+export interface InvestigationData {
+  nome: string
+  documento: string
+  tipo_pessoa?: 'fisica' | 'juridica'
+  is_grupo?: boolean
+  grupo_nome?: string
+  grupo_total_documentos?: number
+  categoria?: string
+  nivel_urgencia?: 'baixa' | 'media' | 'alta' | 'urgente'
+  email?: string
+  telefones?: string
+  endereco?: string
+  redes_sociais?: string
+  placa_veiculo?: string
+  rg?: string
+  estado_civil?: string
+  profissao?: string
+  data_nascimento?: string
+  motivo_investigacao?: string
+  escopo_investigacao?: string
+  observacoes?: string
+  prazo_desejado?: string
+}
+
+/**
+ * Cria uma nova investigação
+ */
+export async function createInvestigation(data: InvestigationData) {
+  return fetchAPI<{ success: boolean; id: string; message: string }>('/api/investigations', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  })
+}
+
+/**
+ * Lista investigações do usuário
+ */
+export async function getInvestigations(params?: {
+  status?: string
+  categoria?: string
+  busca?: string
+  page?: number
+  limit?: number
+}) {
+  const searchParams = new URLSearchParams()
+  if (params?.status) searchParams.set('status', params.status)
+  if (params?.categoria) searchParams.set('categoria', params.categoria)
+  if (params?.busca) searchParams.set('busca', params.busca)
+  if (params?.page) searchParams.set('page', params.page.toString())
+  if (params?.limit) searchParams.set('limit', params.limit.toString())
+
+  const query = searchParams.toString()
+  return fetchAPI(`/api/investigations${query ? `?${query}` : ''}`)
+}
+
+/**
+ * Busca detalhes de uma investigação
+ */
+export async function getInvestigationDetails(id: string) {
+  return fetchAPI(`/api/investigations/${id}`)
+}
+
+/**
+ * Estatísticas das investigações
+ */
+export async function getInvestigationsStats() {
+  return fetchAPI('/api/investigations/stats')
+}
+
+/**
+ * Importa múltiplas investigações (lote)
+ */
+export async function importInvestigations(data: {
+  items: Array<{ nome: string; documento: string; tipo_pessoa?: string }>
+  grupo_nome?: string
+  categoria?: string
+  nivel_urgencia?: string
+  motivo_investigacao?: string
+}) {
+  return fetchAPI<{ success: boolean; imported: number; grupo: string; message: string }>('/api/investigations/import', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  })
+}

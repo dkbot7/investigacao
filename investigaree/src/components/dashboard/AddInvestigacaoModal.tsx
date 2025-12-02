@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, UserPlus, Loader2, Building2, User, Phone, MapPin, Search, DollarSign, Clock, Upload, FileSpreadsheet, ArrowLeft } from "lucide-react";
 import * as XLSX from "xlsx";
 import { Button } from "@/components/ui/button";
-import { addFuncionario } from "@/lib/api";
+import { createInvestigation, importInvestigations } from "@/lib/api";
 import { useAuth } from "@/contexts/AuthContext";
 
 type ModalMode = "select" | "pessoa_fisica" | "pessoa_juridica" | "arquivo";
@@ -261,42 +261,40 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
         .filter(([_, value]) => value)
         .reduce((acc, [key, _]) => ({ ...acc, [key]: true }), {});
 
-      // Preparar dados
-      const data: any = {
+      // Preparar categoria principal (primeira selecionada)
+      const categoriaPrincipal = categoriasArray.length > 0 ? categoriasArray[0] : "funcionarios";
+
+      // Preparar dados para API de investigações
+      const data = {
         nome: formData.nome.trim(),
-        cpf: tipoPessoa === "fisica" ? docFormatted : "",
-        cnpj: tipoPessoa === "juridica" ? docFormatted : "",
+        documento: docFormatted,
         tipo_pessoa: tipoPessoa,
-        categorias: JSON.stringify(categoriasArray),
-        status_investigacao: "investigar",
+        categoria: categoriaPrincipal,
+        nivel_urgencia: formData.nivel_urgencia,
 
         // Dados pessoais
-        rg: formData.rg || null,
-        data_nascimento: formData.data_nascimento || null,
-        estado_civil: formData.estado_civil || null,
-        profissao: formData.profissao || null,
+        rg: formData.rg || undefined,
+        data_nascimento: formData.data_nascimento || undefined,
+        estado_civil: formData.estado_civil || undefined,
+        profissao: formData.profissao || undefined,
 
         // Contato
         telefones: JSON.stringify(formData.telefones.filter(t => t.trim())),
-        email: formData.email || null,
-        endereco: formData.endereco || null,
+        email: formData.email || undefined,
+        endereco: formData.endereco || undefined,
         redes_sociais: JSON.stringify(formData.redes_sociais),
 
         // Investigação
         motivo_investigacao: formData.motivo_investigacao,
-        nivel_urgencia: formData.nivel_urgencia,
         escopo_investigacao: JSON.stringify(escopoInvestigacao),
-        prazo_desejado: formData.prazo_desejado || null,
-        orcamento_maximo: formData.orcamento_maximo ? parseFloat(formData.orcamento_maximo) : null,
-        observacoes: formData.observacoes || null,
+        prazo_desejado: formData.prazo_desejado || undefined,
+        observacoes: formData.observacoes || undefined,
 
         // Opcionais
-        placa_veiculo: formData.placa_veiculo || null,
-        local_trabalho: formData.local_trabalho || null,
-        grupo: formData.grupo || "Sem grupo",
+        placa_veiculo: formData.placa_veiculo || undefined,
       };
 
-      await addFuncionario(data);
+      await createInvestigation(data);
 
       onSuccess();
       handleClose();
