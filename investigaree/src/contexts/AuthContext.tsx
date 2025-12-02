@@ -58,8 +58,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
         displayName: userData.name
       });
 
-      // Aqui você pode salvar dados adicionais (whatsapp) no Firestore se necessário
-      // Por enquanto, salvamos apenas no displayName
+      // Sincronizar com D1 database
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.investigaree.com.br';
+      try {
+        await fetch(`${API_URL}/api/auth/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            firebase_uid: userCredential.user.uid,
+            email: email,
+            name: userData.name,
+            phone: userData.whatsapp
+          })
+        });
+      } catch (syncError) {
+        console.error("Erro ao sincronizar com D1:", syncError);
+        // Não bloqueia o signup se falhar a sync
+      }
 
       setUser(userCredential.user);
     } catch (error: any) {
@@ -71,6 +86,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const login = async (email: string, password: string) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+      // Sincronizar com D1 database (garante que usuário existe no D1)
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.investigaree.com.br';
+      try {
+        await fetch(`${API_URL}/api/auth/sync`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            firebase_uid: userCredential.user.uid,
+            email: userCredential.user.email,
+            name: userCredential.user.displayName
+          })
+        });
+      } catch (syncError) {
+        console.error("Erro ao sincronizar com D1:", syncError);
+      }
+
       setUser(userCredential.user);
     } catch (error: any) {
       console.error("Erro ao fazer login:", error);
