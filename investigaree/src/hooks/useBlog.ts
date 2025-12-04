@@ -430,6 +430,44 @@ export const MOCK_POSTS: BlogPost[] = [
     views: 876
   },
 
+  // ===== DATAS COMEMORATIVAS =====
+  {
+    id: "25",
+    title: "4 de Dezembro: Dia Nacional do Perito Criminal - Uma Homenagem aos Guardiões da Verdade",
+    slug: "dia-do-perito-criminal-4-dezembro-homenagem",
+    excerpt: "Hoje celebramos o Dia Nacional do Perito Criminal, instituído pela Lei 11.654/2008. Uma homenagem a todos os profissionais que dedicam suas vidas à busca da verdade técnica e científica.",
+    content: "",
+    coverImage: "/images/dia-perito-criminal.jpg",
+    author: BLOG_AUTHORS[1], // Dani Kaloi
+    contentType: "artigo",
+    topic: BLOG_TOPICS[0], // Metodologia Forense
+    skillLevel: "iniciante",
+    tags: ["dia do perito criminal", "4 de dezembro", "perícia criminal", "Otacílio Souza Filho", "homenagem", "forense"],
+    publishedAt: "2025-12-04T08:00:00Z",
+    readingTime: 8,
+    featured: true,
+    popular: true,
+    views: 0
+  },
+  {
+    id: "26",
+    title: "Dia do Perito Criminal: Homenagem a Ibsen Maciel, Nosso Advisory Board",
+    slug: "dia-perito-criminal-homenagem-ibsen-maciel",
+    excerpt: "Neste 4 de dezembro, celebramos o Dia do Perito Criminal com uma homenagem especial a Ibsen Maciel, Perito Criminal Oficial e membro do Advisory Board da Investigaree.",
+    content: "",
+    coverImage: "/images/dia-perito-criminal-ibsen.png",
+    author: BLOG_AUTHORS[1], // Dani Kaloi
+    contentType: "artigo",
+    topic: BLOG_TOPICS[0], // Metodologia Forense
+    skillLevel: "iniciante",
+    tags: ["ibsen maciel", "dia do perito criminal", "homenagem", "advisory board", "polícia científica", "perito criminal"],
+    publishedAt: "2025-12-04T09:00:00Z",
+    readingTime: 5,
+    featured: true,
+    popular: true,
+    views: 0
+  },
+
   // ===== LGPD & COMPLIANCE =====
   {
     id: "17",

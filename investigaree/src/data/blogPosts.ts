@@ -39,6 +39,9 @@ export const BLOG_POST_SLUGS = [
   "sinais-golpe-tinder-verificar-antes-conhecer",
   // Entrevistas
   "ibsen-maciel-1-lugar-policia-cientifica-para-trajetoria",
+  // Datas comemorativas
+  "dia-do-perito-criminal-4-dezembro-homenagem",
+  "dia-perito-criminal-homenagem-ibsen-maciel",
   // LGPD & Compliance
   "background-check-lgpd-legal-consultar-brasil",
   // Ferramentas
