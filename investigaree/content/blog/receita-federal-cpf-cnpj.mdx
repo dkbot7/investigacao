@@ -1,0 +1,281 @@
+---
+title: "Receita Federal: Como Consultar CPF e CNPJ"
+excerpt: "Guia completo para consultar CPF e CNPJ na Receita Federal - a fonte primária de toda investigação de due diligence no Brasil."
+coverImage: "https://picsum.photos/seed/receita-federal/800/450"
+authorId: "dani-kaloi"
+contentType: "tutorial"
+topicId: "osint-brasil"
+skillLevel: "iniciante"
+tags:
+  - cpf
+  - cnpj
+  - receita federal
+  - fontes públicas
+  - due diligence
+publishedAt: "2025-12-01T10:00:00Z"
+series:
+  id: "fontes-publicas-brasil"
+  name: "Fontes Públicas Brasil"
+  part: 1
+featured: true
+---
+
+<SeriesNavigation
+  seriesName="Fontes Públicas Brasil"
+  seriesSlug="fontes-publicas-brasil"
+  seriesDescription="Série completa sobre como consultar cada fonte pública brasileira para investigação digital"
+  currentPart={1}
+  totalParts={10}
+  posts={[
+    { slug: "receita-federal-cpf-cnpj", title: "Receita Federal: CPF e CNPJ", partNumber: 1, isPublished: true },
+    { slug: "tse-candidaturas-doacoes", title: "TSE: Candidaturas e Doações", partNumber: 2, isPublished: true },
+    { slug: "portal-transparencia-ceis-cnep", title: "Portal da Transparência: CEIS e CNEP", partNumber: 3, isPublished: false },
+    { slug: "tribunais-processos-judiciais", title: "Tribunais: Processos Judiciais", partNumber: 4, isPublished: false },
+    { slug: "inss-dataprev-beneficios", title: "INSS e Dataprev: Benefícios", partNumber: 5, isPublished: false },
+    { slug: "juntas-comerciais-empresas", title: "Juntas Comerciais: Empresas", partNumber: 6, isPublished: false },
+    { slug: "cartorios-imoveis-protestos", title: "Cartórios: Imóveis e Protestos", partNumber: 7, isPublished: false },
+    { slug: "detran-veiculos", title: "DETRAN: Veículos", partNumber: 8, isPublished: false },
+    { slug: "diarios-oficiais", title: "Diários Oficiais", partNumber: 9, isPublished: false },
+    { slug: "redes-sociais-fonte", title: "Redes Sociais como Fonte OSINT", partNumber: 10, isPublished: false }
+  ]}
+  nextPost={{ slug: "tse-candidaturas-doacoes", title: "TSE: Candidaturas e Doações" }}
+/>
+
+A **Receita Federal do Brasil** é a fonte primária e obrigatória para qualquer processo de due diligence ou background check no país. Neste primeiro episódio da série "Fontes Públicas Brasil", vamos explorar como consultar CPF e CNPJ de forma legal e eficiente.
+
+## Por Que Começar pela Receita Federal?
+
+<Callout type="info" title="Primeira Parada Obrigatória">
+  Em qualquer investigação de due diligence, a consulta à Receita Federal deve ser sempre o primeiro passo. É aqui que você valida se o CPF ou CNPJ existe e está regular.
+</Callout>
+
+A Receita Federal é a fonte mais confiável porque:
+
+1. **É a fonte oficial** - Os dados vêm diretamente do governo
+2. **É atualizada em tempo real** - Situações cadastrais são atualizadas imediatamente
+3. **É gratuita** - Não há custo para consultas básicas
+4. **É legal** - Dados públicos em conformidade com LGPD
+
+<KeyStat
+  value="250M+"
+  label="CPFs cadastrados no Brasil"
+  source="Receita Federal, 2024"
+  type="info"
+  description="Praticamente toda pessoa física brasileira possui um CPF"
+/>
+
+## Consulta de CPF: Situação Cadastral
+
+### O Que Você Consegue Verificar
+
+A consulta de situação cadastral do CPF retorna:
+
+- **Nome completo** do titular
+- **Data de nascimento**
+- **Situação cadastral** (Regular, Pendente, Suspensa, Cancelada, Nula, ou Titular Falecido)
+- **Digito verificador** (confirma autenticidade do número)
+
+<FileLocation
+  title="Consulta Situação Cadastral CPF"
+  paths={[
+    {
+      platform: "web",
+      path: "https://servicos.receita.fazenda.gov.br/servicos/cpf/consultasituacao/consultapublica.asp",
+      description: "Portal oficial da Receita Federal - Consulta gratuita"
+    }
+  ]}
+  forensicValue="Valida existência do CPF e identifica situações irregulares ou óbito"
+/>
+
+### Interpretando as Situações Cadastrais
+
+<ComparisonTable
+  title="Situações Cadastrais do CPF"
+  headers={["Situação", "O que significa", "Red Flag?"]}
+  items={[
+    { feature: "Regular", values: ["CPF está ativo e sem pendências", "Não"] },
+    { feature: "Pendente de Regularização", values: ["Falta declaração de IR ou atualização cadastral", "Atenção"] },
+    { feature: "Suspensa", values: ["CPF temporariamente inativo por irregularidades", "Sim"] },
+    { feature: "Cancelada", values: ["CPF foi cancelado por fraude ou duplicidade", "Crítico"] },
+    { feature: "Nula", values: ["CPF foi anulado - nunca deveria ter existido", "Crítico"] },
+    { feature: "Titular Falecido", values: ["Pessoa consta como falecida nos registros", "Se em uso: Crítico"] }
+  ]}
+/>
+
+<Callout type="warning" title="Red Flag Crítico">
+  Um CPF com situação "Titular Falecido" sendo usado ativamente é **forte indicador de fraude de identidade**. Documente imediatamente e considere comunicar às autoridades.
+</Callout>
+
+## Consulta de CNPJ: Dados Empresariais
+
+### O Que Você Consegue Verificar
+
+A consulta de CNPJ é ainda mais rica em informações:
+
+- **Razão Social e Nome Fantasia**
+- **Data de Abertura**
+- **Situação Cadastral** (Ativa, Inapta, Baixada, Suspensa, Nula)
+- **Natureza Jurídica** (MEI, LTDA, S.A., etc.)
+- **CNAE** (Atividades econômicas)
+- **Endereço completo**
+- **Capital Social**
+- **Quadro de Sócios e Administradores (QSA)**
+- **Porte da empresa**
+
+<FileLocation
+  title="Consulta Pública CNPJ"
+  paths={[
+    {
+      platform: "web",
+      path: "https://solucoes.receita.fazenda.gov.br/Servicos/cnpjreva/Cnpjreva_Solicitacao.asp",
+      description: "Portal ReceitaNet - Consulta completa e gratuita"
+    }
+  ]}
+  forensicValue="Identifica sócios, endereços, atividades e situação fiscal da empresa"
+/>
+
+### O Quadro de Sócios (QSA) é Ouro
+
+<Callout type="tip" title="Dica de Investigador">
+  O **QSA (Quadro de Sócios e Administradores)** é a informação mais valiosa da consulta CNPJ. Ele revela:
+  - Quem são os sócios e suas participações
+  - CPFs dos sócios (parcialmente mascarados)
+  - Qualificação (Sócio-Administrador, Sócio, etc.)
+  - Data de entrada na sociedade
+</Callout>
+
+Com os CPFs dos sócios, você pode:
+1. Consultar a situação cadastral de cada sócio
+2. Verificar se os sócios têm outras empresas
+3. Cruzar com outras bases (TSE, tribunais)
+
+## Checklist de Consulta
+
+<Timeline
+  title="Processo de Verificação Receita Federal"
+  items={[
+    {
+      date: "Passo 1",
+      title: "Validar CPF/CNPJ",
+      description: "Verificar se o número está formatado corretamente e existe",
+      completed: true
+    },
+    {
+      date: "Passo 2",
+      title: "Consultar Situação Cadastral",
+      description: "Confirmar que está Regular/Ativa",
+      completed: true
+    },
+    {
+      date: "Passo 3",
+      title: "Analisar QSA (para CNPJ)",
+      description: "Identificar todos os sócios e suas qualificações",
+      completed: true
+    },
+    {
+      date: "Passo 4",
+      title: "Documentar Resultados",
+      description: "Salvar comprovante com data e hora da consulta",
+      completed: false
+    },
+    {
+      date: "Passo 5",
+      title: "Prosseguir para Próximas Fontes",
+      description: "TSE, Portal da Transparência, Tribunais...",
+      completed: false
+    }
+  ]}
+/>
+
+## Limitações e Cuidados
+
+### O Que a Receita NÃO Informa
+
+- Endereço da pessoa física
+- Telefone ou email
+- Histórico de situações anteriores
+- Renda ou patrimônio declarado
+- Relacionamentos entre pessoas físicas
+
+### Cuidados com Privacidade
+
+<Callout type="legal" title="Conformidade LGPD">
+  Embora os dados de situação cadastral sejam públicos, você deve:
+  - Usar apenas para fins legítimos (due diligence, verificação de identidade)
+  - Não armazenar dados desnecessariamente
+  - Não compartilhar com terceiros sem finalidade
+  - Documentar a base legal para a consulta
+</Callout>
+
+## Próximo Episódio
+
+No próximo episódio da série, vamos explorar o **TSE (Tribunal Superior Eleitoral)** - fonte essencial para verificar:
+- Histórico de candidaturas
+- Declarações de bens de candidatos
+- Doações eleitorais recebidas e realizadas
+- Filiação partidária
+
+<CTABanner
+  type="trial"
+  title="Automatize suas Consultas"
+  description="O Investigaree consulta CPF, CNPJ e dezenas de outras fontes automaticamente em segundos."
+  features={["Receita Federal", "TSE", "CEIS/CNEP", "Tribunais"]}
+/>
+
+---
+
+## Quiz: Teste Seu Conhecimento
+
+<Quiz
+  title="Receita Federal - Fundamentos"
+  questions={[
+    {
+      question: "Qual é a primeira fonte que deve ser consultada em uma due diligence?",
+      options: ["TSE", "Receita Federal", "Portal da Transparência", "Tribunais"],
+      correctIndex: 1,
+      explanation: "A Receita Federal é sempre a primeira parada para validar a existência e regularidade de CPF ou CNPJ."
+    },
+    {
+      question: "O que significa a situação cadastral 'Titular Falecido' em um CPF?",
+      options: [
+        "O CPF está temporariamente suspenso",
+        "A pessoa declarou IR como falecida",
+        "A pessoa consta como falecida nos registros oficiais",
+        "O CPF precisa ser renovado"
+      ],
+      correctIndex: 2,
+      explanation: "Significa que há registro de óbito da pessoa. Se esse CPF estiver sendo usado ativamente, é forte indicador de fraude."
+    },
+    {
+      question: "O que é o QSA de uma empresa?",
+      options: [
+        "Questionário de Situação Atual",
+        "Quadro de Sócios e Administradores",
+        "Qualificação de Sociedade Anônima",
+        "Quota de Sociedade Associada"
+      ],
+      correctIndex: 1,
+      explanation: "QSA significa Quadro de Sócios e Administradores - lista todas as pessoas que compõem a sociedade."
+    }
+  ]}
+/>
+
+<SeriesNavigation
+  seriesName="Fontes Públicas Brasil"
+  seriesSlug="fontes-publicas-brasil"
+  currentPart={1}
+  totalParts={10}
+  posts={[
+    { slug: "receita-federal-cpf-cnpj", title: "Receita Federal: CPF e CNPJ", partNumber: 1, isPublished: true },
+    { slug: "tse-candidaturas-doacoes", title: "TSE: Candidaturas e Doações", partNumber: 2, isPublished: true },
+    { slug: "portal-transparencia-ceis-cnep", title: "Portal da Transparência: CEIS e CNEP", partNumber: 3, isPublished: false },
+    { slug: "tribunais-processos-judiciais", title: "Tribunais: Processos Judiciais", partNumber: 4, isPublished: false },
+    { slug: "inss-dataprev-beneficios", title: "INSS e Dataprev: Benefícios", partNumber: 5, isPublished: false },
+    { slug: "juntas-comerciais-empresas", title: "Juntas Comerciais: Empresas", partNumber: 6, isPublished: false },
+    { slug: "cartorios-imoveis-protestos", title: "Cartórios: Imóveis e Protestos", partNumber: 7, isPublished: false },
+    { slug: "detran-veiculos", title: "DETRAN: Veículos", partNumber: 8, isPublished: false },
+    { slug: "diarios-oficiais", title: "Diários Oficiais", partNumber: 9, isPublished: false },
+    { slug: "redes-sociais-fonte", title: "Redes Sociais como Fonte OSINT", partNumber: 10, isPublished: false }
+  ]}
+  nextPost={{ slug: "tse-candidaturas-doacoes", title: "TSE: Candidaturas e Doações" }}
+/>

@@ -1,7 +1,7 @@
 # API Reference - investigaree
 
-**Ultima atualizacao**: 30 de Novembro de 2025
-**Versao**: 1.0.0
+**Ultima atualizacao**: 02 de Dezembro de 2025
+**Versao**: 1.1.0
 
 Base URL: `https://api.investigaree.com.br`
 
@@ -18,7 +18,8 @@ Base URL: `https://api.investigaree.com.br`
 | Auth | `/api/auth` | Nao | Registro e sincronizacao |
 | Leads | `/api/leads` | Nao | Captacao de leads |
 | Consultor | `/api/chatbot` | Nao | Consultas automatizadas |
-| Investigation | `/api/investigation` | Nao | Solicitacoes de investigacao |
+| Investigation | `/api/investigation` | Nao | Solicitacoes de investigacao (email) |
+| Investigations | `/api/investigations` | Sim | Investigacoes do usuario (CRUD) |
 | Consultas Publicas | `/api/consultas` | Nao | CEP, CNPJ (Brasil API) |
 | Infosimples | `/api/infosimples` | Sim | CPF, CNPJ, processos |
 | Transparencia | `/api/transparencia` | Sim | Servidores, CEIS, CNEP |
@@ -284,6 +285,152 @@ POST /api/investigation/request
 {
   "success": true,
   "message": "Solicitacao enviada com sucesso"
+}
+```
+
+---
+
+## Investigations (`/api/investigations`)
+
+Sistema de investigacoes personalizadas do usuario. **Requer autenticacao.**
+
+### Criar Investigacao
+
+```
+POST /api/investigations
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+```json
+{
+  "nome": "Joao da Silva",
+  "documento": "12345678901",
+  "tipo_pessoa": "fisica",
+  "categoria": "funcionarios",
+  "nivel_urgencia": "media",
+  "rg": "00.000.000-0",
+  "data_nascimento": "1990-01-01",
+  "estado_civil": "casado",
+  "profissao": "Engenheiro",
+  "telefones": "[\"(62) 99999-9999\"]",
+  "email": "joao@email.com",
+  "endereco": "Rua X, 123 - Cidade/UF",
+  "redes_sociais": "{\"instagram\":\"@joao\"}",
+  "motivo_investigacao": "Verificacao pre-contratacao",
+  "escopo_investigacao": "{\"antecedentes_criminais\":true}",
+  "prazo_desejado": "2025-12-15",
+  "observacoes": "Urgente",
+  "placa_veiculo": "ABC-1234"
+}
+```
+
+**Campos obrigatorios:** `nome` OU `documento` (pelo menos um)
+
+**Response (201):**
+```json
+{
+  "success": true,
+  "id": "uuid-da-investigacao",
+  "message": "Investigacao criada com sucesso"
+}
+```
+
+### Listar Investigacoes
+
+```
+GET /api/investigations?status=pendente&categoria=funcionarios&busca=joao&page=1&limit=20
+Authorization: Bearer <token>
+```
+
+**Query Parameters:**
+| Param | Tipo | Descricao |
+|-------|------|-----------|
+| status | string | pendente, em_andamento, concluida, cancelada |
+| categoria | string | funcionarios, familia, clientes, etc |
+| busca | string | Busca por nome ou documento |
+| page | number | Pagina (default: 1) |
+| limit | number | Itens por pagina (default: 20) |
+
+**Response:**
+```json
+{
+  "investigations": [
+    {
+      "id": "uuid",
+      "nome": "Joao da Silva",
+      "documento": "12345678901",
+      "tipo_pessoa": "fisica",
+      "categoria": "funcionarios",
+      "status": "pendente",
+      "nivel_urgencia": "media",
+      "created_at": "2025-12-02T12:00:00.000Z"
+    }
+  ],
+  "total": 15,
+  "page": 1,
+  "limit": 20
+}
+```
+
+### Obter Detalhes da Investigacao
+
+```
+GET /api/investigations/:id
+Authorization: Bearer <token>
+```
+
+### Estatisticas das Investigacoes
+
+```
+GET /api/investigations/stats
+Authorization: Bearer <token>
+```
+
+**Response:**
+```json
+{
+  "total": 15,
+  "by_status": {
+    "pendente": 5,
+    "em_andamento": 3,
+    "concluida": 7
+  },
+  "by_categoria": {
+    "funcionarios": 10,
+    "familia": 5
+  }
+}
+```
+
+### Importar Investigacoes em Lote
+
+```
+POST /api/investigations/import
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+```json
+{
+  "items": [
+    { "nome": "Pessoa 1", "documento": "12345678901", "tipo_pessoa": "fisica" },
+    { "nome": "Pessoa 2", "documento": "98765432101", "tipo_pessoa": "fisica" }
+  ],
+  "grupo_nome": "Fornecedores 2025",
+  "categoria": "funcionarios",
+  "nivel_urgencia": "media",
+  "motivo_investigacao": "Due diligence anual"
+}
+```
+
+**Response (201):**
+```json
+{
+  "success": true,
+  "imported": 2,
+  "grupo": "Fornecedores 2025",
+  "message": "2 investigacoes importadas com sucesso"
 }
 ```
 
@@ -1114,6 +1261,7 @@ Origens permitidas:
 | `/api/leads` | `workers/api/leads.ts` |
 | `/api/chatbot` | `workers/api/chatbot.ts` |
 | `/api/investigation` | `workers/api/investigation.ts` |
+| `/api/investigations` | `workers/api/investigations.ts` |
 | `/api/consultas` | `workers/api/consultas-publicas.ts` |
 | `/api/infosimples` | `workers/api/consultas-infosimples.ts` |
 | `/api/transparencia` | `workers/api/consultas-transparencia.ts` |

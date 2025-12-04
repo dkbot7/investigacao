@@ -1,0 +1,291 @@
+---
+title: "Guia Completo: Como Consultar CPF em Fontes Públicas Legalmente"
+excerpt: "Tutorial passo a passo para verificar informações de CPF usando apenas fontes públicas oficiais do governo brasileiro."
+coverImage: "https://picsum.photos/seed/cpf-consulta/800/450"
+authorId: "dani-kaloi"
+contentType: "tutorial"
+topicId: "osint-brasil"
+skillLevel: "iniciante"
+tags:
+  - cpf
+  - receita federal
+  - fontes públicas
+  - verificação
+  - lgpd
+publishedAt: "2025-11-25T09:00:00Z"
+featured: true
+---
+
+A consulta de CPF em fontes públicas é uma das atividades mais importantes na **due diligence** e **background check** no Brasil. Neste guia completo, você aprenderá como fazer isso de forma **100% legal**, utilizando apenas fontes oficiais do governo.
+
+<Callout type="legal" title="Importante: Conformidade com LGPD">
+  Todas as fontes listadas neste artigo são **públicas e gratuitas**, disponibilizadas pelos próprios órgãos governamentais. O uso responsável dessas informações está em conformidade com a Lei Geral de Proteção de Dados (LGPD).
+</Callout>
+
+## Por Que Consultar o CPF?
+
+Antes de entrar nas técnicas, é importante entender os casos de uso legítimos:
+
+<KeyStat
+  value="72%"
+  label="das fraudes no Brasil envolvem identidade"
+  source="Serasa Experian, 2024"
+  type="warning"
+  description="Verificar a autenticidade de um CPF pode prevenir golpes financeiros significativos"
+/>
+
+### Casos de Uso Legítimos
+
+1. **Contratação de funcionários** - Verificar antecedentes antes de contratar
+2. **Negócios e parcerias** - Validar sócios e fornecedores
+3. **Proteção familiar** - Verificar babás, cuidadores, motoristas
+4. **Relacionamentos** - Prevenir fraudes afetivas
+5. **Investimentos** - Due diligence em startups e negócios
+
+## Fontes Públicas Oficiais
+
+### 1. Receita Federal - Situação Cadastral
+
+A primeira verificação é confirmar se o CPF está **regular** na Receita Federal.
+
+<FileLocation
+  title="Consulta Situação Cadastral CPF"
+  paths={[
+    {
+      platform: "web",
+      path: "https://servicos.receita.fazenda.gov.br/servicos/cpf/consultasituacao/consultapublica.asp",
+      description: "Portal oficial da Receita Federal"
+    }
+  ]}
+  forensicValue="Identifica CPFs suspensos, cancelados, nulos ou de pessoas falecidas"
+/>
+
+**O que você consegue verificar:**
+- Nome completo do titular
+- Data de nascimento
+- Situação cadastral (Regular, Pendente, Suspensa, Cancelada, Nula)
+- Digito verificador do CPF
+
+<Callout type="tip" title="Dica Profissional">
+  Um CPF com situação "Titular Falecido" sendo usado em transações recentes é um **forte indicador de fraude de identidade**.
+</Callout>
+
+### 2. Tribunal Superior Eleitoral (TSE)
+
+O TSE disponibiliza informações sobre candidaturas e filiação partidária.
+
+<FileLocation
+  title="Consulta de Candidatos TSE"
+  paths={[
+    {
+      platform: "web",
+      path: "https://divulgacandcontas.tse.jus.br/divulga/",
+      description: "Portal DivulgaCand - Consulta de candidaturas"
+    }
+  ]}
+  forensicValue="Revela histórico político, declarações de bens e processos eleitorais"
+/>
+
+**Informações disponíveis:**
+- Histórico de candidaturas
+- Declaração de bens (para candidatos)
+- Situação eleitoral
+- Filiação partidária
+
+### 3. Portal da Transparência
+
+Verifica se a pessoa recebe benefícios do governo ou tem vínculo com empresas sancionadas.
+
+<FileLocation
+  title="Portal da Transparência Federal"
+  paths={[
+    {
+      platform: "web",
+      path: "https://portaldatransparencia.gov.br/pessoa-fisica/busca/lista",
+      description: "Busca por pessoa física"
+    }
+  ]}
+  forensicValue="Identifica benefícios sociais, viagens a serviço e vínculos com servidores"
+/>
+
+## Fluxo de Verificação Recomendado
+
+<Timeline
+  title="Processo de Verificação de CPF"
+  items={[
+    {
+      date: "Etapa 1",
+      title: "Validação do CPF",
+      description: "Verificar situação cadastral na Receita Federal",
+      completed: true
+    },
+    {
+      date: "Etapa 2",
+      title: "Consulta TSE",
+      description: "Verificar histórico eleitoral e declaração de bens",
+      completed: true
+    },
+    {
+      date: "Etapa 3",
+      title: "Portal da Transparência",
+      description: "Identificar benefícios e vínculos governamentais",
+      completed: true
+    },
+    {
+      date: "Etapa 4",
+      title: "Consulta CEIS/CNEP",
+      description: "Verificar sanções e impedimentos"
+    },
+    {
+      date: "Etapa 5",
+      title: "Tribunais de Justiça",
+      description: "Pesquisar processos judiciais"
+    }
+  ]}
+/>
+
+## Comparação de Fontes
+
+<ComparisonTable
+  title="Comparativo de Fontes Públicas para CPF"
+  headers={["Receita Federal", "TSE", "Portal Transparência"]}
+  items={[
+    { feature: "Nome completo", values: [true, true, true] },
+    { feature: "Data de nascimento", values: [true, false, false] },
+    { feature: "Situação cadastral", values: [true, false, false] },
+    { feature: "Declaração de bens", values: [false, true, false] },
+    { feature: "Histórico político", values: [false, true, false] },
+    { feature: "Benefícios sociais", values: [false, false, true] },
+    { feature: "Gratuito", values: [true, true, true] }
+  ]}
+/>
+
+## Red Flags na Análise de CPF
+
+Durante a análise, fique atento a estes sinais de alerta:
+
+<Callout type="warning" title="Sinais de Alerta">
+  - CPF com situação "Suspensa" ou "Cancelada"
+  - Múltiplas empresas registradas em curto período
+  - Divergência entre nome informado e nome oficial
+  - CPF de pessoa falecida em uso ativo
+  - Idade incompatível com atividades declaradas
+</Callout>
+
+## Limitações e Ética
+
+### O Que NÃO Fazer
+
+<Callout type="error" title="Práticas Ilegais">
+  - Comprar dados de fontes não oficiais
+  - Usar informações para assédio ou perseguição
+  - Compartilhar dados sensíveis sem autorização
+  - Acessar sistemas restritos sem permissão
+</Callout>
+
+### Boas Práticas
+
+1. **Documente suas fontes** - Mantenha registro de onde obteve cada informação
+2. **Use apenas fontes oficiais** - Evite sites de terceiros
+3. **Respeite a privacidade** - Use as informações apenas para o propósito declarado
+4. **Mantenha sigilo** - Não divulgue informações a terceiros sem necessidade
+
+## Automatizando com o Investigaree
+
+Para quem realiza verificações frequentes, a plataforma Investigaree automatiza todo este processo:
+
+<KeyStat
+  value="10x"
+  label="mais rápido que pesquisa manual"
+  type="success"
+  description="Consulta simultânea em mais de 20 fontes públicas com um único clique"
+/>
+
+### Vantagens da Automação
+
+- **Consistência**: Mesmo processo para todas as verificações
+- **Velocidade**: Resultados em segundos, não horas
+- **Completude**: Nenhuma fonte é esquecida
+- **Rastreabilidade**: Histórico completo de consultas
+- **Compliance**: Relatórios em conformidade com LGPD
+
+<CTABanner
+  type="trial"
+  features={["Sem cartão de crédito", "Acesso completo", "Suporte dedicado"]}
+/>
+
+## Conclusão
+
+A consulta de CPF em fontes públicas é uma ferramenta poderosa para proteção contra fraudes. Quando realizada de forma ética e legal, pode prevenir prejuízos significativos em relacionamentos pessoais e profissionais.
+
+<Callout type="tip" title="Próximos Passos">
+  No próximo artigo da série, abordaremos como consultar **CNPJ em fontes públicas** - essencial para verificação de empresas e sócios.
+</Callout>
+
+---
+
+## Quiz: Teste Seus Conhecimentos
+
+<Quiz
+  title="Avalie seu aprendizado"
+  questions={[
+    {
+      question: "Qual é a primeira fonte que deve ser consultada para verificar um CPF?",
+      options: [
+        "Portal da Transparência",
+        "TSE",
+        "Receita Federal",
+        "CEIS/CNEP"
+      ],
+      correctIndex: 2,
+      explanation: "A Receita Federal é a fonte primária para verificar a situação cadastral do CPF, confirmando se está regular, suspenso ou cancelado."
+    },
+    {
+      question: "Qual dessas situações é um red flag na análise de CPF?",
+      options: [
+        "CPF com situação Regular",
+        "Pessoa sem filiação partidária",
+        "CPF de pessoa falecida em uso ativo",
+        "Pessoa sem candidaturas políticas"
+      ],
+      correctIndex: 2,
+      explanation: "Um CPF de pessoa falecida sendo usado ativamente é forte indicador de fraude de identidade."
+    },
+    {
+      question: "É legal comprar dados de CPF em sites não oficiais?",
+      options: [
+        "Sim, se for para uso comercial",
+        "Sim, se os dados forem públicos",
+        "Não, viola a LGPD",
+        "Depende da finalidade"
+      ],
+      correctIndex: 2,
+      explanation: "Comprar dados de fontes não oficiais viola a LGPD e pode caracterizar crime, independentemente da finalidade."
+    }
+  ]}
+/>
+
+## Recursos Adicionais
+
+<LeadCaptureCard
+  title="Checklist Completo de Verificação de CPF"
+  description="Lista com 25 pontos de verificação, todas as fontes públicas e template de relatório profissional."
+  resourceType="checklist"
+  downloadUrl="/downloads/checklist-cpf.pdf"
+  benefits={[
+    "25 pontos de verificação organizados por categoria",
+    "Links diretos para todas as fontes oficiais",
+    "Template de relatório em formato editável",
+    "Atualizações gratuitas por email"
+  ]}
+  fileSize="245 KB"
+  pages={8}
+/>
+
+<DownloadCard
+  title="Planilha de Due Diligence"
+  description="Template para organizar suas verificações de forma profissional"
+  href="/downloads/template-due-diligence.xlsx"
+  fileType="xls"
+  fileSize="128 KB"
+/>

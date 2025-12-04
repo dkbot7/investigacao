@@ -1,0 +1,354 @@
+---
+title: "TSE: Como Consultar Candidaturas e Doações Eleitorais"
+excerpt: "Guia completo para consultar candidaturas, declarações de bens e doações eleitorais no Tribunal Superior Eleitoral - dados essenciais para due diligence política."
+coverImage: "https://picsum.photos/seed/tse-brasil/800/450"
+authorId: "dani-kaloi"
+contentType: "tutorial"
+topicId: "osint-brasil"
+skillLevel: "iniciante"
+tags:
+  - tse
+  - candidaturas
+  - doações eleitorais
+  - fontes públicas
+  - due diligence
+publishedAt: "2025-12-02T10:00:00Z"
+series:
+  id: "fontes-publicas-brasil"
+  name: "Fontes Públicas Brasil"
+  part: 2
+featured: false
+---
+
+<SeriesNavigation
+  seriesName="Fontes Públicas Brasil"
+  seriesSlug="fontes-publicas-brasil"
+  seriesDescription="Série completa sobre como consultar cada fonte pública brasileira para investigação digital"
+  currentPart={2}
+  totalParts={10}
+  posts={[
+    { slug: "receita-federal-cpf-cnpj", title: "Receita Federal: CPF e CNPJ", partNumber: 1, isPublished: true },
+    { slug: "tse-candidaturas-doacoes", title: "TSE: Candidaturas e Doações", partNumber: 2, isPublished: true },
+    { slug: "portal-transparencia-ceis-cnep", title: "Portal da Transparência: CEIS e CNEP", partNumber: 3, isPublished: false },
+    { slug: "tribunais-processos-judiciais", title: "Tribunais: Processos Judiciais", partNumber: 4, isPublished: false },
+    { slug: "inss-dataprev-beneficios", title: "INSS e Dataprev: Benefícios", partNumber: 5, isPublished: false },
+    { slug: "juntas-comerciais-empresas", title: "Juntas Comerciais: Empresas", partNumber: 6, isPublished: false },
+    { slug: "cartorios-imoveis-protestos", title: "Cartórios: Imóveis e Protestos", partNumber: 7, isPublished: false },
+    { slug: "detran-veiculos", title: "DETRAN: Veículos", partNumber: 8, isPublished: false },
+    { slug: "diarios-oficiais", title: "Diários Oficiais", partNumber: 9, isPublished: false },
+    { slug: "redes-sociais-fonte", title: "Redes Sociais como Fonte OSINT", partNumber: 10, isPublished: false }
+  ]}
+  previousPost={{ slug: "receita-federal-cpf-cnpj", title: "Receita Federal: CPF e CNPJ" }}
+  nextPost={{ slug: "portal-transparencia-ceis-cnep", title: "Portal da Transparência: CEIS e CNEP" }}
+/>
+
+O **Tribunal Superior Eleitoral (TSE)** é uma das fontes mais ricas de informação pública no Brasil. No segundo episódio da série "Fontes Públicas Brasil", vamos explorar como consultar candidaturas, declarações de bens e doações eleitorais.
+
+## Por Que Consultar o TSE?
+
+<Callout type="info" title="Fonte de Dados Única">
+  O TSE é a única fonte que revela declarações de bens de pessoas que se candidataram a cargos eletivos, incluindo histórico de evolução patrimonial ao longo das eleições.
+</Callout>
+
+O TSE oferece informações valiosas para due diligence:
+
+1. **Histórico de candidaturas** - Se a pessoa já se candidatou e em quais partidos
+2. **Declarações de bens** - Patrimônio declarado pelo candidato
+3. **Doações recebidas** - Quem financiou as campanhas
+4. **Doações realizadas** - Se a pessoa doou para campanhas políticas
+5. **Filiação partidária** - Histórico de vínculos partidários
+6. **Situação das candidaturas** - Deferidas, indeferidas, cassadas
+
+<KeyStat
+  value="600K+"
+  label="Candidatos nas eleições 2024"
+  source="TSE, 2024"
+  type="info"
+  description="Entre prefeitos, vereadores e vices em todo o Brasil"
+/>
+
+## Consulta de Candidaturas
+
+### DivulgaCand - Portal de Candidaturas
+
+O DivulgaCand é o portal oficial do TSE para consulta de candidaturas:
+
+<FileLocation
+  title="DivulgaCand - Candidaturas"
+  paths={[
+    {
+      platform: "web",
+      path: "https://divulgacandcontas.tse.jus.br/divulga/",
+      description: "Portal oficial do TSE - Consulta de candidaturas por eleição"
+    }
+  ]}
+  forensicValue="Revela histórico completo de candidaturas, patrimônio declarado e situação eleitoral"
+/>
+
+### O Que Você Consegue Verificar
+
+Para cada candidatura, o TSE disponibiliza:
+
+- **Dados pessoais**: Nome, CPF (parcial), data de nascimento
+- **Dados da candidatura**: Partido, coligação, cargo disputado
+- **Número de urna e situação**: Se foi eleito, não eleito, suplente
+- **Declaração de bens**: Lista completa do patrimônio declarado
+- **Receitas e despesas de campanha**: Quem doou e como o dinheiro foi gasto
+
+<Callout type="tip" title="Dica de Investigador">
+  Compare a **declaração de bens** do mesmo candidato em diferentes eleições. Crescimento patrimonial incompatível com a renda declarada pode indicar problemas.
+</Callout>
+
+### Declaração de Bens - Ouro Puro
+
+A declaração de bens é obrigatória para todos os candidatos e inclui:
+
+<ComparisonTable
+  title="Tipos de Bens Declarados"
+  headers={["Categoria", "O que inclui", "Valor Investigativo"]}
+  items={[
+    { feature: "Imóveis", values: ["Casas, apartamentos, terrenos, fazendas", "Alto - Cruzar com cartórios"] },
+    { feature: "Veículos", values: ["Carros, motos, embarcações, aeronaves", "Alto - Cruzar com DETRAN"] },
+    { feature: "Participações", values: ["Cotas de empresas, ações", "Muito Alto - Cruzar com Receita"] },
+    { feature: "Aplicações", values: ["Poupança, fundos, previdência", "Médio - Valores totais"] },
+    { feature: "Outros", values: ["Joias, obras de arte, gado", "Variável"] }
+  ]}
+/>
+
+## Consulta de Doações Eleitorais
+
+### Repositório de Dados Eleitorais
+
+O TSE disponibiliza todos os dados de prestação de contas em formato aberto:
+
+<FileLocation
+  title="Repositório de Dados Eleitorais"
+  paths={[
+    {
+      platform: "web",
+      path: "https://dadosabertos.tse.jus.br/",
+      description: "Portal de dados abertos com CSVs de todas as eleições"
+    }
+  ]}
+  forensicValue="Permite análise em massa de doadores e recebedores de doações eleitorais"
+/>
+
+### Por Que Doações São Importantes?
+
+<Callout type="warning" title="Red Flag de Compliance">
+  Pessoas que realizam doações eleitorais significativas frequentemente têm interesses em decisões governamentais. Em processos de due diligence de PEPs, sempre verifique o histórico de doações.
+</Callout>
+
+As doações revelam:
+
+1. **Conexões políticas** - Com quais políticos a pessoa tem vínculos
+2. **Capacidade financeira** - Doações indicam poder aquisitivo
+3. **Interesses setoriais** - Empresas que doam para parlamentares de comissões específicas
+4. **Potenciais conflitos** - Fornecedores do governo que doam para gestores
+
+<KeyStat
+  value="R$ 4.9 Bi"
+  label="Total de doações nas eleições 2022"
+  source="TSE, 2022"
+  type="success"
+  description="Inclui fundo eleitoral, doações de pessoas físicas e autofinanciamento"
+/>
+
+## Filiação Partidária
+
+### Sistema de Filiação Partidária
+
+O TSE mantém registro de todas as filiações partidárias do Brasil:
+
+<FileLocation
+  title="Filiação Partidária"
+  paths={[
+    {
+      platform: "web",
+      path: "https://filiaweb.tse.jus.br/filiaweb/",
+      description: "Consulta de filiação partidária por CPF ou nome"
+    }
+  ]}
+  forensicValue="Identifica vínculo partidário atual e histórico de mudanças de partido"
+/>
+
+A consulta de filiação mostra:
+
+- **Partido atual** (se houver)
+- **Data da filiação**
+- **Histórico de filiações anteriores**
+- **Situação** (regular, cancelada, desfiliado)
+
+<Callout type="legal" title="Relevância para Compliance">
+  Funcionários públicos filiados a partidos podem ter restrições específicas. Sempre verifique a filiação em processos de due diligence para cargos públicos.
+</Callout>
+
+## Checklist de Consulta TSE
+
+<Timeline
+  title="Processo de Verificação TSE"
+  items={[
+    {
+      date: "Passo 1",
+      title: "Consultar Filiação Partidária",
+      description: "Verificar se a pessoa tem ou teve filiação partidária",
+      completed: true
+    },
+    {
+      date: "Passo 2",
+      title: "Buscar Histórico de Candidaturas",
+      description: "Pesquisar em todas as eleições desde 2002",
+      completed: true
+    },
+    {
+      date: "Passo 3",
+      title: "Analisar Declarações de Bens",
+      description: "Comparar evolução patrimonial entre eleições",
+      completed: true
+    },
+    {
+      date: "Passo 4",
+      title: "Verificar Doações Recebidas",
+      description: "Identificar financiadores de campanha",
+      completed: false
+    },
+    {
+      date: "Passo 5",
+      title: "Verificar Doações Realizadas",
+      description: "Buscar se a pessoa doou para campanhas",
+      completed: false
+    },
+    {
+      date: "Passo 6",
+      title: "Cruzar com Outras Fontes",
+      description: "CEIS, tribunais, Receita Federal",
+      completed: false
+    }
+  ]}
+/>
+
+## Casos de Uso em Due Diligence
+
+### Cenário 1: Verificação de PEP
+
+Ao verificar se alguém é uma **Pessoa Exposta Politicamente (PEP)**:
+
+1. Consulte filiação partidária atual
+2. Verifique candidaturas - mesmo não eleitos são considerados PEPs temporariamente
+3. Analise doações significativas recebidas ou realizadas
+
+### Cenário 2: Análise de Fornecedor Público
+
+Para empresas que fornecem para o governo:
+
+1. Identifique os sócios via Receita Federal
+2. Consulte se os sócios têm filiação partidária
+3. Verifique doações realizadas por sócios e pela empresa
+4. Cruze com contratos públicos para identificar conflitos
+
+### Cenário 3: Background de Executivo
+
+Para verificação de executivos de alto escalão:
+
+1. Consulte histórico de candidaturas
+2. Analise evolução patrimonial nas declarações de bens
+3. Verifique conexões políticas via doações
+
+## Limitações e Cuidados
+
+### O Que o TSE NÃO Informa
+
+- Patrimônio atual (apenas o declarado na última candidatura)
+- Pessoas que nunca se candidataram
+- Doações para partidos que não foram contabilizadas
+- Bens omitidos na declaração
+
+### Prazo de Disponibilidade
+
+<Callout type="info" title="Histórico Disponível">
+  O TSE disponibiliza dados eleitorais desde 1945, mas os dados digitalizados mais completos estão disponíveis a partir de 2002. A consulta online de candidaturas está disponível desde 2004.
+</Callout>
+
+## Próximo Episódio
+
+No próximo episódio da série, vamos explorar o **Portal da Transparência** - fonte essencial para verificar:
+- **CEIS** - Cadastro de Empresas Inidôneas e Suspensas
+- **CNEP** - Cadastro Nacional de Empresas Punidas
+- **CEPIM** - Cadastro de Entidades Privadas Sem Fins Lucrativos Impedidas
+- Servidores públicos e suas remunerações
+
+<CTABanner
+  type="trial"
+  title="Consulte o TSE Automaticamente"
+  description="O Investigaree cruza automaticamente dados do TSE com outras fontes públicas para identificar riscos políticos."
+  features={["Candidaturas", "Doações", "Filiações", "Cruzamento automático"]}
+/>
+
+---
+
+## Quiz: Teste Seu Conhecimento
+
+<Quiz
+  title="TSE - Fundamentos"
+  questions={[
+    {
+      question: "Qual documento do TSE é considerado mais valioso para verificar patrimônio de candidatos?",
+      options: ["Filiação partidária", "Declaração de bens", "Número de urna", "Prestação de contas"],
+      correctIndex: 1,
+      explanation: "A declaração de bens revela todo o patrimônio que o candidato declarou possuir, permitindo análise de evolução patrimonial."
+    },
+    {
+      question: "Por que é importante verificar doações eleitorais em due diligence?",
+      options: [
+        "Apenas para cumprir requisitos legais",
+        "Para identificar conexões políticas e potenciais conflitos de interesse",
+        "Porque doações são ilegais",
+        "Apenas para empresas públicas"
+      ],
+      correctIndex: 1,
+      explanation: "Doações eleitorais revelam conexões políticas que podem representar conflitos de interesse, especialmente em contratações com o governo."
+    },
+    {
+      question: "Desde quando o TSE disponibiliza dados eleitorais digitalizados completos?",
+      options: ["1945", "1988", "2002", "2010"],
+      correctIndex: 2,
+      explanation: "Embora o TSE tenha registros desde 1945, os dados digitalizados mais completos estão disponíveis a partir de 2002."
+    }
+  ]}
+/>
+
+<LeadCaptureCard
+  title="Checklist de Due Diligence Político"
+  description="Lista completa de verificações para identificar riscos políticos em processos de due diligence."
+  resourceType="checklist"
+  downloadUrl="/downloads/checklist-due-diligence-politico.pdf"
+  benefits={[
+    "18 pontos de verificação",
+    "Fontes públicas recomendadas",
+    "Red flags a observar",
+    "Template preenchível"
+  ]}
+  fileSize="245 KB"
+  pages={4}
+/>
+
+<SeriesNavigation
+  seriesName="Fontes Públicas Brasil"
+  seriesSlug="fontes-publicas-brasil"
+  currentPart={2}
+  totalParts={10}
+  posts={[
+    { slug: "receita-federal-cpf-cnpj", title: "Receita Federal: CPF e CNPJ", partNumber: 1, isPublished: true },
+    { slug: "tse-candidaturas-doacoes", title: "TSE: Candidaturas e Doações", partNumber: 2, isPublished: true },
+    { slug: "portal-transparencia-ceis-cnep", title: "Portal da Transparência: CEIS e CNEP", partNumber: 3, isPublished: false },
+    { slug: "tribunais-processos-judiciais", title: "Tribunais: Processos Judiciais", partNumber: 4, isPublished: false },
+    { slug: "inss-dataprev-beneficios", title: "INSS e Dataprev: Benefícios", partNumber: 5, isPublished: false },
+    { slug: "juntas-comerciais-empresas", title: "Juntas Comerciais: Empresas", partNumber: 6, isPublished: false },
+    { slug: "cartorios-imoveis-protestos", title: "Cartórios: Imóveis e Protestos", partNumber: 7, isPublished: false },
+    { slug: "detran-veiculos", title: "DETRAN: Veículos", partNumber: 8, isPublished: false },
+    { slug: "diarios-oficiais", title: "Diários Oficiais", partNumber: 9, isPublished: false },
+    { slug: "redes-sociais-fonte", title: "Redes Sociais como Fonte OSINT", partNumber: 10, isPublished: false }
+  ]}
+  previousPost={{ slug: "receita-federal-cpf-cnpj", title: "Receita Federal: CPF e CNPJ" }}
+  nextPost={{ slug: "portal-transparencia-ceis-cnep", title: "Portal da Transparência: CEIS e CNEP" }}
+/>

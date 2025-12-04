@@ -1,7 +1,7 @@
 # investigaree - Documentacao Tecnica
 
-**Ultima atualizacao**: 30 de Novembro de 2025
-**Versao**: 1.0.0
+**Ultima atualizacao**: 02 de Dezembro de 2025
+**Versao**: 1.1.0
 
 ---
 
@@ -38,6 +38,7 @@
 | **Vinculos Empresariais** | Participacao societaria em empresas |
 | **Beneficios Sociais** | Auxilio Emergencial, BPC, Bolsa Familia |
 | **Relatorios PDF** | Geracao automatica de relatorios |
+| **Investigacoes Personalizadas** | Solicitacao de investigacoes sob demanda |
 
 ### Advisory Board
 
@@ -291,7 +292,10 @@ investigaree/
 | `/api/auth/sync` | POST | Sincronizar usuario |
 | `/api/leads` | POST | Capturar lead |
 | `/api/chatbot/message` | POST | Consultas automatizadas |
-| `/api/investigation` | POST | Solicitar investigacao |
+| `/api/investigation` | POST | Solicitar investigacao (email) |
+| `/api/investigations` | POST | Criar investigacao (autenticado) |
+| `/api/investigations` | GET | Listar investigacoes do usuario |
+| `/api/investigations/import` | POST | Importar lote de investigacoes |
 | `/api/consultas/cep/:cep` | GET | Consultar CEP |
 | `/api/consultas/cnpj/:cnpj` | GET | Consultar CNPJ |
 | `/api/infosimples/*` | GET/POST | Consultas Infosimples |
@@ -366,6 +370,7 @@ O banco de dados utiliza Cloudflare D1 (SQLite). Para detalhes completos:
 | `user_sancoes` | Sancoes do usuario |
 | `user_beneficios` | Beneficios do usuario |
 | `user_settings` | Configuracoes do usuario |
+| `user_investigacoes` | Solicitacoes de investigacao do usuario |
 
 #### Administrativo
 
@@ -600,4 +605,4 @@ http://localhost:5173 (dev)
 ---
 
 **Documento mantido por**: Equipe investigaree
-**Ultima atualizacao**: 30 de Novembro de 2025
+**Ultima atualizacao**: 02 de Dezembro de 2025

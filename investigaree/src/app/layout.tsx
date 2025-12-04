@@ -5,6 +5,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "@/components/theme-provider";
 import ClientWidgets from "@/components/ClientWidgets";
 import Providers from "@/components/Providers";
+import { CookieBanner } from "@/components/legal";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -116,6 +117,7 @@ export default function RootLayout({
             <Providers>
               {children}
               <ClientWidgets />
+              <CookieBanner />
             </Providers>
           </AuthProvider>
         </ThemeProvider>

@@ -250,8 +250,9 @@ app.post('/', async (c) => {
       prazo_desejado
     } = body
 
-    if (!nome || !documento) {
-      return c.json({ error: true, message: 'Nome e documento sao obrigatorios' }, 400)
+    // Validação: precisa de pelo menos nome OU documento
+    if (!nome && !documento) {
+      return c.json({ error: true, message: 'Preencha pelo menos o Nome ou o Documento' }, 400)
     }
 
     const id = crypto.randomUUID()
@@ -270,13 +271,15 @@ app.post('/', async (c) => {
       is_grupo ? 1 : 0, grupo_nome || null, grupo_total_documentos,
       categoria, nivel_urgencia,
       email || null,
-      telefones ? JSON.stringify(telefones) : null,
+      // telefones e redes_sociais já vêm como string do frontend
+      telefones || null,
       endereco || null,
-      redes_sociais ? JSON.stringify(redes_sociais) : null,
+      redes_sociais || null,
       placa_veiculo || null,
       rg || null, estado_civil || null, profissao || null, data_nascimento || null,
       motivo_investigacao || null,
-      escopo_investigacao ? JSON.stringify(escopo_investigacao) : null,
+      // escopo_investigacao já vem como string do frontend
+      escopo_investigacao || null,
       observacoes || null, prazo_desejado || null
     ).run()
 

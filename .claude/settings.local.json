@@ -10,7 +10,10 @@
       "Bash(node scripts/consolidar-empregados-comurg.js:*)",
       "Bash(find:*)",
       "WebFetch(domain:dados.gov.br)",
-      "WebFetch(domain:dadosabertos.rfb.gov.br)"
+      "WebFetch(domain:dadosabertos.rfb.gov.br)",
+      "Bash(timeout 20 npx wrangler tail:*)",
+      "Bash(npm run build:*)",
+      "Bash(dir \"C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\src\\app\\blog\\[slug]\")"
     ],
     "deny": [],
     "ask": []

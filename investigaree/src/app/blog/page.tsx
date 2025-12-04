@@ -1,0 +1,259 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Library, Zap, Mail, Search } from "lucide-react";
+import Header from "@/components/landing/Header";
+import Footer from "@/components/landing/Footer";
+import {
+  BlogHero,
+  FeaturedPosts,
+  BlogFilters,
+  BlogCard,
+  BlogPagination,
+  BlogSkeleton,
+  QuickFilters,
+  BlogSidebar
+} from "@/components/blog";
+import { Input } from "@/components/ui/input";
+import { useBlog } from "@/hooks/useBlog";
+
+export default function BlogPage() {
+  const {
+    posts,
+    featuredPosts,
+    popularPosts,
+    topics,
+    pagination,
+    loading,
+    error,
+    filters,
+    setFilters,
+    setPage
+  } = useBlog();
+
+  const [showFullFilters, setShowFullFilters] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFilters({ ...filters, search: searchValue });
+  };
+
+  return (
+    <>
+      <Header />
+      <main className="min-h-screen bg-navy-950">
+        {/* Hero Section - Posicionamento estratégico */}
+        <BlogHero />
+
+        {/* Featured Posts - Inovações em destaque */}
+        <FeaturedPosts posts={featuredPosts} />
+
+        {/* Main Content - Biblioteca de artigos */}
+        <section id="artigos" className="py-16 scroll-mt-20">
+          <div className="container mx-auto px-4 sm:px-8 lg:px-12">
+            {/* Título e busca */}
+            <div className="mb-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-navy-800 border border-gold-500/10">
+                    <Library className="w-6 h-6 text-gold-500" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-white">Biblioteca DFIR</h2>
+                    <p className="text-sm text-navy-400">
+                      Artigos técnicos, tutoriais e casos práticos para todos os níveis
+                    </p>
+                  </div>
+                </div>
+
+                {/* Busca rápida */}
+                <form onSubmit={handleSearch} className="w-full lg:w-auto lg:min-w-[320px]">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-navy-400" />
+                    <Input
+                      type="text"
+                      placeholder="Buscar artigos..."
+                      value={searchValue}
+                      onChange={(e) => setSearchValue(e.target.value)}
+                      className="pl-10 pr-4 bg-navy-900/50 border-gold-500/20 text-white placeholder:text-navy-400 focus:border-gold-500/50"
+                    />
+                  </div>
+                </form>
+              </motion.div>
+
+              {/* Quick Filters - Filtros facetados estilo Blackpanda */}
+              <QuickFilters
+                filters={filters}
+                onFiltersChange={setFilters}
+                onOpenFullFilters={() => setShowFullFilters(!showFullFilters)}
+                totalResults={pagination.total}
+                topics={topics}
+              />
+
+              {/* Filtros expandidos */}
+              {showFullFilters && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="mt-4"
+                >
+                  <BlogFilters
+                    filters={filters}
+                    onFiltersChange={setFilters}
+                    topics={topics}
+                  />
+                </motion.div>
+              )}
+            </div>
+
+            {/* Layout com Sidebar */}
+            <div className="flex flex-col lg:flex-row gap-8">
+              {/* Conteúdo principal */}
+              <div className="flex-1 min-w-0">
+                {/* Estado de erro */}
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-center py-12"
+                  >
+                    <p className="text-red-400">{error}</p>
+                  </motion.div>
+                )}
+
+                {/* Estado de loading */}
+                {loading && <BlogSkeleton count={6} />}
+
+                {/* Lista de posts */}
+                {!loading && !error && (
+                  <>
+                    {posts.length > 0 ? (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                      >
+                        {posts.map((post, index) => (
+                          <BlogCard key={post.id} post={post} index={index} />
+                        ))}
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="text-center py-16"
+                      >
+                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-navy-800 flex items-center justify-center">
+                          <Library className="w-8 h-8 text-navy-500" />
+                        </div>
+                        <h3 className="text-lg font-medium text-white mb-2">
+                          Nenhum artigo encontrado
+                        </h3>
+                        <p className="text-navy-400 mb-4">
+                          Tente ajustar os filtros ou termos de busca
+                        </p>
+                        <button
+                          onClick={() => {
+                            setFilters({});
+                            setSearchValue("");
+                          }}
+                          className="text-gold-500 hover:text-gold-400 font-medium"
+                        >
+                          Limpar filtros
+                        </button>
+                      </motion.div>
+                    )}
+
+                    {/* Paginação */}
+                    {posts.length > 0 && (
+                      <BlogPagination pagination={pagination} onPageChange={setPage} />
+                    )}
+                  </>
+                )}
+              </div>
+
+              {/* Sidebar */}
+              <div className="w-full lg:w-80 flex-shrink-0">
+                <div className="lg:sticky lg:top-24">
+                  <BlogSidebar
+                    popularPosts={popularPosts}
+                    filters={filters}
+                    onFiltersChange={setFilters}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA para newsletter - Comunidade */}
+        <section className="py-20 border-t border-gold-500/10 bg-gradient-to-b from-navy-950 to-navy-900">
+          <div className="container mx-auto px-4 sm:px-8 lg:px-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mx-auto text-center"
+            >
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 mb-6">
+                <Mail className="w-4 h-4 text-gold-500" />
+                <span className="text-sm text-gold-400 font-medium">Newsletter DFIR</span>
+              </div>
+
+              <h3 className="text-3xl font-bold text-white mb-4">
+                Mantenha-se à frente nas investigações digitais
+              </h3>
+              <p className="text-navy-300 mb-8 text-lg">
+                Receba semanalmente as últimas inovações em forense digital,
+                cases práticos e atualizações sobre LGPD e legislação brasileira.
+              </p>
+
+              <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-6">
+                <input
+                  type="email"
+                  placeholder="Seu melhor email profissional"
+                  className="flex-1 px-5 py-3.5 rounded-xl bg-navy-800/50 border border-gold-500/20 text-white placeholder:text-navy-400 focus:outline-none focus:border-gold-500/50 transition-colors"
+                />
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-8 py-3.5 bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold rounded-xl transition-colors"
+                >
+                  Inscrever-se
+                </motion.button>
+              </form>
+
+              {/* Trust elements */}
+              <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-navy-500">
+                <span className="flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                  Gratuito
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                  Sem spam
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                  Cancele quando quiser
+                </span>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <Footer />
+      </main>
+    </>
+  );
+}

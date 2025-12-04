@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Globe, Menu, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Globe, Menu, X, ChevronDown, BookOpen, Layers, Wrench, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -16,6 +16,19 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  const [isConteudoOpen, setIsConteudoOpen] = useState(false);
+  const conteudoRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (conteudoRef.current && !conteudoRef.current.contains(event.target as Node)) {
+        setIsConteudoOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // Handle scroll for sticky header with blur
   useEffect(() => {
@@ -51,6 +64,11 @@ export default function Header() {
       home: "Home",
       services: "Serviços",
       about: "Quem Somos",
+      content: "Conteúdo",
+      blog: "Blog",
+      series: "Séries",
+      glossary: "Glossário",
+      resources: "Recursos",
       contact: "Contato",
       theme: "Tema",
       language: "Idioma",
@@ -61,6 +79,11 @@ export default function Header() {
       home: "Home",
       services: "Services",
       about: "About",
+      content: "Content",
+      blog: "Blog",
+      series: "Series",
+      glossary: "Glossary",
+      resources: "Resources",
       contact: "Contact",
       theme: "Theme",
       language: "Language",
@@ -70,6 +93,14 @@ export default function Header() {
   };
 
   const t = menuItems[language];
+
+  // Submenu items for Conteúdo dropdown
+  const conteudoItems = [
+    { label: t.blog, href: "/blog", icon: FileText, description: language === "pt" ? "Artigos e tutoriais" : "Articles and tutorials" },
+    { label: t.series, href: "/series", icon: Layers, description: language === "pt" ? "Conteúdo em série" : "Serial content" },
+    { label: t.glossary, href: "/glossario", icon: BookOpen, description: language === "pt" ? "Termos técnicos" : "Technical terms" },
+    { label: t.resources, href: "/recursos", icon: Wrench, description: language === "pt" ? "Ferramentas e cursos" : "Tools and courses" },
+  ];
 
   return (
     <motion.header
@@ -143,7 +174,6 @@ export default function Header() {
               { label: t.home, href: "/" },
               { label: t.services, href: "/servicos" },
               { label: t.about, href: "/quemsomos" },
-              { label: t.contact, href: "/contato" }
             ].map((item, index) => (
               <motion.div key={item.href}>
                 <Link
@@ -168,6 +198,78 @@ export default function Header() {
                 </Link>
               </motion.div>
             ))}
+
+            {/* Conteúdo Dropdown */}
+            <div ref={conteudoRef} className="relative">
+              <motion.button
+                onClick={() => setIsConteudoOpen(!isConteudoOpen)}
+                className="relative text-white/90 hover:text-white font-medium text-[15px] transition-all duration-200 group inline-flex items-center gap-1"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.4 }}
+              >
+                <span>{t.content}</span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isConteudoOpen ? "rotate-180" : ""}`} />
+              </motion.button>
+
+              <AnimatePresence>
+                {isConteudoOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-navy-900/95 backdrop-blur-lg border border-gold-500/20 rounded-xl shadow-xl overflow-hidden"
+                  >
+                    <div className="p-2">
+                      {conteudoItems.map((item, index) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={() => setIsConteudoOpen(false)}
+                            className="flex items-start gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors group"
+                          >
+                            <div className="p-2 rounded-lg bg-gold-500/10 text-gold-500 group-hover:bg-gold-500/20 transition-colors">
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <div className="text-white font-medium text-sm">{item.label}</div>
+                              <div className="text-navy-400 text-xs">{item.description}</div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Contato */}
+            <motion.div>
+              <Link
+                href="/contato"
+                className="relative text-white/90 hover:text-white font-medium text-[15px] transition-all duration-200 group inline-block"
+              >
+                <motion.span
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9, duration: 0.4 }}
+                  whileHover={{ y: -2 }}
+                  className="relative block"
+                >
+                  {t.contact}
+                  <motion.span
+                    className="absolute bottom-0 left-0 h-[2px] bg-gold-500"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: "100%" }}
+                    transition={{ duration: 0.2 }}
+                  />
+                </motion.span>
+              </Link>
+            </motion.div>
           </motion.div>
 
           {/* Theme, Language & Auth Buttons - Desktop */}
@@ -296,7 +398,6 @@ export default function Header() {
                     { label: t.home, href: "/" },
                     { label: t.services, href: "/servicos" },
                     { label: t.about, href: "/quemsomos" },
-                    { label: t.contact, href: "/contato" }
                   ].map((item, index) => (
                     <motion.div
                       key={item.href}
@@ -313,6 +414,50 @@ export default function Header() {
                       </Link>
                     </motion.div>
                   ))}
+
+                  {/* Conteúdo Section - Mobile */}
+                  <motion.div
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.3 }}
+                    className="pt-2"
+                  >
+                    <div className="text-gold-500 text-sm font-medium uppercase tracking-wider px-6 py-2">
+                      {t.content}
+                    </div>
+                    <div className="space-y-1">
+                      {conteudoItems.map((item, index) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={closeMobileMenu}
+                            className="flex items-center gap-3 text-white text-xl font-medium py-3 px-6 rounded-lg hover:bg-white/5 transition-all"
+                          >
+                            <Icon className="w-5 h-5 text-gold-500" />
+                            {item.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+
+                  {/* Contato */}
+                  <motion.div
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.3 }}
+                    className="pt-2"
+                  >
+                    <Link
+                      href="/contato"
+                      onClick={closeMobileMenu}
+                      className="block text-white text-2xl font-semibold py-4 px-6 rounded-lg hover:bg-white/5 transition-all border-t border-gold-500/10"
+                    >
+                      {t.contact}
+                    </Link>
+                  </motion.div>
                 </nav>
 
                 {/* Auth Buttons - Mobile */}

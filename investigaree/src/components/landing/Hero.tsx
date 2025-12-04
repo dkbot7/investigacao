@@ -12,31 +12,37 @@ export default function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
-  // 🔥 Headlines rotativas focadas nos públicos-alvo
+  // Headlines rotativas - Posicionamento: Autoridade Forense + Proteção Patrimonial
   const headlines = useMemo(() => [
     {
-      main: "INVESTIGAÇÃO DIGITAL EM ESCALA",
-      sub: "Due diligence completa com tecnologia de ponta"
+      main: "INVESTIGAÇÃO DIGITAL",
+      sub: "Metodologia forense validada por Perito Criminal Oficial",
+      highlight: "FORENSE"
     },
     {
-      main: "PROTEÇÃO PATRIMONIAL EM DIVÓRCIO",
-      sub: "70% dos divórcios têm ocultação de bens. Não seja a vítima."
+      main: "PROTEÇÃO PATRIMONIAL",
+      sub: "70% dos divórcios têm ocultação de bens. Descubra a verdade.",
+      highlight: "EM DIVÓRCIO"
     },
     {
-      main: "VAI INVESTIR NUMA STARTUP?",
-      sub: "Investigue o founder antes de investir"
+      main: "DUE DILIGENCE",
+      sub: "Background check completo antes de investir ou contratar",
+      highlight: "EMPRESARIAL"
     },
     {
-      main: "AUDITORIA DE FUNCIONÁRIOS",
-      sub: "Folha de pagamento x Óbitos x Acúmulos ilegais"
+      main: "AUDITORIA DIGITAL",
+      sub: "Folha de pagamento x Óbitos x Acúmulos ilegais",
+      highlight: "DE FUNCIONÁRIOS"
     },
     {
-      main: "PROTEÇÃO COMPLETA DA FAMÍLIA",
-      sub: "Funcionários domésticos, segurança digital dos filhos"
+      main: "PROTEÇÃO FAMILIAR",
+      sub: "Funcionários domésticos, segurança digital dos filhos",
+      highlight: "COMPLETA"
     },
     {
-      main: "DUE DILIGENCE EMPRESARIAL",
-      sub: "Background check completo para contratações seguras"
+      main: "ANÁLISE DE STARTUPS",
+      sub: "Investigue founders e sócios antes de aportar capital",
+      highlight: "PARA INVESTIDORES"
     }
   ], []);
 
@@ -175,60 +181,95 @@ export default function Hero() {
         initial="hidden"
         animate="visible"
       >
-        {/* Selo de Autoridade - Área de Segurança Privada */}
+        {/* Selo de Autoridade - Perito Criminal Oficial */}
         <motion.div
           className="flex justify-center mb-4 sm:mb-6"
           variants={badgeVariants}
         >
           <Badge
             variant="outline"
-            className="px-2.5 py-1 sm:px-3 sm:py-1.5 bg-gold-500/10 border-gold-500/40 backdrop-blur-sm text-gold-400 text-[10px] sm:text-xs font-medium"
+            className="px-3 py-1.5 sm:px-4 sm:py-2 bg-navy-900/80 border-gold-500/40 backdrop-blur-sm text-[10px] sm:text-xs font-medium flex items-center gap-2"
           >
-            🔒 Segurança Privada | Metodologia validada por Perito Criminal Oficial
+            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <span className="text-gold-400">Plataforma de Investigação Digital</span>
+            <span className="text-navy-400">|</span>
+            <span className="text-white">Validada por Perito Criminal Oficial</span>
           </Badge>
         </motion.div>
 
-        {/* Main Headline - Rotativo com as dores do Roberto */}
+        {/* Main Headline - Rotativo com destaque */}
         <motion.div
-          className="text-center space-y-3 sm:space-y-4 mb-6 sm:mb-8 min-h-[140px] sm:min-h-[160px] md:min-h-[180px] flex flex-col justify-center"
+          className="text-center space-y-2 sm:space-y-3 mb-6 sm:mb-8 min-h-[160px] sm:min-h-[180px] md:min-h-[200px] flex flex-col justify-center"
           variants={itemVariants}
         >
           <motion.h1
             key={`headline-${headlineIndex}`}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-white"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
           >
-            {headlines[headlineIndex].main}
+            <span className="text-white">{headlines[headlineIndex].main}</span>
+            <br />
+            <span
+              className="text-transparent bg-clip-text"
+              style={{
+                background: "linear-gradient(135deg, #D4AF37 0%, #F5D280 50%, #C9A032 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text"
+              }}
+            >
+              {headlines[headlineIndex].highlight}
+            </span>
           </motion.h1>
-          <motion.h2
+          <motion.p
             key={`subheadline-${headlineIndex}`}
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-[1.1]"
-            style={{
-              background: "linear-gradient(135deg, #FFFFFF 0%, #9FB3C8 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text"
-            }}
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-navy-300 font-medium max-w-3xl mx-auto px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             {headlines[headlineIndex].sub}
-          </motion.h2>
+          </motion.p>
         </motion.div>
 
-        {/* Subheadline - 5 Áreas de Proteção */}
+        {/* Trust Indicators */}
         <motion.div
-          className="text-center mb-6 sm:mb-8"
+          className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-6 sm:mb-8 px-4"
           variants={itemVariants}
         >
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 font-medium px-4 max-w-4xl mx-auto">
-            Protegemos <span className="text-gold-400">famílias</span>, <span className="text-gold-400">empresas</span>, <span className="text-gold-400">investidores</span>, <span className="text-gold-400">patrimônios</span> e <span className="text-gold-400">mulheres em divórcio</span>.
-          </p>
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-navy-400">
+            <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center">
+              <span className="text-gold-500 text-[10px]">1</span>
+            </div>
+            <span>Famílias</span>
+          </div>
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-navy-400">
+            <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center">
+              <span className="text-gold-500 text-[10px]">2</span>
+            </div>
+            <span>Empresas</span>
+          </div>
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-navy-400">
+            <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center">
+              <span className="text-gold-500 text-[10px]">3</span>
+            </div>
+            <span>Investidores</span>
+          </div>
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-navy-400">
+            <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center">
+              <span className="text-gold-500 text-[10px]">4</span>
+            </div>
+            <span>Patrimônios</span>
+          </div>
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-navy-400">
+            <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center">
+              <span className="text-gold-500 text-[10px]">5</span>
+            </div>
+            <span>Divórcio</span>
+          </div>
         </motion.div>
 
         {/* 🔥 ACESSIBILIDADE: CTA Principal com ARIA labels + Animações */}

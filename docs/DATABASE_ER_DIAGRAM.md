@@ -1,6 +1,6 @@
 # Diagrama ER - investigaree
 
-**Atualizado em:** 30/11/2025
+**Atualizado em:** 02/12/2025
 
 ## Diagrama de Entidade-Relacionamento
 
@@ -292,6 +292,35 @@ erDiagram
         INTEGER limite_funcionarios "Limite"
     }
 
+    user_investigacoes {
+        TEXT id PK "UUID"
+        TEXT user_id FK "ID do usuario"
+        TEXT nome "Nome do investigado"
+        TEXT documento "CPF ou CNPJ"
+        TEXT tipo_pessoa "fisica, juridica"
+        TEXT categoria "funcionarios, familia, etc"
+        TEXT status "pendente, em_andamento, concluida"
+        TEXT nivel_urgencia "baixa, media, alta, urgente"
+        TEXT rg "RG"
+        TEXT data_nascimento "Data nascimento"
+        TEXT estado_civil "Estado civil"
+        TEXT profissao "Profissao"
+        TEXT telefones "JSON de telefones"
+        TEXT email "Email"
+        TEXT endereco "Endereco"
+        TEXT redes_sociais "JSON de redes"
+        TEXT motivo_investigacao "Motivo"
+        TEXT escopo_investigacao "JSON escopo"
+        TEXT prazo_desejado "Prazo"
+        TEXT observacoes "Observacoes"
+        TEXT placa_veiculo "Placa"
+        INTEGER is_grupo "0 ou 1"
+        TEXT grupo_nome "Nome do grupo"
+        INTEGER grupo_total_documentos "Total docs grupo"
+        TEXT created_at "Data criacao"
+        TEXT updated_at "Data atualizacao"
+    }
+
     %% ==========================================
     %% ADMINISTRATIVO
     %% ==========================================
@@ -360,6 +389,7 @@ erDiagram
     user_funcionarios ||--o{ user_vinculos : "e socio"
     user_funcionarios ||--o{ user_sancoes : "sancionado"
     user_funcionarios ||--o{ user_beneficios : "recebe"
+    users ||--o{ user_investigacoes : "solicita"
 ```
 
 ---
@@ -405,6 +435,7 @@ erDiagram
 - **user_sancoes**: Sancoes do usuario
 - **user_beneficios**: Beneficios do usuario
 - **user_settings**: Configuracoes do usuario (plano, limites)
+- **user_investigacoes**: Solicitacoes de investigacao do usuario
 
 ### 5. Administrativo
 - **admin_alerts**: Sistema de alertas
@@ -504,6 +535,9 @@ flowchart TD
 | user_sancoes | idx_user_sancoes_user_id | user_id |
 | user_beneficios | idx_user_beneficios_user_id | user_id |
 | user_settings | idx_user_settings_user_id | user_id |
+| user_investigacoes | idx_user_investigacoes_user_id | user_id |
+| user_investigacoes | idx_user_investigacoes_status | status |
+| user_investigacoes | idx_user_investigacoes_documento | documento |
 
 ### Access Control
 

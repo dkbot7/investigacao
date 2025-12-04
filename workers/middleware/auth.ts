@@ -145,17 +145,14 @@ async function verifyFirebaseToken(
 
     const user = data.users[0]
 
-    // Verificar se token está expirado
-    const expiresAt = parseInt(user.validSince || '0') * 1000 + 3600000 // 1 hora
-    if (Date.now() > expiresAt) {
-      console.warn('[AUTH] Token expired')
-      return null
-    }
+    // Se o Firebase validou o token na API lookup, ele é válido
+    // Não precisamos verificar expiração manualmente - o Firebase já faz isso
+    console.log('[AUTH] Token validated for user:', user.email)
 
     return {
       uid: user.localId,
       email: user.email,
-      exp: expiresAt,
+      exp: Date.now() + 3600000, // 1 hora a partir de agora
     }
   } catch (error) {
     console.error('[AUTH] Firebase token verification error:', error)

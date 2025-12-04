@@ -1,0 +1,657 @@
+// Tipos para o Blog - Investigaree
+// Arquitetura Editorial inspirada em Forensic Focus, Blackpanda, Binalyze e Forensafe
+
+export interface BlogAuthor {
+  id: string;
+  name: string;
+  role: string;
+  avatar?: string;
+  bio?: string;
+  social?: {
+    linkedin?: string;
+    twitter?: string;
+  };
+}
+
+// ===== TIPOS DE CONTEÚDO (Content Types) =====
+// Inspirado em Forensic Focus: News, Articles, Interviews, Case Studies, Reviews
+export type ContentType =
+  | "artigo"      // Artigos técnicos aprofundados
+  | "noticia"     // Notícias e atualizações do setor
+  | "tutorial"    // Guias passo a passo
+  | "case-study"  // Estudos de caso práticos
+  | "review"      // Resenhas de ferramentas/cursos
+  | "entrevista"  // Entrevistas com especialistas
+  | "whitepaper"  // Documentos técnicos extensos
+  | "video"       // Conteúdo em vídeo
+  | "podcast";    // Episódios de podcast
+
+export interface ContentTypeInfo {
+  id: ContentType;
+  name: string;
+  namePlural: string;
+  description: string;
+  icon: string; // nome do ícone Lucide
+  color: string;
+}
+
+export const CONTENT_TYPES: ContentTypeInfo[] = [
+  {
+    id: "artigo",
+    name: "Artigo",
+    namePlural: "Artigos",
+    description: "Análises técnicas aprofundadas",
+    icon: "FileText",
+    color: "#D4AF37"
+  },
+  {
+    id: "noticia",
+    name: "Notícia",
+    namePlural: "Notícias",
+    description: "Novidades e atualizações do setor",
+    icon: "Newspaper",
+    color: "#3498DB"
+  },
+  {
+    id: "tutorial",
+    name: "Tutorial",
+    namePlural: "Tutoriais",
+    description: "Guias práticos passo a passo",
+    icon: "GraduationCap",
+    color: "#1ABC9C"
+  },
+  {
+    id: "case-study",
+    name: "Case Study",
+    namePlural: "Cases",
+    description: "Estudos de caso reais",
+    icon: "Briefcase",
+    color: "#9B59B6"
+  },
+  {
+    id: "review",
+    name: "Review",
+    namePlural: "Reviews",
+    description: "Análises de ferramentas e cursos",
+    icon: "Star",
+    color: "#F39C12"
+  },
+  {
+    id: "entrevista",
+    name: "Entrevista",
+    namePlural: "Entrevistas",
+    description: "Conversas com especialistas",
+    icon: "Mic",
+    color: "#E74C3C"
+  },
+  {
+    id: "whitepaper",
+    name: "White Paper",
+    namePlural: "White Papers",
+    description: "Documentos técnicos extensos",
+    icon: "BookOpen",
+    color: "#627D98"
+  },
+  {
+    id: "video",
+    name: "Vídeo",
+    namePlural: "Vídeos",
+    description: "Conteúdo audiovisual",
+    icon: "Play",
+    color: "#E74C3C"
+  },
+  {
+    id: "podcast",
+    name: "Podcast",
+    namePlural: "Podcasts",
+    description: "Episódios em áudio",
+    icon: "Headphones",
+    color: "#8E44AD"
+  }
+];
+
+// ===== TÓPICOS (Topics/Categories) =====
+// Alinhado ao Posicionamento B: Autoridade Forense + SaaS
+// Foco: Perito Criminal Oficial + Due Diligence Digital + Inteligência Patrimonial
+export interface BlogTopic {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  icon: string;
+  color: string;
+  order: number;
+}
+
+export const BLOG_TOPICS: BlogTopic[] = [
+  // ===== AUTORIDADE FORENSE (Diferencial Técnico) =====
+  {
+    id: "metodologia-forense",
+    name: "Metodologia Forense",
+    slug: "metodologia-forense",
+    description: "Como peritos criminais analisam evidências digitais com rigor científico",
+    icon: "Shield",
+    color: "#D4AF37", // Dourado - autoridade
+    order: 1
+  },
+  {
+    id: "laboratorio-pericial",
+    name: "Laboratório Pericial",
+    slug: "laboratorio-pericial",
+    description: "Análises técnicas detalhadas e procedimentos de perícia oficial",
+    icon: "FlaskConical",
+    color: "#1ABC9C",
+    order: 2
+  },
+
+  // ===== INTELIGÊNCIA DIGITAL (Core do Produto) =====
+  {
+    id: "osint-brasil",
+    name: "OSINT Brasil",
+    slug: "osint-brasil",
+    description: "Inteligência em fontes públicas brasileiras: TSE, Receita, CEIS, tribunais",
+    icon: "Search",
+    color: "#3498DB",
+    order: 3
+  },
+  {
+    id: "due-diligence",
+    name: "Due Diligence",
+    slug: "due-diligence",
+    description: "Verificação de integridade de pessoas e empresas antes de decisões críticas",
+    icon: "UserCheck",
+    color: "#27C685",
+    order: 4
+  },
+
+  // ===== PROTEÇÃO PATRIMONIAL (Personas Alvo) =====
+  {
+    id: "protecao-familiar",
+    name: "Proteção Familiar",
+    slug: "protecao-familiar",
+    description: "Segurança digital para famílias: funcionários domésticos, relacionamentos, filhos",
+    icon: "Home",
+    color: "#9B59B6",
+    order: 5
+  },
+  {
+    id: "protecao-empresarial",
+    name: "Proteção Empresarial",
+    slug: "protecao-empresarial",
+    description: "Background check corporativo, verificação de sócios e fornecedores",
+    icon: "Building2",
+    color: "#E67E22",
+    order: 6
+  },
+  {
+    id: "protecao-investimentos",
+    name: "Proteção de Investimentos",
+    slug: "protecao-investimentos",
+    description: "Due diligence para investidores: startups, M&A, fundadores",
+    icon: "TrendingUp",
+    color: "#2ECC71",
+    order: 7
+  },
+  {
+    id: "divorcio-patrimonio",
+    name: "Divórcio & Patrimônio",
+    slug: "divorcio-patrimonio",
+    description: "Proteção patrimonial em separações: ocultação de bens, investigação conjugal",
+    icon: "Scale",
+    color: "#E74C3C",
+    order: 8
+  },
+
+  // ===== CONHECIMENTO TÉCNICO (Autoridade) =====
+  {
+    id: "casos-praticos",
+    name: "Cases Práticos",
+    slug: "casos-praticos",
+    description: "Estudos de caso reais (anonimizados) de investigações bem-sucedidas",
+    icon: "Briefcase",
+    color: "#8E44AD",
+    order: 9
+  },
+  {
+    id: "red-flags",
+    name: "Red Flags",
+    slug: "red-flags",
+    description: "Sinais de alerta: como identificar fraudes, golpes e riscos ocultos",
+    icon: "AlertTriangle",
+    color: "#C0392B",
+    order: 10
+  },
+
+  // ===== COMPLIANCE & LEGAL =====
+  {
+    id: "lgpd-compliance",
+    name: "LGPD & Compliance",
+    slug: "lgpd-compliance",
+    description: "Investigação legal: limites, fontes públicas e proteção de dados",
+    icon: "FileCheck",
+    color: "#34495E",
+    order: 11
+  },
+
+  // ===== FERRAMENTAS & RECURSOS =====
+  {
+    id: "ferramentas-investigacao",
+    name: "Ferramentas",
+    slug: "ferramentas-investigacao",
+    description: "Recursos, APIs e tecnologias para investigação digital",
+    icon: "Wrench",
+    color: "#627D98",
+    order: 12
+  }
+];
+
+// ===== NÍVEIS DE HABILIDADE =====
+// Inspirado em Blackpanda: Beginner, Intermediate, Advanced
+export type SkillLevel = "iniciante" | "intermediario" | "avancado";
+
+export interface SkillLevelInfo {
+  id: SkillLevel;
+  name: string;
+  description: string;
+  color: string;
+  icon: string;
+}
+
+export const SKILL_LEVELS: SkillLevelInfo[] = [
+  {
+    id: "iniciante",
+    name: "Iniciante",
+    description: "Conceitos fundamentais e introduções",
+    color: "#27C685",
+    icon: "Sprout"
+  },
+  {
+    id: "intermediario",
+    name: "Intermediário",
+    description: "Conhecimento prático aplicado",
+    color: "#F39C12",
+    icon: "Flame"
+  },
+  {
+    id: "avancado",
+    name: "Avançado",
+    description: "Técnicas especializadas e complexas",
+    color: "#E74C3C",
+    icon: "Rocket"
+  }
+];
+
+// ===== INTERFACE DO POST ATUALIZADA =====
+export interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  coverImage: string;
+
+  // Metadados de autoria
+  author: BlogAuthor;
+
+  // Arquitetura editorial
+  contentType: ContentType;
+  topic: BlogTopic;
+  skillLevel: SkillLevel;
+  tags: string[];
+
+  // Datas
+  publishedAt: string;
+  updatedAt?: string;
+
+  // Métricas
+  readingTime: number; // em minutos
+  featured: boolean;
+  popular?: boolean;
+  views?: number;
+
+  // Mídia adicional
+  videoUrl?: string;
+  podcastUrl?: string;
+  downloadUrl?: string; // para whitepapers
+
+  // Série de conteúdo
+  series?: {
+    id: string;
+    name: string;
+    part: number;
+  };
+}
+
+// ===== FILTROS ATUALIZADOS =====
+export interface BlogFilters {
+  contentType?: ContentType;
+  topic?: string;
+  skillLevel?: SkillLevel;
+  tag?: string;
+  search?: string;
+  author?: string;
+}
+
+export interface BlogPagination {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
+export interface BlogResponse {
+  posts: BlogPost[];
+  pagination: BlogPagination;
+  topics: BlogTopic[];
+  contentTypes: ContentTypeInfo[];
+  skillLevels: SkillLevelInfo[];
+}
+
+// ===== SÉRIES DE CONTEÚDO =====
+// Para conteúdo seriado como Forensafe faz com apps
+export interface BlogSeries {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  coverImage: string;
+  posts: string[]; // IDs dos posts
+  topic: BlogTopic;
+  totalParts: number;
+  status: "em_andamento" | "completa";
+}
+
+// Séries pré-definidas alinhadas ao posicionamento
+export const BLOG_SERIES: Omit<BlogSeries, "posts" | "topic">[] = [
+  {
+    id: "fontes-publicas-brasil",
+    name: "Fontes Públicas Brasil",
+    slug: "fontes-publicas-brasil",
+    description: "Série completa sobre como consultar cada fonte pública brasileira para investigação digital",
+    coverImage: "/series/fontes-publicas.jpg",
+    totalParts: 10,
+    status: "em_andamento"
+  },
+  {
+    id: "red-flags-por-persona",
+    name: "Red Flags por Persona",
+    slug: "red-flags-por-persona",
+    description: "Sinais de alerta específicos para cada tipo de verificação: babá, sócio, fornecedor, cônjuge",
+    coverImage: "/series/red-flags.jpg",
+    totalParts: 6,
+    status: "em_andamento"
+  },
+  {
+    id: "casos-reais-anonimizados",
+    name: "Casos Reais Anonimizados",
+    slug: "casos-reais-anonimizados",
+    description: "Estudos de caso detalhados de investigações bem-sucedidas, com metodologia e resultados",
+    coverImage: "/series/casos-reais.jpg",
+    totalParts: 12,
+    status: "em_andamento"
+  },
+  {
+    id: "metodologia-perito",
+    name: "Na Visão do Perito",
+    slug: "metodologia-perito",
+    description: "Série exclusiva com Ibsen Maciel explicando metodologias de perícia oficial",
+    coverImage: "/series/perito.jpg",
+    totalParts: 8,
+    status: "em_andamento"
+  }
+];
+
+// ===== GLOSSÁRIO =====
+// Inspirado em forense.io - termos técnicos explicados
+export interface GlossaryTerm {
+  id: string;
+  term: string;
+  slug: string;
+  definition: string;
+  relatedTerms?: string[];
+  category: "forense" | "legal" | "osint" | "compliance" | "investigacao";
+}
+
+export const GLOSSARY_CATEGORIES = [
+  { id: "forense", name: "Forense Digital", color: "#D4AF37" },
+  { id: "legal", name: "Jurídico", color: "#E74C3C" },
+  { id: "osint", name: "OSINT", color: "#3498DB" },
+  { id: "compliance", name: "Compliance", color: "#27C685" },
+  { id: "investigacao", name: "Investigação", color: "#9B59B6" }
+];
+
+// Termos iniciais do glossário
+export const GLOSSARY_TERMS: GlossaryTerm[] = [
+  {
+    id: "due-diligence",
+    term: "Due Diligence",
+    slug: "due-diligence",
+    definition: "Processo de investigação e verificação de informações sobre uma pessoa ou empresa antes de tomar decisões importantes como investimentos, contratações ou parcerias.",
+    relatedTerms: ["background-check", "kyc"],
+    category: "investigacao"
+  },
+  {
+    id: "background-check",
+    term: "Background Check",
+    slug: "background-check",
+    definition: "Verificação de antecedentes que inclui histórico criminal, financeiro, profissional e reputacional de uma pessoa ou empresa.",
+    relatedTerms: ["due-diligence", "red-flag"],
+    category: "investigacao"
+  },
+  {
+    id: "osint",
+    term: "OSINT",
+    slug: "osint",
+    definition: "Open Source Intelligence - Inteligência obtida a partir de fontes abertas e públicas, como registros governamentais, redes sociais e bases de dados públicas.",
+    relatedTerms: ["fontes-publicas"],
+    category: "osint"
+  },
+  {
+    id: "cadeia-custodia",
+    term: "Cadeia de Custódia",
+    slug: "cadeia-custodia",
+    definition: "Documentação cronológica que registra a posse, controle, transferência e análise de evidências, garantindo sua integridade e admissibilidade em juízo.",
+    relatedTerms: ["evidencia-digital", "laudo-pericial"],
+    category: "forense"
+  },
+  {
+    id: "ceis",
+    term: "CEIS",
+    slug: "ceis",
+    definition: "Cadastro de Empresas Inidôneas e Suspensas - banco de dados do governo federal que lista empresas impedidas de contratar com a administração pública.",
+    relatedTerms: ["cnep", "cepim"],
+    category: "compliance"
+  },
+  {
+    id: "cnep",
+    term: "CNEP",
+    slug: "cnep",
+    definition: "Cadastro Nacional de Empresas Punidas - registro de sanções aplicadas a empresas com base na Lei Anticorrupção (Lei 12.846/2013).",
+    relatedTerms: ["ceis", "lei-anticorrupcao"],
+    category: "compliance"
+  },
+  {
+    id: "lgpd",
+    term: "LGPD",
+    slug: "lgpd",
+    definition: "Lei Geral de Proteção de Dados (Lei 13.709/2018) - legislação brasileira que regula o tratamento de dados pessoais, estabelecendo direitos dos titulares e obrigações das empresas.",
+    relatedTerms: ["dados-pessoais", "consentimento"],
+    category: "legal"
+  },
+  {
+    id: "qsa",
+    term: "QSA",
+    slug: "qsa",
+    definition: "Quadro de Sócios e Administradores - registro da Receita Federal que identifica os sócios, acionistas e administradores de uma empresa.",
+    relatedTerms: ["cnpj", "vinculos-societarios"],
+    category: "investigacao"
+  },
+  {
+    id: "red-flag",
+    term: "Red Flag",
+    slug: "red-flag",
+    definition: "Sinal de alerta que indica potencial risco, fraude ou irregularidade durante uma investigação ou processo de due diligence.",
+    relatedTerms: ["due-diligence", "background-check"],
+    category: "investigacao"
+  },
+  {
+    id: "laudo-pericial",
+    term: "Laudo Pericial",
+    slug: "laudo-pericial",
+    definition: "Documento técnico elaborado por perito oficial ou assistente técnico que apresenta análise, metodologia e conclusões sobre evidências examinadas.",
+    relatedTerms: ["cadeia-custodia", "perito-criminal"],
+    category: "forense"
+  }
+];
+
+// ===== RECURSOS ADICIONAIS =====
+// Inspirado em Forensic Focus: diretórios de cursos, ferramentas, etc.
+export interface Resource {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  type: "curso" | "ferramenta" | "api" | "livro" | "certificacao";
+  url?: string;
+  price?: "gratuito" | "pago" | "freemium";
+  provider?: string;
+  rating?: number;
+  featured?: boolean;
+}
+
+export const RESOURCE_TYPES = [
+  { id: "curso", name: "Cursos", icon: "GraduationCap", color: "#1ABC9C" },
+  { id: "ferramenta", name: "Ferramentas", icon: "Wrench", color: "#3498DB" },
+  { id: "api", name: "APIs", icon: "Code", color: "#9B59B6" },
+  { id: "livro", name: "Livros", icon: "BookOpen", color: "#E67E22" }
+];
+
+// ===== NEWSLETTER =====
+export interface NewsletterConfig {
+  name: string;
+  description: string;
+  frequency: string;
+  benefits: string[];
+}
+
+export const NEWSLETTER_CONFIG: NewsletterConfig = {
+  name: "DFIR Brasil Newsletter",
+  description: "Receba semanalmente as principais novidades em investigação digital, due diligence e proteção patrimonial",
+  frequency: "Semanal (toda quinta-feira)",
+  benefits: [
+    "Alertas de novas fontes públicas disponíveis",
+    "Cases práticos anonimizados exclusivos",
+    "Dicas de red flags por setor",
+    "Atualizações de legislação (LGPD, Marco Civil)",
+    "Conteúdo exclusivo do Perito Criminal Oficial"
+  ]
+};
+
+// ===== AUTORES PRÉ-DEFINIDOS =====
+// Alinhado ao Posicionamento B: Autoridade Forense validada por Perito Criminal Oficial
+export const BLOG_AUTHORS: BlogAuthor[] = [
+  {
+    id: "ibsen-maciel",
+    name: "Ibsen Rodrigues Maciel",
+    role: "Perito Criminal Oficial em Informática",
+    avatar: "/team/ibsen-maciel.jpg",
+    bio: "Perito Criminal Oficial em Computação Forense. Diretor Nacional da ANPAJ. Certificado CELLEBRITE, XRY e AXIOM. Conselheiro Técnico do Investigaree.",
+    social: {
+      linkedin: "https://linkedin.com/in/ibsenmaciel"
+    }
+  },
+  {
+    id: "dani-kaloi",
+    name: "Dani Kaloi",
+    role: "Analista de Dados & Full Stack Developer",
+    avatar: "/dani-kaloi.png",
+    bio: "Analista de Dados e Desenvolvedora Full Stack. Especialista em investigação digital e automação de processos investigativos. Fundadora do Investigaree.",
+    social: {
+      linkedin: "https://linkedin.com/in/danikaloi"
+    }
+  },
+  {
+    id: "investigaree",
+    name: "Equipe Investigaree",
+    role: "Redação Técnica",
+    avatar: "/favicon.svg",
+    bio: "Conteúdo técnico produzido pela equipe editorial do Investigaree, validado por especialistas em perícia forense."
+  }
+];
+
+// ===== TAGS POPULARES =====
+// Alinhado ao Posicionamento B: Due Diligence + Proteção Patrimonial + Autoridade Forense
+export const POPULAR_TAGS = [
+  // Due Diligence & Background Check
+  "due diligence",
+  "background check",
+  "verificação",
+  "cpf",
+  "cnpj",
+
+  // Fontes Públicas Brasil
+  "receita federal",
+  "tse",
+  "ceis",
+  "cnep",
+  "tribunal",
+
+  // Proteção Patrimonial
+  "divórcio",
+  "ocultação de bens",
+  "patrimônio",
+  "herança",
+
+  // Proteção Empresarial
+  "sócios",
+  "fornecedores",
+  "funcionários",
+  "fraude corporativa",
+
+  // Investimentos
+  "startup",
+  "investidor",
+  "m&a",
+  "fundador",
+
+  // Metodologia Forense
+  "perícia",
+  "evidência digital",
+  "cadeia de custódia",
+  "laudo",
+
+  // Compliance
+  "lgpd",
+  "compliance",
+  "fontes públicas",
+
+  // Red Flags
+  "golpe",
+  "fraude",
+  "red flag",
+  "alerta"
+];
+
+// ===== LEGACY SUPPORT =====
+// Mantido para compatibilidade
+export interface BlogCategory {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  color?: string;
+}
+
+export const BLOG_CATEGORIES: BlogCategory[] = BLOG_TOPICS.map(topic => ({
+  id: topic.id,
+  name: topic.name,
+  slug: topic.slug,
+  description: topic.description,
+  color: topic.color
+}));
+
+export type ExpertiseLevel = SkillLevel;
+export const EXPERTISE_LEVELS = SKILL_LEVELS.map(level => ({
+  value: level.id,
+  label: level.name
+}));

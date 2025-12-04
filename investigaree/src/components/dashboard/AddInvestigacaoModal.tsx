@@ -94,9 +94,41 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
     }));
   };
 
+  // Máscara de telefone: (00) 00000-0000
+  const formatTelefone = (value: string): string => {
+    const nums = value.replace(/\D/g, "").slice(0, 11);
+    if (nums.length <= 2) return nums;
+    if (nums.length <= 7) return `(${nums.slice(0, 2)}) ${nums.slice(2)}`;
+    return `(${nums.slice(0, 2)}) ${nums.slice(2, 7)}-${nums.slice(7)}`;
+  };
+
+  // Máscara de CPF: 000.000.000-00
+  const formatCPF = (value: string): string => {
+    const nums = value.replace(/\D/g, "").slice(0, 11);
+    if (nums.length <= 3) return nums;
+    if (nums.length <= 6) return `${nums.slice(0, 3)}.${nums.slice(3)}`;
+    if (nums.length <= 9) return `${nums.slice(0, 3)}.${nums.slice(3, 6)}.${nums.slice(6)}`;
+    return `${nums.slice(0, 3)}.${nums.slice(3, 6)}.${nums.slice(6, 9)}-${nums.slice(9)}`;
+  };
+
+  // Máscara de CNPJ: 00.000.000/0000-00
+  const formatCNPJ = (value: string): string => {
+    const nums = value.replace(/\D/g, "").slice(0, 14);
+    if (nums.length <= 2) return nums;
+    if (nums.length <= 5) return `${nums.slice(0, 2)}.${nums.slice(2)}`;
+    if (nums.length <= 8) return `${nums.slice(0, 2)}.${nums.slice(2, 5)}.${nums.slice(5)}`;
+    if (nums.length <= 12) return `${nums.slice(0, 2)}.${nums.slice(2, 5)}.${nums.slice(5, 8)}/${nums.slice(8)}`;
+    return `${nums.slice(0, 2)}.${nums.slice(2, 5)}.${nums.slice(5, 8)}/${nums.slice(8, 12)}-${nums.slice(12)}`;
+  };
+
+  // Formatar documento baseado no tipo
+  const formatDocumento = (value: string): string => {
+    return tipoPessoa === "fisica" ? formatCPF(value) : formatCNPJ(value);
+  };
+
   const handleTelefoneChange = (index: number, value: string) => {
     const newTelefones = [...formData.telefones];
-    newTelefones[index] = value;
+    newTelefones[index] = formatTelefone(value);
     setFormData(prev => ({ ...prev, telefones: newTelefones }));
   };
 
@@ -220,36 +252,15 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
     setError(null);
 
     try {
-      // Validação básica
-      if (!formData.nome || !formData.cpf_cnpj) {
-        setError(`Preencha os campos obrigatórios: Nome e ${tipoPessoa === "fisica" ? "CPF" : "CNPJ"}`);
-        setLoading(false);
-        return;
-      }
-
-      // Verificar se pelo menos uma categoria foi selecionada
-      const categoriasSelected = Object.values(formData.categorias).some(v => v);
-      if (!categoriasSelected) {
-        setError("Selecione pelo menos uma categoria");
+      // Validação mínima - precisa ter pelo menos nome OU documento
+      if (!formData.nome.trim() && !formData.cpf_cnpj.trim()) {
+        setError("Preencha pelo menos o Nome ou o Documento");
         setLoading(false);
         return;
       }
 
       // Formatar CPF/CNPJ (remover pontos e traços)
       const docFormatted = formData.cpf_cnpj.replace(/\D/g, "");
-
-      // Validar CPF ou CNPJ
-      if (tipoPessoa === "fisica" && docFormatted.length !== 11) {
-        setError("CPF deve ter 11 dígitos");
-        setLoading(false);
-        return;
-      }
-
-      if (tipoPessoa === "juridica" && docFormatted.length !== 14) {
-        setError("CNPJ deve ter 14 dígitos");
-        setLoading(false);
-        return;
-      }
 
       // Preparar categorias como array
       const categoriasArray = Object.entries(formData.categorias)
@@ -691,7 +702,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
 
             {/* Tipo de Pessoa */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-white">Tipo de Pessoa *</label>
+              <label className="block text-sm font-medium text-white">Tipo de Pessoa</label>
               <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
@@ -722,7 +733,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
 
             {/* Categorias */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-white">Categorias * (selecione ao menos uma)</label>
+              <label className="block text-sm font-medium text-white">Categorias</label>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {Object.entries({
                   familia: "Família",
@@ -752,7 +763,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-white">Nome Completo *</label>
+                  <label className="block text-sm font-medium text-white">Nome Completo</label>
                   <input
                     type="text"
                     value={formData.nome}
@@ -763,12 +774,12 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                 </div>
 
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-white">{tipoPessoa === "fisica" ? "CPF" : "CNPJ"} *</label>
+                  <label className="block text-sm font-medium text-white">{tipoPessoa === "fisica" ? "CPF" : "CNPJ"}</label>
                   <input
                     type="text"
                     value={formData.cpf_cnpj}
-                    onChange={(e) => setFormData(prev => ({ ...prev, cpf_cnpj: e.target.value }))}
-                    className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500"
+                    onChange={(e) => setFormData(prev => ({ ...prev, cpf_cnpj: formatDocumento(e.target.value) }))}
+                    className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500 font-mono"
                     placeholder={tipoPessoa === "fisica" ? "000.000.000-00" : "00.000.000/0000-00"}
                   />
                 </div>
@@ -933,7 +944,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
               <h3 className="text-lg font-semibold text-white border-b border-navy-700 pb-2">Detalhes da Investigação</h3>
 
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-white">Motivo da Investigação *</label>
+                <label className="block text-sm font-medium text-white">Motivo da Investigação</label>
                 <textarea
                   value={formData.motivo_investigacao}
                   onChange={(e) => setFormData(prev => ({ ...prev, motivo_investigacao: e.target.value }))}
@@ -944,7 +955,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-white">Nível de Urgência *</label>
+                <label className="block text-sm font-medium text-white">Nível de Urgência</label>
                 <select
                   value={formData.nivel_urgencia}
                   onChange={(e) => setFormData(prev => ({ ...prev, nivel_urgencia: e.target.value as any }))}

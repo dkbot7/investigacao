@@ -1,7 +1,7 @@
 # Sistema Multi-Tenant - investigaree
 
-**Ultima atualizacao**: 30 de Novembro de 2025
-**Versao**: 1.0.0
+**Ultima atualizacao**: 02 de Dezembro de 2025
+**Versao**: 1.1.0
 
 > **Documentacao relacionada**:
 > - [Diagrama ER do Banco](./DATABASE_ER_DIAGRAM.md)
@@ -343,3 +343,56 @@ VALUES (lower(hex(randomblob(16))), '<user_id>', 'tenant_cliente_01', 'admin', '
 1. Verificar console do navegador para erros
 2. Verificar se `ADMIN_EMAILS` inclui o email correto
 3. Verificar se a API está respondendo em `/api/tenant/info`
+
+---
+
+## Investigacoes do Usuario
+
+Alem do sistema multi-tenant B2B, usuarios podem solicitar investigacoes personalizadas atraves da API `/api/investigations`.
+
+### Fluxo de Investigacao
+
+```
+1. Usuario autenticado acessa modal "Adicionar"
+2. Preenche formulario (Nome OU Documento obrigatorio)
+3. Frontend envia POST /api/investigations
+4. Backend cria registro em user_investigacoes
+5. Email de notificacao enviado aos admins
+6. Admin analisa e atualiza status da investigacao
+```
+
+### Campos do Formulario
+
+| Campo | Tipo | Obrigatorio |
+|-------|------|-------------|
+| nome | string | Sim* |
+| documento (CPF/CNPJ) | string | Sim* |
+| tipo_pessoa | fisica/juridica | Nao |
+| categoria | string | Nao |
+| nivel_urgencia | baixa/media/alta/urgente | Nao |
+| telefones | array | Nao |
+| email | string | Nao |
+| endereco | string | Nao |
+| motivo_investigacao | string | Nao |
+| escopo_investigacao | object | Nao |
+| prazo_desejado | date | Nao |
+| observacoes | string | Nao |
+
+*Pelo menos um dos dois campos (nome ou documento) deve ser preenchido.
+
+### Mascaras de Input
+
+O formulario aplica mascaras automaticas:
+
+- **CPF**: `000.000.000-00`
+- **CNPJ**: `00.000.000/0000-00`
+- **Telefone**: `(00) 00000-0000`
+
+### Status da Investigacao
+
+| Status | Descricao |
+|--------|-----------|
+| pendente | Aguardando analise |
+| em_andamento | Investigacao em curso |
+| concluida | Investigacao finalizada |
+| cancelada | Investigacao cancelada |
