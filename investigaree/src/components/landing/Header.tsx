@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ModeToggle } from "@/components/mode-toggle";
 import LoginModal from "@/components/auth/LoginModal";
 import RegisterModal from "@/components/auth/RegisterModal";
 
@@ -279,11 +278,6 @@ export default function Header() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
           >
-            {/* Theme Toggle */}
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <ModeToggle />
-            </motion.div>
-
             {/* Language Toggle */}
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
@@ -488,19 +482,13 @@ export default function Header() {
                   </Button>
                 </motion.div>
 
-                {/* Theme & Language Controls */}
+                {/* Language Control */}
                 <motion.div
                   className="space-y-4 px-6"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.4, duration: 0.3 }}
                 >
-                  {/* Theme Toggle */}
-                  <div className="flex items-center justify-between py-4 border-b border-gold-500/10">
-                    <span className="text-white/80 font-medium">{t.theme}</span>
-                    <ModeToggle />
-                  </div>
-
                   {/* Language Toggle */}
                   <div className="flex items-center justify-between py-4">
                     <span className="text-white/80 font-medium">{t.language}</span>
