@@ -1,6 +1,6 @@
 ---
-title: "Receita Federal: Como Consultar CPF e CNPJ"
-excerpt: "Guia completo para consultar CPF e CNPJ na Receita Federal - a fonte primária de toda investigação de due diligence no Brasil."
+title: "Receita Federal: Como Consultar CPF e CNPJ para Due Diligence"
+excerpt: "Guia completo e atualizado para consultar CPF e CNPJ na Receita Federal - a fonte primária de toda investigação de due diligence no Brasil, com novidades de 2025."
 coverImage: "https://picsum.photos/seed/receita-federal/800/450"
 authorId: "dani-kaloi"
 contentType: "tutorial"
@@ -12,6 +12,8 @@ tags:
   - receita federal
   - fontes públicas
   - due diligence
+  - proteção do cpf
+  - qsa
 publishedAt: "2025-12-01T10:00:00Z"
 series:
   id: "fontes-publicas-brasil"
@@ -41,221 +43,286 @@ featured: true
   nextPost={{ slug: "tse-candidaturas-doacoes", title: "TSE: Candidaturas e Doações" }}
 />
 
-A **Receita Federal do Brasil** é a fonte primária e obrigatória para qualquer processo de due diligence ou background check no país. Neste primeiro episódio da série "Fontes Públicas Brasil", vamos explorar como consultar CPF e CNPJ de forma legal e eficiente.
+Antes de qualquer investigação, antes de cruzar dados com o TSE ou verificar o Portal da Transparência, existe uma pergunta fundamental: **esse CPF ou CNPJ é real e está regular?**
 
-## Por Que Começar pela Receita Federal?
+A resposta está na Receita Federal do Brasil. É aqui que toda due diligence começa — e é aqui que muitos erros poderiam ser evitados se a consulta fosse feita corretamente desde o início.
 
-<Callout type="info" title="Primeira Parada Obrigatória">
-  Em qualquer investigação de due diligence, a consulta à Receita Federal deve ser sempre o primeiro passo. É aqui que você valida se o CPF ou CNPJ existe e está regular.
-</Callout>
+Neste primeiro episódio da série "Fontes Públicas Brasil", vamos entender por que a Receita Federal é sua primeira parada obrigatória e como extrair o máximo de informação possível dessa fonte.
 
-A Receita Federal é a fonte mais confiável porque:
+# Por Que a Receita Federal Deve Ser Sua Primeira Consulta
 
-1. **É a fonte oficial** - Os dados vêm diretamente do governo
-2. **É atualizada em tempo real** - Situações cadastrais são atualizadas imediatamente
-3. **É gratuita** - Não há custo para consultas básicas
-4. **É legal** - Dados públicos em conformidade com LGPD
+Pense na Receita Federal como o "registro civil" das pessoas físicas e jurídicas no Brasil. Sem passar por aqui, qualquer outra consulta pode estar baseada em informações falsas.
 
 <KeyStat
-  value="250M+"
-  label="CPFs cadastrados no Brasil"
-  source="Receita Federal, 2024"
+  value="23,2 Mi"
+  label="Empresas ativas no Brasil"
+  source="Receita Federal, 1º tri/2025"
   type="info"
-  description="Praticamente toda pessoa física brasileira possui um CPF"
+  description="Número de CNPJs com situação cadastral ativa no primeiro trimestre de 2025"
 />
 
-## Consulta de CPF: Situação Cadastral
+A Receita Federal é insubstituível por quatro motivos:
 
-### O Que Você Consegue Verificar
+**Autenticidade garantida** — os dados vêm diretamente da fonte oficial do governo federal. Não há intermediários, não há interpretações. É o dado bruto, como registrado.
 
-A consulta de situação cadastral do CPF retorna:
+**Atualização em tempo real** — quando um CPF é suspenso ou uma empresa é baixada, a informação aparece imediatamente na consulta. Outras bases podem levar dias ou semanas para atualizar.
 
-- **Nome completo** do titular
-- **Data de nascimento**
-- **Situação cadastral** (Regular, Pendente, Suspensa, Cancelada, Nula, ou Titular Falecido)
-- **Digito verificador** (confirma autenticidade do número)
+**Acesso gratuito** — não há custo para consultas básicas de situação cadastral. Qualquer pessoa pode verificar a regularidade de um CPF ou CNPJ.
 
-<FileLocation
-  title="Consulta Situação Cadastral CPF"
-  paths={[
-    {
-      platform: "web",
-      path: "https://servicos.receita.fazenda.gov.br/servicos/cpf/consultasituacao/consultapublica.asp",
-      description: "Portal oficial da Receita Federal - Consulta gratuita"
-    }
-  ]}
-  forensicValue="Valida existência do CPF e identifica situações irregulares ou óbito"
-/>
+**Conformidade legal** — os dados de situação cadastral são públicos por determinação legal, então sua consulta está amparada pela legislação brasileira.
 
-### Interpretando as Situações Cadastrais
+<Callout type="info" title="Novidade 2025: Proteção do CPF">
+  A Receita Federal lançou em fevereiro de 2025 a ferramenta "Proteção do CPF", que permite ao titular impedir que seu CPF seja vinculado a novas empresas sem autorização expressa. Isso significa que, ao consultar um CNPJ, você deve verificar se os sócios têm essa proteção ativada.
+</Callout>
+
+# Consulta de CPF: O Que Você Realmente Descobre
+
+A consulta de situação cadastral do CPF parece simples, mas revela informações críticas para qualquer processo de verificação.
+
+## Informações Retornadas
+
+Quando você consulta um CPF, a Receita Federal retorna:
+
+- **Nome completo do titular** — exatamente como registrado
+- **Data de nascimento** — para confirmação de identidade
+- **Situação cadastral** — o status atual do documento
+- **Dígito verificador** — confirma que o número é matematicamente válido
+
+## As 6 Situações Cadastrais e O Que Significam
 
 <ComparisonTable
   title="Situações Cadastrais do CPF"
   headers={["Situação", "O que significa", "Red Flag?"]}
   items={[
-    { feature: "Regular", values: ["CPF está ativo e sem pendências", "Não"] },
-    { feature: "Pendente de Regularização", values: ["Falta declaração de IR ou atualização cadastral", "Atenção"] },
-    { feature: "Suspensa", values: ["CPF temporariamente inativo por irregularidades", "Sim"] },
-    { feature: "Cancelada", values: ["CPF foi cancelado por fraude ou duplicidade", "Crítico"] },
-    { feature: "Nula", values: ["CPF foi anulado - nunca deveria ter existido", "Crítico"] },
-    { feature: "Titular Falecido", values: ["Pessoa consta como falecida nos registros", "Se em uso: Crítico"] }
+    { feature: "Regular", values: ["CPF está ativo e sem pendências na Receita Federal", "Não"] },
+    { feature: "Pendente de Regularização", values: ["Titular precisa atualizar dados ou entregar declaração", "Atenção moderada"] },
+    { feature: "Suspensa", values: ["CPF temporariamente inativo por inconsistências cadastrais", "Sim"] },
+    { feature: "Cancelada", values: ["CPF foi cancelado por fraude comprovada ou duplicidade", "Crítico"] },
+    { feature: "Nula", values: ["CPF nunca deveria ter existido - erro de registro", "Crítico"] },
+    { feature: "Titular Falecido", values: ["Existe registro de óbito vinculado a este CPF", "Se em uso: Fraude"] }
   ]}
 />
 
-<Callout type="warning" title="Red Flag Crítico">
-  Um CPF com situação "Titular Falecido" sendo usado ativamente é **forte indicador de fraude de identidade**. Documente imediatamente e considere comunicar às autoridades.
+<Callout type="warning" title="Alerta: CPF de Titular Falecido em Uso">
+  Em 2024, mais de 2,3 milhões de tentativas de fraude envolveram CPFs de pessoas falecidas no Brasil. Se você identificar um CPF com status "Titular Falecido" sendo usado ativamente em transações ou cadastros, está diante de forte indicador de fraude de identidade. Documente imediatamente e considere comunicar às autoridades.
 </Callout>
 
-## Consulta de CNPJ: Dados Empresariais
+## Quando "Regular" Não é Suficiente
 
-### O Que Você Consegue Verificar
+Um CPF regular significa apenas que não há pendências **com a Receita Federal**. A pessoa pode:
 
-A consulta de CNPJ é ainda mais rica em informações:
+- Ter processos judiciais
+- Estar em listas restritivas (CEIS, CNEP)
+- Ser uma Pessoa Exposta Politicamente (PEP)
+- Ter histórico de candidaturas ou doações eleitorais
 
-- **Razão Social e Nome Fantasia**
-- **Data de Abertura**
-- **Situação Cadastral** (Ativa, Inapta, Baixada, Suspensa, Nula)
-- **Natureza Jurídica** (MEI, LTDA, S.A., etc.)
-- **CNAE** (Atividades econômicas)
-- **Endereço completo**
-- **Capital Social**
-- **Quadro de Sócios e Administradores (QSA)**
-- **Porte da empresa**
+Por isso, a consulta à Receita Federal é apenas o **primeiro passo** — não o único. Continue sua verificação com as outras fontes desta série.
 
-<FileLocation
-  title="Consulta Pública CNPJ"
-  paths={[
-    {
-      platform: "web",
-      path: "https://solucoes.receita.fazenda.gov.br/Servicos/cnpjreva/Cnpjreva_Solicitacao.asp",
-      description: "Portal ReceitaNet - Consulta completa e gratuita"
-    }
-  ]}
-  forensicValue="Identifica sócios, endereços, atividades e situação fiscal da empresa"
+# Consulta de CNPJ: O Tesouro de Informações Empresariais
+
+Se a consulta de CPF é útil, a consulta de CNPJ é um verdadeiro tesouro para investigadores. Uma única consulta revela informações que levariam horas para coletar de outras formas.
+
+<KeyStat
+  value="4,25 Mi"
+  label="Novas empresas em 2024"
+  source="Receita Federal, 2024"
+  type="success"
+  description="Número de novos CNPJs registrados no Brasil ao longo de 2024"
 />
 
-### O Quadro de Sócios (QSA) é Ouro
+## O Que a Consulta de CNPJ Revela
 
-<Callout type="tip" title="Dica de Investigador">
-  O **QSA (Quadro de Sócios e Administradores)** é a informação mais valiosa da consulta CNPJ. Ele revela:
-  - Quem são os sócios e suas participações
-  - CPFs dos sócios (parcialmente mascarados)
-  - Qualificação (Sócio-Administrador, Sócio, etc.)
-  - Data de entrada na sociedade
+A consulta pública de CNPJ retorna:
+
+- **Razão Social e Nome Fantasia** — identificação oficial da empresa
+- **Data de Abertura** — idade da empresa (empresas muito novas podem ser red flag)
+- **Situação Cadastral** — Ativa, Inapta, Baixada, Suspensa ou Nula
+- **Natureza Jurídica** — tipo societário (MEI, EIRELI, LTDA, S.A., etc.)
+- **CNAE Principal e Secundários** — atividades econômicas autorizadas
+- **Endereço Completo** — localização oficial da sede
+- **Capital Social** — valor declarado na constituição
+- **Porte** — MEI, ME, EPP ou demais
+- **Quadro de Sócios e Administradores (QSA)** — lista de sócios com CPFs parciais
+
+## O QSA: A Informação Mais Valiosa
+
+O Quadro de Sócios e Administradores é onde mora o ouro. Com ele, você consegue:
+
+**Identificar os verdadeiros controladores** — quem são as pessoas por trás da empresa, suas qualificações (sócio, administrador, diretor) e datas de entrada na sociedade.
+
+**Descobrir vínculos ocultos** — sócios em comum com outras empresas podem revelar grupos econômicos não declarados.
+
+**Validar sócios individualmente** — com os CPFs (mesmo parciais), você pode cruzar com outras fontes para verificar a situação de cada pessoa.
+
+**Identificar laranjas** — padrões como sócios muito jovens, com participação mínima ou sem histórico empresarial podem indicar uso de terceiros para ocultar o verdadeiro beneficiário.
+
+<Callout type="tip" title="Dica: Mapeamento de Vínculos">
+  Ao identificar os sócios de uma empresa, busque também as **outras empresas** nas quais cada sócio participa. O Investigaree automatiza esse cruzamento, revelando toda a rede societária de uma pessoa ou empresa em segundos.
 </Callout>
 
-Com os CPFs dos sócios, você pode:
-1. Consultar a situação cadastral de cada sócio
-2. Verificar se os sócios têm outras empresas
-3. Cruzar com outras bases (TSE, tribunais)
+## Mudança Importante: Novo Formato de CNPJ em 2026
 
-## Checklist de Consulta
+A Receita Federal anunciou que, a partir de julho de 2026, o CNPJ terá um novo formato alfanumérico (letras e números). Isso não afeta CNPJs já existentes, mas é importante para sistemas que trabalham com validação de documentos.
+
+# Situações Cadastrais de CNPJ e Seus Significados
+
+<ComparisonTable
+  title="Situações Cadastrais do CNPJ"
+  headers={["Situação", "O que significa", "Pode contratar?"]}
+  items={[
+    { feature: "Ativa", values: ["Empresa regular e operacional", "Sim"] },
+    { feature: "Inapta", values: ["Empresa omissa em declarações por 2+ anos consecutivos", "Alto risco"] },
+    { feature: "Baixada", values: ["Empresa encerrada formalmente", "Não"] },
+    { feature: "Suspensa", values: ["Empresa com pendências graves na Receita", "Não recomendado"] },
+    { feature: "Nula", values: ["CNPJ anulado por irregularidade na constituição", "Não"] }
+  ]}
+/>
+
+<Callout type="warning" title="Cuidado com Empresas Inaptas">
+  Empresas com situação "Inapta" frequentemente são utilizadas para fins ilícitos. A inaptidão por omissão de declarações pode indicar empresa abandonada, mas que continua sendo usada para emissão de notas fiscais fraudulentas ou outros esquemas.
+</Callout>
+
+# Como o Investigaree Facilita Esse Processo
+
+Consultar a Receita Federal manualmente é possível, mas trabalhoso. O processo envolve:
+
+1. Acessar o portal correto (CPF e CNPJ têm portais diferentes)
+2. Preencher captchas repetidamente
+3. Copiar e organizar as informações manualmente
+4. Repetir para cada sócio identificado
+5. Cruzar manualmente com outras fontes
+
+Com o Investigaree, você:
+
+**Consulta CPF e CNPJ em segundos** — basta informar o documento e o sistema retorna todos os dados disponíveis.
+
+**Recebe cruzamentos automáticos** — o sistema já identifica vínculos com outras empresas, listas restritivas e fontes públicas.
+
+**Mapeia redes societárias** — visualize graficamente todas as empresas e pessoas conectadas ao seu alvo de investigação.
+
+**Mantém tudo documentado** — histórico de consultas com data e hora para fins de compliance.
+
+<CTABanner
+  type="trial"
+  title="Automatize Suas Consultas à Receita Federal"
+  description="Consulte CPF, CNPJ e dezenas de outras fontes públicas em segundos. O Investigaree cruza automaticamente os dados para você."
+  features={["Receita Federal", "QSA completo", "Rede societária", "Histórico de consultas"]}
+/>
+
+# Checklist: Verificação Completa via Receita Federal
 
 <Timeline
   title="Processo de Verificação Receita Federal"
   items={[
     {
       date: "Passo 1",
-      title: "Validar CPF/CNPJ",
-      description: "Verificar se o número está formatado corretamente e existe",
+      title: "Validar o documento",
+      description: "Confirmar que CPF ou CNPJ existe e é matematicamente válido",
       completed: true
     },
     {
       date: "Passo 2",
-      title: "Consultar Situação Cadastral",
-      description: "Confirmar que está Regular/Ativa",
+      title: "Verificar situação cadastral",
+      description: "CPF deve estar Regular, CNPJ deve estar Ativo",
       completed: true
     },
     {
       date: "Passo 3",
       title: "Analisar QSA (para CNPJ)",
-      description: "Identificar todos os sócios e suas qualificações",
+      description: "Identificar todos os sócios, suas qualificações e datas de entrada",
       completed: true
     },
     {
       date: "Passo 4",
-      title: "Documentar Resultados",
-      description: "Salvar comprovante com data e hora da consulta",
+      title: "Verificar sócios individualmente",
+      description: "Consultar situação cadastral do CPF de cada sócio",
       completed: false
     },
     {
       date: "Passo 5",
-      title: "Prosseguir para Próximas Fontes",
-      description: "TSE, Portal da Transparência, Tribunais...",
+      title: "Mapear vínculos societários",
+      description: "Buscar outras empresas de cada sócio identificado",
+      completed: false
+    },
+    {
+      date: "Passo 6",
+      title: "Documentar e prosseguir",
+      description: "Salvar resultados e continuar com próximas fontes (TSE, CEIS, tribunais)",
       completed: false
     }
   ]}
 />
 
-## Limitações e Cuidados
+# O Que a Receita Federal NÃO Informa
 
-### O Que a Receita NÃO Informa
+É importante conhecer os limites dessa fonte:
 
-- Endereço da pessoa física
-- Telefone ou email
-- Histórico de situações anteriores
-- Renda ou patrimônio declarado
-- Relacionamentos entre pessoas físicas
+- **Endereço de pessoa física** — não disponível em consulta pública
+- **Telefone ou e-mail** — dados de contato não são públicos
+- **Histórico de situações** — você vê apenas o status atual, não alterações passadas
+- **Renda ou patrimônio** — disponível apenas no TSE para candidatos
+- **Dívidas ou processos** — outras fontes são necessárias
 
-### Cuidados com Privacidade
+Por isso, a consulta à Receita Federal é o **ponto de partida**, não a linha de chegada. Continue sua investigação com as próximas fontes desta série.
 
-<Callout type="legal" title="Conformidade LGPD">
-  Embora os dados de situação cadastral sejam públicos, você deve:
-  - Usar apenas para fins legítimos (due diligence, verificação de identidade)
-  - Não armazenar dados desnecessariamente
-  - Não compartilhar com terceiros sem finalidade
-  - Documentar a base legal para a consulta
-</Callout>
+# Próximo Passo: Tribunal Superior Eleitoral
 
-## Próximo Episódio
+No próximo episódio, vamos explorar o **TSE (Tribunal Superior Eleitoral)** — a única fonte que revela patrimônio declarado de pessoas que já se candidataram a cargos públicos.
 
-No próximo episódio da série, vamos explorar o **TSE (Tribunal Superior Eleitoral)** - fonte essencial para verificar:
-- Histórico de candidaturas
-- Declarações de bens de candidatos
-- Doações eleitorais recebidas e realizadas
-- Filiação partidária
+Você vai aprender a consultar:
 
-<CTABanner
-  type="trial"
-  title="Automatize suas Consultas"
-  description="O Investigaree consulta CPF, CNPJ e dezenas de outras fontes automaticamente em segundos."
-  features={["Receita Federal", "TSE", "CEIS/CNEP", "Tribunais"]}
-/>
+- **Histórico de candidaturas** — em quais eleições e partidos a pessoa participou
+- **Declarações de bens** — patrimônio declarado em cada candidatura
+- **Doações eleitorais** — quem financiou e para quem a pessoa doou
+- **Filiação partidária** — vínculo atual e histórico com partidos políticos
+
+Essas informações são essenciais para identificar Pessoas Expostas Politicamente (PEPs) e mapear conexões políticas em processos de due diligence.
 
 ---
 
-## Quiz: Teste Seu Conhecimento
+# Quiz: Teste Seu Conhecimento
 
 <Quiz
   title="Receita Federal - Fundamentos"
   questions={[
     {
-      question: "Qual é a primeira fonte que deve ser consultada em uma due diligence?",
+      question: "Qual deve ser a primeira consulta em qualquer processo de due diligence no Brasil?",
       options: ["TSE", "Receita Federal", "Portal da Transparência", "Tribunais"],
       correctIndex: 1,
-      explanation: "A Receita Federal é sempre a primeira parada para validar a existência e regularidade de CPF ou CNPJ."
+      explanation: "A Receita Federal é sempre a primeira parada para validar a existência e regularidade de CPF ou CNPJ. Sem essa validação, todas as outras consultas podem estar baseadas em dados falsos."
     },
     {
-      question: "O que significa a situação cadastral 'Titular Falecido' em um CPF?",
+      question: "O que significa encontrar um CPF com situação 'Titular Falecido' sendo usado ativamente?",
       options: [
         "O CPF está temporariamente suspenso",
-        "A pessoa declarou IR como falecida",
-        "A pessoa consta como falecida nos registros oficiais",
+        "A pessoa precisa regularizar o IR",
+        "Forte indicador de fraude de identidade",
         "O CPF precisa ser renovado"
       ],
       correctIndex: 2,
-      explanation: "Significa que há registro de óbito da pessoa. Se esse CPF estiver sendo usado ativamente, é forte indicador de fraude."
+      explanation: "Um CPF com status 'Titular Falecido' em uso ativo é forte indicador de fraude de identidade. Em 2024, mais de 2,3 milhões de tentativas de fraude envolveram CPFs de pessoas falecidas."
     },
     {
-      question: "O que é o QSA de uma empresa?",
+      question: "O que é o QSA de uma empresa e por que é importante?",
       options: [
-        "Questionário de Situação Atual",
-        "Quadro de Sócios e Administradores",
-        "Qualificação de Sociedade Anônima",
-        "Quota de Sociedade Associada"
+        "Questionário de Situação Atual - avalia a saúde financeira",
+        "Quadro de Sócios e Administradores - revela os controladores da empresa",
+        "Qualificação de Sociedade Anônima - define o tipo societário",
+        "Quota de Sociedade Associada - indica participação em holdings"
       ],
       correctIndex: 1,
-      explanation: "QSA significa Quadro de Sócios e Administradores - lista todas as pessoas que compõem a sociedade."
+      explanation: "QSA significa Quadro de Sócios e Administradores. É a informação mais valiosa da consulta CNPJ porque revela quem são as pessoas por trás da empresa, permitindo investigação individual de cada sócio."
+    },
+    {
+      question: "Qual novidade a Receita Federal lançou em 2025 relacionada à proteção de CPF?",
+      options: [
+        "Consulta paga com mais dados",
+        "Bloqueio de consultas por terceiros",
+        "Ferramenta para impedir vinculação a novas empresas",
+        "Criptografia do número do CPF"
+      ],
+      correctIndex: 2,
+      explanation: "Em fevereiro de 2025, a Receita Federal lançou a ferramenta 'Proteção do CPF', que permite ao titular impedir que seu CPF seja vinculado a novas empresas sem autorização expressa."
     }
   ]}
 />

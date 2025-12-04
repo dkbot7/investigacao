@@ -28,11 +28,11 @@ import {
   Wrench,
   TrendingUp,
   Shield,
-  UserCheck,
   Home,
   Building2,
   AlertTriangle,
-  FileCheck
+  FileCheck,
+  LayoutList
 } from "lucide-react";
 import {
   BlogFilters as FilterType,
@@ -102,11 +102,9 @@ export default function QuickFilters({
   topics = BLOG_TOPICS
 }: QuickFiltersProps) {
   const [topicDropdownOpen, setTopicDropdownOpen] = useState(false);
-  const [typeDropdownOpen, setTypeDropdownOpen] = useState(false);
   const [levelDropdownOpen, setLevelDropdownOpen] = useState(false);
 
   const topicRef = useRef<HTMLDivElement>(null);
-  const typeRef = useRef<HTMLDivElement>(null);
   const levelRef = useRef<HTMLDivElement>(null);
 
   // Fechar dropdowns ao clicar fora
@@ -114,9 +112,6 @@ export default function QuickFilters({
     const handleClickOutside = (event: MouseEvent) => {
       if (topicRef.current && !topicRef.current.contains(event.target as Node)) {
         setTopicDropdownOpen(false);
-      }
-      if (typeRef.current && !typeRef.current.contains(event.target as Node)) {
-        setTypeDropdownOpen(false);
       }
       if (levelRef.current && !levelRef.current.contains(event.target as Node)) {
         setLevelDropdownOpen(false);
@@ -136,13 +131,8 @@ export default function QuickFilters({
     setTopicDropdownOpen(false);
   };
 
-  const handleContentTypeClick = (contentType: ContentType) => {
-    if (filters.contentType === contentType) {
-      onFiltersChange({ ...filters, contentType: undefined });
-    } else {
-      onFiltersChange({ ...filters, contentType: contentType });
-    }
-    setTypeDropdownOpen(false);
+  const handleContentTypeClick = (contentType: ContentType | undefined) => {
+    onFiltersChange({ ...filters, contentType: contentType });
   };
 
   const handleSkillLevelClick = (level: SkillLevel) => {
@@ -166,19 +156,54 @@ export default function QuickFilters({
   };
 
   const selectedTopic = topics.find(t => t.slug === filters.topic);
-  const selectedType = CONTENT_TYPES.find(t => t.id === filters.contentType);
   const selectedLevel = SKILL_LEVELS.find(l => l.id === filters.skillLevel);
 
   return (
     <div className="space-y-4">
-      {/* Faceted Filters Row - Estilo Blackpanda */}
+      {/* Abas de Tipo de Conteúdo */}
+      <div className="flex items-center gap-1 p-1 bg-navy-900/50 rounded-xl border border-gold-500/10 overflow-x-auto">
+        {/* Aba "Todos" */}
+        <button
+          onClick={() => handleContentTypeClick(undefined)}
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
+            !filters.contentType
+              ? "bg-gold-500 text-navy-950"
+              : "text-navy-300 hover:text-white hover:bg-navy-800/50"
+          }`}
+        >
+          <LayoutList className="w-4 h-4" />
+          <span>Todos</span>
+        </button>
+
+        {/* Abas para cada tipo de conteúdo */}
+        {CONTENT_TYPES.map((type) => {
+          const Icon = contentTypeIcons[type.id];
+          const isActive = filters.contentType === type.id;
+          return (
+            <button
+              key={type.id}
+              onClick={() => handleContentTypeClick(type.id)}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
+                isActive
+                  ? "text-navy-950"
+                  : "text-navy-300 hover:text-white hover:bg-navy-800/50"
+              }`}
+              style={isActive ? { backgroundColor: type.color } : undefined}
+            >
+              <Icon className="w-4 h-4" />
+              <span>{type.name}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Filtros secundários */}
       <div className="flex flex-wrap items-center gap-3">
         {/* Dropdown de Tópicos */}
         <div ref={topicRef} className="relative">
           <button
             onClick={() => {
               setTopicDropdownOpen(!topicDropdownOpen);
-              setTypeDropdownOpen(false);
               setLevelDropdownOpen(false);
             }}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
@@ -245,94 +270,12 @@ export default function QuickFilters({
           </AnimatePresence>
         </div>
 
-        {/* Dropdown de Tipo de Conteúdo */}
-        <div ref={typeRef} className="relative">
-          <button
-            onClick={() => {
-              setTypeDropdownOpen(!typeDropdownOpen);
-              setTopicDropdownOpen(false);
-              setLevelDropdownOpen(false);
-            }}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
-              selectedType
-                ? "text-navy-950"
-                : "text-navy-200 bg-navy-900/50 hover:bg-navy-800/80 border border-gold-500/20 hover:border-gold-500/40"
-            }`}
-            style={selectedType ? {
-              backgroundColor: selectedType.color,
-              border: `1px solid ${selectedType.color}`
-            } : undefined}
-          >
-            {selectedType ? (
-              <>
-                {(() => {
-                  const Icon = contentTypeIcons[selectedType.id];
-                  return <Icon className="w-4 h-4" />;
-                })()}
-              </>
-            ) : (
-              <FileText className="w-4 h-4" />
-            )}
-            <span>{selectedType?.name || "Tipo"}</span>
-            <ChevronDown className={`w-4 h-4 transition-transform ${typeDropdownOpen ? "rotate-180" : ""}`} />
-          </button>
-
-          <AnimatePresence>
-            {typeDropdownOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="absolute top-full left-0 mt-2 w-64 bg-navy-900 border border-gold-500/20 rounded-xl shadow-2xl z-50"
-              >
-                <div className="p-2">
-                  <div className="px-3 py-2 text-xs text-navy-500 uppercase tracking-wider border-b border-gold-500/10 mb-1">
-                    Tipo de conteúdo
-                  </div>
-                  {selectedType && (
-                    <button
-                      onClick={() => handleContentTypeClick(selectedType.id)}
-                      className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gold-400 hover:bg-navy-800/50 rounded-lg transition-colors"
-                    >
-                      <X className="w-4 h-4" />
-                      Limpar seleção
-                    </button>
-                  )}
-                  {CONTENT_TYPES.map((type) => {
-                    const Icon = contentTypeIcons[type.id];
-                    const isActive = filters.contentType === type.id;
-                    return (
-                      <button
-                        key={type.id}
-                        onClick={() => handleContentTypeClick(type.id)}
-                        className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-all ${
-                          isActive
-                            ? "text-navy-950 font-medium"
-                            : "text-navy-200 hover:bg-navy-800/50"
-                        }`}
-                        style={isActive ? { backgroundColor: type.color } : undefined}
-                      >
-                        <span style={{ color: isActive ? undefined : type.color }}>
-                          <Icon className="w-4 h-4" />
-                        </span>
-                        <span className="flex-1 text-left">{type.name}</span>
-                        {isActive && <span className="w-2 h-2 rounded-full bg-white/80" />}
-                      </button>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
         {/* Dropdown de Nível */}
         <div ref={levelRef} className="relative">
           <button
             onClick={() => {
               setLevelDropdownOpen(!levelDropdownOpen);
               setTopicDropdownOpen(false);
-              setTypeDropdownOpen(false);
             }}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
               selectedLevel
@@ -463,23 +406,6 @@ export default function QuickFilters({
                   return <span style={{ color: selectedTopic.color }}><Icon className="w-3 h-3" /></span>;
                 })()}
                 {selectedTopic.name}
-                <X className="w-3 h-3 ml-0.5" />
-              </motion.button>
-            )}
-
-            {selectedType && (
-              <motion.button
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                onClick={() => handleContentTypeClick(selectedType.id)}
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium text-navy-100 hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: `${selectedType.color}30`, borderColor: selectedType.color, border: "1px solid" }}
-              >
-                {(() => {
-                  const Icon = contentTypeIcons[selectedType.id];
-                  return <span style={{ color: selectedType.color }}><Icon className="w-3 h-3" /></span>;
-                })()}
-                {selectedType.name}
                 <X className="w-3 h-3 ml-0.5" />
               </motion.button>
             )}

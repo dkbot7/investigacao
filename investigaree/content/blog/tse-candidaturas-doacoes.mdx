@@ -1,6 +1,6 @@
 ---
-title: "TSE: Como Consultar Candidaturas e Doações Eleitorais"
-excerpt: "Guia completo para consultar candidaturas, declarações de bens e doações eleitorais no Tribunal Superior Eleitoral - dados essenciais para due diligence política."
+title: "TSE: Como Consultar Candidaturas, Patrimônio e Doações Eleitorais"
+excerpt: "Guia completo para consultar candidaturas, declarações de bens e doações eleitorais no Tribunal Superior Eleitoral - dados essenciais para identificar PEPs e mapear conexões políticas."
 coverImage: "https://picsum.photos/seed/tse-brasil/800/450"
 authorId: "dani-kaloi"
 contentType: "tutorial"
@@ -12,6 +12,8 @@ tags:
   - doações eleitorais
   - fontes públicas
   - due diligence
+  - pep
+  - declaração de bens
 publishedAt: "2025-12-02T10:00:00Z"
 series:
   id: "fontes-publicas-brasil"
@@ -42,294 +44,344 @@ featured: false
   nextPost={{ slug: "portal-transparencia-ceis-cnep", title: "Portal da Transparência: CEIS e CNEP" }}
 />
 
-O **Tribunal Superior Eleitoral (TSE)** é uma das fontes mais ricas de informação pública no Brasil. No segundo episódio da série "Fontes Públicas Brasil", vamos explorar como consultar candidaturas, declarações de bens e doações eleitorais.
+Você verificou que o CPF está regular na Receita Federal. Ótimo. Mas essa pessoa já teve envolvimento político? Candidatou-se a algum cargo? Doou para campanhas eleitorais? Recebeu financiamento de terceiros para disputar eleições?
 
-## Por Que Consultar o TSE?
+Essas perguntas só podem ser respondidas consultando o **Tribunal Superior Eleitoral (TSE)** — a fonte mais completa de informação política no Brasil e a única que revela o patrimônio declarado de quem já se candidatou a cargos públicos.
 
-<Callout type="info" title="Fonte de Dados Única">
-  O TSE é a única fonte que revela declarações de bens de pessoas que se candidataram a cargos eletivos, incluindo histórico de evolução patrimonial ao longo das eleições.
-</Callout>
+Neste segundo episódio da série "Fontes Públicas Brasil", vamos explorar como extrair informações valiosas do TSE para processos de due diligence, compliance e investigação.
 
-O TSE oferece informações valiosas para due diligence:
+# Por Que o TSE é uma Fonte Única
 
-1. **Histórico de candidaturas** - Se a pessoa já se candidatou e em quais partidos
-2. **Declarações de bens** - Patrimônio declarado pelo candidato
-3. **Doações recebidas** - Quem financiou as campanhas
-4. **Doações realizadas** - Se a pessoa doou para campanhas políticas
-5. **Filiação partidária** - Histórico de vínculos partidários
-6. **Situação das candidaturas** - Deferidas, indeferidas, cassadas
+O TSE guarda informações que não existem em nenhuma outra base de dados pública. Enquanto a Receita Federal valida a existência de pessoas e empresas, o TSE revela **conexões políticas** e **patrimônio declarado**.
 
 <KeyStat
-  value="600K+"
-  label="Candidatos nas eleições 2024"
-  source="TSE, 2024"
+  value="155,9 Mi"
+  label="Eleitores aptos a votar em 2024"
+  source="TSE, Eleições 2024"
   type="info"
-  description="Entre prefeitos, vereadores e vices em todo o Brasil"
+  description="Total de eleitores cadastrados para as eleições municipais de 2024 em 5.569 municípios"
 />
 
-## Consulta de Candidaturas
+Para investigadores, o TSE oferece cinco tipos de informação que não estão disponíveis em nenhuma outra fonte:
 
-### DivulgaCand - Portal de Candidaturas
+**Declarações de bens obrigatórias** — candidatos são obrigados a declarar todo o patrimônio ao se candidatar. Isso cria um registro histórico único de evolução patrimonial.
 
-O DivulgaCand é o portal oficial do TSE para consulta de candidaturas:
+**Doações recebidas** — quem financiou as campanhas de um candidato. Essa informação revela conexões políticas e possíveis conflitos de interesse.
 
-<FileLocation
-  title="DivulgaCand - Candidaturas"
-  paths={[
-    {
-      platform: "web",
-      path: "https://divulgacandcontas.tse.jus.br/divulga/",
-      description: "Portal oficial do TSE - Consulta de candidaturas por eleição"
-    }
-  ]}
-  forensicValue="Revela histórico completo de candidaturas, patrimônio declarado e situação eleitoral"
-/>
+**Doações realizadas** — se uma pessoa ou empresa doou para campanhas políticas. Doadores frequentes podem ter interesses em decisões governamentais.
 
-### O Que Você Consegue Verificar
+**Filiação partidária** — vínculo atual e histórico com partidos políticos. Funcionários públicos com filiação partidária podem ter restrições.
 
-Para cada candidatura, o TSE disponibiliza:
+**Resultado de candidaturas** — se a pessoa foi eleita, derrotada, teve candidatura indeferida ou cassada.
 
-- **Dados pessoais**: Nome, CPF (parcial), data de nascimento
-- **Dados da candidatura**: Partido, coligação, cargo disputado
-- **Número de urna e situação**: Se foi eleito, não eleito, suplente
-- **Declaração de bens**: Lista completa do patrimônio declarado
-- **Receitas e despesas de campanha**: Quem doou e como o dinheiro foi gasto
+# O Que São PEPs e Por Que Isso Importa
 
-<Callout type="tip" title="Dica de Investigador">
-  Compare a **declaração de bens** do mesmo candidato em diferentes eleições. Crescimento patrimonial incompatível com a renda declarada pode indicar problemas.
+Antes de mergulhar nas consultas do TSE, é fundamental entender o conceito de **Pessoa Exposta Politicamente (PEP)**.
+
+<Callout type="info" title="Definição Oficial de PEP">
+  Segundo a Circular 3.978/2020 do Banco Central e a Resolução 40/2021 do COAF, PEPs são indivíduos que exercem ou exerceram, nos últimos cinco anos, cargos públicos relevantes com poder de decisão, influência e acesso a recursos públicos.
 </Callout>
 
-### Declaração de Bens - Ouro Puro
+<KeyStat
+  value="132 mil+"
+  label="PEPs cadastrados no Brasil"
+  source="CGU, novembro/2024"
+  type="warning"
+  description="Número de pessoas na lista oficial de PEPs do Portal da Transparência"
+/>
 
-A declaração de bens é obrigatória para todos os candidatos e inclui:
+A identificação de PEPs é obrigatória para diversos setores regulados:
+
+- **Setor financeiro** — bancos, cooperativas, fintechs, seguradoras, corretoras
+- **Setor não financeiro** — imobiliárias, joalherias, leiloeiras, comerciantes de alto valor
+- **Profissionais liberais** — auditores, contadores e advogados em certas operações
+
+## Eleições 2024: Impacto no Universo de PEPs
+
+<KeyStat
+  value="69 mil+"
+  label="Novos eleitos em 2024"
+  source="TSE, 2024"
+  type="success"
+  description="Prefeitos, vice-prefeitos e vereadores eleitos nas eleições municipais"
+/>
+
+As eleições municipais de 2024 trouxeram mais de 69 mil novos eleitos para o cenário público brasileiro. Isso significa que dezenas de milhares de pessoas passaram a ser classificadas como PEPs — e continuarão nessa condição por pelo menos cinco anos após deixarem o cargo.
+
+Para empresas obrigadas, isso representa um aumento significativo na necessidade de monitoramento e due diligence reforçada.
+
+# Consulta de Candidaturas: O Sistema DivulgaCandContas
+
+O sistema DivulgaCandContas é o portal oficial do TSE para consulta de candidaturas. Nele, você encontra informações de todas as eleições desde 2004.
+
+## O Que Você Consegue Verificar
+
+Para cada candidatura registrada, o TSE disponibiliza:
+
+- **Dados pessoais** — nome completo, CPF (parcial), data de nascimento
+- **Dados da candidatura** — partido, coligação, cargo disputado, número de urna
+- **Situação do registro** — deferido, indeferido, cassado, renunciado
+- **Resultado eleitoral** — eleito, não eleito, suplente, 2º turno
+- **Declaração de bens** — lista completa do patrimônio declarado
+- **Receitas de campanha** — todas as doações recebidas com origem
+- **Despesas de campanha** — como o dinheiro foi gasto
+
+<Callout type="tip" title="Dica de Investigador">
+  Compare a declaração de bens do mesmo candidato em diferentes eleições. Se alguém declarou R$ 100 mil em 2016, R$ 500 mil em 2020 e R$ 2 milhões em 2024, você tem um padrão de evolução patrimonial para investigar.
+</Callout>
+
+# Declaração de Bens: A Informação Mais Valiosa
+
+A declaração de bens é obrigatória para todos os candidatos e representa uma janela única para o patrimônio de pessoas que normalmente não teriam obrigação de declarar publicamente seus bens.
+
+## Categorias de Bens Declarados
 
 <ComparisonTable
-  title="Tipos de Bens Declarados"
-  headers={["Categoria", "O que inclui", "Valor Investigativo"]}
+  title="Tipos de Bens nas Declarações do TSE"
+  headers={["Categoria", "Exemplos", "Valor para Investigação"]}
   items={[
-    { feature: "Imóveis", values: ["Casas, apartamentos, terrenos, fazendas", "Alto - Cruzar com cartórios"] },
-    { feature: "Veículos", values: ["Carros, motos, embarcações, aeronaves", "Alto - Cruzar com DETRAN"] },
-    { feature: "Participações", values: ["Cotas de empresas, ações", "Muito Alto - Cruzar com Receita"] },
-    { feature: "Aplicações", values: ["Poupança, fundos, previdência", "Médio - Valores totais"] },
-    { feature: "Outros", values: ["Joias, obras de arte, gado", "Variável"] }
+    { feature: "Imóveis", values: ["Casas, apartamentos, terrenos, fazendas, galpões", "Alto - Cruzar com cartórios de registro"] },
+    { feature: "Veículos", values: ["Carros, motos, caminhões, embarcações, aeronaves", "Alto - Cruzar com DETRAN/ANAC"] },
+    { feature: "Participações societárias", values: ["Cotas de empresas, ações, holdings", "Muito alto - Cruzar com Receita Federal"] },
+    { feature: "Aplicações financeiras", values: ["Poupança, fundos, previdência, CDB", "Médio - Valores totais"] },
+    { feature: "Outros bens", values: ["Joias, obras de arte, gado, máquinas", "Variável - Difícil verificação"] }
   ]}
 />
 
-## Consulta de Doações Eleitorais
+## O Que Procurar nas Declarações
 
-### Repositório de Dados Eleitorais
+Ao analisar declarações de bens de candidatos, fique atento a:
 
-O TSE disponibiliza todos os dados de prestação de contas em formato aberto:
+**Evolução patrimonial incompatível** — crescimento de patrimônio muito superior à renda conhecida pode indicar problemas.
 
-<FileLocation
-  title="Repositório de Dados Eleitorais"
-  paths={[
-    {
-      platform: "web",
-      path: "https://dadosabertos.tse.jus.br/",
-      description: "Portal de dados abertos com CSVs de todas as eleições"
-    }
-  ]}
-  forensicValue="Permite análise em massa de doadores e recebedores de doações eleitorais"
-/>
+**Bens de alto valor recém-adquiridos** — patrimônio que aparece pela primeira vez em uma declaração merece atenção.
 
-### Por Que Doações São Importantes?
+**Participações em empresas** — sócios de empresas que aparecem na declaração podem revelar vínculos não óbvios.
 
-<Callout type="warning" title="Red Flag de Compliance">
-  Pessoas que realizam doações eleitorais significativas frequentemente têm interesses em decisões governamentais. Em processos de due diligence de PEPs, sempre verifique o histórico de doações.
+**Omissões entre eleições** — bens que desaparecem entre uma declaração e outra podem indicar ocultação ou transferência.
+
+<Callout type="warning" title="Limitação Importante">
+  A declaração de bens reflete apenas o que o candidato **declarou**. Bens omitidos não aparecem. Por isso, é essencial cruzar as informações do TSE com outras fontes, como cartórios e juntas comerciais.
+</Callout>
+
+# Doações Eleitorais: Mapeando Conexões Políticas
+
+As doações eleitorais são uma das informações mais reveladoras do TSE. Elas mostram quem está por trás das campanhas e quais interesses podem influenciar mandatários eleitos.
+
+## Por Que Doações São Red Flags em Compliance
+
+<Callout type="warning" title="Alerta de Conflito de Interesse">
+  Empresas que doam para campanhas de políticos que depois ocupam cargos com poder sobre licitações e contratos públicos representam risco elevado de conflito de interesse. Sempre verifique o histórico de doações em processos de due diligence de fornecedores públicos.
 </Callout>
 
 As doações revelam:
 
-1. **Conexões políticas** - Com quais políticos a pessoa tem vínculos
-2. **Capacidade financeira** - Doações indicam poder aquisitivo
-3. **Interesses setoriais** - Empresas que doam para parlamentares de comissões específicas
-4. **Potenciais conflitos** - Fornecedores do governo que doam para gestores
+**Conexões políticas diretas** — quem doou para quem estabelece um vínculo documentado entre doador e político.
 
-<KeyStat
-  value="R$ 4.9 Bi"
-  label="Total de doações nas eleições 2022"
-  source="TSE, 2022"
-  type="success"
-  description="Inclui fundo eleitoral, doações de pessoas físicas e autofinanciamento"
-/>
+**Capacidade financeira** — doações significativas indicam poder aquisitivo (ou acesso a recursos de terceiros).
 
-## Filiação Partidária
+**Interesses setoriais** — empresas que doam para membros de comissões específicas podem ter interesse em legislação favorável.
 
-### Sistema de Filiação Partidária
+**Padrões de comportamento** — doadores recorrentes para múltiplos candidatos podem estar buscando influência sistêmica.
 
-O TSE mantém registro de todas as filiações partidárias do Brasil:
+## Tipos de Doações
 
-<FileLocation
-  title="Filiação Partidária"
-  paths={[
-    {
-      platform: "web",
-      path: "https://filiaweb.tse.jus.br/filiaweb/",
-      description: "Consulta de filiação partidária por CPF ou nome"
-    }
-  ]}
-  forensicValue="Identifica vínculo partidário atual e histórico de mudanças de partido"
-/>
+Desde 2015, empresas não podem mais doar diretamente para campanhas. As doações permitidas são:
+
+- **Pessoas físicas** — limite de 10% da renda bruta do ano anterior
+- **Autofinanciamento** — recursos do próprio candidato
+- **Fundo Partidário** — recursos públicos distribuídos aos partidos
+- **Fundo Eleitoral** — recursos públicos específicos para campanhas
+- **Financiamento coletivo** — vaquinhas online regulamentadas
+
+# Filiação Partidária: O Vínculo Político Formal
+
+A consulta de filiação partidária revela se uma pessoa tem ou teve vínculo formal com algum partido político.
+
+## Informações Disponíveis
 
 A consulta de filiação mostra:
 
-- **Partido atual** (se houver)
-- **Data da filiação**
-- **Histórico de filiações anteriores**
-- **Situação** (regular, cancelada, desfiliado)
+- **Partido atual** — se a pessoa está filiada atualmente
+- **Data da filiação** — quando se filiou
+- **Histórico de filiações** — partidos anteriores e datas de mudança
+- **Situação** — regular, cancelada, desfiliado
 
-<Callout type="legal" title="Relevância para Compliance">
-  Funcionários públicos filiados a partidos podem ter restrições específicas. Sempre verifique a filiação em processos de due diligence para cargos públicos.
+## Relevância para Compliance
+
+<Callout type="legal" title="Atenção: Funcionários Públicos">
+  Servidores públicos filiados a partidos políticos podem ter restrições específicas dependendo do cargo. Em processos de verificação para cargos públicos ou contratações com o governo, sempre consulte a filiação partidária.
 </Callout>
 
-## Checklist de Consulta TSE
+A filiação partidária é especialmente relevante para:
+
+- **Contratações públicas** — verificar vínculos de sócios de empresas licitantes
+- **Due diligence de executivos** — mapear possíveis influências políticas
+- **Compliance bancário** — identificação de PEPs e relacionados
+
+# Como o Investigaree Automatiza Essas Consultas
+
+Consultar manualmente o TSE envolve:
+
+1. Acessar múltiplos sistemas (DivulgaCandContas, Filiaweb, Dados Abertos)
+2. Buscar eleição por eleição desde 2004
+3. Baixar e processar arquivos CSV imensos
+4. Cruzar manualmente com outras fontes
+
+Com o Investigaree, você:
+
+**Consulta histórico completo automaticamente** — basta informar o CPF e o sistema verifica todas as eleições disponíveis.
+
+**Identifica PEPs automaticamente** — o sistema cruza com a lista oficial da CGU e outras fontes de PEPs.
+
+**Mapeia doações recebidas e realizadas** — visualize quem financiou e para quem a pessoa doou.
+
+**Cruza com outras fontes** — integração automática com Receita Federal, CEIS, CNEP e tribunais.
+
+<CTABanner
+  type="trial"
+  title="Identifique PEPs e Conexões Políticas Automaticamente"
+  description="O Investigaree cruza dados do TSE com outras fontes públicas para identificar riscos políticos em segundos."
+  features={["Histórico de candidaturas", "Declarações de bens", "Doações eleitorais", "Identificação de PEPs"]}
+/>
+
+# Checklist: Verificação Completa via TSE
 
 <Timeline
   title="Processo de Verificação TSE"
   items={[
     {
       date: "Passo 1",
-      title: "Consultar Filiação Partidária",
-      description: "Verificar se a pessoa tem ou teve filiação partidária",
+      title: "Consultar filiação partidária",
+      description: "Verificar se a pessoa tem ou teve vínculo formal com partidos políticos",
       completed: true
     },
     {
       date: "Passo 2",
-      title: "Buscar Histórico de Candidaturas",
-      description: "Pesquisar em todas as eleições desde 2002",
+      title: "Buscar histórico de candidaturas",
+      description: "Pesquisar em todas as eleições desde 2004 (municipais, estaduais, federais)",
       completed: true
     },
     {
       date: "Passo 3",
-      title: "Analisar Declarações de Bens",
-      description: "Comparar evolução patrimonial entre eleições",
+      title: "Analisar declarações de bens",
+      description: "Comparar evolução patrimonial entre eleições para identificar padrões",
       completed: true
     },
     {
       date: "Passo 4",
-      title: "Verificar Doações Recebidas",
-      description: "Identificar financiadores de campanha",
+      title: "Verificar doações recebidas",
+      description: "Identificar todos os financiadores de campanha e suas conexões",
       completed: false
     },
     {
       date: "Passo 5",
-      title: "Verificar Doações Realizadas",
-      description: "Buscar se a pessoa doou para campanhas",
+      title: "Verificar doações realizadas",
+      description: "Buscar se a pessoa doou para campanhas políticas (pode indicar conexões)",
       completed: false
     },
     {
       date: "Passo 6",
-      title: "Cruzar com Outras Fontes",
-      description: "CEIS, tribunais, Receita Federal",
+      title: "Cruzar com outras fontes",
+      description: "Validar informações com Receita Federal, CEIS, tribunais e Portal da Transparência",
       completed: false
     }
   ]}
 />
 
-## Casos de Uso em Due Diligence
+# Casos de Uso em Due Diligence
 
-### Cenário 1: Verificação de PEP
+## Cenário 1: Verificação de PEP
 
-Ao verificar se alguém é uma **Pessoa Exposta Politicamente (PEP)**:
+Ao verificar se alguém deve ser tratado como Pessoa Exposta Politicamente:
 
-1. Consulte filiação partidária atual
-2. Verifique candidaturas - mesmo não eleitos são considerados PEPs temporariamente
-3. Analise doações significativas recebidas ou realizadas
+1. Consulte se há candidaturas — mesmo não eleitos são PEPs temporariamente
+2. Verifique se foi eleito nos últimos 5 anos
+3. Consulte filiação partidária atual
+4. Analise doações significativas recebidas ou realizadas
+5. Cruze com a lista de PEPs da CGU
 
-### Cenário 2: Análise de Fornecedor Público
+## Cenário 2: Due Diligence de Fornecedor Público
 
-Para empresas que fornecem para o governo:
+Para empresas que participam de licitações ou fornecem para o governo:
 
-1. Identifique os sócios via Receita Federal
-2. Consulte se os sócios têm filiação partidária
-3. Verifique doações realizadas por sócios e pela empresa
-4. Cruze com contratos públicos para identificar conflitos
+1. Identifique todos os sócios via QSA na Receita Federal
+2. Para cada sócio, consulte histórico de candidaturas
+3. Verifique se os sócios têm filiação partidária
+4. Mapeie doações realizadas por sócios e pela empresa (via CPF/CNPJ de doadores)
+5. Cruze com contratos públicos para identificar conflitos de interesse
 
-### Cenário 3: Background de Executivo
+## Cenário 3: Background Check de Executivo
 
 Para verificação de executivos de alto escalão:
 
-1. Consulte histórico de candidaturas
+1. Consulte histórico completo de candidaturas
 2. Analise evolução patrimonial nas declarações de bens
-3. Verifique conexões políticas via doações
+3. Mapeie conexões políticas via doações recebidas e realizadas
+4. Verifique filiação partidária e histórico de mudanças de partido
+5. Cruze com outras fontes para validar patrimônio declarado
 
-## Limitações e Cuidados
+# O Que o TSE NÃO Informa
 
-### O Que o TSE NÃO Informa
+É importante conhecer os limites dessa fonte:
 
-- Patrimônio atual (apenas o declarado na última candidatura)
-- Pessoas que nunca se candidataram
-- Doações para partidos que não foram contabilizadas
-- Bens omitidos na declaração
+- **Patrimônio atual** — apenas o declarado na última candidatura (pode estar desatualizado)
+- **Pessoas que nunca se candidataram** — o TSE só tem dados de quem registrou candidatura
+- **Doações não contabilizadas** — recursos não declarados (caixa 2) não aparecem
+- **Bens omitidos** — patrimônio escondido não está nas declarações
+- **Relações familiares** — cônjuges e parentes de PEPs não aparecem automaticamente
 
-### Prazo de Disponibilidade
+Por isso, o TSE é uma fonte poderosa, mas deve ser complementada com outras consultas. Continue com o próximo episódio desta série.
 
-<Callout type="info" title="Histórico Disponível">
-  O TSE disponibiliza dados eleitorais desde 1945, mas os dados digitalizados mais completos estão disponíveis a partir de 2002. A consulta online de candidaturas está disponível desde 2004.
-</Callout>
+# Próximo Passo: Portal da Transparência
 
-## Próximo Episódio
+No próximo episódio, vamos explorar o **Portal da Transparência da CGU** — fonte essencial para verificar:
 
-No próximo episódio da série, vamos explorar o **Portal da Transparência** - fonte essencial para verificar:
-- **CEIS** - Cadastro de Empresas Inidôneas e Suspensas
-- **CNEP** - Cadastro Nacional de Empresas Punidas
-- **CEPIM** - Cadastro de Entidades Privadas Sem Fins Lucrativos Impedidas
-- Servidores públicos e suas remunerações
+- **CEIS** — Cadastro de Empresas Inidôneas e Suspensas
+- **CNEP** — Cadastro Nacional de Empresas Punidas
+- **CEPIM** — Entidades sem fins lucrativos impedidas
+- **Servidores federais** — remunerações e vínculos
+- **Lista oficial de PEPs** — cadastro atualizado mensalmente
 
-<CTABanner
-  type="trial"
-  title="Consulte o TSE Automaticamente"
-  description="O Investigaree cruza automaticamente dados do TSE com outras fontes públicas para identificar riscos políticos."
-  features={["Candidaturas", "Doações", "Filiações", "Cruzamento automático"]}
-/>
+Essas informações são fundamentais para identificar empresas e pessoas com restrições para contratar com o poder público.
 
 ---
 
-## Quiz: Teste Seu Conhecimento
+# Quiz: Teste Seu Conhecimento
 
 <Quiz
   title="TSE - Fundamentos"
   questions={[
     {
-      question: "Qual documento do TSE é considerado mais valioso para verificar patrimônio de candidatos?",
-      options: ["Filiação partidária", "Declaração de bens", "Número de urna", "Prestação de contas"],
+      question: "Qual documento do TSE é considerado mais valioso para verificar patrimônio de pessoas?",
+      options: ["Filiação partidária", "Declaração de bens", "Número de urna", "Situação do registro"],
       correctIndex: 1,
-      explanation: "A declaração de bens revela todo o patrimônio que o candidato declarou possuir, permitindo análise de evolução patrimonial."
+      explanation: "A declaração de bens revela todo o patrimônio que o candidato declarou possuir ao se candidatar. É a única fonte pública que obriga pessoas a declararem bens sem serem funcionários públicos."
     },
     {
-      question: "Por que é importante verificar doações eleitorais em due diligence?",
+      question: "Por quanto tempo uma pessoa permanece classificada como PEP após deixar um cargo público?",
+      options: ["1 ano", "2 anos", "5 anos", "10 anos"],
+      correctIndex: 2,
+      explanation: "Conforme a Resolução 40/2021 do COAF, a condição de PEP perdura por 5 anos após a pessoa deixar o cargo público que a qualificava como tal."
+    },
+    {
+      question: "Por que é importante verificar doações eleitorais em processos de due diligence?",
       options: [
         "Apenas para cumprir requisitos legais",
         "Para identificar conexões políticas e potenciais conflitos de interesse",
-        "Porque doações são ilegais",
-        "Apenas para empresas públicas"
+        "Porque doações são ilegais desde 2015",
+        "Apenas para empresas do setor financeiro"
       ],
       correctIndex: 1,
-      explanation: "Doações eleitorais revelam conexões políticas que podem representar conflitos de interesse, especialmente em contratações com o governo."
+      explanation: "Doações eleitorais revelam conexões políticas documentadas que podem representar conflitos de interesse, especialmente em contratações com o governo ou relacionamentos comerciais com mandatários eleitos."
     },
     {
-      question: "Desde quando o TSE disponibiliza dados eleitorais digitalizados completos?",
-      options: ["1945", "1988", "2002", "2010"],
+      question: "Quantos novos eleitos as eleições municipais de 2024 trouxeram ao cenário público brasileiro?",
+      options: ["Cerca de 10 mil", "Cerca de 35 mil", "Mais de 69 mil", "Mais de 150 mil"],
       correctIndex: 2,
-      explanation: "Embora o TSE tenha registros desde 1945, os dados digitalizados mais completos estão disponíveis a partir de 2002."
+      explanation: "As eleições municipais de 2024 elegeram mais de 69 mil prefeitos, vice-prefeitos e vereadores, todos passando a ser classificados como PEPs e aumentando significativamente o universo de monitoramento para empresas obrigadas."
     }
   ]}
-/>
-
-<LeadCaptureCard
-  title="Checklist de Due Diligence Político"
-  description="Lista completa de verificações para identificar riscos políticos em processos de due diligence."
-  resourceType="checklist"
-  downloadUrl="/downloads/checklist-due-diligence-politico.pdf"
-  benefits={[
-    "18 pontos de verificação",
-    "Fontes públicas recomendadas",
-    "Red flags a observar",
-    "Template preenchível"
-  ]}
-  fileSize="245 KB"
-  pages={4}
 />
 
 <SeriesNavigation

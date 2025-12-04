@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Library, Mail, FileWarning, ShieldAlert, Flame, BookOpen } from "lucide-react";
+import { Library, Mail } from "lucide-react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import {
@@ -14,7 +14,7 @@ import {
   QuickFilters,
   BlogSidebar
 } from "@/components/blog";
-import { useBlog, MOCK_POSTS } from "@/hooks/useBlog";
+import { useBlog } from "@/hooks/useBlog";
 
 export default function BlogPage() {
   const {
@@ -33,12 +33,6 @@ export default function BlogPage() {
   const [showFullFilters, setShowFullFilters] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
-  // Cases práticos (novos posts de casos reais) - primeiros 4
-  const casePosts = MOCK_POSTS.filter(post => post.contentType === "case-study").slice(0, 4);
-
-  // Artigos em destaque (featured que NÃO são cases) - primeiros 3
-  const featuredArticles = MOCK_POSTS.filter(post => post.featured && post.contentType !== "case-study").slice(0, 3);
-
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setFilters({ ...filters, search: searchValue });
@@ -55,71 +49,7 @@ export default function BlogPage() {
           onSearch={handleSearch}
         />
 
-        {/* ========== PRIMEIRO VIEWPORT - CASES REAIS ========== */}
-        {/* 57% do tempo do usuário é gasto acima da dobra - Cases devem estar aqui */}
-        <section className="py-8 border-b border-red-500/20 bg-navy-950">
-          <div className="container mx-auto px-4 sm:px-8 lg:px-12">
-            {/* Header da seção - Padrão F: título à esquerda */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-red-500/10 border border-red-500/30">
-                  <ShieldAlert className="w-5 h-5 text-red-500" />
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                    Cases Reais
-                    <span className="px-2 py-0.5 text-[10px] font-bold bg-red-500 text-white rounded-full animate-pulse">
-                      NOVO
-                    </span>
-                  </h2>
-                  <p className="text-xs text-navy-400">
-                    Casos anonimizados da nossa atuação
-                  </p>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setFilters({ ...filters, contentType: "case-study" })}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 hover:bg-red-500/20 transition-colors text-sm text-red-400 font-medium"
-              >
-                <FileWarning className="w-4 h-4" />
-                Ver todos
-              </button>
-            </div>
-
-            {/* Grid de cases - 4 colunas no desktop */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {casePosts.map((post, index) => (
-                <BlogCard key={post.id} post={post} index={index} compact />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ========== ARTIGOS EM DESTAQUE - Logo abaixo ========== */}
-        {featuredArticles.length > 0 && (
-          <section className="py-8 border-b border-gold-500/10 bg-navy-900/30">
-            <div className="container mx-auto px-4 sm:px-8 lg:px-12">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-gold-500/10 border border-gold-500/20">
-                  <Flame className="w-5 h-5 text-gold-500" />
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-white">Em Destaque</h2>
-                  <p className="text-xs text-navy-400">Artigos mais relevantes</p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {featuredArticles.map((post, index) => (
-                  <BlogCard key={post.id} post={post} index={index} compact />
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* ========== BIBLIOTECA COMPLETA - Scroll necessário ========== */}
+        {/* ========== BIBLIOTECA COMPLETA ========== */}
         <section id="artigos" className="py-10 scroll-mt-20">
           <div className="container mx-auto px-4 sm:px-8 lg:px-12">
             {/* Header compacto + Filtros inline */}
