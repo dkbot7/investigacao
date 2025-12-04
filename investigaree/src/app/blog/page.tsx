@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Library, Zap, Mail, Search } from "lucide-react";
+import { Library, Mail, FileWarning, ShieldAlert, Flame, BookOpen } from "lucide-react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import {
   BlogHero,
-  FeaturedPosts,
   BlogFilters,
   BlogCard,
   BlogPagination,
@@ -15,8 +14,7 @@ import {
   QuickFilters,
   BlogSidebar
 } from "@/components/blog";
-import { Input } from "@/components/ui/input";
-import { useBlog } from "@/hooks/useBlog";
+import { useBlog, MOCK_POSTS } from "@/hooks/useBlog";
 
 export default function BlogPage() {
   const {
@@ -35,6 +33,12 @@ export default function BlogPage() {
   const [showFullFilters, setShowFullFilters] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
+  // Cases práticos (novos posts de casos reais) - primeiros 4
+  const casePosts = MOCK_POSTS.filter(post => post.contentType === "case-study").slice(0, 4);
+
+  // Artigos em destaque (featured que NÃO são cases) - primeiros 3
+  const featuredArticles = MOCK_POSTS.filter(post => post.featured && post.contentType !== "case-study").slice(0, 3);
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setFilters({ ...filters, search: searchValue });
@@ -44,51 +48,97 @@ export default function BlogPage() {
     <>
       <Header />
       <main className="min-h-screen bg-navy-950">
-        {/* Hero Section - Posicionamento estratégico */}
-        <BlogHero />
+        {/* Hero Section - Compacto com busca integrada */}
+        <BlogHero
+          searchValue={searchValue}
+          onSearchChange={setSearchValue}
+          onSearch={handleSearch}
+        />
 
-        {/* Featured Posts - Inovações em destaque */}
-        <FeaturedPosts posts={featuredPosts} />
-
-        {/* Main Content - Biblioteca de artigos */}
-        <section id="artigos" className="py-16 scroll-mt-20">
+        {/* ========== PRIMEIRO VIEWPORT - CASES REAIS ========== */}
+        {/* 57% do tempo do usuário é gasto acima da dobra - Cases devem estar aqui */}
+        <section className="py-8 border-b border-red-500/20 bg-navy-950">
           <div className="container mx-auto px-4 sm:px-8 lg:px-12">
-            {/* Título e busca */}
-            <div className="mb-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6"
+            {/* Header da seção - Padrão F: título à esquerda */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-red-500/10 border border-red-500/30">
+                  <ShieldAlert className="w-5 h-5 text-red-500" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                    Cases Reais
+                    <span className="px-2 py-0.5 text-[10px] font-bold bg-red-500 text-white rounded-full animate-pulse">
+                      NOVO
+                    </span>
+                  </h2>
+                  <p className="text-xs text-navy-400">
+                    Casos anonimizados da nossa atuação
+                  </p>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setFilters({ ...filters, contentType: "case-study" })}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 hover:bg-red-500/20 transition-colors text-sm text-red-400 font-medium"
               >
+                <FileWarning className="w-4 h-4" />
+                Ver todos
+              </button>
+            </div>
+
+            {/* Grid de cases - 4 colunas no desktop */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {casePosts.map((post, index) => (
+                <BlogCard key={post.id} post={post} index={index} compact />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ========== ARTIGOS EM DESTAQUE - Logo abaixo ========== */}
+        {featuredArticles.length > 0 && (
+          <section className="py-8 border-b border-gold-500/10 bg-navy-900/30">
+            <div className="container mx-auto px-4 sm:px-8 lg:px-12">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2 rounded-lg bg-gold-500/10 border border-gold-500/20">
+                  <Flame className="w-5 h-5 text-gold-500" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-white">Em Destaque</h2>
+                  <p className="text-xs text-navy-400">Artigos mais relevantes</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {featuredArticles.map((post, index) => (
+                  <BlogCard key={post.id} post={post} index={index} compact />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ========== BIBLIOTECA COMPLETA - Scroll necessário ========== */}
+        <section id="artigos" className="py-10 scroll-mt-20">
+          <div className="container mx-auto px-4 sm:px-8 lg:px-12">
+            {/* Header compacto + Filtros inline */}
+            <div className="mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-xl bg-navy-800 border border-gold-500/10">
-                    <Library className="w-6 h-6 text-gold-500" />
+                  <div className="p-2 rounded-lg bg-navy-800 border border-gold-500/10">
+                    <Library className="w-5 h-5 text-gold-500" />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-white">Biblioteca DFIR</h2>
-                    <p className="text-sm text-navy-400">
-                      Artigos técnicos, tutoriais e casos práticos para todos os níveis
+                    <h2 className="text-xl font-bold text-white">Todos os Artigos</h2>
+                    <p className="text-xs text-navy-400">
+                      {pagination.total} artigos disponíveis
                     </p>
                   </div>
                 </div>
+              </div>
 
-                {/* Busca rápida */}
-                <form onSubmit={handleSearch} className="w-full lg:w-auto lg:min-w-[320px]">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-navy-400" />
-                    <Input
-                      type="text"
-                      placeholder="Buscar artigos..."
-                      value={searchValue}
-                      onChange={(e) => setSearchValue(e.target.value)}
-                      className="pl-10 pr-4 bg-navy-900/50 border-gold-500/20 text-white placeholder:text-navy-400 focus:border-gold-500/50"
-                    />
-                  </div>
-                </form>
-              </motion.div>
-
-              {/* Quick Filters - Filtros facetados estilo Blackpanda */}
+              {/* Quick Filters - inline */}
               <QuickFilters
                 filters={filters}
                 onFiltersChange={setFilters}

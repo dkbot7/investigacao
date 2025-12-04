@@ -451,45 +451,45 @@ export default function RecursosPage() {
       </AnimatePresence>
 
       <main className="min-h-screen bg-navy-950">
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gold-500/5 via-transparent to-transparent" />
+        {/* Hero Section - Compacto (UX: Padrão F) */}
+        <section className="relative pt-24 pb-6 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-900 to-navy-950" />
 
           <div className="container relative mx-auto px-4 sm:px-8 lg:px-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="max-w-3xl mx-auto text-center"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 mb-6">
-                <Wrench className="w-4 h-4 text-gold-500" />
-                <span className="text-sm text-gold-400 font-medium">Diretório Curado</span>
-              </div>
+            <div className="max-w-4xl mx-auto">
+              {/* Layout em linha - Padrão F */}
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                {/* Lado esquerdo - Título e badge */}
+                <div className="flex items-center gap-4">
+                  <div className="p-2.5 rounded-xl bg-gold-500/10 border border-gold-500/20">
+                    <Wrench className="w-6 h-6 text-gold-500" />
+                  </div>
+                  <div>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-white">
+                      Recursos{" "}
+                      <span className="text-gold-500">Investigação</span>
+                    </h1>
+                    <p className="text-sm text-navy-400">
+                      Cursos, ferramentas, APIs e livros selecionados
+                    </p>
+                  </div>
+                </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Recursos para{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-600">
-                  Investigação Digital
-                </span>
-              </h1>
-              <p className="text-lg text-navy-300 mb-8">
-                Cursos, ferramentas, APIs, livros e certificações selecionados
-                por especialistas em forense digital e due diligence.
-              </p>
-
-              {/* Busca */}
-              <div className="relative max-w-xl mx-auto">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-navy-400" />
-                <Input
-                  type="text"
-                  placeholder="Buscar recursos..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-12 pr-4 py-6 text-lg bg-navy-900/50 border-gold-500/20 text-white placeholder:text-navy-400 focus:border-gold-500/50 rounded-xl"
-                />
+                {/* Lado direito - Busca */}
+                <div className="w-full lg:w-auto lg:min-w-[300px]">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-navy-400" />
+                    <Input
+                      type="text"
+                      placeholder="Buscar recursos..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="pl-10 pr-4 bg-navy-800/50 border-gold-500/20 text-white placeholder:text-navy-400 focus:border-gold-500/50"
+                    />
+                  </div>
+                </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 

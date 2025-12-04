@@ -245,12 +245,84 @@ export const MOCK_POSTS: BlogPost[] = [
     views: 5432
   },
 
-  // ===== CASES PRÁTICOS (Anonimizados) =====
+  // ===== CASES PRÁTICOS (Reais - Anonimizados) =====
   {
     id: "13",
-    title: "Case: Investidor Evitou Prejuízo de R$2M com Due Diligence",
+    title: "Case: Doméstica de 8 Anos Repassava Rotina da Família para Quadrilha",
+    slug: "case-domestica-vazava-informacoes-quadrilha",
+    excerpt: "Como a análise de mudanças patrimoniais suspeitas revelou que funcionária de confiança estava colaborando com criminosos para planejar sequestro.",
+    content: "",
+    coverImage: getPlaceholderImage("case-domestic-security", "case"),
+    author: BLOG_AUTHORS[0], // Ibsen Maciel - Perito
+    contentType: "case-study",
+    topic: BLOG_TOPICS[8], // Cases Práticos
+    skillLevel: "iniciante",
+    tags: ["case study", "funcionários", "segurança familiar", "sequestro", "proteção"],
+    publishedAt: "2025-12-01T10:00:00Z",
+    readingTime: 12,
+    featured: true,
+    popular: true,
+    views: 8934
+  },
+  {
+    id: "14",
+    title: "Case: Predador Digital Monitorava Adolescente por 6 Meses Sem a Família Saber",
+    slug: "case-predador-digital-stalker-adolescente",
+    excerpt: "Investigação digital identificou stalker que se passava por colega de escola para monitorar adolescente de 15 anos. Ação preventiva evitou encontro presencial.",
+    content: "",
+    coverImage: getPlaceholderImage("case-digital-stalker", "case"),
+    author: BLOG_AUTHORS[1], // Dani Kaloi
+    contentType: "case-study",
+    topic: BLOG_TOPICS[8], // Cases Práticos
+    skillLevel: "iniciante",
+    tags: ["case study", "stalker", "proteção familiar", "adolescentes", "redes sociais", "predador"],
+    publishedAt: "2025-11-28T14:00:00Z",
+    readingTime: 10,
+    featured: true,
+    popular: true,
+    views: 15234
+  },
+  {
+    id: "19",
+    title: "Case: Operação Castelo de Cartas - Perícia Forense em Tempo Real",
+    slug: "case-operacao-castelo-cartas-pericia-forense",
+    excerpt: "Bastidores de como a perícia forense digital com extração de dados in loco permitiu laudos no mesmo dia em operação contra o crime organizado.",
+    content: "",
+    coverImage: getPlaceholderImage("case-forensic-operation", "case"),
+    author: BLOG_AUTHORS[0], // Ibsen Maciel - Perito
+    contentType: "case-study",
+    topic: BLOG_TOPICS[8], // Cases Práticos
+    skillLevel: "intermediario",
+    tags: ["case study", "perícia forense", "operação policial", "cellebrite", "crime organizado"],
+    publishedAt: "2025-11-25T09:00:00Z",
+    readingTime: 15,
+    featured: true,
+    popular: true,
+    views: 12456
+  },
+  {
+    id: "20",
+    title: "Case: Ex-Sócio Contratou Detetives para Chantagear Família",
+    slug: "case-ex-socio-chantagem-contra-inteligencia",
+    excerpt: "Como a contra-inteligência empresarial identificou e documentou tentativa de chantagem por ex-sócio vingativo, permitindo ação judicial preventiva.",
+    content: "",
+    coverImage: getPlaceholderImage("case-corporate-espionage", "case"),
+    author: BLOG_AUTHORS[0], // Ibsen Maciel
+    contentType: "case-study",
+    topic: BLOG_TOPICS[8], // Cases Práticos
+    skillLevel: "intermediario",
+    tags: ["case study", "contra-inteligência", "chantagem", "sócio", "proteção empresarial"],
+    publishedAt: "2025-11-20T11:00:00Z",
+    readingTime: 14,
+    featured: false,
+    popular: true,
+    views: 9876
+  },
+  {
+    id: "21",
+    title: "Case: Investidor Evitou Prejuízo de R$2M ao Descobrir Fraude Oculta do Fundador",
     slug: "case-investidor-evitou-prejuizo-due-diligence",
-    excerpt: "Como uma verificação de antecedentes revelou que o fundador tinha histórico de fraude não divulgado.",
+    excerpt: "Due diligence digital revelou que fundador de startup 'promissora' tinha histórico de fraude e processos não divulgados.",
     content: "",
     coverImage: getPlaceholderImage("case-study-investor", "case"),
     author: BLOG_AUTHORS[1], // Dani Kaloi
@@ -258,28 +330,47 @@ export const MOCK_POSTS: BlogPost[] = [
     topic: BLOG_TOPICS[8], // Cases Práticos
     skillLevel: "iniciante",
     tags: ["case study", "investidor", "fraude", "startup", "due diligence"],
-    publishedAt: "2025-10-25T14:00:00Z",
+    publishedAt: "2025-11-15T14:00:00Z",
     readingTime: 10,
     featured: false,
     popular: true,
     views: 7654
   },
   {
-    id: "14",
-    title: "Case: Mulher Descobriu R$800 Mil Ocultos em Processo de Divórcio",
-    slug: "case-mulher-descobriu-patrimonio-oculto-divorcio",
-    excerpt: "Investigação patrimonial que revelou empresas e imóveis não declarados pelo ex-cônjuge.",
+    id: "22",
+    title: "Case: Mulher Descobriu R$800 Mil em Patrimônio Oculto Durante Divórcio",
+    slug: "case-patrimonio-oculto-divorcio-empresas-laranjas",
+    excerpt: "Investigação patrimonial forense revelou rede de empresas em nome de terceiros e imóveis não declarados pelo cônjuge.",
     content: "",
     coverImage: getPlaceholderImage("case-study-divorce", "case"),
-    author: BLOG_AUTHORS[2], // Equipe
+    author: BLOG_AUTHORS[0], // Ibsen Maciel
     contentType: "case-study",
     topic: BLOG_TOPICS[8], // Cases Práticos
     skillLevel: "iniciante",
-    tags: ["case study", "divórcio", "patrimônio", "ocultação", "investigação"],
-    publishedAt: "2025-10-20T10:00:00Z",
-    readingTime: 8,
+    tags: ["case study", "divórcio", "patrimônio oculto", "laranjas", "investigação patrimonial"],
+    publishedAt: "2025-11-10T10:00:00Z",
+    readingTime: 12,
     featured: false,
+    popular: true,
     views: 11234
+  },
+  {
+    id: "23",
+    title: "Case: Operação Nacional Desarticulou Quadrilha com 34 Prisões em SP",
+    slug: "case-operacao-nacional-cibercrimes-34-prisoes",
+    excerpt: "Como a perícia forense digital do Pará contribuiu para operação interestadual de combate a crimes cibernéticos com alcance nacional.",
+    content: "",
+    coverImage: getPlaceholderImage("case-national-operation", "case"),
+    author: BLOG_AUTHORS[0], // Ibsen Maciel
+    contentType: "case-study",
+    topic: BLOG_TOPICS[8], // Cases Práticos
+    skillLevel: "avancado",
+    tags: ["case study", "operação policial", "cibercrimes", "perícia forense", "crime organizado"],
+    publishedAt: "2025-11-05T08:00:00Z",
+    readingTime: 18,
+    featured: false,
+    popular: true,
+    views: 8543
   },
 
   // ===== RED FLAGS =====
@@ -317,6 +408,26 @@ export const MOCK_POSTS: BlogPost[] = [
     readingTime: 8,
     featured: false,
     views: 15432
+  },
+
+  // ===== ENTREVISTAS =====
+  {
+    id: "24",
+    title: "Ibsen Maciel: 1º Lugar Polícia Científica do Pará - A Trajetória de 5 Anos até a Aprovação",
+    slug: "ibsen-maciel-1-lugar-policia-cientifica-para-trajetoria",
+    excerpt: "Em entrevista exclusiva, Ibsen Maciel conta como saiu do setor privado, passou em 1º lugar no Exército e conquistou o 1º lugar na Polícia Científica do Pará após 5 anos de dedicação.",
+    content: "",
+    coverImage: "https://img.youtube.com/vi/9K1FW2t1cLs/maxresdefault.jpg",
+    author: BLOG_AUTHORS[0], // Ibsen Maciel
+    contentType: "entrevista",
+    topic: BLOG_TOPICS[0], // Metodologia Forense
+    skillLevel: "iniciante",
+    tags: ["ibsen maciel", "perito criminal", "polícia científica", "concurso público", "aprovação", "trajetória", "exército"],
+    publishedAt: "2025-12-04T10:00:00Z",
+    readingTime: 15,
+    featured: true,
+    popular: true,
+    views: 876
   },
 
   // ===== LGPD & COMPLIANCE =====

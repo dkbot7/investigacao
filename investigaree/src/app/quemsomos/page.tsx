@@ -49,40 +49,38 @@ export default function QuemSomosPage() {
     <>
       <Header />
       <main className="min-h-screen bg-white dark:bg-navy-950">
-        {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-navy-50 to-navy-100 dark:from-navy-900 dark:to-navy-950">
-          <div className="container max-w-7xl px-4">
-            <div className="text-center space-y-6">
-              <Badge variant="outline" className="text-gold-600 dark:text-gold-400 border-gold-300 dark:border-gold-500">
-                Quem Somos
-              </Badge>
-              <h1 className="text-5xl md:text-6xl font-bold text-navy-900 dark:text-white">
-                Investigacao Digital em Escala
-              </h1>
-              <p className="text-xl text-navy-600 dark:text-navy-200 max-w-3xl mx-auto">
-                Processamos <strong className="text-gold-600 dark:text-gold-400">+100 mil registros</strong> com tecnologia de ponta.
-                Especializados em <strong>due diligence empresarial</strong> e
-                <strong> protecao patrimonial para mulheres em divorcios</strong>.
-              </p>
-              <div className="flex flex-wrap justify-center gap-3 pt-4">
+        {/* Hero Section - Compacto (UX: 57% do tempo acima da dobra) */}
+        <section className="pt-24 pb-8 bg-gradient-to-br from-navy-900 to-navy-950">
+          <div className="container max-w-6xl px-4">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+              {/* Lado esquerdo - Padrão F */}
+              <div className="space-y-3">
+                <Badge variant="outline" className="text-gold-400 border-gold-500/30 bg-gold-500/10">
+                  Quem Somos
+                </Badge>
+                <h1 className="text-3xl md:text-4xl font-bold text-white">
+                  Investigacao Digital <span className="text-gold-400">em Escala</span>
+                </h1>
+                <p className="text-lg text-navy-200 max-w-xl">
+                  <strong className="text-gold-400">+100 mil registros</strong> processados por investigacao.
+                  Due diligence e protecao patrimonial.
+                </p>
+              </div>
+              {/* Lado direito - CTAs */}
+              <div className="flex flex-wrap gap-2">
                 <Link href="/servicos?tab=empresarial">
-                  <Button className="bg-navy-800 hover:bg-navy-700 text-white">
-                    Due Diligence Empresarial
+                  <Button size="sm" className="bg-navy-800 hover:bg-navy-700 text-white">
+                    Empresarial
                   </Button>
                 </Link>
                 <Link href="/servicos?tab=familiar">
-                  <Button className="bg-gold-500 hover:bg-gold-600 text-navy-900">
-                    Protecao Familiar
+                  <Button size="sm" className="bg-gold-500 hover:bg-gold-600 text-navy-900">
+                    Familiar
                   </Button>
                 </Link>
                 <Link href="/servicos?tab=divorcios">
-                  <Button className="bg-navy-600 hover:bg-navy-700 text-white">
-                    Protecao Patrimonial
-                  </Button>
-                </Link>
-                <Link href="/servicos?tab=investimentos">
-                  <Button className="bg-gold-600 hover:bg-gold-700 text-white">
-                    Investimentos
+                  <Button size="sm" className="bg-navy-600 hover:bg-navy-700 text-white">
+                    Divorcios
                   </Button>
                 </Link>
               </div>
@@ -90,11 +88,10 @@ export default function QuemSomosPage() {
           </div>
         </section>
 
-        {/* Team Section */}
-        <section className="py-20 bg-navy-50 dark:bg-navy-900/50">
-          <div className="container max-w-7xl px-4">
-            <div className="space-y-8">
-              <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {/* Team Section - Mais compacto */}
+        <section className="py-10 bg-navy-900/50">
+          <div className="container max-w-6xl px-4">
+            <div className="grid md:grid-cols-2 gap-6">
                 {TEAM.map((member) => (
                   <Card
                     key={member.id}
@@ -180,20 +177,19 @@ export default function QuemSomosPage() {
                     </Link>
                   </Card>
                 ))}
-              </div>
             </div>
           </div>
         </section>
 
-        {/* Why Choose Us */}
-        <section className="py-20 bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-950">
+        {/* Why Choose Us - Compacto */}
+        <section className="py-10 bg-navy-950">
           <div className="container max-w-6xl px-4">
-            <div className="text-center mb-12">
-              <Badge variant="outline" className="mb-4">
-                Por que escolher a investigaree
-              </Badge>
-              <h2 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100">
-                Automacao Avancada + Metodologia Forense
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2 rounded-lg bg-gold-500/10 border border-gold-500/20">
+                <Shield className="w-5 h-5 text-gold-500" />
+              </div>
+              <h2 className="text-xl font-bold text-white">
+                Por que a Investigaree
               </h2>
             </div>
 

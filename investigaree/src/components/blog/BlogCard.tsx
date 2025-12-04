@@ -47,10 +47,11 @@ const skillLevelIcons: Record<SkillLevel, React.ComponentType<{ className?: stri
 interface BlogCardProps {
   post: BlogPost;
   featured?: boolean;
+  compact?: boolean;
   index?: number;
 }
 
-export default function BlogCard({ post, featured = false, index = 0 }: BlogCardProps) {
+export default function BlogCard({ post, featured = false, compact = false, index = 0 }: BlogCardProps) {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("pt-BR", {
       day: "2-digit",
@@ -63,6 +64,63 @@ export default function BlogCard({ post, featured = false, index = 0 }: BlogCard
   const skillLevelInfo = SKILL_LEVELS.find(l => l.id === post.skillLevel);
   const ContentTypeIcon = contentTypeIcons[post.contentType];
   const SkillLevelIcon = skillLevelIcons[post.skillLevel];
+
+  // COMPACT MODE - Cards menores para exibição em grid denso
+  if (compact) {
+    return (
+      <motion.article
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.05, duration: 0.3 }}
+        className="group relative overflow-hidden rounded-lg bg-navy-900/40 border border-gold-500/10 hover:border-gold-500/30 hover:bg-navy-900/60 transition-all duration-200"
+      >
+        <Link href={`/blog/${post.slug}`} className="block">
+          {/* Imagem de capa - menor */}
+          <div className="relative h-32 overflow-hidden">
+            <Image
+              src={post.coverImage}
+              alt={post.title}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-950/95 via-navy-950/50 to-transparent" />
+
+            {/* Badge tipo de conteúdo */}
+            <div className="absolute top-2 left-2">
+              <Badge
+                className="text-[9px] font-medium px-1.5 py-0"
+                style={{
+                  backgroundColor: contentTypeInfo?.color,
+                  color: "#0A1628"
+                }}
+              >
+                <ContentTypeIcon className="w-2.5 h-2.5 mr-0.5" />
+                {contentTypeInfo?.name}
+              </Badge>
+            </div>
+          </div>
+
+          {/* Conteúdo compacto */}
+          <div className="p-3">
+            {/* Título - 2 linhas máx */}
+            <h3 className="text-sm font-semibold text-white mb-1.5 line-clamp-2 group-hover:text-gold-400 transition-colors leading-tight">
+              {post.title}
+            </h3>
+
+            {/* Meta info mínima */}
+            <div className="flex items-center justify-between text-[10px] text-navy-400">
+              <span className="truncate max-w-[80px]">{post.author.name}</span>
+              <span className="flex items-center gap-0.5">
+                <Clock className="w-3 h-3" />
+                {post.readingTime}min
+              </span>
+            </div>
+          </div>
+        </Link>
+      </motion.article>
+    );
+  }
 
   if (featured) {
     return (

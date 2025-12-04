@@ -145,18 +145,26 @@ export default function FAQPage() {
     <>
       <Header />
       <main className="min-h-screen bg-navy-950 pt-20">
-        {/* Header */}
-        <section className="bg-navy-900 border-b border-navy-800">
-          <div className="container max-w-4xl mx-auto px-4 py-8">
-            <Link href="/" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition mb-4">
-              <ArrowLeft className="w-4 h-4" />
-              Voltar ao início
-            </Link>
-            <div className="flex items-center gap-3">
-              <HelpCircle className="w-8 h-8 text-primary-400" />
-              <h1 className="text-2xl font-bold text-white">Perguntas Frequentes</h1>
+        {/* Header - Compacto (UX: Padrão F) */}
+        <section className="bg-gradient-to-br from-navy-900 to-navy-950 border-b border-navy-800">
+          <div className="container max-w-4xl mx-auto px-4 py-6">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              {/* Lado esquerdo - Padrão F */}
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-primary-500/10 border border-primary-500/20">
+                  <HelpCircle className="w-6 h-6 text-primary-400" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold text-white">Perguntas Frequentes</h1>
+                  <p className="text-sm text-navy-300">Tire suas dúvidas sobre nossos serviços</p>
+                </div>
+              </div>
+              {/* Lado direito - Link voltar */}
+              <Link href="/" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition text-sm">
+                <ArrowLeft className="w-4 h-4" />
+                Voltar ao início
+              </Link>
             </div>
-            <p className="text-white/60 mt-2">Tire suas dúvidas sobre nossos serviços</p>
           </div>
         </section>
 

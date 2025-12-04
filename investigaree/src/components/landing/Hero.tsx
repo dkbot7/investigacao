@@ -122,61 +122,15 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-[72px]"
+      className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20 md:pt-[72px]"
       aria-label="Hero section - Due Diligence Empresarial"
     >
-      {/* Animated background gradient */}
+      {/* Animated background gradient - simplificado */}
       <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950" />
-      <motion.div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(199,167,107,0.08),transparent_50%)]"
-        animate={{
-          opacity: [0.5, 0.8, 0.5],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(199,167,107,0.05),transparent_50%)]"
-        animate={{
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1
-        }}
-      />
-
-      {/* 🔥 OTIMIZAÇÃO: Floating particles - memorizado */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        {particles.map((particle, index) => (
-          <motion.div
-            key={particle.id}
-            className="absolute w-1 h-1 bg-gold-500 rounded-full"
-            style={{
-              left: particle.left,
-              top: particle.top,
-            }}
-            animate={{
-              opacity: [0.1, 0.3, 0.1],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{
-              duration: parseFloat(particle.duration),
-              repeat: Infinity,
-              delay: parseFloat(particle.delay),
-              ease: "easeInOut"
-            }}
-          />
-        ))}
-      </div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(199,167,107,0.06),transparent_50%)]" />
 
       <motion.div
-        className="container relative z-10 px-4 py-16 sm:py-20 max-w-6xl"
+        className="container relative z-10 px-4 py-10 sm:py-12 max-w-6xl"
         variants={containerVariants}
         initial="hidden"
         animate="visible"

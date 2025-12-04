@@ -1971,26 +1971,30 @@ function ServicosContent() {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-navy-950">
-        {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-navy-50 to-navy-100 dark:from-navy-900 dark:to-navy-950">
-          <div className="container max-w-7xl px-4">
-            <div className="text-center space-y-6">
-              <Badge variant="outline" className="text-gold-600 dark:text-gold-400 border-gold-300 dark:border-gold-600">
-                Servicos Especializados
-              </Badge>
-              <h1 className="text-5xl md:text-6xl font-bold text-navy-900 dark:text-white">
-                Investigacao com IA em Escala
-              </h1>
-              <p className="text-xl text-navy-600 dark:text-navy-300 max-w-3xl mx-auto">
-                Processamos <strong className="text-gold-600 dark:text-gold-400">+100 mil registros</strong> com tecnologia de ponta.
-                Protecao para <strong>familias</strong>, <strong>empresas</strong>, <strong>investidores</strong> e <strong>orgaos publicos</strong>.
-              </p>
-              <div className="flex flex-wrap justify-center gap-3 pt-4">
-                <Badge className="bg-navy-800 text-white">Automacao Avancada</Badge>
-                <Badge className="bg-gold-500 text-navy-900">50+ Bases de Dados</Badge>
-                <Badge className="bg-navy-600 text-white">Perito Criminal Oficial</Badge>
-                <Badge className="bg-success text-white">100% LGPD</Badge>
+    <main className="min-h-screen bg-white dark:bg-navy-950 pt-20">
+        {/* Hero Section - Compacto (UX: Padrão F) */}
+        <section className="pt-6 pb-6 bg-gradient-to-br from-navy-50 to-navy-100 dark:from-navy-900 dark:to-navy-950">
+          <div className="container max-w-6xl px-4">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              {/* Lado esquerdo - Padrão F */}
+              <div className="flex items-center gap-4">
+                <div className="p-2.5 rounded-xl bg-gold-500/10 border border-gold-500/20">
+                  <Search className="w-6 h-6 text-gold-500" />
+                </div>
+                <div>
+                  <h1 className="text-2xl sm:text-3xl font-bold text-navy-900 dark:text-white">
+                    Servicos de <span className="text-gold-600 dark:text-gold-400">Investigacao</span>
+                  </h1>
+                  <p className="text-sm text-navy-600 dark:text-navy-300">
+                    +100 mil registros por investigacao
+                  </p>
+                </div>
+              </div>
+              {/* Lado direito - Badges */}
+              <div className="flex flex-wrap gap-2">
+                <Badge className="bg-navy-800 text-white text-xs">Automacao</Badge>
+                <Badge className="bg-gold-500 text-navy-900 text-xs">50+ Bases</Badge>
+                <Badge className="bg-success text-white text-xs">LGPD</Badge>
               </div>
             </div>
           </div>

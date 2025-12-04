@@ -55,25 +55,29 @@ export default function ContatoPage() {
     <>
       <Header />
       <main className="min-h-screen bg-navy-950 pt-20">
-        {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-navy-900 to-navy-950">
+        {/* Hero Section - Compacto (UX otimizado) */}
+        <section className="pt-6 pb-6 bg-gradient-to-br from-navy-900 to-navy-950">
           <div className="container max-w-6xl mx-auto px-4">
-            <div className="text-center space-y-4">
-              <Badge variant="outline" className="text-gold-400 border-gold-500/30 bg-gold-500/10">
-                Fale Conosco
-              </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold text-white">
-                Investigação com IA em Escala
-              </h1>
-              <p className="text-xl text-navy-200 max-w-3xl mx-auto">
-                <span className="text-gold-400">+100 mil registros</span> processados por investigação.
-                Fale com nossa equipe especializada.
-              </p>
-              <div className="flex flex-wrap justify-center gap-2 pt-4">
-                <Badge className="bg-navy-800 text-white"><Scale className="w-3 h-3 mr-1" />Divórcios</Badge>
-                <Badge className="bg-navy-800 text-white"><Building2 className="w-3 h-3 mr-1" />Empresas</Badge>
-                <Badge className="bg-navy-800 text-white"><TrendingUp className="w-3 h-3 mr-1" />Investidores</Badge>
-                <Badge className="bg-navy-800 text-white"><Home className="w-3 h-3 mr-1" />Famílias</Badge>
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              {/* Lado esquerdo - Padrão F */}
+              <div className="flex items-center gap-4">
+                <div className="p-2.5 rounded-xl bg-gold-500/10 border border-gold-500/20">
+                  <MessageCircle className="w-6 h-6 text-gold-500" />
+                </div>
+                <div>
+                  <h1 className="text-2xl md:text-3xl font-bold text-white">
+                    Fale <span className="text-gold-400">Conosco</span>
+                  </h1>
+                  <p className="text-sm text-navy-300">
+                    +100 mil registros por investigação
+                  </p>
+                </div>
+              </div>
+              {/* Lado direito - Badges */}
+              <div className="flex flex-wrap gap-2">
+                <Badge className="bg-navy-800 text-white text-xs"><Scale className="w-3 h-3 mr-1" />Divórcios</Badge>
+                <Badge className="bg-navy-800 text-white text-xs"><Building2 className="w-3 h-3 mr-1" />Empresas</Badge>
+                <Badge className="bg-navy-800 text-white text-xs"><TrendingUp className="w-3 h-3 mr-1" />Investidores</Badge>
               </div>
             </div>
           </div>
