@@ -1,0 +1,286 @@
+---
+title: "TSE, CEIS e CNEP: As 3 Consultas Essenciais em Due Diligence"
+excerpt: "Descubra como cruzar dados do TSE (candidaturas), CEIS (empresas sancionadas) e CNEP (pessoas sancionadas) em investigações de due diligence."
+coverImage: "https://picsum.photos/seed/due-diligence-brasil/800/450"
+authorId: "dani-kaloi"
+contentType: "tutorial"
+topicId: "osint-brasil"
+skillLevel: "intermediario"
+tags:
+  - tse
+  - ceis
+  - cnep
+  - due diligence
+  - sanções
+  - background check
+  - pep
+publishedAt: "2025-11-22T11:00:00Z"
+featured: false
+readingTime: 18
+---
+
+Se você está fazendo due diligence de uma pessoa ou empresa no Brasil e não consultou o TSE, CEIS e CNEP, sua verificação está incompleta. Essas três fontes revelam informações que simplesmente não existem em nenhum outro lugar.
+
+Neste tutorial, vou mostrar como consultar cada uma dessas bases, o que procurar, e como cruzar as informações para identificar riscos que passariam despercebidos em uma análise superficial.
+
+# Por Que Essas 3 Consultas São Obrigatórias
+
+<KeyStat
+  value="$14.85 Bi"
+  label="Mercado global de OSINT em 2024"
+  source="Mordor Intelligence, 2024"
+  type="info"
+  description="O mercado de inteligência de fontes abertas cresce 14%+ ao ano"
+/>
+
+Cada uma dessas fontes revela um tipo diferente de risco:
+
+**TSE (Tribunal Superior Eleitoral)** — conexões políticas, patrimônio declarado, doações eleitorais. Essencial para identificar PEPs (Pessoas Expostas Politicamente).
+
+**CEIS (Cadastro Nacional de Empresas Inidôneas e Suspensas)** — empresas que foram punidas por fraudes em licitações, contratos irregulares, ou outras infrações administrativas.
+
+**CNEP (Cadastro Nacional de Empresas Punidas)** — empresas punidas com base na Lei Anticorrupção (Lei 12.846/2013), incluindo multas e sanções por corrupção.
+
+Juntas, essas consultas cobrem os principais riscos em due diligence no Brasil: **risco político, risco de fraude contratual, e risco de corrupção**.
+
+# Consulta 1: TSE - Tribunal Superior Eleitoral
+
+O TSE é a fonte mais rica para identificar conexões políticas. Já cobrimos em detalhes no post sobre TSE e Doações Eleitorais, mas aqui está o resumo do que você precisa verificar:
+
+## O Que Consultar no TSE
+
+<ComparisonTable
+  title="Verificações no TSE"
+  headers={["Consulta", "O que revela", "Risco identificado"]}
+  items={[
+    { feature: "Filiação partidária", values: ["Vínculo atual ou histórico com partidos", "PEP, conflito de interesse"] },
+    { feature: "Candidaturas", values: ["Se a pessoa já se candidatou a cargos eletivos", "PEP (mesmo não eleitos)"] },
+    { feature: "Declaração de bens", values: ["Patrimônio declarado em cada candidatura", "Evolução patrimonial incompatível"] },
+    { feature: "Doações recebidas", values: ["Quem financiou as campanhas", "Conexões políticas, conflitos"] },
+    { feature: "Doações realizadas", values: ["Para quem a pessoa doou", "Interesses políticos, influência"] }
+  ]}
+/>
+
+## Red Flags no TSE
+
+Fique atento a:
+
+- **Evolução patrimonial incompatível** — patrimônio que cresce muito mais que a renda conhecida
+- **Doações de/para empresas que contratam com governo** — possível conflito de interesse
+- **Múltiplas candidaturas em partidos diferentes** — pode indicar oportunismo político
+- **Doações recebidas de empresas posteriormente punidas** — risco reputacional
+
+<Callout type="warning" title="PEPs São Risco Elevado">
+  Segundo o COAF, a condição de PEP perdura por 5 anos após deixar o cargo. Isso significa que ex-candidatos, ex-secretários e ex-gestores ainda representam risco elevado mesmo depois de saírem do poder.
+</Callout>
+
+# Consulta 2: CEIS - Cadastro de Empresas Inidôneas e Suspensas
+
+O CEIS é mantido pelo Portal da Transparência da CGU e lista empresas que foram declaradas inidôneas ou suspensas de licitar e contratar com a administração pública.
+
+## O Que Significa Estar no CEIS
+
+Empresas entram no CEIS por:
+
+- **Declaração de inidoneidade** — sanção mais grave, impede contratação com toda a administração pública
+- **Suspensão temporária** — impede contratação com o órgão que aplicou a sanção
+- **Impedimento de licitar** — decorrente de descumprimento de obrigações contratuais
+
+<KeyStat
+  value="21 Mi+"
+  label="Flags de risco identificados por análise de shell companies"
+  source="Moody's, 2023"
+  type="warning"
+  description="Empresas de fachada são frequentemente usadas para contornar sanções"
+/>
+
+## Red Flags no CEIS
+
+- **Empresa diretamente listada** — risco óbvio, não pode contratar com governo
+- **Sócios com histórico de empresas no CEIS** — padrão de comportamento fraudulento
+- **Endereço compartilhado com empresas sancionadas** — possível grupo econômico oculto
+- **CNAE similar a empresas sancionadas dos mesmos sócios** — reabertura com nova razão social
+
+<Callout type="tip" title="Cruzamento Essencial">
+  Sempre cruze os CPFs dos sócios identificados na consulta de CNPJ com o CEIS. Sócios que tiveram outras empresas sancionadas são um red flag crítico.
+</Callout>
+
+# Consulta 3: CNEP - Cadastro Nacional de Empresas Punidas
+
+O CNEP é mais específico que o CEIS: lista empresas punidas com base na **Lei Anticorrupção** (Lei 12.846/2013). Estar no CNEP significa que a empresa foi condenada por atos de corrupção contra a administração pública.
+
+## Sanções da Lei Anticorrupção
+
+As punições incluem:
+
+- **Multa** — de 0,1% a 20% do faturamento bruto (ou R$ 6 mil a R$ 60 milhões se não for possível calcular)
+- **Publicação da decisão condenatória** — dano reputacional
+- **Reparação integral do dano** — se quantificável
+- **Perda de bens ou valores** — produto do ilícito
+- **Suspensão ou interdição de atividades**
+- **Dissolução compulsória** — em casos extremos
+
+## Red Flags no CNEP
+
+- **Empresa diretamente listada** — risco crítico de corrupção
+- **Sócios com empresas no CNEP** — padrão de comportamento corrupto
+- **Fornecedores de empresas no CNEP** — risco de contaminação reputacional
+- **Clientes de empresas no CNEP** — possível beneficiário de esquema
+
+# Como Cruzar as 3 Fontes
+
+O verdadeiro poder dessas consultas está no **cruzamento de informações**. Aqui está a metodologia:
+
+<Timeline
+  title="Metodologia de Cruzamento"
+  items={[
+    {
+      date: "Passo 1",
+      title: "Consultar CNPJ na Receita Federal",
+      description: "Obter QSA completo com CPFs de todos os sócios e data de entrada",
+      completed: true
+    },
+    {
+      date: "Passo 2",
+      title: "Consultar cada sócio no TSE",
+      description: "Verificar filiação, candidaturas, doações recebidas e realizadas",
+      completed: true
+    },
+    {
+      date: "Passo 3",
+      title: "Consultar empresa no CEIS",
+      description: "Verificar se há sanções de inidoneidade ou suspensão",
+      completed: true
+    },
+    {
+      date: "Passo 4",
+      title: "Consultar empresa no CNEP",
+      description: "Verificar se há punições por corrupção (Lei Anticorrupção)",
+      completed: true
+    },
+    {
+      date: "Passo 5",
+      title: "Cruzar sócios com CEIS/CNEP",
+      description: "Verificar se os CPFs dos sócios aparecem em outras empresas sancionadas",
+      completed: false
+    },
+    {
+      date: "Passo 6",
+      title: "Mapear outras empresas dos sócios",
+      description: "Buscar todas as empresas de cada sócio e repetir verificações",
+      completed: false
+    }
+  ]}
+/>
+
+## Exemplo Prático
+
+Imagine que você está verificando a **Empresa ABC LTDA** para uma parceria comercial:
+
+1. **Receita Federal**: Empresa ativa, 2 sócios (João e Maria)
+2. **TSE - João**: Foi candidato a vereador em 2020, não eleito
+3. **TSE - Maria**: Doou R$ 50 mil para deputado federal em 2022
+4. **CEIS - ABC LTDA**: Não consta
+5. **CNEP - ABC LTDA**: Não consta
+6. **Outras empresas de João**: Sócio da XYZ LTDA (baixada em 2019)
+7. **CEIS - XYZ LTDA**: **Consta! Declarada inidônea em 2018 por fraude em licitação**
+
+Sem o cruzamento, você teria dado a ABC LTDA como "limpa". Com o cruzamento, você descobriu que um dos sócios tem histórico de fraude em licitações.
+
+# Compliance e Setores Obrigados
+
+<KeyStat
+  value="39.1%"
+  label="do mercado de OSINT são agências governamentais"
+  source="Mordor Intelligence, 2024"
+  type="info"
+  description="Inteligência de fontes abertas é ferramenta crítica de compliance"
+/>
+
+A verificação de CEIS, CNEP e listas de PEPs é **obrigatória** para diversos setores:
+
+- **Setor financeiro** — bancos, fintechs, seguradoras, corretoras
+- **Empresas que contratam com o governo** — licitantes, fornecedores públicos
+- **Organizações do terceiro setor** — ONGs que recebem recursos públicos
+- **Empresas em fusões e aquisições** — due diligence de M&A
+
+<Callout type="legal" title="Multas por Não-Compliance">
+  O Banco Central multou o City National Bank em US$ 65 milhões em 2024 por controles inadequados de AML. A verificação de listas restritivas é obrigação regulatória séria.
+</Callout>
+
+# Como o Investigaree Automatiza Isso
+
+Fazer essas verificações manualmente é trabalhoso:
+
+- TSE tem múltiplos sistemas (Filiaweb, DivulgaCandContas, Dados Abertos)
+- CEIS e CNEP requerem consultas separadas
+- Cruzamento de sócios multiplica o trabalho
+- Documentação de cada consulta toma tempo
+
+O Investigaree automatiza todo esse processo:
+
+**Consulta unificada** — um CPF ou CNPJ dispara verificações em todas as fontes
+
+**Cruzamento automático** — sócios são identificados e verificados automaticamente
+
+**Mapeamento de vínculos** — todas as empresas de cada pessoa são mapeadas
+
+**Relatório consolidado** — todas as descobertas em um documento só
+
+**Histórico de consultas** — registro para fins de compliance
+
+<CTABanner
+  type="trial"
+  title="Due Diligence Completa em Minutos"
+  description="Consulte TSE, CEIS, CNEP e dezenas de outras fontes em uma única busca. Cruzamento automático de sócios e vínculos."
+  features={["TSE completo", "CEIS/CNEP", "Cruzamento de sócios", "Relatório consolidado"]}
+/>
+
+---
+
+# Quiz: Teste Seu Conhecimento
+
+<Quiz
+  title="TSE, CEIS e CNEP - Due Diligence"
+  questions={[
+    {
+      question: "Qual a diferença principal entre CEIS e CNEP?",
+      options: [
+        "CEIS é federal e CNEP é estadual",
+        "CEIS lista sanções administrativas e CNEP lista punições por corrupção (Lei Anticorrupção)",
+        "CEIS é para pessoas físicas e CNEP para empresas",
+        "Não há diferença, são sinônimos"
+      ],
+      correctIndex: 1,
+      explanation: "O CEIS lista empresas com sanções administrativas (inidoneidade, suspensão), enquanto o CNEP lista especificamente empresas punidas com base na Lei Anticorrupção (Lei 12.846/2013)."
+    },
+    {
+      question: "Por que é importante verificar os sócios individualmente, e não apenas a empresa?",
+      options: [
+        "Porque é exigido por lei",
+        "Porque sócios podem ter histórico de empresas sancionadas",
+        "Porque é mais rápido",
+        "Porque a Receita Federal exige"
+      ],
+      correctIndex: 1,
+      explanation: "Sócios podem ter histórico de outras empresas que foram sancionadas, o que representa um red flag crítico. Uma empresa nova pode parecer limpa, mas ter sócios com histórico problemático."
+    },
+    {
+      question: "Por quanto tempo uma pessoa permanece classificada como PEP após deixar um cargo público?",
+      options: ["1 ano", "3 anos", "5 anos", "10 anos"],
+      correctIndex: 2,
+      explanation: "Segundo o COAF, a condição de PEP perdura por 5 anos após a pessoa deixar o cargo público que a qualificava como Pessoa Exposta Politicamente."
+    },
+    {
+      question: "O que representa o maior risco em due diligence: empresa no CEIS ou sócio com histórico de empresa no CEIS?",
+      options: [
+        "Empresa no CEIS é sempre pior",
+        "Ambos representam risco elevado que deve ser investigado",
+        "Sócio com histórico é irrelevante se a empresa atual está limpa",
+        "Depende do valor do contrato"
+      ],
+      correctIndex: 1,
+      explanation: "Ambos são red flags sérios. Uma empresa pode estar limpa mas ter sócios com padrão de comportamento fraudulento. O histórico dos sócios é tão importante quanto o da empresa atual."
+    }
+  ]}
+/>

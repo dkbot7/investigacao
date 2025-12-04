@@ -87,7 +87,7 @@ export default function ContatoPage() {
         <div className="container max-w-6xl mx-auto px-4 py-12">
 
         {/* Options Grid */}
-        <div className="grid md:grid-cols-4 gap-6 mb-12">
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
 
           {/* WhatsApp Card */}
           <Card className="bg-navy-900 border-navy-800 hover:border-green-500/50 transition-all">
@@ -111,31 +111,6 @@ export default function ContatoPage() {
               </WhatsAppButton>
               <p className="text-white/50 text-xs mt-4">
                 Resposta em até 24h
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Email Institucional */}
-          <Card className="bg-navy-900 border-navy-800 hover:border-gold-500/50 transition-all">
-            <CardHeader className="text-center pb-4">
-              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-gold-500 to-gold-600 rounded-full flex items-center justify-center mb-4">
-                <Mail className="w-8 h-8 text-navy-950" />
-              </div>
-              <CardTitle className="text-white">Email Institucional</CardTitle>
-              <CardDescription className="text-white/60">
-                Atendimento comercial e geral
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="text-center">
-              <a
-                href={`mailto:${EMAIL_CONTATO}?subject=Contato%20via%20investigaree`}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold rounded-full transition-all"
-              >
-                <Mail className="w-4 h-4" />
-                Enviar email
-              </a>
-              <p className="text-white/50 text-xs mt-4">
-                {EMAIL_CONTATO}
               </p>
             </CardContent>
           </Card>
@@ -332,3 +307,4 @@ export default function ContatoPage() {
     </>
   );
 }
+

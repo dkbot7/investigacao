@@ -1,0 +1,369 @@
+---
+title: "APIs Públicas do Governo Brasileiro para Investigação Digital"
+excerpt: "Catálogo completo de APIs oficiais do governo que podem ser usadas em due diligence e background check."
+coverImage: "https://picsum.photos/seed/gov-apis/800/450"
+authorId: "equipe-investigaree"
+contentType: "tutorial"
+topicId: "ferramentas"
+skillLevel: "avancado"
+tags:
+  - api
+  - dados abertos
+  - governo
+  - osint
+  - receita federal
+  - tse
+  - ferramentas
+publishedAt: "2025-10-02T09:00:00Z"
+featured: false
+readingTime: 20
+---
+
+O Brasil é um dos países mais avançados do mundo em termos de dados governamentais abertos. Diversos órgãos públicos disponibilizam APIs que permitem consultas automatizadas a bases de dados oficiais — uma mina de ouro para investigações digitais legais.
+
+Este guia cataloga as principais APIs disponíveis, como acessá-las, e o que cada uma pode revelar.
+
+<Callout type="info" title="Uso Legal">
+  Todas as APIs listadas aqui são públicas e disponibilizadas oficialmente pelo governo brasileiro. O uso para fins de due diligence, verificação de integridade e compliance é legítimo e em conformidade com a LGPD.
+</Callout>
+
+# Receita Federal
+
+## API de Consulta de CNPJ
+
+A Receita Federal oferece dados abertos sobre CNPJs brasileiros através do Portal de Dados Abertos.
+
+**Dados disponíveis:**
+- Razão social e nome fantasia
+- Situação cadastral (ativa, suspensa, baixada)
+- Data de abertura e encerramento
+- CNAE principal e secundários
+- Capital social
+- QSA (Quadro de Sócios e Administradores)
+- Endereço completo
+- Natureza jurídica
+
+<ComparisonTable
+  title="Informações do QSA"
+  headers={["Campo", "Descrição", "Uso em Investigação"]}
+  items={[
+    { feature: "CPF/CNPJ do sócio", values: ["Identificador único", "Permite rastrear outras empresas do mesmo sócio"] },
+    { feature: "Nome do sócio", values: ["Nome completo ou razão social", "Identificação da pessoa/empresa"] },
+    { feature: "Qualificação", values: ["Tipo de vínculo (administrador, sócio, etc.)", "Entender papel na empresa"] },
+    { feature: "Data de entrada", values: ["Quando entrou na sociedade", "Análise temporal de vínculos"] }
+  ]}
+/>
+
+**Limitações:**
+- CPFs dos sócios têm dígitos parcialmente mascarados nos dados públicos
+- Atualização não é em tempo real (geralmente mensal)
+
+## Situação Cadastral de CPF
+
+A Receita disponibiliza consulta de situação cadastral de CPF:
+
+**Dados disponíveis:**
+- Situação cadastral (regular, pendente, suspenso, cancelado, nulo)
+- Nome do titular (parcialmente oculto)
+- Data de nascimento (parcialmente oculta)
+
+**Uso:** Verificar se um CPF existe e está regular antes de transações.
+
+# Portal da Transparência (CGU)
+
+O Portal da Transparência é um dos mais ricos em dados para investigação.
+
+## CEIS - Empresas Inidôneas e Suspensas
+
+Empresas que foram declaradas inidôneas ou suspensas de licitar com a administração pública.
+
+**Dados disponíveis:**
+- CNPJ da empresa sancionada
+- Razão social
+- Órgão sancionador
+- Tipo de sanção
+- Data de início e fim da sanção
+- Fundamentação legal
+
+## CNEP - Empresas Punidas (Lei Anticorrupção)
+
+Empresas punidas com base na Lei 12.846/2013 (Lei Anticorrupção).
+
+**Dados disponíveis:**
+- CNPJ da empresa punida
+- Razão social
+- Tipo de punição (multa, publicação de decisão)
+- Valor da multa
+- Órgão que aplicou
+- Descrição da conduta
+
+## CEPIM - Entidades Privadas Impedidas
+
+ONGs e entidades do terceiro setor impedidas de receber recursos públicos.
+
+## Lista de PEPs
+
+Pessoas Expostas Politicamente cadastradas no sistema federal.
+
+<KeyStat
+  value="132 mil+"
+  label="PEPs cadastrados no Portal da Transparência"
+  source="CGU, 2024"
+  type="info"
+  description="Inclui agentes públicos de todos os níveis de governo"
+/>
+
+## Servidores Públicos
+
+Base completa de servidores federais ativos e inativos.
+
+**Dados disponíveis:**
+- Nome completo
+- Cargo e função
+- Órgão de lotação
+- Data de entrada
+- Remuneração (bruta e líquida)
+
+# TSE - Tribunal Superior Eleitoral
+
+O TSE oferece APIs robustas com dados eleitorais.
+
+## Dados de Candidatos
+
+**Dados disponíveis:**
+- Dados pessoais do candidato
+- Cargo disputado
+- Partido e coligação
+- Número de votos
+- Situação da candidatura (deferida, indeferida)
+- Bens declarados
+- Receitas e despesas de campanha
+
+## Prestação de Contas
+
+**Dados disponíveis:**
+- Doações recebidas (pessoa física e jurídica)
+- Despesas de campanha
+- Fornecedores contratados
+- Valores movimentados
+
+## Filiação Partidária
+
+**Dados disponíveis:**
+- Nome do filiado
+- Partido atual
+- Data de filiação
+- Histórico de filiações
+
+<Callout type="tip" title="Análise Temporal">
+  O TSE mantém histórico de todas as eleições. Isso permite analisar a evolução patrimonial de candidatos ao longo do tempo — uma evolução incompatível pode indicar enriquecimento ilícito.
+</Callout>
+
+# Tribunais de Justiça
+
+A maioria dos tribunais estaduais e federais oferece consulta processual online.
+
+## TJSP (Tribunal de Justiça de São Paulo)
+
+O maior tribunal do país oferece API de consulta de processos.
+
+**Dados disponíveis:**
+- Número do processo
+- Partes (autor e réu)
+- Classe processual
+- Assunto
+- Movimentações
+- Decisões
+
+## Tribunais Federais
+
+O Conselho da Justiça Federal oferece base consolidada de processos.
+
+## Tribunais Trabalhistas
+
+O TST disponibiliza consulta a processos trabalhistas.
+
+<ComparisonTable
+  title="Tipos de Informações Processuais"
+  headers={["Tribunal", "O Que Revela", "Uso em Due Diligence"]}
+  items={[
+    { feature: "Tribunais Estaduais", values: ["Processos cíveis e criminais estaduais", "Litígios, crimes, dívidas"] },
+    { feature: "Tribunais Federais", values: ["Crimes federais, causas contra a União", "Crimes graves, questões fiscais"] },
+    { feature: "Tribunais Trabalhistas", values: ["Reclamações trabalhistas", "Histórico como empregador"] },
+    { feature: "Tribunais Eleitorais", values: ["Processos eleitorais", "Irregularidades em campanhas"] }
+  ]}
+/>
+
+# Outras Fontes
+
+## DETRAN
+
+Cada estado tem seu DETRAN, alguns com APIs públicas.
+
+**Dados disponíveis:**
+- Situação de CNH
+- Débitos de veículos
+- Restrições
+
+## Cartórios
+
+Alguns estados oferecem consulta online a:
+- Protestos
+- Certidões de imóveis
+- Nascimentos, casamentos, óbitos
+
+## INPI
+
+Instituto Nacional de Propriedade Industrial.
+
+**Dados disponíveis:**
+- Marcas registradas
+- Patentes
+- Desenhos industriais
+
+## CVM
+
+Comissão de Valores Mobiliários.
+
+**Dados disponíveis:**
+- Empresas de capital aberto
+- Fundos de investimento
+- Administradores sancionados
+
+# Como Usar na Prática
+
+## Metodologia de Consulta
+
+<Timeline
+  title="Processo de Consulta a APIs Governamentais"
+  items={[
+    {
+      date: "Passo 1",
+      title: "Identificar o alvo",
+      description: "CPF ou CNPJ da pessoa/empresa a verificar",
+      completed: true
+    },
+    {
+      date: "Passo 2",
+      title: "Consultar Receita Federal",
+      description: "Situação cadastral, empresas vinculadas, QSA",
+      completed: true
+    },
+    {
+      date: "Passo 3",
+      title: "Expandir por sócios",
+      description: "Para cada sócio identificado, buscar outras empresas",
+      completed: true
+    },
+    {
+      date: "Passo 4",
+      title: "Verificar listas restritivas",
+      description: "CEIS, CNEP, CEPIM, PEPs",
+      completed: true
+    },
+    {
+      date: "Passo 5",
+      title: "Buscar processos",
+      description: "Tribunais estaduais, federais, trabalhistas",
+      completed: true
+    },
+    {
+      date: "Passo 6",
+      title: "Verificar TSE (se aplicável)",
+      description: "Candidaturas, patrimônio, doações",
+      completed: false
+    }
+  ]}
+/>
+
+## Limitações das APIs
+
+<ComparisonTable
+  title="Limitações Comuns"
+  headers={["Limitação", "Impacto", "Mitigação"]}
+  items={[
+    { feature: "Dados não em tempo real", values: ["Informações podem estar desatualizadas", "Cruzar com outras fontes"] },
+    { feature: "CPFs mascarados", values: ["Dificulta cruzamento automático", "Usar nome + outros dados"] },
+    { feature: "Rate limiting", values: ["Limite de consultas por tempo", "Distribuir consultas"] },
+    { feature: "Formato variado", values: ["Cada órgão usa formato diferente", "Padronizar após coleta"] }
+  ]}
+/>
+
+# Ferramentas de Agregação
+
+Fazer todas essas consultas manualmente é trabalhoso. Existem ferramentas que agregam múltiplas fontes:
+
+**Brasil.io:** Agregador de dados públicos brasileiros.
+
+**Querido Diário:** Diários oficiais de municípios em formato estruturado.
+
+**Serenata de Amor:** Dados de gastos parlamentares.
+
+<Callout type="tip" title="Automação">
+  Para uso frequente, considere desenvolver scripts que consultem automaticamente as APIs e consolidem os resultados. Ou use uma plataforma como o Investigaree que já faz isso.
+</Callout>
+
+# Como o Investigaree Automatiza
+
+O Investigaree integra todas essas fontes em uma única plataforma:
+
+- **Consulta unificada:** Um CPF ou CNPJ, todas as fontes consultadas
+- **Cruzamento automático:** Sócios identificados e verificados automaticamente
+- **Atualização frequente:** Bases atualizadas regularmente
+- **Relatório consolidado:** Todas as informações em um documento
+
+<CTABanner
+  type="trial"
+  title="Consulte Todas as Fontes em Uma Única Busca"
+  description="O Investigaree automatiza a consulta a dezenas de APIs governamentais, cruzando dados e gerando relatórios consolidados."
+  features={["30+ fontes públicas", "Cruzamento automático", "Relatório consolidado", "Atualização frequente"]}
+/>
+
+---
+
+# Quiz: Teste Seu Conhecimento
+
+<Quiz
+  title="APIs Públicas do Governo"
+  questions={[
+    {
+      question: "O que o CEIS lista?",
+      options: [
+        "Empresas de capital aberto",
+        "Empresas declaradas inidôneas ou suspensas de licitar",
+        "Candidatos a eleição",
+        "Servidores públicos"
+      ],
+      correctIndex: 1,
+      explanation: "O CEIS (Cadastro de Empresas Inidôneas e Suspensas) lista empresas que foram punidas com declaração de inidoneidade ou suspensão de licitar com a administração pública."
+    },
+    {
+      question: "Qual informação NÃO está disponível na consulta de CNPJ da Receita Federal?",
+      options: [
+        "QSA (Quadro de Sócios)",
+        "CNAE da empresa",
+        "Faturamento da empresa",
+        "Data de abertura"
+      ],
+      correctIndex: 2,
+      explanation: "A Receita Federal disponibiliza dados cadastrais como QSA, CNAE, capital social e endereço, mas NÃO disponibiliza dados de faturamento, que são sigilosos."
+    },
+    {
+      question: "Qual a vantagem de consultar candidatos no TSE?",
+      options: [
+        "Ver fotos pessoais",
+        "Acessar declarações de bens e evolução patrimonial ao longo dos anos",
+        "Ver contatos pessoais",
+        "Acessar prontuário médico"
+      ],
+      correctIndex: 1,
+      explanation: "O TSE publica declarações de bens de candidatos em todas as eleições, permitindo analisar a evolução patrimonial ao longo do tempo — inconsistências podem indicar problemas."
+    },
+    {
+      question: "Quantos PEPs estão cadastrados no Portal da Transparência?",
+      options: ["Cerca de 10 mil", "Cerca de 50 mil", "Mais de 132 mil", "Mais de 500 mil"],
+      correctIndex: 2,
+      explanation: "O Portal da Transparência da CGU lista mais de 132 mil Pessoas Expostas Politicamente, incluindo agentes públicos de todos os níveis de governo."
+    }
+  ]}
+/>
