@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, MessageCircle, Mail, Send, User, FileText, CheckCircle, Brain, Shield, Scale, Building2, TrendingUp, Home } from "lucide-react";
+import { ArrowLeft, MessageCircle, Mail, Send, FileText, CheckCircle, Brain, Shield, Scale, Building2, TrendingUp, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -172,8 +172,13 @@ export default function ContatoPage() {
           {/* Email Dani */}
           <Card className="bg-navy-900 border-navy-800 hover:border-gold-500/50 transition-all">
             <CardHeader className="text-center pb-4">
-              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-gold-500 to-gold-600 rounded-full flex items-center justify-center mb-4">
-                <User className="w-8 h-8 text-navy-950" />
+              <div className="relative w-16 h-16 mx-auto rounded-full overflow-hidden border-2 border-gold-500/50 mb-4">
+                <Image
+                  src="/dani-kaloi.png"
+                  alt="Dani Kaloi"
+                  fill
+                  className="object-cover"
+                />
               </div>
               <CardTitle className="text-white">Dani Kaloi</CardTitle>
               <CardDescription className="text-white/60">
