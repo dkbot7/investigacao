@@ -1,21 +1,42 @@
 # 📡 Central de Comunicação Multi-Agent
 
-## 🕐 Última Atualização: 2025-12-07 18:45
+## 🕐 Última Atualização: 2025-12-07 19:30
 
 ---
 
 ## 📢 Avisos Importantes
 
-### [2025-12-07 18:45] ✅ BUILD CORRIGIDO - Agents 2 e 3 podem iniciar
+### [2025-12-07 19:30] 🚀 TODOS AGENTS ATIVOS - Sistema Multi-Agent Rodando!
+- **De:** Agent 1 (Tech Lead)
+- **Para:** Todos os agents
+- **Tipo:** STATUS UPDATE
+- **Mensagem:** Sistema multi-agent totalmente operacional!
+  - ✅ **Agent 1:** Build + Deploy funcionando (15% completo)
+  - ✅ **Agent 2:** Iniciado - Backend Engineer trabalhando
+  - ✅ **Agent 3:** Iniciado - Full-Stack Developer trabalhando
+  - ✅ **Agent 4:** Trabalhando em blog posts (8% completo)
+  - 🎯 **Deploy:** Manual via `deploy.bat` ou `npx wrangler pages deploy out`
+  - 🌐 **Site Live:** https://6ab1c57a.investigaree.pages.dev
+
+### [2025-12-07 19:15] ✅ DEPLOY FUNCIONANDO - Manual Process
+- **De:** Agent 1 (Tech Lead)
+- **Para:** Todos os agents
+- **Tipo:** IMPORTANTE
+- **Mensagem:** Deploy manual configurado e funcionando!
+  - ✅ Build: 69/69 páginas estáticas
+  - ✅ Arquivo `_headers` com MIME types + security
+  - ✅ Documentação: `DEPLOY.md` + script `deploy.bat`
+  - ⚠️ **IMPORTANTE:** NÃO há deploy automático! Todo deploy é manual
+  - 📖 Ver `investigaree/DEPLOY.md` para instruções completas
+
+### [2025-12-07 18:45] ✅ BUILD CORRIGIDO
 - **De:** Agent 1 (Tech Lead)
 - **Para:** Agent 2 (Backend), Agent 3 (Full-Stack)
 - **Tipo:** COMMIT
-- **Mensagem:** Build TypeScript agora está funcionando! Commit `42fc328` aplicado.
+- **Mensagem:** Build TypeScript funcionando! Commit `42fc328`
   - ✅ Todos os erros TypeScript corrigidos
-  - ✅ Build completo: 76/76 páginas geradas com sucesso
-  - ✅ Next.js 16 params Promise fix aplicado
-  - ✅ Modo standalone restaurado (compatível com API routes)
-  - **Agents 2 e 3:** Vocês podem começar a trabalhar agora! Build está estável.
+  - ✅ Next.js 16 params Promise fix
+  - ✅ Build completo e estável
 
 ### [2025-12-07 14:35] Sistema Iniciado
 - **De:** Dani Kaloi
@@ -38,16 +59,37 @@
 
 ## 📝 Commits Importantes (Últimas 24h)
 
-### [2025-12-07 18:45] Commit 42fc328
+### [2025-12-07 19:30] Commit 2a267e0
+- **Agent:** 1 (Tech Lead)
+- **Tipo:** Status Update
+- **Descrição:** Agent 1 STATUS atualizado - TAREFA 1.2 completa
+
+### [2025-12-07 19:20] Commit 895633c
+- **Agent:** 1 (Tech Lead)
+- **Tipo:** Documentation
+- **Arquivos:** DEPLOY.md, deploy.bat
+- **Descrição:** Documentação deploy manual + script Windows
+
+### [2025-12-07 19:15] Commit cf24fd1
 - **Agent:** 1 (Tech Lead)
 - **Tipo:** Fix
-- **Arquivos:** 7 changed, +5086/-503
-- **Descrição:** Corrigidos erros TypeScript build + restaurado standalone output
-  - Next.js 16 params fix
-  - Playwright fixtures type fix
-  - Admin panel type fixes
-  - AddInvestigacaoModal data type separation
-  - next.config.ts: export → standalone
+- **Descrição:** Arquivo _headers + skip blog posts problemáticos
+  - public/_headers com MIME types completos
+  - Security headers (X-Frame-Options, CSP)
+  - Skipped: diarios-oficiais-dou-djen.mdx, osint-redes-sociais-investigacao.mdx
+
+### [2025-12-07 19:00] Commit c8bf4e8
+- **Agent:** 1 (Tech Lead)
+- **Tipo:** Fix
+- **Arquivos:** 613 changed
+- **Descrição:** Revert to export mode para Cloudflare static deploy
+
+### [2025-12-07 18:45] Commits 42fc328, 4ac017c
+- **Agent:** 1 (Tech Lead)
+- **Tipo:** Fix + Setup
+- **Descrição:** Build fix + Sistema multi-agent
+  - 42fc328: TypeScript build fixes
+  - 4ac017c: Multi-agent coordination system (16 arquivos)
 
 ---
 
@@ -61,9 +103,9 @@
 
 | Agent | Status | Progresso | Última Atualização |
 |-------|--------|-----------|-------------------|
-| Agent 1 (Tech Lead) | 🟢 WORKING | 8% (1/13 tarefas) | 2025-12-07 18:45 |
-| Agent 2 (Backend) | 🟡 STARTING | 0% | 2025-12-07 14:35 |
-| Agent 3 (Full-Stack) | 🟡 STARTING | 0% | 2025-12-07 14:35 |
+| Agent 1 (Tech Lead) | 🟢 WORKING | 15% (2/13 tarefas) | 2025-12-07 19:30 |
+| Agent 2 (Backend) | 🟢 WORKING | Iniciando TAREFA 2.1 | 2025-12-07 19:30 |
+| Agent 3 (Full-Stack) | 🟢 WORKING | Iniciando TAREFA 3.1 | 2025-12-07 19:30 |
 | Agent 4 (Content) | 🟢 WORKING | 8% (2/24 tarefas) | 2025-12-07 18:15 |
 
 **Legenda:**
