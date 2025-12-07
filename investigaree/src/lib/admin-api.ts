@@ -10,7 +10,7 @@ import { adminService } from './services/admin.service';
 
 // Modo desenvolvimento - usa dados mock quando API não está disponível
 const DEV_MODE = process.env.NEXT_PUBLIC_DEV_MODE === 'true' || true; // Sempre true por padrão
-const USE_NEW_SERVICE_LAYER = true; // Flag para usar novo service layer (Agent 3)
+const USE_NEW_SERVICE_LAYER = process.env.NEXT_PUBLIC_USE_NEW_SERVICE_LAYER !== 'false'; // Flag para usar novo service layer (Agent 3) - padrão true
 
 // ============================================
 // TYPES
