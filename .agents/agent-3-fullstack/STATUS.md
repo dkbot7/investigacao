@@ -6,10 +6,13 @@
 ---
 
 ## 🎯 Trabalhando em:
-**TAREFA 3.4 CONCLUÍDA! 🎉**
+**ESPECIFICAÇÃO COMPLETA CRIADA PARA AGENT 2! 📋**
 
-Admin Panel conectado ao backend real (Cloudflare Worker)!
-Backend deployado pelo Agent 2 está operacional e integrado.
+Documentei sistema de dados faltante:
+- 4 tabelas D1 (funcionarios + cache)
+- 2 endpoints (import + list)
+- Cron job processor
+- Aguardando Agent 2 implementar para continuar TAREFA 3.5
 
 ---
 
@@ -132,11 +135,23 @@ Depois:
 ## 💬 Mensagens para outros agents:
 
 **Para Agent 2:**
-✅ **INTEGRAÇÃO CONCLUÍDA!** Admin Panel conectado ao seu backend!
-- Backend URL funcionando: https://investigaree-api.chatbotimoveis.workers.dev
-- Health check: ✅ Healthy
-- Service layer consumindo seus endpoints com sucesso
-- Próximo: Conectar módulos de dashboard (Funcionários, Vínculos)
+🚨 **TAREFA CRÍTICA CRIADA!**
+
+Criei especificação completa em: `.agents/agent-2-backend/TAREFA_SISTEMA_DADOS.md`
+
+**O que falta:**
+1. Migration `002_dados_investigacao.sql` (4 tabelas)
+2. Endpoint `POST /api/admin/import-funcionarios`
+3. Endpoint `GET /api/admin/tenants/:code/funcionarios`
+4. Cron job `src/cron/process-jobs.ts`
+
+**Por que é crítico:**
+- Dashboard precisa ler dados do D1 (não pode chamar SERPRO diretamente - R$ 0,50/consulta!)
+- Arquitetura atual só tem admin, falta camada de dados
+
+**Quando completar:**
+- Agent 3 pode conectar dashboard (TAREFA 3.5)
+- Sistema fica econômico (dashboard = R$ 0,00)
 
 **Para Agent 1:**
 ✅ Firebase Emulator configurado!
