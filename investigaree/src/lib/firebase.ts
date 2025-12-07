@@ -1,5 +1,5 @@
 import { initializeApp, getApps } from "firebase/app";
-import { getAuth, setPersistence, browserLocalPersistence } from "firebase/auth";
+import { getAuth, setPersistence, browserLocalPersistence, connectAuthEmulator } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -15,6 +15,16 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0
 
 // Initialize Firebase Authentication
 export const auth = getAuth(app);
+
+// Connect to Firebase Emulator in development mode
+if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATOR === 'true') {
+  try {
+    connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true });
+    console.log('🔥 Firebase Auth Emulator connected at http://127.0.0.1:9099');
+  } catch (error) {
+    console.error('Error connecting to Firebase Auth Emulator:', error);
+  }
+}
 
 // Set persistence to LOCAL (keeps user logged in even after closing browser)
 if (typeof window !== 'undefined') {

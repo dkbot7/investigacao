@@ -27,7 +27,12 @@
       "Bash(npm install:*)",
       "Bash(timeout /t 30 /nobreak)",
       "Bash(dir:*)",
-      "WebFetch(domain:145ad275.investigaree.pages.dev)"
+      "WebFetch(domain:145ad275.investigaree.pages.dev)",
+      "Bash(npm init -y)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(npx firebase:*)",
+      "Bash(tree:*)"
     ],
     "deny": [],
     "ask": []
