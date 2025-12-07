@@ -186,7 +186,7 @@
                   - generic "Ver detalhes" [ref=e207] [cursor=pointer]
               - generic [ref=e208]:
                 - paragraph [ref=e209]: 10min atrás
-                - paragraph [ref=e210]: 07/12/2025, 14:38
+                - paragraph [ref=e210]: 07/12/2025, 15:19
           - generic [ref=e212]:
             - img [ref=e214]
             - generic [ref=e217]:
@@ -205,7 +205,7 @@
                   - generic "Ver detalhes" [ref=e231] [cursor=pointer]
               - generic [ref=e232]:
                 - paragraph [ref=e233]: 2h atrás
-                - paragraph [ref=e234]: 07/12/2025, 12:48
+                - paragraph [ref=e234]: 07/12/2025, 13:29
           - generic [ref=e236]:
             - img [ref=e238]
             - generic [ref=e241]:
@@ -221,7 +221,7 @@
                   - generic "Ver detalhes" [ref=e253] [cursor=pointer]
               - generic [ref=e254]:
                 - paragraph [ref=e255]: 5h atrás
-                - paragraph [ref=e256]: 07/12/2025, 09:48
+                - paragraph [ref=e256]: 07/12/2025, 10:29
           - generic [ref=e258]:
             - img [ref=e260]
             - generic [ref=e263]:
@@ -237,7 +237,7 @@
                   - generic "Ver detalhes" [ref=e275] [cursor=pointer]
               - generic [ref=e276]:
                 - paragraph [ref=e277]: Ontem
-                - paragraph [ref=e278]: 06/12/2025, 14:48
+                - paragraph [ref=e278]: 06/12/2025, 15:29
           - generic [ref=e280]:
             - img [ref=e282]
             - generic [ref=e285]:
@@ -257,7 +257,7 @@
                   - generic "Ver detalhes" [ref=e300] [cursor=pointer]
               - generic [ref=e301]:
                 - paragraph [ref=e302]: 3d atrás
-                - paragraph [ref=e303]: 04/12/2025, 14:48
+                - paragraph [ref=e303]: 04/12/2025, 15:29
           - generic [ref=e305]:
             - img [ref=e307]
             - generic [ref=e310]:
@@ -273,7 +273,7 @@
                   - generic "Ver detalhes" [ref=e322] [cursor=pointer]
               - generic [ref=e323]:
                 - paragraph [ref=e324]: 1sem atrás
-                - paragraph [ref=e325]: 30/11/2025, 14:48
+                - paragraph [ref=e325]: 30/11/2025, 15:29
       - generic [ref=e326]:
         - generic [ref=e327]:
           - heading "Métricas de Uso" [level=3] [ref=e328]:
@@ -359,25 +359,30 @@
           - img
           - text: Conceder
   - button "Open Next.js Dev Tools" [ref=e430] [cursor=pointer]:
-    - img [ref=e431]
-  - alert [ref=e434]
-  - button "Contato via WhatsApp" [ref=e436]:
-    - img [ref=e437]
-  - dialog "Utilizamos cookies" [ref=e442]:
-    - generic [ref=e443]:
-      - generic [ref=e445]:
-        - img [ref=e447]
-        - generic [ref=e449]:
-          - heading "Utilizamos cookies" [level=3] [ref=e450]
-          - paragraph [ref=e451]:
+    - generic [ref=e433]:
+      - text: Compiling
+      - generic [ref=e434]:
+        - generic [ref=e435]: .
+        - generic [ref=e436]: .
+        - generic [ref=e437]: .
+  - alert [ref=e438]
+  - button "Contato via WhatsApp" [ref=e440]:
+    - img [ref=e441]
+  - dialog "Utilizamos cookies" [ref=e446]:
+    - generic [ref=e447]:
+      - generic [ref=e449]:
+        - img [ref=e451]
+        - generic [ref=e453]:
+          - heading "Utilizamos cookies" [level=3] [ref=e454]
+          - paragraph [ref=e455]:
             - text: Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo. Ao clicar em "Aceitar todos", você concorda com o uso de cookies conforme descrito em nossa
-            - link "Política de Cookies" [ref=e452] [cursor=pointer]:
+            - link "Política de Cookies" [ref=e456] [cursor=pointer]:
               - /url: /cookies/
             - text: .
-      - generic [ref=e453]:
-        - button "Personalizar" [ref=e454]:
-          - img [ref=e455]
+      - generic [ref=e457]:
+        - button "Personalizar" [ref=e458]:
+          - img [ref=e459]
           - text: Personalizar
-        - button "Rejeitar não essenciais" [ref=e458]
-        - button "Aceitar todos" [ref=e459]
+        - button "Rejeitar não essenciais" [ref=e462]
+        - button "Aceitar todos" [ref=e463]
 ```

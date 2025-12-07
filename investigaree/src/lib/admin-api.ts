@@ -1,11 +1,16 @@
 /**
  * Admin API Client
+ *
+ * Integrado com admin.service.ts (Agent 3)
+ * Fallback para mock data quando backend não disponível
  */
 
 import { fetchAPI, APIError } from './api';
+import { adminService } from './services/admin.service';
 
 // Modo desenvolvimento - usa dados mock quando API não está disponível
 const DEV_MODE = process.env.NEXT_PUBLIC_DEV_MODE === 'true' || true; // Sempre true por padrão
+const USE_NEW_SERVICE_LAYER = true; // Flag para usar novo service layer (Agent 3)
 
 // ============================================
 // TYPES
@@ -203,11 +208,35 @@ function getMockStats(): AdminStats {
  * Lista todos os usuarios
  */
 export async function getAdminUsers(): Promise<{ users: AdminUser[] }> {
+  if (USE_NEW_SERVICE_LAYER) {
+    try {
+      // Usa novo service layer (Agent 3)
+      const users = await adminService.getUsers();
+      // Converte formato do service layer para formato esperado pelo Admin Panel
+      return {
+        users: users.map(u => ({
+          id: u.id,
+          email: u.email,
+          name: u.displayName || null,
+          phone: null, // Service layer não tem phone ainda
+          created_at: u.createdAt,
+          last_access: u.lastLoginAt || null,
+          tenants: u.tenants?.map(t => ({
+            code: t.tenantCode,
+            role: t.accessLevel
+          })) || []
+        }))
+      };
+    } catch (error) {
+      console.log('[Admin API] Backend não disponível, usando dados mock', error);
+      return { users: getMockUsers() };
+    }
+  }
+
   if (DEV_MODE) {
     try {
       return await fetchAPI('/api/admin/users');
     } catch (error) {
-      // Captura qualquer erro de rede, autenticação ou 404/500
       console.log('[Admin API] Backend não disponível, usando dados mock', error);
       return { users: getMockUsers() };
     }
@@ -219,6 +248,25 @@ export async function getAdminUsers(): Promise<{ users: AdminUser[] }> {
  * Lista todos os tenants
  */
 export async function getAdminTenants(): Promise<{ tenants: AdminTenant[] }> {
+  if (USE_NEW_SERVICE_LAYER) {
+    try {
+      const tenants = await adminService.getTenants();
+      return {
+        tenants: tenants.map(t => ({
+          id: t.id,
+          code: t.code,
+          name: t.name,
+          status: t.status,
+          created_at: t.createdAt,
+          user_count: t.stats?.totalUsers || 0
+        }))
+      };
+    } catch (error) {
+      console.log('[Admin API] Backend não disponível, usando dados mock', error);
+      return { tenants: getMockTenants() };
+    }
+  }
+
   if (DEV_MODE) {
     try {
       return await fetchAPI('/api/admin/tenants');
@@ -249,6 +297,29 @@ export async function getPendingUsers(): Promise<{ pending_users: PendingUser[] 
  * Cria um novo tenant
  */
 export async function createTenant(data: { code: string; name: string }): Promise<{ success: boolean; tenant: AdminTenant }> {
+  if (USE_NEW_SERVICE_LAYER) {
+    try {
+      const tenant = await adminService.createTenant({
+        code: data.code,
+        name: data.name,
+        type: 'company' // Default to company
+      });
+      return {
+        success: true,
+        tenant: {
+          id: tenant.id,
+          code: tenant.code,
+          name: tenant.name,
+          status: tenant.status,
+          created_at: tenant.createdAt,
+          user_count: 0
+        }
+      };
+    } catch (error) {
+      throw error;
+    }
+  }
+
   return fetchAPI('/api/admin/tenants', {
     method: 'POST',
     body: JSON.stringify(data),
@@ -264,6 +335,34 @@ export async function grantAccess(data: {
   role: 'admin' | 'editor' | 'viewer';
   expires_at?: string;
 }): Promise<{ success: boolean; message: string; action: string }> {
+  if (USE_NEW_SERVICE_LAYER) {
+    try {
+      // Para usar grantAccess, precisamos do userId, não email
+      // Por ora, vamos buscar o user pelo email primeiro
+      const users = await adminService.getUsers();
+      const user = users.find(u => u.email === data.user_email);
+
+      if (!user) {
+        throw new Error(`User with email ${data.user_email} not found`);
+      }
+
+      await adminService.grantAccess({
+        userId: user.id,
+        tenantCode: data.tenant_code,
+        accessLevel: data.role,
+        expiresAt: data.expires_at
+      });
+
+      return {
+        success: true,
+        message: `Access granted successfully to ${data.user_email}`,
+        action: 'granted'
+      };
+    } catch (error) {
+      throw error;
+    }
+  }
+
   return fetchAPI('/api/admin/grant-access', {
     method: 'POST',
     body: JSON.stringify(data),
@@ -277,6 +376,29 @@ export async function revokeAccess(data: {
   user_email: string;
   tenant_code: string;
 }): Promise<{ success: boolean; message: string }> {
+  if (USE_NEW_SERVICE_LAYER) {
+    try {
+      const users = await adminService.getUsers();
+      const user = users.find(u => u.email === data.user_email);
+
+      if (!user) {
+        throw new Error(`User with email ${data.user_email} not found`);
+      }
+
+      await adminService.revokeAccess({
+        userId: user.id,
+        tenantCode: data.tenant_code
+      });
+
+      return {
+        success: true,
+        message: `Access revoked successfully from ${data.user_email}`
+      };
+    } catch (error) {
+      throw error;
+    }
+  }
+
   const params = new URLSearchParams({
     user_email: data.user_email,
     tenant_code: data.tenant_code,
@@ -290,6 +412,34 @@ export async function revokeAccess(data: {
  * Lista alertas do sistema
  */
 export async function getAdminAlerts(showRead = false): Promise<{ alerts: AdminAlert[]; unread_count: number }> {
+  if (USE_NEW_SERVICE_LAYER) {
+    try {
+      const response = await adminService.getAlerts({ unreadOnly: !showRead });
+      const allAlerts = await adminService.getAlerts({ unreadOnly: false });
+
+      return {
+        alerts: response.alerts.map(a => ({
+          id: a.id,
+          type: a.category,
+          title: a.title,
+          message: a.message,
+          data: a.metadata || null,
+          severity: a.type,
+          is_read: a.read ? 1 : 0,
+          read_by: null,
+          read_at: null,
+          created_at: a.createdAt
+        })),
+        unread_count: allAlerts.alerts.filter(a => !a.read).length
+      };
+    } catch (error) {
+      console.log('[Admin API] Backend não disponível, usando dados mock', error);
+      const alerts = getMockAlerts();
+      const unread_count = alerts.filter(a => !a.is_read).length;
+      return { alerts, unread_count };
+    }
+  }
+
   if (DEV_MODE) {
     try {
       return await fetchAPI(`/api/admin/alerts?show_read=${showRead}`);
@@ -307,6 +457,15 @@ export async function getAdminAlerts(showRead = false): Promise<{ alerts: AdminA
  * Marca um alerta como lido
  */
 export async function markAlertAsRead(alertId: string): Promise<{ success: boolean }> {
+  if (USE_NEW_SERVICE_LAYER) {
+    try {
+      await adminService.markAlertAsRead(alertId);
+      return { success: true };
+    } catch (error) {
+      throw error;
+    }
+  }
+
   return fetchAPI(`/api/admin/alerts/${alertId}/read`, {
     method: 'POST',
   });
@@ -316,6 +475,15 @@ export async function markAlertAsRead(alertId: string): Promise<{ success: boole
  * Marca todos os alertas como lidos
  */
 export async function markAllAlertsAsRead(): Promise<{ success: boolean; message: string }> {
+  if (USE_NEW_SERVICE_LAYER) {
+    try {
+      await adminService.markAllAlertsAsRead();
+      return { success: true, message: 'All alerts marked as read' };
+    } catch (error) {
+      throw error;
+    }
+  }
+
   return fetchAPI('/api/admin/alerts/read-all', {
     method: 'POST',
   });
@@ -325,6 +493,21 @@ export async function markAllAlertsAsRead(): Promise<{ success: boolean; message
  * Retorna estatisticas do admin
  */
 export async function getAdminStats(): Promise<AdminStats> {
+  if (USE_NEW_SERVICE_LAYER) {
+    try {
+      const stats = await adminService.getStats();
+      return {
+        total_users: stats.totalUsers,
+        active_tenants: stats.activeTenants,
+        pending_users: stats.pendingUsers || 0,
+        unread_alerts: stats.unreadAlerts
+      };
+    } catch (error) {
+      console.log('[Admin API] Backend não disponível, usando dados mock', error);
+      return getMockStats();
+    }
+  }
+
   if (DEV_MODE) {
     try {
       return await fetchAPI('/api/admin/stats');

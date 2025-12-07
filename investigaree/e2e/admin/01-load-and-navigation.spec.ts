@@ -14,19 +14,19 @@ test.describe('Admin Panel - Carregamento e Navegação', () => {
     const isTestRoute = url.includes('/test-admin-panel') || url.includes('/dashboard/admin');
     expect(isTestRoute).toBe(true);
 
-    // Verificar presença de elementos principais
-    await expect(adminPage.locator('text=Admin, text=Painel')).toBeVisible();
+    // Verificar presença de elementos principais (cards de estatísticas)
+    await expect(adminPage.locator('text=Usuarios Totais').first()).toBeVisible({ timeout: 10000 });
   });
 
   test('deve exibir os 4 cards de estatísticas', async ({ adminPage }) => {
     // Aguardar cards carregarem
     await adminPage.waitForSelector('text=Usuarios Totais', { timeout: 10000 });
 
-    // Verificar todos os cards
-    await expect(adminPage.locator('text=Usuarios Totais')).toBeVisible();
-    await expect(adminPage.locator('text=Tenants Ativos')).toBeVisible();
-    await expect(adminPage.locator('text=Aguardando Liberacao')).toBeVisible();
-    await expect(adminPage.locator('text=Alertas Nao Lidos')).toBeVisible();
+    // Verificar todos os cards usando seletores mais específicos (p tag com o texto exato)
+    await expect(adminPage.locator('p:has-text("Usuarios Totais")')).toBeVisible();
+    await expect(adminPage.locator('p:has-text("Tenants Ativos")')).toBeVisible();
+    await expect(adminPage.locator('p:has-text("Aguardando Liberacao")')).toBeVisible();
+    await expect(adminPage.locator('p:has-text("Alertas Nao Lidos")')).toBeVisible();
   });
 
   test('deve exibir as 3 abas de navegação', async ({ adminPage }) => {
@@ -78,8 +78,8 @@ test.describe('Admin Panel - Carregamento e Navegação', () => {
   });
 
   test('deve mostrar loading spinner durante carregamento inicial', async ({ page }) => {
-    // Navegar para página (sem usar fixture para capturar loading)
-    await page.goto('/dashboard/admin');
+    // Navegar para página de teste (sem usar fixture para capturar loading)
+    await page.goto('/test-admin-panel');
 
     // Verificar spinner (pode ser rápido demais em alguns casos)
     const spinner = page.locator('.animate-spin, [role="status"]');
@@ -91,14 +91,14 @@ test.describe('Admin Panel - Carregamento e Navegação', () => {
     }
 
     // Verificar conteúdo carregado
-    await expect(page.locator('text=Usuarios Totais')).toBeVisible();
+    await expect(page.locator('p:has-text("Usuarios Totais")')).toBeVisible();
   });
 
   test('deve ser responsivo em viewport mobile', async ({ page }) => {
     // Configurar viewport mobile (iPhone 12)
     await page.setViewportSize({ width: 390, height: 844 });
 
-    // Injetar autenticação
+    // Injetar autenticação e ir para página de teste
     await page.goto('/');
     await page.evaluate(() => {
       const mockUser = {
@@ -112,11 +112,11 @@ test.describe('Admin Panel - Carregamento e Navegação', () => {
       );
     });
 
-    await page.goto('/dashboard/admin');
-    await page.waitForSelector('text=Usuarios Totais', { timeout: 10000 });
+    await page.goto('/test-admin-panel');
+    await page.waitForSelector('p:has-text("Usuarios Totais")', { timeout: 10000 });
 
     // Verificar cards em coluna única
-    const cards = page.locator('text=Usuarios Totais').locator('..');
+    const cards = page.locator('p:has-text("Usuarios Totais")').locator('..');
     const box = await cards.boundingBox();
 
     // Em mobile, cards devem ocupar quase toda largura

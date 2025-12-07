@@ -2,237 +2,370 @@
 
 ```yaml
 - generic [active] [ref=e1]:
-  - button "Open Next.js Dev Tools" [ref=e7] [cursor=pointer]:
-    - img [ref=e8]
-  - alert [ref=e11]
-  - banner [ref=e12]:
-    - navigation [ref=e14]:
-      - link "investigaree logo investigaree" [ref=e16] [cursor=pointer]:
-        - /url: /
-        - img "investigaree logo" [ref=e19]
-        - generic [ref=e20]: investigaree
-      - button "Menu" [ref=e22]:
-        - generic [ref=e23]:
-          - img
-  - main [ref=e24]:
-    - region "Hero section - Due Diligence Empresarial" [ref=e25]:
-      - generic [ref=e28]:
-        - generic [ref=e30]:
-          - generic [ref=e32]: Plataforma de Investigação Digital
-          - generic [ref=e33]: "|"
-          - generic [ref=e34]: Validada por Perito Criminal Oficial
-        - generic [ref=e35]:
-          - heading "PROTEÇÃO PATRIMONIAL EM DIVÓRCIO" [level=1] [ref=e36]:
-            - text: PROTEÇÃO PATRIMONIAL
-            - text: EM DIVÓRCIO
-          - paragraph [ref=e37]: 70% dos divórcios têm ocultação de bens. Descubra a verdade.
-        - generic [ref=e38]:
-          - generic [ref=e39]:
-            - generic [ref=e41]: "1"
-            - generic [ref=e42]: Famílias
-          - generic [ref=e43]:
-            - generic [ref=e45]: "2"
-            - generic [ref=e46]: Empresas
-          - generic [ref=e47]:
-            - generic [ref=e49]: "3"
-            - generic [ref=e50]: Investidores
-          - generic [ref=e51]:
-            - generic [ref=e53]: "4"
-            - generic [ref=e54]: Patrimônios
-          - generic [ref=e55]:
-            - generic [ref=e57]: "5"
-            - generic [ref=e58]: Divórcio
-        - button "Solicitar investigação particular - Proteger patrimônio" [ref=e61]:
-          - text: Solicitar Investigação Particular
-          - generic [ref=e62]:
-            - img
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - heading "Administracao" [level=1] [ref=e6]:
+          - img [ref=e7]
+          - text: Administracao
+        - paragraph [ref=e9]: Gerenciar usuarios e acessos
+      - button "Atualizar" [ref=e10]:
+        - img
+        - text: Atualizar
+    - generic [ref=e11]:
+      - img [ref=e12]
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - heading "Modo Desenvolvimento Ativo" [level=3] [ref=e19]
+          - paragraph [ref=e20]:
+            - text: Você está visualizando dados simulados (mock data). Todas as operações são salvas localmente e não afetam o banco de dados real. Para conectar à API de produção, configure a variável
+            - code [ref=e21]: NEXT_PUBLIC_DEV_MODE=false
+        - button "Fechar banner" [ref=e22]:
+          - img [ref=e23]
+    - generic [ref=e26]:
+      - generic [ref=e28] [cursor=pointer]:
+        - img [ref=e29]
+        - generic [ref=e34]:
+          - paragraph [ref=e35]: "4"
+          - paragraph [ref=e36]: Usuarios Totais
+      - generic [ref=e38] [cursor=pointer]:
+        - img [ref=e39]
+        - generic [ref=e43]:
+          - paragraph [ref=e44]: "2"
+          - paragraph [ref=e45]: Tenants Ativos
+      - generic [ref=e47] [cursor=pointer]:
+        - img [ref=e48]
+        - generic [ref=e51]:
+          - paragraph [ref=e52]: "1"
+          - paragraph [ref=e53]: Aguardando Liberacao
+      - generic [ref=e55] [cursor=pointer]:
+        - img [ref=e56]
+        - generic [ref=e61]:
+          - paragraph [ref=e62]: "2"
+          - paragraph [ref=e63]: Alertas Nao Lidos
+    - generic [ref=e64]:
+      - button "Visao Geral" [ref=e65]
+      - button "Alertas 2" [ref=e66]:
+        - text: Alertas
+        - generic [ref=e67]: "2"
+      - button "Usuarios e Tenants" [ref=e68]
     - generic [ref=e69]:
-      - generic [ref=e70]:
-        - generic [ref=e71]:
-          - img [ref=e72]
-          - text: Nosso Time
-        - heading "Automacao Avancada + Pericia Forense" [level=2] [ref=e74]
-        - paragraph [ref=e75]: "Combinacao unica no Brasil: Arquiteta de Sistemas especialista em automacao + Perito Criminal Oficial (1o lugar PCE-PA)"
-      - generic [ref=e76]:
-        - generic [ref=e79]:
-          - generic [ref=e80]:
-            - generic [ref=e81]:
-              - img "Dani Kaloi" [ref=e83]
-              - generic [ref=e85]: Analista
-            - generic [ref=e86]:
-              - heading "Dani Kaloi" [level=3] [ref=e87]
-              - paragraph [ref=e88]: Analista de Dados
-          - paragraph [ref=e89]: Desenvolvedora Full Stack e Arquiteta de sistemas que processam +100 mil registros simultaneamente, cruzando multiplas bases de dados publicas.
-          - generic [ref=e90]:
-            - heading "Tecnologias" [level=4] [ref=e91]
-            - generic [ref=e92]:
-              - generic [ref=e93]:
-                - img [ref=e94]
-                - text: Automacao
-              - generic [ref=e98]:
-                - img [ref=e99]
-                - text: OSINT
-              - generic [ref=e103]:
-                - img [ref=e104]
-                - text: Web Scraping
-              - generic [ref=e108]:
-                - img [ref=e109]
-                - text: APIs Publicas
-          - generic [ref=e113]:
-            - generic [ref=e114]:
-              - paragraph [ref=e115]: 100k+
-              - paragraph [ref=e116]: Registros/Investigação
-            - generic [ref=e117]:
-              - paragraph [ref=e118]: Multiplas
-              - paragraph [ref=e119]: Bases de Dados
-            - generic [ref=e120]:
-              - paragraph [ref=e121]: 13+
-              - paragraph [ref=e122]: Certificações
-          - generic [ref=e123]:
-            - generic [ref=e124]: Due Diligence
-            - generic [ref=e125]: Empresas
-            - generic [ref=e126]: Divorcios
-            - generic [ref=e127]: Automacao
-          - link "Ver perfil completo" [ref=e128] [cursor=pointer]:
-            - /url: /quemsomos/dani-kaloi/
-            - button "Ver perfil completo" [ref=e129]:
-              - text: Ver perfil completo
+      - heading "Usuarios Aguardando Liberacao (1)" [level=3] [ref=e70]:
+        - img [ref=e71]
+        - text: Usuarios Aguardando Liberacao (1)
+      - generic [ref=e75]:
+        - generic [ref=e76]:
+          - paragraph [ref=e77]: Usuário Pendente
+          - paragraph [ref=e78]: pendente@example.com
+          - paragraph [ref=e79]: "+5511988887777"
+          - paragraph [ref=e80]: 05/12/2025
+        - button "Liberar" [ref=e82]:
+          - img
+          - text: Liberar
+    - generic [ref=e83]:
+      - heading "Usuarios Sem Acesso (2)" [level=3] [ref=e84]:
+        - img [ref=e85]
+        - text: Usuarios Sem Acesso (2)
+      - paragraph [ref=e88]: Usuarios cadastrados mas que nao possuem acesso a nenhum tenant. Eles podem visualizar apenas a landing page.
+      - generic [ref=e89]:
+        - generic [ref=e90]:
+          - generic [ref=e91]:
+            - paragraph [ref=e92]: João Silva
+            - paragraph [ref=e93]: usuario.sem.acesso@example.com
+            - paragraph [ref=e94]: "+5511988776655"
+            - paragraph [ref=e95]: Cadastrado em 27/11/2025
+          - generic [ref=e96]:
+            - generic [ref=e97]: Sem Acesso
+            - button "Conceder Acesso" [ref=e98]:
               - img
-        - generic [ref=e132]:
-          - generic [ref=e133]:
-            - generic [ref=e134]:
-              - img "Ibsen Rodrigues Maciel" [ref=e136]
-              - generic [ref=e138]: Advisory
-            - generic [ref=e139]:
-              - heading "Ibsen Maciel" [level=3] [ref=e140]
-              - paragraph [ref=e141]: Perito Criminal Oficial
-          - paragraph [ref=e142]: Referência nacional em Perícia Forense Computacional. 1º lugar PCE-PA 2019. Diretor Nacional de Perícias ANPAJ (6.000+ associados).
+              - text: Conceder Acesso
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - paragraph [ref=e101]: Maria Santos
+            - paragraph [ref=e102]: maria.santos@example.com
+            - paragraph [ref=e103]: Cadastrado em 22/11/2025
+          - generic [ref=e104]:
+            - generic [ref=e105]: Sem Acesso
+            - button "Conceder Acesso" [ref=e106]:
+              - img
+              - text: Conceder Acesso
+    - generic [ref=e107]:
+      - generic [ref=e108]:
+        - generic [ref=e109]:
+          - heading "Usuarios com Acesso (2)" [level=3] [ref=e110]:
+            - img [ref=e111]
+            - text: Usuarios com Acesso (2)
+          - paragraph [ref=e116]: Usuarios que possuem acesso a pelo menos um tenant com permissoes especificas.
+        - generic [ref=e117]:
+          - button "Exportar CSV" [ref=e118]:
+            - img
+            - text: Exportar CSV
+          - generic [ref=e120]: "Items por página:"
+          - combobox [ref=e121]:
+            - option "5"
+            - option "10" [selected]
+            - option "25"
+            - option "50"
+      - generic [ref=e122]:
+        - generic [ref=e123]:
+          - generic [ref=e124]:
+            - generic [ref=e125]:
+              - generic [ref=e126]:
+                - heading "dkbotdani@gmail.com" [level=4] [ref=e127]
+                - paragraph [ref=e128]: Admin Teste
+              - generic [ref=e129]: 5min atrás
+            - paragraph [ref=e130]:
+              - img [ref=e131]
+              - text: "Último acesso: 07/12/2025, 15:24:09"
+          - generic [ref=e134]:
+            - paragraph [ref=e135]: "Tenants e Permissões:"
+            - generic [ref=e137]: CLIENTE_01 (admin)
+          - generic [ref=e138]:
+            - paragraph [ref=e139]: "Gerenciar Acesso:"
+            - button "Revogar CLIENTE_01" [ref=e141]:
+              - img
+              - text: Revogar CLIENTE_01
+        - generic [ref=e142]:
           - generic [ref=e143]:
-            - heading "Certificações Internacionais" [level=4] [ref=e144]
-            - generic [ref=e145]:
-              - generic [ref=e146]:
-                - img [ref=e147]
-                - text: CELLEBRITE UFED
-              - generic [ref=e150]:
-                - img [ref=e151]
-                - text: XRY (MSAB)
-              - generic [ref=e154]:
-                - img [ref=e155]
-                - text: Magnet AXIOM
-          - generic [ref=e158]:
-            - generic [ref=e159]:
-              - paragraph [ref=e160]: 1º
-              - paragraph [ref=e161]: Lugar PCE-PA
-            - generic [ref=e162]:
-              - paragraph [ref=e163]: 6k+
-              - paragraph [ref=e164]: Associados ANPAJ
-            - generic [ref=e165]:
-              - paragraph [ref=e166]: LABCEDF
-              - paragraph [ref=e167]: PC-PA
-          - generic [ref=e168]:
-            - generic [ref=e169]: Perícia Forense
-            - generic [ref=e170]: Cibersegurança
-            - generic [ref=e171]: OSINT
-            - generic [ref=e172]: Cadeia de Custódia
-          - link "Ver perfil completo" [ref=e173] [cursor=pointer]:
-            - /url: /quemsomos/ibsen-maciel/
-            - button "Ver perfil completo" [ref=e174]:
-              - text: Ver perfil completo
+            - generic [ref=e144]:
+              - generic [ref=e145]:
+                - heading "teste@example.com" [level=4] [ref=e146]
+                - paragraph [ref=e147]: Usuário Exemplo
+              - generic [ref=e148]: 2h atrás
+            - paragraph [ref=e149]:
+              - img [ref=e150]
+              - text: "Último acesso: 07/12/2025, 13:29:09"
+          - generic [ref=e153]:
+            - paragraph [ref=e154]: "Tenants e Permissões:"
+            - generic [ref=e156]: CLIENTE_01 (viewer)
+          - generic [ref=e157]:
+            - paragraph [ref=e158]: "Gerenciar Acesso:"
+            - button "Revogar CLIENTE_01" [ref=e160]:
               - img
-    - generic [ref=e177]:
-      - heading "Quem protegemos" [level=3] [ref=e178]
-      - generic [ref=e179]:
-        - generic [ref=e180]:
-          - img [ref=e182]
-          - generic [ref=e185]: Investidores
-          - generic [ref=e186]: Angel investors e VCs
-        - generic [ref=e187]:
-          - img [ref=e189]
-          - generic [ref=e193]: Family Offices
-          - generic [ref=e194]: Gestão patrimonial
-        - generic [ref=e195]:
-          - img [ref=e197]
-          - generic [ref=e199]: Empresas
-          - generic [ref=e200]: Due diligence corporativa
-        - generic [ref=e201]:
-          - img [ref=e203]
-          - generic [ref=e206]: Famílias
-          - generic [ref=e207]: Proteção pessoal
-        - generic [ref=e208]:
-          - img [ref=e210]
-          - generic [ref=e215]: Startups
-          - generic [ref=e216]: Verificação de sócios
-    - generic [ref=e218]:
-      - generic [ref=e219]:
-        - generic [ref=e220]:
-          - generic [ref=e221]:
-            - img [ref=e222]
-            - generic [ref=e224]: investigaree
-          - paragraph [ref=e225]: Investigação Digital com Inteligência
-        - generic [ref=e226]:
-          - heading "Serviços" [level=4] [ref=e227]
-          - list [ref=e228]:
-            - listitem [ref=e229]:
-              - link "Red Flag Express" [ref=e230] [cursor=pointer]:
-                - /url: /servicos/
-            - listitem [ref=e231]:
-              - link "Due Diligence Corporativo" [ref=e232] [cursor=pointer]:
-                - /url: /servicos/
-            - listitem [ref=e233]:
-              - link "Startup & Founders" [ref=e234] [cursor=pointer]:
-                - /url: /servicos/
-        - generic [ref=e235]:
-          - heading "Empresa" [level=4] [ref=e236]
-          - list [ref=e237]:
-            - listitem [ref=e238]:
-              - link "Sobre" [ref=e239] [cursor=pointer]:
-                - /url: /sobre/
-            - listitem [ref=e240]:
-              - link "Equipe" [ref=e241] [cursor=pointer]:
-                - /url: /quemsomos/
-            - listitem [ref=e242]:
-              - link "FAQ" [ref=e243] [cursor=pointer]:
-                - /url: /faq/
-            - listitem [ref=e244]:
-              - button "WhatsApp" [ref=e245] [cursor=pointer]:
-                - img [ref=e246]
-                - text: WhatsApp
-        - generic [ref=e248]:
-          - heading "Legal" [level=4] [ref=e249]
-          - list [ref=e250]:
-            - listitem [ref=e251]:
-              - link "Termos de Uso" [ref=e252] [cursor=pointer]:
-                - /url: /termos/
-            - listitem [ref=e253]:
-              - link "Política de Privacidade" [ref=e254] [cursor=pointer]:
-                - /url: /privacidade/
-            - listitem [ref=e255]:
-              - link "Política de Cookies" [ref=e256] [cursor=pointer]:
-                - /url: /cookies/
-            - listitem [ref=e257]:
-              - link "Disclaimer" [ref=e258] [cursor=pointer]:
-                - /url: /disclaimer/
-            - listitem [ref=e259]:
-              - link "contato@investigaree.com.br" [ref=e260] [cursor=pointer]:
-                - /url: mailto:contato@investigaree.com.br
-      - paragraph [ref=e262]: © 2025 investigaree. Todos os direitos reservados.
-  - button "Contato via WhatsApp" [ref=e264]:
-    - img [ref=e265]
-  - dialog "Utilizamos cookies" [ref=e270]:
-    - generic [ref=e271]:
-      - generic [ref=e273]:
-        - img [ref=e275]
-        - generic [ref=e277]:
-          - heading "Utilizamos cookies" [level=3] [ref=e278]
-          - paragraph [ref=e279]:
+              - text: Revogar CLIENTE_01
+    - generic [ref=e161]:
+      - generic [ref=e162]:
+        - heading "Tenants (2)" [level=3] [ref=e163]:
+          - img [ref=e164]
+          - text: Tenants (2)
+        - button "Criar Tenant" [ref=e168]:
+          - img
+          - text: Criar Tenant
+      - generic [ref=e169]:
+        - generic [ref=e170] [cursor=pointer]:
+          - generic [ref=e171]:
+            - generic [ref=e172]: CLIENTE_01
+            - generic [ref=e173]: active
+          - paragraph [ref=e174]: Cliente Principal
+          - paragraph [ref=e175]: 2 usuario(s)
+        - generic [ref=e176] [cursor=pointer]:
+          - generic [ref=e177]:
+            - generic [ref=e178]: CLIENTE_02
+            - generic [ref=e179]: active
+          - paragraph [ref=e180]: Cliente Secundário
+          - paragraph [ref=e181]: 0 usuario(s)
+    - generic [ref=e182]:
+      - generic [ref=e183]:
+        - heading "Logs de Auditoria" [level=3] [ref=e184]:
+          - img [ref=e185]
+          - text: Logs de Auditoria
+        - generic [ref=e188]: 6 registro(s)
+      - paragraph [ref=e189]: Histórico de todas as ações administrativas realizadas no sistema.
+      - generic [ref=e190]:
+        - generic [ref=e192]:
+          - img [ref=e194]
+          - generic [ref=e197]:
+            - generic [ref=e198]:
+              - generic [ref=e199]:
+                - generic [ref=e200]: Acesso Concedido
+                - generic [ref=e201]: CLIENTE_01
+                - generic [ref=e202]: viewer
+              - paragraph [ref=e203]: Acesso concedido ao tenant CLIENTE_01
+              - generic [ref=e204]:
+                - generic [ref=e205]:
+                  - img [ref=e206]
+                  - text: dkbotdani@gmail.com
+                - generic [ref=e209]: →
+                - generic [ref=e210]: teste@example.com
+              - group [ref=e211]:
+                - generic "Ver detalhes" [ref=e212] [cursor=pointer]
+            - generic [ref=e213]:
+              - paragraph [ref=e214]: 10min atrás
+              - paragraph [ref=e215]: 07/12/2025, 15:19
+        - generic [ref=e217]:
+          - img [ref=e219]
+          - generic [ref=e222]:
+            - generic [ref=e223]:
+              - generic [ref=e224]:
+                - generic [ref=e225]: Acesso Revogado
+                - generic [ref=e226]: CLIENTE_01
+              - paragraph [ref=e227]: Acesso revogado do tenant CLIENTE_01
+              - generic [ref=e228]:
+                - generic [ref=e229]:
+                  - img [ref=e230]
+                  - text: dkbotdani@gmail.com
+                - generic [ref=e233]: →
+                - generic [ref=e234]: usuario.removido@example.com
+              - group [ref=e235]:
+                - generic "Ver detalhes" [ref=e236] [cursor=pointer]
+            - generic [ref=e237]:
+              - paragraph [ref=e238]: 2h atrás
+              - paragraph [ref=e239]: 07/12/2025, 13:29
+        - generic [ref=e241]:
+          - img [ref=e243]
+          - generic [ref=e246]:
+            - generic [ref=e247]:
+              - generic [ref=e248]:
+                - generic [ref=e249]: Tenant Criado
+                - generic [ref=e250]: CLIENTE_02
+              - paragraph [ref=e251]: Novo tenant criado
+              - generic [ref=e253]:
+                - img [ref=e254]
+                - text: dkbotdani@gmail.com
+              - group [ref=e257]:
+                - generic "Ver detalhes" [ref=e258] [cursor=pointer]
+            - generic [ref=e259]:
+              - paragraph [ref=e260]: 5h atrás
+              - paragraph [ref=e261]: 07/12/2025, 10:29
+        - generic [ref=e263]:
+          - img [ref=e265]
+          - generic [ref=e268]:
+            - generic [ref=e269]:
+              - generic [ref=e270]:
+                - generic [ref=e271]: Tenant Atualizado
+                - generic [ref=e272]: CLIENTE_01
+              - paragraph [ref=e273]: Tenant atualizado
+              - generic [ref=e275]:
+                - img [ref=e276]
+                - text: dkbotdani@gmail.com
+              - group [ref=e279]:
+                - generic "Ver detalhes" [ref=e280] [cursor=pointer]
+            - generic [ref=e281]:
+              - paragraph [ref=e282]: Ontem
+              - paragraph [ref=e283]: 06/12/2025, 15:29
+        - generic [ref=e285]:
+          - img [ref=e287]
+          - generic [ref=e290]:
+            - generic [ref=e291]:
+              - generic [ref=e292]:
+                - generic [ref=e293]: Acesso Concedido
+                - generic [ref=e294]: CLIENTE_01
+                - generic [ref=e295]: admin
+              - paragraph [ref=e296]: Acesso concedido ao tenant CLIENTE_01
+              - generic [ref=e297]:
+                - generic [ref=e298]:
+                  - img [ref=e299]
+                  - text: ibsenmaciel@gmail.com
+                - generic [ref=e302]: →
+                - generic [ref=e303]: maria.santos@example.com
+              - group [ref=e304]:
+                - generic "Ver detalhes" [ref=e305] [cursor=pointer]
+            - generic [ref=e306]:
+              - paragraph [ref=e307]: 3d atrás
+              - paragraph [ref=e308]: 04/12/2025, 15:29
+        - generic [ref=e310]:
+          - img [ref=e312]
+          - generic [ref=e315]:
+            - generic [ref=e316]:
+              - generic [ref=e317]:
+                - generic [ref=e318]: Tenant Desativado
+                - generic [ref=e319]: CLIENTE_OLD
+              - paragraph [ref=e320]: Tenant desativado
+              - generic [ref=e322]:
+                - img [ref=e323]
+                - text: dkbotdani@gmail.com
+              - group [ref=e326]:
+                - generic "Ver detalhes" [ref=e327] [cursor=pointer]
+            - generic [ref=e328]:
+              - paragraph [ref=e329]: 1sem atrás
+              - paragraph [ref=e330]: 30/11/2025, 15:29
+    - generic [ref=e331]:
+      - generic [ref=e332]:
+        - heading "Métricas de Uso" [level=3] [ref=e333]:
+          - img [ref=e334]
+          - text: Métricas de Uso
+        - generic [ref=e336]: Atualizado agora
+      - generic [ref=e337]:
+        - generic [ref=e338]:
+          - generic [ref=e339]:
+            - generic [ref=e340]: Última Hora
+            - img [ref=e341]
+          - paragraph [ref=e344]: "1"
+          - paragraph [ref=e345]: usuários ativos
+        - generic [ref=e346]:
+          - generic [ref=e347]:
+            - generic [ref=e348]: Últimas 24h
+            - img [ref=e349]
+          - paragraph [ref=e351]: "2"
+          - paragraph [ref=e352]: usuários ativos
+        - generic [ref=e353]:
+          - generic [ref=e354]:
+            - generic [ref=e355]: Últimos 7 dias
+            - img [ref=e356]
+          - paragraph [ref=e361]: "3"
+          - paragraph [ref=e362]: usuários ativos
+        - generic [ref=e363]:
+          - generic [ref=e364]:
+            - generic [ref=e365]: Crescimento
+            - img [ref=e366]
+          - paragraph [ref=e369]: +100%
+          - paragraph [ref=e370]: vs. período anterior
+      - generic [ref=e371]:
+        - generic [ref=e372]:
+          - heading "Distribuição por Permissão" [level=4] [ref=e373]
+          - generic [ref=e374]:
+            - generic [ref=e376]:
+              - generic [ref=e377]: Admin
+              - generic [ref=e378]: "1"
+            - generic [ref=e382]:
+              - generic [ref=e383]: Editor
+              - generic [ref=e384]: "0"
+            - generic [ref=e387]:
+              - generic [ref=e388]: Viewer
+              - generic [ref=e389]: "1"
+        - generic [ref=e392]:
+          - heading "Outras Métricas" [level=4] [ref=e393]
+          - generic [ref=e394]:
+            - generic [ref=e395]:
+              - generic [ref=e396]:
+                - img [ref=e398]
+                - generic [ref=e400]: Taxa de Ativação
+              - generic [ref=e401]: 100%
+            - generic [ref=e402]:
+              - generic [ref=e403]:
+                - img [ref=e405]
+                - generic [ref=e408]: Ações (Total)
+              - generic [ref=e409]: "6"
+            - generic [ref=e410]:
+              - generic [ref=e411]:
+                - img [ref=e413]
+                - generic [ref=e415]: Ações (24h)
+              - generic [ref=e416]: "3"
+  - button "Open Next.js Dev Tools" [ref=e422] [cursor=pointer]:
+    - generic [ref=e425]:
+      - text: Compiling
+      - generic [ref=e426]:
+        - generic [ref=e427]: .
+        - generic [ref=e428]: .
+        - generic [ref=e429]: .
+  - alert [ref=e430]
+  - button "Contato via WhatsApp" [ref=e432]:
+    - img [ref=e433]
+  - dialog "Utilizamos cookies" [ref=e438]:
+    - generic [ref=e439]:
+      - generic [ref=e441]:
+        - img [ref=e443]
+        - generic [ref=e445]:
+          - heading "Utilizamos cookies" [level=3] [ref=e446]
+          - paragraph [ref=e447]:
             - text: Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo. Ao clicar em "Aceitar todos", você concorda com o uso de cookies conforme descrito em nossa
-            - link "Política de Cookies" [ref=e280] [cursor=pointer]:
+            - link "Política de Cookies" [ref=e448] [cursor=pointer]:
               - /url: /cookies/
             - text: .
-      - generic [ref=e281]:
-        - button "Personalizar" [ref=e282]:
-          - img [ref=e283]
+      - generic [ref=e449]:
+        - button "Personalizar" [ref=e450]:
+          - img [ref=e451]
           - text: Personalizar
-        - button "Rejeitar não essenciais" [ref=e286]
-        - button "Aceitar todos" [ref=e287]
+        - button "Rejeitar não essenciais" [ref=e454]
+        - button "Aceitar todos" [ref=e455]
 ```

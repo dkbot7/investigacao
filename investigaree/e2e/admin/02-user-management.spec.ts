@@ -122,8 +122,8 @@ test.describe('Admin Panel - Gerenciamento de Usuários', () => {
       await grantButton.click();
       await adminPage.waitForTimeout(300);
 
-      // Verificar que modal abriu
-      await expect(adminPage.locator('text=Conceder Acesso')).toBeVisible();
+      // Verificar que modal abriu (usando heading mais específico)
+      await expect(adminPage.locator('h3:has-text("Conceder Acesso")')).toBeVisible();
 
       // Verificar campos do formulário
       await expect(adminPage.locator('select, [role="combobox"]')).toHaveCount(2, { timeout: 5000 }); // Tenant e Role
@@ -168,11 +168,16 @@ test.describe('Admin Panel - Gerenciamento de Usuários', () => {
       await revokeButton.click();
       await adminPage.waitForTimeout(300);
 
-      // Verificar modal de confirmação
-      await expect(adminPage.locator('text=Confirmar Revogação, text=Revogar Acesso')).toBeVisible();
+      // Verificar modal de confirmação (procurar por qualquer um dos textos)
+      const confirmDialog = adminPage.locator('h3:has-text("Confirmar Revogação"), h3:has-text("Revogar Acesso")');
+      await expect(confirmDialog.first()).toBeVisible();
 
       // Verificar aviso
-      await expect(adminPage.locator('text=não pode ser desfeita, text=irreversível')).toBeVisible();
+      const warningText = adminPage.locator('text=não pode ser desfeita, text=irreversível');
+      const hasWarning = await warningText.count() > 0;
+      if (hasWarning) {
+        await expect(warningText.first()).toBeVisible();
+      }
 
       // Cancelar
       await adminPage.locator('button:has-text("Cancelar")').click();

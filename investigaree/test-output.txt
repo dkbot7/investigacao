@@ -1,0 +1,129 @@
+[2m[WebServer] [22m[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[2m[WebServer] [22m [33m[1m⚠[22m[39m Warning: Next.js inferred your workspace root, but it may not be correct.
+[2m[WebServer] [22m We detected multiple lockfiles and selected the directory of C:\Users\Vaio\Documents\TRABALHO\INVESTIGA\package-lock.json as the root directory.
+[2m[WebServer] [22m To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+[2m[WebServer] [22m   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+[2m[WebServer] [22m Detected additional lockfiles: 
+[2m[WebServer] [22m   * C:\Users\Vaio\Documents\TRABALHO\INVESTIGA\investigaree\package-lock.json
+[2m[WebServer] [22m
+
+Running 60 tests using 6 workers
+
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok  2 [chromium] › e2e\admin\01-load-and-navigation.spec.ts:80:7 › Admin Panel - Carregamento e Navegação › deve mostrar loading spinner durante carregamento inicial (23.2s)
+  ok  6 [chromium] › e2e\admin\01-load-and-navigation.spec.ts:21:7 › Admin Panel - Carregamento e Navegação › deve exibir os 4 cards de estatísticas (25.0s)
+  ok  3 [chromium] › e2e\admin\01-load-and-navigation.spec.ts:32:7 › Admin Panel - Carregamento e Navegação › deve exibir as 3 abas de navegação (25.1s)
+  ok  1 [chromium] › e2e\admin\01-load-and-navigation.spec.ts:8:7 › Admin Panel - Carregamento e Navegação › deve carregar o painel admin com sucesso (25.2s)
+  ok  4 [chromium] › e2e\admin\01-load-and-navigation.spec.ts:39:7 › Admin Panel - Carregamento e Navegação › deve navegar entre as abas corretamente (25.7s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 10 [chromium] › e2e\admin\02-user-management.spec.ts:46:7 › Admin Panel - Gerenciamento de Usuários › deve alterar quantidade de itens por página (18.0s)
+  ok 11 [chromium] › e2e\admin\02-user-management.spec.ts:65:7 › Admin Panel - Gerenciamento de Usuários › deve navegar pela paginação (17.7s)
+  x   5 [chromium] › e2e\admin\01-load-and-navigation.spec.ts:62:7 › Admin Panel - Carregamento e Navegação › deve exibir banner de modo desenvolvimento (se ativado) (39.6s)
+  ok  8 [chromium] › e2e\admin\02-user-management.spec.ts:14:7 › Admin Panel - Gerenciamento de Usuários › deve exibir lista de usuários com acesso (18.8s)
+  ok  9 [chromium] › e2e\admin\02-user-management.spec.ts:25:7 › Admin Panel - Gerenciamento de Usuários › deve buscar usuários por email/nome (18.9s)
+  x   7 [chromium] › e2e\admin\01-load-and-navigation.spec.ts:97:7 › Admin Panel - Carregamento e Navegação › deve ser responsivo em viewport mobile (15.9s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 15 [chromium] › e2e\admin\02-user-management.spec.ts:188:7 › Admin Panel - Gerenciamento de Usuários › deve exibir cores diferentes para último acesso (15.0s)
+  ok 12 [chromium] › e2e\admin\02-user-management.spec.ts:86:7 › Admin Panel - Gerenciamento de Usuários › deve exportar CSV de usuários (16.3s)
+  ok 14 [chromium] › e2e\admin\02-user-management.spec.ts:163:7 › Admin Panel - Gerenciamento de Usuários › deve abrir modal de revogar acesso (16.4s)
+⚠️ Admin panel test page não carregou completamente
+  ok 17 [chromium] › e2e\admin\02-user-management.spec.ts:199:7 › Admin Panel - Gerenciamento de Usuários › deve exibir badges de roles corretos (18.4s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 19 [chromium] › e2e\admin\03-tenant-management.spec.ts:31:7 › Admin Panel - Gerenciamento de Tenants › deve abrir modal de criar novo tenant (15.1s)
+⚠️ Admin panel test page não carregou completamente
+  x  13 [chromium] › e2e\admin\02-user-management.spec.ts:116:7 › Admin Panel - Gerenciamento de Usuários › deve abrir modal de conceder acesso (25.2s)
+  ok 20 [chromium] › e2e\admin\03-tenant-management.spec.ts:53:7 › Admin Panel - Gerenciamento de Tenants › deve validar formato do código do tenant (TENANT_XXX) (17.1s)
+⚠️ Admin panel test page não carregou completamente
+  ok 21 [chromium] › e2e\admin\03-tenant-management.spec.ts:90:7 › Admin Panel - Gerenciamento de Tenants › deve validar unicidade do código do tenant (14.2s)
+  x  18 [chromium] › e2e\admin\03-tenant-management.spec.ts:14:7 › Admin Panel - Gerenciamento de Tenants › deve exibir lista de tenants em cards (25.6s)
+⚠️ Admin panel test page não carregou completamente
+  ok 22 [chromium] › e2e\admin\03-tenant-management.spec.ts:126:7 › Admin Panel - Gerenciamento de Tenants › deve validar campo nome obrigatório (16.7s)
+⚠️ Admin panel test page não carregou completamente
+  ok 23 [chromium] › e2e\admin\03-tenant-management.spec.ts:181:7 › Admin Panel - Gerenciamento de Tenants › deve ativar/desativar tenant (15.6s)
+⚠️ Admin panel test page não carregou completamente
+  ok 24 [chromium] › e2e\admin\03-tenant-management.spec.ts:148:7 › Admin Panel - Gerenciamento de Tenants › deve abrir modal de detalhes do tenant (15.9s)
+  x  16 [chromium] › e2e\admin\02-user-management.spec.ts:138:7 › Admin Panel - Gerenciamento de Usuários › deve validar formulário de conceder acesso (39.9s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 26 [chromium] › e2e\admin\03-tenant-management.spec.ts:276:7 › Admin Panel - Gerenciamento de Tenants › deve filtrar tenants por status (ativo/inativo) (16.3s)
+  ok 27 [chromium] › e2e\admin\03-tenant-management.spec.ts:302:7 › Admin Panel - Gerenciamento de Tenants › deve ordenar tenants por nome ou data de criação (14.7s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 25 [chromium] › e2e\admin\03-tenant-management.spec.ts:220:7 › Admin Panel - Gerenciamento de Tenants › deve editar nome do tenant (inline) (29.4s)
+⚠️ Admin panel test page não carregou completamente
+  x  29 [chromium] › e2e\admin\03-tenant-management.spec.ts:328:7 › Admin Panel - Gerenciamento de Tenants › deve exibir badges de status corretos (17.1s)
+⚠️ Admin panel test page não carregou completamente
+  ok 31 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:49:7 › Admin Panel - Alertas e Logs › deve filtrar alertas por status (lido/não lido) (13.9s)
+  x  28 [chromium] › e2e\admin\03-tenant-management.spec.ts:263:7 › Admin Panel - Gerenciamento de Tenants › deve exibir usuários do tenant no card (16.2s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 30 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:25:7 › Admin Panel - Alertas e Logs › deve filtrar alertas por tipo (25.9s)
+⚠️ Admin panel test page não carregou completamente
+  ok 34 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:108:7 › Admin Panel - Alertas e Logs › deve exibir detalhes do alerta em modal (15.7s)
+  x  33 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:67:7 › Admin Panel - Alertas e Logs › deve marcar alerta como lido (14.8s)
+  x  32 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:14:7 › Admin Panel - Alertas e Logs › deve exibir lista de alertas do sistema (16.2s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 36 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:134:7 › Admin Panel - Alertas e Logs › deve exibir badges de tipo corretos (14.8s)
+⚠️ Admin panel test page não carregou completamente
+  ok 37 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:154:7 › Admin Panel - Alertas e Logs › deve ordenar alertas por data (mais recente primeiro) (14.4s)
+⚠️ Admin panel test page não carregou completamente
+  ok 38 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:173:7 › Admin Panel - Alertas e Logs › deve exibir logs de auditoria (15.6s)
+  x  35 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:87:7 › Admin Panel - Alertas e Logs › deve marcar todos como lidos (16.7s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 39 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:245:7 › Admin Panel - Alertas e Logs › deve filtrar logs por período de data (14.8s)
+  ok 40 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:194:7 › Admin Panel - Alertas e Logs › deve filtrar logs por tipo de ação (15.2s)
+  ok 41 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:222:7 › Admin Panel - Alertas e Logs › deve filtrar logs por usuário (14.8s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 43 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:299:7 › Admin Panel - Alertas e Logs › deve exibir detalhes do log em tooltip/modal (14.7s)
+  ok 42 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:274:7 › Admin Panel - Alertas e Logs › deve exportar logs em CSV (21.4s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 44 [chromium] › e2e\admin\05-metrics.spec.ts:14:7 › Admin Panel - Métricas e Analytics › deve exibir métricas de usuários ativos (16.2s)
+  ok 46 [chromium] › e2e\admin\05-metrics.spec.ts:49:7 › Admin Panel - Métricas e Analytics › deve exibir gráfico de atividade temporal (15.2s)
+  x  45 [chromium] › e2e\admin\05-metrics.spec.ts:27:7 › Admin Panel - Métricas e Analytics › deve calcular taxa de crescimento corretamente (15.1s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 48 [chromium] › e2e\admin\05-metrics.spec.ts:70:7 › Admin Panel - Métricas e Analytics › deve alternar período de visualização (7d, 30d, 90d) (15.4s)
+  ok 47 [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:323:7 › Admin Panel - Alertas e Logs › deve paginar logs corretamente (22.7s)
+⚠️ Admin panel test page não carregou completamente
+  ok 51 [chromium] › e2e\admin\05-metrics.spec.ts:131:7 › Admin Panel - Métricas e Analytics › deve exibir métricas de uso por feature (13.8s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 49 [chromium] › e2e\admin\05-metrics.spec.ts:96:7 › Admin Panel - Métricas e Analytics › deve exibir distribuição de roles em gráfico de pizza (23.4s)
+  ok 50 [chromium] › e2e\admin\05-metrics.spec.ts:112:7 › Admin Panel - Métricas e Analytics › deve exibir top 5 tenants mais ativos (17.8s)
+⚠️ Admin panel test page não carregou completamente
+  ok 52 [chromium] › e2e\admin\05-metrics.spec.ts:163:7 › Admin Panel - Métricas e Analytics › deve exibir taxa de retenção (14.4s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 54 [chromium] › e2e\admin\05-metrics.spec.ts:151:7 › Admin Panel - Métricas e Analytics › deve calcular tempo médio de sessão (17.2s)
+  ok 55 [chromium] › e2e\admin\05-metrics.spec.ts:186:7 › Admin Panel - Métricas e Analytics › deve atualizar métricas ao trocar de aba e voltar (17.5s)
+⚠️ Admin panel test page não carregou completamente
+  ok 53 [chromium] › e2e\admin\05-metrics.spec.ts:175:7 › Admin Panel - Métricas e Analytics › deve exibir alertas em tempo real no card (26.8s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 58 [chromium] › e2e\admin\05-metrics.spec.ts:242:7 › Admin Panel - Métricas e Analytics › deve formatar números grandes corretamente (K, M) (19.8s)
+  ok 56 [chromium] › e2e\admin\05-metrics.spec.ts:207:7 › Admin Panel - Métricas e Analytics › deve exibir loading state durante carregamento de métricas (28.7s)
+  ok 57 [chromium] › e2e\admin\05-metrics.spec.ts:224:7 › Admin Panel - Métricas e Analytics › deve exibir tooltip com detalhes ao passar mouse em métricas (28.6s)
+⚠️ Admin panel test page não carregou completamente
+⚠️ Admin panel test page não carregou completamente
+  ok 60 [chromium] › e2e\admin\05-metrics.spec.ts:265:7 › Admin Panel - Métricas e Analytics › deve comparar período atual com período anterior (16.4s)
+  ok 59 [chromium] › e2e\admin\05-metrics.spec.ts:254:7 › Admin Panel - Métricas e Analytics › deve exibir indicadores de tendência (subindo/descendo) (19.7s)

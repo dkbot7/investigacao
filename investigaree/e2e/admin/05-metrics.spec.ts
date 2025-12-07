@@ -205,8 +205,8 @@ test.describe('Admin Panel - Métricas e Analytics', () => {
   });
 
   test('deve exibir loading state durante carregamento de métricas', async ({ page }) => {
-    // Navegar para página sem usar fixture (para capturar loading)
-    await page.goto('/dashboard/admin');
+    // Navegar para página de teste sem usar fixture (para capturar loading)
+    await page.goto('/test-admin-panel');
 
     // Procurar loading spinner nos cards
     const loadingSpinners = page.locator('.animate-spin, [class*="animate-pulse"]');
@@ -214,11 +214,11 @@ test.describe('Admin Panel - Métricas e Analytics', () => {
 
     // Se houver loading, aguardar desaparecer
     if (hasLoading) {
-      await page.waitForSelector('text=Usuarios Totais', { timeout: 10000 });
+      await page.waitForSelector('p:has-text("Usuarios Totais")', { timeout: 10000 });
     }
 
     // Verificar que métricas carregaram
-    await expect(page.locator('text=Usuarios Totais')).toBeVisible();
+    await expect(page.locator('p:has-text("Usuarios Totais")')).toBeVisible();
   });
 
   test('deve exibir tooltip com detalhes ao passar mouse em métricas', async ({ adminPage }) => {
