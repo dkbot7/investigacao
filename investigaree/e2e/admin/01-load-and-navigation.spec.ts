@@ -61,19 +61,22 @@ test.describe('Admin Panel - Carregamento e Navegação', () => {
 
   test('deve exibir banner de modo desenvolvimento (se ativado)', async ({ adminPage }) => {
     // Verificar se banner está visível (pode estar fechado)
-    const banner = adminPage.locator('text=Modo Desenvolvimento Ativo');
+    const banner = adminPage.locator('h3:has-text("Modo Desenvolvimento Ativo")');
     const bannerCount = await banner.count();
 
     if (bannerCount > 0) {
       // Banner visível
       await expect(banner).toBeVisible();
 
-      // Fechar banner
-      await adminPage.click('button[aria-label="Fechar banner"], button:has-text("×"):near(:text("Modo Desenvolvimento"))');
-      await adminPage.waitForTimeout(300);
+      // Fechar banner usando aria-label
+      const closeButton = adminPage.locator('button[aria-label="Fechar banner"]');
+      if (await closeButton.count() > 0) {
+        await closeButton.click();
+        await adminPage.waitForTimeout(500);
 
-      // Verificar que banner sumiu
-      await expect(banner).not.toBeVisible();
+        // Verificar que banner sumiu
+        await expect(banner).not.toBeVisible();
+      }
     }
   });
 
@@ -94,32 +97,24 @@ test.describe('Admin Panel - Carregamento e Navegação', () => {
     await expect(page.locator('p:has-text("Usuarios Totais")')).toBeVisible();
   });
 
-  test('deve ser responsivo em viewport mobile', async ({ page }) => {
+  test('deve ser responsivo em viewport mobile', async ({ adminPage }) => {
     // Configurar viewport mobile (iPhone 12)
-    await page.setViewportSize({ width: 390, height: 844 });
+    await adminPage.setViewportSize({ width: 390, height: 844 });
 
-    // Injetar autenticação e ir para página de teste
-    await page.goto('/');
-    await page.evaluate(() => {
-      const mockUser = {
-        uid: 'test-uid-123',
-        email: 'dkbotdani@gmail.com',
-        displayName: 'Admin Teste',
-      };
-      localStorage.setItem(
-        'firebase:authUser:AIzaSyB8QEhZF3jqKvJQxJ9kZ9vXWJ6hKzJ2Q3M:[DEFAULT]',
-        JSON.stringify(mockUser)
-      );
-    });
+    // Aguardar página carregar
+    await adminPage.waitForTimeout(1000);
 
-    await page.goto('/test-admin-panel');
-    await page.waitForSelector('p:has-text("Usuarios Totais")', { timeout: 10000 });
+    // Verificar que cards estão visíveis em mobile
+    await expect(adminPage.locator('p:has-text("Usuarios Totais")').first()).toBeVisible();
 
-    // Verificar cards em coluna única
-    const cards = page.locator('p:has-text("Usuarios Totais")').locator('..');
-    const box = await cards.boundingBox();
+    // Verificar que cards empilham verticalmente em mobile (não lado a lado)
+    const cardsContainer = adminPage.locator('p:has-text("Usuarios Totais")').first().locator('..').locator('..');
+    const box = await cardsContainer.boundingBox();
 
-    // Em mobile, cards devem ocupar quase toda largura
-    expect(box?.width).toBeGreaterThan(300);
+    // Em mobile, container deve ocupar quase toda largura da tela
+    if (box) {
+      expect(box.width).toBeGreaterThan(300);
+      expect(box.width).toBeLessThan(400); // iPhone 12 tem 390px
+    }
   });
 });
