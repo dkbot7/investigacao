@@ -1,7 +1,7 @@
 # 📊 STATUS - AGENT 1 (TECH LEAD)
 
 ## Status Atual: 🟢 WORKING
-**Última Atualização:** 2025-12-07 22:00
+**Última Atualização:** 2025-12-07 22:25 (DEPLOY MANUAL REALIZADO!)
 
 ---
 
@@ -20,13 +20,16 @@
   - Fixed AddInvestigacaoModal type separation
   - Restored standalone output mode
   - Build: ✅ SUCCESS (76/76 pages)
-- ✅ **TAREFA 1.2:** Deploy funcionando - Commits `c8bf4e8`, `cf24fd1`, `895633c`
+- ✅ **TAREFA 1.2:** Deploy funcionando - Commits `c8bf4e8`, `cf24fd1`, `895633c`, `bde2bc8`
   - Changed to export mode for static deploy
   - Created public/_headers with MIME types + security headers
   - Skipped 2 problematic blog posts (.mdx.skip)
   - Created DEPLOY.md documentation
   - Created deploy.bat script
-  - Deploy: ✅ SUCCESS https://6ab1c57a.investigaree.pages.dev
+  - **ÚLTIMO DEPLOY:** ✅ SUCCESS https://b8a0d52d.investigaree.pages.dev
+  - **Páginas geradas:** 77 páginas (8 blog posts + landing pages + dashboard)
+  - **Arquivos uploadados:** 759 files (699 new, 60 cached)
+  - **Build fixes:** Installed @next/third-parties, fixed InvestigacaoError import
   - **DOMÍNIO CUSTOMIZADO:** ✅ https://investigaree.com.br (ATIVO!)
   - **DOMÍNIO WWW:** ✅ https://www.investigaree.com.br (ATIVO!)
   - DNS propagado, SSL ativo, headers de segurança configurados
