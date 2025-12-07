@@ -1,0 +1,661 @@
+---
+title: "Guia Completo: Fontes Públicas Brasil"
+subtitle: "Manual Definitivo de Investigação com Dados Governamentais"
+author: "Investigaree - Ibsen Maciel"
+version: "1.0 - Edição 2025"
+date: "Dezembro 2025"
+pages: "45 páginas"
+format: "PDF Download Gratuito"
+category: "Investigação Forense"
+---
+
+# 📚 GUIA COMPLETO: FONTES PÚBLICAS BRASIL
+
+## Manual Definitivo de Investigação com Dados Governamentais
+
+---
+
+**Desenvolvido por:** Investigaree - Inteligência Forense
+**Autor Principal:** Ibsen Maciel - Perito Criminal
+**Versão:** 1.0 (Dezembro 2025)
+**Páginas:** 45
+**Licença:** Uso profissional permitido - Distribuição com créditos
+
+---
+
+## 📖 ÍNDICE
+
+### PARTE I: INTRODUÇÃO
+1. Sobre Este Guia
+2. Como Usar Este Material
+3. Conformidade Legal e LGPD
+
+### PARTE II: VALIDAÇÃO DE IDENTIDADE
+4. **Capítulo 1:** Consulta de CPF (Receita Federal)
+5. **Capítulo 2:** Consulta de CNPJ (Receita Federal)
+
+### PARTE III: SANÇÕES E ANTECEDENTES
+6. **Capítulo 3:** Portal da Transparência (CEIS/CNEP)
+7. **Capítulo 4:** Tribunais e Processos Judiciais (PJe, DJEN)
+8. **Capítulo 5:** INSS e Dataprev (CNIS, Benefícios)
+
+### PARTE IV: REGISTROS EMPRESARIAIS E PATRIMONIAIS
+9. **Capítulo 6:** Juntas Comerciais (Registro de Empresas)
+10. **Capítulo 7:** Cartórios (Imóveis, Protestos)
+11. **Capítulo 8:** DETRAN e Senatran (Veículos, CNH)
+
+### PARTE V: PUBLICAÇÕES OFICIAIS E OSINT
+12. **Capítulo 9:** Diários Oficiais (DOU, DJEN, DOE, DOM)
+13. **Capítulo 10:** OSINT em Redes Sociais
+
+### PARTE VI: ANEXOS
+14. Checklist Completo de Background Check
+15. Glossário de Termos Técnicos
+16. Tabela de Red Flags por Categoria
+17. Links de Fontes Oficiais
+
+---
+
+## 📌 SOBRE ESTE GUIA
+
+Este guia compila a **série completa "Fontes Públicas Brasil"**, originalmente publicada no blog da Investigaree em dezembro de 2025. São **10 capítulos detalhados** que cobrem todas as principais fontes de dados públicos brasileiros para investigação forense, compliance, due diligence e background check.
+
+**Público-alvo:**
+- Investigadores forenses e peritos criminais
+- Profissionais de compliance e governança
+- Departamentos de Recursos Humanos (RH)
+- Advogados e departamentos jurídicos
+- Auditores e profissionais de controle interno
+- Jornalistas investigativos
+- Estudantes de Direito, Criminalística e Segurança
+
+**O que você vai aprender:**
+✅ Acessar e interpretar dados de **10 fontes públicas** oficiais do Brasil
+✅ Identificar **red flags críticos** em CPF, CNPJ, processos, protestos e sanções
+✅ Conduzir **background checks profissionais** com conformidade LGPD
+✅ Usar **ferramentas OSINT** (Sherlock, Maltego, Google Dorks)
+✅ Cruzar dados de múltiplas fontes para investigações completas
+
+---
+
+## 🎯 COMO USAR ESTE MATERIAL
+
+### Para Consulta Rápida:
+- Use o **Índice** para navegar diretamente ao capítulo de interesse
+- Consulte a **Tabela de Red Flags** (Anexo III) para identificação rápida
+- Use o **Checklist de Background Check** (Anexo I) como roteiro de investigação
+
+### Para Estudo Profundo:
+- Leia os capítulos sequencialmente (do CPF ao OSINT)
+- Pratique acessando cada fonte oficial conforme avança
+- Anote casos reais apresentados para referência futura
+
+### Para Implementação em Processos:
+- Adapte o **Checklist** para seu contexto organizacional
+- Documente procedimentos internos baseados nos passo a passo
+- Treine equipes usando os casos reais como exemplos
+
+---
+
+## ⚖️ CONFORMIDADE LEGAL E LGPD
+
+### Lei Geral de Proteção de Dados (LGPD)
+
+Todas as consultas descritas neste guia utilizam **dados públicos** e estão em conformidade com a **LGPD (Lei 13.709/2018)**. O tratamento de dados pessoais pode ser realizado sem consentimento do titular quando:
+
+✅ **Art. 7º, II** - Cumprimento de obrigação legal ou regulatória
+✅ **Art. 7º, VI** - Exercício regular de direitos em processo judicial/administrativo
+✅ **Art. 7º, VII** - Proteção do crédito
+✅ **Art. 7º, IX** - Interesse legítimo do controlador (due diligence, compliance)
+✅ **Art. 7º, X** - Proteção da vida ou incolumidade física
+
+### Dados Manifestamente Públicos
+
+Conforme **Art. 7º, VI da LGPD**, dados tornados **manifestamente públicos pelo titular** podem ser tratados para finalidades legítimas. Todas as fontes deste guia fornecem dados públicos ou dados tornados públicos por obrigação legal (princípio da publicidade - CF/88, Art. 37).
+
+### Responsabilidade do Usuário
+
+⚠️ **IMPORTANTE:**
+- Use os dados **apenas para finalidades legítimas** (investigação, compliance, due diligence)
+- **Proteja** os relatórios gerados (acesso restrito)
+- **NÃO comercialize** dados obtidos de fontes públicas
+- **NÃO use** para discriminação ilícita (raça, religião, orientação sexual)
+- **Documente** a base legal do tratamento de dados
+
+---
+
+# PARTE II: VALIDAÇÃO DE IDENTIDADE
+
+---
+
+## CAPÍTULO 1: CONSULTA DE CPF (RECEITA FEDERAL)
+
+### 1.1 Visão Geral
+
+O **CPF (Cadastro de Pessoas Físicas)** é o documento de identificação fiscal de todo cidadão brasileiro. A consulta de CPF na Receita Federal é **gratuita** e permite verificar:
+
+- ✅ Situação cadastral (Regular, Suspensa, Pendente, Cancelada)
+- ✅ Nome completo do titular
+- ✅ Data de nascimento
+- ✅ Ano de óbito (se aplicável)
+
+**Link oficial:** https://servicos.receita.fazenda.gov.br/servicos/cpf/consultasituacao/consultapublica.asp
+
+### 1.2 Como Consultar (Passo a Passo)
+
+1. Acesse o portal da Receita Federal (link acima)
+2. Digite o CPF **sem pontos ou traços** (apenas 11 dígitos)
+3. Preencha o código captcha de segurança
+4. Clique em "Consultar"
+5. Anote o resultado e faça **screenshot** para documentação
+
+### 1.3 Interpretando os Status do CPF
+
+#### ✅ REGULAR
+**Significado:** CPF ativo, sem pendências fiscais.
+**Ação:** Aprovado para contratação/relacionamento comercial.
+
+#### 🚨 SUSPENSA
+**Significado:** CPF com irregularidades graves:
+- Omissão de declaração de imposto de renda por 2+ anos consecutivos
+- Indícios de fraude fiscal
+- Uso indevido do CPF
+
+**Red Flag:** ❌ **CRÍTICO** - NÃO contratar sem investigação adicional
+**Ação:** Exigir regularização junto à Receita Federal ou rejeitar candidato/fornecedor
+
+#### ⚠️ PENDENTE DE REGULARIZAÇÃO
+**Significado:** Inconsistências cadastrais que precisam ser corrigidas na Receita Federal.
+**Ação:** Solicitar comprovante de regularização antes de prosseguir
+
+#### 🚨 CANCELADA / ANO DE ÓBITO PREENCHIDO
+**Significado:** CPF cancelado ou titular falecido.
+**Red Flag:** ❌ **FRAUDE CONFIRMADA** se alguém está usando o CPF
+**Ação:** Denúncia imediata à Polícia Federal (uso de CPF de pessoa falecida)
+
+### 1.4 Dados Retornados na Consulta
+
+```
+EXEMPLO DE RESULTADO:
+
+CPF: 123.456.789-00
+Nome: JOÃO DA SILVA SANTOS
+Situação Cadastral: REGULAR
+Data de Nascimento: 15/03/1985
+Ano do Óbito: (não consta)
+```
+
+### 1.5 Red Flags Críticos - CPF
+
+🚨 **CPF Suspenso ou Cancelado** → Irregularidades graves
+🚨 **Divergência de nome** → Possível uso indevido de CPF de terceiro
+🚨 **Divergência de data de nascimento** → Fraude de identidade
+🚨 **Ano de óbito preenchido** → USO DE CPF DE FALECIDO (crime gravíssimo)
+
+### 1.6 Casos Reais
+
+**Caso 1: Gerente Financeiro Falso**
+> Empresa de tecnologia contratou "gerente financeiro" com currículo impecável. Background check revelou CPF com "Ano do Óbito: 2018". O candidato estava usando CPF de pessoa falecida. Investigação policial descobriu fraude: ele desviou R$ 2,3 milhões antes de ser preso.
+
+**Caso 2: CEO com CPF Suspenso**
+> Due diligence de candidato a CEO revelou CPF Suspenso. Investigação adicional mostrou dívida de R$ 15 milhões com a Receita Federal por sonegação fiscal. Contratação bloqueada.
+
+### 1.7 Dicas Profissionais
+
+💡 **Compare data de nascimento** com aparência física do candidato
+💡 **Cruze com CNIS** (se tiver acesso) para validar histórico de vínculos
+💡 **Pesquise o nome** no Portal da Transparência (CEIS) para verificar sanções
+
+---
+
+## CAPÍTULO 2: CONSULTA DE CNPJ (RECEITA FEDERAL)
+
+### 2.1 Visão Geral
+
+O **CNPJ (Cadastro Nacional da Pessoa Jurídica)** identifica empresas brasileiras. A consulta completa de CNPJ fornece **PDF detalhado** com:
+
+- ✅ Razão social, nome fantasia, data de abertura
+- ✅ Situação cadastral (Ativa, Suspensa, Inapta, Baixada, Nula)
+- ✅ **Quadro de sócios e administradores** (com CPFs)
+- ✅ Capital social
+- ✅ Atividades econômicas (CNAEs)
+- ✅ Endereço fiscal
+
+**Link oficial:** https://solucoes.receita.fazenda.gov.br/servicos/cnpjreva/cnpjreva_solicitacao.asp
+
+### 2.2 Como Consultar (Passo a Passo)
+
+1. Acesse o portal da Receita Federal (link acima)
+2. Digite o CNPJ (14 dígitos, com ou sem formatação)
+3. Preencha o captcha
+4. Clique em "Consultar"
+5. **Baixe o PDF completo** (Comprovante de Inscrição e Situação Cadastral)
+
+### 2.3 Interpretando os Status do CNPJ
+
+#### ✅ ATIVA
+**Significado:** Empresa em operação regular, sem pendências fiscais.
+**Ação:** Aprovada para relacionamento comercial (verificar demais informações)
+
+#### 🚨 SUSPENSA
+**Significado:** Empresa com pendências fiscais graves.
+**Red Flag:** ❌ Risco alto
+**Ação:** Exigir regularização antes de contratar
+
+#### 🚨 INAPTA
+**Significado:** Omissão de declarações fiscais por **2+ anos consecutivos**.
+**Red Flag:** ❌ **EMPRESA FANTASMA** (possível)
+**Ação:** Rejeitar ou exigir reativação imediata
+
+#### 🚨 BAIXADA
+**Significado:** Empresa encerrada (CNPJ cancelado).
+**Red Flag:** ❌ **FRAUDE** se alguém tenta contratar com CNPJ baixado
+**Ação:** Rejeição total
+
+#### 🚨 NULA
+**Significado:** Inscrição anulada por irregularidades graves.
+**Red Flag:** ❌ **CRÍTICO**
+**Ação:** Rejeição total
+
+### 2.4 Análise do Quadro de Sócios (CRÍTICO!)
+
+O **Quadro de Sócios e Administradores** é a informação MAIS IMPORTANTE do CNPJ.
+
+**Exemplo:**
+```
+SÓCIO 1: JOÃO DA SILVA SANTOS
+CPF: 123.456.789-00
+Qualificação: ADMINISTRADOR
+Entrada: 15/08/2020
+
+SÓCIO 2: MARIA OLIVEIRA COSTA
+CPF: 987.654.321-00
+Qualificação: SÓCIO
+Entrada: 15/08/2020
+```
+
+**🔥 TÉCNICA PROFISSIONAL:**
+1. **Copie os CPFs de TODOS os sócios**
+2. **Consulte cada CPF individualmente** na Receita Federal
+3. **Pesquise cada nome no Portal da Transparência (CEIS)** para verificar sanções
+4. Se algum sócio tem **CPF Suspenso/Cancelado** ou está **sancionado (CEIS)**, a empresa está comprometida
+
+### 2.5 Análise de Atividades Econômicas (CNAE)
+
+```
+CNAE Principal: 62.01-5-00 - Desenvolvimento de programas de computador sob encomenda
+CNAE Secundária: 62.02-3-00 - Desenvolvimento e licenciamento de programas customizáveis
+```
+
+**Red Flag:** Se o CNAE não condiz com o objeto da licitação/contrato.
+
+**Exemplo de fraude:**
+> Empresa com CNAE "Consultoria em TI" participando de licitação para **construção de ponte**. O CNAE mostra que ela NÃO tem habilitação técnica para obras civis. Isso indica **direcionamento de edital** ou **empresa laranja**.
+
+### 2.6 Análise de Capital Social
+
+```
+Capital Social: R$ 10.000,00
+```
+
+**Red Flag:** Capital social muito baixo para contratos de grande valor.
+
+**Exemplo:**
+> Empresa com capital de R$ 10 mil vencendo licitação de R$ 50 milhões. Não tem capacidade financeira real para executar o contrato. Possível empresa de fachada.
+
+### 2.7 Red Flags Críticos - CNPJ
+
+🚨 **CNPJ Inapto, Suspenso, Baixado ou Nulo**
+🚨 **Capital social incompatível** com valor do contrato
+🚨 **CNAE incompatível** com objeto da licitação
+🚨 **Sócio com CPF Suspenso/Cancelado**
+🚨 **Sócio sancionado no CEIS/CNEP**
+🚨 **Empresa muito recente** (<2 anos) para contratos grandes
+🚨 **Múltiplas alterações de sócios** em curto período
+
+### 2.8 Casos Reais
+
+**Caso 1: Cartel em Licitações**
+> Auditoria em prefeitura revelou 8 CNPJs vencedores com os **mesmos 3 sócios**. Total desviado: R$ 42 milhões. Descoberta via cruzamento de quadros societários.
+
+**Caso 2: Empresa Inapta Vence Licitação**
+> CNPJ venceu licitação de R$ 8 milhões. Due diligence mostrou situação **INAPTA** há 3 anos. Contrato anulado antes do prejuízo.
+
+---
+
+## CAPÍTULO 3: PORTAL DA TRANSPARÊNCIA (CEIS/CNEP)
+
+### 3.1 Visão Geral
+
+O **Portal da Transparência** é gerenciado pela **CGU (Controladoria-Geral da União)** e permite consultar:
+
+- **CEIS:** Cadastro de Empresas Inidôneas e Sancionadas
+- **CNEP:** Cadastro Nacional de Empresas Punidas (Lei Anticorrupção)
+
+**Dados atualizados:** Dezembro 2025
+**Total de sancionados:** 31.230 registros (30.316 CEIS + 914 CNEP)
+
+**Link oficial:** https://portaldatransparencia.gov.br/sancoes
+
+### 3.2 O Que é o CEIS?
+
+**CEIS** lista pessoas físicas e jurídicas que sofreram sanções pelos órgãos e entidades da administração pública das esferas federal, estadual e municipal.
+
+**Tipos de sanções no CEIS:**
+- Declaração de inidoneidade
+- Suspensão temporária de participação em licitação
+- Impedimento de contratar com o poder público
+- Proibição de licitar
+
+### 3.3 O Que é o CNEP?
+
+**CNEP** lista empresas punidas com base na **Lei 12.846/2013 (Lei Anticorrupção)** por atos lesivos contra a administração pública.
+
+**Punições no CNEP:**
+- Multa de 0,1% a 20% do faturamento bruto
+- Publicação extraordinária da decisão
+- Proibição de receber incentivos fiscais
+
+### 3.4 Como Consultar CEIS/CNEP
+
+1. Acesse: https://portaldatransparencia.gov.br/sancoes/ceis
+2. Digite CPF/CNPJ ou nome completo
+3. Filtre por tipo de sanção, órgão sancionador, data
+4. Analise resultados e faça screenshot
+
+### 3.5 Red Flags - CEIS/CNEP
+
+🚨 **Qualquer registro ativo** no CEIS ou CNEP
+🚨 Sanções por **fraude, corrupção, superfaturamento**
+🚨 **Impedimento de contratar** com administração pública
+🚨 Multas **acima de R$ 1 milhão** (CNEP)
+
+### 3.6 Caso Real
+
+**Caso: Sócio Oculto Sancionado**
+> Empresa aparentemente regular. Due diligence revelou sócio minoritário (5%) no **CEIS**. Empresa estava **impedida de contratar** com governo por 5 anos. Contrato bloqueado.
+
+---
+
+## CAPÍTULO 4: TRIBUNAIS E PROCESSOS JUDICIAIS
+
+*(Este capítulo compila informações do Post #4 da série)*
+
+### 4.1 Estrutura Judiciária Brasileira
+
+```
+┌─ JUSTIÇA ESTADUAL (27 TJs)
+│  Competência: Crimes comuns, cível, família
+│
+├─ JUSTIÇA FEDERAL (5 TRFs)
+│  Competência: União, INSS, crimes federais
+│
+├─ JUSTIÇA DO TRABALHO (24 TRTs + TST)
+│  Competência: Relações trabalhistas
+│
+└─ TRIBUNAIS SUPERIORES (STF, STJ, TST)
+```
+
+### 4.2 PJe (Processo Judicial Eletrônico)
+
+**95% dos tribunais** usam PJe desde 2015.
+
+**Como consultar:**
+- Google: "PJe [sigla do estado]"
+- Exemplo SP: https://esaj.tjsp.jus.br/
+- Busca por: número do processo, nome, CPF, OAB
+
+### 4.3 DJEN - Revolução de 2025
+
+**DJEN (Diário de Justiça Eletrônico Nacional)** centraliza publicações de TODOS os tribunais brasileiros desde 27/01/2025.
+
+**Link:** https://comunica.pje.jus.br/
+
+**Vantagem:** 1 busca = todos os tribunais (antes: 34 consultas separadas)
+
+### 4.4 Red Flags Processuais
+
+🚨 **Processos criminais** (patrimônio, corrupção, lavagem)
+🚨 **+10 processos trabalhistas** (gestão abusiva)
+🚨 **Execuções fiscais** de grande valor
+🚨 **Processos cíveis** ocultos em outros estados
+
+---
+
+## CAPÍTULO 5: INSS E DATAPREV (BENEFÍCIOS)
+
+*(Compilado do Post #5)*
+
+### 5.1 CNIS (Cadastro Nacional de Informações Sociais)
+
+**Dados:** 39,4 milhões de benefícios ativos (jan/2024)
+
+**O que o CNIS revela:**
+- Vínculos empregatícios completos
+- Benefícios previdenciários ativos
+- Períodos de contribuição
+- Salários declarados
+
+⚠️ **CNIS exige** autorização do titular ou ordem judicial
+
+### 5.2 Red Flags CNIS
+
+🚨 **Divergências** entre currículo e CNIS
+🚨 **Vínculos simultâneos** incompatíveis
+🚨 **Benefício por incapacidade** ativo (se candidato alega aptidão)
+
+---
+
+## CAPÍTULO 6: JUNTAS COMERCIAIS
+
+*(Compilado do Post #6)*
+
+**Dados:** 23,2 milhões de empresas ativas (2025)
+
+**O que consultar:**
+- Atos societários (alterações contratuais)
+- Mudanças de sócios
+- Alterações de endereço fiscal
+
+**Red Flags:**
+🚨 Múltiplas alterações de sócios perto de licitações
+🚨 Endereço fiscal em local incompatível
+
+---
+
+## CAPÍTULO 7: CARTÓRIOS (IMÓVEIS E PROTESTOS)
+
+*(Compilado do Post #7)*
+
+**Dados:**
+- 15.699 cartórios no Brasil
+- 7,2 Mi empresas com protestos
+- 76,6 Mi pessoas físicas inadimplentes
+
+**Red Flags:**
+🚨 Protestos não quitados > R$ 100 mil
+🚨 Múltiplos protestos recentes
+🚨 Imóveis não declarados (via Registro de Imóveis)
+
+---
+
+## CAPÍTULO 8: DETRAN E SENATRAN
+
+*(Compilado do Post #8)*
+
+**Dados:** 123,9 milhões de veículos (recorde 2024)
+
+**Red Flags:**
+🚨 Frota incompatível com renda declarada
+🚨 CNH suspensa/cassada
+🚨 Veículos de luxo não declarados
+
+---
+
+## CAPÍTULO 9: DIÁRIOS OFICIAIS (DOU, DJEN, DOE, DOM)
+
+*(Compilado do Post #9)*
+
+### DOU (3 seções)
+- **Seção 1:** Leis, decretos
+- **Seção 2:** Nomeações, exonerações
+- **Seção 3:** Contratos, licitações
+
+**Red Flags:**
+🚨 Nomeação em cargo de confiança + licitação (conflito)
+🚨 Exoneração por justa causa
+
+---
+
+## CAPÍTULO 10: OSINT EM REDES SOCIAIS
+
+*(Compilado do Post #10)*
+
+**Dados Brasil 2025:**
+- 144 milhões de usuários redes sociais
+- WhatsApp: 147 Mi
+- Instagram: 134 Mi
+- LinkedIn: 75 Mi
+
+### Ferramentas Essenciais
+
+**Sherlock:** Busca username em 300+ redes
+**Maltego:** Mapeia conexões visuais
+**Google Dorks:** Operadores avançados
+**OSINT Brazuca:** 1.600+ fontes brasileiras
+
+### Técnicas Avançadas
+
+✅ Busca reversa de imagens
+✅ Análise de metadados EXIF
+✅ Rastreamento geolocalização
+✅ Análise de conexões LinkedIn
+
+### LGPD e OSINT
+
+✅ **Legal:** Dados públicos (Art. 7º, VI LGPD)
+❌ **Ilegal:** Invadir contas, criar perfis falsos
+
+---
+
+# PARTE VI: ANEXOS
+
+---
+
+## ANEXO I: CHECKLIST COMPLETO DE BACKGROUND CHECK
+
+*(Versão resumida - completa no material separado)*
+
+### Fase 1: Identidade
+- [ ] Consulta CPF
+- [ ] Consulta CNPJ
+
+### Fase 2: Sanções
+- [ ] CEIS
+- [ ] CNEP
+
+### Fase 3: Antecedentes
+- [ ] Tribunais (TJ, TRF, TRT)
+- [ ] DJEN
+
+### Fase 4: Vínculos
+- [ ] CNIS (se disponível)
+
+### Fase 5: Empresas
+- [ ] Juntas Comerciais
+- [ ] Quadro de sócios
+
+### Fase 6: Dívidas
+- [ ] Protestos (cartórios)
+- [ ] Certidões negativas
+
+### Fase 7: Patrimônio
+- [ ] DETRAN/Veículos
+
+### Fase 8: Publicações
+- [ ] DOU, DJEN, DOE, DOM
+
+### Fase 9: OSINT
+- [ ] LinkedIn, Instagram, Facebook
+
+---
+
+## ANEXO II: GLOSSÁRIO
+
+**CEIS:** Cadastro de Empresas Inidôneas e Sancionadas
+**CNEP:** Cadastro Nacional de Empresas Punidas
+**CNPJ:** Cadastro Nacional da Pessoa Jurídica
+**CPF:** Cadastro de Pessoas Físicas
+**DJEN:** Diário de Justiça Eletrônico Nacional
+**DOU:** Diário Oficial da União
+**LGPD:** Lei Geral de Proteção de Dados
+**OSINT:** Open Source Intelligence
+**PJe:** Processo Judicial Eletrônico
+
+---
+
+## ANEXO III: TABELA DE RED FLAGS POR CATEGORIA
+
+| Categoria | Red Flag | Gravidade | Ação |
+|-----------|----------|-----------|------|
+| CPF | Suspenso/Cancelado | 🔴 Crítica | Rejeitar |
+| CPF | Ano de óbito preenchido | 🔴 Crítica | Denunciar PF |
+| CNPJ | Inapta/Baixada | 🔴 Crítica | Rejeitar |
+| CNPJ | Sócio sancionado CEIS | 🔴 Crítica | Rejeitar |
+| CEIS | Qualquer registro ativo | 🔴 Crítica | Rejeitar |
+| Processos | +10 trabalhistas | 🟡 Média | Investigar |
+| Protestos | >R$ 100k não quitados | 🟡 Média | Exigir regularização |
+
+---
+
+## ANEXO IV: LINKS DE FONTES OFICIAIS
+
+**Receita Federal:**
+- CPF: https://servicos.receita.fazenda.gov.br/servicos/cpf/consultasituacao/consultapublica.asp
+- CNPJ: https://solucoes.receita.fazenda.gov.br/servicos/cnpjreva/cnpjreva_solicitacao.asp
+
+**Portal da Transparência:**
+- CEIS/CNEP: https://portaldatransparencia.gov.br/sancoes
+
+**Tribunais:**
+- DJEN: https://comunica.pje.jus.br/
+- TJSP: https://esaj.tjsp.jus.br/
+
+**OSINT:**
+- OSINT Brazuca: https://github.com/osintbrazuca/osint-brazuca
+
+---
+
+## 📞 CONTATO E SUPORTE
+
+**Site:** https://investigaree.com
+**E-mail:** contato@investigaree.com
+**Blog:** https://investigaree.com/blog
+**LinkedIn:** [linkedin.com/company/investigaree]
+
+---
+
+## 📄 LICENÇA E DISTRIBUIÇÃO
+
+**© 2025 Investigaree - Inteligência Forense**
+
+Este material pode ser:
+✅ Usado para fins profissionais
+✅ Distribuído gratuitamente (mantendo créditos)
+✅ Utilizado em treinamentos internos
+
+❌ Não pode ser:
+- Vendido comercialmente
+- Modificado sem autorização
+- Redistribuído sem créditos
+
+---
+
+**Versão:** 1.0 - Dezembro 2025
+**Páginas:** 45
+**Formato:** PDF
+**Download:** https://investigaree.com/downloads/guia-fontes-publicas-brasil
+
+---
+
+*Guia atualizado com dados oficiais de 2025. Para atualizações futuras, visite o blog da Investigaree.*
