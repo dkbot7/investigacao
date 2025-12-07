@@ -7,7 +7,7 @@
 import { Hono } from 'hono';
 import type { Env } from './types/api.types';
 import { corsMiddleware } from './middleware/cors';
-import { authMiddleware, optionalAuthMiddleware } from './middleware/auth';
+import { authMiddleware } from './middleware/auth';
 import { rateLimitMiddleware } from './middleware/rateLimit';
 import { ApiError } from './utils/errors';
 import { logger } from './utils/logger';

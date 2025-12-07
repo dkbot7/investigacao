@@ -6,7 +6,7 @@
 
 import type { Context, Next } from 'hono';
 import type { Env, AuthenticatedUser } from '../types/api.types';
-import { UnauthorizedError } from '../utils/errors';
+import { UnauthorizedError, ForbiddenError } from '../utils/errors';
 import { logger } from '../utils/logger';
 
 /**
@@ -122,7 +122,7 @@ export function requireRole(...allowedRoles: string[]) {
         role: user.role,
         required: allowedRoles,
       });
-      throw new UnauthorizedError('Insufficient permissions');
+      throw new ForbiddenError('Insufficient permissions');
     }
 
     await next();

@@ -11,7 +11,6 @@ import type { Env, AuthenticatedUser } from '../types/api.types';
 import { CpfService } from '../services/serpro/cpf.service';
 import { CnpjService } from '../services/serpro/cnpj.service';
 import { DividaAtivaService } from '../services/serpro/divida-ativa.service';
-import { ValidationError } from '../utils/errors';
 import { logger } from '../utils/logger';
 
 const serpro = new Hono<{ Bindings: Env }>();
