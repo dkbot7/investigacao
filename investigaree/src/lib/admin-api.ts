@@ -349,8 +349,8 @@ export async function grantAccess(data: {
       await adminService.grantAccess({
         userId: user.id,
         tenantCode: data.tenant_code,
-        accessLevel: data.role,
-        expiresAt: data.expires_at
+        accessLevel: data.role
+        // Note: expiresAt não está no GrantAccessRequest type - feature futura
       });
 
       return {
