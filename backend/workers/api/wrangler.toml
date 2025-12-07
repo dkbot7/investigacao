@@ -3,6 +3,11 @@ main = "src/index.ts"
 compatibility_date = "2024-01-01"
 compatibility_flags = ["nodejs_compat"]
 
+# Routes - Custom subdomain for API
+routes = [
+  { pattern = "api.investigaree.com.br/*", zone_name = "investigaree.com.br" }
+]
+
 # D1 Database binding
 [[d1_databases]]
 binding = "DB"
@@ -24,3 +29,7 @@ ENVIRONMENT = "production"
 # SERPRO_CNPJ_CONSUMER_KEY = "secret"
 # SERPRO_CNPJ_CONSUMER_SECRET = "secret"
 # ... (mais 7 APIs)
+
+# Cron Triggers - Processamento de jobs em background
+[triggers]
+crons = ["0 */1 * * *"]  # A cada 1 hora
