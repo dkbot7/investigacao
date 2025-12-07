@@ -1,0 +1,22 @@
+Opção,Valor Mensal,Preço Unitário Original,Desconto,Preço Unitário Final,Volume de Consultas,Custo Total Estimado
+1,"R$ 3.554,00","R$ 18,66",50%,"R$ 9,33",380,"R$ 3.545,40"
+2,"R$ 4.736,00","R$ 17,59",50%,"R$ 8,80",538,"R$ 4.734,40"
+
+Produto,Serasa Relatório Avançado PF
+Tipo,Pacote Mensal com Volume Fixo
+Fornecedor,Serasa Experian
+Observação,Primeiro pagamento 30 dias após contratação
+Desconto Atual,50% (promocional)
+
+Dados Incluídos:
+- Identificação cadastral completa
+- Endereço e telefones atualizados
+- Participação em empresas
+- Dívidas com Bancos e Empresas (Pefin/Refin)
+- Cheques sem fundos (BACEN)
+- Protestos nacionais
+- Ações judiciais
+- Participação em empresas falidas
+- Consultas à Serasa Experian
+- Serasa Score com Cadastro Positivo
+- Renda mensal estimada

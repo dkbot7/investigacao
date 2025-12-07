@@ -61,7 +61,7 @@ export default function VideoEmbed({
   return (
     <div className="my-6">
       <div
-        className={`relative ${aspectRatioClass[aspectRatio]} rounded-xl overflow-hidden border border-gold-500/10 bg-navy-900`}
+        className={`relative ${aspectRatioClass[aspectRatio]} rounded-xl overflow-hidden border border-blue-500/10 bg-white dark:bg-navy-900`}
       >
         {isLoaded ? (
           <iframe
@@ -83,20 +83,20 @@ export default function VideoEmbed({
                 className="absolute inset-0 w-full h-full object-cover"
               />
             )}
-            <div className="absolute inset-0 bg-navy-950/40 group-hover:bg-navy-950/50 transition-colors" />
-            <div className="relative z-10 w-20 h-20 rounded-full bg-gold-500 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+            <div className="absolute inset-0 bg-slate-50 dark:bg-navy-950/40 group-hover:bg-slate-50 dark:bg-navy-950/50 transition-colors" />
+            <div className="relative z-10 w-20 h-20 rounded-full bg-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
               <Play className="w-8 h-8 text-navy-950 ml-1" fill="currentColor" />
             </div>
           </button>
         )}
       </div>
       <div className="flex items-center justify-between mt-2">
-        <p className="text-sm text-navy-400">{title}</p>
+        <p className="text-sm text-slate-500 dark:text-navy-400">{title}</p>
         <a
           href={src}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1 text-xs text-gold-500 hover:text-gold-400 transition-colors"
+          className="flex items-center gap-1 text-xs text-blue-500 hover:text-blue-400 transition-colors"
         >
           <span>Abrir no {platform === "youtube" ? "YouTube" : platform === "vimeo" ? "Vimeo" : "site"}</span>
           <ExternalLink className="w-3 h-3" />

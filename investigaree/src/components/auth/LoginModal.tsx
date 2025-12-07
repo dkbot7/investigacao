@@ -113,7 +113,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
         onClick={handleClose}
       >
         <motion.div
-          className="relative w-full max-w-md bg-navy-900 rounded-2xl shadow-2xl border border-navy-700"
+          className="relative w-full max-w-md bg-white dark:bg-navy-900 rounded-2xl shadow-2xl border border-slate-400 dark:border-navy-700"
           initial={{ scale: 0.9, y: 20 }}
           animate={{ scale: 1, y: 0 }}
           exit={{ scale: 0.9, y: 20 }}
@@ -125,18 +125,18 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
           {/* Close button */}
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 text-white/60 hover:text-white transition-colors"
+            className="absolute top-4 right-4 text-slate-600 dark:text-white/60 hover:text-slate-900 dark:hover:text-white transition-colors"
             aria-label="Fechar modal"
           >
             <X className="w-5 h-5" />
           </button>
 
           {/* Header */}
-          <div className="p-6 border-b border-navy-700">
-            <h2 id="login-modal-title" className="text-2xl font-bold text-white">
+          <div className="p-6 border-b border-slate-400 dark:border-navy-700">
+            <h2 id="login-modal-title" className="text-2xl font-bold text-slate-900 dark:text-white">
               {showForgotPassword ? "Recuperar Senha" : "Entrar"}
             </h2>
-            <p className="text-sm text-white/60 mt-1">
+            <p className="text-sm text-slate-600 dark:text-white/60 mt-1">
               {showForgotPassword
                 ? "Enviaremos um link para redefinir sua senha"
                 : "Acesse sua area privada"}
@@ -156,8 +156,8 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
                 <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Mail className="w-8 h-8 text-green-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">Email Enviado!</h3>
-                <p className="text-white/60 text-sm mb-4">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Email Enviado!</h3>
+                <p className="text-slate-600 dark:text-white/60 text-sm mb-4">
                   Verifique sua caixa de entrada e siga as instrucoes para redefinir sua senha.
                 </p>
                 <Button
@@ -166,7 +166,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
                     setShowForgotPassword(false);
                   }}
                   variant="outline"
-                  className="border-gold-500/50 text-white hover:bg-gold-500/10"
+                  className="border-blue-500/50 text-slate-900 dark:text-white hover:bg-blue-500/10"
                 >
                   Voltar ao login
                 </Button>
@@ -174,16 +174,16 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
             ) : showForgotPassword ? (
               <form onSubmit={handleForgotPassword} className="space-y-4">
                 <div>
-                  <Label htmlFor="reset-email" className="text-white">Email</Label>
+                  <Label htmlFor="reset-email" className="text-slate-900 dark:text-white">Email</Label>
                   <div className="relative mt-1">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 dark:text-white/40" />
                     <Input
                       id="reset-email"
                       type="email"
                       placeholder="seu@email.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="pl-10 bg-navy-800 border-navy-600 text-white placeholder:text-white/40"
+                      className="pl-10 bg-slate-100 dark:bg-navy-800 border-navy-600 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-white/40"
                       required
                     />
                   </div>
@@ -208,7 +208,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
                 <button
                   type="button"
                   onClick={() => setShowForgotPassword(false)}
-                  className="w-full text-sm text-white/60 hover:text-white transition-colors"
+                  className="w-full text-sm text-slate-600 dark:text-white/60 hover:text-slate-900 dark:hover:text-white transition-colors"
                 >
                   Voltar ao login
                 </button>
@@ -216,38 +216,38 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
             ) : (
               <form onSubmit={handleLogin} className="space-y-4">
                 <div>
-                  <Label htmlFor="email" className="text-white">Email</Label>
+                  <Label htmlFor="email" className="text-slate-900 dark:text-white">Email</Label>
                   <div className="relative mt-1">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 dark:text-white/40" />
                     <Input
                       id="email"
                       type="email"
                       placeholder="seu@email.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="pl-10 bg-navy-800 border-navy-600 text-white placeholder:text-white/40"
+                      className="pl-10 bg-slate-100 dark:bg-navy-800 border-navy-600 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-white/40"
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="password" className="text-white">Senha</Label>
+                  <Label htmlFor="password" className="text-slate-900 dark:text-white">Senha</Label>
                   <div className="relative mt-1">
-                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 dark:text-white/40" />
                     <Input
                       id="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Sua senha"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="pl-10 pr-10 bg-navy-800 border-navy-600 text-white placeholder:text-white/40"
+                      className="pl-10 pr-10 bg-slate-100 dark:bg-navy-800 border-navy-600 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-white/40"
                       required
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/60 transition-colors"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-white/40 hover:text-slate-600 dark:text-white/60 transition-colors"
                     >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
@@ -258,7 +258,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
                   <button
                     type="button"
                     onClick={() => setShowForgotPassword(true)}
-                    className="text-sm text-gold-400 hover:text-gold-300 transition-colors"
+                    className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
                   >
                     Esqueceu a senha?
                   </button>
@@ -282,14 +282,14 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
 
                 <div className="relative my-6">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-navy-700" />
+                    <div className="w-full border-t border-slate-400 dark:border-navy-700" />
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-4 bg-navy-900 text-white/40">ou</span>
+                    <span className="px-4 bg-white dark:bg-navy-900 text-slate-400 dark:text-white/40">ou</span>
                   </div>
                 </div>
 
-                <p className="text-center text-sm text-white/60">
+                <p className="text-center text-sm text-slate-600 dark:text-white/60">
                   Nao tem uma conta?{" "}
                   <button
                     type="button"
@@ -297,7 +297,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
                       handleClose();
                       onSwitchToRegister();
                     }}
-                    className="text-gold-400 hover:text-gold-300 font-medium transition-colors"
+                    className="text-blue-400 hover:text-blue-300 font-medium transition-colors"
                   >
                     Criar conta
                   </button>

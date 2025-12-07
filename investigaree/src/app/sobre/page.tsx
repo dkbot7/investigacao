@@ -10,11 +10,11 @@ export default function SobrePage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-navy-950 pt-20">
+      <main className="min-h-screen bg-slate-50 dark:bg-navy-950 pt-20">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-navy-900 to-navy-950 border-b border-navy-800">
+        <section className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-900 dark:to-navy-950 border-b border-slate-300 dark:border-navy-800">
           <div className="container max-w-5xl mx-auto px-4 py-16">
-            <Link href="/" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition mb-6">
+            <Link href="/" className="inline-flex items-center gap-2 text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white transition mb-6">
               <ArrowLeft className="w-4 h-4" />
               Voltar ao início
             </Link>
@@ -24,12 +24,12 @@ export default function SobrePage() {
                 <Shield className="w-8 h-8 text-primary-400" />
               </div>
               <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-white">Sobre a investigaree</h1>
-                <p className="text-white/60">Investigação Digital com Inteligência</p>
+                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Sobre a investigaree</h1>
+                <p className="text-slate-900 dark:text-slate-600 dark:text-white/60">Investigação Digital com Inteligência</p>
               </div>
             </div>
 
-            <p className="text-xl text-white/80 leading-relaxed max-w-3xl">
+            <p className="text-xl text-slate-900 dark:text-slate-800 dark:text-white/80 leading-relaxed max-w-3xl">
               Somos uma empresa especializada em investigação particular e due diligence digital,
               com metodologia validada por Perito Criminal Oficial. Protegemos o patrimônio de
               investidores, empresários e famílias através de análises profundas e relatórios precisos.
@@ -42,12 +42,12 @@ export default function SobrePage() {
           <div className="container max-w-5xl mx-auto px-4">
             <div className="grid md:grid-cols-3 gap-8">
               {/* Missão */}
-              <div className="bg-navy-900 rounded-2xl border border-navy-800 p-8">
+              <div className="bg-white dark:bg-navy-900 rounded-2xl border border-slate-300 dark:border-navy-800 p-8">
                 <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-4">
                   <Target className="w-6 h-6 text-blue-400" />
                 </div>
-                <h2 className="text-xl font-bold text-white mb-3">Missão</h2>
-                <p className="text-white/70 leading-relaxed">
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Missão</h2>
+                <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 leading-relaxed">
                   Proteger o patrimônio e a reputação de nossos clientes através de investigações
                   éticas, legais e tecnicamente rigorosas, entregando informações confiáveis
                   para tomadas de decisão seguras.
@@ -55,12 +55,12 @@ export default function SobrePage() {
               </div>
 
               {/* Visão */}
-              <div className="bg-navy-900 rounded-2xl border border-navy-800 p-8">
-                <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4">
-                  <Eye className="w-6 h-6 text-purple-400" />
+              <div className="bg-white dark:bg-navy-900 rounded-2xl border border-slate-300 dark:border-navy-800 p-8">
+                <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-4">
+                  <Eye className="w-6 h-6 text-blue-400" />
                 </div>
-                <h2 className="text-xl font-bold text-white mb-3">Visão</h2>
-                <p className="text-white/70 leading-relaxed">
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Visão</h2>
+                <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 leading-relaxed">
                   Ser a referência nacional em due diligence digital, reconhecida pela
                   excelência técnica, ética profissional e pela metodologia validada
                   por especialistas em perícia forense.
@@ -68,26 +68,26 @@ export default function SobrePage() {
               </div>
 
               {/* Valores */}
-              <div className="bg-navy-900 rounded-2xl border border-navy-800 p-8">
-                <div className="w-12 h-12 rounded-xl bg-gold-500/20 flex items-center justify-center mb-4">
-                  <Award className="w-6 h-6 text-gold-400" />
+              <div className="bg-white dark:bg-navy-900 rounded-2xl border border-slate-300 dark:border-navy-800 p-8">
+                <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-4">
+                  <Award className="w-6 h-6 text-blue-400" />
                 </div>
-                <h2 className="text-xl font-bold text-white mb-3">Valores</h2>
-                <ul className="text-white/70 space-y-2">
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Valores</h2>
+                <ul className="text-slate-900 dark:text-slate-700 dark:text-white/70 space-y-2">
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-gold-400" />
+                    <CheckCircle className="w-4 h-4 text-blue-400" />
                     Ética e legalidade
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-gold-400" />
+                    <CheckCircle className="w-4 h-4 text-blue-400" />
                     Sigilo absoluto
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-gold-400" />
+                    <CheckCircle className="w-4 h-4 text-blue-400" />
                     Rigor técnico
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-gold-400" />
+                    <CheckCircle className="w-4 h-4 text-blue-400" />
                     Agilidade na entrega
                   </li>
                 </ul>
@@ -97,41 +97,41 @@ export default function SobrePage() {
         </section>
 
         {/* Diferenciais */}
-        <section className="py-16 bg-navy-900/50">
+        <section className="py-16 bg-white dark:bg-navy-900/50">
           <div className="container max-w-5xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-white mb-8 text-center">Nossos Diferenciais</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center">Nossos Diferenciais</h2>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-navy-900 rounded-xl border border-navy-800 p-6">
-                <h3 className="text-lg font-bold text-white mb-3">Metodologia Forense</h3>
-                <p className="text-white/70">
+              <div className="bg-white dark:bg-navy-900 rounded-xl border border-slate-300 dark:border-navy-800 p-6">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">Metodologia Forense</h3>
+                <p className="text-slate-900 dark:text-slate-700 dark:text-white/70">
                   Nossa metodologia foi desenvolvida e validada por Perito Criminal Oficial
                   em Forense Computacional, garantindo padrões de qualidade equivalentes
                   aos utilizados em investigações criminais de nível nacional.
                 </p>
               </div>
 
-              <div className="bg-navy-900 rounded-xl border border-navy-800 p-6">
-                <h3 className="text-lg font-bold text-white mb-3">Advisory Board Especializado</h3>
-                <p className="text-white/70">
+              <div className="bg-white dark:bg-navy-900 rounded-xl border border-slate-300 dark:border-navy-800 p-6">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">Advisory Board Especializado</h3>
+                <p className="text-slate-900 dark:text-slate-700 dark:text-white/70">
                   Contamos com um conselho consultivo composto por especialistas renomados,
                   incluindo peritos criminais oficiais e profissionais com certificações
                   internacionais em análise forense digital.
                 </p>
               </div>
 
-              <div className="bg-navy-900 rounded-xl border border-navy-800 p-6">
-                <h3 className="text-lg font-bold text-white mb-3">Tecnologia Avançada</h3>
-                <p className="text-white/70">
+              <div className="bg-white dark:bg-navy-900 rounded-xl border border-slate-300 dark:border-navy-800 p-6">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">Tecnologia Avançada</h3>
+                <p className="text-slate-900 dark:text-slate-700 dark:text-white/70">
                   Utilizamos ferramentas de última geração para análise de dados, OSINT
                   (Open Source Intelligence), verificação de documentos e monitoramento
                   de fontes públicas em tempo real.
                 </p>
               </div>
 
-              <div className="bg-navy-900 rounded-xl border border-navy-800 p-6">
-                <h3 className="text-lg font-bold text-white mb-3">Conformidade Legal</h3>
-                <p className="text-white/70">
+              <div className="bg-white dark:bg-navy-900 rounded-xl border border-slate-300 dark:border-navy-800 p-6">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">Conformidade Legal</h3>
+                <p className="text-slate-900 dark:text-slate-700 dark:text-white/70">
                   Todas as nossas investigações são realizadas em conformidade com a LGPD,
                   o Marco Civil da Internet e demais legislações aplicáveis. Trabalhamos
                   exclusivamente com métodos éticos e legais.
@@ -144,38 +144,38 @@ export default function SobrePage() {
         {/* Compromissos */}
         <section className="py-16">
           <div className="container max-w-5xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-white mb-8 text-center">Nossos Compromissos</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center">Nossos Compromissos</h2>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
-                <p className="text-4xl font-bold text-gold-400">48h</p>
-                <p className="text-white/60 text-sm mt-1">Entrega Express</p>
+                <p className="text-4xl font-bold text-blue-400">48h</p>
+                <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-sm mt-1">Entrega Express</p>
               </div>
               <div className="text-center">
-                <p className="text-4xl font-bold text-gold-400">100%</p>
-                <p className="text-white/60 text-sm mt-1">LGPD Compliant</p>
+                <p className="text-4xl font-bold text-blue-400">100%</p>
+                <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-sm mt-1">LGPD Compliant</p>
               </div>
               <div className="text-center">
-                <p className="text-4xl font-bold text-gold-400">100%</p>
-                <p className="text-white/60 text-sm mt-1">Sigilo garantido</p>
+                <p className="text-4xl font-bold text-blue-400">100%</p>
+                <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-sm mt-1">Sigilo garantido</p>
               </div>
               <div className="text-center">
-                <p className="text-4xl font-bold text-gold-400">ANPAJ</p>
-                <p className="text-white/60 text-sm mt-1">Advisory Board</p>
+                <p className="text-4xl font-bold text-blue-400">ANPAJ</p>
+                <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-sm mt-1">Advisory Board</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Equipe */}
-        <section className="py-16 bg-navy-900/50">
+        <section className="py-16 bg-white dark:bg-navy-900/50">
           <div className="container max-w-5xl mx-auto px-4">
             <div className="flex items-center gap-3 mb-8">
               <Users className="w-8 h-8 text-primary-400" />
-              <h2 className="text-2xl font-bold text-white">Nossa Equipe</h2>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Nossa Equipe</h2>
             </div>
 
-            <p className="text-white/70 leading-relaxed mb-8 max-w-3xl">
+            <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 leading-relaxed mb-8 max-w-3xl">
               Nossa equipe é composta por profissionais altamente qualificados, incluindo
               investigadores particulares experientes, analistas de inteligência, especialistas
               em OSINT e consultores com background em segurança pública e privada.
@@ -183,7 +183,7 @@ export default function SobrePage() {
 
             <Link
               href="/quemsomos"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-slate-900 dark:text-white font-semibold rounded-lg transition-colors"
             >
               Conheça nossa equipe completa
               <ArrowLeft className="w-4 h-4 rotate-180" />
@@ -194,8 +194,8 @@ export default function SobrePage() {
         {/* CTA */}
         <section className="py-16">
           <div className="container max-w-5xl mx-auto px-4 text-center">
-            <h2 className="text-2xl font-bold text-white mb-4">Pronto para proteger seu patrimônio?</h2>
-            <p className="text-white/70 mb-8">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Pronto para proteger seu patrimônio?</h2>
+            <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 mb-8">
               Entre em contato conosco e descubra como podemos ajudar você a tomar decisões mais seguras.
             </p>
             <WhatsAppButton

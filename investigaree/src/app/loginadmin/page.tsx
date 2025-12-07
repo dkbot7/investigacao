@@ -75,7 +75,7 @@ export default function LoginAdminPage() {
   if (authLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 text-gold-500 animate-spin" />
+        <Loader2 className="w-8 h-8 text-blue-500 animate-spin" />
       </div>
     );
   }
@@ -96,16 +96,16 @@ export default function LoginAdminPage() {
         className="relative w-full max-w-md"
       >
         {/* Card */}
-        <div className="bg-navy-900/80 backdrop-blur-xl border border-navy-700/50 rounded-2xl shadow-2xl p-8">
+        <div className="bg-white dark:bg-navy-900/80 backdrop-blur-xl border border-slate-400 dark:border-navy-700/50 rounded-2xl shadow-2xl p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 mb-4">
               <Shield className="w-8 h-8 text-navy-950" />
             </div>
-            <h1 className="text-2xl font-bold text-white mb-2">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
               Admin Login
             </h1>
-            <p className="text-white/60 text-sm">
+            <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-sm">
               Acesso restrito a administradores
             </p>
           </div>
@@ -126,18 +126,18 @@ export default function LoginAdminPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email */}
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-white/80">
+              <Label htmlFor="email" className="text-slate-900 dark:text-slate-800 dark:text-white/80">
                 Email
               </Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-900 dark:text-white/40" />
                 <Input
                   id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="admin@investigaree.com.br"
-                  className="pl-10 bg-navy-800/50 border-navy-700 text-white placeholder:text-white/30 focus:border-gold-500 focus:ring-gold-500/20"
+                  className="pl-10 bg-slate-100 dark:bg-navy-800/50 border-slate-400 dark:border-navy-700 text-slate-900 dark:text-white placeholder:text-white/30 focus:border-blue-500 focus:ring-blue-500/20"
                   required
                   disabled={loading}
                 />
@@ -146,25 +146,25 @@ export default function LoginAdminPage() {
 
             {/* Password */}
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-white/80">
+              <Label htmlFor="password" className="text-slate-900 dark:text-slate-800 dark:text-white/80">
                 Senha
               </Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-900 dark:text-white/40" />
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Digite sua senha"
-                  className="pl-10 pr-10 bg-navy-800/50 border-navy-700 text-white placeholder:text-white/30 focus:border-gold-500 focus:ring-gold-500/20"
+                  className="pl-10 pr-10 bg-slate-100 dark:bg-navy-800/50 border-slate-400 dark:border-navy-700 text-slate-900 dark:text-white placeholder:text-white/30 focus:border-blue-500 focus:ring-blue-500/20"
                   required
                   disabled={loading}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/60 transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-900 dark:text-white/40 hover:text-slate-600 dark:text-white/60 transition-colors"
                 >
                   {showPassword ? (
                     <EyeOff className="w-5 h-5" />
@@ -179,7 +179,7 @@ export default function LoginAdminPage() {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-navy-950 font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-gold-500/25"
+              className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-navy-950 font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-blue-500/25"
             >
               {loading ? (
                 <>
@@ -196,10 +196,10 @@ export default function LoginAdminPage() {
           </form>
 
           {/* Footer */}
-          <div className="mt-8 pt-6 border-t border-navy-700/50 text-center">
+          <div className="mt-8 pt-6 border-t border-slate-400 dark:border-navy-700/50 text-center">
             <Link
               href="/"
-              className="text-white/50 hover:text-white/70 text-sm transition-colors"
+              className="text-slate-900 dark:text-slate-500 dark:text-white/50 hover:text-slate-700 dark:text-white/70 text-sm transition-colors"
             >
               Voltar para o site
             </Link>
@@ -207,7 +207,7 @@ export default function LoginAdminPage() {
         </div>
 
         {/* Security note */}
-        <p className="mt-6 text-center text-white/30 text-xs">
+        <p className="mt-6 text-center text-slate-900 dark:text-white/30 text-xs">
           Acesso monitorado e registrado por seguranca
         </p>
       </motion.div>

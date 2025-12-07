@@ -1,0 +1,19 @@
+API Consulta Faturamento - Tabela de Preços
+Contrato: 261073
+Modelo: ESCALONADO/PROGRESSIVO
+Atualização: 06/12/2025
+
+Faixa,De,Até,Preço Unitário (R$),Observações
+1,1,5,0.0000,GRATUITO
+2,6,10000,0.6591,
+3,10001,50000,0.5649,
+4,50001,100000,0.3557,
+5,100001,+,0.2616,Acima de 100 mil
+
+DESTAQUE:
+- Primeiras 5 consultas são GRATUITAS
+- Ideal para testes iniciais sem custo
+
+OBSERVAÇÕES:
+- Modelo ESCALONADO/PROGRESSIVO
+- Valores em reais (R$) por consulta

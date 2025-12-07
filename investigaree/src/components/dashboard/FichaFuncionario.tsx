@@ -145,7 +145,7 @@ export function FichaFuncionario({
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 20 }}
-        className="relative w-full max-w-4xl my-8 bg-navy-900 rounded-2xl shadow-2xl border border-navy-700 overflow-hidden"
+        className="relative w-full max-w-4xl my-8 bg-white dark:bg-navy-900 rounded-2xl shadow-2xl border border-slate-400 dark:border-navy-700 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header com status */}
@@ -154,7 +154,7 @@ export function FichaFuncionario({
             ? "border-red-500/30 bg-red-500/10"
             : temAlertas
             ? "border-amber-500/30 bg-amber-500/10"
-            : "border-navy-700 bg-navy-800/50"
+            : "border-slate-400 dark:border-navy-700 bg-slate-100 dark:bg-navy-800/50"
         }`}>
           <div className="flex justify-between items-start">
             <div className="flex items-start gap-4">
@@ -166,18 +166,18 @@ export function FichaFuncionario({
                   : "bg-navy-700"
               }`}>
                 <User className={`w-8 h-8 ${
-                  isFalecido ? "text-red-400" : temAlertas ? "text-amber-400" : "text-gold-400"
+                  isFalecido ? "text-red-400" : temAlertas ? "text-amber-400" : "text-blue-400"
                 }`} />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-white">{funcionario.nome}</h2>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">{funcionario.nome}</h2>
                 <div className="flex flex-wrap items-center gap-3 mt-2">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-navy-800 text-white/70 text-sm">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-navy-800 text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm">
                     <CreditCard className="w-3.5 h-3.5" />
                     {formatCPF(funcionario.cpf)}
                   </span>
                   {funcionario.cadastro && (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-navy-800 text-white/70 text-sm">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-navy-800 text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm">
                       <Hash className="w-3.5 h-3.5" />
                       {funcionario.cadastro}
                     </span>
@@ -195,7 +195,7 @@ export function FichaFuncionario({
             </div>
             <button
               onClick={onClose}
-              className="text-white/60 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg"
+              className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg"
             >
               <X className="w-5 h-5" />
             </button>
@@ -214,8 +214,8 @@ export function FichaFuncionario({
                     <HeartPulse className="w-6 h-6 text-red-400" />
                     <div>
                       <h4 className="font-semibold text-red-400">ALERTA: Funcionario Falecido</h4>
-                      <p className="text-sm text-white/70 mt-1">
-                        Obito registrado em <strong className="text-white">{funcionario.ano_obito}</strong>.
+                      <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70 mt-1">
+                        Obito registrado em <strong className="text-slate-900 dark:text-white">{funcionario.ano_obito}</strong>.
                         Verificar situacao na folha de pagamento e regularizar cadastro.
                       </p>
                     </div>
@@ -229,7 +229,7 @@ export function FichaFuncionario({
                     <AlertTriangle className="w-6 h-6 text-red-400" />
                     <div>
                       <h4 className="font-semibold text-red-400">ALERTA: Sancionado (CEIS/CNEP)</h4>
-                      <p className="text-sm text-white/70 mt-1">
+                      <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70 mt-1">
                         Funcionario possui sancoes ativas. Verificar compatibilidade com o cargo.
                       </p>
                     </div>
@@ -304,20 +304,20 @@ export function FichaFuncionario({
                     <div key={i} className="bg-purple-500/5 border border-purple-500/20 rounded-lg p-4">
                       <div className="flex justify-between items-start">
                         <div>
-                          <h5 className="font-medium text-white">{c.cargo}</h5>
-                          <p className="text-sm text-white/60 mt-1">
+                          <h5 className="font-medium text-slate-900 dark:text-white">{c.cargo}</h5>
+                          <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
                             {c.partido} - {c.uf} {c.municipio && `/ ${c.municipio}`}
                           </p>
                         </div>
                         <div className="text-right">
                           <span className="text-purple-400 font-bold">{c.ano}</span>
                           <p className={`text-xs mt-1 ${
-                            c.situacao === "Eleito" ? "text-emerald-400" : "text-white/50"
+                            c.situacao === "Eleito" ? "text-emerald-400" : "text-slate-500 dark:text-white/50"
                           }`}>{c.situacao}</p>
                         </div>
                       </div>
                       {c.votos !== undefined && c.votos > 0 && (
-                        <p className="text-sm text-white/50 mt-2">
+                        <p className="text-sm text-slate-900 dark:text-slate-500 dark:text-white/50 mt-2">
                           Votos: {c.votos.toLocaleString()}
                         </p>
                       )}
@@ -325,7 +325,7 @@ export function FichaFuncionario({
                   ))}
                 </div>
               ) : (
-                <p className="text-white/50 text-sm">Funcionario foi candidato, mas detalhes nao disponiveis.</p>
+                <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-sm">Funcionario foi candidato, mas detalhes nao disponiveis.</p>
               )}
             </Section>
           )}
@@ -345,8 +345,8 @@ export function FichaFuncionario({
                     <div key={i} className="bg-emerald-500/5 border border-emerald-500/20 rounded-lg p-4">
                       <div className="flex justify-between items-start">
                         <div>
-                          <h5 className="font-medium text-white">{d.candidato}</h5>
-                          <p className="text-sm text-white/60 mt-1">
+                          <h5 className="font-medium text-slate-900 dark:text-white">{d.candidato}</h5>
+                          <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
                             {d.partido} {d.cargo && `- ${d.cargo}`}
                           </p>
                         </div>
@@ -354,14 +354,14 @@ export function FichaFuncionario({
                           <span className="text-emerald-400 font-bold">
                             R$ {d.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                           </span>
-                          <p className="text-xs text-white/50 mt-1">{d.ano}</p>
+                          <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mt-1">{d.ano}</p>
                         </div>
                       </div>
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className="text-white/50 text-sm">
+                <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-sm">
                   Total doado: R$ {(funcionario.valor_doacoes || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                 </p>
               )}
@@ -382,11 +382,11 @@ export function FichaFuncionario({
                     <div key={i} className="bg-amber-500/5 border border-amber-500/20 rounded-lg p-4">
                       <div className="flex justify-between items-start">
                         <div>
-                          <h5 className="font-medium text-white">{v.razao_social}</h5>
+                          <h5 className="font-medium text-slate-900 dark:text-white">{v.razao_social}</h5>
                           {v.nome_fantasia && (
-                            <p className="text-sm text-white/60">{v.nome_fantasia}</p>
+                            <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">{v.nome_fantasia}</p>
                           )}
-                          <p className="text-xs text-white/50 mt-1 font-mono">{formatCNPJ(v.cnpj)}</p>
+                          <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mt-1 font-mono">{formatCNPJ(v.cnpj)}</p>
                         </div>
                         <span className={`px-2 py-1 rounded text-xs font-medium ${
                           v.situacao_cadastral === "ATIVA"
@@ -397,12 +397,12 @@ export function FichaFuncionario({
                         </span>
                       </div>
                       <div className="flex gap-4 mt-3 pt-3 border-t border-amber-500/10 text-sm">
-                        <span className="text-white/60">
-                          Qualificacao: <span className="text-white">{v.qualificacao}</span>
+                        <span className="text-slate-900 dark:text-slate-600 dark:text-white/60">
+                          Qualificacao: <span className="text-slate-900 dark:text-white">{v.qualificacao}</span>
                         </span>
                         {v.capital_social && (
-                          <span className="text-white/60">
-                            Capital: <span className="text-white">R$ {v.capital_social.toLocaleString('pt-BR')}</span>
+                          <span className="text-slate-900 dark:text-slate-600 dark:text-white/60">
+                            Capital: <span className="text-slate-900 dark:text-white">R$ {v.capital_social.toLocaleString('pt-BR')}</span>
                           </span>
                         )}
                       </div>
@@ -410,7 +410,7 @@ export function FichaFuncionario({
                   ))}
                 </div>
               ) : (
-                <p className="text-white/50 text-sm">
+                <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-sm">
                   Socio de {funcionario.qtd_empresas || "N/I"} empresa(s).
                 </p>
               )}
@@ -429,15 +429,15 @@ export function FichaFuncionario({
                           <span className="px-2 py-0.5 rounded text-xs font-bold bg-red-500/20 text-red-400">
                             {s.tipo}
                           </span>
-                          <p className="text-white font-medium mt-2">{s.motivo}</p>
-                          <p className="text-sm text-white/60 mt-1">Orgao: {s.orgao}</p>
+                          <p className="text-slate-900 dark:text-white font-medium mt-2">{s.motivo}</p>
+                          <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">Orgao: {s.orgao}</p>
                         </div>
                       </div>
                       <div className="flex gap-4 mt-3 pt-3 border-t border-red-500/10 text-sm">
-                        <span className="text-white/60">
-                          Inicio: <span className="text-white">{s.data_inicio}</span>
+                        <span className="text-slate-900 dark:text-slate-600 dark:text-white/60">
+                          Inicio: <span className="text-slate-900 dark:text-white">{s.data_inicio}</span>
                         </span>
-                        <span className="text-white/60">
+                        <span className="text-slate-900 dark:text-slate-600 dark:text-white/60">
                           Fim: <span className="text-red-400 font-medium">{s.data_fim}</span>
                         </span>
                       </div>
@@ -445,7 +445,7 @@ export function FichaFuncionario({
                   ))}
                 </div>
               ) : (
-                <p className="text-white/50 text-sm">Detalhes da sancao nao disponiveis.</p>
+                <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-sm">Detalhes da sancao nao disponiveis.</p>
               )}
             </Section>
           )}
@@ -456,13 +456,13 @@ export function FichaFuncionario({
               {beneficios.length > 0 ? (
                 <div className="space-y-3">
                   {beneficios.map((b, i) => (
-                    <div key={i} className="bg-cyan-500/5 border border-cyan-500/20 rounded-lg p-4">
+                    <div key={i} className="bg-blue-500/5 border border-blue-500/20 rounded-lg p-4">
                       <div className="flex justify-between items-center">
                         <div>
-                          <h5 className="font-medium text-white">{formatBeneficio(b.tipo)}</h5>
-                          <p className="text-sm text-white/60 mt-1">Ano: {b.ano}</p>
+                          <h5 className="font-medium text-slate-900 dark:text-white">{formatBeneficio(b.tipo)}</h5>
+                          <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">Ano: {b.ano}</p>
                         </div>
-                        <span className="text-cyan-400 font-bold">
+                        <span className="text-blue-400 font-bold">
                           R$ {b.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                         </span>
                       </div>
@@ -470,7 +470,7 @@ export function FichaFuncionario({
                   ))}
                 </div>
               ) : (
-                <p className="text-white/50 text-sm">
+                <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-sm">
                   Beneficio: {funcionario.qual_beneficio || "N/I"}
                 </p>
               )}
@@ -482,7 +482,7 @@ export function FichaFuncionario({
             <Section title="OFAC/PEP - Lista de Sancoes Internacionais" icon={Globe} color="orange">
               <div className="bg-orange-500/10 border border-orange-500/30 rounded-lg p-4">
                 <p className="text-orange-400 font-medium">Match identificado na lista OFAC</p>
-                <p className="text-sm text-white/70 mt-2">
+                <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70 mt-2">
                   Este funcionario possui nome similar a entradas na lista SDN (Specially Designated Nationals) do Tesouro dos EUA.
                   Recomenda-se verificacao manual adicional.
                 </p>
@@ -499,7 +499,7 @@ export function FichaFuncionario({
             <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-6 text-center">
               <Shield className="w-12 h-12 text-emerald-400 mx-auto mb-3" />
               <h4 className="text-emerald-400 font-semibold text-lg">Sem Alertas ou Apontamentos</h4>
-              <p className="text-white/60 text-sm mt-2">
+              <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-sm mt-2">
                 Nenhuma irregularidade ou apontamento identificado nas verificacoes realizadas.
               </p>
             </div>
@@ -507,14 +507,14 @@ export function FichaFuncionario({
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-navy-700 bg-navy-800/50 flex justify-between items-center">
-          <p className="text-xs text-white/40">
+        <div className="p-4 border-t border-slate-400 dark:border-navy-700 bg-slate-100 dark:bg-navy-800/50 flex justify-between items-center">
+          <p className="text-xs text-slate-900 dark:text-white/40">
             Dados verificados em fontes publicas oficiais
           </p>
           <Button
             onClick={onClose}
             variant="ghost"
-            className="text-white/60 hover:text-white border border-navy-600"
+            className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white border border-navy-600"
           >
             Fechar
           </Button>
@@ -541,12 +541,12 @@ function Section({
   extra?: string;
 }) {
   const colorClasses: Record<string, string> = {
-    gold: "text-gold-400",
+    gold: "text-blue-400",
     purple: "text-purple-400",
     emerald: "text-emerald-400",
     amber: "text-amber-400",
     red: "text-red-400",
-    cyan: "text-cyan-400",
+    cyan: "text-blue-400",
     orange: "text-orange-400",
   };
 
@@ -585,12 +585,12 @@ function InfoCard({
   status?: "success" | "error";
 }) {
   return (
-    <div className="bg-navy-800/50 rounded-lg p-3">
-      <p className="text-xs text-white/50 mb-1">{label}</p>
+    <div className="bg-slate-100 dark:bg-navy-800/50 rounded-lg p-3">
+      <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mb-1">{label}</p>
       <p className={`text-sm ${mono ? "font-mono" : ""} ${
         status === "success" ? "text-emerald-400" :
         status === "error" ? "text-red-400" :
-        highlight ? "text-gold-400 font-medium" : "text-white"
+        highlight ? "text-blue-400 font-medium" : "text-white"
       }`}>
         {value}
       </p>

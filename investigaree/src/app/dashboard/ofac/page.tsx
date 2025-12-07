@@ -115,11 +115,11 @@ export default function OFACPage() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
               <Globe className="w-7 h-7 text-orange-400" />
               OFAC/PEP - Sancoes Internacionais
             </h1>
-            <p className="text-white/60 mt-1">
+            <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
               {totalMatches} matches identificados na lista SDN do Tesouro dos EUA
             </p>
           </div>
@@ -127,18 +127,18 @@ export default function OFACPage() {
           <div className="flex items-center gap-3">
             {/* Search */}
             <div className="relative w-full lg:w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-900 dark:text-white/40" />
               <input
                 type="text"
                 placeholder="Buscar nome ou match..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 text-sm"
+                className="w-full pl-9 pr-4 py-2 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 text-sm"
               />
               {search && (
                 <button
                   onClick={() => setSearch("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-900 dark:text-white/40 hover:text-white"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -148,7 +148,7 @@ export default function OFACPage() {
             <Button
               onClick={exportCSV}
               variant="ghost"
-              className="text-white/60 hover:text-white border border-navy-700 hover:bg-navy-800"
+              className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700 hover:bg-slate-100 dark:bg-navy-800"
             >
               <Download className="w-4 h-4 mr-2" />
               CSV
@@ -161,71 +161,71 @@ export default function OFACPage() {
           <Flag className="w-6 h-6 text-orange-400 flex-shrink-0 mt-0.5" />
           <div>
             <h3 className="text-orange-400 font-semibold">Importante - Leia com Atencao</h3>
-            <p className="text-white/70 text-sm mt-1">
+            <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm mt-1">
               A lista OFAC SDN (Specially Designated Nationals) do Tesouro dos EUA contem nomes de pessoas e entidades sancionadas.
-              Os matches abaixo sao baseados em <strong className="text-white">similaridade de nome (50%+)</strong> e{" "}
+              Os matches abaixo sao baseados em <strong className="text-slate-900 dark:text-white">similaridade de nome (50%+)</strong> e{" "}
               <strong className="text-orange-300">NAO indicam necessariamente</strong> que a pessoa seja a mesma da lista.
-              <strong className="text-white"> Recomenda-se verificacao manual adicional antes de qualquer acao.</strong>
+              <strong className="text-slate-900 dark:text-white"> Recomenda-se verificacao manual adicional antes de qualquer acao.</strong>
             </p>
           </div>
         </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-orange-500/10 rounded-lg">
                 <Users className="w-5 h-5 text-orange-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{totalMatches}</p>
-                <p className="text-xs text-white/50">Matches Totais</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">{totalMatches}</p>
+                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Matches Totais</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-amber-500/10 rounded-lg">
                 <AlertTriangle className="w-5 h-5 text-amber-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{mediasSimilaridade.toFixed(0)}%</p>
-                <p className="text-xs text-white/50">Similaridade Media</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">{mediasSimilaridade.toFixed(0)}%</p>
+                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Similaridade Media</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-blue-500/10 rounded-lg">
                 <Globe className="w-5 h-5 text-blue-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">18.411</p>
-                <p className="text-xs text-white/50">Registros na Lista SDN</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">18.411</p>
+                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Registros na Lista SDN</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-purple-500/10 rounded-lg">
                 <Shield className="w-5 h-5 text-purple-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{programas.length}</p>
-                <p className="text-xs text-white/50">Programas de Sancao</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">{programas.length}</p>
+                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Programas de Sancao</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Filtro por Programa */}
-        <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+        <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
-            <Filter className="w-4 h-4 text-white/50" />
-            <span className="text-sm font-medium text-white/70">Filtrar por Programa de Sancao</span>
+            <Filter className="w-4 h-4 text-slate-900 dark:text-slate-500 dark:text-white/50" />
+            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70">Filtrar por Programa de Sancao</span>
           </div>
           <div className="flex flex-wrap gap-2">
             <button
@@ -233,7 +233,7 @@ export default function OFACPage() {
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                 programaFilter === "todos"
                   ? "bg-orange-500/20 text-orange-400 border border-orange-500/30"
-                  : "bg-navy-800 text-white/60 hover:text-white border border-navy-700"
+                  : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
               }`}
             >
               Todos ({CLIENTE_01_OFAC.length})
@@ -245,7 +245,7 @@ export default function OFACPage() {
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                   programaFilter === programa
                     ? "bg-orange-500/20 text-orange-400 border border-orange-500/30"
-                    : "bg-navy-800 text-white/60 hover:text-white border border-navy-700"
+                    : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
                 }`}
               >
                 {programa} ({CLIENTE_01_OFAC.filter(o => o.programa === programa).length})
@@ -255,32 +255,32 @@ export default function OFACPage() {
         </div>
 
         {/* Table */}
-        <div className="bg-navy-900 border border-navy-700 rounded-xl overflow-hidden">
+        <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="bg-navy-800/50 border-b border-navy-700">
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Funcionario</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">CPF</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Match na Lista OFAC</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Programa</th>
-                  <th className="text-center py-3 px-4 text-sm font-medium text-white/60">Similaridade</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Grupo</th>
+                <tr className="bg-slate-100 dark:bg-navy-800/50 border-b border-slate-400 dark:border-navy-700">
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Funcionario</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">CPF</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Match na Lista OFAC</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Programa</th>
+                  <th className="text-center py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Similaridade</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Grupo</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredOFAC.map((ofac) => (
                   <tr
                     key={ofac.id}
-                    className="border-b border-navy-800 hover:bg-navy-800/50 transition-colors cursor-pointer"
+                    className="border-b border-slate-300 dark:border-navy-800 hover:bg-slate-100 dark:bg-navy-800/50 transition-colors cursor-pointer"
                     onClick={() => handleSelectOFAC(ofac)}
                   >
                     <td className="py-3 px-4">
-                      <span className="text-white font-medium hover:text-orange-400 transition-colors">
+                      <span className="text-slate-900 dark:text-white font-medium hover:text-orange-400 transition-colors">
                         {ofac.nome}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-white/70 font-mono text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 font-mono text-sm">
                       {ofac.cpf}
                     </td>
                     <td className="py-3 px-4">
@@ -291,7 +291,7 @@ export default function OFACPage() {
                       </div>
                     </td>
                     <td className="py-3 px-4">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-white/70">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
                         {ofac.programa}
                       </span>
                     </td>
@@ -307,7 +307,7 @@ export default function OFACPage() {
                       </span>
                     </td>
                     <td className="py-3 px-4">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-white/70">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
                         {ofac.grupo}
                       </span>
                     </td>
@@ -319,14 +319,14 @@ export default function OFACPage() {
 
           {filteredOFAC.length === 0 && (
             <div className="text-center py-12">
-              <Globe className="w-12 h-12 text-white/20 mx-auto mb-3" />
-              <p className="text-white/50">Nenhum registro encontrado</p>
+              <Globe className="w-12 h-12 text-slate-900 dark:text-white/20 mx-auto mb-3" />
+              <p className="text-slate-900 dark:text-slate-500 dark:text-white/50">Nenhum registro encontrado</p>
             </div>
           )}
 
           {/* Nota de paginacao */}
-          <div className="p-4 border-t border-navy-700 bg-navy-800/30">
-            <p className="text-center text-sm text-white/50">
+          <div className="p-4 border-t border-slate-400 dark:border-navy-700 bg-slate-100 dark:bg-navy-800/30">
+            <p className="text-center text-sm text-slate-900 dark:text-slate-500 dark:text-white/50">
               Mostrando {filteredOFAC.length} de {totalMatches} matches totais.
               Para a lista completa, exporte o CSV ou consulte o relatorio em PDF.
             </p>
@@ -335,12 +335,12 @@ export default function OFACPage() {
 
         {/* Info Cards */}
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-navy-900/50 border border-navy-700 rounded-xl p-4">
+          <div className="bg-white dark:bg-navy-900/50 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-start gap-3">
               <Info className="w-5 h-5 text-blue-400 mt-0.5" />
               <div>
-                <h4 className="text-sm font-medium text-white mb-1">O que e a Lista OFAC SDN?</h4>
-                <p className="text-sm text-white/60">
+                <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">O que e a Lista OFAC SDN?</h4>
+                <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">
                   A lista SDN (Specially Designated Nationals) e mantida pelo Escritorio de Controle de Ativos Estrangeiros (OFAC)
                   do Departamento do Tesouro dos EUA. Contem nomes de pessoas, empresas e organizacoes sujeitas a sancoes economicas.
                 </p>
@@ -348,12 +348,12 @@ export default function OFACPage() {
             </div>
           </div>
 
-          <div className="bg-navy-900/50 border border-navy-700 rounded-xl p-4">
+          <div className="bg-white dark:bg-navy-900/50 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-amber-400 mt-0.5" />
               <div>
-                <h4 className="text-sm font-medium text-white mb-1">Programas de Sancao</h4>
-                <ul className="text-sm text-white/60 space-y-1">
+                <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">Programas de Sancao</h4>
+                <ul className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 space-y-1">
                   <li>• <strong>SDNT</strong> - Narcoticos / Trafico de Drogas</li>
                   <li>• <strong>SDNTK</strong> - Narcoticos Internacionais</li>
                   <li>• <strong>SDN</strong> - Nacionais Especialmente Designados</li>

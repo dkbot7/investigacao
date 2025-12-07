@@ -104,7 +104,7 @@ export default function ForensicTutorialTemplate({
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-navy-950">
+      <main className="min-h-screen bg-slate-50 dark:bg-navy-950">
         {/* Header do artigo */}
         <ArticleHeader post={post} />
 
@@ -165,13 +165,13 @@ export default function ForensicTutorialTemplate({
 
               {/* Tags */}
               {post.tags.length > 0 && (
-                <div className="mt-8 pt-8 border-t border-gold-500/10">
-                  <p className="text-sm text-navy-500 mb-3">Tags:</p>
+                <div className="mt-8 pt-8 border-t border-blue-500/10">
+                  <p className="text-sm text-slate-900 dark:text-navy-500 mb-3">Tags:</p>
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 text-sm bg-navy-900/50 text-navy-300 rounded-lg hover:bg-navy-800 transition-colors cursor-pointer"
+                        className="px-3 py-1 text-sm bg-white dark:bg-white/50 dark:bg-navy-900/50 text-slate-600 dark:text-navy-300 rounded-lg hover:bg-slate-100 dark:bg-navy-800 transition-colors cursor-pointer"
                       >
                         #{tag}
                       </span>
@@ -185,7 +185,7 @@ export default function ForensicTutorialTemplate({
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="mt-8 p-6 rounded-xl bg-navy-900/50 border border-gold-500/10"
+                className="mt-8 p-6 rounded-xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/10"
               >
                 <div className="flex items-start gap-4">
                   {post.author.avatar ? (
@@ -195,17 +195,17 @@ export default function ForensicTutorialTemplate({
                       className="w-16 h-16 rounded-full"
                     />
                   ) : (
-                    <div className="w-16 h-16 rounded-full bg-gold-500/20 flex items-center justify-center text-2xl font-bold text-gold-500">
+                    <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-2xl font-bold text-blue-500">
                       {post.author.name[0]}
                     </div>
                   )}
                   <div>
-                    <p className="font-semibold text-white text-lg">{post.author.name}</p>
+                    <p className="font-semibold text-slate-900 dark:text-white text-lg">{post.author.name}</p>
                     {post.author.role && (
-                      <p className="text-gold-500 text-sm mb-2">{post.author.role}</p>
+                      <p className="text-blue-500 text-sm mb-2">{post.author.role}</p>
                     )}
                     {post.author.bio && (
-                      <p className="text-navy-400 text-sm">{post.author.bio}</p>
+                      <p className="text-slate-500 dark:text-navy-400 text-sm">{post.author.bio}</p>
                     )}
                   </div>
                 </div>

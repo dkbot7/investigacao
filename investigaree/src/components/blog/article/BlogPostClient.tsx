@@ -267,13 +267,13 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
     return (
       <>
         <Header />
-        <main className="min-h-screen bg-navy-950 pt-24">
+        <main className="min-h-screen bg-slate-50 dark:bg-navy-950 pt-24">
           <div className="container mx-auto px-4 sm:px-8 lg:px-12">
             <div className="animate-pulse">
-              <div className="h-8 w-48 bg-navy-800 rounded mb-4" />
-              <div className="h-12 w-3/4 bg-navy-800 rounded mb-4" />
-              <div className="h-6 w-1/2 bg-navy-800 rounded mb-8" />
-              <div className="aspect-[21/9] max-w-5xl bg-navy-800 rounded-2xl" />
+              <div className="h-8 w-48 bg-slate-100 dark:bg-navy-800 rounded mb-4" />
+              <div className="h-12 w-3/4 bg-slate-100 dark:bg-navy-800 rounded mb-4" />
+              <div className="h-6 w-1/2 bg-slate-100 dark:bg-navy-800 rounded mb-8" />
+              <div className="aspect-[21/9] max-w-5xl bg-slate-100 dark:bg-navy-800 rounded-2xl" />
             </div>
           </div>
         </main>
@@ -292,7 +292,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
     <>
       <Header />
       <ReadingProgress />
-      <main className="min-h-screen bg-navy-950">
+      <main className="min-h-screen bg-slate-50 dark:bg-navy-950">
         {/* Header do artigo */}
         <ArticleHeader post={post} />
 
@@ -305,19 +305,19 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                 <TableOfContents items={articleContent.toc} />
 
                 {/* Tags */}
-                <div className="bg-navy-900/30 border border-gold-500/10 rounded-xl p-5">
-                  <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gold-500/10">
-                    <div className="p-1.5 rounded-lg bg-gold-500/10">
-                      <Hash className="w-4 h-4 text-gold-500" />
+                <div className="bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-blue-500/10 rounded-xl p-5">
+                  <div className="flex items-center gap-2 mb-4 pb-3 border-b border-blue-500/10">
+                    <div className="p-1.5 rounded-lg bg-blue-500/10">
+                      <Hash className="w-4 h-4 text-blue-500" />
                     </div>
-                    <h3 className="text-sm font-semibold text-white">Tags</h3>
+                    <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Tags</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
                       <Link
                         key={tag}
                         href={`/blog?tag=${tag}`}
-                        className="px-2.5 py-1 rounded-full text-xs bg-navy-800/50 text-navy-400 hover:bg-navy-800 hover:text-white transition-colors"
+                        className="px-2.5 py-1 rounded-full text-xs bg-slate-100 dark:bg-navy-800/50 text-slate-500 dark:text-navy-400 hover:bg-slate-100 dark:bg-navy-800 hover:text-slate-900 dark:text-white transition-colors"
                       >
                         #{tag}
                       </Link>
@@ -334,7 +334,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
               </ArticleContent>
 
               {/* Card do autor */}
-              <div className="mt-12 pt-8 border-t border-gold-500/10">
+              <div className="mt-12 pt-8 border-t border-blue-500/10">
                 <AuthorCard author={post.author} />
               </div>
             </div>

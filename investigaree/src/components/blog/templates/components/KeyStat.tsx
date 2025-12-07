@@ -31,8 +31,8 @@ const typeConfig: Record<StatType, { icon: typeof Info; color: string; bgColor: 
   },
   trend: {
     icon: TrendingUp,
-    color: "text-gold-400",
-    bgColor: "bg-gold-500/10 border-gold-500/30"
+    color: "text-blue-400",
+    bgColor: "bg-blue-500/10 border-blue-500/30"
   }
 };
 
@@ -71,7 +71,7 @@ export default function KeyStat({
       </div>
 
       {/* Label superior */}
-      <p className="text-xs uppercase tracking-wider text-navy-400 mb-2 font-medium">
+      <p className="text-xs uppercase tracking-wider text-slate-500 dark:text-navy-400 mb-2 font-medium">
         Estatística-chave
       </p>
 
@@ -81,13 +81,13 @@ export default function KeyStat({
       </p>
 
       {/* Descrição */}
-      <p className="text-base sm:text-lg text-white font-medium leading-snug">
+      <p className="text-base sm:text-lg text-slate-900 dark:text-white font-medium leading-snug">
         {label}
       </p>
 
       {/* Fonte */}
       {source && (
-        <p className="mt-3 text-xs text-navy-500 italic">
+        <p className="mt-3 text-xs text-slate-900 dark:text-navy-500 italic">
           Fonte: {source}
         </p>
       )}

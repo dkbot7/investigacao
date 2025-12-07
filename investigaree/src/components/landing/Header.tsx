@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LoginModal from "@/components/auth/LoginModal";
 import RegisterModal from "@/components/auth/RegisterModal";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -72,7 +73,7 @@ export default function Header() {
       theme: "Tema",
       language: "Idioma",
       login: "Entrar",
-      signup: "Criar Conta"
+      signup: "Criar Investigação"
     },
     en: {
       home: "Home",
@@ -87,7 +88,7 @@ export default function Header() {
       theme: "Theme",
       language: "Language",
       login: "Login",
-      signup: "Sign Up"
+      signup: "Create Investigation"
     }
   };
 
@@ -105,7 +106,7 @@ export default function Header() {
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-navy-950/80 backdrop-blur-lg shadow-lg border-b border-gold-500/10"
+          ? "bg-slate-50 dark:bg-navy-950/80 backdrop-blur-lg shadow-lg border-b border-blue-500/10"
           : "bg-transparent"
       }`}
       style={{ height: "72px" }}
@@ -126,7 +127,7 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-3 relative">
               {/* Glow effect on hover */}
               <motion.div
-                className="absolute inset-0 bg-gold-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute inset-0 bg-blue-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 aria-hidden="true"
               />
 
@@ -148,13 +149,7 @@ export default function Header() {
 
               {/* Text logo */}
               <motion.span
-                className="text-2xl font-bold relative z-10"
-                style={{
-                  background: "linear-gradient(135deg, #FFFFFF 0%, #9FB3C8 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text"
-                }}
+                className="text-2xl font-bold text-slate-900 dark:text-white relative z-10"
                 whileHover={{ scale: 1.02 }}
               >
                 investigaree
@@ -177,7 +172,7 @@ export default function Header() {
               <motion.div key={item.href}>
                 <Link
                   href={item.href}
-                  className="relative text-white/90 hover:text-white font-medium text-[15px] transition-all duration-200 group inline-block"
+                  className="relative text-slate-900 dark:text-white/90 hover:text-blue-600 dark:hover:text-white font-medium text-[15px] transition-all duration-200 group inline-block"
                 >
                   <motion.span
                     initial={{ opacity: 0, y: -10 }}
@@ -188,7 +183,7 @@ export default function Header() {
                   >
                     {item.label}
                     <motion.span
-                      className="absolute bottom-0 left-0 h-[2px] bg-gold-500"
+                      className="absolute bottom-0 left-0 h-[2px] bg-blue-500"
                       initial={{ width: 0 }}
                       whileHover={{ width: "100%" }}
                       transition={{ duration: 0.2 }}
@@ -202,7 +197,7 @@ export default function Header() {
             <div ref={conteudoRef} className="relative">
               <motion.button
                 onClick={() => setIsConteudoOpen(!isConteudoOpen)}
-                className="relative text-white/90 hover:text-white font-medium text-[15px] transition-all duration-200 group inline-flex items-center gap-1"
+                className="relative text-slate-900 dark:text-white/90 hover:text-blue-600 dark:hover:text-white font-medium text-[15px] transition-all duration-200 group inline-flex items-center gap-1"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.4 }}
@@ -218,7 +213,7 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-navy-900/95 backdrop-blur-lg border border-gold-500/20 rounded-xl shadow-xl overflow-hidden"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-white dark:bg-white/95 dark:bg-navy-900/95 backdrop-blur-lg border border-blue-500/20 rounded-xl shadow-xl overflow-hidden"
                   >
                     <div className="p-2">
                       {conteudoItems.map((item, index) => {
@@ -230,12 +225,12 @@ export default function Header() {
                             onClick={() => setIsConteudoOpen(false)}
                             className="flex items-start gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors group"
                           >
-                            <div className="p-2 rounded-lg bg-gold-500/10 text-gold-500 group-hover:bg-gold-500/20 transition-colors">
+                            <div className="p-2 rounded-lg bg-blue-500/10 text-blue-500 group-hover:bg-blue-500/20 transition-colors">
                               <Icon className="w-4 h-4" />
                             </div>
                             <div>
-                              <div className="text-white font-medium text-sm">{item.label}</div>
-                              <div className="text-navy-400 text-xs">{item.description}</div>
+                              <div className="text-slate-900 dark:text-white font-medium text-sm">{item.label}</div>
+                              <div className="text-slate-500 dark:text-navy-400 text-xs">{item.description}</div>
                             </div>
                           </Link>
                         );
@@ -250,7 +245,7 @@ export default function Header() {
             <motion.div>
               <Link
                 href="/contato"
-                className="relative text-white/90 hover:text-white font-medium text-[15px] transition-all duration-200 group inline-block"
+                className="relative text-slate-900 dark:text-white/90 hover:text-blue-600 dark:hover:text-white font-medium text-[15px] transition-all duration-200 group inline-block"
               >
                 <motion.span
                   initial={{ opacity: 0, y: -10 }}
@@ -261,7 +256,7 @@ export default function Header() {
                 >
                   {t.contact}
                   <motion.span
-                    className="absolute bottom-0 left-0 h-[2px] bg-gold-500"
+                    className="absolute bottom-0 left-0 h-[2px] bg-blue-500"
                     initial={{ width: 0 }}
                     whileHover={{ width: "100%" }}
                     transition={{ duration: 0.2 }}
@@ -278,13 +273,18 @@ export default function Header() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
           >
+            {/* Theme Toggle */}
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <ModeToggle />
+            </motion.div>
+
             {/* Language Toggle */}
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={toggleLanguage}
-                className="text-white/80 hover:text-white hover:bg-white/5 transition-all"
+                className="text-slate-900 dark:text-white/80 hover:text-blue-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-all"
                 title={language === "pt" ? "Change language" : "Mudar idioma"}
               >
                 <Globe className="w-4 h-4" />
@@ -302,7 +302,7 @@ export default function Header() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-white/90 hover:text-white hover:bg-white/10 transition-all font-medium"
+                className="text-slate-900 dark:text-white/90 hover:text-blue-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-all font-medium"
                 onClick={() => setIsLoginModalOpen(true)}
               >
                 {t.login}
@@ -313,7 +313,7 @@ export default function Header() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="sm"
-                className="bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold transition-all"
+                className="bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold transition-all"
                 onClick={() => setIsRegisterModalOpen(true)}
               >
                 {t.signup}
@@ -332,7 +332,7 @@ export default function Header() {
               variant="ghost"
               size="sm"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white/80 hover:text-white hover:bg-white/5 transition-all"
+              className="text-slate-900 dark:text-white/80 hover:text-blue-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-all"
               aria-label="Menu"
             >
               <AnimatePresence mode="wait">
@@ -369,7 +369,7 @@ export default function Header() {
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 bg-navy-950/95 backdrop-blur-lg z-40 md:hidden"
+              className="fixed inset-0 bg-slate-50 dark:bg-navy-950/95 backdrop-blur-lg z-40 md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -402,7 +402,7 @@ export default function Header() {
                       <Link
                         href={item.href}
                         onClick={closeMobileMenu}
-                        className="block text-white text-2xl font-semibold py-4 px-6 rounded-lg hover:bg-white/5 transition-all border-b border-gold-500/10"
+                        className="block text-slate-900 dark:text-white text-2xl font-semibold py-4 px-6 rounded-lg hover:bg-white/5 transition-all border-b border-blue-500/10"
                       >
                         {item.label}
                       </Link>
@@ -416,7 +416,7 @@ export default function Header() {
                     transition={{ delay: 0.3, duration: 0.3 }}
                     className="pt-2"
                   >
-                    <div className="text-gold-500 text-sm font-medium uppercase tracking-wider px-6 py-2">
+                    <div className="text-blue-500 text-sm font-medium uppercase tracking-wider px-6 py-2">
                       {t.content}
                     </div>
                     <div className="space-y-1">
@@ -427,9 +427,9 @@ export default function Header() {
                             key={item.href}
                             href={item.href}
                             onClick={closeMobileMenu}
-                            className="flex items-center gap-3 text-white text-xl font-medium py-3 px-6 rounded-lg hover:bg-white/5 transition-all"
+                            className="flex items-center gap-3 text-slate-900 dark:text-white text-xl font-medium py-3 px-6 rounded-lg hover:bg-white/5 transition-all"
                           >
-                            <Icon className="w-5 h-5 text-gold-500" />
+                            <Icon className="w-5 h-5 text-blue-500" />
                             {item.label}
                           </Link>
                         );
@@ -447,7 +447,7 @@ export default function Header() {
                     <Link
                       href="/contato"
                       onClick={closeMobileMenu}
-                      className="block text-white text-2xl font-semibold py-4 px-6 rounded-lg hover:bg-white/5 transition-all border-t border-gold-500/10"
+                      className="block text-slate-900 dark:text-white text-2xl font-semibold py-4 px-6 rounded-lg hover:bg-white/5 transition-all border-t border-blue-500/10"
                     >
                       {t.contact}
                     </Link>
@@ -463,7 +463,7 @@ export default function Header() {
                 >
                   <Button
                     variant="outline"
-                    className="w-full text-white border-gold-500/50 hover:bg-gold-500/10 hover:border-gold-500 font-medium py-6 text-lg"
+                    className="w-full text-slate-900 dark:text-white border-blue-500/50 hover:bg-blue-500/10 hover:border-blue-500 font-medium py-6 text-lg"
                     onClick={() => {
                       closeMobileMenu();
                       setIsLoginModalOpen(true);
@@ -472,7 +472,7 @@ export default function Header() {
                     {t.login}
                   </Button>
                   <Button
-                    className="w-full bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold py-6 text-lg"
+                    className="w-full bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold py-6 text-lg"
                     onClick={() => {
                       closeMobileMenu();
                       setIsRegisterModalOpen(true);
@@ -482,21 +482,27 @@ export default function Header() {
                   </Button>
                 </motion.div>
 
-                {/* Language Control */}
+                {/* Theme & Language Control */}
                 <motion.div
                   className="space-y-4 px-6"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.4, duration: 0.3 }}
                 >
+                  {/* Theme Toggle */}
+                  <div className="flex items-center justify-between py-4 border-b border-blue-500/10">
+                    <span className="text-slate-900 dark:text-white/80 font-medium">{t.theme}</span>
+                    <ModeToggle />
+                  </div>
+
                   {/* Language Toggle */}
                   <div className="flex items-center justify-between py-4">
-                    <span className="text-white/80 font-medium">{t.language}</span>
+                    <span className="text-slate-900 dark:text-white/80 font-medium">{t.language}</span>
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={toggleLanguage}
-                      className="text-white/80 hover:text-white hover:bg-white/5"
+                      className="text-slate-900 dark:text-white/80 hover:text-blue-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5"
                     >
                       <Globe className="w-5 h-5 mr-2" />
                       <span className="font-medium">

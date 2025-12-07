@@ -51,10 +51,10 @@ const calloutConfig = {
   },
   tip: {
     icon: Lightbulb,
-    bgColor: "bg-gold-500/10",
-    borderColor: "border-gold-500/30",
-    iconColor: "text-gold-400",
-    titleColor: "text-gold-400",
+    bgColor: "bg-blue-500/10",
+    borderColor: "border-blue-500/30",
+    iconColor: "text-blue-400",
+    titleColor: "text-blue-400",
   },
   legal: {
     icon: Scale,
@@ -65,10 +65,10 @@ const calloutConfig = {
   },
   security: {
     icon: Shield,
-    bgColor: "bg-cyan-500/10",
-    borderColor: "border-cyan-500/30",
-    iconColor: "text-cyan-400",
-    titleColor: "text-cyan-400",
+    bgColor: "bg-blue-500/10",
+    borderColor: "border-blue-500/30",
+    iconColor: "text-blue-400",
+    titleColor: "text-blue-400",
   },
   evidence: {
     icon: FileWarning,
@@ -105,7 +105,7 @@ export default function Callout({ type = "info", title, children }: CalloutProps
           <h4 className={`font-semibold ${config.titleColor} mb-1`}>
             {displayTitle}
           </h4>
-          <div className="text-navy-300 text-sm [&>p]:mb-0">
+          <div className="text-slate-600 dark:text-navy-300 text-sm [&>p]:mb-0">
             {children}
           </div>
         </div>

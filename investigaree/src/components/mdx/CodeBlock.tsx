@@ -29,20 +29,20 @@ export default function CodeBlock({
   const lines = code.trim().split("\n");
 
   return (
-    <div className="my-6 rounded-xl overflow-hidden border border-gold-500/10 bg-navy-900/70">
+    <div className="my-6 rounded-xl overflow-hidden border border-blue-500/10 bg-white dark:bg-white/70 dark:bg-navy-900/70">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-2 bg-navy-900 border-b border-gold-500/10">
+      <div className="flex items-center justify-between px-4 py-2 bg-white dark:bg-navy-900 border-b border-blue-500/10">
         <div className="flex items-center gap-2">
-          <Terminal className="w-4 h-4 text-navy-400" />
+          <Terminal className="w-4 h-4 text-slate-500 dark:text-navy-400" />
           {filename ? (
-            <span className="text-sm text-navy-300 font-mono">{filename}</span>
+            <span className="text-sm text-slate-600 dark:text-navy-300 font-mono">{filename}</span>
           ) : (
-            <span className="text-sm text-navy-400">{language}</span>
+            <span className="text-sm text-slate-500 dark:text-navy-400">{language}</span>
           )}
         </div>
         <button
           onClick={handleCopy}
-          className="flex items-center gap-1.5 px-2 py-1 text-xs text-navy-400 hover:text-white transition-colors rounded hover:bg-navy-800"
+          className="flex items-center gap-1.5 px-2 py-1 text-xs text-slate-500 dark:text-navy-400 hover:text-slate-900 dark:text-white transition-colors rounded hover:bg-slate-100 dark:bg-navy-800"
         >
           {copied ? (
             <>
@@ -70,7 +70,7 @@ export default function CodeBlock({
                 key={index}
                 className={`${
                   isHighlighted
-                    ? "bg-gold-500/10 -mx-4 px-4 border-l-2 border-gold-500"
+                    ? "bg-blue-500/10 -mx-4 px-4 border-l-2 border-blue-500"
                     : ""
                 }`}
               >
@@ -79,7 +79,7 @@ export default function CodeBlock({
                     {lineNumber}
                   </span>
                 )}
-                <span className="text-navy-200">{line || " "}</span>
+                <span className="text-slate-700 dark:text-navy-200">{line || " "}</span>
               </div>
             );
           })}

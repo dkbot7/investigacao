@@ -97,7 +97,7 @@ export default function ExportarPage() {
       label: "Beneficiarios",
       description: "Funcionarios que receberam beneficios sociais",
       icon: FileText,
-      color: "text-cyan-400",
+      color: "text-blue-400",
       count: CLIENTE_01_STATS?.totais?.beneficiarios || 0,
     },
   ];
@@ -206,28 +206,28 @@ export default function ExportarPage() {
       >
         {/* Header */}
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-3">
-            <Download className="w-7 h-7 text-gold-400" />
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <Download className="w-7 h-7 text-blue-400" />
             Exportar Dados
           </h1>
-          <p className="text-white/60 mt-1">
+          <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
             Exporte os dados em formato CSV para analise externa
           </p>
         </div>
 
         {/* Filtro de Grupo */}
-        <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+        <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
-            <Filter className="w-4 h-4 text-white/50" />
-            <span className="text-sm font-medium text-white/70">Filtrar por Grupo (aplicavel a Funcionarios)</span>
+            <Filter className="w-4 h-4 text-slate-900 dark:text-slate-500 dark:text-white/50" />
+            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70">Filtrar por Grupo (aplicavel a Funcionarios)</span>
           </div>
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setGrupoFilter("todos")}
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                 grupoFilter === "todos"
-                  ? "bg-gold-500/20 text-gold-400 border border-gold-500/30"
-                  : "bg-navy-800 text-white/60 hover:text-white border border-navy-700"
+                  ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                  : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
               }`}
             >
               Todos os Grupos
@@ -238,8 +238,8 @@ export default function ExportarPage() {
                 onClick={() => setGrupoFilter(g.nome)}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                   grupoFilter === g.nome
-                    ? "bg-gold-500/20 text-gold-400 border border-gold-500/30"
-                    : "bg-navy-800 text-white/60 hover:text-white border border-navy-700"
+                    ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                    : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
                 }`}
               >
                 {g.nome} ({g.registros.toLocaleString()})
@@ -261,25 +261,25 @@ export default function ExportarPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: exportOptions.indexOf(option) * 0.05 }}
-                className={`bg-navy-900 border rounded-xl p-5 transition-all ${
+                className={`bg-white dark:bg-navy-900 border rounded-xl p-5 transition-all ${
                   isSuccess
                     ? "border-emerald-500/50 bg-emerald-500/5"
-                    : "border-navy-700 hover:border-navy-600"
+                    : "border-slate-400 dark:border-navy-700 hover:border-navy-600"
                 }`}
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`p-2.5 rounded-lg bg-navy-800`}>
+                  <div className={`p-2.5 rounded-lg bg-slate-100 dark:bg-navy-800`}>
                     <Icon className={`w-6 h-6 ${option.color}`} />
                   </div>
-                  <span className="text-sm font-medium text-white/50">
+                  <span className="text-sm font-medium text-slate-900 dark:text-slate-500 dark:text-white/50">
                     {option.count.toLocaleString()} registros
                   </span>
                 </div>
 
-                <h3 className="text-lg font-semibold text-white mb-1">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">
                   {option.label}
                 </h3>
-                <p className="text-sm text-white/60 mb-4">
+                <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mb-4">
                   {option.description}
                 </p>
 
@@ -289,7 +289,7 @@ export default function ExportarPage() {
                   className={`w-full ${
                     isSuccess
                       ? "bg-emerald-500 hover:bg-emerald-600"
-                      : "bg-gold-500/20 hover:bg-gold-500/30 text-gold-400"
+                      : "bg-blue-500/20 hover:bg-blue-500/30 text-blue-400"
                   }`}
                 >
                   {isExporting ? (
@@ -315,12 +315,12 @@ export default function ExportarPage() {
         </div>
 
         {/* Info */}
-        <div className="bg-navy-900/50 border border-navy-700 rounded-xl p-4">
+        <div className="bg-white dark:bg-navy-900/50 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
           <div className="flex items-start gap-3">
             <FileText className="w-5 h-5 text-blue-400 mt-0.5" />
             <div>
-              <h4 className="text-sm font-medium text-white mb-1">Sobre os arquivos exportados</h4>
-              <ul className="text-sm text-white/60 space-y-1">
+              <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">Sobre os arquivos exportados</h4>
+              <ul className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 space-y-1">
                 <li>• Formato: CSV (separado por ponto e virgula) compativel com Excel</li>
                 <li>• Codificacao: UTF-8 com BOM para acentuacao correta</li>
                 <li>• Os dados sao os mesmos exibidos no dashboard</li>

@@ -60,19 +60,19 @@ export default function KeyStat({
       className={`${config.bgColor} ${config.borderColor} border rounded-xl p-6 my-6`}
     >
       <div className="flex items-start gap-4">
-        <div className="p-2 rounded-lg bg-navy-900/50">
+        <div className="p-2 rounded-lg bg-white dark:bg-white/50 dark:bg-navy-900/50">
           <Icon className={`w-6 h-6 ${config.valueColor}`} />
         </div>
         <div className="flex-1">
           <div className={`text-4xl font-bold ${config.valueColor} mb-1`}>
             {value}
           </div>
-          <div className="text-white font-medium mb-1">{label}</div>
+          <div className="text-slate-900 dark:text-white font-medium mb-1">{label}</div>
           {description && (
-            <p className="text-navy-400 text-sm mb-2">{description}</p>
+            <p className="text-slate-500 dark:text-navy-400 text-sm mb-2">{description}</p>
           )}
           {source && (
-            <p className="text-navy-500 text-xs">Fonte: {source}</p>
+            <p className="text-slate-900 dark:text-navy-500 text-xs">Fonte: {source}</p>
           )}
         </div>
       </div>

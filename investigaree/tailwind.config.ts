@@ -23,17 +23,17 @@ const config: Config = {
           900: "#0F1F3A", // Cards e seções
           950: "#0A1628", // Background principal forense
         },
-        gold: {
-          50: "#FDFBF7",
-          100: "#F9F4E8",
-          200: "#F3E9D1",
-          300: "#E9D9AA",
-          400: "#E5C158", // Hover states
-          500: "#D4AF37", // Accents premium
-          600: "#C19A2E",
-          700: "#A17F26",
-          800: "#7D6220",
-          900: "#614C1A",
+        blue: {
+          50: "#EFF6FF",
+          100: "#DBEAFE",
+          200: "#BFDBFE",
+          300: "#93C5FD",
+          400: "#60A5FA", // Hover states (da logo)
+          500: "#3B82F6", // Acento principal (COR DA LOGO)
+          600: "#2563EB",
+          700: "#1D4ED8",
+          800: "#1E40AF", // Texto light mode
+          900: "#1E3A8A", // Hover light mode
         },
         // Manter cores de estado
         success: {

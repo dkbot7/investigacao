@@ -1,0 +1,35 @@
+API Consulta CPF - Tabela de Preços
+Contrato: 260005
+Modelo: ESCALONADO/PROGRESSIVO
+Atualização: 06/12/2025
+
+Faixa,De,Até,Preço Unitário (R$),Observações
+1,1,999,0.6591,Primeira faixa
+2,1000,9999,0.5649,
+3,10000,49999,0.3557,
+4,50000,99999,0.2616,
+5,100000,249999,0.1775,
+6,250000,499999,0.1569,
+7,500000,999999,0.1465,
+8,1000000,1499999,0.1360,
+9,1500000,2999999,0.1151,
+10,3000000,4499999,0.0732,
+11,4500000,9999999,0.0523,
+12,10000000,16999999,0.0314,
+13,17000000,19999999,0.0260,
+14,20000000,24999999,0.0230,
+15,25000000,29999999,0.0200,
+16,30000000,+,0.0170,Acima de 30 milhões
+
+EXEMPLO DE CÁLCULO ESCALONADO:
+Para 15.000 consultas:
+- Faixa 1: 999 x R$ 0,6591 = R$ 657,36
+- Faixa 2: 9.000 x R$ 0,5649 = R$ 5.084,10
+- Faixa 3: 5.001 x R$ 0,3557 = R$ 1.778,91
+Total: R$ 7.520,37
+
+OBSERVAÇÕES:
+- Modelo ESCALONADO: você paga cada faixa completamente antes de passar para a próxima
+- Quanto maior o volume, menor o custo unitário
+- Preços em reais (R$) por consulta
+- Valores sujeitos a alteração pelo SERPRO

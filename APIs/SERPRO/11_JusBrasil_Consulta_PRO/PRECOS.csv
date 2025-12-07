@@ -1,0 +1,37 @@
+Métrica,Valor,Observação
+Preço por Chamada,"R$ 4,00",Válido para qualquer endpoint
+Consumo Mínimo Mensal,"R$ 1.000,00",Equivalente a 250 consultas/mês
+Modelo de Cobrança,Pay-per-call,Cobrado por requisição realizada
+
+Simulação de Volumes,Volume de Consultas,Custo Mensal Total
+Mínimo,250,"R$ 1.000,00"
+Baixo,500,"R$ 2.000,00"
+Médio,"1.000","R$ 4.000,00"
+Alto,"2.500","R$ 10.000,00"
+Muito Alto,"5.000","R$ 20.000,00"
+
+Endpoints Disponíveis,Preço,Limite de Retorno Padrão
+POST /lawsuits/criminal,"R$ 4,00",100 processos
+POST /lawsuits/civil,"R$ 4,00",100 processos
+POST /lawsuits/trabalhista,"R$ 4,00",100 processos
+POST /mp,"R$ 4,00",100 registros
+POST /bnmp,"R$ 4,00",100 registros
+POST /empregador-irregular,"R$ 4,00",100 registros
+POST /consulta-em-lote,"R$ 4,00",Até 3.000 registros via CSV
+GET /consulta-em-lote/,"R$ 0,00",Listagem gratuita
+GET /consulta-em-lote/download/<id>,"R$ 0,00",Download gratuito
+
+Funcionalidades,Incluído,Custo Adicional
+Paginação (cursor-based),Sim,Não
+Níveis de Confiança (ALTA/MEDIA/BAIXA),Sim,Não
+Consulta em Lote (até 3.000 registros),Sim,Não
+Sandbox (ambiente de testes),Sim,Não
+API Key Management,Sim,Não
+Rate Limiting,A definir,Não
+
+Observações Importantes,,
+1,Primeiro pagamento após contratação,
+2,Consumo mínimo de R$ 1.000/mês obrigatório,
+3,Batch queries processam em aproximadamente 30 minutos,
+4,Retorno padrão de 100 registros por consulta (paginável),
+5,Cada chamada de API conta como 1 consulta (R$ 4,00),

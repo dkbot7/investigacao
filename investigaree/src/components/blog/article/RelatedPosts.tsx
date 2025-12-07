@@ -18,7 +18,7 @@ export default function RelatedPosts({ posts, currentPostId }: RelatedPostsProps
   if (filteredPosts.length === 0) return null;
 
   return (
-    <section className="py-16 border-t border-gold-500/10">
+    <section className="py-16 border-t border-blue-500/10">
       <div className="container mx-auto px-4 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -28,10 +28,10 @@ export default function RelatedPosts({ posts, currentPostId }: RelatedPostsProps
         >
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-white">Artigos Relacionados</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Artigos Relacionados</h2>
             <Link
               href="/blog"
-              className="flex items-center gap-1 text-sm text-gold-500 hover:text-gold-400 transition-colors"
+              className="flex items-center gap-1 text-sm text-blue-500 hover:text-blue-400 transition-colors"
             >
               Ver todos
               <ArrowRight className="w-4 h-4" />
@@ -89,11 +89,11 @@ export default function RelatedPosts({ posts, currentPostId }: RelatedPostsProps
                         {post.topic.name}
                       </Badge>
 
-                      <h3 className="font-semibold text-white group-hover:text-gold-400 transition-colors line-clamp-2 mb-2">
+                      <h3 className="font-semibold text-slate-900 dark:text-white group-hover:text-blue-400 transition-colors line-clamp-2 mb-2">
                         {post.title}
                       </h3>
 
-                      <div className="flex items-center gap-2 text-xs text-navy-400">
+                      <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-navy-400">
                         <Clock className="w-3.5 h-3.5" />
                         <span>{post.readingTime} min</span>
                       </div>

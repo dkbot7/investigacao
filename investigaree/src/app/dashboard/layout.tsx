@@ -25,6 +25,8 @@ import {
 import { useAuth } from "@/contexts/AuthContext";
 import { useUserAccess } from "@/hooks/useUserData";
 import { Button } from "@/components/ui/button";
+import { TopNavBar } from "@/components/dashboard/TopNavBar";
+import { Toaster } from "sonner";
 
 interface NavItem {
   label: string;
@@ -52,7 +54,7 @@ const adminNavItem: NavItem = {
   label: "Admin",
   href: "/dashboard/admin",
   icon: Shield,
-  color: "text-gold-400",
+  color: "text-blue-400",
 };
 
 export default function DashboardLayout({
@@ -77,8 +79,8 @@ export default function DashboardLayout({
   // Loading state
   if (authLoading || userLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-navy-950 to-navy-900 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gold-500" />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
       </div>
     );
   }
@@ -105,11 +107,26 @@ export default function DashboardLayout({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-navy-950 to-navy-900 flex">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900 flex">
+      {/* Toast Notifications */}
+      <Toaster
+        position="top-right"
+        richColors
+        closeButton
+        theme="dark"
+        toastOptions={{
+          style: {
+            background: '#1a2332',
+            border: '1px solid #2d3f54',
+            color: '#ffffff',
+          },
+        }}
+      />
+
       {/* Sidebar - Desktop */}
-      <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 border-r border-navy-800 bg-navy-900/50 backdrop-blur-lg">
+      <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 border-r border-slate-300 dark:border-navy-800 bg-white dark:bg-navy-900/50 backdrop-blur-lg">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 px-6 py-5 border-b border-navy-800 hover:bg-navy-800/50 transition-colors">
+        <Link href="/" className="flex items-center gap-3 px-6 py-5 border-b border-slate-300 dark:border-navy-800 hover:bg-slate-100 dark:bg-navy-800/50 transition-colors">
           <Image
             src="/favicon.svg"
             alt="investigaree logo"
@@ -143,18 +160,18 @@ export default function DashboardLayout({
                 href={item.href}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group ${
                   isActive
-                    ? "bg-gold-500/10 text-gold-400 border border-gold-500/30"
-                    : "text-white/70 hover:bg-navy-800 hover:text-white"
+                    ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
+                    : "text-slate-700 dark:text-white/70 hover:bg-slate-100 dark:bg-navy-800 hover:text-white"
                 }`}
               >
-                <Icon className={`w-5 h-5 ${isActive ? "text-gold-400" : item.color || "text-white/50"}`} />
+                <Icon className={`w-5 h-5 ${isActive ? "text-blue-400" : item.color || "text-slate-500 dark:text-white/50"}`} />
                 <span className="flex-1 text-sm font-medium">{item.label}</span>
                 {item.badge && (
                   <span className="px-2 py-0.5 text-xs font-medium bg-red-500/20 text-red-400 rounded-full">
                     {item.badge}
                   </span>
                 )}
-                {isActive && <ChevronRight className="w-4 h-4 text-gold-400/50" />}
+                {isActive && <ChevronRight className="w-4 h-4 text-blue-400/50" />}
               </Link>
             );
           })}
@@ -162,41 +179,41 @@ export default function DashboardLayout({
           {/* Item Admin (apenas para admins) */}
           {user.email && ADMIN_EMAILS.includes(user.email) && (
             <>
-              <div className="my-2 border-t border-navy-700" />
+              <div className="my-2 border-t border-slate-400 dark:border-navy-700" />
               <Link
                 href={adminNavItem.href}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group ${
                   isActiveRoute(adminNavItem.href)
-                    ? "bg-gold-500/10 text-gold-400 border border-gold-500/30"
-                    : "text-white/70 hover:bg-navy-800 hover:text-white"
+                    ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
+                    : "text-slate-700 dark:text-white/70 hover:bg-slate-100 dark:bg-navy-800 hover:text-white"
                 }`}
               >
-                <adminNavItem.icon className={`w-5 h-5 ${isActiveRoute(adminNavItem.href) ? "text-gold-400" : adminNavItem.color || "text-white/50"}`} />
+                <adminNavItem.icon className={`w-5 h-5 ${isActiveRoute(adminNavItem.href) ? "text-blue-400" : adminNavItem.color || "text-slate-500 dark:text-white/50"}`} />
                 <span className="flex-1 text-sm font-medium">{adminNavItem.label}</span>
-                {isActiveRoute(adminNavItem.href) && <ChevronRight className="w-4 h-4 text-gold-400/50" />}
+                {isActiveRoute(adminNavItem.href) && <ChevronRight className="w-4 h-4 text-blue-400/50" />}
               </Link>
             </>
           )}
         </nav>
 
         {/* User Section */}
-        <div className="p-4 border-t border-navy-800 relative">
+        <div className="p-4 border-t border-slate-300 dark:border-navy-800 relative">
           <button
             onClick={() => setUserMenuOpen(!userMenuOpen)}
-            className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-navy-800 transition-colors"
+            className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 dark:bg-navy-800 transition-colors"
           >
             <div className="w-10 h-10 bg-navy-700 rounded-full flex items-center justify-center">
-              <span className="text-sm font-medium text-white">
+              <span className="text-sm font-medium text-slate-900 dark:text-white">
                 {user.email?.charAt(0).toUpperCase()}
               </span>
             </div>
             <div className="flex-1 min-w-0 text-left">
-              <p className="text-sm font-medium text-white truncate">
+              <p className="text-sm font-medium text-slate-900 dark:text-white truncate">
                 {user.displayName || user.email?.split('@')[0]}
               </p>
-              <p className="text-xs text-white/50 truncate">{user.email}</p>
+              <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 truncate">{user.email}</p>
             </div>
-            <ChevronDown className={`w-4 h-4 text-white/50 transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} />
+            <ChevronDown className={`w-4 h-4 text-slate-500 dark:text-white/50 transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} />
           </button>
 
           {/* User Menu Dropdown */}
@@ -206,13 +223,13 @@ export default function DashboardLayout({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="absolute bottom-full left-4 right-4 mb-2 bg-navy-800 border border-navy-700 rounded-xl shadow-xl overflow-hidden"
+                className="absolute bottom-full left-4 right-4 mb-2 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-xl shadow-xl overflow-hidden"
               >
                 <div className="p-2 space-y-1">
                   <Link
                     href="/dashboard/configuracoes"
                     onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
                   >
                     <User className="w-4 h-4" />
                     <span className="text-sm">Meu Perfil</span>
@@ -220,7 +237,7 @@ export default function DashboardLayout({
                   <Link
                     href="/dashboard/configuracoes?tab=notificacoes"
                     onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
                   >
                     <Bell className="w-4 h-4" />
                     <span className="text-sm">Notificações</span>
@@ -228,7 +245,7 @@ export default function DashboardLayout({
                   <Link
                     href="/dashboard/configuracoes?tab=seguranca"
                     onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
                   >
                     <Key className="w-4 h-4" />
                     <span className="text-sm">Segurança</span>
@@ -236,16 +253,16 @@ export default function DashboardLayout({
                   <Link
                     href="/dashboard/configuracoes?tab=assinatura"
                     onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
                   >
                     <CreditCard className="w-4 h-4" />
                     <span className="text-sm">Assinatura</span>
                   </Link>
-                  <div className="border-t border-navy-700 my-1" />
+                  <div className="border-t border-slate-400 dark:border-navy-700 my-1" />
                   <Link
                     href="/ajuda"
                     onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
                   >
                     <HelpCircle className="w-4 h-4" />
                     <span className="text-sm">Ajuda</span>
@@ -268,7 +285,7 @@ export default function DashboardLayout({
       </aside>
 
       {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-navy-900/95 backdrop-blur-lg border-b border-navy-800">
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white dark:bg-navy-900/95 backdrop-blur-lg border-b border-slate-300 dark:border-navy-800">
         <div className="flex items-center justify-between px-4 py-3">
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -278,13 +295,13 @@ export default function DashboardLayout({
               height={28}
               className="w-7 h-7"
             />
-            <span className="font-bold text-white">investigaree</span>
+            <span className="font-bold text-slate-900 dark:text-white">investigaree</span>
           </Link>
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setSidebarOpen(true)}
-            className="text-white"
+            className="text-slate-900 dark:text-white"
           >
             <Menu className="w-6 h-6" />
           </Button>
@@ -307,9 +324,9 @@ export default function DashboardLayout({
               animate={{ x: 0 }}
               exit={{ x: -300 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="lg:hidden fixed inset-y-0 left-0 z-50 w-72 bg-navy-900 border-r border-navy-800"
+              className="lg:hidden fixed inset-y-0 left-0 z-50 w-72 bg-white dark:bg-navy-900 border-r border-slate-300 dark:border-navy-800"
             >
-              <div className="flex items-center justify-between px-4 py-4 border-b border-navy-800">
+              <div className="flex items-center justify-between px-4 py-4 border-b border-slate-300 dark:border-navy-800">
                 <Link href="/" className="flex items-center gap-2">
                   <Image
                     src="/favicon.svg"
@@ -324,13 +341,13 @@ export default function DashboardLayout({
                   variant="ghost"
                   size="sm"
                   onClick={() => setSidebarOpen(false)}
-                  className="text-white/60 hover:text-white"
+                  className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white"
                 >
                   <X className="w-5 h-5" />
                 </Button>
               </div>
 
-              <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto border-t border-navy-800">
+              <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto border-t border-slate-300 dark:border-navy-800">
                 {navItems.map((item) => {
                   const Icon = item.icon;
                   const isActive = isActiveRoute(item.href);
@@ -342,23 +359,23 @@ export default function DashboardLayout({
                       onClick={() => setSidebarOpen(false)}
                       className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
                         isActive
-                          ? "bg-gold-500/10 text-gold-400 border border-gold-500/30"
-                          : "text-white/70 hover:bg-navy-800 hover:text-white"
+                          ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
+                          : "text-slate-700 dark:text-white/70 hover:bg-slate-100 dark:bg-navy-800 hover:text-white"
                       }`}
                     >
-                      <Icon className={`w-5 h-5 ${isActive ? "text-gold-400" : item.color || "text-white/50"}`} />
+                      <Icon className={`w-5 h-5 ${isActive ? "text-blue-400" : item.color || "text-slate-500 dark:text-white/50"}`} />
                       <span className="flex-1 text-sm font-medium">{item.label}</span>
                     </Link>
                   );
                 })}
               </nav>
 
-              <div className="p-4 border-t border-navy-800">
-                <p className="text-xs text-white/50 mb-2 truncate">{user.email}</p>
+              <div className="p-4 border-t border-slate-300 dark:border-navy-800">
+                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mb-2 truncate">{user.email}</p>
                 <Button
                   onClick={logout}
                   variant="ghost"
-                  className="w-full justify-start text-white/60 hover:text-white hover:bg-navy-800"
+                  className="w-full justify-start text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white hover:bg-slate-100 dark:bg-navy-800"
                 >
                   <LogOut className="w-4 h-4 mr-2" />
                   Sair
@@ -371,6 +388,12 @@ export default function DashboardLayout({
 
       {/* Main Content */}
       <main className="flex-1 lg:ml-64">
+        {/* Top Navigation Bar (sticky no topo - apenas desktop) */}
+        <div className="hidden lg:block">
+          <TopNavBar />
+        </div>
+
+        {/* Page Content - padding top para compensar mobile header */}
         <div className="pt-16 lg:pt-0 min-h-screen">
           {children}
         </div>

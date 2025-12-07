@@ -151,13 +151,13 @@ export default function BlogFiltersComponent({
         {/* Busca */}
         <form onSubmit={handleSearch} className="flex-1">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-navy-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 dark:text-navy-400" />
             <Input
               type="text"
               placeholder="Buscar artigos, tutoriais, cases..."
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-              className="pl-10 bg-navy-900/50 border-gold-500/20 text-white placeholder:text-navy-400 focus:border-gold-500/50"
+              className="pl-10 bg-white dark:bg-white/50 dark:bg-navy-900/50 border-blue-500/20 text-slate-900 dark:text-white placeholder:text-slate-500 dark:text-navy-400 focus:border-blue-500/50"
             />
             {searchValue && (
               <button
@@ -166,7 +166,7 @@ export default function BlogFiltersComponent({
                   setSearchValue("");
                   onFiltersChange({ ...filters, search: undefined });
                 }}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-navy-400 hover:text-white"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-navy-400 hover:text-slate-900 dark:text-white"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -178,14 +178,14 @@ export default function BlogFiltersComponent({
         <Button
           variant="outline"
           onClick={() => setIsExpanded(!isExpanded)}
-          className={`border-gold-500/30 text-navy-200 hover:bg-gold-500/10 hover:text-gold-400 ${
-            isExpanded || hasActiveFilters ? "border-gold-500/50 bg-gold-500/5" : ""
+          className={`border-blue-500/30 text-slate-700 dark:text-navy-200 hover:bg-blue-500/10 hover:text-blue-400 ${
+            isExpanded || hasActiveFilters ? "border-blue-500/50 bg-blue-500/5" : ""
           }`}
         >
           <Filter className="w-4 h-4 mr-2" />
           Filtros
           {hasActiveFilters && (
-            <Badge className="ml-2 bg-gold-500 text-navy-950 text-xs">
+            <Badge className="ml-2 bg-blue-500 text-navy-950 text-xs">
               {activeFiltersCount}
             </Badge>
           )}
@@ -199,7 +199,7 @@ export default function BlogFiltersComponent({
           <Button
             variant="ghost"
             onClick={clearFilters}
-            className="text-navy-400 hover:text-white hover:bg-navy-800"
+            className="text-slate-500 dark:text-navy-400 hover:text-slate-900 dark:text-white hover:bg-slate-100 dark:bg-navy-800"
           >
             <X className="w-4 h-4 mr-1" />
             Limpar
@@ -217,49 +217,49 @@ export default function BlogFiltersComponent({
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="p-5 bg-navy-900/30 rounded-xl border border-gold-500/10">
+            <div className="p-5 bg-white dark:bg-white/30 dark:bg-navy-900/30 rounded-xl border border-blue-500/10">
               {/* Tabs de filtros */}
-              <div className="flex flex-wrap gap-2 mb-5 pb-4 border-b border-gold-500/10">
+              <div className="flex flex-wrap gap-2 mb-5 pb-4 border-b border-blue-500/10">
                 <button
                   onClick={() => setActiveTab("topic")}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     activeTab === "topic"
-                      ? "bg-gold-500/20 text-gold-400 border border-gold-500/30"
-                      : "text-navy-300 hover:bg-navy-800/50 border border-transparent"
+                      ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                      : "text-slate-600 dark:text-navy-300 hover:bg-slate-100 dark:bg-navy-800/50 border border-transparent"
                   }`}
                 >
                   <LayoutGrid className="w-4 h-4" />
                   Tópicos
                   {filters.topic && (
-                    <span className="w-2 h-2 rounded-full bg-gold-500" />
+                    <span className="w-2 h-2 rounded-full bg-blue-500" />
                   )}
                 </button>
                 <button
                   onClick={() => setActiveTab("type")}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     activeTab === "type"
-                      ? "bg-gold-500/20 text-gold-400 border border-gold-500/30"
-                      : "text-navy-300 hover:bg-navy-800/50 border border-transparent"
+                      ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                      : "text-slate-600 dark:text-navy-300 hover:bg-slate-100 dark:bg-navy-800/50 border border-transparent"
                   }`}
                 >
                   <Layers className="w-4 h-4" />
                   Tipo de Conteúdo
                   {filters.contentType && (
-                    <span className="w-2 h-2 rounded-full bg-gold-500" />
+                    <span className="w-2 h-2 rounded-full bg-blue-500" />
                   )}
                 </button>
                 <button
                   onClick={() => setActiveTab("level")}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     activeTab === "level"
-                      ? "bg-gold-500/20 text-gold-400 border border-gold-500/30"
-                      : "text-navy-300 hover:bg-navy-800/50 border border-transparent"
+                      ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                      : "text-slate-600 dark:text-navy-300 hover:bg-slate-100 dark:bg-navy-800/50 border border-transparent"
                   }`}
                 >
                   <BarChart3 className="w-4 h-4" />
                   Nível
                   {filters.skillLevel && (
-                    <span className="w-2 h-2 rounded-full bg-gold-500" />
+                    <span className="w-2 h-2 rounded-full bg-blue-500" />
                   )}
                 </button>
               </div>
@@ -275,7 +275,7 @@ export default function BlogFiltersComponent({
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <p className="text-xs text-navy-500 mb-3">
+                    <p className="text-xs text-slate-900 dark:text-navy-500 mb-3">
                       Filtre por área de conhecimento
                     </p>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
@@ -291,7 +291,7 @@ export default function BlogFiltersComponent({
                             className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium transition-all text-left ${
                               isActive
                                 ? "text-navy-950"
-                                : "text-navy-200 hover:text-white bg-navy-800/30 hover:bg-navy-800/50"
+                                : "text-slate-700 dark:text-navy-200 hover:text-white bg-slate-100 dark:bg-navy-800/30 hover:bg-slate-100 dark:bg-navy-800/50"
                             }`}
                             style={{
                               backgroundColor: isActive ? topic.color : undefined,
@@ -311,7 +311,7 @@ export default function BlogFiltersComponent({
                       <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="text-sm text-navy-400 mt-3 bg-navy-800/30 rounded-lg p-3"
+                        className="text-sm text-slate-500 dark:text-navy-400 mt-3 bg-slate-100 dark:bg-navy-800/30 rounded-lg p-3"
                       >
                         {topics.find((t) => t.slug === filters.topic)?.description}
                       </motion.p>
@@ -328,7 +328,7 @@ export default function BlogFiltersComponent({
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <p className="text-xs text-navy-500 mb-3">
+                    <p className="text-xs text-slate-900 dark:text-navy-500 mb-3">
                       Filtre por formato de conteúdo
                     </p>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
@@ -344,7 +344,7 @@ export default function BlogFiltersComponent({
                             className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium transition-all text-left ${
                               isActive
                                 ? "text-navy-950"
-                                : "text-navy-200 hover:text-white bg-navy-800/30 hover:bg-navy-800/50"
+                                : "text-slate-700 dark:text-navy-200 hover:text-white bg-slate-100 dark:bg-navy-800/30 hover:bg-slate-100 dark:bg-navy-800/50"
                             }`}
                             style={{
                               backgroundColor: isActive ? type.color : undefined,
@@ -364,7 +364,7 @@ export default function BlogFiltersComponent({
                       <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="text-sm text-navy-400 mt-3 bg-navy-800/30 rounded-lg p-3"
+                        className="text-sm text-slate-500 dark:text-navy-400 mt-3 bg-slate-100 dark:bg-navy-800/30 rounded-lg p-3"
                       >
                         {contentTypes.find((t) => t.id === filters.contentType)?.description}
                       </motion.p>
@@ -381,7 +381,7 @@ export default function BlogFiltersComponent({
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <p className="text-xs text-navy-500 mb-3">
+                    <p className="text-xs text-slate-900 dark:text-navy-500 mb-3">
                       Filtre por nível de complexidade
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -397,7 +397,7 @@ export default function BlogFiltersComponent({
                             className={`flex items-center gap-3 px-4 py-4 rounded-xl text-left transition-all ${
                               isActive
                                 ? "text-navy-950"
-                                : "text-navy-200 hover:text-white bg-navy-800/30 hover:bg-navy-800/50"
+                                : "text-slate-700 dark:text-navy-200 hover:text-white bg-slate-100 dark:bg-navy-800/30 hover:bg-slate-100 dark:bg-navy-800/50"
                             }`}
                             style={{
                               backgroundColor: isActive ? level.color : undefined,
@@ -416,7 +416,7 @@ export default function BlogFiltersComponent({
                             </div>
                             <div>
                               <p className="font-semibold">{level.name}</p>
-                              <p className={`text-xs ${isActive ? "text-navy-800" : "text-navy-400"}`}>
+                              <p className={`text-xs ${isActive ? "text-navy-800" : "text-slate-500 dark:text-navy-400"}`}>
                                 {level.description}
                               </p>
                             </div>
@@ -485,7 +485,7 @@ export default function BlogFiltersComponent({
           {filters.search && (
             <Badge
               variant="secondary"
-              className="bg-navy-700 text-navy-200 cursor-pointer hover:bg-navy-600"
+              className="bg-navy-700 text-slate-700 dark:text-navy-200 cursor-pointer hover:bg-navy-600"
               onClick={() => {
                 setSearchValue("");
                 onFiltersChange({ ...filters, search: undefined });

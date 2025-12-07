@@ -91,7 +91,7 @@ export default function LeadCaptureCard({
   };
 
   return (
-    <div className="my-8 rounded-2xl overflow-hidden border border-gold-500/20 bg-gradient-to-br from-navy-900 to-navy-950">
+    <div className="my-8 rounded-2xl overflow-hidden border border-blue-500/20 bg-gradient-to-br from-navy-900 to-navy-950">
       <div className="grid md:grid-cols-2 gap-0">
         {/* Left side - Resource info */}
         <div className="p-6 md:p-8">
@@ -105,16 +105,16 @@ export default function LeadCaptureCard({
           </div>
 
           {/* Title */}
-          <h3 className="text-xl md:text-2xl font-bold text-white mb-3">{title}</h3>
+          <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-3">{title}</h3>
 
           {/* Description */}
-          <p className="text-navy-300 mb-4">{description}</p>
+          <p className="text-slate-600 dark:text-navy-300 mb-4">{description}</p>
 
           {/* Benefits list */}
           {benefits.length > 0 && (
             <ul className="space-y-2 mb-6">
               {benefits.map((benefit, index) => (
-                <li key={index} className="flex items-start gap-2 text-sm text-navy-300">
+                <li key={index} className="flex items-start gap-2 text-sm text-slate-600 dark:text-navy-300">
                   <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
                   <span>{benefit}</span>
                 </li>
@@ -123,7 +123,7 @@ export default function LeadCaptureCard({
           )}
 
           {/* Resource meta */}
-          <div className="flex items-center gap-4 text-xs text-navy-500">
+          <div className="flex items-center gap-4 text-xs text-slate-900 dark:text-navy-500">
             <div
               className="flex items-center gap-1.5 px-2 py-1 rounded"
               style={{ backgroundColor: `${config.color}10` }}
@@ -137,7 +137,7 @@ export default function LeadCaptureCard({
         </div>
 
         {/* Right side - Form or Success */}
-        <div className="p-6 md:p-8 bg-navy-900/50 flex items-center">
+        <div className="p-6 md:p-8 bg-white dark:bg-white/50 dark:bg-navy-900/50 flex items-center">
           <AnimatePresence mode="wait">
             {!isSuccess ? (
               <motion.form
@@ -149,38 +149,38 @@ export default function LeadCaptureCard({
                 className="w-full space-y-4"
               >
                 <div className="flex items-center gap-2 mb-4">
-                  <MessageCircle className="w-4 h-4 text-gold-500" />
-                  <span className="text-sm text-navy-300">
+                  <MessageCircle className="w-4 h-4 text-blue-500" />
+                  <span className="text-sm text-slate-600 dark:text-navy-300">
                     Deixe seu contato para receber o material
                   </span>
                 </div>
 
                 {/* Name field */}
                 <div>
-                  <label className="block text-xs text-navy-400 mb-1.5">Nome</label>
+                  <label className="block text-xs text-slate-500 dark:text-navy-400 mb-1.5">Nome</label>
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Seu nome"
-                    className="w-full px-4 py-2.5 bg-navy-800 border border-gold-500/10 rounded-lg text-white placeholder:text-navy-500 focus:outline-none focus:border-gold-500/30 transition-colors"
+                    className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-blue-500/10 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-900 dark:text-navy-500 focus:outline-none focus:border-blue-500/30 transition-colors"
                   />
                 </div>
 
                 {/* Email field */}
                 <div>
-                  <label className="block text-xs text-navy-400 mb-1.5">
+                  <label className="block text-xs text-slate-500 dark:text-navy-400 mb-1.5">
                     Email profissional *
                   </label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-navy-500" />
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-900 dark:text-navy-500" />
                     <input
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="seu@email.com"
                       required
-                      className="w-full pl-10 pr-4 py-2.5 bg-navy-800 border border-gold-500/10 rounded-lg text-white placeholder:text-navy-500 focus:outline-none focus:border-gold-500/30 transition-colors"
+                      className="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-blue-500/10 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-900 dark:text-navy-500 focus:outline-none focus:border-blue-500/30 transition-colors"
                     />
                   </div>
                 </div>
@@ -194,7 +194,7 @@ export default function LeadCaptureCard({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gold-500 hover:bg-gold-400 disabled:bg-gold-500/50 text-navy-950 font-semibold rounded-lg transition-colors"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 disabled:bg-blue-500/50 text-navy-950 font-semibold rounded-lg transition-colors"
                 >
                   {isSubmitting ? (
                     <>
@@ -209,7 +209,7 @@ export default function LeadCaptureCard({
                   )}
                 </button>
 
-                <p className="text-xs text-navy-500 text-center">
+                <p className="text-xs text-slate-900 dark:text-navy-500 text-center">
                   Entraremos em contato para enviar o material e conhecer sua necessidade.
                 </p>
               </motion.form>
@@ -223,15 +223,15 @@ export default function LeadCaptureCard({
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-500/20 flex items-center justify-center">
                   <CheckCircle className="w-8 h-8 text-green-400" />
                 </div>
-                <h4 className="text-lg font-semibold text-white mb-2">
+                <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                   Recebemos seu contato!
                 </h4>
-                <p className="text-navy-300 text-sm mb-4">
+                <p className="text-slate-600 dark:text-navy-300 text-sm mb-4">
                   Nossa equipe entrará em contato em breve pelo email {email}.
                 </p>
                 <Link
                   href="/servicos"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold rounded-lg transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 text-navy-950 font-semibold rounded-lg transition-colors"
                 >
                   Conhecer Nossos Serviços
                   <ArrowRight className="w-4 h-4" />

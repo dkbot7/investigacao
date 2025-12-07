@@ -97,7 +97,7 @@ export default function EducationalArticleTemplate({
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-navy-950">
+      <main className="min-h-screen bg-slate-50 dark:bg-navy-950">
         {/* Header do artigo */}
         <ArticleHeader post={post} />
 
@@ -144,7 +144,7 @@ export default function EducationalArticleTemplate({
               )}
 
               {/* Conteúdo do artigo */}
-              <div className="prose prose-invert prose-gold max-w-none prose-headings:scroll-mt-24 prose-h2:text-2xl prose-h2:font-bold prose-h2:text-white prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-xl prose-h3:font-semibold prose-h3:text-white prose-h3:mt-8 prose-h3:mb-3 prose-h4:text-lg prose-h4:font-medium prose-h4:text-gold-400 prose-h4:mt-6 prose-h4:mb-2 prose-p:text-navy-300 prose-p:leading-relaxed prose-p:mb-4 prose-li:text-navy-300 prose-strong:text-white prose-a:text-gold-400 prose-a:no-underline hover:prose-a:text-gold-300 prose-blockquote:border-l-gold-500 prose-blockquote:bg-gold-500/5 prose-blockquote:px-4 prose-blockquote:py-2 prose-blockquote:rounded-r-lg prose-blockquote:text-navy-200 prose-blockquote:not-italic prose-code:text-purple-400 prose-code:bg-navy-900/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-navy-900/70 prose-pre:border prose-pre:border-gold-500/10 prose-img:rounded-xl prose-img:border prose-img:border-gold-500/10">
+              <div className="prose prose-invert prose-gold max-w-none prose-headings:scroll-mt-24 prose-h2:text-2xl prose-h2:font-bold prose-h2:text-slate-900 dark:text-white prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-xl prose-h3:font-semibold prose-h3:text-white prose-h3:mt-8 prose-h3:mb-3 prose-h4:text-lg prose-h4:font-medium prose-h4:text-blue-400 prose-h4:mt-6 prose-h4:mb-2 prose-p:text-slate-600 dark:text-navy-300 prose-p:leading-relaxed prose-p:mb-4 prose-li:text-slate-600 dark:text-navy-300 prose-strong:text-white prose-a:text-blue-400 prose-a:no-underline hover:prose-a:text-blue-300 prose-blockquote:border-l-blue-500 prose-blockquote:bg-blue-500/5 prose-blockquote:px-4 prose-blockquote:py-2 prose-blockquote:rounded-r-lg prose-blockquote:text-slate-700 dark:text-navy-200 prose-blockquote:not-italic prose-code:text-purple-400 prose-code:bg-white dark:bg-white/50 dark:bg-navy-900/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-white dark:bg-white/70 dark:bg-navy-900/70 prose-pre:border prose-pre:border-blue-500/10 prose-img:rounded-xl prose-img:border prose-img:border-blue-500/10">
                 {children}
               </div>
 
@@ -183,13 +183,13 @@ export default function EducationalArticleTemplate({
 
               {/* Tags */}
               {post.tags.length > 0 && (
-                <div className="mt-8 pt-8 border-t border-gold-500/10">
-                  <p className="text-sm text-navy-500 mb-3">Tags:</p>
+                <div className="mt-8 pt-8 border-t border-blue-500/10">
+                  <p className="text-sm text-slate-900 dark:text-navy-500 mb-3">Tags:</p>
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 text-sm bg-navy-900/50 text-navy-300 rounded-lg hover:bg-navy-800 transition-colors cursor-pointer"
+                        className="px-3 py-1 text-sm bg-white dark:bg-white/50 dark:bg-navy-900/50 text-slate-600 dark:text-navy-300 rounded-lg hover:bg-slate-100 dark:bg-navy-800 transition-colors cursor-pointer"
                       >
                         #{tag}
                       </span>
@@ -203,7 +203,7 @@ export default function EducationalArticleTemplate({
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="mt-8 p-6 rounded-xl bg-navy-900/50 border border-gold-500/10"
+                className="mt-8 p-6 rounded-xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/10"
               >
                 <div className="flex items-start gap-4">
                   {post.author.avatar ? (
@@ -215,17 +215,17 @@ export default function EducationalArticleTemplate({
                       className="rounded-full"
                     />
                   ) : (
-                    <div className="w-16 h-16 rounded-full bg-gold-500/20 flex items-center justify-center text-2xl font-bold text-gold-500">
+                    <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-2xl font-bold text-blue-500">
                       {post.author.name[0]}
                     </div>
                   )}
                   <div>
-                    <p className="font-semibold text-white text-lg">{post.author.name}</p>
+                    <p className="font-semibold text-slate-900 dark:text-white text-lg">{post.author.name}</p>
                     {post.author.role && (
-                      <p className="text-gold-500 text-sm mb-2">{post.author.role}</p>
+                      <p className="text-blue-500 text-sm mb-2">{post.author.role}</p>
                     )}
                     {post.author.bio && (
-                      <p className="text-navy-400 text-sm">{post.author.bio}</p>
+                      <p className="text-slate-500 dark:text-navy-400 text-sm">{post.author.bio}</p>
                     )}
                   </div>
                 </div>
@@ -233,14 +233,14 @@ export default function EducationalArticleTemplate({
 
               {/* Artigos relacionados (placeholder) */}
               <section className="mt-12">
-                <h3 className="text-xl font-bold text-white mb-6">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
                   Artigos relacionados
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Placeholder para artigos relacionados */}
-                  <div className="p-4 rounded-xl bg-navy-900/30 border border-gold-500/10 hover:border-gold-500/30 transition-colors">
-                    <p className="text-sm text-navy-500 mb-1">Em breve</p>
-                    <p className="text-white font-medium">Artigos relacionados serão exibidos aqui</p>
+                  <div className="p-4 rounded-xl bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-blue-500/10 hover:border-blue-500/30 transition-colors">
+                    <p className="text-sm text-slate-900 dark:text-navy-500 mb-1">Em breve</p>
+                    <p className="text-slate-900 dark:text-white font-medium">Artigos relacionados serão exibidos aqui</p>
                   </div>
                 </div>
               </section>

@@ -129,7 +129,7 @@ export function WhatsAppProvider({ children }: WhatsAppProviderProps) {
               <div className="bg-green-500 p-6 relative">
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="absolute top-4 right-4 text-white/80 hover:text-white transition"
+                  className="absolute top-4 right-4 text-slate-900 dark:text-slate-800 dark:text-white/80 hover:text-white transition"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -141,8 +141,8 @@ export function WhatsAppProvider({ children }: WhatsAppProviderProps) {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white">investigaree</h3>
-                    <p className="text-white/80 text-sm">Normalmente responde em minutos</p>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">investigaree</h3>
+                    <p className="text-slate-900 dark:text-slate-800 dark:text-white/80 text-sm">Normalmente responde em minutos</p>
                   </div>
                 </div>
               </div>
@@ -177,7 +177,7 @@ export function WhatsAppProvider({ children }: WhatsAppProviderProps) {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-6"
+                  className="w-full bg-green-500 hover:bg-green-600 text-slate-900 dark:text-white font-semibold py-6"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center gap-2">

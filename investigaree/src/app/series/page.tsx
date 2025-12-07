@@ -99,9 +99,9 @@ export default function SeriesPage() {
       case "draft":
         return { icon: Clock, label: "Em breve", color: "text-yellow-500" };
       case "upcoming":
-        return { icon: Circle, label: "Previsto", color: "text-navy-500" };
+        return { icon: Circle, label: "Previsto", color: "text-slate-900 dark:text-navy-500" };
       default:
-        return { icon: Circle, label: status, color: "text-navy-500" };
+        return { icon: Circle, label: status, color: "text-slate-900 dark:text-navy-500" };
     }
   };
 
@@ -113,10 +113,10 @@ export default function SeriesPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-navy-950">
+      <main className="min-h-screen bg-slate-50 dark:bg-navy-950">
         {/* Hero Section - Compacto (UX: Padrão F) */}
         <section className="relative pt-24 pb-6 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-900 to-navy-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-navy-900 dark:to-navy-950" />
 
           <div className="container relative mx-auto px-4 sm:px-8 lg:px-12">
             <div className="max-w-4xl mx-auto">
@@ -124,22 +124,22 @@ export default function SeriesPage() {
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                 {/* Lado esquerdo - Título e badge */}
                 <div className="flex items-center gap-4">
-                  <div className="p-2.5 rounded-xl bg-gold-500/10 border border-gold-500/20">
-                    <Layers className="w-6 h-6 text-gold-500" />
+                  <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                    <Layers className="w-6 h-6 text-blue-500" />
                   </div>
                   <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold text-white">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
                       Séries de{" "}
-                      <span className="text-gold-500">Conteúdo</span>
+                      <span className="text-blue-500">Conteúdo</span>
                     </h1>
-                    <p className="text-sm text-navy-400">
+                    <p className="text-sm text-slate-500 dark:text-navy-400">
                       Aprendizado progressivo do básico ao avançado
                     </p>
                   </div>
                 </div>
 
                 {/* Lado direito - Stats */}
-                <div className="flex items-center gap-4 text-sm text-navy-400">
+                <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-navy-400">
                   <span>{SERIES_DATA.length} séries</span>
                   <span className="w-1 h-1 rounded-full bg-navy-600" />
                   <span>{SERIES_DATA.reduce((acc, s) => acc + s.posts.length, 0)} episódios</span>
@@ -166,8 +166,8 @@ export default function SeriesPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className={`bg-navy-900/50 border rounded-2xl overflow-hidden transition-all ${
-                      isExpanded ? "border-gold-500/50 lg:col-span-2" : "border-gold-500/10 hover:border-gold-500/30"
+                    className={`bg-white dark:bg-navy-900/50 border rounded-2xl overflow-hidden transition-all ${
+                      isExpanded ? "border-blue-500/50 lg:col-span-2" : "border-blue-500/10 hover:border-blue-500/30"
                     }`}
                   >
                     {/* Header da série */}
@@ -203,28 +203,28 @@ export default function SeriesPage() {
                               {series.status === "completa" ? "Completa" : "Em andamento"}
                             </span>
                           </div>
-                          <h3 className="text-xl font-bold text-white mb-2">
+                          <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
                             {series.name}
                           </h3>
-                          <p className="text-navy-300 text-sm mb-4">
+                          <p className="text-slate-600 dark:text-navy-300 text-sm mb-4">
                             {series.description}
                           </p>
 
                           {/* Progress bar */}
                           <div className="mb-4">
                             <div className="flex items-center justify-between text-sm mb-1">
-                              <span className="text-navy-400">
+                              <span className="text-slate-500 dark:text-navy-400">
                                 {publishedCount} de {series.totalParts} partes publicadas
                               </span>
-                              <span className="text-gold-500 font-medium">{progress}%</span>
+                              <span className="text-blue-500 font-medium">{progress}%</span>
                             </div>
-                            <div className="h-2 bg-navy-800 rounded-full overflow-hidden">
+                            <div className="h-2 bg-slate-100 dark:bg-navy-800 rounded-full overflow-hidden">
                               <motion.div
                                 initial={{ width: 0 }}
                                 whileInView={{ width: `${progress}%` }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 0.2 }}
-                                className="h-full bg-gradient-to-r from-gold-500 to-gold-600 rounded-full"
+                                className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"
                               />
                             </div>
                           </div>
@@ -233,7 +233,7 @@ export default function SeriesPage() {
                           <div className="flex items-center gap-3">
                             <button
                               onClick={() => setSelectedSeries(isExpanded ? null : series.id)}
-                              className="flex items-center gap-2 px-4 py-2 bg-navy-800 hover:bg-navy-700 text-white rounded-lg text-sm font-medium transition-colors"
+                              className="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-navy-800 hover:bg-navy-700 text-slate-900 dark:text-white rounded-lg text-sm font-medium transition-colors"
                             >
                               <BookOpen className="w-4 h-4" />
                               {isExpanded ? "Ocultar episódios" : "Ver episódios"}
@@ -241,7 +241,7 @@ export default function SeriesPage() {
                             {publishedCount > 0 && (
                               <Link
                                 href={`/blog/${series.posts.find(p => p.status === "published")?.slug}`}
-                                className="flex items-center gap-2 px-4 py-2 bg-gold-500 hover:bg-gold-600 text-navy-950 rounded-lg text-sm font-medium transition-colors"
+                                className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-navy-950 rounded-lg text-sm font-medium transition-colors"
                               >
                                 <Play className="w-4 h-4" />
                                 Começar série
@@ -257,10 +257,10 @@ export default function SeriesPage() {
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
-                        className="border-t border-gold-500/10"
+                        className="border-t border-blue-500/10"
                       >
                         <div className="p-6">
-                          <h4 className="text-sm font-medium text-navy-400 mb-4">
+                          <h4 className="text-sm font-medium text-slate-500 dark:text-navy-400 mb-4">
                             Todos os episódios
                           </h4>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -273,23 +273,23 @@ export default function SeriesPage() {
                                   key={post.id}
                                   className={`flex items-center gap-3 p-3 rounded-lg ${
                                     post.status === "published"
-                                      ? "bg-navy-800/50 hover:bg-navy-800"
-                                      : "bg-navy-900/50"
+                                      ? "bg-slate-100 dark:bg-navy-800/50 hover:bg-slate-100 dark:bg-navy-800"
+                                      : "bg-white dark:bg-navy-900/50"
                                   } transition-colors`}
                                 >
-                                  <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-navy-800 text-navy-400 text-sm font-medium flex-shrink-0">
+                                  <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-100 dark:bg-navy-800 text-slate-500 dark:text-navy-400 text-sm font-medium flex-shrink-0">
                                     {postIndex + 1}
                                   </div>
                                   <div className="flex-1 min-w-0">
                                     {post.status === "published" ? (
                                       <Link
                                         href={`/blog/${post.slug}`}
-                                        className="text-white hover:text-gold-400 font-medium text-sm line-clamp-1 transition-colors"
+                                        className="text-slate-900 dark:text-white hover:text-blue-400 font-medium text-sm line-clamp-1 transition-colors"
                                       >
                                         {post.title}
                                       </Link>
                                     ) : (
-                                      <span className="text-navy-400 text-sm line-clamp-1">
+                                      <span className="text-slate-500 dark:text-navy-400 text-sm line-clamp-1">
                                         {post.title}
                                       </span>
                                     )}
@@ -310,7 +310,7 @@ export default function SeriesPage() {
         </section>
 
         {/* CTA Newsletter */}
-        <section className="py-16 border-t border-gold-500/10">
+        <section className="py-16 border-t border-blue-500/10">
           <div className="container mx-auto px-4 sm:px-8 lg:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -318,10 +318,10 @@ export default function SeriesPage() {
               viewport={{ once: true }}
               className="max-w-2xl mx-auto text-center"
             >
-              <h3 className="text-2xl font-bold text-white mb-4">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
                 Receba novos episódios por email
               </h3>
-              <p className="text-navy-300 mb-6">
+              <p className="text-slate-600 dark:text-navy-300 mb-6">
                 Seja notificado quando novos episódios forem publicados.
                 Não perca nenhum conteúdo da sua série favorita.
               </p>
@@ -329,11 +329,11 @@ export default function SeriesPage() {
                 <input
                   type="email"
                   placeholder="Seu email profissional"
-                  className="flex-1 px-5 py-3 rounded-xl bg-navy-800/50 border border-gold-500/20 text-white placeholder:text-navy-400 focus:outline-none focus:border-gold-500/50 transition-colors"
+                  className="flex-1 px-5 py-3 rounded-xl bg-slate-100 dark:bg-navy-800/50 border border-blue-500/20 text-slate-900 dark:text-white placeholder:text-slate-500 dark:text-navy-400 focus:outline-none focus:border-blue-500/50 transition-colors"
                 />
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
+                  className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
                 >
                   Inscrever-se
                   <ArrowRight className="w-4 h-4" />

@@ -9,7 +9,13 @@
     "build:worker": "npx @opennextjs/cloudflare build",
     "dev:worker": "npx @opennextjs/cloudflare preview",
     "preview:worker": "npm run build:worker && npm run dev:worker",
-    "deploy": "npx @opennextjs/cloudflare deploy"
+    "deploy": "npx @opennextjs/cloudflare deploy",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:admin": "playwright test e2e/admin",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -39,6 +45,7 @@
     "rehype-highlight": "^7.0.2",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
+    "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
     "xlsx": "^0.18.5",
@@ -46,11 +53,13 @@
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.13.1",
+    "@playwright/test": "^1.57.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.4",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "firebase-tools": "^14.27.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

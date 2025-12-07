@@ -216,25 +216,25 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-navy-900 border border-navy-700 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+              className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="sticky top-0 bg-navy-900 border-b border-navy-700 px-6 py-4 flex items-center justify-between">
+              <div className="sticky top-0 bg-white dark:bg-navy-900 border-b border-slate-400 dark:border-navy-700 px-6 py-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-gold-500/20 flex items-center justify-center">
-                    <Upload className="w-5 h-5 text-gold-400" />
+                  <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                    <Upload className="w-5 h-5 text-blue-400" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-white">Análise em Lote - Grupos</h2>
-                    <p className="text-sm text-white/60">
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white">Análise em Lote - Grupos</h2>
+                    <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">
                       Importe um arquivo Excel ou CSV com CPFs/CNPJs
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={handleClose}
-                  className="text-white/40 hover:text-white transition-colors"
+                  className="text-slate-900 dark:text-white/40 hover:text-white transition-colors"
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -271,7 +271,7 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
 
                 {/* File Upload */}
                 <div>
-                  <label className="block text-sm font-medium text-white/90 mb-2">
+                  <label className="block text-sm font-medium text-slate-900 dark:text-slate-900 dark:text-white/90 mb-2">
                     Arquivo Excel ou CSV
                   </label>
                   <div className="relative">
@@ -287,26 +287,26 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
                       htmlFor="file-upload"
                       className={`flex items-center justify-center gap-3 w-full px-4 py-8 border-2 border-dashed rounded-lg transition-all cursor-pointer ${
                         file
-                          ? "border-gold-500/50 bg-gold-500/10"
-                          : "border-navy-600 hover:border-navy-500 bg-navy-800/50"
+                          ? "border-blue-500/50 bg-blue-500/10"
+                          : "border-navy-600 hover:border-navy-500 bg-slate-100 dark:bg-navy-800/50"
                       } ${isProcessing || success ? "opacity-50 cursor-not-allowed" : ""}`}
                     >
                       {file ? (
                         <>
-                          <FileSpreadsheet className="w-8 h-8 text-gold-400" />
+                          <FileSpreadsheet className="w-8 h-8 text-blue-400" />
                           <div className="text-left">
-                            <p className="text-white font-medium">{file.name}</p>
-                            <p className="text-white/50 text-sm">
+                            <p className="text-slate-900 dark:text-white font-medium">{file.name}</p>
+                            <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-sm">
                               {(file.size / 1024).toFixed(2)} KB
                             </p>
                           </div>
                         </>
                       ) : (
                         <>
-                          <Upload className="w-8 h-8 text-white/40" />
+                          <Upload className="w-8 h-8 text-slate-900 dark:text-white/40" />
                           <div className="text-center">
-                            <p className="text-white/90">Clique para selecionar um arquivo</p>
-                            <p className="text-white/50 text-sm">Excel (.xlsx, .xls) ou CSV</p>
+                            <p className="text-slate-900 dark:text-slate-900 dark:text-white/90">Clique para selecionar um arquivo</p>
+                            <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-sm">Excel (.xlsx, .xls) ou CSV</p>
                           </div>
                         </>
                       )}
@@ -316,7 +316,7 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
 
                 {/* Group Name */}
                 <div>
-                  <label htmlFor="grupoName" className="block text-sm font-medium text-white/90 mb-2">
+                  <label htmlFor="grupoName" className="block text-sm font-medium text-slate-900 dark:text-slate-900 dark:text-white/90 mb-2">
                     Nome do Grupo *
                   </label>
                   <input
@@ -325,11 +325,11 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
                     value={grupoName}
                     onChange={(e) => setGrupoName(e.target.value)}
                     placeholder="Ex: Funcionários RH, Fornecedores 2024..."
-                    className="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500"
+                    className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
                     disabled={isProcessing || success}
                     required
                   />
-                  <p className="text-xs text-white/50 mt-1">
+                  <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mt-1">
                     Este nome será usado para agrupar todas as pessoas deste arquivo
                   </p>
                 </div>
@@ -337,14 +337,14 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
                 {/* Column Name */}
                 {availableColumns.length > 0 ? (
                   <div>
-                    <label htmlFor="columnName" className="block text-sm font-medium text-white/90 mb-2">
+                    <label htmlFor="columnName" className="block text-sm font-medium text-slate-900 dark:text-slate-900 dark:text-white/90 mb-2">
                       Coluna com CPF/CNPJ *
                     </label>
                     <select
                       id="columnName"
                       value={columnName}
                       onChange={(e) => setColumnName(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
                       disabled={isProcessing || success}
                       required
                     >
@@ -355,13 +355,13 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
                         </option>
                       ))}
                     </select>
-                    <p className="text-xs text-white/50 mt-1">
+                    <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mt-1">
                       Selecione a coluna que contém os CPFs ou CNPJs
                     </p>
                   </div>
                 ) : (
                   <div>
-                    <label htmlFor="columnName" className="block text-sm font-medium text-white/90 mb-2">
+                    <label htmlFor="columnName" className="block text-sm font-medium text-slate-900 dark:text-slate-900 dark:text-white/90 mb-2">
                       Nome da Coluna com CPF/CNPJ *
                     </label>
                     <input
@@ -370,11 +370,11 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
                       value={columnName}
                       onChange={(e) => setColumnName(e.target.value)}
                       placeholder="Primeiro faça upload do arquivo..."
-                      className="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
                       disabled={true}
                       required
                     />
-                    <p className="text-xs text-white/50 mt-1">
+                    <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mt-1">
                       As colunas aparecerão após o upload do arquivo
                     </p>
                   </div>
@@ -382,11 +382,11 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
 
                 {/* Row Count Preview */}
                 {rowCount !== null && (
-                  <div className="bg-navy-800 border border-navy-700 rounded-lg p-4">
-                    <p className="text-white/90">
-                      <span className="font-semibold text-gold-400">{rowCount}</span> registro(s) detectado(s)
+                  <div className="bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg p-4">
+                    <p className="text-slate-900 dark:text-slate-900 dark:text-white/90">
+                      <span className="font-semibold text-blue-400">{rowCount}</span> registro(s) detectado(s)
                     </p>
-                    <p className="text-white/50 text-sm mt-1">
+                    <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-sm mt-1">
                       (Excluindo linha de cabeçalho)
                     </p>
                   </div>
@@ -408,14 +408,14 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
                     variant="ghost"
                     onClick={handleClose}
                     disabled={isProcessing}
-                    className="flex-1 bg-navy-800 hover:bg-navy-700 text-white"
+                    className="flex-1 bg-slate-100 dark:bg-navy-800 hover:bg-navy-700 text-slate-900 dark:text-white"
                   >
                     Cancelar
                   </Button>
                   <Button
                     type="submit"
                     disabled={!file || !columnName.trim() || !grupoName.trim() || isProcessing || success}
-                    className="flex-1 bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isProcessing ? (
                       <>

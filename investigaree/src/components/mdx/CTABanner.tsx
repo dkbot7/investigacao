@@ -72,19 +72,19 @@ export default function CTABanner({
 
   if (variant === "minimal") {
     return (
-      <div className="my-6 p-4 rounded-xl bg-gold-500/5 border border-gold-500/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="my-6 p-4 rounded-xl bg-blue-500/5 border border-blue-500/20 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-gold-500/10">
-            <Icon className="w-5 h-5 text-gold-500" />
+          <div className="p-2 rounded-lg bg-blue-500/10">
+            <Icon className="w-5 h-5 text-blue-500" />
           </div>
           <div>
-            <p className="font-medium text-white">{finalTitle}</p>
-            <p className="text-sm text-navy-400">{finalDescription}</p>
+            <p className="font-medium text-slate-900 dark:text-white">{finalTitle}</p>
+            <p className="text-sm text-slate-500 dark:text-navy-400">{finalDescription}</p>
           </div>
         </div>
         <Link
           href={finalButtonUrl}
-          className="flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-gold-500 hover:bg-gold-400 text-navy-950 font-medium rounded-lg transition-colors text-sm"
+          className="flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-400 text-navy-950 font-medium rounded-lg transition-colors text-sm"
         >
           {finalButtonText}
           <ArrowRight className="w-4 h-4" />
@@ -97,7 +97,7 @@ export default function CTABanner({
     return (
       <div className="my-8 relative overflow-hidden rounded-2xl">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-gold-600 via-gold-500 to-gold-400" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400" />
 
         {/* Pattern overlay */}
         <div
@@ -108,7 +108,7 @@ export default function CTABanner({
         />
 
         <div className="relative p-8 md:p-10 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-950/20 text-navy-950 text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 dark:bg-navy-950/20 text-navy-950 text-sm font-medium mb-4">
             <Sparkles className="w-4 h-4" />
             Oferta Especial
           </div>
@@ -134,7 +134,7 @@ export default function CTABanner({
 
           <Link
             href={finalButtonUrl}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-navy-950 hover:bg-navy-900 text-white font-semibold rounded-xl transition-colors shadow-lg"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-slate-50 dark:bg-navy-950 hover:bg-white dark:bg-navy-900 text-slate-900 dark:text-white font-semibold rounded-xl transition-colors shadow-lg"
           >
             {finalButtonText}
             <ArrowRight className="w-5 h-5" />
@@ -146,27 +146,27 @@ export default function CTABanner({
 
   // Default variant
   return (
-    <div className="my-8 rounded-2xl overflow-hidden border border-gold-500/20 bg-gradient-to-br from-navy-900 via-navy-900 to-gold-500/5">
+    <div className="my-8 rounded-2xl overflow-hidden border border-blue-500/20 bg-gradient-to-br from-navy-900 via-navy-900 to-blue-500/5">
       <div className="p-6 md:p-8">
         <div className="flex flex-col md:flex-row md:items-center gap-6">
           {/* Icon */}
           <div className="flex-shrink-0">
-            <div className="w-14 h-14 rounded-xl bg-gold-500/10 flex items-center justify-center">
-              <Icon className="w-7 h-7 text-gold-500" />
+            <div className="w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center">
+              <Icon className="w-7 h-7 text-blue-500" />
             </div>
           </div>
 
           {/* Content */}
           <div className="flex-1">
-            <h3 className="text-xl font-bold text-white mb-2">{finalTitle}</h3>
-            <p className="text-navy-300">{finalDescription}</p>
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{finalTitle}</h3>
+            <p className="text-slate-600 dark:text-navy-300">{finalDescription}</p>
 
             {features && features.length > 0 && (
               <div className="flex flex-wrap gap-3 mt-3">
                 {features.map((feature, index) => (
                   <span
                     key={index}
-                    className="inline-flex items-center gap-1.5 text-sm text-navy-400"
+                    className="inline-flex items-center gap-1.5 text-sm text-slate-500 dark:text-navy-400"
                   >
                     <CheckCircle className="w-3.5 h-3.5 text-green-400" />
                     {feature}
@@ -180,7 +180,7 @@ export default function CTABanner({
           <div className="flex-shrink-0">
             <Link
               href={finalButtonUrl}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold rounded-xl transition-colors whitespace-nowrap"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 text-navy-950 font-semibold rounded-xl transition-colors whitespace-nowrap"
             >
               {finalButtonText}
               <ArrowRight className="w-4 h-4" />

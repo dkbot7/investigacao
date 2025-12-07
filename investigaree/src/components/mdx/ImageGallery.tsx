@@ -47,7 +47,7 @@ export default function ImageGallery({ images, columns = 3 }: ImageGalleryProps)
         {images.map((image, index) => (
           <div
             key={index}
-            className="group relative aspect-video rounded-xl overflow-hidden border border-gold-500/10 cursor-pointer"
+            className="group relative aspect-video rounded-xl overflow-hidden border border-blue-500/10 cursor-pointer"
             onClick={() => openLightbox(index)}
           >
             <Image
@@ -56,12 +56,12 @@ export default function ImageGallery({ images, columns = 3 }: ImageGalleryProps)
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-navy-950/0 group-hover:bg-navy-950/40 transition-colors flex items-center justify-center">
-              <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 bg-slate-50 dark:bg-navy-950/0 group-hover:bg-slate-50 dark:bg-navy-950/40 transition-colors flex items-center justify-center">
+              <ZoomIn className="w-8 h-8 text-slate-900 dark:text-white opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             {image.caption && (
               <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-navy-950 to-transparent">
-                <p className="text-xs text-white truncate">{image.caption}</p>
+                <p className="text-xs text-slate-900 dark:text-white truncate">{image.caption}</p>
               </div>
             )}
           </div>
@@ -75,12 +75,12 @@ export default function ImageGallery({ images, columns = 3 }: ImageGalleryProps)
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-navy-950/95 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-slate-50 dark:bg-navy-950/95 flex items-center justify-center p-4"
             onClick={closeLightbox}
           >
             {/* Close button */}
             <button
-              className="absolute top-4 right-4 p-2 text-white/60 hover:text-white transition-colors"
+              className="absolute top-4 right-4 p-2 text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white transition-colors"
               onClick={closeLightbox}
             >
               <X className="w-8 h-8" />
@@ -88,7 +88,7 @@ export default function ImageGallery({ images, columns = 3 }: ImageGalleryProps)
 
             {/* Navigation */}
             <button
-              className="absolute left-4 p-2 text-white/60 hover:text-white transition-colors"
+              className="absolute left-4 p-2 text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
                 goToPrevious();
@@ -98,7 +98,7 @@ export default function ImageGallery({ images, columns = 3 }: ImageGalleryProps)
             </button>
 
             <button
-              className="absolute right-4 p-2 text-white/60 hover:text-white transition-colors"
+              className="absolute right-4 p-2 text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
                 goToNext();
@@ -124,11 +124,11 @@ export default function ImageGallery({ images, columns = 3 }: ImageGalleryProps)
                 className="object-contain w-full h-auto max-h-[80vh] rounded-lg"
               />
               {images[selectedIndex].caption && (
-                <p className="text-center text-white/80 mt-4">
+                <p className="text-center text-slate-900 dark:text-slate-800 dark:text-white/80 mt-4">
                   {images[selectedIndex].caption}
                 </p>
               )}
-              <p className="text-center text-white/40 text-sm mt-2">
+              <p className="text-center text-slate-900 dark:text-white/40 text-sm mt-2">
                 {selectedIndex + 1} / {images.length}
               </p>
             </motion.div>

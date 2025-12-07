@@ -108,7 +108,7 @@ export default function NewsReleaseTemplate({
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-navy-950">
+      <main className="min-h-screen bg-slate-50 dark:bg-navy-950">
         {/* Header do artigo */}
         <ArticleHeader post={post} />
 
@@ -150,9 +150,9 @@ export default function NewsReleaseTemplate({
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="mt-10 p-6 rounded-xl bg-gradient-to-br from-gold-500/10 to-transparent border border-gold-500/20"
+                className="mt-10 p-6 rounded-xl bg-gradient-to-br from-blue-500/10 to-transparent border border-blue-500/20"
               >
-                <h3 className="text-lg font-semibold text-white mb-4">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
                   Experimente agora
                 </h3>
                 <div className="flex flex-wrap gap-3">
@@ -163,10 +163,10 @@ export default function NewsReleaseTemplate({
                       variant={cta.variant === "primary" ? "default" : "outline"}
                       className={
                         cta.variant === "primary"
-                          ? "bg-gold-500 hover:bg-gold-600 text-navy-950"
+                          ? "bg-blue-500 hover:bg-blue-600 text-navy-950"
                           : cta.variant === "download"
                           ? "border-green-500/50 text-green-400 hover:bg-green-500/10"
-                          : "border-gold-500/30 text-gold-400 hover:bg-gold-500/10"
+                          : "border-blue-500/30 text-blue-400 hover:bg-blue-500/10"
                       }
                     >
                       <a href={cta.href} target="_blank" rel="noopener noreferrer">
@@ -185,7 +185,7 @@ export default function NewsReleaseTemplate({
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="mt-12 p-6 rounded-xl bg-navy-900/50 border border-gold-500/10"
+                className="mt-12 p-6 rounded-xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/10"
               >
                 <div className="flex items-start gap-4">
                   {vendor.logo ? (
@@ -195,15 +195,15 @@ export default function NewsReleaseTemplate({
                       className="w-16 h-16 rounded-lg object-contain bg-white p-2"
                     />
                   ) : (
-                    <div className="w-16 h-16 rounded-lg bg-gold-500/20 flex items-center justify-center">
-                      <Building2 className="w-8 h-8 text-gold-500" />
+                    <div className="w-16 h-16 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                      <Building2 className="w-8 h-8 text-blue-500" />
                     </div>
                   )}
                   <div className="flex-1">
-                    <h4 className="text-lg font-semibold text-white mb-1">
+                    <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">
                       Sobre {vendor.name}
                     </h4>
-                    <p className="text-navy-300 text-sm mb-3">
+                    <p className="text-slate-600 dark:text-navy-300 text-sm mb-3">
                       {vendor.description}
                     </p>
                     {vendor.website && (
@@ -211,7 +211,7 @@ export default function NewsReleaseTemplate({
                         href={vendor.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 text-sm font-medium"
+                        className="inline-flex items-center gap-2 text-blue-500 hover:text-blue-400 text-sm font-medium"
                       >
                         Visitar site
                         <ExternalLink className="w-3 h-3" />
@@ -224,13 +224,13 @@ export default function NewsReleaseTemplate({
 
             {/* Tags */}
             {post.tags.length > 0 && (
-              <div className="mt-8 pt-8 border-t border-gold-500/10">
-                <p className="text-sm text-navy-500 mb-3">Tags:</p>
+              <div className="mt-8 pt-8 border-t border-blue-500/10">
+                <p className="text-sm text-slate-900 dark:text-navy-500 mb-3">Tags:</p>
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 text-sm bg-navy-900/50 text-navy-300 rounded-lg hover:bg-navy-800 transition-colors cursor-pointer"
+                      className="px-3 py-1 text-sm bg-white dark:bg-white/50 dark:bg-navy-900/50 text-slate-600 dark:text-navy-300 rounded-lg hover:bg-slate-100 dark:bg-navy-800 transition-colors cursor-pointer"
                     >
                       #{tag}
                     </span>

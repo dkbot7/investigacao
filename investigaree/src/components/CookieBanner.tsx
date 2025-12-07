@@ -80,7 +80,7 @@ export default function CookieBanner() {
         aria-labelledby="cookie-banner-title"
         aria-describedby="cookie-banner-description"
       >
-        <div className="max-w-4xl mx-auto bg-navy-900 rounded-2xl shadow-2xl border border-navy-700 overflow-hidden">
+        <div className="max-w-4xl mx-auto bg-white dark:bg-navy-900 rounded-2xl shadow-2xl border border-slate-400 dark:border-navy-700 overflow-hidden">
           {/* Header */}
           <div className="p-4 md:p-6">
             <div className="flex items-start gap-4">
@@ -88,10 +88,10 @@ export default function CookieBanner() {
                 <Cookie className="w-5 h-5 text-primary-400" />
               </div>
               <div className="flex-1">
-                <h3 id="cookie-banner-title" className="text-lg font-semibold text-white mb-2">
+                <h3 id="cookie-banner-title" className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                   Utilizamos cookies
                 </h3>
-                <p id="cookie-banner-description" className="text-sm text-white/70 leading-relaxed">
+                <p id="cookie-banner-description" className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70 leading-relaxed">
                   Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo.
                   Ao clicar em &quot;Aceitar todos&quot;, você concorda com o uso de cookies conforme descrito em nossa{" "}
                   <Link href="/cookies" className="text-primary-400 hover:underline">
@@ -109,17 +109,17 @@ export default function CookieBanner() {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  className="mt-4 pt-4 border-t border-navy-700"
+                  className="mt-4 pt-4 border-t border-slate-400 dark:border-navy-700"
                 >
                   <div className="space-y-4">
                     {/* Essential Cookies */}
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-white">Cookies Essenciais</p>
-                        <p className="text-xs text-white/60">Necessários para o funcionamento do site</p>
+                        <p className="text-sm font-medium text-slate-900 dark:text-white">Cookies Essenciais</p>
+                        <p className="text-xs text-slate-900 dark:text-slate-600 dark:text-white/60">Necessários para o funcionamento do site</p>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-white/40">Sempre ativo</span>
+                        <span className="text-xs text-slate-900 dark:text-white/40">Sempre ativo</span>
                         <div className="w-10 h-6 bg-primary-500 rounded-full flex items-center justify-end px-1">
                           <div className="w-4 h-4 bg-white rounded-full" />
                         </div>
@@ -129,8 +129,8 @@ export default function CookieBanner() {
                     {/* Analytics Cookies */}
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-white">Cookies de Desempenho</p>
-                        <p className="text-xs text-white/60">Ajudam a entender como você usa o site</p>
+                        <p className="text-sm font-medium text-slate-900 dark:text-white">Cookies de Desempenho</p>
+                        <p className="text-xs text-slate-900 dark:text-slate-600 dark:text-white/60">Ajudam a entender como você usa o site</p>
                       </div>
                       <button
                         onClick={() => setPreferences((p) => ({ ...p, analytics: !p.analytics }))}
@@ -148,8 +148,8 @@ export default function CookieBanner() {
                     {/* Functionality Cookies */}
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-white">Cookies de Funcionalidade</p>
-                        <p className="text-xs text-white/60">Lembram suas preferências e personalização</p>
+                        <p className="text-sm font-medium text-slate-900 dark:text-white">Cookies de Funcionalidade</p>
+                        <p className="text-xs text-slate-900 dark:text-slate-600 dark:text-white/60">Lembram suas preferências e personalização</p>
                       </div>
                       <button
                         onClick={() => setPreferences((p) => ({ ...p, functionality: !p.functionality }))}
@@ -170,10 +170,10 @@ export default function CookieBanner() {
           </div>
 
           {/* Actions */}
-          <div className="p-4 md:px-6 md:pb-6 bg-navy-800/50 flex flex-col sm:flex-row items-center gap-3">
+          <div className="p-4 md:px-6 md:pb-6 bg-slate-100 dark:bg-navy-800/50 flex flex-col sm:flex-row items-center gap-3">
             <button
               onClick={() => setShowSettings(!showSettings)}
-              className="w-full sm:w-auto px-4 py-2.5 text-sm font-medium text-white/70 hover:text-white transition-colors flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-4 py-2.5 text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white transition-colors flex items-center justify-center gap-2"
             >
               <Settings className="w-4 h-4" />
               {showSettings ? "Ocultar opções" : "Personalizar"}
@@ -183,7 +183,7 @@ export default function CookieBanner() {
 
             <button
               onClick={rejectNonEssential}
-              className="w-full sm:w-auto px-4 py-2.5 text-sm font-medium text-white/70 hover:text-white border border-navy-600 rounded-lg transition-colors"
+              className="w-full sm:w-auto px-4 py-2.5 text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white border border-navy-600 rounded-lg transition-colors"
             >
               Rejeitar não essenciais
             </button>
@@ -191,7 +191,7 @@ export default function CookieBanner() {
             {showSettings ? (
               <button
                 onClick={saveCustomPreferences}
-                className="w-full sm:w-auto px-6 py-2.5 text-sm font-bold bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-6 py-2.5 text-sm font-bold bg-primary-500 hover:bg-primary-600 text-slate-900 dark:text-white rounded-lg transition-colors flex items-center justify-center gap-2"
               >
                 <Check className="w-4 h-4" />
                 Salvar preferências
@@ -199,7 +199,7 @@ export default function CookieBanner() {
             ) : (
               <button
                 onClick={acceptAll}
-                className="w-full sm:w-auto px-6 py-2.5 text-sm font-bold bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-colors"
+                className="w-full sm:w-auto px-6 py-2.5 text-sm font-bold bg-primary-500 hover:bg-primary-600 text-slate-900 dark:text-white rounded-lg transition-colors"
               >
                 Aceitar todos
               </button>

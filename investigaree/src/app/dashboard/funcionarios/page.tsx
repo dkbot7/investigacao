@@ -177,7 +177,7 @@ export default function FuncionariosPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gold-500" />
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
       </div>
     );
   }
@@ -194,11 +194,11 @@ export default function FuncionariosPage() {
         <div className="space-y-4">
           {/* Title */}
           <div>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-3">
-              <Users className="w-7 h-7 text-gold-400" />
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <Users className="w-7 h-7 text-blue-400" />
               Investigações
             </h1>
-            <p className="text-white/60 mt-1">
+            <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
               {filteredFuncionarios.length.toLocaleString()} {filteredFuncionarios.length === 1 ? 'registro' : 'registros'} de {funcionarios.length.toLocaleString()} total
             </p>
           </div>
@@ -207,18 +207,18 @@ export default function FuncionariosPage() {
           <div className="flex flex-wrap items-center gap-3">
             {/* Search */}
             <div className="relative w-full sm:w-80">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-900 dark:text-white/40" />
               <input
                 type="text"
                 placeholder="Buscar por nome ou CPF..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500"
+                className="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
               />
               {search && (
                 <button
                   onClick={() => setSearch("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-900 dark:text-white/40 hover:text-white"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -226,13 +226,13 @@ export default function FuncionariosPage() {
             </div>
 
             {/* Toggle View Mode */}
-            <div className="flex gap-1 bg-navy-800 border border-navy-700 rounded-lg p-1">
+            <div className="flex gap-1 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg p-1">
               <button
                 onClick={() => setViewMode("list")}
                 className={`px-3 py-2 rounded transition-all ${
                   viewMode === "list"
-                    ? "bg-gold-500 text-navy-950"
-                    : "text-white/60 hover:text-white"
+                    ? "bg-blue-500 text-navy-950"
+                    : "text-slate-600 dark:text-white/60 hover:text-white"
                 }`}
                 title="Visualização em Lista"
               >
@@ -242,8 +242,8 @@ export default function FuncionariosPage() {
                 onClick={() => setViewMode("kanban")}
                 className={`px-3 py-2 rounded transition-all ${
                   viewMode === "kanban"
-                    ? "bg-gold-500 text-navy-950"
-                    : "text-white/60 hover:text-white"
+                    ? "bg-blue-500 text-navy-950"
+                    : "text-slate-600 dark:text-white/60 hover:text-white"
                 }`}
                 title="Visualização Kanban"
               >
@@ -254,7 +254,7 @@ export default function FuncionariosPage() {
             {/* Botão Adicionar */}
             <Button
               onClick={() => setIsAddModalOpen(true)}
-              className="bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold whitespace-nowrap"
+              className="bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold whitespace-nowrap"
             >
               <UserPlus className="w-4 h-4 mr-2" />
               Adicionar
@@ -263,10 +263,10 @@ export default function FuncionariosPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+        <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
-            <Filter className="w-4 h-4 text-white/50" />
-            <span className="text-sm font-medium text-white/70">Filtros</span>
+            <Filter className="w-4 h-4 text-slate-900 dark:text-slate-500 dark:text-white/50" />
+            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70">Filtros</span>
           </div>
 
           {/* Categoria Filter */}
@@ -276,7 +276,7 @@ export default function FuncionariosPage() {
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
                 alertaFilter === "todos"
                   ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
-                  : "bg-navy-800 text-white/60 hover:text-white border border-navy-700"
+                  : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
               }`}
             >
               <Users className="w-4 h-4" />
@@ -287,7 +287,7 @@ export default function FuncionariosPage() {
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
                 alertaFilter === "obito"
                   ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-                  : "bg-navy-800 text-white/60 hover:text-white border border-navy-700"
+                  : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
               }`}
             >
               <UserCheck className="w-4 h-4" />
@@ -298,7 +298,7 @@ export default function FuncionariosPage() {
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
                 alertaFilter === "sancionado"
                   ? "bg-purple-500/20 text-purple-400 border border-purple-500/30"
-                  : "bg-navy-800 text-white/60 hover:text-white border border-navy-700"
+                  : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
               }`}
             >
               <UserCheck className="w-4 h-4" />
@@ -309,7 +309,7 @@ export default function FuncionariosPage() {
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
                 alertaFilter === "candidato"
                   ? "bg-amber-500/20 text-amber-400 border border-amber-500/30"
-                  : "bg-navy-800 text-white/60 hover:text-white border border-navy-700"
+                  : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
               }`}
             >
               <Users className="w-4 h-4" />
@@ -319,8 +319,8 @@ export default function FuncionariosPage() {
               onClick={() => setAlertaFilter("doador")}
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
                 alertaFilter === "doador"
-                  ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30"
-                  : "bg-navy-800 text-white/60 hover:text-white border border-navy-700"
+                  ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                  : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
               }`}
             >
               <Heart className="w-4 h-4" />
@@ -331,7 +331,7 @@ export default function FuncionariosPage() {
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
                 alertaFilter === "socio"
                   ? "bg-indigo-500/20 text-indigo-400 border border-indigo-500/30"
-                  : "bg-navy-800 text-white/60 hover:text-white border border-navy-700"
+                  : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
               }`}
             >
               <Briefcase className="w-4 h-4" />
@@ -341,8 +341,8 @@ export default function FuncionariosPage() {
               onClick={() => setAlertaFilter("grupos")}
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
                 alertaFilter === "grupos"
-                  ? "bg-gold-500/20 text-gold-400 border border-gold-500/30"
-                  : "bg-navy-800 text-white/60 hover:text-white border border-navy-700"
+                  ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                  : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
               }`}
             >
               <FolderOpen className="w-4 h-4" />
@@ -354,39 +354,39 @@ export default function FuncionariosPage() {
         {/* View Mode: Table or Kanban */}
         {viewMode === "list" ? (
           // Table View
-          <div className="bg-navy-900 border border-navy-700 rounded-xl overflow-hidden">
+          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="bg-navy-800/50 border-b border-navy-700">
-                    <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Nome</th>
-                    <th className="text-left py-3 px-4 text-sm font-medium text-white/60">CPF</th>
-                    <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Grupo</th>
-                    <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Cargo</th>
-                    <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Status</th>
-                    <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Alertas</th>
-                    <th className="text-center py-3 px-4 text-sm font-medium text-white/60"></th>
+                  <tr className="bg-slate-100 dark:bg-navy-800/50 border-b border-slate-400 dark:border-navy-700">
+                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Nome</th>
+                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">CPF</th>
+                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Grupo</th>
+                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Cargo</th>
+                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Status</th>
+                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Alertas</th>
+                    <th className="text-center py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60"></th>
                   </tr>
                 </thead>
                 <tbody>
                   {paginatedFuncionarios.map((func, index) => (
                     <tr
                       key={func.id || index}
-                      className="border-b border-navy-800 hover:bg-navy-800/50 transition-colors cursor-pointer"
+                      className="border-b border-slate-300 dark:border-navy-800 hover:bg-slate-100 dark:bg-navy-800/50 transition-colors cursor-pointer"
                       onClick={() => setSelectedFuncionario(func)}
                     >
                       <td className="py-3 px-4">
-                        <span className="text-white font-medium hover:text-gold-400 transition-colors">
+                        <span className="text-slate-900 dark:text-white font-medium hover:text-blue-400 transition-colors">
                           {func.nome}
                         </span>
                       </td>
-                      <td className="py-3 px-4 text-white/70 font-mono text-sm">{func.cpf}</td>
+                      <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 font-mono text-sm">{func.cpf}</td>
                       <td className="py-3 px-4">
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-white/70">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
                           {func.grupo}
                         </span>
                       </td>
-                      <td className="py-3 px-4 text-white/70 text-sm">{func.cargo || "-"}</td>
+                      <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm">{func.cargo || "-"}</td>
                       <td className="py-3 px-4">
                         {func.esta_morto?.includes("SIM") ? (
                           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-red-500/20 text-red-400">
@@ -425,7 +425,7 @@ export default function FuncionariosPage() {
                         </div>
                       </td>
                       <td className="py-3 px-4 text-center">
-                        <ChevronRight className="w-4 h-4 text-white/30" />
+                        <ChevronRight className="w-4 h-4 text-slate-900 dark:text-white/30" />
                       </td>
                     </tr>
                   ))}
@@ -435,8 +435,8 @@ export default function FuncionariosPage() {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="flex items-center justify-between px-4 py-3 border-t border-navy-700">
-                <p className="text-sm text-white/50">
+              <div className="flex items-center justify-between px-4 py-3 border-t border-slate-400 dark:border-navy-700">
+                <p className="text-sm text-slate-900 dark:text-slate-500 dark:text-white/50">
                   Mostrando {((page - 1) * limit) + 1} - {Math.min(page * limit, filteredFuncionarios.length)} de {filteredFuncionarios.length}
                 </p>
                 <div className="flex gap-2">
@@ -445,11 +445,11 @@ export default function FuncionariosPage() {
                     size="sm"
                     onClick={() => setPage(p => Math.max(1, p - 1))}
                     disabled={page === 1}
-                    className="text-white/60 hover:text-white disabled:opacity-30"
+                    className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white disabled:opacity-30"
                   >
                     Anterior
                   </Button>
-                  <span className="px-3 py-1 text-sm text-white/60">
+                  <span className="px-3 py-1 text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">
                     {page} / {totalPages}
                   </span>
                   <Button
@@ -457,7 +457,7 @@ export default function FuncionariosPage() {
                     size="sm"
                     onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                     disabled={page === totalPages}
-                    className="text-white/60 hover:text-white disabled:opacity-30"
+                    className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white disabled:opacity-30"
                   >
                     Proximo
                   </Button>
@@ -467,7 +467,7 @@ export default function FuncionariosPage() {
           </div>
         ) : (
           // Kanban View
-          <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <KanbanView
               funcionarios={filteredFuncionarios}
               onSelectFuncionario={setSelectedFuncionario}

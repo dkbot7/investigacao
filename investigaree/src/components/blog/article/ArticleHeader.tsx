@@ -84,16 +84,16 @@ export default function ArticleHeader({ post }: ArticleHeaderProps) {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-2 text-sm text-navy-400"
+          className="flex items-center gap-2 text-sm text-slate-500 dark:text-navy-400"
         >
-          <Link href="/blog" className="flex items-center gap-1 hover:text-gold-400 transition-colors">
+          <Link href="/blog" className="flex items-center gap-1 hover:text-blue-400 transition-colors">
             <ChevronLeft className="w-4 h-4" />
             Voltar ao Blog
           </Link>
           <span>/</span>
           <Link
             href={`/blog?topic=${post.topic.slug}`}
-            className="hover:text-gold-400 transition-colors"
+            className="hover:text-blue-400 transition-colors"
             style={{ color: post.topic.color }}
           >
             {post.topic.name}
@@ -137,7 +137,7 @@ export default function ArticleHeader({ post }: ArticleHeaderProps) {
             </Badge>
 
             {/* Tempo de leitura */}
-            <Badge variant="outline" className="text-xs text-navy-300 border-navy-600">
+            <Badge variant="outline" className="text-xs text-slate-600 dark:text-navy-300 border-navy-600">
               <Clock className="w-3.5 h-3.5 mr-1.5" />
               {post.readingTime} min de leitura
             </Badge>
@@ -148,7 +148,7 @@ export default function ArticleHeader({ post }: ArticleHeaderProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight"
           >
             {post.title}
           </motion.h1>
@@ -158,7 +158,7 @@ export default function ArticleHeader({ post }: ArticleHeaderProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-lg md:text-xl text-navy-300 mb-8 leading-relaxed"
+            className="text-lg md:text-xl text-slate-600 dark:text-navy-300 mb-8 leading-relaxed"
           >
             {post.excerpt}
           </motion.p>
@@ -168,7 +168,7 @@ export default function ArticleHeader({ post }: ArticleHeaderProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-gold-500/10"
+            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-blue-500/10"
           >
             {/* Autor e data */}
             <div className="flex items-center gap-4">
@@ -180,33 +180,33 @@ export default function ArticleHeader({ post }: ArticleHeaderProps) {
                     alt={post.author.name}
                     width={48}
                     height={48}
-                    className="rounded-full border-2 border-gold-500/20 group-hover:border-gold-500/50 transition-colors"
+                    className="rounded-full border-2 border-blue-500/20 group-hover:border-blue-500/50 transition-colors"
                   />
                 ) : (
-                  <div className="w-12 h-12 rounded-full bg-gold-500/20 flex items-center justify-center border-2 border-gold-500/20">
-                    <User className="w-5 h-5 text-gold-500" />
+                  <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center border-2 border-blue-500/20">
+                    <User className="w-5 h-5 text-blue-500" />
                   </div>
                 )}
                 <div>
-                  <p className="font-medium text-white group-hover:text-gold-400 transition-colors">
+                  <p className="font-medium text-slate-900 dark:text-white group-hover:text-blue-400 transition-colors">
                     {post.author.name}
                   </p>
-                  <p className="text-sm text-navy-400">{post.author.role}</p>
+                  <p className="text-sm text-slate-500 dark:text-navy-400">{post.author.role}</p>
                 </div>
               </Link>
 
-              <div className="h-8 w-px bg-gold-500/10 hidden sm:block" />
+              <div className="h-8 w-px bg-blue-500/10 hidden sm:block" />
 
               {/* Data de publicação */}
-              <div className="flex items-center gap-2 text-sm text-navy-400">
+              <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-navy-400">
                 <Calendar className="w-4 h-4" />
                 <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
               </div>
 
               {post.views && (
                 <>
-                  <div className="h-8 w-px bg-gold-500/10 hidden sm:block" />
-                  <div className="flex items-center gap-2 text-sm text-navy-400">
+                  <div className="h-8 w-px bg-blue-500/10 hidden sm:block" />
+                  <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-navy-400">
                     <Eye className="w-4 h-4" />
                     <span>{post.views.toLocaleString("pt-BR")} visualizações</span>
                   </div>
@@ -220,7 +220,7 @@ export default function ArticleHeader({ post }: ArticleHeaderProps) {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleShare}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-navy-300 hover:text-white transition-colors"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-navy-800 hover:bg-navy-700 text-slate-600 dark:text-navy-300 hover:text-slate-900 dark:text-white transition-colors"
               >
                 <Share2 className="w-4 h-4" />
                 <span className="text-sm">Compartilhar</span>
@@ -228,7 +228,7 @@ export default function ArticleHeader({ post }: ArticleHeaderProps) {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-navy-300 hover:text-white transition-colors"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-navy-800 hover:bg-navy-700 text-slate-600 dark:text-navy-300 hover:text-slate-900 dark:text-white transition-colors"
               >
                 <Bookmark className="w-4 h-4" />
                 <span className="text-sm">Salvar</span>

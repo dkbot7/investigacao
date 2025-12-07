@@ -215,8 +215,8 @@ export default function RecursosPage() {
     switch (price) {
       case "gratuito": return { label: "Gratuito", color: "bg-green-500/20 text-green-400" };
       case "freemium": return { label: "Freemium", color: "bg-blue-500/20 text-blue-400" };
-      case "pago": return { label: "Pago", color: "bg-gold-500/20 text-gold-400" };
-      default: return { label: price, color: "bg-navy-500/20 text-navy-400" };
+      case "pago": return { label: "Pago", color: "bg-blue-500/20 text-blue-400" };
+      default: return { label: price, color: "bg-navy-500/20 text-slate-500 dark:text-navy-400" };
     }
   };
 
@@ -285,24 +285,24 @@ export default function RecursosPage() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-lg bg-navy-900 rounded-2xl border border-gold-500/20 overflow-hidden"
+              className="w-full max-w-lg bg-white dark:bg-navy-900 rounded-2xl border border-blue-500/20 overflow-hidden"
             >
               {/* Header do Modal */}
-              <div className="flex items-center justify-between p-6 border-b border-gold-500/10">
+              <div className="flex items-center justify-between p-6 border-b border-blue-500/10">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-purple-500/20">
-                    <Code className="w-5 h-5 text-purple-400" />
+                  <div className="p-2 rounded-lg bg-blue-500/20">
+                    <Code className="w-5 h-5 text-blue-400" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white">Solicitar API Personalizada</h3>
-                    <p className="text-sm text-navy-400">Descreva sua necessidade</p>
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Solicitar API Personalizada</h3>
+                    <p className="text-sm text-slate-500 dark:text-navy-400">Descreva sua necessidade</p>
                   </div>
                 </div>
                 <button
                   onClick={() => setShowApiForm(false)}
-                  className="p-2 rounded-lg hover:bg-navy-800 transition-colors"
+                  className="p-2 rounded-lg hover:bg-slate-100 dark:bg-navy-800 transition-colors"
                 >
-                  <X className="w-5 h-5 text-navy-400" />
+                  <X className="w-5 h-5 text-slate-500 dark:text-navy-400" />
                 </button>
               </div>
 
@@ -321,73 +321,73 @@ export default function RecursosPage() {
                       {/* Nome e Email */}
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm text-navy-300 mb-1.5">Nome *</label>
+                          <label className="block text-sm text-slate-600 dark:text-navy-300 mb-1.5">Nome *</label>
                           <input
                             type="text"
                             required
                             value={apiFormData.nome}
                             onChange={(e) => setApiFormData({ ...apiFormData, nome: e.target.value })}
                             placeholder="Seu nome"
-                            className="w-full px-4 py-2.5 bg-navy-800 border border-gold-500/10 rounded-lg text-white placeholder:text-navy-500 focus:outline-none focus:border-gold-500/30"
+                            className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-blue-500/10 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-900 dark:text-navy-500 focus:outline-none focus:border-blue-500/30"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm text-navy-300 mb-1.5">Email *</label>
+                          <label className="block text-sm text-slate-600 dark:text-navy-300 mb-1.5">Email *</label>
                           <input
                             type="email"
                             required
                             value={apiFormData.email}
                             onChange={(e) => setApiFormData({ ...apiFormData, email: e.target.value })}
                             placeholder="seu@email.com"
-                            className="w-full px-4 py-2.5 bg-navy-800 border border-gold-500/10 rounded-lg text-white placeholder:text-navy-500 focus:outline-none focus:border-gold-500/30"
+                            className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-blue-500/10 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-900 dark:text-navy-500 focus:outline-none focus:border-blue-500/30"
                           />
                         </div>
                       </div>
 
                       {/* Empresa */}
                       <div>
-                        <label className="block text-sm text-navy-300 mb-1.5">Empresa</label>
+                        <label className="block text-sm text-slate-600 dark:text-navy-300 mb-1.5">Empresa</label>
                         <input
                           type="text"
                           value={apiFormData.empresa}
                           onChange={(e) => setApiFormData({ ...apiFormData, empresa: e.target.value })}
                           placeholder="Nome da sua empresa"
-                          className="w-full px-4 py-2.5 bg-navy-800 border border-gold-500/10 rounded-lg text-white placeholder:text-navy-500 focus:outline-none focus:border-gold-500/30"
+                          className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-blue-500/10 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-900 dark:text-navy-500 focus:outline-none focus:border-blue-500/30"
                         />
                       </div>
 
                       {/* Descrição da API */}
                       <div>
-                        <label className="block text-sm text-navy-300 mb-1.5">Descreva a API que precisa *</label>
+                        <label className="block text-sm text-slate-600 dark:text-navy-300 mb-1.5">Descreva a API que precisa *</label>
                         <textarea
                           required
                           rows={3}
                           value={apiFormData.descricao}
                           onChange={(e) => setApiFormData({ ...apiFormData, descricao: e.target.value })}
                           placeholder="Ex: Preciso de uma API para consultar dados de CPF em tempo real..."
-                          className="w-full px-4 py-2.5 bg-navy-800 border border-gold-500/10 rounded-lg text-white placeholder:text-navy-500 focus:outline-none focus:border-gold-500/30 resize-none"
+                          className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-blue-500/10 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-900 dark:text-navy-500 focus:outline-none focus:border-blue-500/30 resize-none"
                         />
                       </div>
 
                       {/* Integração */}
                       <div>
-                        <label className="block text-sm text-navy-300 mb-1.5">Onde será integrada?</label>
+                        <label className="block text-sm text-slate-600 dark:text-navy-300 mb-1.5">Onde será integrada?</label>
                         <input
                           type="text"
                           value={apiFormData.integracao}
                           onChange={(e) => setApiFormData({ ...apiFormData, integracao: e.target.value })}
                           placeholder="Ex: Sistema interno, CRM, ERP, site..."
-                          className="w-full px-4 py-2.5 bg-navy-800 border border-gold-500/10 rounded-lg text-white placeholder:text-navy-500 focus:outline-none focus:border-gold-500/30"
+                          className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-blue-500/10 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-900 dark:text-navy-500 focus:outline-none focus:border-blue-500/30"
                         />
                       </div>
 
                       {/* Prazo */}
                       <div>
-                        <label className="block text-sm text-navy-300 mb-1.5">Prazo desejado</label>
+                        <label className="block text-sm text-slate-600 dark:text-navy-300 mb-1.5">Prazo desejado</label>
                         <select
                           value={apiFormData.prazo}
                           onChange={(e) => setApiFormData({ ...apiFormData, prazo: e.target.value })}
-                          className="w-full px-4 py-2.5 bg-navy-800 border border-gold-500/10 rounded-lg text-white focus:outline-none focus:border-gold-500/30"
+                          className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-blue-500/10 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:border-blue-500/30"
                         >
                           <option value="">Selecione...</option>
                           <option value="urgente">Urgente (1-2 semanas)</option>
@@ -400,7 +400,7 @@ export default function RecursosPage() {
                       <button
                         type="submit"
                         disabled={apiFormSubmitting}
-                        className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gold-500 hover:bg-gold-400 disabled:bg-gold-500/50 text-navy-950 font-semibold rounded-lg transition-colors"
+                        className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 disabled:bg-blue-500/50 text-navy-950 font-semibold rounded-lg transition-colors"
                       >
                         {apiFormSubmitting ? (
                           <>
@@ -415,7 +415,7 @@ export default function RecursosPage() {
                         )}
                       </button>
 
-                      <p className="text-xs text-navy-500 text-center">
+                      <p className="text-xs text-slate-900 dark:text-navy-500 text-center">
                         Nossa equipe entrará em contato em até 24h para entender melhor sua necessidade.
                       </p>
                     </motion.form>
@@ -429,15 +429,15 @@ export default function RecursosPage() {
                       <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-500/20 flex items-center justify-center">
                         <CheckCircle className="w-8 h-8 text-green-400" />
                       </div>
-                      <h4 className="text-xl font-semibold text-white mb-2">
+                      <h4 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
                         Solicitação Enviada!
                       </h4>
-                      <p className="text-navy-300 mb-6">
+                      <p className="text-slate-600 dark:text-navy-300 mb-6">
                         Recebemos sua solicitação. Nossa equipe entrará em contato pelo email {apiFormData.email} em até 24 horas.
                       </p>
                       <button
                         onClick={() => setShowApiForm(false)}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold rounded-lg transition-colors"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 text-navy-950 font-semibold rounded-lg transition-colors"
                       >
                         Fechar
                       </button>
@@ -450,10 +450,10 @@ export default function RecursosPage() {
         )}
       </AnimatePresence>
 
-      <main className="min-h-screen bg-navy-950">
+      <main className="min-h-screen bg-slate-50 dark:bg-navy-950">
         {/* Hero Section - Compacto (UX: Padrão F) */}
         <section className="relative pt-24 pb-6 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-900 to-navy-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-navy-900 dark:to-navy-950" />
 
           <div className="container relative mx-auto px-4 sm:px-8 lg:px-12">
             <div className="max-w-4xl mx-auto">
@@ -461,15 +461,15 @@ export default function RecursosPage() {
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                 {/* Lado esquerdo - Título e badge */}
                 <div className="flex items-center gap-4">
-                  <div className="p-2.5 rounded-xl bg-gold-500/10 border border-gold-500/20">
-                    <Wrench className="w-6 h-6 text-gold-500" />
+                  <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                    <Wrench className="w-6 h-6 text-blue-500" />
                   </div>
                   <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold text-white">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
                       Recursos{" "}
-                      <span className="text-gold-500">Investigação</span>
+                      <span className="text-blue-500">Investigação</span>
                     </h1>
-                    <p className="text-sm text-navy-400">
+                    <p className="text-sm text-slate-500 dark:text-navy-400">
                       Cursos, ferramentas, APIs e livros selecionados
                     </p>
                   </div>
@@ -478,13 +478,13 @@ export default function RecursosPage() {
                 {/* Lado direito - Busca */}
                 <div className="w-full lg:w-auto lg:min-w-[300px]">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-navy-400" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 dark:text-navy-400" />
                     <Input
                       type="text"
                       placeholder="Buscar recursos..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 pr-4 bg-navy-800/50 border-gold-500/20 text-white placeholder:text-navy-400 focus:border-gold-500/50"
+                      className="pl-10 pr-4 bg-slate-100 dark:bg-navy-800/50 border-blue-500/20 text-slate-900 dark:text-white placeholder:text-slate-500 dark:text-navy-400 focus:border-blue-500/50"
                     />
                   </div>
                 </div>
@@ -494,18 +494,18 @@ export default function RecursosPage() {
         </section>
 
         {/* Filtros */}
-        <section className="py-6 border-y border-gold-500/10 bg-navy-900/30">
+        <section className="py-6 border-y border-blue-500/10 bg-white dark:bg-navy-900/30">
           <div className="container mx-auto px-4 sm:px-8 lg:px-12">
             <div className="flex flex-col md:flex-row items-center justify-center gap-6">
               {/* Filtro por tipo */}
               <div className="flex flex-wrap items-center justify-center gap-2">
-                <span className="text-sm text-navy-400 mr-2">Tipo:</span>
+                <span className="text-sm text-slate-500 dark:text-navy-400 mr-2">Tipo:</span>
                 <button
                   onClick={() => setSelectedType(null)}
                   className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                     selectedType === null
-                      ? "bg-gold-500 text-navy-950"
-                      : "bg-navy-800 text-navy-300 hover:text-white hover:bg-navy-700"
+                      ? "bg-blue-500 text-navy-950"
+                      : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-navy-300 hover:text-white hover:bg-navy-700"
                   }`}
                 >
                   Todos
@@ -519,7 +519,7 @@ export default function RecursosPage() {
                       className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-1.5 ${
                         selectedType === type.id
                           ? "text-navy-950"
-                          : "bg-navy-800 text-navy-300 hover:text-white hover:bg-navy-700"
+                          : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-navy-300 hover:text-white hover:bg-navy-700"
                       }`}
                       style={selectedType === type.id ? { backgroundColor: type.color } : {}}
                     >
@@ -532,13 +532,13 @@ export default function RecursosPage() {
 
               {/* Filtro por preço */}
               <div className="flex flex-wrap items-center justify-center gap-2">
-                <span className="text-sm text-navy-400 mr-2">Preço:</span>
+                <span className="text-sm text-slate-500 dark:text-navy-400 mr-2">Preço:</span>
                 <button
                   onClick={() => setSelectedPrice(null)}
                   className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                     selectedPrice === null
-                      ? "bg-gold-500 text-navy-950"
-                      : "bg-navy-800 text-navy-300 hover:text-white hover:bg-navy-700"
+                      ? "bg-blue-500 text-navy-950"
+                      : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-navy-300 hover:text-white hover:bg-navy-700"
                   }`}
                 >
                   Todos
@@ -550,7 +550,7 @@ export default function RecursosPage() {
                     className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                       selectedPrice === price
                         ? getPriceLabel(price).color.replace("/20", "").replace("text-", "bg-") + " text-navy-950"
-                        : "bg-navy-800 text-navy-300 hover:text-white hover:bg-navy-700"
+                        : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-navy-300 hover:text-white hover:bg-navy-700"
                     }`}
                   >
                     {getPriceLabel(price).label}
@@ -571,10 +571,10 @@ export default function RecursosPage() {
                 className="text-center py-16"
               >
                 <Wrench className="w-16 h-16 text-navy-600 mx-auto mb-4" />
-                <h3 className="text-xl font-medium text-white mb-2">
+                <h3 className="text-xl font-medium text-slate-900 dark:text-white mb-2">
                   Nenhum recurso encontrado
                 </h3>
-                <p className="text-navy-400">
+                <p className="text-slate-500 dark:text-navy-400">
                   Tente buscar por outro termo ou limpe os filtros
                 </p>
               </motion.div>
@@ -598,8 +598,8 @@ export default function RecursosPage() {
                           />
                         </div>
                         <div>
-                          <h2 className="text-xl font-bold text-white">{typeInfo?.name}</h2>
-                          <p className="text-sm text-navy-400">{resources.length} recursos</p>
+                          <h2 className="text-xl font-bold text-slate-900 dark:text-white">{typeInfo?.name}</h2>
+                          <p className="text-sm text-slate-500 dark:text-navy-400">{resources.length} recursos</p>
                         </div>
                       </div>
 
@@ -616,35 +616,35 @@ export default function RecursosPage() {
                                 <div className="flex-1 min-w-0">
                                   <div className="flex items-center gap-2 mb-1">
                                     {resource.featured && (
-                                      <Star className="w-4 h-4 text-gold-500 fill-gold-500" />
+                                      <Star className="w-4 h-4 text-blue-500 fill-blue-500" />
                                     )}
                                     <span className={`px-2 py-0.5 rounded text-xs font-medium ${priceInfo.color}`}>
                                       {isInternal ? "Investigaree" : priceInfo.label}
                                     </span>
                                   </div>
-                                  <h3 className="text-white font-semibold group-hover:text-gold-400 transition-colors line-clamp-2">
+                                  <h3 className="text-slate-900 dark:text-white font-semibold group-hover:text-blue-400 transition-colors line-clamp-2">
                                     {resource.name}
                                   </h3>
                                 </div>
                                 {!isInternal && (
-                                  <ExternalLink className="w-4 h-4 text-navy-500 group-hover:text-gold-500 flex-shrink-0 transition-colors" />
+                                  <ExternalLink className="w-4 h-4 text-slate-900 dark:text-navy-500 group-hover:text-blue-500 flex-shrink-0 transition-colors" />
                                 )}
                               </div>
 
                               {/* Descrição */}
-                              <p className="text-navy-300 text-sm mb-4 line-clamp-2">
+                              <p className="text-slate-600 dark:text-navy-300 text-sm mb-4 line-clamp-2">
                                 {resource.description}
                               </p>
 
                               {/* Footer */}
                               <div className="flex items-center justify-between">
-                                <span className="text-xs text-navy-500">
+                                <span className="text-xs text-slate-900 dark:text-navy-500">
                                   {resource.provider}
                                 </span>
                                 {resource.rating && (
                                   <div className="flex items-center gap-1">
-                                    <Star className="w-3.5 h-3.5 text-gold-500 fill-gold-500" />
-                                    <span className="text-sm text-gold-400 font-medium">
+                                    <Star className="w-3.5 h-3.5 text-blue-500 fill-blue-500" />
+                                    <span className="text-sm text-blue-400 font-medium">
                                       {resource.rating}
                                     </span>
                                   </div>
@@ -652,11 +652,11 @@ export default function RecursosPage() {
                               </div>
 
                               {/* Tags */}
-                              <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-gold-500/10">
+                              <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-blue-500/10">
                                 {resource.tags.slice(0, 3).map(tag => (
                                   <span
                                     key={tag}
-                                    className="px-2 py-0.5 rounded bg-navy-800 text-navy-400 text-xs"
+                                    className="px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-slate-500 dark:text-navy-400 text-xs"
                                   >
                                     {tag}
                                   </span>
@@ -665,8 +665,8 @@ export default function RecursosPage() {
 
                               {/* CTA para cursos internos */}
                               {isInternal && (
-                                <div className="mt-4 pt-3 border-t border-gold-500/10">
-                                  <span className="inline-flex items-center gap-1.5 text-sm text-gold-400 font-medium">
+                                <div className="mt-4 pt-3 border-t border-blue-500/10">
+                                  <span className="inline-flex items-center gap-1.5 text-sm text-blue-400 font-medium">
                                     Solicitar informações
                                     <ExternalLink className="w-3.5 h-3.5" />
                                   </span>
@@ -687,8 +687,8 @@ export default function RecursosPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.05 }}
-                                className={`group block p-5 bg-navy-900/50 border rounded-xl transition-all hover:border-gold-500/50 h-full text-left w-full ${
-                                  resource.featured ? "border-gold-500/30" : "border-gold-500/10"
+                                className={`group block p-5 bg-white dark:bg-navy-900/50 border rounded-xl transition-all hover:border-blue-500/50 h-full text-left w-full ${
+                                  resource.featured ? "border-blue-500/30" : "border-blue-500/10"
                                 }`}
                               >
                                 {CardContent}
@@ -707,8 +707,8 @@ export default function RecursosPage() {
                                   whileInView={{ opacity: 1, y: 0 }}
                                   viewport={{ once: true }}
                                   transition={{ delay: index * 0.05 }}
-                                  className={`group block p-5 bg-navy-900/50 border rounded-xl transition-all hover:border-gold-500/50 h-full ${
-                                    resource.featured ? "border-gold-500/30" : "border-gold-500/10"
+                                  className={`group block p-5 bg-white dark:bg-navy-900/50 border rounded-xl transition-all hover:border-blue-500/50 h-full ${
+                                    resource.featured ? "border-blue-500/30" : "border-blue-500/10"
                                   }`}
                                 >
                                   {CardContent}
@@ -727,8 +727,8 @@ export default function RecursosPage() {
                               whileInView={{ opacity: 1, y: 0 }}
                               viewport={{ once: true }}
                               transition={{ delay: index * 0.05 }}
-                              className={`group block p-5 bg-navy-900/50 border rounded-xl transition-all hover:border-gold-500/50 ${
-                                resource.featured ? "border-gold-500/30" : "border-gold-500/10"
+                              className={`group block p-5 bg-white dark:bg-navy-900/50 border rounded-xl transition-all hover:border-blue-500/50 ${
+                                resource.featured ? "border-blue-500/30" : "border-blue-500/10"
                               }`}
                             >
                               {CardContent}
@@ -745,7 +745,7 @@ export default function RecursosPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-16 border-t border-gold-500/10">
+        <section className="py-16 border-t border-blue-500/10">
           <div className="container mx-auto px-4 sm:px-8 lg:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -753,16 +753,16 @@ export default function RecursosPage() {
               viewport={{ once: true }}
               className="max-w-2xl mx-auto text-center"
             >
-              <h3 className="text-2xl font-bold text-white mb-4">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
                 Conhece um recurso que deveria estar aqui?
               </h3>
-              <p className="text-navy-300 mb-6">
+              <p className="text-slate-600 dark:text-navy-300 mb-6">
                 Envie sua sugestão e nossa equipe avaliará para inclusão no diretório.
                 Priorizamos recursos úteis para investigação digital no Brasil.
               </p>
               <Link
                 href="/contato"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold rounded-xl transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold rounded-xl transition-colors"
               >
                 Sugerir recurso
                 <ExternalLink className="w-4 h-4" />

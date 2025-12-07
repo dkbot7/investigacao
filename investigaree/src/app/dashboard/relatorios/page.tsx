@@ -189,8 +189,8 @@ export default function RelatoriosPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-navy-950 to-navy-900 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gold-500" />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
       </div>
     );
   }
@@ -207,13 +207,13 @@ export default function RelatoriosPage() {
   const totalCnpjs = data.grupos.reduce((acc, g) => acc + g.totalCnpjs, 0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-navy-950 to-navy-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900">
       {/* Header */}
-      <header className="border-b border-navy-800 bg-navy-900/50 backdrop-blur-lg sticky top-0 z-50">
+      <header className="border-b border-slate-300 dark:border-navy-800 bg-white dark:bg-navy-900/50 backdrop-blur-lg sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <Link href="/dashboard">
-              <Button variant="ghost" size="sm" className="text-white/60 hover:text-white hover:bg-navy-800">
+              <Button variant="ghost" size="sm" className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white hover:bg-slate-100 dark:bg-navy-800">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Voltar
               </Button>
@@ -223,7 +223,7 @@ export default function RelatoriosPage() {
           <Button
             onClick={logout}
             variant="ghost"
-            className="border border-navy-700 text-white hover:bg-navy-800 hover:text-white"
+            className="border border-slate-400 dark:border-navy-700 text-slate-900 dark:text-white hover:bg-slate-100 dark:bg-navy-800 hover:text-white"
           >
             Sair
           </Button>
@@ -231,15 +231,15 @@ export default function RelatoriosPage() {
       </header>
 
       {/* Tab Navigation */}
-      <div className="border-b border-navy-800 bg-navy-900/30">
+      <div className="border-b border-slate-300 dark:border-navy-800 bg-white dark:bg-navy-900/30">
         <div className="container mx-auto px-4">
           <div className="flex gap-1">
             <button
               onClick={() => setActiveTab("dashboard")}
               className={`px-6 py-4 font-medium transition-all relative ${
                 activeTab === "dashboard"
-                  ? "text-gold-400"
-                  : "text-white/60 hover:text-white"
+                  ? "text-blue-400"
+                  : "text-slate-600 dark:text-white/60 hover:text-white"
               }`}
             >
               <TrendingUp className="w-4 h-4 inline mr-2" />
@@ -247,7 +247,7 @@ export default function RelatoriosPage() {
               {activeTab === "dashboard" && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold-500"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500"
                 />
               )}
             </button>
@@ -255,8 +255,8 @@ export default function RelatoriosPage() {
               onClick={() => setActiveTab("relatorios")}
               className={`px-6 py-4 font-medium transition-all relative ${
                 activeTab === "relatorios"
-                  ? "text-gold-400"
-                  : "text-white/60 hover:text-white"
+                  ? "text-blue-400"
+                  : "text-slate-600 dark:text-white/60 hover:text-white"
               }`}
             >
               <FileText className="w-4 h-4 inline mr-2" />
@@ -264,7 +264,7 @@ export default function RelatoriosPage() {
               {activeTab === "relatorios" && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold-500"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500"
                 />
               )}
             </button>
@@ -330,15 +330,15 @@ function DashboardContent({
       {/* Header Info */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-white">Dashboard de Analise</h2>
-          <p className="text-white/60 flex items-center gap-2 mt-1">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Dashboard de Analise</h2>
+          <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 flex items-center gap-2 mt-1">
             <Calendar className="w-4 h-4" />
             Atualizado em {data.dataEmissao}
           </p>
         </div>
-        <div className="flex items-center gap-2 text-sm text-white/60 bg-navy-800/50 px-4 py-2 rounded-lg">
+        <div className="flex items-center gap-2 text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 bg-slate-100 dark:bg-navy-800/50 px-4 py-2 rounded-lg">
           <Building2 className="w-4 h-4" />
-          Cliente: <span className="text-white font-medium">{data.cliente}</span>
+          Cliente: <span className="text-slate-900 dark:text-white font-medium">{data.cliente}</span>
         </div>
       </div>
 
@@ -418,15 +418,15 @@ function DashboardContent({
             initial={{ opacity: 0, x: index === 0 ? -20 : 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-            className="bg-navy-900 border border-navy-700 rounded-xl p-6"
+            className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-6"
           >
-            <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <Building2 className="w-5 h-5 text-gold-400" />
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+              <Building2 className="w-5 h-5 text-blue-400" />
               {grupo.nome.replace(/_/g, " ")}
             </h3>
-            <div className="text-3xl font-bold text-gold-400 mb-4">
+            <div className="text-3xl font-bold text-blue-400 mb-4">
               {grupo.registros.toLocaleString()}
-              <span className="text-sm font-normal text-white/60 ml-2">registros</span>
+              <span className="text-sm font-normal text-slate-900 dark:text-slate-600 dark:text-white/60 ml-2">registros</span>
             </div>
 
             {/* Progress bars - Clicaveis */}
@@ -478,7 +478,7 @@ function DashboardContent({
           </h3>
           <div className="space-y-4">
             {data.alertas.map((alerta, index) => (
-              <div key={index} className="bg-navy-900/50 border border-red-500/20 rounded-lg p-4 hover:border-red-500/40 transition-colors cursor-pointer"
+              <div key={index} className="bg-white dark:bg-navy-900/50 border border-red-500/20 rounded-lg p-4 hover:border-red-500/40 transition-colors cursor-pointer"
                 onClick={() => {
                   if (alerta.tipo.includes("SANCIONADO")) onOpenDetail("sancionados");
                   else if (alerta.tipo.includes("CANDIDATO")) onOpenDetail("candidatos");
@@ -487,17 +487,17 @@ function DashboardContent({
               >
                 <div className="flex flex-col sm:flex-row justify-between gap-2">
                   <div>
-                    <h4 className="font-semibold text-white">{alerta.nome}</h4>
-                    <p className="text-sm text-white/60">CPF: {alerta.cpf}</p>
+                    <h4 className="font-semibold text-slate-900 dark:text-white">{alerta.nome}</h4>
+                    <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">CPF: {alerta.cpf}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-500/20 text-red-400 h-fit">
                       {alerta.tipo}
                     </span>
-                    <ChevronRight className="w-4 h-4 text-white/40" />
+                    <ChevronRight className="w-4 h-4 text-slate-900 dark:text-white/40" />
                   </div>
                 </div>
-                <p className="text-sm text-white/70 mt-2">{alerta.detalhe}</p>
+                <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70 mt-2">{alerta.detalhe}</p>
               </div>
             ))}
           </div>
@@ -509,10 +509,10 @@ function DashboardContent({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.5 }}
-        className="bg-navy-900 border border-navy-700 rounded-xl p-6"
+        className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-6"
       >
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
             <Vote className="w-5 h-5 text-purple-400" />
             Candidatos Identificados ({data.candidatos.length})
           </h3>
@@ -529,36 +529,36 @@ function DashboardContent({
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-navy-700">
-                <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Nome</th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Cargo</th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Partido</th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-white/60">UF</th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Ano</th>
+              <tr className="border-b border-slate-400 dark:border-navy-700">
+                <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Nome</th>
+                <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Cargo</th>
+                <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Partido</th>
+                <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">UF</th>
+                <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Ano</th>
               </tr>
             </thead>
             <tbody>
               {data.candidatos.slice(0, 5).map((candidato, index) => (
                 <tr
                   key={index}
-                  className="border-b border-navy-800 hover:bg-navy-800/50 transition-colors cursor-pointer"
+                  className="border-b border-slate-300 dark:border-navy-800 hover:bg-slate-100 dark:bg-navy-800/50 transition-colors cursor-pointer"
                   onClick={() => onOpenDetail("candidatos")}
                 >
-                  <td className="py-3 px-4 text-white font-medium">{candidato.nome}</td>
-                  <td className="py-3 px-4 text-white/80">{candidato.cargo}</td>
+                  <td className="py-3 px-4 text-slate-900 dark:text-white font-medium">{candidato.nome}</td>
+                  <td className="py-3 px-4 text-slate-900 dark:text-slate-800 dark:text-white/80">{candidato.cargo}</td>
                   <td className="py-3 px-4">
                     <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-purple-500/20 text-purple-400">
                       {candidato.partido}
                     </span>
                   </td>
-                  <td className="py-3 px-4 text-white/80">{candidato.uf}</td>
-                  <td className="py-3 px-4 text-white/80">{candidato.ano}</td>
+                  <td className="py-3 px-4 text-slate-900 dark:text-slate-800 dark:text-white/80">{candidato.uf}</td>
+                  <td className="py-3 px-4 text-slate-900 dark:text-slate-800 dark:text-white/80">{candidato.ano}</td>
                 </tr>
               ))}
             </tbody>
           </table>
           {data.candidatos.length > 5 && (
-            <p className="text-center text-sm text-white/50 mt-4">
+            <p className="text-center text-sm text-slate-900 dark:text-slate-500 dark:text-white/50 mt-4">
               +{data.candidatos.length - 5} candidatos. Clique em "Ver todos" para mais detalhes.
             </p>
           )}
@@ -627,7 +627,7 @@ function DetailModal({
     red: "text-red-400 bg-red-500/10 border-red-500/30",
     amber: "text-amber-400 bg-amber-500/10 border-amber-500/30",
     orange: "text-orange-400 bg-orange-500/10 border-orange-500/30",
-    cyan: "text-cyan-400 bg-cyan-500/10 border-cyan-500/30",
+    cyan: "text-blue-400 bg-blue-500/10 border-blue-500/30",
   };
 
   return (
@@ -642,24 +642,24 @@ function DetailModal({
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 20 }}
-        className="relative w-full max-w-4xl max-h-[85vh] bg-navy-900 rounded-2xl shadow-2xl border border-navy-700 overflow-hidden"
+        className="relative w-full max-w-4xl max-h-[85vh] bg-white dark:bg-navy-900 rounded-2xl shadow-2xl border border-slate-400 dark:border-navy-700 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className={`p-6 border-b border-navy-700 ${colorClasses[config.color]}`}>
+        <div className={`p-6 border-b border-slate-400 dark:border-navy-700 ${colorClasses[config.color]}`}>
           <div className="flex justify-between items-start">
             <div className="flex items-center gap-3">
               <div className={`p-3 rounded-lg ${colorClasses[config.color]}`}>
                 <Icon className="w-6 h-6" />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-white">{config.title}</h2>
-                <p className="text-sm text-white/60 mt-1">{config.subtitle}</p>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">{config.title}</h2>
+                <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">{config.subtitle}</p>
               </div>
             </div>
             <button
               onClick={onClose}
-              className="text-white/60 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg"
+              className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg"
             >
               <X className="w-5 h-5" />
             </button>
@@ -684,41 +684,41 @@ function CandidatosDetail({ candidatos }: { candidatos: typeof CLIENTE_01_DATA.c
   return (
     <div className="space-y-4">
       {candidatos.map((c, i) => (
-        <div key={i} className="bg-navy-800/50 border border-navy-700 rounded-lg p-4 hover:border-purple-500/30 transition-colors">
+        <div key={i} className="bg-slate-100 dark:bg-navy-800/50 border border-slate-400 dark:border-navy-700 rounded-lg p-4 hover:border-purple-500/30 transition-colors">
           <div className="flex flex-col sm:flex-row justify-between gap-3">
             <div>
-              <h4 className="font-semibold text-white text-lg">{c.nome}</h4>
-              <p className="text-sm text-white/60 mt-1">CPF: {c.cpf}</p>
+              <h4 className="font-semibold text-slate-900 dark:text-white text-lg">{c.nome}</h4>
+              <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">CPF: {c.cpf}</p>
             </div>
             <div className="flex flex-wrap gap-2">
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-500/20 text-purple-400">
                 {c.partido}
               </span>
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-navy-700 text-white/70">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
                 {c.ano}
               </span>
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 pt-4 border-t border-navy-700">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 pt-4 border-t border-slate-400 dark:border-navy-700">
             <div>
-              <p className="text-xs text-white/50 flex items-center gap-1"><Vote className="w-3 h-3" /> Cargo</p>
-              <p className="text-sm text-white font-medium">{c.cargo}</p>
+              <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 flex items-center gap-1"><Vote className="w-3 h-3" /> Cargo</p>
+              <p className="text-sm text-slate-900 dark:text-white font-medium">{c.cargo}</p>
             </div>
             <div>
-              <p className="text-xs text-white/50 flex items-center gap-1"><MapPin className="w-3 h-3" /> UF</p>
-              <p className="text-sm text-white font-medium">{c.uf}</p>
+              <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 flex items-center gap-1"><MapPin className="w-3 h-3" /> UF</p>
+              <p className="text-sm text-slate-900 dark:text-white font-medium">{c.uf}</p>
             </div>
             <div>
-              <p className="text-xs text-white/50 flex items-center gap-1"><Hash className="w-3 h-3" /> Votos</p>
-              <p className="text-sm text-white font-medium">{c.votos?.toLocaleString() || "N/I"}</p>
+              <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 flex items-center gap-1"><Hash className="w-3 h-3" /> Votos</p>
+              <p className="text-sm text-slate-900 dark:text-white font-medium">{c.votos?.toLocaleString() || "N/I"}</p>
             </div>
             <div>
-              <p className="text-xs text-white/50 flex items-center gap-1"><TrendingUp className="w-3 h-3" /> Situacao</p>
-              <p className="text-sm text-white font-medium">{c.situacao}</p>
+              <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 flex items-center gap-1"><TrendingUp className="w-3 h-3" /> Situacao</p>
+              <p className="text-sm text-slate-900 dark:text-white font-medium">{c.situacao}</p>
             </div>
           </div>
-          <div className="mt-3 pt-3 border-t border-navy-700">
-            <span className="text-xs text-white/40">Grupo: {c.grupo}</span>
+          <div className="mt-3 pt-3 border-t border-slate-400 dark:border-navy-700">
+            <span className="text-xs text-slate-900 dark:text-white/40">Grupo: {c.grupo}</span>
           </div>
         </div>
       ))}
@@ -737,29 +737,29 @@ function DoadoresDetail({ doadores }: { doadores: typeof CLIENTE_01_DATA.doadore
       </div>
 
       {doadores.map((d, i) => (
-        <div key={i} className="bg-navy-800/50 border border-navy-700 rounded-lg p-4 hover:border-emerald-500/30 transition-colors">
+        <div key={i} className="bg-slate-100 dark:bg-navy-800/50 border border-slate-400 dark:border-navy-700 rounded-lg p-4 hover:border-emerald-500/30 transition-colors">
           <div className="flex flex-col sm:flex-row justify-between gap-3">
             <div>
-              <h4 className="font-semibold text-white text-lg">{d.nome}</h4>
-              <p className="text-sm text-white/60 mt-1">CPF: {d.cpf}</p>
+              <h4 className="font-semibold text-slate-900 dark:text-white text-lg">{d.nome}</h4>
+              <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">CPF: {d.cpf}</p>
             </div>
             <div className="text-right">
               <p className="text-xl font-bold text-emerald-400">R$ {d.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</p>
-              <p className="text-xs text-white/50">{d.ano}</p>
+              <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">{d.ano}</p>
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4 pt-4 border-t border-navy-700">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4 pt-4 border-t border-slate-400 dark:border-navy-700">
             <div>
-              <p className="text-xs text-white/50 flex items-center gap-1"><Users className="w-3 h-3" /> Candidato</p>
-              <p className="text-sm text-white font-medium">{d.candidato}</p>
+              <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 flex items-center gap-1"><Users className="w-3 h-3" /> Candidato</p>
+              <p className="text-sm text-slate-900 dark:text-white font-medium">{d.candidato}</p>
             </div>
             <div>
-              <p className="text-xs text-white/50 flex items-center gap-1"><Vote className="w-3 h-3" /> Partido</p>
-              <p className="text-sm text-white font-medium">{d.partido}</p>
+              <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 flex items-center gap-1"><Vote className="w-3 h-3" /> Partido</p>
+              <p className="text-sm text-slate-900 dark:text-white font-medium">{d.partido}</p>
             </div>
             <div>
-              <p className="text-xs text-white/50 flex items-center gap-1"><Building2 className="w-3 h-3" /> Grupo</p>
-              <p className="text-sm text-white font-medium">{d.grupo}</p>
+              <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 flex items-center gap-1"><Building2 className="w-3 h-3" /> Grupo</p>
+              <p className="text-sm text-slate-900 dark:text-white font-medium">{d.grupo}</p>
             </div>
           </div>
         </div>
@@ -772,7 +772,7 @@ function SancionadosDetail({ sancionados }: { sancionados: typeof CLIENTE_01_DAT
   return (
     <div className="space-y-4">
       {sancionados.length === 0 ? (
-        <div className="text-center py-8 text-white/60">
+        <div className="text-center py-8 text-slate-900 dark:text-slate-600 dark:text-white/60">
           <Shield className="w-12 h-12 mx-auto mb-3 opacity-50" />
           <p>Nenhum sancionado encontrado.</p>
         </div>
@@ -781,24 +781,24 @@ function SancionadosDetail({ sancionados }: { sancionados: typeof CLIENTE_01_DAT
           <div key={i} className="bg-red-500/5 border border-red-500/30 rounded-lg p-4">
             <div className="flex flex-col sm:flex-row justify-between gap-3">
               <div>
-                <h4 className="font-semibold text-white text-lg">{s.nome}</h4>
-                <p className="text-sm text-white/60 mt-1">CPF: {s.cpf}</p>
+                <h4 className="font-semibold text-slate-900 dark:text-white text-lg">{s.nome}</h4>
+                <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">CPF: {s.cpf}</p>
               </div>
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-500/20 text-red-400 h-fit">
                 {s.tipo}
               </span>
             </div>
-            <div className="mt-4 p-3 bg-navy-900/50 rounded-lg">
+            <div className="mt-4 p-3 bg-white dark:bg-navy-900/50 rounded-lg">
               <p className="text-sm text-red-300 font-medium">{s.motivo}</p>
-              <p className="text-xs text-white/50 mt-2">Orgao: {s.orgao}</p>
+              <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mt-2">Orgao: {s.orgao}</p>
             </div>
             <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-red-500/20">
               <div>
-                <p className="text-xs text-white/50">Data Inicio</p>
-                <p className="text-sm text-white font-medium">{s.dataInicio}</p>
+                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Data Inicio</p>
+                <p className="text-sm text-slate-900 dark:text-white font-medium">{s.dataInicio}</p>
               </div>
               <div>
-                <p className="text-xs text-white/50">Data Fim</p>
+                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Data Fim</p>
                 <p className="text-sm text-red-400 font-medium">{s.dataFim}</p>
               </div>
             </div>
@@ -812,15 +812,15 @@ function SancionadosDetail({ sancionados }: { sancionados: typeof CLIENTE_01_DAT
 function VinculosDetail({ vinculos }: { vinculos: typeof CLIENTE_01_DATA.vinculosEmpresariais }) {
   return (
     <div className="space-y-4">
-      <p className="text-white/60 text-sm mb-4">
+      <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-sm mb-4">
         Lista parcial de funcionarios com vinculos empresariais identificados. Para a lista completa, consulte o relatorio em PDF.
       </p>
       {vinculos.map((v, i) => (
-        <div key={i} className="bg-navy-800/50 border border-navy-700 rounded-lg p-4 hover:border-amber-500/30 transition-colors">
+        <div key={i} className="bg-slate-100 dark:bg-navy-800/50 border border-slate-400 dark:border-navy-700 rounded-lg p-4 hover:border-amber-500/30 transition-colors">
           <div className="flex flex-col sm:flex-row justify-between gap-3">
             <div>
-              <h4 className="font-semibold text-white text-lg">{v.nome}</h4>
-              <p className="text-sm text-white/60 mt-1">CPF: {v.cpf}</p>
+              <h4 className="font-semibold text-slate-900 dark:text-white text-lg">{v.nome}</h4>
+              <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">CPF: {v.cpf}</p>
             </div>
             <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium h-fit ${
               v.situacao === "Ativa" ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"
@@ -830,23 +830,23 @@ function VinculosDetail({ vinculos }: { vinculos: typeof CLIENTE_01_DATA.vinculo
           </div>
           <div className="mt-4 p-3 bg-amber-500/5 border border-amber-500/20 rounded-lg">
             <p className="text-sm text-amber-300 font-medium">{v.razaoSocial}</p>
-            <p className="text-xs text-white/50 mt-1">CNPJ: {v.cnpj}</p>
+            <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mt-1">CNPJ: {v.cnpj}</p>
           </div>
-          <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-navy-700">
+          <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-slate-400 dark:border-navy-700">
             <div>
-              <p className="text-xs text-white/50">Participacao</p>
-              <p className="text-sm text-white font-medium">{v.participacao}</p>
+              <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Participacao</p>
+              <p className="text-sm text-slate-900 dark:text-white font-medium">{v.participacao}</p>
             </div>
             <div>
-              <p className="text-xs text-white/50">Grupo</p>
-              <p className="text-sm text-white font-medium">{v.grupo}</p>
+              <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Grupo</p>
+              <p className="text-sm text-slate-900 dark:text-white font-medium">{v.grupo}</p>
             </div>
           </div>
         </div>
       ))}
 
-      <div className="text-center py-4 border-t border-navy-700 mt-6">
-        <p className="text-white/50 text-sm">
+      <div className="text-center py-4 border-t border-slate-400 dark:border-navy-700 mt-6">
+        <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-sm">
           +498 vinculos empresariais no relatorio completo
         </p>
       </div>
@@ -862,7 +862,7 @@ function OFACDetail({ ofacMatches, totalMatches }: { ofacMatches: typeof CLIENTE
           <Flag className="w-5 h-5 text-orange-400 mt-0.5" />
           <div>
             <p className="text-orange-400 font-medium">Sobre esta analise</p>
-            <p className="text-sm text-white/70 mt-1">
+            <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70 mt-1">
               A lista OFAC SDN (Specially Designated Nationals) do Tesouro dos EUA contem nomes de pessoas e entidades sancionadas.
               Os matches abaixo sao baseados em <strong>similaridade de nome (50%)</strong> e <strong>NAO indicam necessariamente</strong> que
               a pessoa seja a mesma da lista. Recomenda-se verificacao manual adicional.
@@ -871,56 +871,56 @@ function OFACDetail({ ofacMatches, totalMatches }: { ofacMatches: typeof CLIENTE
         </div>
       </div>
 
-      <div className="bg-navy-800/50 rounded-lg p-4 mb-4">
+      <div className="bg-slate-100 dark:bg-navy-800/50 rounded-lg p-4 mb-4">
         <div className="grid grid-cols-3 gap-4 text-center">
           <div>
             <p className="text-2xl font-bold text-orange-400">{totalMatches}</p>
-            <p className="text-xs text-white/50">Matches Encontrados</p>
+            <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Matches Encontrados</p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-white">50%</p>
-            <p className="text-xs text-white/50">Similaridade Minima</p>
+            <p className="text-2xl font-bold text-slate-900 dark:text-white">50%</p>
+            <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Similaridade Minima</p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-white">18.411</p>
-            <p className="text-xs text-white/50">Registros na Lista SDN</p>
+            <p className="text-2xl font-bold text-slate-900 dark:text-white">18.411</p>
+            <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Registros na Lista SDN</p>
           </div>
         </div>
       </div>
 
-      <p className="text-white/60 text-sm mb-4">
+      <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-sm mb-4">
         Mostrando {ofacMatches.length} de {totalMatches} matches. Para a lista completa, consulte o relatorio em PDF.
       </p>
 
       {ofacMatches.map((m, i) => (
-        <div key={i} className="bg-navy-800/50 border border-navy-700 rounded-lg p-4 hover:border-orange-500/30 transition-colors">
+        <div key={i} className="bg-slate-100 dark:bg-navy-800/50 border border-slate-400 dark:border-navy-700 rounded-lg p-4 hover:border-orange-500/30 transition-colors">
           <div className="flex flex-col sm:flex-row justify-between gap-3">
             <div>
-              <h4 className="font-semibold text-white text-lg">{m.nome}</h4>
-              <p className="text-sm text-white/60 mt-1">CPF: {m.cpf}</p>
+              <h4 className="font-semibold text-slate-900 dark:text-white text-lg">{m.nome}</h4>
+              <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">CPF: {m.cpf}</p>
             </div>
             <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-orange-500/20 text-orange-400 h-fit">
               {m.similaridade}% similar
             </span>
           </div>
           <div className="mt-4 p-3 bg-orange-500/5 border border-orange-500/20 rounded-lg">
-            <p className="text-xs text-white/50 mb-1">Match na Lista OFAC:</p>
+            <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mb-1">Match na Lista OFAC:</p>
             <p className="text-sm text-orange-300 font-medium">{m.matchOFAC}</p>
             <div className="flex items-center gap-2 mt-2">
-              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-white/70">
+              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
                 {m.programa}
               </span>
-              <span className="text-xs text-white/40">Programa de Sancoes</span>
+              <span className="text-xs text-slate-900 dark:text-white/40">Programa de Sancoes</span>
             </div>
           </div>
-          <div className="mt-3 pt-3 border-t border-navy-700">
-            <span className="text-xs text-white/40">Grupo: {m.grupo}</span>
+          <div className="mt-3 pt-3 border-t border-slate-400 dark:border-navy-700">
+            <span className="text-xs text-slate-900 dark:text-white/40">Grupo: {m.grupo}</span>
           </div>
         </div>
       ))}
 
-      <div className="text-center py-4 border-t border-navy-700 mt-6">
-        <p className="text-white/50 text-sm">
+      <div className="text-center py-4 border-t border-slate-400 dark:border-navy-700 mt-6">
+        <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-sm">
           +{totalMatches - ofacMatches.length} matches OFAC no relatorio completo
         </p>
       </div>
@@ -931,12 +931,12 @@ function OFACDetail({ ofacMatches, totalMatches }: { ofacMatches: typeof CLIENTE
 function ObitoDetail({ verificacao }: { verificacao: typeof CLIENTE_01_DATA.verificacaoObito }) {
   return (
     <div className="space-y-4">
-      <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-4 mb-6">
+      <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 mb-6">
         <div className="flex items-start gap-3">
-          <HeartPulse className="w-5 h-5 text-cyan-400 mt-0.5" />
+          <HeartPulse className="w-5 h-5 text-blue-400 mt-0.5" />
           <div>
-            <p className="text-cyan-400 font-medium">Sobre esta verificacao</p>
-            <p className="text-sm text-white/70 mt-1">
+            <p className="text-blue-400 font-medium">Sobre esta verificacao</p>
+            <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70 mt-1">
               Consulta realizada na Receita Federal para verificar a situacao cadastral dos CPFs.
               Identifica se a pessoa esta viva, falecida ou com pendencias de regularizacao.
             </p>
@@ -944,23 +944,23 @@ function ObitoDetail({ verificacao }: { verificacao: typeof CLIENTE_01_DATA.veri
         </div>
       </div>
 
-      <div className="bg-navy-800/50 rounded-lg p-4 mb-4">
+      <div className="bg-slate-100 dark:bg-navy-800/50 rounded-lg p-4 mb-4">
         <div className="grid grid-cols-4 gap-4 text-center">
           <div>
-            <p className="text-2xl font-bold text-cyan-400">{verificacao.totalVerificados.toLocaleString()}</p>
-            <p className="text-xs text-white/50">Total Verificados</p>
+            <p className="text-2xl font-bold text-blue-400">{verificacao.totalVerificados.toLocaleString()}</p>
+            <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Total Verificados</p>
           </div>
           <div>
             <p className="text-2xl font-bold text-emerald-400">{verificacao.vivos.toLocaleString()}</p>
-            <p className="text-xs text-white/50">Vivos</p>
+            <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Vivos</p>
           </div>
           <div>
             <p className="text-2xl font-bold text-red-400">{verificacao.falecidos}</p>
-            <p className="text-xs text-white/50">Falecidos</p>
+            <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Falecidos</p>
           </div>
           <div>
             <p className="text-2xl font-bold text-amber-400">{verificacao.pendentesRegularizacao}</p>
-            <p className="text-xs text-white/50">Pend. Regularizacao</p>
+            <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Pend. Regularizacao</p>
           </div>
         </div>
       </div>
@@ -969,7 +969,7 @@ function ObitoDetail({ verificacao }: { verificacao: typeof CLIENTE_01_DATA.veri
         <>
           <div className="flex items-center gap-2 mb-4">
             <AlertTriangle className="w-4 h-4 text-amber-400" />
-            <p className="text-white/80 text-sm font-medium">
+            <p className="text-slate-900 dark:text-slate-800 dark:text-white/80 text-sm font-medium">
               CPFs com pendencias de regularizacao ({verificacao.pendentesRegularizacao})
             </p>
           </div>
@@ -978,8 +978,8 @@ function ObitoDetail({ verificacao }: { verificacao: typeof CLIENTE_01_DATA.veri
             <div key={i} className="bg-amber-500/5 border border-amber-500/30 rounded-lg p-4">
               <div className="flex flex-col sm:flex-row justify-between gap-3">
                 <div>
-                  <h4 className="font-semibold text-white text-lg">{d.nome}</h4>
-                  <p className="text-sm text-white/60 mt-1">CPF: {d.cpf}</p>
+                  <h4 className="font-semibold text-slate-900 dark:text-white text-lg">{d.nome}</h4>
+                  <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">CPF: {d.cpf}</p>
                 </div>
                 <div className="flex flex-col items-end gap-1">
                   <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium h-fit ${
@@ -996,7 +996,7 @@ function ObitoDetail({ verificacao }: { verificacao: typeof CLIENTE_01_DATA.veri
                 </div>
               </div>
               <div className="mt-3 pt-3 border-t border-amber-500/20">
-                <span className="text-xs text-white/40">Grupo: {d.grupo}</span>
+                <span className="text-xs text-slate-900 dark:text-white/40">Grupo: {d.grupo}</span>
               </div>
             </div>
           ))}
@@ -1007,7 +1007,7 @@ function ObitoDetail({ verificacao }: { verificacao: typeof CLIENTE_01_DATA.veri
         <>
           <div className="flex items-center gap-2 mb-4 mt-6">
             <UserX className="w-4 h-4 text-red-400" />
-            <p className="text-white/80 text-sm font-medium">
+            <p className="text-slate-900 dark:text-slate-800 dark:text-white/80 text-sm font-medium">
               Pessoas Falecidas ({verificacao.falecidos})
             </p>
           </div>
@@ -1016,8 +1016,8 @@ function ObitoDetail({ verificacao }: { verificacao: typeof CLIENTE_01_DATA.veri
             <div key={i} className="bg-red-500/5 border border-red-500/30 rounded-lg p-4">
               <div className="flex flex-col sm:flex-row justify-between gap-3">
                 <div>
-                  <h4 className="font-semibold text-white text-lg">{d.nome}</h4>
-                  <p className="text-sm text-white/60 mt-1">CPF: {d.cpf}</p>
+                  <h4 className="font-semibold text-slate-900 dark:text-white text-lg">{d.nome}</h4>
+                  <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">CPF: {d.cpf}</p>
                 </div>
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-500/20 text-red-400 h-fit">
                   <UserX className="w-3 h-3 mr-1" />
@@ -1025,7 +1025,7 @@ function ObitoDetail({ verificacao }: { verificacao: typeof CLIENTE_01_DATA.veri
                 </span>
               </div>
               <div className="mt-3 pt-3 border-t border-red-500/20">
-                <span className="text-xs text-white/40">Grupo: {d.grupo}</span>
+                <span className="text-xs text-slate-900 dark:text-white/40">Grupo: {d.grupo}</span>
               </div>
             </div>
           ))}
@@ -1033,14 +1033,14 @@ function ObitoDetail({ verificacao }: { verificacao: typeof CLIENTE_01_DATA.veri
       )}
 
       {verificacao.pendentesRegularizacao === 0 && verificacao.falecidos === 0 && (
-        <div className="text-center py-8 text-white/60">
+        <div className="text-center py-8 text-slate-900 dark:text-slate-600 dark:text-white/60">
           <UserCheck className="w-12 h-12 mx-auto mb-3 text-emerald-400 opacity-50" />
           <p className="text-emerald-400">Todos os CPFs estao regulares e sem pendencias.</p>
         </div>
       )}
 
-      <div className="text-center py-4 border-t border-navy-700 mt-6">
-        <p className="text-white/50 text-sm">
+      <div className="text-center py-4 border-t border-slate-400 dark:border-navy-700 mt-6">
+        <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-sm">
           Consulta atualizada em 27/11/2024 via Receita Federal
         </p>
       </div>
@@ -1057,8 +1057,8 @@ function RelatoriosContent({ data }: { data: typeof CLIENTE_01_DATA }) {
       className="space-y-6"
     >
       <div>
-        <h2 className="text-2xl font-bold text-white">Relatorios Disponiveis</h2>
-        <p className="text-white/60 mt-1">Documentos gerados para sua analise</p>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Relatorios Disponiveis</h2>
+        <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">Documentos gerados para sua analise</p>
       </div>
 
       <div className="grid gap-4">
@@ -1068,17 +1068,17 @@ function RelatoriosContent({ data }: { data: typeof CLIENTE_01_DATA }) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
-            className="bg-navy-900 border border-navy-700 rounded-xl p-6 hover:border-gold-500/50 transition-all"
+            className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-6 hover:border-blue-500/50 transition-all"
           >
             <div className="flex flex-col sm:flex-row justify-between gap-4">
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-gold-500/10 rounded-lg flex items-center justify-center">
-                  <FileText className="w-6 h-6 text-gold-400" />
+                <div className="flex-shrink-0 w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center">
+                  <FileText className="w-6 h-6 text-blue-400" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white">{relatorio.nome}</h3>
-                  <p className="text-sm text-white/60 mt-1">{relatorio.descricao}</p>
-                  <div className="flex items-center gap-4 mt-2 text-xs text-white/50">
+                  <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{relatorio.nome}</h3>
+                  <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">{relatorio.descricao}</p>
+                  <div className="flex items-center gap-4 mt-2 text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3 h-3" />
                       {relatorio.dataGeracao}
@@ -1092,7 +1092,7 @@ function RelatoriosContent({ data }: { data: typeof CLIENTE_01_DATA }) {
                   href={relatorio.arquivo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-navy-800 hover:bg-navy-700 text-white rounded-lg transition-colors text-sm"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-slate-100 dark:bg-navy-800 hover:bg-navy-700 text-slate-900 dark:text-white rounded-lg transition-colors text-sm"
                 >
                   <Eye className="w-4 h-4" />
                   Visualizar
@@ -1100,7 +1100,7 @@ function RelatoriosContent({ data }: { data: typeof CLIENTE_01_DATA }) {
                 <a
                   href={relatorio.arquivo}
                   download
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-gold-500 hover:bg-gold-600 text-navy-950 font-medium rounded-lg transition-colors text-sm"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-navy-950 font-medium rounded-lg transition-colors text-sm"
                 >
                   <Download className="w-4 h-4" />
                   Baixar PDF
@@ -1112,12 +1112,12 @@ function RelatoriosContent({ data }: { data: typeof CLIENTE_01_DATA }) {
       </div>
 
       {/* Info about reports */}
-      <div className="bg-navy-800/50 border border-navy-700 rounded-xl p-6 mt-8">
-        <h3 className="font-semibold text-white mb-3 flex items-center gap-2">
-          <Shield className="w-5 h-5 text-gold-400" />
+      <div className="bg-slate-100 dark:bg-navy-800/50 border border-slate-400 dark:border-navy-700 rounded-xl p-6 mt-8">
+        <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+          <Shield className="w-5 h-5 text-blue-400" />
           Sobre os Relatorios
         </h3>
-        <ul className="space-y-2 text-sm text-white/70">
+        <ul className="space-y-2 text-sm text-slate-900 dark:text-slate-700 dark:text-white/70">
           <li>Os relatorios sao gerados com base em dados publicos oficiais</li>
           <li>Fontes: TSE, CGU (CEIS/CNEP), Portal da Transparencia, Receita Federal</li>
           <li>Os documentos sao confidenciais e de uso exclusivo do cliente</li>
@@ -1152,7 +1152,7 @@ function KPICard({
     red: "bg-red-500/10 text-red-400 border-red-500/30 hover:border-red-500/60",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/30 hover:border-amber-500/60",
     orange: "bg-orange-500/10 text-orange-400 border-orange-500/30 hover:border-orange-500/60",
-    cyan: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30 hover:border-cyan-500/60",
+    cyan: "bg-blue-500/10 text-blue-400 border-blue-500/30 hover:border-blue-500/60",
   };
 
   return (
@@ -1212,13 +1212,13 @@ function ProgressBarClickable({
       onClick={onClick}
     >
       <div className="flex justify-between text-sm mb-1">
-        <span className="text-white/70 flex items-center gap-1">
+        <span className="text-slate-900 dark:text-slate-700 dark:text-white/70 flex items-center gap-1">
           {label}
           <ChevronRight className="w-3 h-3 opacity-50" />
         </span>
-        <span className="text-white font-medium">{value}</span>
+        <span className="text-slate-900 dark:text-white font-medium">{value}</span>
       </div>
-      <div className="h-2 bg-navy-800 rounded-full overflow-hidden">
+      <div className="h-2 bg-slate-100 dark:bg-navy-800 rounded-full overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${percentage}%` }}

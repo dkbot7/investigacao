@@ -35,7 +35,7 @@ export default function SeriesCard({
     <Link href={`/series/${slug}`}>
       <motion.article
         whileHover={{ y: -4 }}
-        className="group relative rounded-2xl overflow-hidden border border-gold-500/10 bg-navy-900/50 hover:border-gold-500/30 transition-colors h-full"
+        className="group relative rounded-2xl overflow-hidden border border-blue-500/10 bg-white dark:bg-white/50 dark:bg-navy-900/50 hover:border-blue-500/30 transition-colors h-full"
       >
         {/* Cover image */}
         <div className="relative h-40 overflow-hidden">
@@ -64,7 +64,7 @@ export default function SeriesCard({
                 Completa
               </span>
             ) : (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gold-500/20 text-gold-400 text-xs font-medium">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-medium">
                 <Clock className="w-3 h-3" />
                 Em andamento
               </span>
@@ -84,21 +84,21 @@ export default function SeriesCard({
 
         {/* Content */}
         <div className="p-5">
-          <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-gold-400 transition-colors line-clamp-2">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-blue-400 transition-colors line-clamp-2">
             {name}
           </h3>
 
-          <p className="text-sm text-navy-400 mb-4 line-clamp-2">{description}</p>
+          <p className="text-sm text-slate-500 dark:text-navy-400 mb-4 line-clamp-2">{description}</p>
 
           {/* Progress */}
           <div className="mb-4">
-            <div className="flex items-center justify-between text-xs text-navy-500 mb-1.5">
+            <div className="flex items-center justify-between text-xs text-slate-900 dark:text-navy-500 mb-1.5">
               <span>
                 {publishedParts} de {totalParts} partes
               </span>
               <span>{Math.round(progress)}%</span>
             </div>
-            <div className="h-1.5 bg-navy-800 rounded-full overflow-hidden">
+            <div className="h-1.5 bg-slate-100 dark:bg-navy-800 rounded-full overflow-hidden">
               <div
                 className="h-full rounded-full transition-all duration-300"
                 style={{
@@ -112,11 +112,11 @@ export default function SeriesCard({
           {/* Footer */}
           <div className="flex items-center justify-between">
             {estimatedTime && (
-              <span className="text-xs text-navy-500">
+              <span className="text-xs text-slate-900 dark:text-navy-500">
                 ~{estimatedTime} min de leitura total
               </span>
             )}
-            <span className="inline-flex items-center gap-1 text-sm text-gold-400 group-hover:text-gold-300 transition-colors ml-auto">
+            <span className="inline-flex items-center gap-1 text-sm text-blue-400 group-hover:text-blue-300 transition-colors ml-auto">
               Ver série
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </span>

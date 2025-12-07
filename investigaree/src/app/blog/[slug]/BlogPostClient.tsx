@@ -43,18 +43,18 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
     return (
       <>
         <Header />
-        <main className="min-h-screen bg-navy-950 pt-20">
+        <main className="min-h-screen bg-slate-50 dark:bg-navy-950 pt-20">
           <div className="container mx-auto px-4 py-16">
             <div className="max-w-3xl mx-auto">
               {/* Skeleton */}
               <div className="animate-pulse space-y-4">
-                <div className="h-8 bg-navy-800 rounded w-3/4" />
-                <div className="h-4 bg-navy-800 rounded w-1/2" />
-                <div className="h-64 bg-navy-800 rounded-xl mt-8" />
+                <div className="h-8 bg-slate-100 dark:bg-navy-800 rounded w-3/4" />
+                <div className="h-4 bg-slate-100 dark:bg-navy-800 rounded w-1/2" />
+                <div className="h-64 bg-slate-100 dark:bg-navy-800 rounded-xl mt-8" />
                 <div className="space-y-3 mt-8">
-                  <div className="h-4 bg-navy-800 rounded" />
-                  <div className="h-4 bg-navy-800 rounded" />
-                  <div className="h-4 bg-navy-800 rounded w-5/6" />
+                  <div className="h-4 bg-slate-100 dark:bg-navy-800 rounded" />
+                  <div className="h-4 bg-slate-100 dark:bg-navy-800 rounded" />
+                  <div className="h-4 bg-slate-100 dark:bg-navy-800 rounded w-5/6" />
                 </div>
               </div>
             </div>
@@ -70,21 +70,21 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
     return (
       <>
         <Header />
-        <main className="min-h-screen bg-navy-950 pt-20">
+        <main className="min-h-screen bg-slate-50 dark:bg-navy-950 pt-20">
           <div className="container mx-auto px-4 py-16">
             <div className="max-w-3xl mx-auto text-center">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-navy-800 flex items-center justify-center">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-slate-100 dark:bg-navy-800 flex items-center justify-center">
                 <span className="text-4xl">404</span>
               </div>
-              <h1 className="text-2xl font-bold text-white mb-4">
+              <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
                 Artigo não encontrado
               </h1>
-              <p className="text-navy-400 mb-8">
+              <p className="text-slate-500 dark:text-navy-400 mb-8">
                 O artigo que você está procurando não existe ou foi removido.
               </p>
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold rounded-xl transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold rounded-xl transition-colors"
               >
                 <ChevronLeft className="w-4 h-4" />
                 Voltar ao Blog
@@ -100,7 +100,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-navy-950">
+      <main className="min-h-screen bg-slate-50 dark:bg-navy-950">
         {/* Hero do artigo */}
         <section className="relative pt-20">
           {/* Imagem de capa */}
@@ -112,12 +112,12 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent dark:from-navy-950 dark:via-navy-950/60 dark:to-transparent" />
 
             {/* Back link */}
             <Link
               href="/blog"
-              className="absolute top-6 left-6 z-20 flex items-center gap-2 px-4 py-2 bg-navy-900/80 backdrop-blur-sm rounded-lg text-sm text-white hover:bg-navy-800 transition-colors"
+              className="absolute top-6 left-6 z-20 flex items-center gap-2 px-4 py-2 bg-white dark:bg-navy-900/80 backdrop-blur-sm rounded-lg text-sm text-slate-900 dark:text-white hover:bg-slate-100 dark:bg-navy-800 transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
               Voltar ao Blog
@@ -136,7 +136,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
               {skillLevel && (
                 <Badge
                   variant="outline"
-                  className="text-xs bg-navy-950/80 backdrop-blur-sm"
+                  className="text-xs bg-slate-50 dark:bg-navy-950/80 backdrop-blur-sm"
                   style={{ borderColor: skillLevel.color, color: skillLevel.color }}
                 >
                   {skillLevel.name}
@@ -146,7 +146,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
           </div>
 
           {/* Conteúdo do header */}
-          <div className="container mx-auto px-4 sm:px-8 lg:px-12 -mt-32 relative z-10">
+          <div className="container mx-auto px-4 sm:px-8 lg:px-12 py-8 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -166,17 +166,17 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
               </Badge>
 
               {/* Título */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
                 {post.title}
               </h1>
 
               {/* Resumo */}
-              <p className="text-lg sm:text-xl text-navy-300 mb-6">
+              <p className="text-lg sm:text-xl text-slate-600 dark:text-navy-300 mb-6">
                 {post.excerpt}
               </p>
 
               {/* Meta info */}
-              <div className="flex flex-wrap items-center gap-6 text-sm text-navy-400 pb-6 border-b border-gold-500/10">
+              <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-navy-400 pb-6 border-b border-blue-500/10">
                 {/* Autor */}
                 <div className="flex items-center gap-3">
                   {post.author.avatar ? (
@@ -188,14 +188,14 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                       className="rounded-full"
                     />
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-gold-500/20 flex items-center justify-center">
-                      <User className="w-5 h-5 text-gold-500" />
+                    <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
+                      <User className="w-5 h-5 text-blue-500" />
                     </div>
                   )}
                   <div>
-                    <p className="font-medium text-white">{post.author.name}</p>
+                    <p className="font-medium text-slate-900 dark:text-white">{post.author.name}</p>
                     {post.author.role && (
-                      <p className="text-xs text-navy-500">{post.author.role}</p>
+                      <p className="text-xs text-slate-900 dark:text-navy-500">{post.author.role}</p>
                     )}
                   </div>
                 </div>
@@ -215,13 +215,13 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                 {/* Share buttons */}
                 <div className="flex items-center gap-2 ml-auto">
                   <button
-                    className="p-2 rounded-lg bg-navy-800/50 hover:bg-navy-700 transition-colors"
+                    className="p-2 rounded-lg bg-slate-100 dark:bg-navy-800/50 hover:bg-navy-700 transition-colors"
                     title="Compartilhar"
                   >
                     <Share2 className="w-4 h-4" />
                   </button>
                   <button
-                    className="p-2 rounded-lg bg-navy-800/50 hover:bg-navy-700 transition-colors"
+                    className="p-2 rounded-lg bg-slate-100 dark:bg-navy-800/50 hover:bg-navy-700 transition-colors"
                     title="Salvar"
                   >
                     <Bookmark className="w-4 h-4" />
@@ -241,17 +241,17 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="prose prose-invert prose-gold max-w-none prose-headings:text-white prose-p:text-navy-300 prose-a:text-gold-400 hover:prose-a:text-gold-300 prose-strong:text-white prose-code:text-purple-400 prose-code:bg-navy-900/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded"
+                className="prose prose-invert prose-gold max-w-none prose-headings:text-slate-900 dark:text-white prose-p:text-slate-600 dark:text-navy-300 prose-a:text-blue-400 hover:prose-a:text-blue-300 prose-strong:text-white prose-code:text-purple-400 prose-code:bg-white dark:bg-navy-900/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded"
               >
                 <p className="text-lg leading-relaxed">
                   {post.excerpt}
                 </p>
 
-                <div className="my-8 p-6 rounded-xl bg-gold-500/10 border border-gold-500/20">
-                  <p className="text-gold-400 font-medium mb-2">
+                <div className="my-8 p-6 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                  <p className="text-blue-400 font-medium mb-2">
                     Conteúdo completo em breve
                   </p>
-                  <p className="text-navy-300 text-sm">
+                  <p className="text-slate-600 dark:text-navy-300 text-sm">
                     Este artigo está sendo preparado por nossa equipe de especialistas.
                     Enquanto isso, explore outros artigos do nosso blog.
                   </p>
@@ -274,18 +274,18 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="mt-8 pt-8 border-t border-gold-500/10"
+                  className="mt-8 pt-8 border-t border-blue-500/10"
                 >
                   <div className="flex items-center gap-2 mb-3">
-                    <Tag className="w-4 h-4 text-navy-500" />
-                    <p className="text-sm text-navy-500">Tags:</p>
+                    <Tag className="w-4 h-4 text-slate-900 dark:text-navy-500" />
+                    <p className="text-sm text-slate-900 dark:text-navy-500">Tags:</p>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
                       <Link
                         key={tag}
                         href={`/blog?tag=${tag}`}
-                        className="px-3 py-1 text-sm bg-navy-900/50 text-navy-300 rounded-lg hover:bg-navy-800 hover:text-white transition-colors"
+                        className="px-3 py-1 text-sm bg-white dark:bg-navy-900/50 text-slate-600 dark:text-navy-300 rounded-lg hover:bg-slate-100 dark:bg-navy-800 hover:text-slate-900 dark:text-white transition-colors"
                       >
                         #{tag}
                       </Link>
@@ -299,7 +299,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="mt-8 p-6 rounded-xl bg-navy-900/50 border border-gold-500/10"
+                className="mt-8 p-6 rounded-xl bg-white dark:bg-navy-900/50 border border-blue-500/10"
               >
                 <div className="flex items-start gap-4">
                   {post.author.avatar ? (
@@ -311,17 +311,17 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                       className="rounded-full"
                     />
                   ) : (
-                    <div className="w-16 h-16 rounded-full bg-gold-500/20 flex items-center justify-center text-2xl font-bold text-gold-500">
+                    <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-2xl font-bold text-blue-500">
                       {post.author.name[0]}
                     </div>
                   )}
                   <div>
-                    <p className="font-semibold text-white text-lg">{post.author.name}</p>
+                    <p className="font-semibold text-slate-900 dark:text-white text-lg">{post.author.name}</p>
                     {post.author.role && (
-                      <p className="text-gold-500 text-sm mb-2">{post.author.role}</p>
+                      <p className="text-blue-500 text-sm mb-2">{post.author.role}</p>
                     )}
                     {post.author.bio && (
-                      <p className="text-navy-400 text-sm">{post.author.bio}</p>
+                      <p className="text-slate-500 dark:text-navy-400 text-sm">{post.author.bio}</p>
                     )}
                   </div>
                 </div>
@@ -332,10 +332,10 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
 
         {/* Artigos relacionados */}
         {relatedPosts.length > 0 && (
-          <section className="py-12 border-t border-gold-500/10">
+          <section className="py-12 border-t border-blue-500/10">
             <div className="container mx-auto px-4 sm:px-8 lg:px-12">
               <div className="max-w-5xl mx-auto">
-                <h2 className="text-2xl font-bold text-white mb-8">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
                   Artigos relacionados
                 </h2>
 
@@ -368,10 +368,10 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                         >
                           {relatedPost.topic.name}
                         </Badge>
-                        <h3 className="font-semibold text-white group-hover:text-gold-400 transition-colors line-clamp-2">
+                        <h3 className="font-semibold text-slate-900 dark:text-white group-hover:text-blue-400 transition-colors line-clamp-2">
                           {relatedPost.title}
                         </h3>
-                        <p className="text-sm text-navy-400 mt-2 flex items-center gap-1">
+                        <p className="text-sm text-slate-500 dark:text-navy-400 mt-2 flex items-center gap-1">
                           <Clock className="w-3 h-3" />
                           {relatedPost.readingTime} min
                         </p>
@@ -383,7 +383,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                 <div className="mt-8 text-center">
                   <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 font-medium"
+                    className="inline-flex items-center gap-2 text-blue-500 hover:text-blue-400 font-medium"
                   >
                     Ver todos os artigos
                     <ArrowRight className="w-4 h-4" />

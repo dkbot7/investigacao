@@ -58,17 +58,17 @@ export default function BlogPagination({ pagination, onPageChange }: BlogPaginat
       className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8"
     >
       {/* Info de resultados */}
-      <p className="text-sm text-navy-400">
+      <p className="text-sm text-slate-500 dark:text-navy-400">
         Mostrando{" "}
-        <span className="font-medium text-navy-200">
+        <span className="font-medium text-slate-700 dark:text-navy-200">
           {(page - 1) * pagination.limit + 1}
         </span>{" "}
         a{" "}
-        <span className="font-medium text-navy-200">
+        <span className="font-medium text-slate-700 dark:text-navy-200">
           {Math.min(page * pagination.limit, total)}
         </span>{" "}
         de{" "}
-        <span className="font-medium text-navy-200">{total}</span> artigos
+        <span className="font-medium text-slate-700 dark:text-navy-200">{total}</span> artigos
       </p>
 
       {/* Controles de paginação */}
@@ -79,7 +79,7 @@ export default function BlogPagination({ pagination, onPageChange }: BlogPaginat
           size="sm"
           onClick={() => onPageChange(page - 1)}
           disabled={page === 1}
-          className="text-navy-400 hover:text-white hover:bg-navy-800 disabled:opacity-30"
+          className="text-slate-500 dark:text-navy-400 hover:text-slate-900 dark:text-white hover:bg-slate-100 dark:bg-navy-800 disabled:opacity-30"
         >
           <ChevronLeft className="w-4 h-4 mr-1" />
           Anterior
@@ -89,7 +89,7 @@ export default function BlogPagination({ pagination, onPageChange }: BlogPaginat
         <div className="flex items-center gap-1">
           {getPageNumbers().map((pageNum, index) =>
             pageNum === "..." ? (
-              <span key={`ellipsis-${index}`} className="px-2 text-navy-500">
+              <span key={`ellipsis-${index}`} className="px-2 text-slate-900 dark:text-navy-500">
                 ...
               </span>
             ) : (
@@ -100,8 +100,8 @@ export default function BlogPagination({ pagination, onPageChange }: BlogPaginat
                 whileTap={{ scale: 0.95 }}
                 className={`w-8 h-8 rounded-lg text-sm font-medium transition-all ${
                   page === pageNum
-                    ? "bg-gold-500 text-navy-950"
-                    : "text-navy-300 hover:bg-navy-800 hover:text-white"
+                    ? "bg-blue-500 text-navy-950"
+                    : "text-slate-600 dark:text-navy-300 hover:bg-slate-100 dark:bg-navy-800 hover:text-white"
                 }`}
               >
                 {pageNum}
@@ -116,7 +116,7 @@ export default function BlogPagination({ pagination, onPageChange }: BlogPaginat
           size="sm"
           onClick={() => onPageChange(page + 1)}
           disabled={page === totalPages}
-          className="text-navy-400 hover:text-white hover:bg-navy-800 disabled:opacity-30"
+          className="text-slate-500 dark:text-navy-400 hover:text-slate-900 dark:text-white hover:bg-slate-100 dark:bg-navy-800 disabled:opacity-30"
         >
           Próximo
           <ChevronRight className="w-4 h-4 ml-1" />

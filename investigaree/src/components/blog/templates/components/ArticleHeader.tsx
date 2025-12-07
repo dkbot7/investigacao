@@ -46,7 +46,7 @@ export default function ArticleHeader({
         {showBackLink && (
           <Link
             href="/blog"
-            className="absolute top-6 left-6 z-20 flex items-center gap-2 px-4 py-2 bg-navy-900/80 backdrop-blur-sm rounded-lg text-sm text-white hover:bg-navy-800 transition-colors"
+            className="absolute top-6 left-6 z-20 flex items-center gap-2 px-4 py-2 bg-white dark:bg-white/80 dark:bg-navy-900/80 backdrop-blur-sm rounded-lg text-sm text-slate-900 dark:text-white hover:bg-slate-100 dark:bg-navy-800 transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
             Voltar ao Blog
@@ -66,7 +66,7 @@ export default function ArticleHeader({
           {skillLevel && (
             <Badge
               variant="outline"
-              className="text-xs bg-navy-950/80 backdrop-blur-sm"
+              className="text-xs bg-slate-50 dark:bg-navy-950/80 backdrop-blur-sm"
               style={{ borderColor: skillLevel.color, color: skillLevel.color }}
             >
               {skillLevel.name}
@@ -96,17 +96,17 @@ export default function ArticleHeader({
           </Badge>
 
           {/* Título */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
             {post.title}
           </h1>
 
           {/* Resumo */}
-          <p className="text-lg sm:text-xl text-navy-300 mb-6">
+          <p className="text-lg sm:text-xl text-slate-600 dark:text-navy-300 mb-6">
             {post.excerpt}
           </p>
 
           {/* Meta info */}
-          <div className="flex flex-wrap items-center gap-6 text-sm text-navy-400 pb-6 border-b border-gold-500/10">
+          <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-navy-400 pb-6 border-b border-blue-500/10">
             {/* Autor */}
             <div className="flex items-center gap-3">
               {post.author.avatar ? (
@@ -118,14 +118,14 @@ export default function ArticleHeader({
                   className="rounded-full"
                 />
               ) : (
-                <div className="w-10 h-10 rounded-full bg-gold-500/20 flex items-center justify-center">
-                  <User className="w-5 h-5 text-gold-500" />
+                <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
+                  <User className="w-5 h-5 text-blue-500" />
                 </div>
               )}
               <div>
-                <p className="font-medium text-white">{post.author.name}</p>
+                <p className="font-medium text-slate-900 dark:text-white">{post.author.name}</p>
                 {post.author.role && (
-                  <p className="text-xs text-navy-500">{post.author.role}</p>
+                  <p className="text-xs text-slate-900 dark:text-navy-500">{post.author.role}</p>
                 )}
               </div>
             </div>
@@ -154,13 +154,13 @@ export default function ArticleHeader({
             {showShareButtons && (
               <div className="flex items-center gap-2 ml-auto">
                 <button
-                  className="p-2 rounded-lg bg-navy-800/50 hover:bg-navy-700 transition-colors"
+                  className="p-2 rounded-lg bg-slate-100 dark:bg-navy-800/50 hover:bg-navy-700 transition-colors"
                   title="Compartilhar"
                 >
                   <Share2 className="w-4 h-4" />
                 </button>
                 <button
-                  className="p-2 rounded-lg bg-navy-800/50 hover:bg-navy-700 transition-colors"
+                  className="p-2 rounded-lg bg-slate-100 dark:bg-navy-800/50 hover:bg-navy-700 transition-colors"
                   title="Salvar"
                 >
                   <Bookmark className="w-4 h-4" />

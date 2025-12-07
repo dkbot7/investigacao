@@ -50,36 +50,36 @@ export default function QuemSomosPage() {
       <Header />
       <main className="min-h-screen bg-white dark:bg-navy-950">
         {/* Hero Section - Compacto (UX: 57% do tempo acima da dobra) */}
-        <section className="pt-24 pb-8 bg-gradient-to-br from-navy-900 to-navy-950">
+        <section className="pt-24 pb-8 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-900 dark:to-navy-950">
           <div className="container max-w-6xl px-4">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
               {/* Lado esquerdo - Padrão F */}
               <div className="space-y-3">
-                <Badge variant="outline" className="text-gold-400 border-gold-500/30 bg-gold-500/10">
+                <Badge variant="outline" className="text-blue-400 border-blue-500/30 bg-blue-500/10">
                   Quem Somos
                 </Badge>
-                <h1 className="text-3xl md:text-4xl font-bold text-white">
-                  Investigacao Digital <span className="text-gold-400">em Escala</span>
+                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
+                  Investigacao Digital <span className="text-blue-400">em Escala</span>
                 </h1>
-                <p className="text-lg text-navy-200 max-w-xl">
-                  <strong className="text-gold-400">+100 mil registros</strong> processados por investigacao.
+                <p className="text-lg text-slate-700 dark:text-navy-200 max-w-xl">
+                  <strong className="text-blue-400">+100 mil registros</strong> processados por investigacao.
                   Due diligence e protecao patrimonial.
                 </p>
               </div>
               {/* Lado direito - CTAs */}
               <div className="flex flex-wrap gap-2">
                 <Link href="/servicos?tab=empresarial">
-                  <Button size="sm" className="bg-navy-800 hover:bg-navy-700 text-white">
+                  <Button size="sm" className="bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-900 dark:text-white transition-all duration-200">
                     Empresarial
                   </Button>
                 </Link>
                 <Link href="/servicos?tab=familiar">
-                  <Button size="sm" className="bg-gold-500 hover:bg-gold-600 text-navy-900">
+                  <Button size="sm" className="bg-blue-500 hover:bg-blue-600 hover:text-white text-navy-900 transition-all duration-200">
                     Familiar
                   </Button>
                 </Link>
                 <Link href="/servicos?tab=divorcios">
-                  <Button size="sm" className="bg-navy-600 hover:bg-navy-700 text-white">
+                  <Button size="sm" className="bg-pink-500 hover:bg-pink-600 text-white transition-all duration-200">
                     Divorcios
                   </Button>
                 </Link>
@@ -89,7 +89,7 @@ export default function QuemSomosPage() {
         </section>
 
         {/* Team Section - Mais compacto */}
-        <section className="py-10 bg-navy-900/50">
+        <section className="py-10 bg-white dark:bg-navy-900/50">
           <div className="container max-w-6xl px-4">
             <div className="grid md:grid-cols-2 gap-6">
                 {TEAM.map((member) => (
@@ -98,10 +98,10 @@ export default function QuemSomosPage() {
                     className="overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group"
                   >
                     <Link href={`/quemsomos/${member.id}`}>
-                      <div className="relative py-12 bg-gradient-to-br from-navy-900 to-navy-950">
+                      <div className="relative py-12 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-900 dark:to-navy-950">
                         {/* Foto Circular Centralizada */}
                         <div className="flex justify-center">
-                          <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-gold-500 shadow-2xl">
+                          <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-blue-500 shadow-2xl">
                             {member.id === "ibsen-maciel" ? (
                               <Image
                                 src="/images/ibsen-maciel.jpg"
@@ -117,8 +117,8 @@ export default function QuemSomosPage() {
                                 className="object-cover object-center"
                               />
                             ) : (
-                              <div className="absolute inset-0 flex items-center justify-center bg-navy-800">
-                                <UserCheck className="w-20 h-20 text-gold-500/50" />
+                              <div className="absolute inset-0 flex items-center justify-center bg-slate-200 dark:bg-navy-800">
+                                <UserCheck className="w-20 h-20 text-blue-500/50" />
                               </div>
                             )}
                           </div>
@@ -141,7 +141,7 @@ export default function QuemSomosPage() {
                         <CardDescription className="text-lg">
                           {member.cargo}
                         </CardDescription>
-                        <Badge variant="outline" className="w-fit mt-2">
+                        <Badge variant="outline" className="w-fit mt-2 hover:bg-navy-700 hover:text-white hover:border-navy-700 transition-all duration-200">
                           {member.especialidade}
                         </Badge>
                       </CardHeader>
@@ -168,7 +168,7 @@ export default function QuemSomosPage() {
                         </div>
 
                         <div className="pt-4">
-                          <Button className="w-full group-hover:bg-primary-700" size="lg">
+                          <Button className="w-full group-hover:bg-primary-700 hover:scale-105 hover:shadow-lg transition-all duration-200" size="lg">
                             Ver Perfil Completo
                             <ArrowRight className="ml-2 w-4 h-4" />
                           </Button>
@@ -182,13 +182,13 @@ export default function QuemSomosPage() {
         </section>
 
         {/* Why Choose Us - Compacto */}
-        <section className="py-10 bg-navy-950">
+        <section className="py-10 bg-slate-50 dark:bg-navy-950">
           <div className="container max-w-6xl px-4">
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 rounded-lg bg-gold-500/10 border border-gold-500/20">
-                <Shield className="w-5 h-5 text-gold-500" />
+              <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                <Shield className="w-5 h-5 text-blue-500" />
               </div>
-              <h2 className="text-xl font-bold text-white">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                 Por que a Investigaree
               </h2>
             </div>
@@ -196,8 +196,8 @@ export default function QuemSomosPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               <Card className="text-center border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-shadow">
                 <CardContent className="pt-6">
-                  <div className="w-14 h-14 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Target className="w-7 h-7 text-purple-600" />
+                  <div className="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Target className="w-7 h-7 text-blue-500" />
                   </div>
                   <h3 className="font-semibold mb-2">+100 mil Registros</h3>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400">
@@ -246,24 +246,24 @@ export default function QuemSomosPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-primary-600 to-purple-600">
+        <section className="py-20 bg-blue-500">
           <div className="container max-w-4xl px-4 text-center space-y-6">
-            <h2 className="text-4xl font-bold text-white">
+            <h2 className="text-4xl font-bold text-navy-900">
               Precisa investigar milhares de pessoas?
             </h2>
-            <p className="text-lg text-primary-100">
+            <p className="text-lg text-navy-900">
               Folhas de pagamento, funcionarios, fornecedores, socios...
               <br />Processamos qualquer volume com precisao e velocidade.
             </p>
             <div className="flex flex-wrap gap-3 justify-center pb-4">
-              <Badge className="bg-white/20 text-white border-white/30">Empresas</Badge>
-              <Badge className="bg-white/20 text-white border-white/30">Familias</Badge>
-              <Badge className="bg-white/20 text-white border-white/30">Mulheres em Divorcio</Badge>
-              <Badge className="bg-white/20 text-white border-white/30">Investidores</Badge>
+              <Badge className="bg-white text-blue-500 border-white hover:bg-navy-900 hover:text-white transition-all duration-200">Empresas</Badge>
+              <Badge className="bg-white text-blue-500 border-white hover:bg-navy-900 hover:text-white transition-all duration-200">Familias</Badge>
+              <Badge className="bg-white text-blue-500 border-white hover:bg-navy-900 hover:text-white transition-all duration-200">Mulheres em Divorcio</Badge>
+              <Badge className="bg-white text-blue-500 border-white hover:bg-navy-900 hover:text-white transition-all duration-200">Investidores</Badge>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link href="/servicos">
-                <Button size="lg" className="bg-white text-primary-700 hover:bg-primary-50">
+                <Button size="lg" className="bg-white text-blue-500 hover:bg-navy-900 hover:text-white transition-all duration-200">
                   Ver Servicos
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
@@ -271,7 +271,7 @@ export default function QuemSomosPage() {
               <WhatsAppButton
                 message="Ola! Preciso de uma investigacao em grande volume. Gostaria de um orcamento."
                 source="quemsomos"
-                className="px-8 py-6 text-lg border-2 border-white/50 bg-transparent hover:bg-white/10 text-white rounded-lg"
+                className="px-8 py-6 text-lg border-2 border-white bg-transparent hover:bg-white hover:text-blue-500 text-navy-900 rounded-lg transition-all duration-200"
               >
                 Solicitar Orcamento
               </WhatsAppButton>

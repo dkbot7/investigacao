@@ -103,11 +103,11 @@ export default function SancionadosPage() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
               <AlertTriangle className="w-7 h-7 text-red-400" />
               Sancionados (CEIS/CNEP)
             </h1>
-            <p className="text-white/60 mt-1">
+            <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
               {CLIENTE_01_STATS?.totais?.sancionados || 0} funcionario(s) com sancoes identificadas
             </p>
           </div>
@@ -115,18 +115,18 @@ export default function SancionadosPage() {
           <div className="flex items-center gap-3">
             {/* Search */}
             <div className="relative w-full lg:w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-900 dark:text-white/40" />
               <input
                 type="text"
                 placeholder="Buscar..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 text-sm"
+                className="w-full pl-9 pr-4 py-2 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 text-sm"
               />
               {search && (
                 <button
                   onClick={() => setSearch("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-900 dark:text-white/40 hover:text-white"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -136,7 +136,7 @@ export default function SancionadosPage() {
             <Button
               onClick={exportCSV}
               variant="ghost"
-              className="text-white/60 hover:text-white border border-navy-700 hover:bg-navy-800"
+              className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700 hover:bg-slate-100 dark:bg-navy-800"
             >
               <Download className="w-4 h-4 mr-2" />
               CSV
@@ -149,8 +149,8 @@ export default function SancionadosPage() {
           <AlertTriangle className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" />
           <div>
             <h3 className="text-red-400 font-semibold">Alerta de Integridade</h3>
-            <p className="text-white/70 text-sm mt-1">
-              Foram identificados <strong className="text-white">{CLIENTE_01_STATS?.totais?.sancionados || 0} funcionario(s)</strong> com
+            <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm mt-1">
+              Foram identificados <strong className="text-slate-900 dark:text-white">{CLIENTE_01_STATS?.totais?.sancionados || 0} funcionario(s)</strong> com
               sancoes ativas no CEIS (Cadastro de Empresas Inidoineas e Suspensas) ou CNEP (Cadastro Nacional de Empresas Punidas).
               Recomenda-se verificacao imediata da compatibilidade com os cargos ocupados.
             </p>
@@ -159,74 +159,74 @@ export default function SancionadosPage() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-          <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-red-500/10 rounded-lg">
                 <AlertTriangle className="w-5 h-5 text-red-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{CLIENTE_01_STATS?.totais?.sancionados || 0}</p>
-                <p className="text-xs text-white/50">Total Sancionados</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">{CLIENTE_01_STATS?.totais?.sancionados || 0}</p>
+                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Total Sancionados</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-amber-500/10 rounded-lg">
                 <Shield className="w-5 h-5 text-amber-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">
                   {CLIENTE_01_SANCIONADOS.filter(s => s.tipo === "CEIS").length}
                 </p>
-                <p className="text-xs text-white/50">CEIS</p>
+                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">CEIS</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-orange-500/10 rounded-lg">
                 <Building2 className="w-5 h-5 text-orange-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">
                   {CLIENTE_01_SANCIONADOS.filter(s => s.tipo === "CNEP").length}
                 </p>
-                <p className="text-xs text-white/50">CNEP</p>
+                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">CNEP</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Table */}
-        <div className="bg-navy-900 border border-navy-700 rounded-xl overflow-hidden">
+        <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="bg-navy-800/50 border-b border-navy-700">
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Nome</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">CPF</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Tipo</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Orgao</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Motivo</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Vigencia</th>
+                <tr className="bg-slate-100 dark:bg-navy-800/50 border-b border-slate-400 dark:border-navy-700">
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Nome</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">CPF</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Tipo</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Orgao</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Motivo</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Vigencia</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredSancionados.map((sancionado) => (
                   <tr
                     key={sancionado.id}
-                    className="border-b border-navy-800 hover:bg-navy-800/50 transition-colors cursor-pointer"
+                    className="border-b border-slate-300 dark:border-navy-800 hover:bg-slate-100 dark:bg-navy-800/50 transition-colors cursor-pointer"
                     onClick={() => handleSelectSancionado(sancionado)}
                   >
                     <td className="py-3 px-4">
-                      <span className="text-white font-medium hover:text-red-400 transition-colors">
+                      <span className="text-slate-900 dark:text-white font-medium hover:text-red-400 transition-colors">
                         {sancionado.nome}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-white/70 font-mono text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 font-mono text-sm">
                       {sancionado.cpf}
                     </td>
                     <td className="py-3 px-4">
@@ -238,17 +238,17 @@ export default function SancionadosPage() {
                         {sancionado.tipo}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-white/70 text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm">
                       {sancionado.orgao}
                     </td>
-                    <td className="py-3 px-4 text-white/70 text-sm max-w-[300px]">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm max-w-[300px]">
                       {sancionado.motivo}
                     </td>
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-1 text-sm">
-                        <Calendar className="w-3.5 h-3.5 text-white/40" />
-                        <span className="text-white/70">{sancionado.dataInicio}</span>
-                        <span className="text-white/40">a</span>
+                        <Calendar className="w-3.5 h-3.5 text-slate-900 dark:text-white/40" />
+                        <span className="text-slate-900 dark:text-slate-700 dark:text-white/70">{sancionado.dataInicio}</span>
+                        <span className="text-slate-900 dark:text-white/40">a</span>
                         <span className="text-red-400 font-medium">{sancionado.dataFim}</span>
                       </div>
                     </td>
@@ -261,18 +261,18 @@ export default function SancionadosPage() {
           {filteredSancionados.length === 0 && (
             <div className="text-center py-12">
               <Shield className="w-12 h-12 text-emerald-400/30 mx-auto mb-3" />
-              <p className="text-white/50">Nenhum sancionado encontrado</p>
+              <p className="text-slate-900 dark:text-slate-500 dark:text-white/50">Nenhum sancionado encontrado</p>
             </div>
           )}
         </div>
 
         {/* Info adicional */}
-        <div className="bg-navy-900/50 border border-navy-700 rounded-xl p-4">
+        <div className="bg-white dark:bg-navy-900/50 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
           <div className="flex items-start gap-3">
             <Shield className="w-5 h-5 text-blue-400 mt-0.5" />
             <div>
-              <h4 className="text-sm font-medium text-white mb-1">Sobre o CEIS e CNEP</h4>
-              <ul className="text-sm text-white/60 space-y-1">
+              <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">Sobre o CEIS e CNEP</h4>
+              <ul className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 space-y-1">
                 <li>• <strong>CEIS</strong> - Cadastro de Empresas Inidoineas e Suspensas: empresas e pessoas sancionadas</li>
                 <li>• <strong>CNEP</strong> - Cadastro Nacional de Empresas Punidas: punicoes da Lei Anticorrupcao</li>
                 <li>• Dados provenientes do Portal da Transparencia do Governo Federal</li>

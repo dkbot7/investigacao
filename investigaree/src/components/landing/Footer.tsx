@@ -6,14 +6,14 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 export default function Footer() {
   return (
-    <footer className="bg-neutral-950 text-neutral-400 py-12 border-t border-neutral-800">
+    <footer className="bg-slate-100 dark:bg-neutral-950 text-slate-600 dark:text-neutral-400 py-12 border-t border-slate-200 dark:border-neutral-800">
       <div className="container max-w-7xl px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <Shield className="w-8 h-8 text-primary-400" />
-              <span className="text-2xl font-bold text-white">investigaree</span>
+              <span className="text-2xl font-bold text-slate-900 dark:text-white">investigaree</span>
             </div>
             <p className="text-sm">
               Investigação Digital com Inteligência
@@ -22,7 +22,7 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Serviços</h4>
+            <h4 className="text-slate-900 dark:text-white font-semibold mb-4">Serviços</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/servicos" className="hover:text-primary-400 transition">Red Flag Express</Link></li>
               <li><Link href="/servicos" className="hover:text-primary-400 transition">Due Diligence Corporativo</Link></li>
@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Empresa</h4>
+            <h4 className="text-slate-900 dark:text-white font-semibold mb-4">Empresa</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/sobre" className="hover:text-primary-400 transition">Sobre</Link></li>
               <li><Link href="/quemsomos" className="hover:text-primary-400 transition">Equipe</Link></li>
@@ -53,7 +53,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Legal</h4>
+            <h4 className="text-slate-900 dark:text-white font-semibold mb-4">Legal</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/termos" className="hover:text-primary-400 transition">Termos de Uso</Link></li>
               <li><Link href="/privacidade" className="hover:text-primary-400 transition">Política de Privacidade</Link></li>
@@ -69,7 +69,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="pt-8 border-t border-neutral-800 text-sm text-center">
+        <div className="pt-8 border-t border-slate-200 dark:border-neutral-800 text-sm text-center">
           <p>© 2025 investigaree. Todos os direitos reservados.</p>
         </div>
       </div>

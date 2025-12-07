@@ -16,13 +16,13 @@ export default function PopularPosts({ posts, title = "Mais Lidos" }: PopularPos
   if (posts.length === 0) return null;
 
   return (
-    <div className="bg-navy-900/30 border border-gold-500/10 rounded-xl p-5">
+    <div className="bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-blue-500/10 rounded-xl p-5">
       {/* Header */}
-      <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gold-500/10">
-        <div className="p-1.5 rounded-lg bg-gold-500/10">
-          <TrendingUp className="w-4 h-4 text-gold-500" />
+      <div className="flex items-center gap-2 mb-4 pb-3 border-b border-blue-500/10">
+        <div className="p-1.5 rounded-lg bg-blue-500/10">
+          <TrendingUp className="w-4 h-4 text-blue-500" />
         </div>
-        <h3 className="text-sm font-semibold text-white">{title}</h3>
+        <h3 className="text-sm font-semibold text-slate-900 dark:text-white">{title}</h3>
       </div>
 
       {/* Lista de posts */}
@@ -40,8 +40,8 @@ export default function PopularPosts({ posts, title = "Mais Lidos" }: PopularPos
             >
               <Link href={`/blog/${post.slug}`} className="flex gap-3">
                 {/* Número de ranking */}
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-navy-800 flex items-center justify-center">
-                  <span className="text-xs font-bold text-gold-500">{index + 1}</span>
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-slate-100 dark:bg-navy-800 flex items-center justify-center">
+                  <span className="text-xs font-bold text-blue-500">{index + 1}</span>
                 </div>
 
                 {/* Conteúdo */}
@@ -59,12 +59,12 @@ export default function PopularPosts({ posts, title = "Mais Lidos" }: PopularPos
                   </Badge>
 
                   {/* Título */}
-                  <h4 className="text-sm font-medium text-navy-200 group-hover:text-gold-400 transition-colors line-clamp-2 leading-snug">
+                  <h4 className="text-sm font-medium text-slate-700 dark:text-navy-200 group-hover:text-blue-400 transition-colors line-clamp-2 leading-snug">
                     {post.title}
                   </h4>
 
                   {/* Meta info */}
-                  <div className="flex items-center gap-2 mt-1.5 text-[10px] text-navy-500">
+                  <div className="flex items-center gap-2 mt-1.5 text-[10px] text-slate-900 dark:text-navy-500">
                     <span className="flex items-center gap-0.5">
                       <Clock className="w-3 h-3" />
                       {post.readingTime} min
@@ -86,7 +86,7 @@ export default function PopularPosts({ posts, title = "Mais Lidos" }: PopularPos
       {/* Link para ver todos */}
       <Link
         href="/blog?sort=popular"
-        className="flex items-center justify-center gap-1 mt-4 pt-3 border-t border-gold-500/10 text-xs text-navy-400 hover:text-gold-400 transition-colors"
+        className="flex items-center justify-center gap-1 mt-4 pt-3 border-t border-blue-500/10 text-xs text-slate-500 dark:text-navy-400 hover:text-blue-400 transition-colors"
       >
         Ver todos os populares
         <ArrowRight className="w-3 h-3" />

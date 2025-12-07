@@ -128,25 +128,25 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-navy-900 border border-navy-700 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b border-navy-700">
+              <div className="flex items-center justify-between p-6 border-b border-slate-400 dark:border-navy-700">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-gold-500/10 flex items-center justify-center">
-                    <UserPlus className="w-5 h-5 text-gold-400" />
+                  <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                    <UserPlus className="w-5 h-5 text-blue-400" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-white">Adicionar Funcionário</h2>
-                    <p className="text-sm text-white/60">Cadastre um novo funcionário para investigação</p>
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white">Adicionar Funcionário</h2>
+                    <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Cadastre um novo funcionário para investigação</p>
                   </div>
                 </div>
                 <button
                   onClick={onClose}
-                  className="w-8 h-8 rounded-lg bg-navy-800 hover:bg-navy-700 flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-navy-800 hover:bg-navy-700 flex items-center justify-center transition-colors"
                 >
-                  <X className="w-4 h-4 text-white/60" />
+                  <X className="w-4 h-4 text-slate-900 dark:text-slate-600 dark:text-white/60" />
                 </button>
               </div>
 
@@ -161,7 +161,7 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Nome */}
                   <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-white/70 mb-2">
+                    <label className="block text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70 mb-2">
                       Nome Completo <span className="text-red-400">*</span>
                     </label>
                     <input
@@ -169,14 +169,14 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
                       value={formData.nome}
                       onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
                       placeholder="Ex: João Silva Santos"
-                      className="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
                       required
                     />
                   </div>
 
                   {/* CPF */}
                   <div>
-                    <label className="block text-sm font-medium text-white/70 mb-2">
+                    <label className="block text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70 mb-2">
                       CPF <span className="text-red-400">*</span>
                     </label>
                     <input
@@ -185,14 +185,14 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
                       onChange={handleCPFChange}
                       placeholder="000.000.000-00"
                       maxLength={14}
-                      className="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500 font-mono"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 font-mono"
                       required
                     />
                   </div>
 
                   {/* Cadastro/Matrícula */}
                   <div>
-                    <label className="block text-sm font-medium text-white/70 mb-2">
+                    <label className="block text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70 mb-2">
                       Matrícula/Cadastro
                     </label>
                     <input
@@ -200,13 +200,13 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
                       value={formData.cadastro}
                       onChange={(e) => setFormData({ ...formData, cadastro: e.target.value })}
                       placeholder="Ex: 12345"
-                      className="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
                     />
                   </div>
 
                   {/* Grupo */}
                   <div>
-                    <label className="block text-sm font-medium text-white/70 mb-2">
+                    <label className="block text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70 mb-2">
                       Grupo/Departamento <span className="text-red-400">*</span>
                     </label>
                     <input
@@ -214,14 +214,14 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
                       value={formData.grupo}
                       onChange={(e) => setFormData({ ...formData, grupo: e.target.value })}
                       placeholder="Ex: Administrativo, Operacional"
-                      className="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
                       required
                     />
                   </div>
 
                   {/* Cargo */}
                   <div>
-                    <label className="block text-sm font-medium text-white/70 mb-2">
+                    <label className="block text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70 mb-2">
                       Cargo
                     </label>
                     <input
@@ -229,24 +229,24 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
                       value={formData.cargo}
                       onChange={(e) => setFormData({ ...formData, cargo: e.target.value })}
                       placeholder="Ex: Analista, Gerente"
-                      className="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
                     />
                   </div>
 
                   {/* Salário */}
                   <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-white/70 mb-2">
+                    <label className="block text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70 mb-2">
                       Salário
                     </label>
                     <div className="relative">
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40">R$</span>
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-900 dark:text-white/40">R$</span>
                       <input
                         type="number"
                         step="0.01"
                         value={formData.salario}
                         onChange={(e) => setFormData({ ...formData, salario: e.target.value })}
                         placeholder="0,00"
-                        className="w-full pl-12 pr-4 py-2.5 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500"
+                        className="w-full pl-12 pr-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
                       />
                     </div>
                   </div>
@@ -266,14 +266,14 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
                     variant="ghost"
                     onClick={onClose}
                     disabled={loading}
-                    className="text-white/60 hover:text-white"
+                    className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white"
                   >
                     Cancelar
                   </Button>
                   <Button
                     type="submit"
                     disabled={loading}
-                    className="bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold"
+                    className="bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold"
                   >
                     {loading ? (
                       <>

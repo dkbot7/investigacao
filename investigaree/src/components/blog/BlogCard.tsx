@@ -72,7 +72,7 @@ export default function BlogCard({ post, featured = false, compact = false, inde
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: index * 0.05, duration: 0.3 }}
-        className="group relative overflow-hidden rounded-lg bg-navy-900/40 border border-gold-500/10 hover:border-gold-500/30 hover:bg-navy-900/60 transition-all duration-200"
+        className="group relative overflow-hidden rounded-lg bg-white dark:bg-white/40 dark:bg-navy-900/40 border border-blue-500/10 hover:border-blue-500/30 hover:bg-white dark:bg-white/60 dark:bg-navy-900/60 transition-all duration-200"
       >
         <Link href={`/blog/${post.slug}`} className="block">
           {/* Imagem de capa - menor */}
@@ -104,12 +104,12 @@ export default function BlogCard({ post, featured = false, compact = false, inde
           {/* Conteúdo compacto */}
           <div className="p-3">
             {/* Título - 2 linhas máx */}
-            <h3 className="text-sm font-semibold text-white mb-1.5 line-clamp-2 group-hover:text-gold-400 transition-colors leading-tight">
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-1.5 line-clamp-2 group-hover:text-blue-400 transition-colors leading-tight">
               {post.title}
             </h3>
 
             {/* Meta info mínima */}
-            <div className="flex items-center justify-between text-[10px] text-navy-400">
+            <div className="flex items-center justify-between text-[10px] text-slate-500 dark:text-navy-400">
               <span className="truncate max-w-[80px]">{post.author.name}</span>
               <span className="flex items-center gap-0.5">
                 <Clock className="w-3 h-3" />
@@ -128,7 +128,7 @@ export default function BlogCard({ post, featured = false, compact = false, inde
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: index * 0.1, duration: 0.5 }}
-        className="group relative overflow-hidden rounded-2xl bg-navy-900/50 border border-gold-500/10 hover:border-gold-500/30 transition-all duration-300"
+        className="group relative overflow-hidden rounded-2xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/10 hover:border-blue-500/30 transition-all duration-300"
       >
         <Link href={`/blog/${post.slug}`} className="block">
           {/* Imagem de capa */}
@@ -159,7 +159,7 @@ export default function BlogCard({ post, featured = false, compact = false, inde
               {/* Nível */}
               <Badge
                 variant="outline"
-                className="text-xs bg-navy-950/80 backdrop-blur-sm"
+                className="text-xs bg-slate-50 dark:bg-navy-950/80 backdrop-blur-sm"
                 style={{
                   borderColor: skillLevelInfo?.color,
                   color: skillLevelInfo?.color
@@ -187,17 +187,17 @@ export default function BlogCard({ post, featured = false, compact = false, inde
             </Badge>
 
             {/* Título */}
-            <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-gold-400 transition-colors">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors">
               {post.title}
             </h3>
 
             {/* Resumo */}
-            <p className="text-navy-300 text-sm mb-4 line-clamp-2">
+            <p className="text-slate-600 dark:text-navy-300 text-sm mb-4 line-clamp-2">
               {post.excerpt}
             </p>
 
             {/* Meta info */}
-            <div className="flex items-center justify-between text-sm text-navy-400">
+            <div className="flex items-center justify-between text-sm text-slate-500 dark:text-navy-400">
               <div className="flex items-center gap-4">
                 <span className="flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
@@ -210,7 +210,7 @@ export default function BlogCard({ post, featured = false, compact = false, inde
               </div>
 
               <motion.span
-                className="flex items-center gap-1 text-gold-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="flex items-center gap-1 text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity"
                 initial={{ x: -10 }}
                 whileHover={{ x: 0 }}
               >
@@ -228,7 +228,7 @@ export default function BlogCard({ post, featured = false, compact = false, inde
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
-      className="group relative overflow-hidden rounded-xl bg-navy-900/30 border border-gold-500/10 hover:border-gold-500/20 hover:bg-navy-900/50 transition-all duration-300"
+      className="group relative overflow-hidden rounded-xl bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-blue-500/10 hover:border-blue-500/20 hover:bg-white dark:bg-white/50 dark:bg-navy-900/50 transition-all duration-300"
     >
       <Link href={`/blog/${post.slug}`} className="block">
         {/* Imagem de capa */}
@@ -285,12 +285,12 @@ export default function BlogCard({ post, featured = false, compact = false, inde
         {/* Conteúdo */}
         <div className="p-5">
           {/* Título */}
-          <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-gold-400 transition-colors">
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors">
             {post.title}
           </h3>
 
           {/* Resumo */}
-          <p className="text-navy-300 text-sm mb-4 line-clamp-2">
+          <p className="text-slate-600 dark:text-navy-300 text-sm mb-4 line-clamp-2">
             {post.excerpt}
           </p>
 
@@ -306,16 +306,16 @@ export default function BlogCard({ post, featured = false, compact = false, inde
                   className="rounded-full"
                 />
               ) : (
-                <div className="w-6 h-6 rounded-full bg-gold-500/20 flex items-center justify-center">
-                  <User className="w-3 h-3 text-gold-500" />
+                <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center">
+                  <User className="w-3 h-3 text-blue-500" />
                 </div>
               )}
-              <span className="text-xs text-navy-400 truncate max-w-[100px]">
+              <span className="text-xs text-slate-500 dark:text-navy-400 truncate max-w-[100px]">
                 {post.author.name}
               </span>
             </div>
 
-            <div className="flex items-center gap-3 text-xs text-navy-400">
+            <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-navy-400">
               <span className="flex items-center gap-1">
                 <Clock className="w-3 h-3" />
                 {post.readingTime} min
@@ -325,17 +325,17 @@ export default function BlogCard({ post, featured = false, compact = false, inde
 
           {/* Tags (opcional - mostra as 2 primeiras) */}
           {post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-1 mt-3 pt-3 border-t border-gold-500/5">
+            <div className="flex flex-wrap gap-1 mt-3 pt-3 border-t border-blue-500/5">
               {post.tags.slice(0, 3).map(tag => (
                 <span
                   key={tag}
-                  className="text-[10px] text-navy-500 bg-navy-800/50 px-2 py-0.5 rounded"
+                  className="text-[10px] text-slate-900 dark:text-navy-500 bg-slate-100 dark:bg-navy-800/50 px-2 py-0.5 rounded"
                 >
                   #{tag}
                 </span>
               ))}
               {post.tags.length > 3 && (
-                <span className="text-[10px] text-navy-500">
+                <span className="text-[10px] text-slate-900 dark:text-navy-500">
                   +{post.tags.length - 3}
                 </span>
               )}

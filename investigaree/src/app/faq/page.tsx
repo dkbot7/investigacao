@@ -119,20 +119,20 @@ function FAQItem({ pergunta, resposta }: { pergunta: string; resposta: string })
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border-b border-navy-800 last:border-b-0">
+    <div className="border-b border-slate-300 dark:border-navy-800 last:border-b-0">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full py-4 flex items-center justify-between text-left hover:text-primary-400 transition-colors"
       >
-        <span className="text-white font-medium pr-4">{pergunta}</span>
+        <span className="text-slate-900 dark:text-white font-medium pr-4">{pergunta}</span>
         {isOpen ? (
           <ChevronUp className="w-5 h-5 text-primary-400 flex-shrink-0" />
         ) : (
-          <ChevronDown className="w-5 h-5 text-white/60 flex-shrink-0" />
+          <ChevronDown className="w-5 h-5 text-slate-900 dark:text-slate-600 dark:text-white/60 flex-shrink-0" />
         )}
       </button>
       {isOpen && (
-        <div className="pb-4 text-white/70 leading-relaxed">
+        <div className="pb-4 text-slate-900 dark:text-slate-700 dark:text-white/70 leading-relaxed">
           {resposta}
         </div>
       )}
@@ -144,9 +144,9 @@ export default function FAQPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-navy-950 pt-20">
+      <main className="min-h-screen bg-slate-50 dark:bg-navy-950 pt-20">
         {/* Header - Compacto (UX: Padrão F) */}
-        <section className="bg-gradient-to-br from-navy-900 to-navy-950 border-b border-navy-800">
+        <section className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-900 dark:to-navy-950 border-b border-slate-300 dark:border-navy-800">
           <div className="container max-w-4xl mx-auto px-4 py-6">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               {/* Lado esquerdo - Padrão F */}
@@ -155,12 +155,12 @@ export default function FAQPage() {
                   <HelpCircle className="w-6 h-6 text-primary-400" />
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold text-white">Perguntas Frequentes</h1>
-                  <p className="text-sm text-navy-300">Tire suas dúvidas sobre nossos serviços</p>
+                  <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Perguntas Frequentes</h1>
+                  <p className="text-sm text-slate-600 dark:text-navy-300">Tire suas dúvidas sobre nossos serviços</p>
                 </div>
               </div>
               {/* Lado direito - Link voltar */}
-              <Link href="/" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition text-sm">
+              <Link href="/" className="inline-flex items-center gap-2 text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white transition text-sm">
                 <ArrowLeft className="w-4 h-4" />
                 Voltar ao início
               </Link>
@@ -173,13 +173,13 @@ export default function FAQPage() {
           <div className="space-y-12">
             {faqs.map((categoria, index) => (
               <div key={index}>
-                <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
                   <span className="w-8 h-8 rounded-full bg-primary-500/20 flex items-center justify-center text-primary-400 text-sm font-bold">
                     {index + 1}
                   </span>
                   {categoria.categoria}
                 </h2>
-                <div className="bg-navy-900 rounded-xl border border-navy-800 px-6">
+                <div className="bg-white dark:bg-navy-900 rounded-xl border border-slate-300 dark:border-navy-800 px-6">
                   {categoria.perguntas.map((item, i) => (
                     <FAQItem key={i} pergunta={item.pergunta} resposta={item.resposta} />
                   ))}
@@ -190,7 +190,7 @@ export default function FAQPage() {
 
           {/* CTA */}
           <div className="mt-16 text-center">
-            <p className="text-white/70 mb-4">Não encontrou o que procurava?</p>
+            <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 mb-4">Não encontrou o que procurava?</p>
             <WhatsAppButton
               message="Olá! Tenho uma dúvida sobre os serviços da investigaree."
               source="faq"

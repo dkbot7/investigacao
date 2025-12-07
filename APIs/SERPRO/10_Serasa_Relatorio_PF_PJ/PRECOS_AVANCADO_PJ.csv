@@ -1,0 +1,23 @@
+Opção,Valor Mensal,Preço Unitário Original,Desconto,Preço Unitário Final,Volume de Consultas,Custo Total Estimado
+1,"R$ 3.554,00","R$ 28,74",50%,"R$ 14,37",247,"R$ 3.549,39"
+2,"R$ 4.736,00","R$ 27,08",50%,"R$ 13,54",349,"R$ 4.725,46"
+
+Produto,Serasa Relatório Avançado PJ (Sintético e Analítico)
+Tipo,Pacote Mensal com Volume Fixo
+Fornecedor,Serasa Experian
+Observação,Primeiro pagamento 30 dias após contratação
+Desconto Atual,50% (promocional)
+
+Dados Incluídos:
+- Telefone e endereço
+- CNAE do CNPJ
+- Consultas à Serasa
+- Protestos nacionais
+- Dívidas vencidas
+- Ações judiciais
+- Recuperação e falências
+- Cheques sem fundos cancelados ou extraviados
+- Alerta de inconsistências comerciais
+- Quadro social dos sócios e administradores
+- Score positivo
+- Sugestão de limite de crédito

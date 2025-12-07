@@ -125,9 +125,9 @@ export default function Hero() {
       className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20 md:pt-[72px]"
       aria-label="Hero section - Due Diligence Empresarial"
     >
-      {/* Animated background gradient - simplificado */}
-      <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(199,167,107,0.06),transparent_50%)]" />
+      {/* Animated background gradient - responsivo ao tema */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-navy-950 dark:via-navy-900 dark:to-navy-950" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.12),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.08),transparent_50%)]" />
 
       <motion.div
         className="container relative z-10 px-4 py-10 sm:py-12 max-w-6xl"
@@ -142,12 +142,12 @@ export default function Hero() {
         >
           <Badge
             variant="outline"
-            className="px-3 py-1.5 sm:px-4 sm:py-2 bg-navy-900/80 border-gold-500/40 backdrop-blur-sm text-[10px] sm:text-xs font-medium flex items-center gap-2"
+            className="px-3 py-1.5 sm:px-4 sm:py-2 bg-white dark:bg-white/80 dark:bg-navy-900/80 border-blue-500/40 backdrop-blur-sm text-[10px] sm:text-xs font-medium flex items-center gap-2"
           >
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span className="text-gold-400">Plataforma de Investigação Digital</span>
-            <span className="text-navy-400">|</span>
-            <span className="text-white">Validada por Perito Criminal Oficial</span>
+            <span className="text-blue-400">Plataforma de Investigação Digital</span>
+            <span className="text-slate-500 dark:text-navy-400">|</span>
+            <span className="text-slate-900 dark:text-white">Validada por Perito Criminal Oficial</span>
           </Badge>
         </motion.div>
 
@@ -164,12 +164,12 @@ export default function Hero() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="text-white">{headlines[headlineIndex].main}</span>
+            <span className="text-slate-900 dark:text-white">{headlines[headlineIndex].main}</span>
             <br />
             <span
               className="text-transparent bg-clip-text"
               style={{
-                background: "linear-gradient(135deg, #D4AF37 0%, #F5D280 50%, #C9A032 100%)",
+                background: "linear-gradient(135deg, #3B82F6 0%, #60A5FA 50%, #2563EB 100%)",
                 WebkitBackgroundClip: "text",
                 backgroundClip: "text"
               }}
@@ -179,7 +179,7 @@ export default function Hero() {
           </motion.h1>
           <motion.p
             key={`subheadline-${headlineIndex}`}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-navy-300 font-medium max-w-3xl mx-auto px-4"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 dark:text-navy-300 font-medium max-w-3xl mx-auto px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -194,33 +194,33 @@ export default function Hero() {
           className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-6 sm:mb-8 px-4"
           variants={itemVariants}
         >
-          <div className="flex items-center gap-2 text-xs sm:text-sm text-navy-400">
-            <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center">
-              <span className="text-gold-500 text-[10px]">1</span>
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-navy-400">
+            <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center">
+              <span className="text-blue-500 text-[10px]">1</span>
             </div>
             <span>Famílias</span>
           </div>
-          <div className="flex items-center gap-2 text-xs sm:text-sm text-navy-400">
-            <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center">
-              <span className="text-gold-500 text-[10px]">2</span>
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-navy-400">
+            <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center">
+              <span className="text-blue-500 text-[10px]">2</span>
             </div>
             <span>Empresas</span>
           </div>
-          <div className="flex items-center gap-2 text-xs sm:text-sm text-navy-400">
-            <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center">
-              <span className="text-gold-500 text-[10px]">3</span>
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-navy-400">
+            <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center">
+              <span className="text-blue-500 text-[10px]">3</span>
             </div>
             <span>Investidores</span>
           </div>
-          <div className="flex items-center gap-2 text-xs sm:text-sm text-navy-400">
-            <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center">
-              <span className="text-gold-500 text-[10px]">4</span>
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-navy-400">
+            <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center">
+              <span className="text-blue-500 text-[10px]">4</span>
             </div>
             <span>Patrimônios</span>
           </div>
-          <div className="flex items-center gap-2 text-xs sm:text-sm text-navy-400">
-            <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center">
-              <span className="text-gold-500 text-[10px]">5</span>
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-navy-400">
+            <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center">
+              <span className="text-blue-500 text-[10px]">5</span>
             </div>
             <span>Divórcio</span>
           </div>
@@ -240,7 +240,7 @@ export default function Hero() {
             <Button
               size="lg"
               onClick={() => setIsModalOpen(true)}
-              className="group gradient-premium text-navy-950 px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 text-sm sm:text-base md:text-lg font-bold rounded-full shadow-2xl hover:shadow-gold-500/20 transition-all duration-300"
+              className="group gradient-premium text-navy-950 px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 text-sm sm:text-base md:text-lg font-bold rounded-full shadow-2xl hover:shadow-blue-500/20 transition-all duration-300"
               aria-label="Solicitar investigação particular - Proteger patrimônio"
             >
               Solicitar Investigação Particular
@@ -279,9 +279,9 @@ export default function Hero() {
           ease: "easeInOut"
         }}
       >
-        <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-gold-500/50 rounded-full flex items-start justify-center p-1.5 sm:p-2">
+        <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-blue-500/50 rounded-full flex items-start justify-center p-1.5 sm:p-2">
           <motion.div
-            className="w-1 h-2 sm:h-3 bg-gold-500 rounded-full"
+            className="w-1 h-2 sm:h-3 bg-blue-500 rounded-full"
             animate={{
               y: [0, 6, 0]
             }}

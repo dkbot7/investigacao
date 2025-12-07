@@ -115,10 +115,10 @@ export default function Pricing() {
                     ? "bg-slate-700/50 border-2 border-slate-600"
                     : "bg-slate-700/50 border-2 border-slate-600"
                   }`}>
-                  <plan.icon className="w-10 h-10 text-white" />
+                  <plan.icon className="w-10 h-10 text-slate-900 dark:text-white" />
                 </div>
 
-                <CardTitle className="text-2xl mb-3 text-white font-bold">
+                <CardTitle className="text-2xl mb-3 text-slate-900 dark:text-white font-bold">
                   {plan.name}
                 </CardTitle>
                 <CardDescription className="text-slate-300 text-sm mb-4">
@@ -144,7 +144,7 @@ export default function Pricing() {
                 {/* Sob Consulta */}
                 <div className="text-center">
                   <p className="text-slate-400 text-sm mb-2">Investimento</p>
-                  <span className="text-2xl font-bold text-white">
+                  <span className="text-2xl font-bold text-slate-900 dark:text-white">
                     Sob consulta
                   </span>
                 </div>

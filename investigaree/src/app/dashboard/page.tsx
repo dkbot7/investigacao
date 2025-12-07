@@ -111,7 +111,7 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gold-500" />
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
       </div>
     );
   }
@@ -122,9 +122,9 @@ export default function DashboardPage() {
       <div className="p-4 lg:p-8">
         <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-6 text-center">
           <AlertCircle className="w-12 h-12 text-red-400 mx-auto mb-4" />
-          <h2 className="text-xl font-bold text-white mb-2">Erro ao carregar dados</h2>
-          <p className="text-white/60 mb-4">{error}</p>
-          <Button onClick={refetch} className="bg-gold-500 hover:bg-gold-600 text-navy-950">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Erro ao carregar dados</h2>
+          <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mb-4">{error}</p>
+          <Button onClick={refetch} className="bg-blue-500 hover:bg-blue-600 text-navy-950">
             <RefreshCw className="w-4 h-4 mr-2" />
             Tentar novamente
           </Button>
@@ -144,15 +144,15 @@ export default function DashboardPage() {
         {/* Header com Boas-vindas */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
-            <h1 className="text-2xl lg:text-3xl font-bold text-white">
+            <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white">
               Olá, {primeiroNome}!
             </h1>
-            <p className="text-white/60 mt-1">
+            <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
               Bem-vindo ao seu painel de investigações
             </p>
           </div>
           <Link href="/dashboard/funcionarios?novo=true">
-            <Button className="bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold">
+            <Button className="bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold">
               <Plus className="w-5 h-5 mr-2" />
               Nova Investigação
             </Button>
@@ -200,16 +200,16 @@ export default function DashboardPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="lg:col-span-2 bg-navy-900 border border-navy-700 rounded-xl"
+            className="lg:col-span-2 bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl"
           >
-            <div className="p-4 border-b border-navy-700 flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-white flex items-center gap-2">
-                <Search className="w-5 h-5 text-gold-400" />
+            <div className="p-4 border-b border-slate-400 dark:border-navy-700 flex items-center justify-between">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                <Search className="w-5 h-5 text-blue-400" />
                 Investigações Recentes
               </h2>
               <Link
                 href="/dashboard/funcionarios"
-                className="text-sm text-gold-400 hover:text-gold-300 flex items-center gap-1"
+                className="text-sm text-blue-400 hover:text-blue-300 flex items-center gap-1"
               >
                 Ver todas
                 <ChevronRight className="w-4 h-4" />
@@ -218,15 +218,15 @@ export default function DashboardPage() {
 
             {investigacoes.length === 0 ? (
               <div className="p-8 text-center">
-                <div className="w-16 h-16 bg-navy-800 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Search className="w-8 h-8 text-white/30" />
+                <div className="w-16 h-16 bg-slate-100 dark:bg-navy-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Search className="w-8 h-8 text-slate-900 dark:text-white/30" />
                 </div>
-                <h3 className="text-white font-medium mb-2">Nenhuma investigação ainda</h3>
-                <p className="text-white/60 text-sm mb-4">
+                <h3 className="text-slate-900 dark:text-white font-medium mb-2">Nenhuma investigação ainda</h3>
+                <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-sm mb-4">
                   Comece solicitando sua primeira investigação
                 </p>
                 <Link href="/dashboard/funcionarios?novo=true">
-                  <Button className="bg-gold-500 hover:bg-gold-600 text-navy-950">
+                  <Button className="bg-blue-500 hover:bg-blue-600 text-navy-950">
                     <Plus className="w-4 h-4 mr-2" />
                     Nova Investigação
                   </Button>
@@ -249,9 +249,9 @@ export default function DashboardPage() {
             className="space-y-6"
           >
             {/* Ações */}
-            <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
-              <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <ArrowRight className="w-5 h-5 text-gold-400" />
+            <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                <ArrowRight className="w-5 h-5 text-blue-400" />
                 Ações Rápidas
               </h2>
 
@@ -299,9 +299,9 @@ export default function DashboardPage() {
             </div>
 
             {/* Contato */}
-            <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
-              <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-gold-400" />
+            <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                <MessageSquare className="w-5 h-5 text-blue-400" />
                 Fale Conosco
               </h2>
 
@@ -315,10 +315,10 @@ export default function DashboardPage() {
                     <MessageSquare className="w-5 h-5 text-purple-400" />
                   </div>
                   <div className="flex-1 text-left">
-                    <p className="text-white font-medium group-hover:text-purple-400 transition-colors">Formulário</p>
-                    <p className="text-xs text-white/50">Enviar mensagem</p>
+                    <p className="text-slate-900 dark:text-white font-medium group-hover:text-purple-400 transition-colors">Formulário</p>
+                    <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Enviar mensagem</p>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-white/30 group-hover:text-purple-400" />
+                  <ChevronRight className="w-4 h-4 text-slate-900 dark:text-white/30 group-hover:text-purple-400" />
                 </button>
 
                 {/* Email */}
@@ -330,10 +330,10 @@ export default function DashboardPage() {
                     <Mail className="w-5 h-5 text-blue-400" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-white font-medium group-hover:text-blue-400 transition-colors">Email</p>
-                    <p className="text-xs text-white/50">contato@investigaree.com.br</p>
+                    <p className="text-slate-900 dark:text-white font-medium group-hover:text-blue-400 transition-colors">Email</p>
+                    <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">contato@investigaree.com.br</p>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-white/30 group-hover:text-blue-400" />
+                  <ExternalLink className="w-4 h-4 text-slate-900 dark:text-white/30 group-hover:text-blue-400" />
                 </a>
 
                 {/* WhatsApp */}
@@ -347,10 +347,10 @@ export default function DashboardPage() {
                     <Phone className="w-5 h-5 text-emerald-400" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-white font-medium group-hover:text-emerald-400 transition-colors">WhatsApp</p>
-                    <p className="text-xs text-white/50">Resposta rápida</p>
+                    <p className="text-slate-900 dark:text-white font-medium group-hover:text-emerald-400 transition-colors">WhatsApp</p>
+                    <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Resposta rápida</p>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-white/30 group-hover:text-emerald-400" />
+                  <ExternalLink className="w-4 h-4 text-slate-900 dark:text-white/30 group-hover:text-emerald-400" />
                 </a>
               </div>
             </div>
@@ -362,10 +362,10 @@ export default function DashboardPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.3 }}
-          className="bg-navy-900 border border-navy-700 rounded-xl p-6"
+          className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-6"
         >
-          <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
-            <FileText className="w-5 h-5 text-gold-400" />
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+            <FileText className="w-5 h-5 text-blue-400" />
             Como funciona o processo
           </h2>
 
@@ -379,10 +379,10 @@ export default function DashboardPage() {
                       <Icon className={`w-5 h-5 text-${config.color}-400`} />
                     </div>
                     <p className={`text-sm font-medium text-${config.color}-400`}>{config.label}</p>
-                    <p className="text-xs text-white/50 mt-1">{config.description}</p>
+                    <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mt-1">{config.description}</p>
                   </div>
                   {index < 5 && (
-                    <div className="hidden lg:block absolute top-1/2 -right-2 transform -translate-y-1/2 text-white/20">
+                    <div className="hidden lg:block absolute top-1/2 -right-2 transform -translate-y-1/2 text-slate-900 dark:text-white/20">
                       <ChevronRight className="w-4 h-4" />
                     </div>
                   )}
@@ -408,13 +408,13 @@ export default function DashboardPage() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-navy-900 border border-navy-700 rounded-2xl p-6 z-50"
+              className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-2xl p-6 z-50"
             >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold text-white">Enviar Mensagem</h3>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Enviar Mensagem</h3>
                 <button
                   onClick={() => setShowContactForm(false)}
-                  className="p-2 text-white/60 hover:text-white hover:bg-navy-800 rounded-lg transition-colors"
+                  className="p-2 text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white hover:bg-slate-100 dark:bg-navy-800 rounded-lg transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -425,17 +425,17 @@ export default function DashboardPage() {
                   <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle className="w-8 h-8 text-emerald-400" />
                   </div>
-                  <h4 className="text-lg font-semibold text-white mb-2">Mensagem Enviada!</h4>
-                  <p className="text-white/60">Responderemos em breve.</p>
+                  <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Mensagem Enviada!</h4>
+                  <p className="text-slate-900 dark:text-slate-600 dark:text-white/60">Responderemos em breve.</p>
                 </div>
               ) : (
                 <form onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-white/80 mb-2">Assunto</label>
+                    <label className="block text-sm font-medium text-slate-900 dark:text-slate-800 dark:text-white/80 mb-2">Assunto</label>
                     <select
                       value={contactForm.assunto}
                       onChange={(e) => setContactForm({ ...contactForm, assunto: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-navy-800 border border-navy-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                       required
                     >
                       <option value="">Selecione...</option>
@@ -449,11 +449,11 @@ export default function DashboardPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-white/80 mb-2">Mensagem</label>
+                    <label className="block text-sm font-medium text-slate-900 dark:text-slate-800 dark:text-white/80 mb-2">Mensagem</label>
                     <textarea
                       value={contactForm.mensagem}
                       onChange={(e) => setContactForm({ ...contactForm, mensagem: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-navy-800 border border-navy-600 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold-500/50 min-h-[120px] resize-none"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 min-h-[120px] resize-none"
                       placeholder="Descreva sua solicitação..."
                       required
                     />
@@ -462,7 +462,7 @@ export default function DashboardPage() {
                   <Button
                     type="submit"
                     disabled={sendingMessage || !contactForm.assunto || !contactForm.mensagem}
-                    className="w-full bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold"
+                    className="w-full bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold"
                   >
                     {sendingMessage ? (
                       <>
@@ -505,20 +505,20 @@ function InvestigacaoItem({ inv, index }: { inv: Investigacao; index: number }) 
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
-      className="p-4 hover:bg-navy-800/50 transition-colors group cursor-pointer"
+      className="p-4 hover:bg-slate-100 dark:bg-navy-800/50 transition-colors group cursor-pointer"
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           {/* Ícone do tipo */}
           <div className={`p-2.5 rounded-lg ${
             inv.is_grupo
-              ? "bg-gold-500/20"
+              ? "bg-blue-500/20"
               : inv.tipo_pessoa === "juridica"
               ? "bg-purple-500/20"
               : "bg-blue-500/20"
           }`}>
             {inv.is_grupo ? (
-              <FolderOpen className="w-5 h-5 text-gold-400" />
+              <FolderOpen className="w-5 h-5 text-blue-400" />
             ) : inv.tipo_pessoa === "juridica" ? (
               <Building2 className="w-5 h-5 text-purple-400" />
             ) : (
@@ -527,11 +527,11 @@ function InvestigacaoItem({ inv, index }: { inv: Investigacao; index: number }) 
           </div>
 
           <div>
-            <h4 className="text-white font-medium group-hover:text-gold-400 transition-colors">
+            <h4 className="text-slate-900 dark:text-white font-medium group-hover:text-blue-400 transition-colors">
               {inv.nome}
             </h4>
             <div className="flex items-center gap-3 mt-1">
-              <span className="text-sm text-white/50">{inv.documento}</span>
+              <span className="text-sm text-slate-900 dark:text-slate-500 dark:text-white/50">{inv.documento}</span>
               <span className={`text-xs px-2 py-0.5 rounded-full bg-${catInfo.color}-500/20 text-${catInfo.color}-400`}>
                 {catInfo.label}
               </span>
@@ -548,13 +548,13 @@ function InvestigacaoItem({ inv, index }: { inv: Investigacao; index: number }) 
             </span>
           </div>
 
-          <ChevronRight className="w-5 h-5 text-white/30 group-hover:text-gold-400 transition-colors" />
+          <ChevronRight className="w-5 h-5 text-slate-900 dark:text-white/30 group-hover:text-blue-400 transition-colors" />
         </div>
       </div>
 
       {/* Barra de progresso visual */}
       <div className="mt-3 flex items-center gap-2">
-        <div className="flex-1 h-1.5 bg-navy-800 rounded-full overflow-hidden flex">
+        <div className="flex-1 h-1.5 bg-slate-100 dark:bg-navy-800 rounded-full overflow-hidden flex">
           {Object.keys(statusConfig).slice(0, Object.keys(statusConfig).indexOf(inv.status) + 1).map((s) => (
             <div
               key={s}
@@ -567,7 +567,7 @@ function InvestigacaoItem({ inv, index }: { inv: Investigacao; index: number }) 
             />
           ))}
         </div>
-        <span className="text-xs text-white/40">{formatDate(inv.updated_at)}</span>
+        <span className="text-xs text-slate-900 dark:text-white/40">{formatDate(inv.updated_at)}</span>
       </div>
     </motion.div>
   );
@@ -592,14 +592,14 @@ function StatCard({
   badge?: string;
 }) {
   const colorClasses = {
-    gold: "bg-gold-500/10 border-gold-500/30 hover:border-gold-500/60",
+    gold: "bg-blue-500/10 border-blue-500/30 hover:border-blue-500/60",
     blue: "bg-blue-500/10 border-blue-500/30 hover:border-blue-500/60",
     purple: "bg-purple-500/10 border-purple-500/30 hover:border-purple-500/60",
     emerald: "bg-emerald-500/10 border-emerald-500/30 hover:border-emerald-500/60",
   };
 
   const iconColors = {
-    gold: "text-gold-400",
+    gold: "text-blue-400",
     blue: "text-blue-400",
     purple: "text-purple-400",
     emerald: "text-emerald-400",
@@ -621,7 +621,7 @@ function StatCard({
         )}
         {badge && (
           <div className="absolute top-2 right-2">
-            <span className="px-2 py-0.5 bg-purple-500 text-white text-xs font-bold rounded-full">
+            <span className="px-2 py-0.5 bg-purple-500 text-slate-900 dark:text-white text-xs font-bold rounded-full">
               {badge}
             </span>
           </div>
@@ -630,10 +630,10 @@ function StatCard({
           <Icon className={`w-6 h-6 ${iconColors[color]}`} />
           <div>
             <p className={`text-2xl font-bold ${iconColors[color]}`}>{value}</p>
-            <p className="text-sm text-white/60">{title}</p>
+            <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">{title}</p>
           </div>
         </div>
-        <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 group-hover:text-white/50 transition-colors" />
+        <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-900 dark:text-white/20 group-hover:text-slate-500 dark:text-white/50 transition-colors" />
       </motion.div>
     </Link>
   );
@@ -654,14 +654,14 @@ function ActionButton({
   onClick?: () => void;
 }) {
   const colorClasses = {
-    gold: "bg-gold-500/10 border-gold-500/20 hover:border-gold-500/40 hover:bg-gold-500/20",
+    gold: "bg-blue-500/10 border-blue-500/20 hover:border-blue-500/40 hover:bg-blue-500/20",
     blue: "bg-blue-500/10 border-blue-500/20 hover:border-blue-500/40 hover:bg-blue-500/20",
     purple: "bg-purple-500/10 border-purple-500/20 hover:border-purple-500/40 hover:bg-purple-500/20",
     emerald: "bg-emerald-500/10 border-emerald-500/20 hover:border-emerald-500/40 hover:bg-emerald-500/20",
   };
 
   const iconColors = {
-    gold: "text-gold-400 bg-gold-500/20",
+    gold: "text-blue-400 bg-blue-500/20",
     blue: "text-blue-400 bg-blue-500/20",
     purple: "text-purple-400 bg-purple-500/20",
     emerald: "text-emerald-400 bg-emerald-500/20",
@@ -678,10 +678,10 @@ function ActionButton({
         <Icon className="w-5 h-5" />
       </div>
       <div className="flex-1 text-left">
-        <p className="text-white font-medium group-hover:text-gold-400 transition-colors">{label}</p>
-        <p className="text-xs text-white/50">{description}</p>
+        <p className="text-slate-900 dark:text-white font-medium group-hover:text-blue-400 transition-colors">{label}</p>
+        <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">{description}</p>
       </div>
-      <ChevronRight className="w-4 h-4 text-white/30 group-hover:text-gold-400 transition-colors" />
+      <ChevronRight className="w-4 h-4 text-slate-900 dark:text-white/30 group-hover:text-blue-400 transition-colors" />
     </Component>
   );
 }

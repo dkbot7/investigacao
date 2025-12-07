@@ -68,12 +68,12 @@ export default function BlogSidebar({
       <PopularPosts posts={popularPosts} />
 
       {/* Tópicos */}
-      <div className="bg-navy-900/30 border border-gold-500/10 rounded-xl p-5">
-        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gold-500/10">
-          <div className="p-1.5 rounded-lg bg-gold-500/10">
-            <Folder className="w-4 h-4 text-gold-500" />
+      <div className="bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-blue-500/10 rounded-xl p-5">
+        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-blue-500/10">
+          <div className="p-1.5 rounded-lg bg-blue-500/10">
+            <Folder className="w-4 h-4 text-blue-500" />
           </div>
-          <h3 className="text-sm font-semibold text-white">Tópicos</h3>
+          <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Tópicos</h3>
         </div>
 
         <div className="space-y-1">
@@ -89,7 +89,7 @@ export default function BlogSidebar({
                 className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left text-sm transition-all ${
                   isActive
                     ? "text-navy-950 font-medium"
-                    : "text-navy-300 hover:text-white hover:bg-navy-800/50"
+                    : "text-slate-600 dark:text-navy-300 hover:text-white hover:bg-slate-100 dark:bg-navy-800/50"
                 }`}
                 style={{
                   backgroundColor: isActive ? topic.color : undefined
@@ -109,12 +109,12 @@ export default function BlogSidebar({
       </div>
 
       {/* Tags Populares */}
-      <div className="bg-navy-900/30 border border-gold-500/10 rounded-xl p-5">
-        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gold-500/10">
-          <div className="p-1.5 rounded-lg bg-gold-500/10">
-            <Hash className="w-4 h-4 text-gold-500" />
+      <div className="bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-blue-500/10 rounded-xl p-5">
+        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-blue-500/10">
+          <div className="p-1.5 rounded-lg bg-blue-500/10">
+            <Hash className="w-4 h-4 text-blue-500" />
           </div>
-          <h3 className="text-sm font-semibold text-white">Tags Populares</h3>
+          <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Tags Populares</h3>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -129,8 +129,8 @@ export default function BlogSidebar({
                 whileTap={{ scale: 0.95 }}
                 className={`px-2.5 py-1 rounded-full text-xs transition-all ${
                   isActive
-                    ? "bg-gold-500 text-navy-950 font-medium"
-                    : "bg-navy-800/50 text-navy-400 hover:bg-navy-800 hover:text-white"
+                    ? "bg-blue-500 text-navy-950 font-medium"
+                    : "bg-slate-100 dark:bg-navy-800/50 text-slate-500 dark:text-navy-400 hover:bg-slate-100 dark:bg-navy-800 hover:text-white"
                 }`}
               >
                 #{tag}
@@ -141,22 +141,22 @@ export default function BlogSidebar({
       </div>
 
       {/* CTA Newsletter Compacto */}
-      <div className="bg-gradient-to-br from-gold-500/10 to-navy-900/50 border border-gold-500/20 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-2">
+      <div className="bg-gradient-to-br from-blue-500/10 to-navy-900/50 border border-blue-500/20 rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">
           Newsletter DFIR
         </h3>
-        <p className="text-xs text-navy-400 mb-3">
+        <p className="text-xs text-slate-500 dark:text-navy-400 mb-3">
           Receba as novidades semanalmente.
         </p>
         <form className="space-y-2">
           <input
             type="email"
             placeholder="seu@email.com"
-            className="w-full px-3 py-2 rounded-lg bg-navy-900/80 border border-gold-500/20 text-sm text-white placeholder:text-navy-500 focus:outline-none focus:border-gold-500/50 transition-colors"
+            className="w-full px-3 py-2 rounded-lg bg-white dark:bg-white/80 dark:bg-navy-900/80 border border-blue-500/20 text-sm text-slate-900 dark:text-white placeholder:text-slate-900 dark:text-navy-500 focus:outline-none focus:border-blue-500/50 transition-colors"
           />
           <button
             type="submit"
-            className="w-full px-3 py-2 bg-gold-500 hover:bg-gold-600 text-navy-950 text-sm font-medium rounded-lg transition-colors"
+            className="w-full px-3 py-2 bg-blue-500 hover:bg-blue-600 text-navy-950 text-sm font-medium rounded-lg transition-colors"
           >
             Inscrever-se
           </button>

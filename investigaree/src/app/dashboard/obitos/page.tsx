@@ -90,11 +90,11 @@ export default function ObitosPage() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
               <HeartPulse className="w-7 h-7 text-red-400" />
               Obitos Identificados
             </h1>
-            <p className="text-white/60 mt-1">
+            <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
               {CLIENTE_01_OBITOS.length} funcionarios falecidos detectados
             </p>
           </div>
@@ -102,18 +102,18 @@ export default function ObitosPage() {
           <div className="flex items-center gap-3">
             {/* Search */}
             <div className="relative w-full lg:w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-900 dark:text-white/40" />
               <input
                 type="text"
                 placeholder="Buscar..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 text-sm"
+                className="w-full pl-9 pr-4 py-2 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 text-sm"
               />
               {search && (
                 <button
                   onClick={() => setSearch("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-900 dark:text-white/40 hover:text-white"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -123,7 +123,7 @@ export default function ObitosPage() {
             <Button
               onClick={exportCSV}
               variant="ghost"
-              className="text-white/60 hover:text-white border border-navy-700 hover:bg-navy-800"
+              className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700 hover:bg-slate-100 dark:bg-navy-800"
             >
               <Download className="w-4 h-4 mr-2" />
               CSV
@@ -136,8 +136,8 @@ export default function ObitosPage() {
           <AlertTriangle className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" />
           <div>
             <h3 className="text-red-400 font-semibold">Alerta Critico de Integridade</h3>
-            <p className="text-white/70 text-sm mt-1">
-              Foram identificados <strong className="text-white">{CLIENTE_01_OBITOS.length} funcionarios falecidos</strong> ainda
+            <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm mt-1">
+              Foram identificados <strong className="text-slate-900 dark:text-white">{CLIENTE_01_OBITOS.length} funcionarios falecidos</strong> ainda
               constando em registros da COMURG. Recomenda-se verificacao imediata junto ao setor de RH
               para regularizacao cadastral e possivel identificacao de pagamentos indevidos.
             </p>
@@ -146,60 +146,60 @@ export default function ObitosPage() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-red-500/10 rounded-lg">
                 <HeartPulse className="w-5 h-5 text-red-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{CLIENTE_01_OBITOS.length}</p>
-                <p className="text-xs text-white/50">Obitos Totais</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">{CLIENTE_01_OBITOS.length}</p>
+                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Obitos Totais</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-amber-500/10 rounded-lg">
                 <Calendar className="w-5 h-5 text-amber-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{obitosPorAno[2025] || 0}</p>
-                <p className="text-xs text-white/50">Em 2025</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">{obitosPorAno[2025] || 0}</p>
+                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Em 2025</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-orange-500/10 rounded-lg">
                 <Clock className="w-5 h-5 text-orange-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{obitosPorAno[2024] || 0}</p>
-                <p className="text-xs text-white/50">Em 2024</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">{obitosPorAno[2024] || 0}</p>
+                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Em 2024</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
+          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-purple-500/10 rounded-lg">
                 <TrendingUp className="w-5 h-5 text-purple-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">
                   {CLIENTE_01_OBITOS.filter(o => o.ano_obito <= 2020).length}
                 </p>
-                <p className="text-xs text-white/50">Antes de 2020</p>
+                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Antes de 2020</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Timeline por ano */}
-        <div className="bg-navy-900 border border-navy-700 rounded-xl p-4">
-          <h3 className="text-sm font-medium text-white/70 mb-4">Distribuicao por Ano de Obito</h3>
+        <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
+          <h3 className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70 mb-4">Distribuicao por Ano de Obito</h3>
           <div className="flex flex-wrap gap-2">
             {anosOrdenados.map(ano => (
               <div
@@ -209,7 +209,7 @@ export default function ObitosPage() {
                     ? "bg-red-500/10 border-red-500/30 text-red-400"
                     : ano >= 2020
                     ? "bg-orange-500/10 border-orange-500/30 text-orange-400"
-                    : "bg-navy-800 border-navy-600 text-white/70"
+                    : "bg-slate-100 dark:bg-navy-800 border-navy-600 text-slate-700 dark:text-white/70"
                 }`}
               >
                 <span className="font-bold">{ano}</span>
@@ -220,16 +220,16 @@ export default function ObitosPage() {
         </div>
 
         {/* Table */}
-        <div className="bg-navy-900 border border-navy-700 rounded-xl overflow-hidden">
+        <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="bg-navy-800/50 border-b border-navy-700">
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Cadastro</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Nome</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">CPF</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Grupo</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-white/60">Ano Obito</th>
+                <tr className="bg-slate-100 dark:bg-navy-800/50 border-b border-slate-400 dark:border-navy-700">
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Cadastro</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Nome</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">CPF</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Grupo</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Ano Obito</th>
                 </tr>
               </thead>
               <tbody>
@@ -254,22 +254,22 @@ export default function ObitosPage() {
                   return (
                   <tr
                     key={obito.id}
-                    className="border-b border-navy-800 hover:bg-navy-800/50 transition-colors cursor-pointer"
+                    className="border-b border-slate-300 dark:border-navy-800 hover:bg-slate-100 dark:bg-navy-800/50 transition-colors cursor-pointer"
                     onClick={() => setSelectedFuncionario(funcionario)}
                   >
-                    <td className="py-3 px-4 text-white/50 font-mono text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-500 dark:text-white/50 font-mono text-sm">
                       {obito.cadastro}
                     </td>
                     <td className="py-3 px-4">
-                      <span className="text-white font-medium hover:text-red-400 transition-colors">
+                      <span className="text-slate-900 dark:text-white font-medium hover:text-red-400 transition-colors">
                         {obito.nome}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-white/70 font-mono text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 font-mono text-sm">
                       {obito.cpf}
                     </td>
                     <td className="py-3 px-4">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-white/70">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
                         {obito.grupo}
                       </span>
                     </td>
@@ -279,7 +279,7 @@ export default function ObitosPage() {
                           ? "bg-red-500/20 text-red-400"
                           : obito.ano_obito >= 2020
                           ? "bg-orange-500/20 text-orange-400"
-                          : "bg-navy-700 text-white/70"
+                          : "bg-navy-700 text-slate-700 dark:text-white/70"
                       }`}>
                         {obito.ano_obito}
                       </span>
@@ -293,8 +293,8 @@ export default function ObitosPage() {
 
           {filteredObitos.length === 0 && (
             <div className="text-center py-12">
-              <HeartPulse className="w-12 h-12 text-white/20 mx-auto mb-3" />
-              <p className="text-white/50">Nenhum registro encontrado</p>
+              <HeartPulse className="w-12 h-12 text-slate-900 dark:text-white/20 mx-auto mb-3" />
+              <p className="text-slate-900 dark:text-slate-500 dark:text-white/50">Nenhum registro encontrado</p>
             </div>
           )}
         </div>

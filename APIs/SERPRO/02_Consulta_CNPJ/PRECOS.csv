@@ -1,0 +1,38 @@
+API Consulta CNPJ - Tabela de Preços
+Contrato: 260009
+Modelo: ESCALONADO/PROGRESSIVO
+Atualização: 06/12/2025
+
+Faixa,De,Até,Preço Unitário (R$),Observações
+1,1,5000,0.8788,Primeira faixa
+2,5001,10000,0.8265,
+3,10001,15000,0.7951,
+4,15001,30000,0.7533,
+5,30001,50000,0.7219,
+6,50001,75000,0.6905,
+7,75001,100000,0.6486,
+8,100001,500000,0.6173,
+9,500001,1000000,0.5336,
+10,1000001,2000000,0.4394,
+11,2000001,4000000,0.3662,
+12,4000001,10000000,0.3139,
+13,10000001,+,0.2511,Acima de 10 milhões
+
+EXEMPLO DE CÁLCULO ESCALONADO:
+Para 20.000 consultas:
+- Faixa 1: 5.000 x R$ 0,8788 = R$ 4.394,00
+- Faixa 2: 5.000 x R$ 0,8265 = R$ 4.132,50
+- Faixa 3: 5.000 x R$ 0,7951 = R$ 3.975,50
+- Faixa 4: 5.000 x R$ 0,7533 = R$ 3.766,50
+Total: R$ 16.268,50
+
+MODALIDADES DE CONSULTA:
+- Básica: Dados cadastrais principais
+- QSA: Básica + Quadro Societário
+- Empresa: QSA + CPF dos sócios + Datas
+
+OBSERVAÇÕES:
+- Modelo ESCALONADO: você paga cada faixa completamente antes de passar para a próxima
+- Mesmo preço para os 3 tipos de consulta (Básica, QSA, Empresa)
+- Preços em reais (R$) por consulta
+- Valores sujeitos a alteração pelo SERPRO

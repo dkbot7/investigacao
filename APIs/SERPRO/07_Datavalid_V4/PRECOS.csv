@@ -1,0 +1,103 @@
+Tipo de Validação,Faixa,Volume Inicial,Volume Final,Preço Unitário (R$)
+Biométrica com Documental,1,1,999,"R$ 2,37"
+Biométrica com Documental,2,1000,9999,"R$ 2,22"
+Biométrica com Documental,3,10000,49999,"R$ 2,07"
+Biométrica com Documental,4,50000,99999,"R$ 1,94"
+Biométrica com Documental,5,100000,299999,"R$ 1,81"
+Biométrica com Documental,6,300000,499999,"R$ 1,69"
+Biométrica com Documental,7,500000,999999,"R$ 1,58"
+Biométrica com Documental,8,1000000,2499999,"R$ 1,48"
+Biométrica com Documental,9,2500000,3999999,"R$ 1,38"
+Biométrica com Documental,10,4000000,Ilimitado,"R$ 1,29"
+
+Tipo de Validação,Faixa,Volume Inicial,Volume Final,Preço Unitário (R$)
+Biométrica Composta com Prova de Vida,1,1,999,"R$ 2,91"
+Biométrica Composta com Prova de Vida,2,1000,9999,"R$ 2,70"
+Biométrica Composta com Prova de Vida,3,10000,49999,"R$ 2,62"
+Biométrica Composta com Prova de Vida,4,50000,99999,"R$ 2,07"
+Biométrica Composta com Prova de Vida,5,100000,299999,"R$ 1,99"
+Biométrica Composta com Prova de Vida,6,300000,499999,"R$ 1,89"
+Biométrica Composta com Prova de Vida,7,500000,999999,"R$ 1,77"
+Biométrica Composta com Prova de Vida,8,1000000,2499999,"R$ 1,63"
+Biométrica Composta com Prova de Vida,9,2500000,3999999,"R$ 1,55"
+Biométrica Composta com Prova de Vida,10,4000000,Ilimitado,"R$ 1,42"
+
+Tipo de Validação,Faixa,Volume Inicial,Volume Final,Preço Unitário (R$)
+Biométrica Composta,1,1,999,"R$ 2,02"
+Biométrica Composta,2,1000,9999,"R$ 1,96"
+Biométrica Composta,3,10000,49999,"R$ 1,84"
+Biométrica Composta,4,50000,99999,"R$ 1,67"
+Biométrica Composta,5,100000,299999,"R$ 1,57"
+Biométrica Composta,6,300000,499999,"R$ 1,48"
+Biométrica Composta,7,500000,999999,"R$ 1,39"
+Biométrica Composta,8,1000000,2499999,"R$ 1,18"
+Biométrica Composta,9,2500000,3999999,"R$ 1,08"
+Biométrica Composta,10,4000000,Ilimitado,"R$ 0,99"
+
+Tipo de Validação,Faixa,Volume Inicial,Volume Final,Preço Unitário (R$)
+Biométrica Simples com Prova de Vida,1,1,999,"R$ 2,61"
+Biométrica Simples com Prova de Vida,2,1000,9999,"R$ 2,41"
+Biométrica Simples com Prova de Vida,3,10000,49999,"R$ 2,35"
+Biométrica Simples com Prova de Vida,4,50000,99999,"R$ 1,82"
+Biométrica Simples com Prova de Vida,5,100000,299999,"R$ 1,76"
+Biométrica Simples com Prova de Vida,6,300000,499999,"R$ 1,67"
+Biométrica Simples com Prova de Vida,7,500000,999999,"R$ 1,56"
+Biométrica Simples com Prova de Vida,8,1000000,2499999,"R$ 1,46"
+Biométrica Simples com Prova de Vida,9,2500000,3999999,"R$ 1,39"
+Biométrica Simples com Prova de Vida,10,4000000,Ilimitado,"R$ 1,30"
+
+Tipo de Validação,Faixa,Volume Inicial,Volume Final,Preço Unitário (R$)
+Biométrica Simples,1,1,999,"R$ 1,68"
+Biométrica Simples,2,1000,9999,"R$ 1,63"
+Biométrica Simples,3,10000,49999,"R$ 1,53"
+Biométrica Simples,4,50000,99999,"R$ 1,39"
+Biométrica Simples,5,100000,299999,"R$ 1,31"
+Biométrica Simples,6,300000,499999,"R$ 1,23"
+Biométrica Simples,7,500000,999999,"R$ 1,16"
+Biométrica Simples,8,1000000,2499999,"R$ 0,98"
+Biométrica Simples,9,2500000,3999999,"R$ 0,90"
+Biométrica Simples,10,4000000,Ilimitado,"R$ 0,82"
+
+Tipo de Validação,Faixa,Volume Inicial,Volume Final,Preço Unitário (R$)
+Cadastral Composta,1,1,999,"R$ 1,14"
+Cadastral Composta,2,1000,9999,"R$ 1,09"
+Cadastral Composta,3,10000,49999,"R$ 1,04"
+Cadastral Composta,4,50000,99999,"R$ 0,97"
+Cadastral Composta,5,100000,299999,"R$ 0,93"
+Cadastral Composta,6,300000,499999,"R$ 0,90"
+Cadastral Composta,7,500000,999999,"R$ 0,86"
+Cadastral Composta,8,1000000,2499999,"R$ 0,78"
+Cadastral Composta,9,2500000,3999999,"R$ 0,74"
+Cadastral Composta,10,4000000,Ilimitado,"R$ 0,70"
+
+Tipo de Validação,Faixa,Volume Inicial,Volume Final,Preço Unitário (R$)
+Cadastral Simples,1,1,999,"R$ 0,80"
+Cadastral Simples,2,1000,9999,"R$ 0,78"
+Cadastral Simples,3,10000,49999,"R$ 0,73"
+Cadastral Simples,4,50000,99999,"R$ 0,66"
+Cadastral Simples,5,100000,299999,"R$ 0,62"
+Cadastral Simples,6,300000,499999,"R$ 0,59"
+Cadastral Simples,7,500000,999999,"R$ 0,55"
+Cadastral Simples,8,1000000,2499999,"R$ 0,47"
+Cadastral Simples,9,2500000,3999999,"R$ 0,43"
+Cadastral Simples,10,4000000,Ilimitado,"R$ 0,39"
+
+Tipo de Validação,Faixa,Volume Inicial,Volume Final,Preço Unitário (R$)
+Validação Completa,1,1,999,"R$ 3,50"
+Validação Completa,2,1000,9999,"R$ 3,33"
+Validação Completa,3,10000,49999,"R$ 3,20"
+Validação Completa,4,50000,99999,"R$ 3,08"
+Validação Completa,5,100000,299999,"R$ 2,99"
+Validação Completa,6,300000,499999,"R$ 2,93"
+Validação Completa,7,500000,999999,"R$ 2,87"
+Validação Completa,8,1000000,2499999,"R$ 2,82"
+Validação Completa,9,2500000,3999999,"R$ 2,76"
+Validação Completa,10,4000000,Ilimitado,"R$ 2,71"
+
+Observações:
+- Modelo de Cobrança: ESCALONADO/PROGRESSIVO
+- Unidade de Medida: Por validação
+- Contrato: 261070
+- Vigência: 06/12/2025 a 06/12/2030
+- Inclui: Carimbo de Tempo
+- Todas as ofertas de negócio do Datavalid estão incluídas no contrato

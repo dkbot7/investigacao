@@ -1,0 +1,19 @@
+Faixa,De,Até,Preço Unitário,Total Faixa (Máximo)
+1,1,5,"R$ 0,00 (GRÁTIS)","R$ 0,00"
+2,6,"1.000.000","R$ 1,5690","R$ 1.569.000,00"
+3,"1.000.001","2.000.000","R$ 1,5170","R$ 3.034.000,00"
+4,"2.000.001","3.000.000","R$ 1,4650","R$ 4.395.000,00"
+5,"3.000.001","4.000.000","R$ 1,4120","R$ 5.648.000,00"
+6,"4.000.001","5.000.000","R$ 1,3600","R$ 6.800.000,00"
+7,"5.000.001","6.000.000","R$ 1,3080","R$ 7.848.000,00"
+8,"6.000.001","7.000.000","R$ 1,2550","R$ 8.785.000,00"
+9,"7.000.001","8.000.000","R$ 1,2030","R$ 9.624.000,00"
+10,"8.000.000+",∞,"R$ 1,1510",-
+
+Modelo de Cobrança,POR FAIXA DE VOLUME TOTAL (NÃO PROGRESSIVO)
+Contratos,260008 e 261071
+Observação,"Primeiras 5 consultas GRATUITAS por mês"
+
+IMPORTANTE:,O preço unitário depende do VOLUME TOTAL do mês
+Exemplo 1,"100 consultas → Faixa 2 → 95 pagas × R$ 1,569 = R$ 149,06"
+Exemplo 2,"1.500.000 consultas → Faixa 3 → 1.499.995 pagas × R$ 1,517 = R$ 2.275.492,42"

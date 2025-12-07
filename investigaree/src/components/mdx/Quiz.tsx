@@ -60,14 +60,14 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
   const percentage = Math.round((correctCount / questions.length) * 100);
 
   return (
-    <div className="my-6 rounded-xl border border-gold-500/10 bg-navy-900/50 overflow-hidden">
+    <div className="my-6 rounded-xl border border-blue-500/10 bg-white dark:bg-white/50 dark:bg-navy-900/50 overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-navy-900 border-b border-gold-500/10">
+      <div className="flex items-center justify-between px-4 py-3 bg-white dark:bg-navy-900 border-b border-blue-500/10">
         <div className="flex items-center gap-2">
-          <HelpCircle className="w-5 h-5 text-gold-500" />
-          <h4 className="font-medium text-white">{title}</h4>
+          <HelpCircle className="w-5 h-5 text-blue-500" />
+          <h4 className="font-medium text-slate-900 dark:text-white">{title}</h4>
         </div>
-        <span className="text-sm text-navy-400">
+        <span className="text-sm text-slate-500 dark:text-navy-400">
           {currentQuestion + 1} / {questions.length}
         </span>
       </div>
@@ -82,7 +82,7 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
             className="p-6"
           >
             {/* Question */}
-            <p className="text-lg text-white mb-6">{current.question}</p>
+            <p className="text-lg text-slate-900 dark:text-white mb-6">{current.question}</p>
 
             {/* Options */}
             <div className="space-y-3">
@@ -91,14 +91,14 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
                 const isCorrectOption = index === current.correctIndex;
                 const showStatus = selectedAnswer !== null;
 
-                let statusClass = "border-gold-500/10 hover:border-gold-500/30";
+                let statusClass = "border-blue-500/10 hover:border-blue-500/30";
                 if (showStatus) {
                   if (isCorrectOption) {
                     statusClass = "border-green-500/50 bg-green-500/10";
                   } else if (isSelected && !isCorrectOption) {
                     statusClass = "border-red-500/50 bg-red-500/10";
                   } else {
-                    statusClass = "border-gold-500/10 opacity-50";
+                    statusClass = "border-blue-500/10 opacity-50";
                   }
                 }
 
@@ -111,10 +111,10 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
                       selectedAnswer === null ? "cursor-pointer" : "cursor-default"
                     }`}
                   >
-                    <span className="flex-shrink-0 w-8 h-8 rounded-full bg-navy-800 flex items-center justify-center text-sm font-medium text-navy-300">
+                    <span className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-100 dark:bg-navy-800 flex items-center justify-center text-sm font-medium text-slate-600 dark:text-navy-300">
                       {String.fromCharCode(65 + index)}
                     </span>
-                    <span className="flex-1 text-navy-200">{option}</span>
+                    <span className="flex-1 text-slate-700 dark:text-navy-200">{option}</span>
                     {showStatus && isCorrectOption && (
                       <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
                     )}
@@ -133,9 +133,9 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="mt-4 p-4 rounded-lg bg-navy-800/50 border border-gold-500/10"
+                  className="mt-4 p-4 rounded-lg bg-slate-100 dark:bg-navy-800/50 border border-blue-500/10"
                 >
-                  <p className="text-sm text-navy-300">
+                  <p className="text-sm text-slate-600 dark:text-navy-300">
                     <strong className={isCorrect ? "text-green-400" : "text-red-400"}>
                       {isCorrect ? "Correto!" : "Incorreto."}
                     </strong>{" "}
@@ -151,7 +151,7 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 onClick={handleNext}
-                className="mt-6 w-full py-3 rounded-lg bg-gold-500 hover:bg-gold-400 text-navy-950 font-medium transition-colors"
+                className="mt-6 w-full py-3 rounded-lg bg-blue-500 hover:bg-blue-400 text-navy-950 font-medium transition-colors"
               >
                 {currentQuestion < questions.length - 1 ? "Próxima Pergunta" : "Ver Resultado"}
               </motion.button>
@@ -176,9 +176,9 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
               >
                 {percentage}%
               </div>
-              <p className="text-navy-300">
+              <p className="text-slate-600 dark:text-navy-300">
                 Você acertou{" "}
-                <span className="text-white font-medium">
+                <span className="text-slate-900 dark:text-white font-medium">
                   {correctCount} de {questions.length}
                 </span>{" "}
                 perguntas
@@ -186,7 +186,7 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
             </div>
 
             {/* Message */}
-            <p className="text-navy-400 mb-6">
+            <p className="text-slate-500 dark:text-navy-400 mb-6">
               {percentage >= 70
                 ? "Excelente! Você demonstra bom conhecimento no assunto."
                 : percentage >= 50
@@ -197,7 +197,7 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
             {/* Reset Button */}
             <button
               onClick={handleReset}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-gold-500/20 hover:border-gold-500/40 text-gold-400 hover:text-gold-300 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-blue-500/20 hover:border-blue-500/40 text-blue-400 hover:text-blue-300 transition-colors"
             >
               <RotateCcw className="w-4 h-4" />
               Tentar Novamente
@@ -207,9 +207,9 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
       </AnimatePresence>
 
       {/* Progress Bar */}
-      <div className="h-1 bg-navy-800">
+      <div className="h-1 bg-slate-100 dark:bg-navy-800">
         <div
-          className="h-full bg-gold-500 transition-all duration-300"
+          className="h-full bg-blue-500 transition-all duration-300"
           style={{ width: `${((currentQuestion + (isComplete ? 1 : 0)) / questions.length) * 100}%` }}
         />
       </div>

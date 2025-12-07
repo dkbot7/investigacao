@@ -82,9 +82,9 @@ const columns: KanbanColumn[] = [
   {
     id: "monitoramento",
     title: "Monitoramento",
-    color: "text-cyan-400",
-    bgColor: "bg-cyan-500/10",
-    borderColor: "border-cyan-500/30",
+    color: "text-blue-400",
+    bgColor: "bg-blue-500/10",
+    borderColor: "border-blue-500/30",
     icon: Shield,
   },
   {
@@ -153,10 +153,10 @@ export function KanbanView({ funcionarios, onSelectFuncionario }: KanbanViewProp
         return (
           <div
             key={column.id}
-            className="flex-shrink-0 w-80 bg-navy-900 border border-navy-700 rounded-xl overflow-hidden"
+            className="flex-shrink-0 w-80 bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl overflow-hidden"
           >
             {/* Column Header */}
-            <div className={`p-4 border-b border-navy-700 ${column.bgColor} ${column.borderColor} border-t-2`}>
+            <div className={`p-4 border-b border-slate-400 dark:border-navy-700 ${column.bgColor} ${column.borderColor} border-t-2`}>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Icon className={`w-5 h-5 ${column.color}`} />
@@ -171,7 +171,7 @@ export function KanbanView({ funcionarios, onSelectFuncionario }: KanbanViewProp
             {/* Column Cards */}
             <div className="p-3 space-y-3 max-h-[calc(100vh-300px)] overflow-y-auto">
               {columnFuncionarios.length === 0 ? (
-                <p className="text-center text-white/40 text-sm py-8">Nenhum funcionário</p>
+                <p className="text-center text-slate-900 dark:text-white/40 text-sm py-8">Nenhum funcionário</p>
               ) : (
                 columnFuncionarios.map((func, index) => (
                   <motion.div
@@ -180,27 +180,27 @@ export function KanbanView({ funcionarios, onSelectFuncionario }: KanbanViewProp
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
                     onClick={() => onSelectFuncionario(func)}
-                    className="bg-navy-800 border border-navy-700 rounded-lg p-3 hover:border-gold-500/50 transition-all cursor-pointer group"
+                    className="bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg p-3 hover:border-blue-500/50 transition-all cursor-pointer group"
                   >
                     {/* If it's a group */}
                     {func.is_grupo === 1 ? (
                       <>
                         {/* Group Icon and Name */}
                         <div className="flex items-center gap-2 mb-2">
-                          <FolderOpen className="w-5 h-5 text-gold-400" />
-                          <h4 className="font-medium text-white group-hover:text-gold-400 transition-colors truncate">
+                          <FolderOpen className="w-5 h-5 text-blue-400" />
+                          <h4 className="font-medium text-slate-900 dark:text-white group-hover:text-blue-400 transition-colors truncate">
                             {func.nome}
                           </h4>
                         </div>
 
                         {/* Document Count */}
-                        <p className="text-sm text-white/70 mb-3">
+                        <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70 mb-3">
                           {func.grupo_total_documentos} documento{func.grupo_total_documentos !== 1 ? 's' : ''}
                         </p>
 
                         {/* Group Badge */}
                         <div className="mb-3">
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-gold-500/20 text-gold-400 border border-gold-500/30">
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400 border border-blue-500/30">
                             <FolderOpen className="w-3 h-3" />
                             Análise em Lote
                           </span>
@@ -209,20 +209,20 @@ export function KanbanView({ funcionarios, onSelectFuncionario }: KanbanViewProp
                     ) : (
                       <>
                         {/* Name */}
-                        <h4 className="font-medium text-white group-hover:text-gold-400 transition-colors mb-2 truncate">
+                        <h4 className="font-medium text-slate-900 dark:text-white group-hover:text-blue-400 transition-colors mb-2 truncate">
                           {func.nome}
                         </h4>
 
                         {/* CPF */}
-                        <p className="text-xs text-white/50 font-mono mb-2">{maskCPF(func.cpf)}</p>
+                        <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 font-mono mb-2">{maskCPF(func.cpf)}</p>
 
                         {/* Grupo and Cargo */}
                         <div className="space-y-1 mb-3">
-                          <div className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-white/70">
+                          <div className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
                             {func.grupo}
                           </div>
                           {func.cargo && (
-                            <p className="text-xs text-white/60 mt-1">{func.cargo}</p>
+                            <p className="text-xs text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">{func.cargo}</p>
                           )}
                         </div>
 
@@ -287,7 +287,7 @@ export function KanbanView({ funcionarios, onSelectFuncionario }: KanbanViewProp
 
                         {/* Salary (if exists) */}
                         {func.salario && (
-                          <p className="text-xs text-white/40 mt-2">
+                          <p className="text-xs text-slate-900 dark:text-white/40 mt-2">
                             Salário: R$ {func.salario.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                           </p>
                         )}

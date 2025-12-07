@@ -133,7 +133,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
         onClick={onClose}
       >
         <motion.div
-          className="relative w-full max-w-md bg-navy-900 rounded-2xl shadow-2xl border border-navy-700"
+          className="relative w-full max-w-md bg-white dark:bg-navy-900 rounded-2xl shadow-2xl border border-slate-400 dark:border-navy-700"
           initial={{ scale: 0.9, y: 20 }}
           animate={{ scale: 1, y: 0 }}
           exit={{ scale: 0.9, y: 20 }}
@@ -145,18 +145,18 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-white/60 hover:text-white transition-colors"
+            className="absolute top-4 right-4 text-slate-600 dark:text-white/60 hover:text-slate-900 dark:hover:text-white transition-colors"
             aria-label="Fechar modal"
           >
             <X className="w-5 h-5" />
           </button>
 
           {/* Header */}
-          <div className="p-6 border-b border-navy-700">
-            <h2 id="register-modal-title" className="text-2xl font-bold text-white">
+          <div className="p-6 border-b border-slate-400 dark:border-navy-700">
+            <h2 id="register-modal-title" className="text-2xl font-bold text-slate-900 dark:text-white">
               {step === "contact" ? "Solicitar Investigação" : "Criar sua senha"}
             </h2>
-            <p className="text-sm text-white/60 mt-1">
+            <p className="text-sm text-slate-600 dark:text-white/60 mt-1">
               {step === "contact"
                 ? "Preencha seus dados de contato"
                 : "Defina uma senha para acessar sua área privada"}
@@ -174,40 +174,40 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
             {step === "contact" ? (
               <form onSubmit={handleContactSubmit} className="space-y-4">
                 <div>
-                  <Label htmlFor="name" className="text-white">Nome completo</Label>
+                  <Label htmlFor="name" className="text-slate-900 dark:text-white">Nome completo</Label>
                   <Input
                     id="name"
                     type="text"
                     placeholder="Roberto Andrade"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="mt-1 bg-navy-800 border-navy-600 text-white placeholder:text-white/40"
+                    className="mt-1 bg-slate-100 dark:bg-navy-800 border-navy-600 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-white/40"
                     required
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="email" className="text-white">Email</Label>
+                  <Label htmlFor="email" className="text-slate-900 dark:text-white">Email</Label>
                   <Input
                     id="email"
                     type="email"
                     placeholder="roberto@exemplo.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="mt-1 bg-navy-800 border-navy-600 text-white placeholder:text-white/40"
+                    className="mt-1 bg-slate-100 dark:bg-navy-800 border-navy-600 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-white/40"
                     required
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="whatsapp" className="text-white">WhatsApp</Label>
+                  <Label htmlFor="whatsapp" className="text-slate-900 dark:text-white">WhatsApp</Label>
                   <Input
                     id="whatsapp"
                     type="tel"
                     placeholder="(11) 99999-9999"
                     value={whatsapp}
                     onChange={(e) => setWhatsapp(formatWhatsapp(e.target.value))}
-                    className="mt-1 bg-navy-800 border-navy-600 text-white placeholder:text-white/40"
+                    className="mt-1 bg-slate-100 dark:bg-navy-800 border-navy-600 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-white/40"
                     maxLength={15}
                     required
                   />
@@ -224,28 +224,28 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
             ) : (
               <form onSubmit={handlePasswordSubmit} className="space-y-4">
                 <div>
-                  <Label htmlFor="password" className="text-white">Senha</Label>
+                  <Label htmlFor="password" className="text-slate-900 dark:text-white">Senha</Label>
                   <Input
                     id="password"
                     type="password"
                     placeholder="Mínimo 6 caracteres"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="mt-1 bg-navy-800 border-navy-600 text-white placeholder:text-white/40"
+                    className="mt-1 bg-slate-100 dark:bg-navy-800 border-navy-600 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-white/40"
                     required
                     minLength={6}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="confirmPassword" className="text-white">Confirmar senha</Label>
+                  <Label htmlFor="confirmPassword" className="text-slate-900 dark:text-white">Confirmar senha</Label>
                   <Input
                     id="confirmPassword"
                     type="password"
                     placeholder="Digite a senha novamente"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="mt-1 bg-navy-800 border-navy-600 text-white placeholder:text-white/40"
+                    className="mt-1 bg-slate-100 dark:bg-navy-800 border-navy-600 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-white/40"
                     required
                     minLength={6}
                   />
@@ -270,7 +270,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
                 <button
                   type="button"
                   onClick={() => setStep("contact")}
-                  className="w-full text-sm text-white/60 hover:text-white transition-colors"
+                  className="w-full text-sm text-slate-600 dark:text-white/60 hover:text-slate-900 dark:hover:text-white transition-colors"
                 >
                   ← Voltar
                 </button>

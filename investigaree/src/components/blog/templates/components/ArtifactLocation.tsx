@@ -21,10 +21,10 @@ interface ArtifactLocationProps {
 }
 
 const platformConfig: Record<Platform, { icon: typeof Monitor; label: string; color: string }> = {
-  ios: { icon: Apple, label: "iOS", color: "text-gray-400" },
+  ios: { icon: Apple, label: "iOS", color: "text-slate-500 dark:text-gray-400" },
   android: { icon: Smartphone, label: "Android", color: "text-green-500" },
   windows: { icon: Monitor, label: "Windows", color: "text-blue-500" },
-  macos: { icon: Apple, label: "macOS", color: "text-gray-400" },
+  macos: { icon: Apple, label: "macOS", color: "text-slate-500 dark:text-gray-400" },
   linux: { icon: Monitor, label: "Linux", color: "text-orange-500" }
 };
 
@@ -85,11 +85,11 @@ export default function ArtifactLocation({
         <div className="p-2 rounded-lg bg-purple-500/20">
           <FolderTree className="w-5 h-5 text-purple-500" />
         </div>
-        <h2 className="text-2xl font-bold text-white">{title}</h2>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{title}</h2>
       </div>
 
       {description && (
-        <p className="text-navy-300 mb-6 text-lg leading-relaxed">
+        <p className="text-slate-600 dark:text-navy-300 mb-6 text-lg leading-relaxed">
           {description}
         </p>
       )}
@@ -105,7 +105,7 @@ export default function ArtifactLocation({
               {/* Badge da plataforma */}
               <div className="flex items-center gap-2 mb-3">
                 <PlatformIcon className={`w-4 h-4 ${config.color}`} />
-                <span className="text-sm font-medium text-navy-400">{config.label}</span>
+                <span className="text-sm font-medium text-slate-500 dark:text-navy-400">{config.label}</span>
               </div>
 
               {/* Lista de paths */}
@@ -121,20 +121,20 @@ export default function ArtifactLocation({
                       transition={{ delay: index * 0.05 }}
                       className="group relative"
                     >
-                      <div className="p-4 rounded-lg bg-navy-900/70 border border-gold-500/10 hover:border-purple-500/30 transition-colors">
+                      <div className="p-4 rounded-lg bg-white dark:bg-white/70 dark:bg-navy-900/70 border border-blue-500/10 hover:border-purple-500/30 transition-colors">
                         {/* Nome do artefato */}
-                        <p className="text-sm font-medium text-white mb-2">
+                        <p className="text-sm font-medium text-slate-900 dark:text-white mb-2">
                           {artifact.name}
                         </p>
 
                         {/* Path com botão de copiar */}
                         <div className="flex items-center gap-2">
-                          <code className="flex-1 text-xs sm:text-sm font-mono text-purple-400 bg-navy-950/50 px-3 py-2 rounded overflow-x-auto">
+                          <code className="flex-1 text-xs sm:text-sm font-mono text-purple-400 bg-slate-50 dark:bg-navy-950/50 px-3 py-2 rounded overflow-x-auto">
                             {artifact.path}
                           </code>
                           <button
                             onClick={() => handleCopy(artifact.path, globalIndex)}
-                            className="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-navy-400 hover:text-white transition-colors flex-shrink-0"
+                            className="p-2 rounded-lg bg-slate-100 dark:bg-navy-800 hover:bg-navy-700 text-slate-500 dark:text-navy-400 hover:text-slate-900 dark:text-white transition-colors flex-shrink-0"
                             title="Copiar caminho"
                           >
                             {copiedIndex === globalIndex ? (
@@ -147,7 +147,7 @@ export default function ArtifactLocation({
 
                         {/* Descrição opcional */}
                         {artifact.description && (
-                          <p className="mt-2 text-xs text-navy-500">
+                          <p className="mt-2 text-xs text-slate-900 dark:text-navy-500">
                             {artifact.description}
                           </p>
                         )}

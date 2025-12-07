@@ -121,27 +121,27 @@ export default function CookieBanner() {
           transition={{ type: "spring", damping: 25, stiffness: 200 }}
           className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
         >
-          <div className="max-w-4xl mx-auto bg-navy-900 border border-gold-500/20 rounded-2xl shadow-2xl shadow-black/50 overflow-hidden">
+          <div className="max-w-4xl mx-auto bg-white dark:bg-navy-900 border border-blue-500/20 rounded-2xl shadow-2xl shadow-black/50 overflow-hidden">
             {/* Header */}
-            <div className="p-5 md:p-6 border-b border-gold-500/10">
+            <div className="p-5 md:p-6 border-b border-blue-500/10">
               <div className="flex items-start gap-4">
-                <div className="p-2.5 rounded-xl bg-gold-500/10 flex-shrink-0">
-                  <Cookie className="w-6 h-6 text-gold-500" />
+                <div className="p-2.5 rounded-xl bg-blue-500/10 flex-shrink-0">
+                  <Cookie className="w-6 h-6 text-blue-500" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-white mb-2">
+                  <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                     Gerenciar Consentimento de Cookies
                   </h3>
-                  <p className="text-sm text-navy-300 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-navy-300 leading-relaxed">
                     Utilizamos cookies e tecnologias similares para melhorar sua experiência,
                     analisar o tráfego e personalizar conteúdo. Em conformidade com a{" "}
-                    <strong className="text-white">LGPD (Lei Geral de Proteção de Dados)</strong>,
+                    <strong className="text-slate-900 dark:text-white">LGPD (Lei Geral de Proteção de Dados)</strong>,
                     você pode gerenciar suas preferências abaixo.
                   </p>
                 </div>
                 <button
                   onClick={() => setIsVisible(false)}
-                  className="p-1 text-navy-400 hover:text-white transition-colors"
+                  className="p-1 text-slate-500 dark:text-navy-400 hover:text-slate-900 dark:text-white transition-colors"
                   aria-label="Fechar"
                 >
                   <X className="w-5 h-5" />
@@ -159,12 +159,12 @@ export default function CookieBanner() {
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <div className="p-5 md:p-6 border-b border-gold-500/10 bg-navy-950/50">
+                  <div className="p-5 md:p-6 border-b border-blue-500/10 bg-slate-50 dark:bg-navy-950/50">
                     <div className="space-y-4">
                       {cookieCategories.map((category) => (
                         <div
                           key={category.id}
-                          className="flex items-start gap-4 p-4 rounded-xl bg-navy-900/50 border border-gold-500/5"
+                          className="flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/5"
                         >
                           {/* Toggle */}
                           <button
@@ -172,7 +172,7 @@ export default function CookieBanner() {
                             disabled={category.required}
                             className={`relative w-12 h-6 rounded-full transition-colors flex-shrink-0 mt-0.5 ${
                               preferences[category.id]
-                                ? "bg-gold-500"
+                                ? "bg-blue-500"
                                 : "bg-navy-700"
                             } ${category.required ? "opacity-75 cursor-not-allowed" : "cursor-pointer"}`}
                           >
@@ -186,36 +186,36 @@ export default function CookieBanner() {
                           {/* Info */}
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-1">
-                              <h4 className="font-medium text-white">{category.name}</h4>
+                              <h4 className="font-medium text-slate-900 dark:text-white">{category.name}</h4>
                               {category.required && (
-                                <span className="text-[10px] px-2 py-0.5 rounded-full bg-navy-700 text-navy-300">
+                                <span className="text-[10px] px-2 py-0.5 rounded-full bg-navy-700 text-slate-600 dark:text-navy-300">
                                   Sempre ativo
                                 </span>
                               )}
                             </div>
-                            <p className="text-sm text-navy-400">{category.description}</p>
+                            <p className="text-sm text-slate-500 dark:text-navy-400">{category.description}</p>
                           </div>
                         </div>
                       ))}
                     </div>
 
                     {/* Links para políticas */}
-                    <div className="flex flex-wrap gap-4 mt-4 pt-4 border-t border-gold-500/10 text-sm">
+                    <div className="flex flex-wrap gap-4 mt-4 pt-4 border-t border-blue-500/10 text-sm">
                       <Link
                         href="/privacidade"
-                        className="text-gold-500 hover:text-gold-400 transition-colors"
+                        className="text-blue-500 hover:text-blue-400 transition-colors"
                       >
                         Política de Privacidade
                       </Link>
                       <Link
                         href="/cookies"
-                        className="text-gold-500 hover:text-gold-400 transition-colors"
+                        className="text-blue-500 hover:text-blue-400 transition-colors"
                       >
                         Política de Cookies
                       </Link>
                       <Link
                         href="/termos"
-                        className="text-gold-500 hover:text-gold-400 transition-colors"
+                        className="text-blue-500 hover:text-blue-400 transition-colors"
                       >
                         Termos de Uso
                       </Link>
@@ -226,12 +226,12 @@ export default function CookieBanner() {
             </AnimatePresence>
 
             {/* Ações */}
-            <div className="p-5 md:p-6 bg-navy-950/30">
+            <div className="p-5 md:p-6 bg-slate-50 dark:bg-navy-950/30">
               <div className="flex flex-col sm:flex-row items-center gap-3">
                 {/* Botão de configurações */}
                 <button
                   onClick={() => setShowDetails(!showDetails)}
-                  className="flex items-center gap-2 text-sm text-navy-300 hover:text-white transition-colors order-2 sm:order-1"
+                  className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300 hover:text-slate-900 dark:text-white transition-colors order-2 sm:order-1"
                 >
                   <Settings className="w-4 h-4" />
                   {showDetails ? "Ocultar configurações" : "Configurar preferências"}
@@ -247,7 +247,7 @@ export default function CookieBanner() {
                   <Button
                     variant="outline"
                     onClick={handleRejectAll}
-                    className="flex-1 sm:flex-none border-navy-600 text-navy-300 hover:bg-navy-800 hover:text-white"
+                    className="flex-1 sm:flex-none border-navy-600 text-slate-600 dark:text-navy-300 hover:bg-slate-100 dark:bg-navy-800 hover:text-slate-900 dark:text-white"
                   >
                     Rejeitar todos
                   </Button>
@@ -255,7 +255,7 @@ export default function CookieBanner() {
                   {showDetails ? (
                     <Button
                       onClick={handleSavePreferences}
-                      className="flex-1 sm:flex-none bg-gold-500 hover:bg-gold-600 text-navy-950"
+                      className="flex-1 sm:flex-none bg-blue-500 hover:bg-blue-600 text-navy-950"
                     >
                       <Check className="w-4 h-4 mr-2" />
                       Salvar preferências
@@ -263,7 +263,7 @@ export default function CookieBanner() {
                   ) : (
                     <Button
                       onClick={handleAcceptAll}
-                      className="flex-1 sm:flex-none bg-gold-500 hover:bg-gold-600 text-navy-950"
+                      className="flex-1 sm:flex-none bg-blue-500 hover:bg-blue-600 text-navy-950"
                     >
                       <Check className="w-4 h-4 mr-2" />
                       Aceitar todos

@@ -62,11 +62,11 @@ export default function ForensicValue({
         <div className="p-2 rounded-lg bg-emerald-500/20">
           <Shield className="w-5 h-5 text-emerald-500" />
         </div>
-        <h2 className="text-2xl font-bold text-white">{title}</h2>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{title}</h2>
       </div>
 
       {description && (
-        <p className="text-navy-300 mb-6 text-lg leading-relaxed">
+        <p className="text-slate-600 dark:text-navy-300 mb-6 text-lg leading-relaxed">
           {description}
         </p>
       )}
@@ -82,17 +82,17 @@ export default function ForensicValue({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="p-5 rounded-xl bg-navy-900/50 border border-gold-500/10 hover:border-emerald-500/30 transition-colors group"
+              className="p-5 rounded-xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/10 hover:border-emerald-500/30 transition-colors group"
             >
               <div className="flex items-start gap-4">
                 <div className="p-2.5 rounded-lg bg-emerald-500/10 group-hover:bg-emerald-500/20 transition-colors">
                   <Icon className="w-5 h-5 text-emerald-500" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white mb-1">
+                  <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
                     {evidence.title}
                   </h3>
-                  <p className="text-sm text-navy-400 leading-relaxed">
+                  <p className="text-sm text-slate-500 dark:text-navy-400 leading-relaxed">
                     {evidence.description}
                   </p>
                 </div>

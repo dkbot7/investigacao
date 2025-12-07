@@ -41,7 +41,7 @@ export default function BlogPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-navy-950">
+      <main className="min-h-screen bg-slate-50 dark:bg-navy-950">
         {/* Hero Section - Compacto com busca integrada */}
         <BlogHero
           searchValue={searchValue}
@@ -56,12 +56,12 @@ export default function BlogPage() {
             <div className="mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-navy-800 border border-gold-500/10">
-                    <Library className="w-5 h-5 text-gold-500" />
+                  <div className="p-2 rounded-lg bg-slate-100 dark:bg-navy-800 border border-blue-500/10">
+                    <Library className="w-5 h-5 text-blue-500" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-white">Todos os Artigos</h2>
-                    <p className="text-xs text-navy-400">
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white">Todos os Artigos</h2>
+                    <p className="text-xs text-slate-500 dark:text-navy-400">
                       {pagination.total} artigos disponíveis
                     </p>
                   </div>
@@ -131,13 +131,13 @@ export default function BlogPage() {
                         animate={{ opacity: 1 }}
                         className="text-center py-16"
                       >
-                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-navy-800 flex items-center justify-center">
-                          <Library className="w-8 h-8 text-navy-500" />
+                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-100 dark:bg-navy-800 flex items-center justify-center">
+                          <Library className="w-8 h-8 text-slate-900 dark:text-navy-500" />
                         </div>
-                        <h3 className="text-lg font-medium text-white mb-2">
+                        <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
                           Nenhum artigo encontrado
                         </h3>
-                        <p className="text-navy-400 mb-4">
+                        <p className="text-slate-500 dark:text-navy-400 mb-4">
                           Tente ajustar os filtros ou termos de busca
                         </p>
                         <button
@@ -145,7 +145,7 @@ export default function BlogPage() {
                             setFilters({});
                             setSearchValue("");
                           }}
-                          className="text-gold-500 hover:text-gold-400 font-medium"
+                          className="text-blue-500 hover:text-blue-400 font-medium"
                         >
                           Limpar filtros
                         </button>
@@ -175,7 +175,7 @@ export default function BlogPage() {
         </section>
 
         {/* CTA para newsletter - Comunidade */}
-        <section className="py-20 border-t border-gold-500/10 bg-gradient-to-b from-navy-950 to-navy-900">
+        <section className="py-20 border-t border-blue-500/10 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900">
           <div className="container mx-auto px-4 sm:px-8 lg:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -184,15 +184,15 @@ export default function BlogPage() {
               className="max-w-3xl mx-auto text-center"
             >
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 mb-6">
-                <Mail className="w-4 h-4 text-gold-500" />
-                <span className="text-sm text-gold-400 font-medium">Newsletter DFIR</span>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6">
+                <Mail className="w-4 h-4 text-blue-500" />
+                <span className="text-sm text-blue-400 font-medium">Newsletter DFIR</span>
               </div>
 
-              <h3 className="text-3xl font-bold text-white mb-4">
+              <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
                 Mantenha-se à frente nas investigações digitais
               </h3>
-              <p className="text-navy-300 mb-8 text-lg">
+              <p className="text-slate-600 dark:text-navy-300 mb-8 text-lg">
                 Receba semanalmente as últimas inovações em forense digital,
                 cases práticos e atualizações sobre LGPD e legislação brasileira.
               </p>
@@ -201,20 +201,20 @@ export default function BlogPage() {
                 <input
                   type="email"
                   placeholder="Seu melhor email profissional"
-                  className="flex-1 px-5 py-3.5 rounded-xl bg-navy-800/50 border border-gold-500/20 text-white placeholder:text-navy-400 focus:outline-none focus:border-gold-500/50 transition-colors"
+                  className="flex-1 px-5 py-3.5 rounded-xl bg-slate-100 dark:bg-navy-800/50 border border-blue-500/20 text-slate-900 dark:text-white placeholder:text-slate-500 dark:text-navy-400 focus:outline-none focus:border-blue-500/50 transition-colors"
                 />
                 <motion.button
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="px-8 py-3.5 bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold rounded-xl transition-colors"
+                  className="px-8 py-3.5 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold rounded-xl transition-colors"
                 >
                   Inscrever-se
                 </motion.button>
               </form>
 
               {/* Trust elements */}
-              <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-navy-500">
+              <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-slate-900 dark:text-navy-500">
                 <span className="flex items-center gap-1.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
                   Gratuito

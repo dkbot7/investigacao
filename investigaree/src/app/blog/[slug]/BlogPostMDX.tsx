@@ -85,7 +85,7 @@ export default function BlogPostMDX({
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-navy-950">
+      <main className="min-h-screen bg-slate-50 dark:bg-navy-950">
         {/* Hero do artigo */}
         <section className="relative pt-20">
           {/* Imagem de capa */}
@@ -102,7 +102,7 @@ export default function BlogPostMDX({
             {/* Back link */}
             <Link
               href="/blog"
-              className="absolute top-6 left-6 z-20 flex items-center gap-2 px-4 py-2 bg-navy-900/80 backdrop-blur-sm rounded-lg text-sm text-white hover:bg-navy-800 transition-colors"
+              className="absolute top-6 left-6 z-20 flex items-center gap-2 px-4 py-2 bg-white dark:bg-navy-900/80 backdrop-blur-sm rounded-lg text-sm text-slate-900 dark:text-white hover:bg-slate-100 dark:bg-navy-800 transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
               Voltar ao Blog
@@ -121,7 +121,7 @@ export default function BlogPostMDX({
               {skillLevel && (
                 <Badge
                   variant="outline"
-                  className="text-xs bg-navy-950/80 backdrop-blur-sm"
+                  className="text-xs bg-slate-50 dark:bg-navy-950/80 backdrop-blur-sm"
                   style={{ borderColor: skillLevel.color, color: skillLevel.color }}
                 >
                   {skillLevel.name}
@@ -153,17 +153,17 @@ export default function BlogPostMDX({
               )}
 
               {/* Título */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
                 {frontmatter.title}
               </h1>
 
               {/* Resumo */}
-              <p className="text-lg sm:text-xl text-navy-300 mb-6">
+              <p className="text-lg sm:text-xl text-slate-600 dark:text-navy-300 mb-6">
                 {frontmatter.excerpt}
               </p>
 
               {/* Meta info */}
-              <div className="flex flex-wrap items-center gap-6 text-sm text-navy-400 pb-6 border-b border-gold-500/10">
+              <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-navy-400 pb-6 border-b border-blue-500/10">
                 {/* Autor */}
                 <div className="flex items-center gap-3">
                   {author.avatar ? (
@@ -175,14 +175,14 @@ export default function BlogPostMDX({
                       className="rounded-full"
                     />
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-gold-500/20 flex items-center justify-center">
-                      <User className="w-5 h-5 text-gold-500" />
+                    <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
+                      <User className="w-5 h-5 text-blue-500" />
                     </div>
                   )}
                   <div>
-                    <p className="font-medium text-white">{author.name}</p>
+                    <p className="font-medium text-slate-900 dark:text-white">{author.name}</p>
                     {author.role && (
-                      <p className="text-xs text-navy-500">{author.role}</p>
+                      <p className="text-xs text-slate-900 dark:text-navy-500">{author.role}</p>
                     )}
                   </div>
                 </div>
@@ -203,13 +203,13 @@ export default function BlogPostMDX({
                 <div className="flex items-center gap-2 ml-auto">
                   <button
                     onClick={handleShare}
-                    className="p-2 rounded-lg bg-navy-800/50 hover:bg-navy-700 transition-colors"
+                    className="p-2 rounded-lg bg-slate-100 dark:bg-navy-800/50 hover:bg-navy-700 transition-colors"
                     title="Compartilhar"
                   >
                     <Share2 className="w-4 h-4" />
                   </button>
                   <button
-                    className="p-2 rounded-lg bg-navy-800/50 hover:bg-navy-700 transition-colors"
+                    className="p-2 rounded-lg bg-slate-100 dark:bg-navy-800/50 hover:bg-navy-700 transition-colors"
                     title="Salvar"
                   >
                     <Bookmark className="w-4 h-4" />
@@ -238,18 +238,18 @@ export default function BlogPostMDX({
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="mt-8 pt-8 border-t border-gold-500/10"
+                  className="mt-8 pt-8 border-t border-blue-500/10"
                 >
                   <div className="flex items-center gap-2 mb-3">
-                    <Tag className="w-4 h-4 text-navy-500" />
-                    <p className="text-sm text-navy-500">Tags:</p>
+                    <Tag className="w-4 h-4 text-slate-900 dark:text-navy-500" />
+                    <p className="text-sm text-slate-900 dark:text-navy-500">Tags:</p>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {frontmatter.tags.map((tag) => (
                       <Link
                         key={tag}
                         href={`/blog?tag=${tag}`}
-                        className="px-3 py-1 text-sm bg-navy-900/50 text-navy-300 rounded-lg hover:bg-navy-800 hover:text-white transition-colors"
+                        className="px-3 py-1 text-sm bg-white dark:bg-navy-900/50 text-slate-600 dark:text-navy-300 rounded-lg hover:bg-slate-100 dark:bg-navy-800 hover:text-slate-900 dark:text-white transition-colors"
                       >
                         #{tag}
                       </Link>
@@ -263,7 +263,7 @@ export default function BlogPostMDX({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="mt-8 p-6 rounded-xl bg-navy-900/50 border border-gold-500/10"
+                className="mt-8 p-6 rounded-xl bg-white dark:bg-navy-900/50 border border-blue-500/10"
               >
                 <div className="flex items-start gap-4">
                   {author.avatar ? (
@@ -275,17 +275,17 @@ export default function BlogPostMDX({
                       className="rounded-full"
                     />
                   ) : (
-                    <div className="w-16 h-16 rounded-full bg-gold-500/20 flex items-center justify-center text-2xl font-bold text-gold-500">
+                    <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-2xl font-bold text-blue-500">
                       {author.name[0]}
                     </div>
                   )}
                   <div>
-                    <p className="font-semibold text-white text-lg">{author.name}</p>
+                    <p className="font-semibold text-slate-900 dark:text-white text-lg">{author.name}</p>
                     {author.role && (
-                      <p className="text-gold-500 text-sm mb-2">{author.role}</p>
+                      <p className="text-blue-500 text-sm mb-2">{author.role}</p>
                     )}
                     {author.bio && (
-                      <p className="text-navy-400 text-sm">{author.bio}</p>
+                      <p className="text-slate-500 dark:text-navy-400 text-sm">{author.bio}</p>
                     )}
                   </div>
                 </div>
@@ -296,18 +296,18 @@ export default function BlogPostMDX({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="mt-8 p-6 rounded-xl bg-gradient-to-r from-gold-500/10 to-gold-600/5 border border-gold-500/20"
+                className="mt-8 p-6 rounded-xl bg-gradient-to-r from-blue-500/10 to-blue-600/5 border border-blue-500/20"
               >
-                <h3 className="text-lg font-semibold text-white mb-2">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                   Gostou do conteúdo?
                 </h3>
-                <p className="text-navy-300 text-sm mb-4">
+                <p className="text-slate-600 dark:text-navy-300 text-sm mb-4">
                   Receba semanalmente as principais novidades em investigação digital,
                   due diligence e proteção patrimonial.
                 </p>
                 <Link
                   href="/#newsletter"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-gold-500 hover:bg-gold-600 text-navy-950 font-medium rounded-lg transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-navy-950 font-medium rounded-lg transition-colors"
                 >
                   Assinar Newsletter
                 </Link>

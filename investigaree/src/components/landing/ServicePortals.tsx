@@ -11,8 +11,8 @@ const PORTALS = [
     title: "Red Flag Express",
     subtitle: "Decisões rápidas e seguras",
     emoji: Rocket,
-    gradient: "from-gold-500 to-gold-600",
-    bgGradient: "from-gold-50 to-gold-100 dark:from-gold-950/20 dark:to-gold-900/20",
+    gradient: "from-blue-500 to-blue-600",
+    bgGradient: "from-blue-50 to-blue-100 dark:from-blue-950/20 dark:to-blue-900/20",
     services: [
       "Verificação 48 horas garantidas",
       "Red flags principais identificadas",
@@ -60,20 +60,20 @@ const PORTALS = [
 
 export default function ServicePortals() {
   return (
-    <section className="py-32 bg-navy-50 dark:bg-navy-900 relative overflow-hidden">
+    <section className="py-32 bg-navy-50 dark:bg-white dark:bg-navy-900 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5" />
 
       <div className="container max-w-7xl px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 space-y-4">
-          <Badge variant="outline" className="mb-4 text-gold-600 dark:text-gold-400 border-gold-400 bg-gold-500/10">
+          <Badge variant="outline" className="mb-4 text-blue-600 dark:text-blue-400 border-blue-400 bg-blue-500/10">
             3 Níveis de Proteção
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-navy-900 dark:text-white">
             Invista 0,1% para proteger 100%
           </h2>
-          <p className="text-xl text-navy-600 dark:text-navy-300 max-w-2xl mx-auto">
+          <p className="text-xl text-navy-600 dark:text-slate-600 dark:text-navy-300 max-w-2xl mx-auto">
             Due diligence empresarial com rigor de perícia forense
           </p>
         </div>
@@ -86,13 +86,13 @@ export default function ServicePortals() {
               <Card
                 key={portal.id}
                 className={`relative group hover:scale-105 transition-all duration-300 border-2 hover:shadow-2xl ${
-                  portal.popular ? "border-gold-500 shadow-xl scale-105 md:scale-110" : "border-navy-200 dark:border-navy-700"
+                  portal.popular ? "border-blue-500 shadow-xl scale-105 md:scale-110" : "border-navy-200 dark:border-slate-400 dark:border-navy-700"
                 } bg-gradient-to-br ${portal.bgGradient}`}
               >
                 {/* Badge */}
                 {(portal.popular || portal.badge) && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <Badge className={`${portal.popular ? 'gradient-premium text-navy-950' : 'bg-navy-800 text-gold-400'} shadow-lg px-4 py-1 font-bold`}>
+                    <Badge className={`${portal.popular ? 'gradient-premium text-navy-950' : 'bg-slate-100 dark:bg-navy-800 text-blue-400'} shadow-lg px-4 py-1 font-bold`}>
                       {portal.popular ? 'RECOMENDADO' : portal.badge}
                     </Badge>
                   </div>
@@ -101,13 +101,13 @@ export default function ServicePortals() {
                 <CardHeader className="text-center pt-8">
                   <div className="flex justify-center mb-4">
                     <div className={`w-20 h-20 rounded-full bg-gradient-to-br ${portal.gradient} flex items-center justify-center shadow-lg`}>
-                      <Icon className="w-10 h-10 text-white" />
+                      <Icon className="w-10 h-10 text-slate-900 dark:text-white" />
                     </div>
                   </div>
                   <CardTitle className="text-2xl mb-2 text-navy-900 dark:text-white">
                     {portal.title}
                   </CardTitle>
-                  <CardDescription className="text-base text-navy-600 dark:text-navy-300">
+                  <CardDescription className="text-base text-navy-600 dark:text-slate-600 dark:text-navy-300">
                     {portal.subtitle}
                   </CardDescription>
                 </CardHeader>
@@ -117,8 +117,8 @@ export default function ServicePortals() {
                   <ul className="space-y-3">
                     {portal.services.map((service, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-gold-600 dark:text-gold-400 flex-shrink-0 mt-0.5" />
-                        <span className="text-navy-700 dark:text-navy-200 text-sm font-medium">
+                        <Check className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                        <span className="text-navy-700 dark:text-slate-700 dark:text-navy-200 text-sm font-medium">
                           {service}
                         </span>
                       </li>
@@ -126,9 +126,9 @@ export default function ServicePortals() {
                   </ul>
 
                   {/* Sob Consulta */}
-                  <div className="pt-4 border-t border-navy-200 dark:border-navy-700">
+                  <div className="pt-4 border-t border-navy-200 dark:border-slate-400 dark:border-navy-700">
                     <div className="text-center">
-                      <p className="text-sm text-navy-600 dark:text-navy-400 mb-2">
+                      <p className="text-sm text-navy-600 dark:text-slate-500 dark:text-navy-400 mb-2">
                         Investimento
                       </p>
                       <p className="text-2xl font-bold text-navy-900 dark:text-white">

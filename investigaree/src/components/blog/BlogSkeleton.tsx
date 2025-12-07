@@ -4,31 +4,31 @@ import { motion } from "framer-motion";
 
 export function BlogCardSkeleton() {
   return (
-    <div className="rounded-xl bg-navy-900/30 border border-gold-500/10 overflow-hidden">
+    <div className="rounded-xl bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-blue-500/10 overflow-hidden">
       {/* Imagem placeholder */}
-      <div className="h-48 bg-navy-800/50 animate-pulse" />
+      <div className="h-48 bg-slate-100 dark:bg-navy-800/50 animate-pulse" />
 
       {/* Conteúdo */}
       <div className="p-5 space-y-4">
         {/* Título */}
         <div className="space-y-2">
-          <div className="h-4 bg-navy-800/50 rounded animate-pulse w-3/4" />
-          <div className="h-4 bg-navy-800/50 rounded animate-pulse w-1/2" />
+          <div className="h-4 bg-slate-100 dark:bg-navy-800/50 rounded animate-pulse w-3/4" />
+          <div className="h-4 bg-slate-100 dark:bg-navy-800/50 rounded animate-pulse w-1/2" />
         </div>
 
         {/* Resumo */}
         <div className="space-y-2">
-          <div className="h-3 bg-navy-800/30 rounded animate-pulse" />
-          <div className="h-3 bg-navy-800/30 rounded animate-pulse w-5/6" />
+          <div className="h-3 bg-slate-100 dark:bg-navy-800/30 rounded animate-pulse" />
+          <div className="h-3 bg-slate-100 dark:bg-navy-800/30 rounded animate-pulse w-5/6" />
         </div>
 
         {/* Meta */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-navy-800/50 animate-pulse" />
-            <div className="h-3 bg-navy-800/30 rounded animate-pulse w-20" />
+            <div className="w-6 h-6 rounded-full bg-slate-100 dark:bg-navy-800/50 animate-pulse" />
+            <div className="h-3 bg-slate-100 dark:bg-navy-800/30 rounded animate-pulse w-20" />
           </div>
-          <div className="h-3 bg-navy-800/30 rounded animate-pulse w-16" />
+          <div className="h-3 bg-slate-100 dark:bg-navy-800/30 rounded animate-pulse w-16" />
         </div>
       </div>
     </div>
@@ -37,24 +37,24 @@ export function BlogCardSkeleton() {
 
 export function FeaturedPostSkeleton() {
   return (
-    <div className="rounded-2xl bg-navy-900/50 border border-gold-500/10 overflow-hidden">
+    <div className="rounded-2xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/10 overflow-hidden">
       {/* Imagem placeholder maior */}
-      <div className="h-64 bg-navy-800/50 animate-pulse" />
+      <div className="h-64 bg-slate-100 dark:bg-navy-800/50 animate-pulse" />
 
       {/* Conteúdo */}
       <div className="p-6 space-y-4">
-        <div className="h-5 bg-gold-500/20 rounded-full animate-pulse w-24" />
+        <div className="h-5 bg-blue-500/20 rounded-full animate-pulse w-24" />
         <div className="space-y-2">
-          <div className="h-5 bg-navy-800/50 rounded animate-pulse w-full" />
-          <div className="h-5 bg-navy-800/50 rounded animate-pulse w-3/4" />
+          <div className="h-5 bg-slate-100 dark:bg-navy-800/50 rounded animate-pulse w-full" />
+          <div className="h-5 bg-slate-100 dark:bg-navy-800/50 rounded animate-pulse w-3/4" />
         </div>
         <div className="space-y-2">
-          <div className="h-3 bg-navy-800/30 rounded animate-pulse" />
-          <div className="h-3 bg-navy-800/30 rounded animate-pulse w-5/6" />
+          <div className="h-3 bg-slate-100 dark:bg-navy-800/30 rounded animate-pulse" />
+          <div className="h-3 bg-slate-100 dark:bg-navy-800/30 rounded animate-pulse w-5/6" />
         </div>
         <div className="flex justify-between">
-          <div className="h-3 bg-navy-800/30 rounded animate-pulse w-24" />
-          <div className="h-3 bg-navy-800/30 rounded animate-pulse w-16" />
+          <div className="h-3 bg-slate-100 dark:bg-navy-800/30 rounded animate-pulse w-24" />
+          <div className="h-3 bg-slate-100 dark:bg-navy-800/30 rounded animate-pulse w-16" />
         </div>
       </div>
     </div>
