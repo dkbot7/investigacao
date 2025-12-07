@@ -116,7 +116,7 @@
           "specs": [
             {
               "title": "deve carregar o painel admin com sucesso",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -129,28 +129,9 @@
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 27524,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Admin, text=Painel')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Admin, text=Painel')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Admin, text=Painel')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Admin, text=Painel')\u001b[22m\n\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts:18:64",
-                        "location": {
-                          "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts",
-                          "column": 64,
-                          "line": 18
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 16 |\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[90m// Verificar presença de elementos principais\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 18 |\u001b[39m     \u001b[36mawait\u001b[39m expect(adminPage\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Admin, text=Painel'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 19 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 20 |\u001b[39m\n \u001b[90m 21 |\u001b[39m   test(\u001b[32m'deve exibir os 4 cards de estatísticas'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ adminPage }) \u001b[33m=>\u001b[39m {\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts",
-                            "column": 64,
-                            "line": 18
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Admin, text=Painel')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Admin, text=Painel')\u001b[22m\n\n\n  16 |\n  17 |     // Verificar presença de elementos principais\n> 18 |     await expect(adminPage.locator('text=Admin, text=Painel')).toBeVisible();\n     |                                                                ^\n  19 |   });\n  20 |\n  21 |   test('deve exibir os 4 cards de estatísticas', async ({ adminPage }) => {\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts:18:64"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 25223,
+                      "errors": [],
                       "stdout": [
                         {
                           "text": "⚠️ Admin panel test page não carregou completamente\n"
@@ -158,33 +139,12 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:20:32.879Z",
+                      "startTime": "2025-12-07T18:28:36.414Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-01-load-and-navigati-962a7--o-painel-admin-com-sucesso-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-01-load-and-navigati-962a7--o-painel-admin-com-sucesso-chromium\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-01-load-and-navigati-962a7--o-painel-admin-com-sucesso-chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts",
-                        "column": 64,
-                        "line": 18
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "1dd69096f8f051c390c2-f3aaca669b6e5ffff035",
@@ -194,7 +154,7 @@
             },
             {
               "title": "deve exibir os 4 cards de estatísticas",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -207,28 +167,9 @@
                     {
                       "workerIndex": 1,
                       "parallelIndex": 1,
-                      "status": "failed",
-                      "duration": 20922,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Aguardando Liberacao')\nExpected: visible\nError: strict mode violation: locator('text=Aguardando Liberacao') resolved to 2 elements:\n    1) <p class=\"text-sm text-slate-900 dark:text-slate-600 dark:text-white/60\">Aguardando Liberacao</p> aka getByText('Aguardando Liberacao', { exact: true })\n    2) <h3 class=\"text-lg font-semibold text-amber-400 mb-4 flex items-center gap-2\">…</h3> aka getByRole('heading', { name: 'Usuarios Aguardando Liberacao' })\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Aguardando Liberacao')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Aguardando Liberacao')\nExpected: visible\nError: strict mode violation: locator('text=Aguardando Liberacao') resolved to 2 elements:\n    1) <p class=\"text-sm text-slate-900 dark:text-slate-600 dark:text-white/60\">Aguardando Liberacao</p> aka getByText('Aguardando Liberacao', { exact: true })\n    2) <h3 class=\"text-lg font-semibold text-amber-400 mb-4 flex items-center gap-2\">…</h3> aka getByRole('heading', { name: 'Usuarios Aguardando Liberacao' })\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Aguardando Liberacao')\u001b[22m\n\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts:28:66",
-                        "location": {
-                          "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts",
-                          "column": 66,
-                          "line": 28
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 26 |\u001b[39m     \u001b[36mawait\u001b[39m expect(adminPage\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Usuarios Totais'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 27 |\u001b[39m     \u001b[36mawait\u001b[39m expect(adminPage\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Tenants Ativos'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 28 |\u001b[39m     \u001b[36mawait\u001b[39m expect(adminPage\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Aguardando Liberacao'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 29 |\u001b[39m     \u001b[36mawait\u001b[39m expect(adminPage\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Alertas Nao Lidos'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 31 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts",
-                            "column": 66,
-                            "line": 28
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Aguardando Liberacao')\nExpected: visible\nError: strict mode violation: locator('text=Aguardando Liberacao') resolved to 2 elements:\n    1) <p class=\"text-sm text-slate-900 dark:text-slate-600 dark:text-white/60\">Aguardando Liberacao</p> aka getByText('Aguardando Liberacao', { exact: true })\n    2) <h3 class=\"text-lg font-semibold text-amber-400 mb-4 flex items-center gap-2\">…</h3> aka getByRole('heading', { name: 'Usuarios Aguardando Liberacao' })\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Aguardando Liberacao')\u001b[22m\n\n\n  26 |     await expect(adminPage.locator('text=Usuarios Totais')).toBeVisible();\n  27 |     await expect(adminPage.locator('text=Tenants Ativos')).toBeVisible();\n> 28 |     await expect(adminPage.locator('text=Aguardando Liberacao')).toBeVisible();\n     |                                                                  ^\n  29 |     await expect(adminPage.locator('text=Alertas Nao Lidos')).toBeVisible();\n  30 |   });\n  31 |\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts:28:66"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 24964,
+                      "errors": [],
                       "stdout": [
                         {
                           "text": "⚠️ Admin panel test page não carregou completamente\n"
@@ -236,33 +177,12 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:20:32.755Z",
+                      "startTime": "2025-12-07T18:28:36.674Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-01-load-and-navigati-94630--os-4-cards-de-estatísticas-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-01-load-and-navigati-94630--os-4-cards-de-estatísticas-chromium\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-01-load-and-navigati-94630--os-4-cards-de-estatísticas-chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts",
-                        "column": 66,
-                        "line": 28
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "1dd69096f8f051c390c2-ef72c5c290fa79afc721",
@@ -286,7 +206,7 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 21136,
+                      "duration": 25068,
                       "errors": [],
                       "stdout": [
                         {
@@ -295,7 +215,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:20:32.878Z",
+                      "startTime": "2025-12-07T18:28:36.641Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -324,7 +244,7 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 21786,
+                      "duration": 25684,
                       "errors": [],
                       "stdout": [
                         {
@@ -333,7 +253,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:20:32.799Z",
+                      "startTime": "2025-12-07T18:28:36.644Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -362,7 +282,7 @@
                       "workerIndex": 4,
                       "parallelIndex": 4,
                       "status": "failed",
-                      "duration": 32092,
+                      "duration": 39593,
                       "error": {
                         "message": "TimeoutError: page.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Fechar banner\"], button:has-text(\"×\"):near(:text(\"Modo Desenvolvimento\"))')\u001b[22m\n",
                         "stack": "TimeoutError: page.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Fechar banner\"], button:has-text(\"×\"):near(:text(\"Modo Desenvolvimento\"))')\u001b[22m\n\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts:72:23",
@@ -390,7 +310,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:20:32.823Z",
+                      "startTime": "2025-12-07T18:28:36.673Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -426,7 +346,7 @@
             },
             {
               "title": "deve mostrar loading spinner durante carregamento inicial",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -439,58 +359,18 @@
                     {
                       "workerIndex": 5,
                       "parallelIndex": 5,
-                      "status": "failed",
-                      "duration": 28431,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Usuarios Totais')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Usuarios Totais')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Usuarios Totais')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Usuarios Totais')\u001b[22m\n\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts:94:56",
-                        "location": {
-                          "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts",
-                          "column": 56,
-                          "line": 94
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 92 |\u001b[39m\n \u001b[90m 93 |\u001b[39m     \u001b[90m// Verificar conteúdo carregado\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 94 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Usuarios Totais'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 95 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 96 |\u001b[39m\n \u001b[90m 97 |\u001b[39m   test(\u001b[32m'deve ser responsivo em viewport mobile'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts",
-                            "column": 56,
-                            "line": 94
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Usuarios Totais')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Usuarios Totais')\u001b[22m\n\n\n  92 |\n  93 |     // Verificar conteúdo carregado\n> 94 |     await expect(page.locator('text=Usuarios Totais')).toBeVisible();\n     |                                                        ^\n  95 |   });\n  96 |\n  97 |   test('deve ser responsivo em viewport mobile', async ({ page }) => {\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts:94:56"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 23236,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:20:32.996Z",
+                      "startTime": "2025-12-07T18:28:36.615Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-01-load-and-navigati-7d2d7-urante-carregamento-inicial-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-01-load-and-navigati-7d2d7-urante-carregamento-inicial-chromium\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-01-load-and-navigati-7d2d7-urante-carregamento-inicial-chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts",
-                        "column": 56,
-                        "line": 94
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "1dd69096f8f051c390c2-79b719bb74b090aab1f4",
@@ -511,34 +391,34 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
                       "status": "failed",
-                      "duration": 17625,
+                      "duration": 15876,
                       "error": {
-                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=Usuarios Totais') to be visible\u001b[22m\n",
-                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=Usuarios Totais') to be visible\u001b[22m\n\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts:116:16",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m300\u001b[39m\nReceived:   \u001b[31m92.21875\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m300\u001b[39m\nReceived:   \u001b[31m92.21875\u001b[39m\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts:123:24",
                         "location": {
                           "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts",
-                          "column": 16,
-                          "line": 116
+                          "column": 24,
+                          "line": 123
                         },
-                        "snippet": "\u001b[0m \u001b[90m 114 |\u001b[39m\n \u001b[90m 115 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/dashboard/admin'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 116 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'text=Usuarios Totais'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 117 |\u001b[39m\n \u001b[90m 118 |\u001b[39m     \u001b[90m// Verificar cards em coluna única\u001b[39m\n \u001b[90m 119 |\u001b[39m     \u001b[36mconst\u001b[39m cards \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Usuarios Totais'\u001b[39m)\u001b[33m.\u001b[39mlocator(\u001b[32m'..'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                        "snippet": "\u001b[0m \u001b[90m 121 |\u001b[39m\n \u001b[90m 122 |\u001b[39m     \u001b[90m// Em mobile, cards devem ocupar quase toda largura\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 123 |\u001b[39m     expect(box\u001b[33m?\u001b[39m\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m300\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 124 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 125 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 126 |\u001b[39m\u001b[0m"
                       },
                       "errors": [
                         {
                           "location": {
                             "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts",
-                            "column": 16,
-                            "line": 116
+                            "column": 24,
+                            "line": 123
                           },
-                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=Usuarios Totais') to be visible\u001b[22m\n\n\n  114 |\n  115 |     await page.goto('/dashboard/admin');\n> 116 |     await page.waitForSelector('text=Usuarios Totais', { timeout: 10000 });\n      |                ^\n  117 |\n  118 |     // Verificar cards em coluna única\n  119 |     const cards = page.locator('text=Usuarios Totais').locator('..');\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts:116:16"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m300\u001b[39m\nReceived:   \u001b[31m92.21875\u001b[39m\n\n  121 |\n  122 |     // Em mobile, cards devem ocupar quase toda largura\n> 123 |     expect(box?.width).toBeGreaterThan(300);\n      |                        ^\n  124 |   });\n  125 | });\n  126 |\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts:123:24"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:20:54.783Z",
+                      "startTime": "2025-12-07T18:29:00.661Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -559,8 +439,8 @@
                       ],
                       "errorLocation": {
                         "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\01-load-and-navigation.spec.ts",
-                        "column": 16,
-                        "line": 116
+                        "column": 24,
+                        "line": 123
                       }
                     }
                   ],
@@ -602,10 +482,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 15137,
+                      "duration": 18795,
                       "errors": [],
                       "stdout": [
                         {
@@ -614,7 +494,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:20:55.325Z",
+                      "startTime": "2025-12-07T18:29:02.527Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -640,10 +520,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 6,
-                      "parallelIndex": 1,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 17736,
+                      "duration": 18937,
                       "errors": [],
                       "stdout": [
                         {
@@ -652,7 +532,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:06.086Z",
+                      "startTime": "2025-12-07T18:29:02.569Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -678,10 +558,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 7,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 17028,
+                      "duration": 17985,
                       "errors": [],
                       "stdout": [
                         {
@@ -690,7 +570,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:06.212Z",
+                      "startTime": "2025-12-07T18:29:02.610Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -716,10 +596,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 8,
-                      "parallelIndex": 5,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 15448,
+                      "duration": 17695,
                       "errors": [],
                       "stdout": [
                         {
@@ -728,7 +608,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:06.456Z",
+                      "startTime": "2025-12-07T18:29:03.133Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -754,10 +634,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 9,
-                      "parallelIndex": 4,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 17818,
+                      "duration": 16271,
                       "errors": [],
                       "stdout": [
                         {
@@ -766,7 +646,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:12.653Z",
+                      "startTime": "2025-12-07T18:29:20.682Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -795,25 +675,25 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 19404,
+                      "duration": 25169,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Conceder Acesso')\nExpected: visible\nError: strict mode violation: locator('text=Conceder Acesso') resolved to 3 elements:\n    1) <button class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 w-full sm:w-auto\">…</button> aka getByRole('button', { name: 'Conceder Acesso' }).first()\n    2) <button class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 w-full sm:w-auto\">…</button> aka getByRole('button', { name: 'Conceder Acesso' }).nth(1)\n    3) <h3 class=\"text-lg font-bold text-slate-900 dark:text-white mb-4\">Conceder Acesso</h3> aka getByRole('heading', { name: 'Conceder Acesso' })\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Conceder Acesso')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Conceder Acesso')\nExpected: visible\nError: strict mode violation: locator('text=Conceder Acesso') resolved to 3 elements:\n    1) <button class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 w-full sm:w-auto\">…</button> aka getByRole('button', { name: 'Conceder Acesso' }).first()\n    2) <button class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 w-full sm:w-auto\">…</button> aka getByRole('button', { name: 'Conceder Acesso' }).nth(1)\n    3) <h3 class=\"text-lg font-bold text-slate-900 dark:text-white mb-4\">Conceder Acesso</h3> aka getByRole('heading', { name: 'Conceder Acesso' })\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Conceder Acesso')\u001b[22m\n\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\02-user-management.spec.ts:126:63",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('select, [role=\"combobox\"]')\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m3\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('select, [role=\"combobox\"]')\u001b[22m\n\u001b[2m    8 × locator resolved to 3 elements\u001b[22m\n\u001b[2m      - unexpected value \"3\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('select, [role=\"combobox\"]')\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m3\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('select, [role=\"combobox\"]')\u001b[22m\n\u001b[2m    8 × locator resolved to 3 elements\u001b[22m\n\u001b[2m      - unexpected value \"3\"\u001b[22m\n\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\02-user-management.spec.ts:129:68",
                         "location": {
                           "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\02-user-management.spec.ts",
-                          "column": 63,
-                          "line": 126
+                          "column": 68,
+                          "line": 129
                         },
-                        "snippet": "\u001b[0m \u001b[90m 124 |\u001b[39m\n \u001b[90m 125 |\u001b[39m       \u001b[90m// Verificar que modal abriu\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 126 |\u001b[39m       \u001b[36mawait\u001b[39m expect(adminPage\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Conceder Acesso'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 127 |\u001b[39m\n \u001b[90m 128 |\u001b[39m       \u001b[90m// Verificar campos do formulário\u001b[39m\n \u001b[90m 129 |\u001b[39m       \u001b[36mawait\u001b[39m expect(adminPage\u001b[33m.\u001b[39mlocator(\u001b[32m'select, [role=\"combobox\"]'\u001b[39m))\u001b[33m.\u001b[39mtoHaveCount(\u001b[35m2\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m5000\u001b[39m })\u001b[33m;\u001b[39m \u001b[90m// Tenant e Role\u001b[39m\u001b[0m"
+                        "snippet": "\u001b[0m \u001b[90m 127 |\u001b[39m\n \u001b[90m 128 |\u001b[39m       \u001b[90m// Verificar campos do formulário\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 129 |\u001b[39m       \u001b[36mawait\u001b[39m expect(adminPage\u001b[33m.\u001b[39mlocator(\u001b[32m'select, [role=\"combobox\"]'\u001b[39m))\u001b[33m.\u001b[39mtoHaveCount(\u001b[35m2\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m5000\u001b[39m })\u001b[33m;\u001b[39m \u001b[90m// Tenant e Role\u001b[39m\n \u001b[90m     |\u001b[39m                                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 130 |\u001b[39m\n \u001b[90m 131 |\u001b[39m       \u001b[90m// Fechar modal\u001b[39m\n \u001b[90m 132 |\u001b[39m       \u001b[36mconst\u001b[39m cancelButton \u001b[33m=\u001b[39m adminPage\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Cancelar\")'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
                       },
                       "errors": [
                         {
                           "location": {
                             "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\02-user-management.spec.ts",
-                            "column": 63,
-                            "line": 126
+                            "column": 68,
+                            "line": 129
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Conceder Acesso')\nExpected: visible\nError: strict mode violation: locator('text=Conceder Acesso') resolved to 3 elements:\n    1) <button class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 w-full sm:w-auto\">…</button> aka getByRole('button', { name: 'Conceder Acesso' }).first()\n    2) <button class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 w-full sm:w-auto\">…</button> aka getByRole('button', { name: 'Conceder Acesso' }).nth(1)\n    3) <h3 class=\"text-lg font-bold text-slate-900 dark:text-white mb-4\">Conceder Acesso</h3> aka getByRole('heading', { name: 'Conceder Acesso' })\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Conceder Acesso')\u001b[22m\n\n\n  124 |\n  125 |       // Verificar que modal abriu\n> 126 |       await expect(adminPage.locator('text=Conceder Acesso')).toBeVisible();\n      |                                                               ^\n  127 |\n  128 |       // Verificar campos do formulário\n  129 |       await expect(adminPage.locator('select, [role=\"combobox\"]')).toHaveCount(2, { timeout: 5000 }); // Tenant e Role\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\02-user-management.spec.ts:126:63"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('select, [role=\"combobox\"]')\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m3\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('select, [role=\"combobox\"]')\u001b[22m\n\u001b[2m    8 × locator resolved to 3 elements\u001b[22m\n\u001b[2m      - unexpected value \"3\"\u001b[22m\n\n\n  127 |\n  128 |       // Verificar campos do formulário\n> 129 |       await expect(adminPage.locator('select, [role=\"combobox\"]')).toHaveCount(2, { timeout: 5000 }); // Tenant e Role\n      |                                                                    ^\n  130 |\n  131 |       // Fechar modal\n  132 |       const cancelButton = adminPage.locator('button:has-text(\"Cancelar\")');\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\02-user-management.spec.ts:129:68"
                         }
                       ],
                       "stdout": [
@@ -823,7 +703,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:10.571Z",
+                      "startTime": "2025-12-07T18:29:20.929Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -844,8 +724,8 @@
                       ],
                       "errorLocation": {
                         "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\02-user-management.spec.ts",
-                        "column": 63,
-                        "line": 126
+                        "column": 68,
+                        "line": 129
                       }
                     }
                   ],
@@ -870,10 +750,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 10,
-                      "parallelIndex": 2,
+                      "workerIndex": 6,
+                      "parallelIndex": 4,
                       "status": "failed",
-                      "duration": 34513,
+                      "duration": 39935,
                       "error": {
                         "message": "TimeoutError: locator.selectOption: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('select').nth(1)\u001b[22m\n\u001b[2m    - locator resolved to <select id=\"tenant\" class=\"w-full mt-1 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg px-3 py-2 text-slate-900 dark:text-white\">…</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    28 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m       - did not find some options\u001b[22m\n\u001b[2m     - retrying select option action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
                         "stack": "TimeoutError: locator.selectOption: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('select').nth(1)\u001b[22m\n\u001b[2m    - locator resolved to <select id=\"tenant\" class=\"w-full mt-1 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg px-3 py-2 text-slate-900 dark:text-white\">…</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    28 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m       - did not find some options\u001b[22m\n\u001b[2m     - retrying select option action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\02-user-management.spec.ts:151:24",
@@ -901,7 +781,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:19.187Z",
+                      "startTime": "2025-12-07T18:29:27.603Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -937,7 +817,7 @@
             },
             {
               "title": "deve abrir modal de revogar acesso",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -948,30 +828,11 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 8,
-                      "parallelIndex": 5,
-                      "status": "failed",
-                      "duration": 26503,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Confirmar Revogação, text=Revogar Acesso')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Confirmar Revogação, text=Revogar Acesso')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Confirmar Revogação, text=Revogar Acesso')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Confirmar Revogação, text=Revogar Acesso')\u001b[22m\n\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\02-user-management.spec.ts:172:88",
-                        "location": {
-                          "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\02-user-management.spec.ts",
-                          "column": 88,
-                          "line": 172
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 170 |\u001b[39m\n \u001b[90m 171 |\u001b[39m       \u001b[90m// Verificar modal de confirmação\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 172 |\u001b[39m       \u001b[36mawait\u001b[39m expect(adminPage\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Confirmar Revogação, text=Revogar Acesso'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 173 |\u001b[39m\n \u001b[90m 174 |\u001b[39m       \u001b[90m// Verificar aviso\u001b[39m\n \u001b[90m 175 |\u001b[39m       \u001b[36mawait\u001b[39m expect(adminPage\u001b[33m.\u001b[39mlocator(\u001b[32m'text=não pode ser desfeita, text=irreversível'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\02-user-management.spec.ts",
-                            "column": 88,
-                            "line": 172
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Confirmar Revogação, text=Revogar Acesso')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Confirmar Revogação, text=Revogar Acesso')\u001b[22m\n\n\n  170 |\n  171 |       // Verificar modal de confirmação\n> 172 |       await expect(adminPage.locator('text=Confirmar Revogação, text=Revogar Acesso')).toBeVisible();\n      |                                                                                        ^\n  173 |\n  174 |       // Verificar aviso\n  175 |       await expect(adminPage.locator('text=não pode ser desfeita, text=irreversível')).toBeVisible();\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\02-user-management.spec.ts:172:88"
-                        }
-                      ],
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 16440,
+                      "errors": [],
                       "stdout": [
                         {
                           "text": "⚠️ Admin panel test page não carregou completamente\n"
@@ -979,33 +840,12 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:22.873Z",
+                      "startTime": "2025-12-07T18:29:21.514Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-02-user-management-A-951c5-rir-modal-de-revogar-acesso-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-02-user-management-A-951c5-rir-modal-de-revogar-acesso-chromium\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-02-user-management-A-951c5-rir-modal-de-revogar-acesso-chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\02-user-management.spec.ts",
-                        "column": 88,
-                        "line": 172
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "807ae79d1f21b7525d68-03273e4a73d3d2f238ef",
@@ -1026,10 +866,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 7,
-                      "parallelIndex": 0,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 20645,
+                      "duration": 14975,
                       "errors": [],
                       "stdout": [
                         {
@@ -1038,7 +878,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:24.005Z",
+                      "startTime": "2025-12-07T18:29:21.616Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1048,7 +888,7 @@
               ],
               "id": "807ae79d1f21b7525d68-f6afb5b96cc9347ccad0",
               "file": "admin/02-user-management.spec.ts",
-              "line": 183,
+              "line": 188,
               "column": 7
             },
             {
@@ -1064,10 +904,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 6,
-                      "parallelIndex": 1,
+                      "workerIndex": 7,
+                      "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 15107,
+                      "duration": 18435,
                       "errors": [],
                       "stdout": [
                         {
@@ -1076,7 +916,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:24.319Z",
+                      "startTime": "2025-12-07T18:29:27.865Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1086,7 +926,7 @@
               ],
               "id": "807ae79d1f21b7525d68-12370729b6c8688b856f",
               "file": "admin/02-user-management.spec.ts",
-              "line": 194,
+              "line": 199,
               "column": 7
             }
           ]
@@ -1119,10 +959,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 9,
-                      "parallelIndex": 4,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 25107,
+                      "duration": 25611,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Tenants Cadastrados')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Tenants Cadastrados')\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Tenants Cadastrados')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Tenants Cadastrados')\u001b[22m\n\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\03-tenant-management.spec.ts:22:65",
@@ -1150,7 +990,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:31.018Z",
+                      "startTime": "2025-12-07T18:29:36.651Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1197,10 +1037,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 11,
-                      "parallelIndex": 3,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 16420,
+                      "duration": 15143,
                       "errors": [],
                       "stdout": [
                         {
@@ -1209,7 +1049,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:41.445Z",
+                      "startTime": "2025-12-07T18:29:37.077Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1235,10 +1075,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 6,
+                      "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 14381,
+                      "duration": 17123,
                       "errors": [],
                       "stdout": [
                         {
@@ -1247,7 +1087,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:39.527Z",
+                      "startTime": "2025-12-07T18:29:38.021Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1274,9 +1114,9 @@
                   "results": [
                     {
                       "workerIndex": 7,
-                      "parallelIndex": 0,
+                      "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 14624,
+                      "duration": 14227,
                       "errors": [],
                       "stdout": [
                         {
@@ -1285,7 +1125,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:44.723Z",
+                      "startTime": "2025-12-07T18:29:48.087Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1311,10 +1151,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 12,
-                      "parallelIndex": 5,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 17627,
+                      "duration": 16748,
                       "errors": [],
                       "stdout": [
                         {
@@ -1323,7 +1163,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:57.789Z",
+                      "startTime": "2025-12-07T18:29:52.266Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1349,10 +1189,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 6,
-                      "parallelIndex": 1,
+                      "workerIndex": 8,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 14360,
+                      "duration": 15942,
                       "errors": [],
                       "stdout": [
                         {
@@ -1361,7 +1201,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:53.968Z",
+                      "startTime": "2025-12-07T18:30:00.849Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1387,10 +1227,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 13,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 15889,
+                      "duration": 15556,
                       "errors": [],
                       "stdout": [
                         {
@@ -1399,7 +1239,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:02.291Z",
+                      "startTime": "2025-12-07T18:29:55.257Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1425,10 +1265,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 14,
-                      "parallelIndex": 4,
+                      "workerIndex": 7,
+                      "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 25725,
+                      "duration": 29353,
                       "errors": [],
                       "stdout": [
                         {
@@ -1437,7 +1277,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:02.138Z",
+                      "startTime": "2025-12-07T18:30:02.368Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1463,10 +1303,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 11,
-                      "parallelIndex": 3,
+                      "workerIndex": 9,
+                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 15777,
+                      "duration": 16155,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\03-tenant-management.spec.ts:273:19",
@@ -1494,7 +1334,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:59.421Z",
+                      "startTime": "2025-12-07T18:30:12.096Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1541,10 +1381,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 7,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 15597,
+                      "duration": 16250,
                       "errors": [],
                       "stdout": [
                         {
@@ -1553,7 +1393,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:21:59.430Z",
+                      "startTime": "2025-12-07T18:30:09.062Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1579,10 +1419,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 6,
+                      "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 14304,
+                      "duration": 14741,
                       "errors": [],
                       "stdout": [
                         {
@@ -1591,7 +1431,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:08.380Z",
+                      "startTime": "2025-12-07T18:30:10.885Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1617,10 +1457,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 7,
-                      "parallelIndex": 0,
+                      "workerIndex": 8,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 19159,
+                      "duration": 17143,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\03-tenant-management.spec.ts:343:25",
@@ -1648,7 +1488,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:15.071Z",
+                      "startTime": "2025-12-07T18:30:18.757Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1712,10 +1552,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 12,
-                      "parallelIndex": 5,
+                      "workerIndex": 10,
+                      "parallelIndex": 4,
                       "status": "failed",
-                      "duration": 14765,
+                      "duration": 16175,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\04-alerts-and-logs.spec.ts:22:42",
@@ -1743,7 +1583,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:16.234Z",
+                      "startTime": "2025-12-07T18:30:26.480Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1790,10 +1630,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 15,
-                      "parallelIndex": 3,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 16675,
+                      "duration": 25862,
                       "errors": [],
                       "stdout": [
                         {
@@ -1802,7 +1642,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:26.163Z",
+                      "startTime": "2025-12-07T18:30:25.395Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1828,10 +1668,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 13,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 17014,
+                      "duration": 13946,
                       "errors": [],
                       "stdout": [
                         {
@@ -1840,7 +1680,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:20.059Z",
+                      "startTime": "2025-12-07T18:30:25.695Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1866,10 +1706,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 6,
-                      "parallelIndex": 1,
+                      "workerIndex": 7,
+                      "parallelIndex": 5,
                       "status": "failed",
-                      "duration": 15198,
+                      "duration": 14789,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\04-alerts-and-logs.spec.ts:83:27",
@@ -1897,7 +1737,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:22.753Z",
+                      "startTime": "2025-12-07T18:30:31.799Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1944,10 +1784,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 14,
-                      "parallelIndex": 4,
+                      "workerIndex": 11,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 15163,
+                      "duration": 16732,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m8\u001b[39m",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m8\u001b[39m\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\04-alerts-and-logs.spec.ts:103:29",
@@ -1975,7 +1815,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:30.139Z",
+                      "startTime": "2025-12-07T18:30:41.960Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2022,10 +1862,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 13,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 16307,
+                      "duration": 15717,
                       "errors": [],
                       "stdout": [
                         {
@@ -2034,7 +1874,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:37.121Z",
+                      "startTime": "2025-12-07T18:30:39.686Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2060,10 +1900,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 16,
-                      "parallelIndex": 5,
+                      "workerIndex": 12,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 17866,
+                      "duration": 14804,
                       "errors": [],
                       "stdout": [
                         {
@@ -2072,7 +1912,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:42.099Z",
+                      "startTime": "2025-12-07T18:30:46.028Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2098,10 +1938,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 17,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 16185,
+                      "duration": 14361,
                       "errors": [],
                       "stdout": [
                         {
@@ -2110,7 +1950,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:42.365Z",
+                      "startTime": "2025-12-07T18:30:51.345Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2136,10 +1976,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 18,
+                      "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 16901,
+                      "duration": 15592,
                       "errors": [],
                       "stdout": [
                         {
@@ -2148,7 +1988,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:42.951Z",
+                      "startTime": "2025-12-07T18:30:55.467Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2174,10 +2014,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 15,
-                      "parallelIndex": 3,
+                      "workerIndex": 13,
+                      "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 15076,
+                      "duration": 15160,
                       "errors": [],
                       "stdout": [
                         {
@@ -2186,7 +2026,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:46.335Z",
+                      "startTime": "2025-12-07T18:31:01.960Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2212,10 +2052,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 19,
+                      "workerIndex": 14,
                       "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 21087,
+                      "duration": 14828,
                       "errors": [],
                       "stdout": [
                         {
@@ -2224,7 +2064,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:53.470Z",
+                      "startTime": "2025-12-07T18:31:02.215Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2250,10 +2090,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 13,
+                      "workerIndex": 12,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 25048,
+                      "duration": 14844,
                       "errors": [],
                       "stdout": [
                         {
@@ -2262,7 +2102,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:53.512Z",
+                      "startTime": "2025-12-07T18:31:01.898Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2288,10 +2128,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 17,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 18563,
+                      "duration": 21391,
                       "errors": [],
                       "stdout": [
                         {
@@ -2300,7 +2140,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:22:59.367Z",
+                      "startTime": "2025-12-07T18:31:05.808Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2326,10 +2166,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 16,
-                      "parallelIndex": 5,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 17902,
+                      "duration": 14676,
                       "errors": [],
                       "stdout": [
                         {
@@ -2338,7 +2178,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:00.537Z",
+                      "startTime": "2025-12-07T18:31:11.139Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2364,10 +2204,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 18,
-                      "parallelIndex": 1,
+                      "workerIndex": 15,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 17176,
+                      "duration": 22693,
                       "errors": [],
                       "stdout": [
                         {
@@ -2376,7 +2216,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:00.610Z",
+                      "startTime": "2025-12-07T18:31:18.526Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2419,10 +2259,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 15,
-                      "parallelIndex": 3,
+                      "workerIndex": 12,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 16311,
+                      "duration": 16236,
                       "errors": [],
                       "stdout": [
                         {
@@ -2431,7 +2271,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:01.504Z",
+                      "startTime": "2025-12-07T18:31:16.799Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2457,10 +2297,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 19,
-                      "parallelIndex": 4,
+                      "workerIndex": 13,
+                      "parallelIndex": 5,
                       "status": "failed",
-                      "duration": 22190,
+                      "duration": 15105,
                       "error": {
                         "message": "Error: locator.count: SyntaxError: Invalid flags supplied to RegExp constructor ', [class*=\"text-emerald\"], [class*=\"text-red\"]'\n    at new RegExp (<anonymous>)\n    at createTextMatcher (<anonymous>:7912:16)\n    at Object.queryAll (<anonymous>:6816:33)\n    at InjectedScript._queryEngineAll (<anonymous>:6789:49)\n    at InjectedScript.querySelectorAll (<anonymous>:6776:30)\n    at eval (eval at evaluate (:290:30), <anonymous>:2:23)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
                         "stack": "Error: locator.count: SyntaxError: Invalid flags supplied to RegExp constructor ', [class*=\"text-emerald\"], [class*=\"text-red\"]'\n    at new RegExp (<anonymous>)\n    at createTextMatcher (<anonymous>:7912:16)\n    at Object.queryAll (<anonymous>:6816:33)\n    at InjectedScript._queryEngineAll (<anonymous>:6789:49)\n    at InjectedScript.querySelectorAll (<anonymous>:6776:30)\n    at eval (eval at evaluate (:290:30), <anonymous>:2:23)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at createTextMatcher (<anonymous>:7912:16)\n    at Object.queryAll (<anonymous>:6816:33)\n    at InjectedScript._queryEngineAll (<anonymous>:6789:49)\n    at InjectedScript.querySelectorAll (<anonymous>:6776:30)\n    at eval (eval at evaluate (:290:30), <anonymous>:2:23)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\05-metrics.spec.ts:31:32",
@@ -2487,7 +2327,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:15.299Z",
+                      "startTime": "2025-12-07T18:31:17.756Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2534,10 +2374,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 18,
-                      "parallelIndex": 1,
+                      "workerIndex": 14,
+                      "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 19574,
+                      "duration": 15178,
                       "errors": [],
                       "stdout": [
                         {
@@ -2546,7 +2386,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:17.855Z",
+                      "startTime": "2025-12-07T18:31:17.930Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2572,10 +2412,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 15,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 18499,
+                      "duration": 15356,
                       "errors": [],
                       "stdout": [
                         {
@@ -2584,7 +2424,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:17.871Z",
+                      "startTime": "2025-12-07T18:31:25.880Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2610,10 +2450,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 17,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 19303,
+                      "duration": 23440,
                       "errors": [],
                       "stdout": [
                         {
@@ -2622,7 +2462,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:18.007Z",
+                      "startTime": "2025-12-07T18:31:27.285Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2648,10 +2488,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 16,
-                      "parallelIndex": 5,
+                      "workerIndex": 12,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 18312,
+                      "duration": 17831,
                       "errors": [],
                       "stdout": [
                         {
@@ -2660,7 +2500,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:18.506Z",
+                      "startTime": "2025-12-07T18:31:33.077Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2686,10 +2526,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 13,
-                      "parallelIndex": 2,
+                      "workerIndex": 14,
+                      "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 19306,
+                      "duration": 13835,
                       "errors": [],
                       "stdout": [
                         {
@@ -2698,7 +2538,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:18.629Z",
+                      "startTime": "2025-12-07T18:31:33.159Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2724,10 +2564,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 15,
-                      "parallelIndex": 3,
+                      "workerIndex": 16,
+                      "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 13883,
+                      "duration": 17220,
                       "errors": [],
                       "stdout": [
                         {
@@ -2736,7 +2576,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:36.442Z",
+                      "startTime": "2025-12-07T18:31:43.062Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2762,10 +2602,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 16,
-                      "parallelIndex": 5,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 15669,
+                      "duration": 14394,
                       "errors": [],
                       "stdout": [
                         {
@@ -2774,7 +2614,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:36.868Z",
+                      "startTime": "2025-12-07T18:31:41.300Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2800,10 +2640,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 17,
-                      "parallelIndex": 0,
+                      "workerIndex": 15,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 14986,
+                      "duration": 26761,
                       "errors": [],
                       "stdout": [
                         {
@@ -2812,7 +2652,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:37.365Z",
+                      "startTime": "2025-12-07T18:31:41.660Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2838,10 +2678,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 18,
-                      "parallelIndex": 1,
+                      "workerIndex": 14,
+                      "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 16691,
+                      "duration": 17504,
                       "errors": [],
                       "stdout": [
                         {
@@ -2850,7 +2690,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:37.481Z",
+                      "startTime": "2025-12-07T18:31:47.040Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2865,7 +2705,7 @@
             },
             {
               "title": "deve exibir loading state durante carregamento de métricas",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -2876,30 +2716,11 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 13,
-                      "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 29848,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Usuarios Totais')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Usuarios Totais')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Usuarios Totais')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Usuarios Totais')\u001b[22m\n\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\05-metrics.spec.ts:221:56",
-                        "location": {
-                          "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\05-metrics.spec.ts",
-                          "column": 56,
-                          "line": 221
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 219 |\u001b[39m\n \u001b[90m 220 |\u001b[39m     \u001b[90m// Verificar que métricas carregaram\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 221 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Usuarios Totais'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 222 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 223 |\u001b[39m\n \u001b[90m 224 |\u001b[39m   test(\u001b[32m'deve exibir tooltip com detalhes ao passar mouse em métricas'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ adminPage }) \u001b[33m=>\u001b[39m {\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\05-metrics.spec.ts",
-                            "column": 56,
-                            "line": 221
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Usuarios Totais')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Usuarios Totais')\u001b[22m\n\n\n  219 |\n  220 |     // Verificar que métricas carregaram\n> 221 |     await expect(page.locator('text=Usuarios Totais')).toBeVisible();\n      |                                                        ^\n  222 |   });\n  223 |\n  224 |   test('deve exibir tooltip com detalhes ao passar mouse em métricas', async ({ adminPage }) => {\n    at C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\05-metrics.spec.ts:221:56"
-                        }
-                      ],
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 28725,
+                      "errors": [],
                       "stdout": [
                         {
                           "text": "⚠️ Admin panel test page não carregou completamente\n"
@@ -2907,33 +2728,12 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:37.986Z",
+                      "startTime": "2025-12-07T18:31:50.784Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-05-metrics-Admin-Pan-a003e-te-carregamento-de-métricas-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-05-metrics-Admin-Pan-a003e-te-carregamento-de-métricas-chromium\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\test-results\\admin-05-metrics-Admin-Pan-a003e-te-carregamento-de-métricas-chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\Vaio\\Documents\\TRABALHO\\INVESTIGA\\investigaree\\e2e\\admin\\05-metrics.spec.ts",
-                        "column": 56,
-                        "line": 221
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "551e8023b325c2233135-c5a832d572149429dc3e",
@@ -2954,10 +2754,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 20,
-                      "parallelIndex": 4,
+                      "workerIndex": 12,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 22361,
+                      "duration": 28642,
                       "errors": [],
                       "stdout": [
                         {
@@ -2966,7 +2766,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:44.507Z",
+                      "startTime": "2025-12-07T18:31:50.970Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2992,10 +2792,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 15,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 17822,
+                      "duration": 19756,
                       "errors": [],
                       "stdout": [
                         {
@@ -3004,7 +2804,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:50.366Z",
+                      "startTime": "2025-12-07T18:31:55.804Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3030,10 +2830,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 17,
-                      "parallelIndex": 0,
+                      "workerIndex": 16,
+                      "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 15883,
+                      "duration": 19696,
                       "errors": [],
                       "stdout": [
                         {
@@ -3042,7 +2842,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:52.404Z",
+                      "startTime": "2025-12-07T18:32:02.122Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3068,10 +2868,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 16,
-                      "parallelIndex": 5,
+                      "workerIndex": 14,
+                      "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 16099,
+                      "duration": 16385,
                       "errors": [],
                       "stdout": [
                         {
@@ -3080,7 +2880,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-07T18:23:52.591Z",
+                      "startTime": "2025-12-07T18:32:04.590Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3100,11 +2900,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-12-07T18:20:22.116Z",
-    "duration": 227288.698,
-    "expected": 44,
+    "startTime": "2025-12-07T18:28:19.653Z",
+    "duration": 1017739.2459999999,
+    "expected": 49,
     "skipped": 0,
-    "unexpected": 16,
+    "unexpected": 11,
     "flaky": 0
   }
 }

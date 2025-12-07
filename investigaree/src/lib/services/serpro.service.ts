@@ -6,6 +6,7 @@
  */
 
 import { apiClient } from '../api-client'
+import { SerproError } from '../types/serpro.types'
 import type {
   CpfResponse,
   CpfConsultaRequest,
@@ -26,7 +27,6 @@ import type {
   CndResponse,
   CndConsultaRequest,
   SerproApiResponse,
-  SerproError,
 } from '../types/serpro.types'
 
 /**

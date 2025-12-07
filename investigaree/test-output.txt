@@ -127,3 +127,338 @@ Running 60 tests using 6 workers
 ⚠️ Admin panel test page não carregou completamente
   ok 60 [chromium] › e2e\admin\05-metrics.spec.ts:265:7 › Admin Panel - Métricas e Analytics › deve comparar período atual com período anterior (16.4s)
   ok 59 [chromium] › e2e\admin\05-metrics.spec.ts:254:7 › Admin Panel - Métricas e Analytics › deve exibir indicadores de tendência (subindo/descendo) (19.7s)
+
+
+  1) [chromium] › e2e\admin\01-load-and-navigation.spec.ts:62:7 › Admin Panel - Carregamento e Navegação › deve exibir banner de modo desenvolvimento (se ativado) 
+
+    TimeoutError: page.click: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('button[aria-label="Fechar banner"], button:has-text("×"):near(:text("Modo Desenvolvimento"))')[22m
+
+
+      70 |
+      71 |       // Fechar banner
+    > 72 |       await adminPage.click('button[aria-label="Fechar banner"], button:has-text("×"):near(:text("Modo Desenvolvimento"))');
+         |                       ^
+      73 |       await adminPage.waitForTimeout(300);
+      74 |
+      75 |       // Verificar que banner sumiu
+        at C:\Users\Vaio\Documents\TRABALHO\INVESTIGA\investigaree\e2e\admin\01-load-and-navigation.spec.ts:72:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\admin-01-load-and-navigati-98c61-desenvolvimento-se-ativado--chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\admin-01-load-and-navigati-98c61-desenvolvimento-se-ativado--chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\admin-01-load-and-navigati-98c61-desenvolvimento-se-ativado--chromium\error-context.md
+
+  2) [chromium] › e2e\admin\01-load-and-navigation.spec.ts:97:7 › Admin Panel - Carregamento e Navegação › deve ser responsivo em viewport mobile 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m300[39m
+    Received:   [31m92.21875[39m
+
+      121 |
+      122 |     // Em mobile, cards devem ocupar quase toda largura
+    > 123 |     expect(box?.width).toBeGreaterThan(300);
+          |                        ^
+      124 |   });
+      125 | });
+      126 |
+        at C:\Users\Vaio\Documents\TRABALHO\INVESTIGA\investigaree\e2e\admin\01-load-and-navigation.spec.ts:123:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\admin-01-load-and-navigati-98c65-sponsivo-em-viewport-mobile-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\admin-01-load-and-navigati-98c65-sponsivo-em-viewport-mobile-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\admin-01-load-and-navigati-98c65-sponsivo-em-viewport-mobile-chromium\error-context.md
+
+  3) [chromium] › e2e\admin\02-user-management.spec.ts:116:7 › Admin Panel - Gerenciamento de Usuários › deve abrir modal de conceder acesso 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveCount[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator:  locator('select, [role="combobox"]')
+    Expected: [32m2[39m
+    Received: [31m3[39m
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toHaveCount" with timeout 5000ms[22m
+    [2m  - waiting for locator('select, [role="combobox"]')[22m
+    [2m    8 × locator resolved to 3 elements[22m
+    [2m      - unexpected value "3"[22m
+
+
+      127 |
+      128 |       // Verificar campos do formulário
+    > 129 |       await expect(adminPage.locator('select, [role="combobox"]')).toHaveCount(2, { timeout: 5000 }); // Tenant e Role
+          |                                                                    ^
+      130 |
+      131 |       // Fechar modal
+      132 |       const cancelButton = adminPage.locator('button:has-text("Cancelar")');
+        at C:\Users\Vaio\Documents\TRABALHO\INVESTIGA\investigaree\e2e\admin\02-user-management.spec.ts:129:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\admin-02-user-management-A-62e0c-ir-modal-de-conceder-acesso-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\admin-02-user-management-A-62e0c-ir-modal-de-conceder-acesso-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\admin-02-user-management-A-62e0c-ir-modal-de-conceder-acesso-chromium\error-context.md
+
+  4) [chromium] › e2e\admin\02-user-management.spec.ts:138:7 › Admin Panel - Gerenciamento de Usuários › deve validar formulário de conceder acesso 
+
+    TimeoutError: locator.selectOption: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('select').nth(1)[22m
+    [2m    - locator resolved to <select id="tenant" class="w-full mt-1 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg px-3 py-2 text-slate-900 dark:text-white">…</select>[22m
+    [2m  - attempting select option action[22m
+    [2m    2 × waiting for element to be visible and enabled[22m
+    [2m      - did not find some options[22m
+    [2m    - retrying select option action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible and enabled[22m
+    [2m      - did not find some options[22m
+    [2m    - retrying select option action[22m
+    [2m      - waiting 100ms[22m
+    [2m    28 × waiting for element to be visible and enabled[22m
+    [2m       - did not find some options[22m
+    [2m     - retrying select option action[22m
+    [2m       - waiting 500ms[22m
+
+
+      149 |       // Selecionar role
+      150 |       const roleSelect = adminPage.locator('select').nth(1);
+    > 151 |       await roleSelect.selectOption('viewer');
+          |                        ^
+      152 |
+      153 |       // Verificar botão Conceder habilitado
+      154 |       const confirmButton = adminPage.locator('button:has-text("Conceder")');
+        at C:\Users\Vaio\Documents\TRABALHO\INVESTIGA\investigaree\e2e\admin\02-user-management.spec.ts:151:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\admin-02-user-management-A-dfffb-rmulário-de-conceder-acesso-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\admin-02-user-management-A-dfffb-rmulário-de-conceder-acesso-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\admin-02-user-management-A-dfffb-rmulário-de-conceder-acesso-chromium\error-context.md
+
+  5) [chromium] › e2e\admin\03-tenant-management.spec.ts:14:7 › Admin Panel - Gerenciamento de Tenants › deve exibir lista de tenants em cards 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Tenants Cadastrados')
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for locator('text=Tenants Cadastrados')[22m
+
+
+      20 |
+      21 |     // Verificar título da seção
+    > 22 |     await expect(adminPage.locator('text=Tenants Cadastrados')).toBeVisible();
+         |                                                                 ^
+      23 |
+      24 |     // Verificar que há pelo menos um card de tenant
+      25 |     const tenantCards = adminPage.locator('[class*="border"]:has-text("Código:")');
+        at C:\Users\Vaio\Documents\TRABALHO\INVESTIGA\investigaree\e2e\admin\03-tenant-management.spec.ts:22:65
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\admin-03-tenant-management-910f1-r-lista-de-tenants-em-cards-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\admin-03-tenant-management-910f1-r-lista-de-tenants-em-cards-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\admin-03-tenant-management-910f1-r-lista-de-tenants-em-cards-chromium\error-context.md
+
+  6) [chromium] › e2e\admin\03-tenant-management.spec.ts:263:7 › Admin Panel - Gerenciamento de Tenants › deve exibir usuários do tenant no card 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      271 |     const count = await userCountElements.count();
+      272 |
+    > 273 |     expect(count).toBeGreaterThan(0);
+          |                   ^
+      274 |   });
+      275 |
+      276 |   test('deve filtrar tenants por status (ativo/inativo)', async ({ adminPage }) => {
+        at C:\Users\Vaio\Documents\TRABALHO\INVESTIGA\investigaree\e2e\admin\03-tenant-management.spec.ts:273:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\admin-03-tenant-management-b0663--usuários-do-tenant-no-card-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\admin-03-tenant-management-b0663--usuários-do-tenant-no-card-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\admin-03-tenant-management-b0663--usuários-do-tenant-no-card-chromium\error-context.md
+
+  7) [chromium] › e2e\admin\03-tenant-management.spec.ts:328:7 › Admin Panel - Gerenciamento de Tenants › deve exibir badges de status corretos 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      341 |
+      342 |     // Deve ter pelo menos um badge
+    > 343 |     expect(totalBadges).toBeGreaterThan(0);
+          |                         ^
+      344 |   });
+      345 | });
+      346 |
+        at C:\Users\Vaio\Documents\TRABALHO\INVESTIGA\investigaree\e2e\admin\03-tenant-management.spec.ts:343:25
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\admin-03-tenant-management-63b34-r-badges-de-status-corretos-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\admin-03-tenant-management-63b34-r-badges-de-status-corretos-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\admin-03-tenant-management-63b34-r-badges-de-status-corretos-chromium\error-context.md
+
+  8) [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:14:7 › Admin Panel - Alertas e Logs › deve exibir lista de alertas do sistema 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32mtrue[39m
+    Received: [31mfalse[39m
+
+      20 |     const hasEmptyMessage = await adminPage.locator('text=Nenhum alerta, text=Sem alertas').count() > 0;
+      21 |
+    > 22 |     expect(hasAlerts || hasEmptyMessage).toBe(true);
+         |                                          ^
+      23 |   });
+      24 |
+      25 |   test('deve filtrar alertas por tipo', async ({ adminPage }) => {
+        at C:\Users\Vaio\Documents\TRABALHO\INVESTIGA\investigaree\e2e\admin\04-alerts-and-logs.spec.ts:22:42
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\admin-04-alerts-and-logs-A-54887-lista-de-alertas-do-sistema-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\admin-04-alerts-and-logs-A-54887-lista-de-alertas-do-sistema-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\admin-04-alerts-and-logs-A-54887-lista-de-alertas-do-sistema-chromium\error-context.md
+
+  9) [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:67:7 › Admin Panel - Alertas e Logs › deve marcar alerta como lido 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32mfalse[39m
+    Received: [31mtrue[39m
+
+      81 |
+      82 |       // Deve ter sido marcado como lido
+    > 83 |       expect(isStillBold).toBe(false);
+         |                           ^
+      84 |     }
+      85 |   });
+      86 |
+        at C:\Users\Vaio\Documents\TRABALHO\INVESTIGA\investigaree\e2e\admin\04-alerts-and-logs.spec.ts:83:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\admin-04-alerts-and-logs-A-304d9-eve-marcar-alerta-como-lido-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\admin-04-alerts-and-logs-A-304d9-eve-marcar-alerta-como-lido-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\admin-04-alerts-and-logs-A-304d9-eve-marcar-alerta-como-lido-chromium\error-context.md
+
+  10) [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:87:7 › Admin Panel - Alertas e Logs › deve marcar todos como lidos 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m0[39m
+    Received: [31m8[39m
+
+      101 |         const unreadAfter = await adminPage.locator('[class*="bg-blue-500"], [class*="font-bold"]').count();
+      102 |
+    > 103 |         expect(unreadAfter).toBe(0);
+          |                             ^
+      104 |       }
+      105 |     }
+      106 |   });
+        at C:\Users\Vaio\Documents\TRABALHO\INVESTIGA\investigaree\e2e\admin\04-alerts-and-logs.spec.ts:103:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\admin-04-alerts-and-logs-A-ba72c-eve-marcar-todos-como-lidos-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\admin-04-alerts-and-logs-A-ba72c-eve-marcar-todos-como-lidos-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\admin-04-alerts-and-logs-A-ba72c-eve-marcar-todos-como-lidos-chromium\error-context.md
+
+  11) [chromium] › e2e\admin\05-metrics.spec.ts:27:7 › Admin Panel - Métricas e Analytics › deve calcular taxa de crescimento corretamente 
+
+    Error: locator.count: SyntaxError: Invalid flags supplied to RegExp constructor ', [class*="text-emerald"], [class*="text-red"]'
+        at new RegExp (<anonymous>)
+        at createTextMatcher (<anonymous>:7912:16)
+        at Object.queryAll (<anonymous>:6816:33)
+        at InjectedScript._queryEngineAll (<anonymous>:6789:49)
+        at InjectedScript.querySelectorAll (<anonymous>:6776:30)
+        at eval (eval at evaluate (:290:30), <anonymous>:2:23)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at createTextMatcher (<anonymous>:7912:16)
+        at Object.queryAll (<anonymous>:6816:33)
+        at InjectedScript._queryEngineAll (<anonymous>:6789:49)
+        at InjectedScript.querySelectorAll (<anonymous>:6776:30)
+        at eval (eval at evaluate (:290:30), <anonymous>:2:23)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\Vaio\Documents\TRABALHO\INVESTIGA\investigaree\e2e\admin\05-metrics.spec.ts:31:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\admin-05-metrics-Admin-Pan-32988-de-crescimento-corretamente-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\admin-05-metrics-Admin-Pan-32988-de-crescimento-corretamente-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\admin-05-metrics-Admin-Pan-32988-de-crescimento-corretamente-chromium\error-context.md
+
+  11 failed
+    [chromium] › e2e\admin\01-load-and-navigation.spec.ts:62:7 › Admin Panel - Carregamento e Navegação › deve exibir banner de modo desenvolvimento (se ativado) 
+    [chromium] › e2e\admin\01-load-and-navigation.spec.ts:97:7 › Admin Panel - Carregamento e Navegação › deve ser responsivo em viewport mobile 
+    [chromium] › e2e\admin\02-user-management.spec.ts:116:7 › Admin Panel - Gerenciamento de Usuários › deve abrir modal de conceder acesso 
+    [chromium] › e2e\admin\02-user-management.spec.ts:138:7 › Admin Panel - Gerenciamento de Usuários › deve validar formulário de conceder acesso 
+    [chromium] › e2e\admin\03-tenant-management.spec.ts:14:7 › Admin Panel - Gerenciamento de Tenants › deve exibir lista de tenants em cards 
+    [chromium] › e2e\admin\03-tenant-management.spec.ts:263:7 › Admin Panel - Gerenciamento de Tenants › deve exibir usuários do tenant no card 
+    [chromium] › e2e\admin\03-tenant-management.spec.ts:328:7 › Admin Panel - Gerenciamento de Tenants › deve exibir badges de status corretos 
+    [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:14:7 › Admin Panel - Alertas e Logs › deve exibir lista de alertas do sistema 
+    [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:67:7 › Admin Panel - Alertas e Logs › deve marcar alerta como lido 
+    [chromium] › e2e\admin\04-alerts-and-logs.spec.ts:87:7 › Admin Panel - Alertas e Logs › deve marcar todos como lidos 
+    [chromium] › e2e\admin\05-metrics.spec.ts:27:7 › Admin Panel - Métricas e Analytics › deve calcular taxa de crescimento corretamente 
+  49 passed (17.0m)

@@ -496,11 +496,14 @@ export async function getAdminStats(): Promise<AdminStats> {
   if (USE_NEW_SERVICE_LAYER) {
     try {
       const stats = await adminService.getStats();
+      // Note: Precisa buscar alerts separadamente para contar unread
+      const alertsResponse = await adminService.getAlerts({ unreadOnly: true }).catch(() => ({ alerts: [] }));
+
       return {
-        total_users: stats.totalUsers,
-        active_tenants: stats.activeTenants,
-        pending_users: stats.pendingUsers || 0,
-        unread_alerts: stats.unreadAlerts
+        total_users: stats.users.total,
+        active_tenants: stats.tenants.active,
+        pending_users: 0, // Service layer não trackeia pending users ainda
+        unread_alerts: alertsResponse.alerts.length
       };
     } catch (error) {
       console.log('[Admin API] Backend não disponível, usando dados mock', error);

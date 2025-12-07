@@ -186,7 +186,7 @@
                   - generic "Ver detalhes" [ref=e207] [cursor=pointer]
               - generic [ref=e208]:
                 - paragraph [ref=e209]: 10min atrás
-                - paragraph [ref=e210]: 07/12/2025, 15:19
+                - paragraph [ref=e210]: 07/12/2025, 15:32
           - generic [ref=e212]:
             - img [ref=e214]
             - generic [ref=e217]:
@@ -205,7 +205,7 @@
                   - generic "Ver detalhes" [ref=e231] [cursor=pointer]
               - generic [ref=e232]:
                 - paragraph [ref=e233]: 2h atrás
-                - paragraph [ref=e234]: 07/12/2025, 13:29
+                - paragraph [ref=e234]: 07/12/2025, 13:42
           - generic [ref=e236]:
             - img [ref=e238]
             - generic [ref=e241]:
@@ -221,7 +221,7 @@
                   - generic "Ver detalhes" [ref=e253] [cursor=pointer]
               - generic [ref=e254]:
                 - paragraph [ref=e255]: 5h atrás
-                - paragraph [ref=e256]: 07/12/2025, 10:29
+                - paragraph [ref=e256]: 07/12/2025, 10:42
           - generic [ref=e258]:
             - img [ref=e260]
             - generic [ref=e263]:
@@ -237,7 +237,7 @@
                   - generic "Ver detalhes" [ref=e275] [cursor=pointer]
               - generic [ref=e276]:
                 - paragraph [ref=e277]: Ontem
-                - paragraph [ref=e278]: 06/12/2025, 15:29
+                - paragraph [ref=e278]: 06/12/2025, 15:42
           - generic [ref=e280]:
             - img [ref=e282]
             - generic [ref=e285]:
@@ -257,7 +257,7 @@
                   - generic "Ver detalhes" [ref=e300] [cursor=pointer]
               - generic [ref=e301]:
                 - paragraph [ref=e302]: 3d atrás
-                - paragraph [ref=e303]: 04/12/2025, 15:29
+                - paragraph [ref=e303]: 04/12/2025, 15:42
           - generic [ref=e305]:
             - img [ref=e307]
             - generic [ref=e310]:
@@ -273,7 +273,7 @@
                   - generic "Ver detalhes" [ref=e322] [cursor=pointer]
               - generic [ref=e323]:
                 - paragraph [ref=e324]: 1sem atrás
-                - paragraph [ref=e325]: 30/11/2025, 15:29
+                - paragraph [ref=e325]: 30/11/2025, 15:42
       - generic [ref=e326]:
         - generic [ref=e327]:
           - heading "Métricas de Uso" [level=3] [ref=e328]:

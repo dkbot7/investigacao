@@ -107,12 +107,12 @@ export interface ReportData {
 
 export class ReportService {
   private readonly COLORS = {
-    primary: [59, 130, 246], // Blue 500
-    success: [34, 197, 94], // Green 500
-    warning: [251, 191, 36], // Amber 400
-    danger: [239, 68, 68], // Red 500
-    dark: [15, 23, 42], // Slate 900
-    gray: [100, 116, 139], // Slate 500
+    primary: [59, 130, 246] as [number, number, number], // Blue 500
+    success: [34, 197, 94] as [number, number, number], // Green 500
+    warning: [251, 191, 36] as [number, number, number], // Amber 400
+    danger: [239, 68, 68] as [number, number, number], // Red 500
+    dark: [15, 23, 42] as [number, number, number], // Slate 900
+    gray: [100, 116, 139] as [number, number, number], // Slate 500
   }
 
   /**
