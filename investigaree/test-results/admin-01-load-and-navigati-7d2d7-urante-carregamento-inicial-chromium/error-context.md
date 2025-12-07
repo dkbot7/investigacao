@@ -28,230 +28,234 @@
           - /url: /contato/
           - generic [ref=e38]: Contato
       - generic [ref=e39]:
-        - button "PT 🇧🇷" [ref=e41]:
+        - button "Escuro" [ref=e41]:
+          - generic [ref=e42]:
+            - img
+          - generic [ref=e43]: Escuro
+        - button "PT 🇧🇷" [ref=e45]:
           - img
-          - generic [ref=e42]: PT 🇧🇷
-        - button "Entrar" [ref=e45]
-        - button "Criar Conta" [ref=e47]
-  - main [ref=e48]:
-    - region "Hero section - Due Diligence Empresarial" [ref=e49]:
-      - generic [ref=e52]:
-        - generic [ref=e54]:
-          - generic [ref=e56]: Plataforma de Investigação Digital
-          - generic [ref=e57]: "|"
-          - generic [ref=e58]: Validada por Perito Criminal Oficial
-        - generic [ref=e59]:
-          - heading "PROTEÇÃO PATRIMONIAL EM DIVÓRCIO" [level=1] [ref=e60]:
+          - generic [ref=e46]: PT 🇧🇷
+        - button "Entrar" [ref=e49]
+        - button "Criar Investigação" [ref=e51]
+  - main [ref=e52]:
+    - region "Hero section - Due Diligence Empresarial" [ref=e53]:
+      - generic [ref=e56]:
+        - generic [ref=e58]:
+          - generic [ref=e60]: Plataforma de Investigação Digital
+          - generic [ref=e61]: "|"
+          - generic [ref=e62]: Validada por Perito Criminal Oficial
+        - generic [ref=e63]:
+          - heading "PROTEÇÃO PATRIMONIAL EM DIVÓRCIO" [level=1] [ref=e64]:
             - text: PROTEÇÃO PATRIMONIAL
             - text: EM DIVÓRCIO
-          - paragraph [ref=e61]: 70% dos divórcios têm ocultação de bens. Descubra a verdade.
-        - generic [ref=e62]:
-          - generic [ref=e63]:
-            - generic [ref=e65]: "1"
-            - generic [ref=e66]: Famílias
+          - paragraph [ref=e65]: 70% dos divórcios têm ocultação de bens. Descubra a verdade.
+        - generic [ref=e66]:
           - generic [ref=e67]:
-            - generic [ref=e69]: "2"
-            - generic [ref=e70]: Empresas
+            - generic [ref=e69]: "1"
+            - generic [ref=e70]: Famílias
           - generic [ref=e71]:
-            - generic [ref=e73]: "3"
-            - generic [ref=e74]: Investidores
+            - generic [ref=e73]: "2"
+            - generic [ref=e74]: Empresas
           - generic [ref=e75]:
-            - generic [ref=e77]: "4"
-            - generic [ref=e78]: Patrimônios
+            - generic [ref=e77]: "3"
+            - generic [ref=e78]: Investidores
           - generic [ref=e79]:
-            - generic [ref=e81]: "5"
-            - generic [ref=e82]: Divórcio
-        - button "Solicitar investigação particular - Proteger patrimônio" [ref=e85]:
+            - generic [ref=e81]: "4"
+            - generic [ref=e82]: Patrimônios
+          - generic [ref=e83]:
+            - generic [ref=e85]: "5"
+            - generic [ref=e86]: Divórcio
+        - button "Solicitar investigação particular - Proteger patrimônio" [ref=e89]:
           - text: Solicitar Investigação Particular
-          - generic [ref=e86]:
+          - generic [ref=e90]:
             - img
-    - generic [ref=e93]:
-      - generic [ref=e94]:
-        - generic [ref=e95]:
-          - img [ref=e96]
+    - generic [ref=e97]:
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - img [ref=e100]
           - text: Nosso Time
-        - heading "Automacao Avancada + Pericia Forense" [level=2] [ref=e98]
-        - paragraph [ref=e99]: "Combinacao unica no Brasil: Arquiteta de Sistemas especialista em automacao + Perito Criminal Oficial (1o lugar PCE-PA)"
-      - generic [ref=e100]:
-        - generic [ref=e103]:
-          - generic [ref=e104]:
-            - generic [ref=e105]:
-              - img "Dani Kaloi" [ref=e107]
-              - generic [ref=e109]: Analista
-            - generic [ref=e110]:
-              - heading "Dani Kaloi" [level=3] [ref=e111]
-              - paragraph [ref=e112]: Analista de Dados
-          - paragraph [ref=e113]: Desenvolvedora Full Stack e Arquiteta de sistemas que processam +100 mil registros simultaneamente, cruzando multiplas bases de dados publicas.
-          - generic [ref=e114]:
-            - heading "Tecnologias" [level=4] [ref=e115]
-            - generic [ref=e116]:
-              - generic [ref=e117]:
-                - img [ref=e118]
+        - heading "Automacao Avancada + Pericia Forense" [level=2] [ref=e102]
+        - paragraph [ref=e103]: "Combinacao unica no Brasil: Arquiteta de Sistemas especialista em automacao + Perito Criminal Oficial (1o lugar PCE-PA)"
+      - generic [ref=e104]:
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - generic [ref=e109]:
+              - img "Dani Kaloi" [ref=e111]
+              - generic [ref=e113]: Analista
+            - generic [ref=e114]:
+              - heading "Dani Kaloi" [level=3] [ref=e115]
+              - paragraph [ref=e116]: Analista de Dados
+          - paragraph [ref=e117]: Desenvolvedora Full Stack e Arquiteta de sistemas que processam +100 mil registros simultaneamente, cruzando multiplas bases de dados publicas.
+          - generic [ref=e118]:
+            - heading "Tecnologias" [level=4] [ref=e119]
+            - generic [ref=e120]:
+              - generic [ref=e121]:
+                - img [ref=e122]
                 - text: Automacao
-              - generic [ref=e122]:
-                - img [ref=e123]
+              - generic [ref=e126]:
+                - img [ref=e127]
                 - text: OSINT
-              - generic [ref=e127]:
-                - img [ref=e128]
+              - generic [ref=e131]:
+                - img [ref=e132]
                 - text: Web Scraping
-              - generic [ref=e132]:
-                - img [ref=e133]
+              - generic [ref=e136]:
+                - img [ref=e137]
                 - text: APIs Publicas
-          - generic [ref=e137]:
-            - generic [ref=e138]:
-              - paragraph [ref=e139]: 100k+
-              - paragraph [ref=e140]: Registros/Investigação
-            - generic [ref=e141]:
-              - paragraph [ref=e142]: Multiplas
-              - paragraph [ref=e143]: Bases de Dados
-            - generic [ref=e144]:
-              - paragraph [ref=e145]: 13+
-              - paragraph [ref=e146]: Certificações
-          - generic [ref=e147]:
-            - generic [ref=e148]: Due Diligence
-            - generic [ref=e149]: Empresas
-            - generic [ref=e150]: Divorcios
-            - generic [ref=e151]: Automacao
-          - link "Ver perfil completo" [ref=e152] [cursor=pointer]:
+          - generic [ref=e141]:
+            - generic [ref=e142]:
+              - paragraph [ref=e143]: 100k+
+              - paragraph [ref=e144]: Registros/Investigação
+            - generic [ref=e145]:
+              - paragraph [ref=e146]: Multiplas
+              - paragraph [ref=e147]: Bases de Dados
+            - generic [ref=e148]:
+              - paragraph [ref=e149]: 13+
+              - paragraph [ref=e150]: Certificações
+          - generic [ref=e151]:
+            - generic [ref=e152]: Due Diligence
+            - generic [ref=e153]: Empresas
+            - generic [ref=e154]: Divorcios
+            - generic [ref=e155]: Automacao
+          - link "Ver perfil completo" [ref=e156] [cursor=pointer]:
             - /url: /quemsomos/dani-kaloi/
-            - button "Ver perfil completo" [ref=e153]:
+            - button "Ver perfil completo" [ref=e157]:
               - text: Ver perfil completo
               - img
-        - generic [ref=e156]:
-          - generic [ref=e157]:
-            - generic [ref=e158]:
-              - img "Ibsen Rodrigues Maciel" [ref=e160]
-              - generic [ref=e162]: Advisory
-            - generic [ref=e163]:
-              - heading "Ibsen Maciel" [level=3] [ref=e164]
-              - paragraph [ref=e165]: Perito Criminal Oficial
-          - paragraph [ref=e166]: Referência nacional em Perícia Forense Computacional. 1º lugar PCE-PA 2019. Diretor Nacional de Perícias ANPAJ (6.000+ associados).
-          - generic [ref=e167]:
-            - heading "Certificações Internacionais" [level=4] [ref=e168]
-            - generic [ref=e169]:
-              - generic [ref=e170]:
-                - img [ref=e171]
-                - text: CELLEBRITE UFED
+        - generic [ref=e160]:
+          - generic [ref=e161]:
+            - generic [ref=e162]:
+              - img "Ibsen Rodrigues Maciel" [ref=e164]
+              - generic [ref=e166]: Advisory
+            - generic [ref=e167]:
+              - heading "Ibsen Maciel" [level=3] [ref=e168]
+              - paragraph [ref=e169]: Perito Criminal Oficial
+          - paragraph [ref=e170]: Referência nacional em Perícia Forense Computacional. 1º lugar PCE-PA 2019. Diretor Nacional de Perícias ANPAJ (6.000+ associados).
+          - generic [ref=e171]:
+            - heading "Certificações Internacionais" [level=4] [ref=e172]
+            - generic [ref=e173]:
               - generic [ref=e174]:
                 - img [ref=e175]
-                - text: XRY (MSAB)
+                - text: CELLEBRITE UFED
               - generic [ref=e178]:
                 - img [ref=e179]
+                - text: XRY (MSAB)
+              - generic [ref=e182]:
+                - img [ref=e183]
                 - text: Magnet AXIOM
-          - generic [ref=e182]:
-            - generic [ref=e183]:
-              - paragraph [ref=e184]: 1º
-              - paragraph [ref=e185]: Lugar PCE-PA
-            - generic [ref=e186]:
-              - paragraph [ref=e187]: 6k+
-              - paragraph [ref=e188]: Associados ANPAJ
-            - generic [ref=e189]:
-              - paragraph [ref=e190]: LABCEDF
-              - paragraph [ref=e191]: PC-PA
-          - generic [ref=e192]:
-            - generic [ref=e193]: Perícia Forense
-            - generic [ref=e194]: Cibersegurança
-            - generic [ref=e195]: OSINT
-            - generic [ref=e196]: Cadeia de Custódia
-          - link "Ver perfil completo" [ref=e197] [cursor=pointer]:
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - paragraph [ref=e188]: 1º
+              - paragraph [ref=e189]: Lugar PCE-PA
+            - generic [ref=e190]:
+              - paragraph [ref=e191]: 6k+
+              - paragraph [ref=e192]: Associados ANPAJ
+            - generic [ref=e193]:
+              - paragraph [ref=e194]: LABCEDF
+              - paragraph [ref=e195]: PC-PA
+          - generic [ref=e196]:
+            - generic [ref=e197]: Perícia Forense
+            - generic [ref=e198]: Cibersegurança
+            - generic [ref=e199]: OSINT
+            - generic [ref=e200]: Cadeia de Custódia
+          - link "Ver perfil completo" [ref=e201] [cursor=pointer]:
             - /url: /quemsomos/ibsen-maciel/
-            - button "Ver perfil completo" [ref=e198]:
+            - button "Ver perfil completo" [ref=e202]:
               - text: Ver perfil completo
               - img
-    - generic [ref=e201]:
-      - heading "Quem protegemos" [level=3] [ref=e202]
-      - generic [ref=e203]:
-        - generic [ref=e204]:
-          - img [ref=e206]
-          - generic [ref=e209]: Investidores
-          - generic [ref=e210]: Angel investors e VCs
-        - generic [ref=e211]:
-          - img [ref=e213]
-          - generic [ref=e217]: Family Offices
-          - generic [ref=e218]: Gestão patrimonial
-        - generic [ref=e219]:
-          - img [ref=e221]
-          - generic [ref=e223]: Empresas
-          - generic [ref=e224]: Due diligence corporativa
-        - generic [ref=e225]:
-          - img [ref=e227]
-          - generic [ref=e230]: Famílias
-          - generic [ref=e231]: Proteção pessoal
-        - generic [ref=e232]:
-          - img [ref=e234]
-          - generic [ref=e239]: Startups
-          - generic [ref=e240]: Verificação de sócios
-    - generic [ref=e242]:
-      - generic [ref=e243]:
-        - generic [ref=e244]:
-          - generic [ref=e245]:
-            - img [ref=e246]
-            - generic [ref=e248]: investigaree
-          - paragraph [ref=e249]: Investigação Digital com Inteligência
-        - generic [ref=e250]:
-          - heading "Serviços" [level=4] [ref=e251]
-          - list [ref=e252]:
-            - listitem [ref=e253]:
-              - link "Red Flag Express" [ref=e254] [cursor=pointer]:
-                - /url: /servicos/
-            - listitem [ref=e255]:
-              - link "Due Diligence Corporativo" [ref=e256] [cursor=pointer]:
-                - /url: /servicos/
+    - generic [ref=e205]:
+      - heading "Quem protegemos" [level=3] [ref=e206]
+      - generic [ref=e207]:
+        - generic [ref=e208]:
+          - img [ref=e210]
+          - generic [ref=e213]: Investidores
+          - generic [ref=e214]: Angel investors e VCs
+        - generic [ref=e215]:
+          - img [ref=e217]
+          - generic [ref=e221]: Family Offices
+          - generic [ref=e222]: Gestão patrimonial
+        - generic [ref=e223]:
+          - img [ref=e225]
+          - generic [ref=e227]: Empresas
+          - generic [ref=e228]: Due diligence corporativa
+        - generic [ref=e229]:
+          - img [ref=e231]
+          - generic [ref=e234]: Famílias
+          - generic [ref=e235]: Proteção pessoal
+        - generic [ref=e236]:
+          - img [ref=e238]
+          - generic [ref=e243]: Startups
+          - generic [ref=e244]: Verificação de sócios
+    - generic [ref=e246]:
+      - generic [ref=e247]:
+        - generic [ref=e248]:
+          - generic [ref=e249]:
+            - img [ref=e250]
+            - generic [ref=e252]: investigaree
+          - paragraph [ref=e253]: Investigação Digital com Inteligência
+        - generic [ref=e254]:
+          - heading "Serviços" [level=4] [ref=e255]
+          - list [ref=e256]:
             - listitem [ref=e257]:
-              - link "Startup & Founders" [ref=e258] [cursor=pointer]:
+              - link "Red Flag Express" [ref=e258] [cursor=pointer]:
                 - /url: /servicos/
-        - generic [ref=e259]:
-          - heading "Empresa" [level=4] [ref=e260]
-          - list [ref=e261]:
-            - listitem [ref=e262]:
-              - link "Sobre" [ref=e263] [cursor=pointer]:
-                - /url: /sobre/
-            - listitem [ref=e264]:
-              - link "Equipe" [ref=e265] [cursor=pointer]:
-                - /url: /quemsomos/
+            - listitem [ref=e259]:
+              - link "Due Diligence Corporativo" [ref=e260] [cursor=pointer]:
+                - /url: /servicos/
+            - listitem [ref=e261]:
+              - link "Startup & Founders" [ref=e262] [cursor=pointer]:
+                - /url: /servicos/
+        - generic [ref=e263]:
+          - heading "Empresa" [level=4] [ref=e264]
+          - list [ref=e265]:
             - listitem [ref=e266]:
-              - link "FAQ" [ref=e267] [cursor=pointer]:
-                - /url: /faq/
+              - link "Sobre" [ref=e267] [cursor=pointer]:
+                - /url: /sobre/
             - listitem [ref=e268]:
-              - button "WhatsApp" [ref=e269] [cursor=pointer]:
-                - img [ref=e270]
+              - link "Equipe" [ref=e269] [cursor=pointer]:
+                - /url: /quemsomos/
+            - listitem [ref=e270]:
+              - link "FAQ" [ref=e271] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=e272]:
+              - button "WhatsApp" [ref=e273] [cursor=pointer]:
+                - img [ref=e274]
                 - text: WhatsApp
-        - generic [ref=e272]:
-          - heading "Legal" [level=4] [ref=e273]
-          - list [ref=e274]:
-            - listitem [ref=e275]:
-              - link "Termos de Uso" [ref=e276] [cursor=pointer]:
-                - /url: /termos/
-            - listitem [ref=e277]:
-              - link "Política de Privacidade" [ref=e278] [cursor=pointer]:
-                - /url: /privacidade/
+        - generic [ref=e276]:
+          - heading "Legal" [level=4] [ref=e277]
+          - list [ref=e278]:
             - listitem [ref=e279]:
-              - link "Política de Cookies" [ref=e280] [cursor=pointer]:
-                - /url: /cookies/
+              - link "Termos de Uso" [ref=e280] [cursor=pointer]:
+                - /url: /termos/
             - listitem [ref=e281]:
-              - link "Disclaimer" [ref=e282] [cursor=pointer]:
-                - /url: /disclaimer/
+              - link "Política de Privacidade" [ref=e282] [cursor=pointer]:
+                - /url: /privacidade/
             - listitem [ref=e283]:
-              - link "contato@investigaree.com.br" [ref=e284] [cursor=pointer]:
+              - link "Política de Cookies" [ref=e284] [cursor=pointer]:
+                - /url: /cookies/
+            - listitem [ref=e285]:
+              - link "Disclaimer" [ref=e286] [cursor=pointer]:
+                - /url: /disclaimer/
+            - listitem [ref=e287]:
+              - link "contato@investigaree.com.br" [ref=e288] [cursor=pointer]:
                 - /url: mailto:contato@investigaree.com.br
-      - paragraph [ref=e286]: © 2025 investigaree. Todos os direitos reservados.
-  - button "Contato via WhatsApp" [ref=e288]:
-    - img [ref=e289]
-  - dialog "Utilizamos cookies" [ref=e294]:
-    - generic [ref=e295]:
-      - generic [ref=e297]:
-        - img [ref=e299]
-        - generic [ref=e301]:
-          - heading "Utilizamos cookies" [level=3] [ref=e302]
-          - paragraph [ref=e303]:
+      - paragraph [ref=e290]: © 2025 investigaree. Todos os direitos reservados.
+  - button "Contato via WhatsApp" [ref=e292]:
+    - img [ref=e293]
+  - dialog "Utilizamos cookies" [ref=e298]:
+    - generic [ref=e299]:
+      - generic [ref=e301]:
+        - img [ref=e303]
+        - generic [ref=e305]:
+          - heading "Utilizamos cookies" [level=3] [ref=e306]
+          - paragraph [ref=e307]:
             - text: Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo. Ao clicar em "Aceitar todos", você concorda com o uso de cookies conforme descrito em nossa
-            - link "Política de Cookies" [ref=e304] [cursor=pointer]:
+            - link "Política de Cookies" [ref=e308] [cursor=pointer]:
               - /url: /cookies/
             - text: .
-      - generic [ref=e305]:
-        - button "Personalizar" [ref=e306]:
-          - img [ref=e307]
+      - generic [ref=e309]:
+        - button "Personalizar" [ref=e310]:
+          - img [ref=e311]
           - text: Personalizar
-        - button "Rejeitar não essenciais" [ref=e310]
-        - button "Aceitar todos" [ref=e311]
+        - button "Rejeitar não essenciais" [ref=e314]
+        - button "Aceitar todos" [ref=e315]
 ```

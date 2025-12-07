@@ -2,81 +2,112 @@
 
 ```yaml
 - generic [ref=e1]:
-  - generic [active]:
+  - generic [ref=e3]:
     - generic [ref=e4]:
       - generic [ref=e5]:
-        - generic [ref=e6]:
-          - navigation [ref=e7]:
-            - button "previous" [disabled] [ref=e8]:
-              - img "previous" [ref=e9]
-            - generic [ref=e11]:
-              - generic [ref=e12]: 1/
-              - text: "1"
-            - button "next" [disabled] [ref=e13]:
-              - img "next" [ref=e14]
+        - heading "Administracao" [level=1] [ref=e6]:
+          - img [ref=e7]
+          - text: Administracao
+        - paragraph [ref=e9]: Gerenciar usuarios e acessos
+      - button "Atualizar" [ref=e10]:
+        - img
+        - text: Atualizar
+    - generic [ref=e11]:
+      - img [ref=e12]
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - heading "Modo Desenvolvimento Ativo" [level=3] [ref=e19]
+          - paragraph [ref=e20]:
+            - text: Você está visualizando dados simulados (mock data). Todas as operações são salvas localmente e não afetam o banco de dados real. Para conectar à API de produção, configure a variável
+            - code [ref=e21]: NEXT_PUBLIC_DEV_MODE=false
+        - button "Fechar banner" [ref=e22]:
+          - img [ref=e23]
+    - generic [ref=e26]:
+      - generic [ref=e28] [cursor=pointer]:
+        - img [ref=e29]
+        - generic [ref=e34]:
+          - paragraph [ref=e35]: "4"
+          - paragraph [ref=e36]: Usuarios Totais
+      - generic [ref=e38] [cursor=pointer]:
+        - img [ref=e39]
+        - generic [ref=e43]:
+          - paragraph [ref=e44]: "2"
+          - paragraph [ref=e45]: Tenants Ativos
+      - generic [ref=e47] [cursor=pointer]:
+        - img [ref=e48]
+        - generic [ref=e51]:
+          - paragraph [ref=e52]: "1"
+          - paragraph [ref=e53]: Aguardando Liberacao
+      - generic [ref=e55] [cursor=pointer]:
+        - img [ref=e56]
+        - generic [ref=e61]:
+          - paragraph [ref=e62]: "2"
+          - paragraph [ref=e63]: Alertas Nao Lidos
+    - generic [ref=e64]:
+      - button "Visao Geral" [ref=e65]
+      - button "Alertas 2" [active] [ref=e66]:
+        - text: Alertas
+        - generic [ref=e67]: "2"
+      - button "Usuarios e Tenants" [ref=e68]
+    - generic [ref=e69]:
+      - generic [ref=e70]:
+        - heading "Alertas do Sistema" [level=3] [ref=e71]:
+          - img [ref=e72]
+          - text: Alertas do Sistema
+        - button "Marcar Todos como Lidos" [ref=e75]:
           - img
-        - generic [ref=e16]:
-          - link "Next.js 16.0.3 (stale) Turbopack" [ref=e17] [cursor=pointer]:
-            - /url: https://nextjs.org/docs/messages/version-staleness
-            - img [ref=e18]
-            - generic "There is a newer version (16.0.7) available, upgrade recommended!" [ref=e20]: Next.js 16.0.3 (stale)
-            - generic [ref=e21]: Turbopack
-          - img
-      - dialog "Runtime ReferenceError" [ref=e23]:
-        - generic [ref=e26]:
-          - generic [ref=e27]:
-            - generic [ref=e28]:
-              - generic [ref=e30]: Runtime ReferenceError
-              - generic [ref=e31]:
-                - button "Copy Error Info" [ref=e32] [cursor=pointer]:
-                  - img [ref=e33]
-                - button "No related documentation found" [disabled] [ref=e35]:
-                  - img [ref=e36]
-                - link "Learn more about enabling Node.js inspector for server code with Chrome DevTools" [ref=e38] [cursor=pointer]:
-                  - /url: https://nextjs.org/docs/app/building-your-application/configuring/debugging#server-side-code
-                  - img [ref=e39]
-            - generic [ref=e48]: usersWithAccess is not defined
-          - generic [ref=e49]:
-            - generic [ref=e50]:
-              - paragraph [ref=e52]:
-                - img [ref=e54]
-                - generic [ref=e57]: src/app/test-admin-panel/page.tsx (240:7) @ AdminPage
-                - button "Open in editor" [ref=e58] [cursor=pointer]:
-                  - img [ref=e60]
-              - generic [ref=e63]:
-                - generic [ref=e64]: 238 | ).length,
-                - generic [ref=e65]: "239 | };"
-                - generic [ref=e66]: "> 240 | }, [usersWithAccess, users, auditLogs]);"
-                - generic [ref=e67]: "| ^"
-                - generic [ref=e68]: 241 |
-                - generic [ref=e69]: 242 | // Debounce effect - atualiza a busca após 300ms de inatividade
-                - generic [ref=e70]: "243 | useEffect(() => {"
-            - generic [ref=e71]:
-              - generic [ref=e72]:
-                - paragraph [ref=e73]:
-                  - text: Call Stack
-                  - generic [ref=e74]: "13"
-                - button "Show 12 ignore-listed frame(s)" [ref=e75] [cursor=pointer]:
-                  - text: Show 12 ignore-listed frame(s)
-                  - img [ref=e76]
-              - generic [ref=e78]:
-                - generic [ref=e79]:
-                  - text: AdminPage
-                  - button "Open AdminPage in editor" [ref=e80] [cursor=pointer]:
-                    - img [ref=e81]
-                - text: src/app/test-admin-panel/page.tsx (240:7)
-        - generic [ref=e83]: "1"
-        - generic [ref=e84]: "2"
-    - generic [ref=e89] [cursor=pointer]:
-      - button "Open Next.js Dev Tools" [ref=e90]:
-        - img [ref=e91]
-      - generic [ref=e94]:
-        - button "Open issues overlay" [ref=e95]:
-          - generic [ref=e96]:
-            - generic [ref=e97]: "0"
-            - generic [ref=e98]: "1"
-          - generic [ref=e99]: Issue
-        - button "Collapse issues badge" [ref=e100]:
-          - img [ref=e101]
-  - 'heading "Application error: a client-side exception has occurred while loading localhost (see the browser console for more information)." [level=2] [ref=e105]'
+          - text: Marcar Todos como Lidos
+      - generic [ref=e76]:
+        - generic [ref=e78]:
+          - img [ref=e79]
+          - generic [ref=e82]:
+            - generic [ref=e83]:
+              - heading "Novo usuário cadastrado" [level=4] [ref=e84]
+              - generic [ref=e85]: 05/12/2025, 14:49:51
+            - paragraph [ref=e86]: Um novo usuário se registrou e aguarda liberação de acesso
+            - generic [ref=e87]:
+              - paragraph [ref=e88]: "Email: pendente@example.com"
+              - paragraph [ref=e89]: "Nome: Usuário Pendente"
+            - generic [ref=e90]:
+              - button "Liberar Acesso" [ref=e91]:
+                - img
+                - text: Liberar Acesso
+              - button "Ignorar" [ref=e92]
+        - generic [ref=e94]:
+          - img [ref=e95]
+          - generic [ref=e97]:
+            - generic [ref=e98]:
+              - heading "Nova lead capturada" [level=4] [ref=e99]
+              - generic [ref=e100]: 07/12/2025, 09:49:51
+            - paragraph [ref=e101]: Um visitante preencheu o formulário de contato
+            - generic [ref=e102]:
+              - paragraph [ref=e103]: "Email: lead@example.com"
+              - paragraph [ref=e104]: "Telefone: +5511977776666"
+            - generic [ref=e105]:
+              - button "Copiar Email" [ref=e106]:
+                - img
+                - text: Copiar Email
+              - button "Marcar como Lido" [ref=e107]
+  - button "Open Next.js Dev Tools" [ref=e113] [cursor=pointer]:
+    - img [ref=e114]
+  - alert [ref=e117]
+  - button "Contato via WhatsApp" [ref=e119]:
+    - img [ref=e120]
+  - dialog "Utilizamos cookies" [ref=e125]:
+    - generic [ref=e126]:
+      - generic [ref=e128]:
+        - img [ref=e130]
+        - generic [ref=e132]:
+          - heading "Utilizamos cookies" [level=3] [ref=e133]
+          - paragraph [ref=e134]:
+            - text: Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo. Ao clicar em "Aceitar todos", você concorda com o uso de cookies conforme descrito em nossa
+            - link "Política de Cookies" [ref=e135] [cursor=pointer]:
+              - /url: /cookies/
+            - text: .
+      - generic [ref=e136]:
+        - button "Personalizar" [ref=e137]:
+          - img [ref=e138]
+          - text: Personalizar
+        - button "Rejeitar não essenciais" [ref=e141]
+        - button "Aceitar todos" [ref=e142]
 ```

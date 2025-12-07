@@ -2,81 +2,382 @@
 
 ```yaml
 - generic [ref=e1]:
-  - generic [active]:
-    - generic [ref=e4]:
-      - generic [ref=e5]:
-        - generic [ref=e6]:
-          - navigation [ref=e7]:
-            - button "previous" [disabled] [ref=e8]:
-              - img "previous" [ref=e9]
-            - generic [ref=e11]:
-              - generic [ref=e12]: 1/
-              - text: "1"
-            - button "next" [disabled] [ref=e13]:
-              - img "next" [ref=e14]
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - heading "Administracao" [level=1] [ref=e6]:
+            - img [ref=e7]
+            - text: Administracao
+          - paragraph [ref=e9]: Gerenciar usuarios e acessos
+        - button "Atualizar" [ref=e10]:
           - img
-        - generic [ref=e16]:
-          - link "Next.js 16.0.3 (stale) Turbopack" [ref=e17] [cursor=pointer]:
-            - /url: https://nextjs.org/docs/messages/version-staleness
-            - img [ref=e18]
-            - generic "There is a newer version (16.0.7) available, upgrade recommended!" [ref=e20]: Next.js 16.0.3 (stale)
-            - generic [ref=e21]: Turbopack
-          - img
-      - dialog "Runtime ReferenceError" [ref=e23]:
-        - generic [ref=e26]:
-          - generic [ref=e27]:
-            - generic [ref=e28]:
-              - generic [ref=e30]: Runtime ReferenceError
-              - generic [ref=e31]:
-                - button "Copy Error Info" [ref=e32] [cursor=pointer]:
-                  - img [ref=e33]
-                - button "No related documentation found" [disabled] [ref=e35]:
-                  - img [ref=e36]
-                - link "Learn more about enabling Node.js inspector for server code with Chrome DevTools" [ref=e38] [cursor=pointer]:
-                  - /url: https://nextjs.org/docs/app/building-your-application/configuring/debugging#server-side-code
-                  - img [ref=e39]
-            - generic [ref=e48]: usersWithAccess is not defined
-          - generic [ref=e49]:
-            - generic [ref=e50]:
-              - paragraph [ref=e52]:
-                - img [ref=e54]
-                - generic [ref=e57]: src/app/test-admin-panel/page.tsx (240:7) @ AdminPage
-                - button "Open in editor" [ref=e58] [cursor=pointer]:
-                  - img [ref=e60]
-              - generic [ref=e63]:
-                - generic [ref=e64]: 238 | ).length,
-                - generic [ref=e65]: "239 | };"
-                - generic [ref=e66]: "> 240 | }, [usersWithAccess, users, auditLogs]);"
-                - generic [ref=e67]: "| ^"
-                - generic [ref=e68]: 241 |
-                - generic [ref=e69]: 242 | // Debounce effect - atualiza a busca após 300ms de inatividade
-                - generic [ref=e70]: "243 | useEffect(() => {"
-            - generic [ref=e71]:
-              - generic [ref=e72]:
-                - paragraph [ref=e73]:
-                  - text: Call Stack
-                  - generic [ref=e74]: "13"
-                - button "Show 12 ignore-listed frame(s)" [ref=e75] [cursor=pointer]:
-                  - text: Show 12 ignore-listed frame(s)
-                  - img [ref=e76]
-              - generic [ref=e78]:
-                - generic [ref=e79]:
-                  - text: AdminPage
-                  - button "Open AdminPage in editor" [ref=e80] [cursor=pointer]:
-                    - img [ref=e81]
-                - text: src/app/test-admin-panel/page.tsx (240:7)
-        - generic [ref=e83]: "1"
-        - generic [ref=e84]: "2"
-    - generic [ref=e89] [cursor=pointer]:
-      - button "Open Next.js Dev Tools" [ref=e90]:
-        - img [ref=e91]
-      - generic [ref=e94]:
-        - button "Open issues overlay" [ref=e95]:
+          - text: Atualizar
+      - generic [ref=e11]:
+        - img [ref=e12]
+        - generic [ref=e17]:
+          - generic [ref=e18]:
+            - heading "Modo Desenvolvimento Ativo" [level=3] [ref=e19]
+            - paragraph [ref=e20]:
+              - text: Você está visualizando dados simulados (mock data). Todas as operações são salvas localmente e não afetam o banco de dados real. Para conectar à API de produção, configure a variável
+              - code [ref=e21]: NEXT_PUBLIC_DEV_MODE=false
+          - button "Fechar banner" [ref=e22]:
+            - img [ref=e23]
+      - generic [ref=e26]:
+        - generic [ref=e28] [cursor=pointer]:
+          - img [ref=e29]
+          - generic [ref=e34]:
+            - paragraph [ref=e35]: "4"
+            - paragraph [ref=e36]: Usuarios Totais
+        - generic [ref=e38] [cursor=pointer]:
+          - img [ref=e39]
+          - generic [ref=e43]:
+            - paragraph [ref=e44]: "2"
+            - paragraph [ref=e45]: Tenants Ativos
+        - generic [ref=e47] [cursor=pointer]:
+          - img [ref=e48]
+          - generic [ref=e51]:
+            - paragraph [ref=e52]: "1"
+            - paragraph [ref=e53]: Aguardando Liberacao
+        - generic [ref=e55] [cursor=pointer]:
+          - img [ref=e56]
+          - generic [ref=e61]:
+            - paragraph [ref=e62]: "2"
+            - paragraph [ref=e63]: Alertas Nao Lidos
+      - generic [ref=e64]:
+        - button "Visao Geral" [ref=e65]
+        - button "Alertas 2" [ref=e66]:
+          - text: Alertas
+          - generic [ref=e67]: "2"
+        - button "Usuarios e Tenants" [ref=e68]
+      - generic [ref=e70]:
+        - img [ref=e71]
+        - textbox "Buscar por email, nome ou tenant..." [ref=e74]
+      - generic [ref=e75]:
+        - heading "Usuarios Aguardando Liberacao (1)" [level=3] [ref=e76]:
+          - img [ref=e77]
+          - text: Usuarios Aguardando Liberacao (1)
+        - generic [ref=e81]:
+          - generic [ref=e82]:
+            - paragraph [ref=e83]: Usuário Pendente
+            - paragraph [ref=e84]: pendente@example.com
+            - paragraph [ref=e85]: "+5511988887777"
+          - generic [ref=e86]:
+            - generic [ref=e87]: 05/12/2025
+            - button "Liberar" [active] [ref=e88]:
+              - img
+              - text: Liberar
+      - generic [ref=e89]:
+        - heading "Usuarios Sem Acesso (2)" [level=3] [ref=e90]:
+          - img [ref=e91]
+          - text: Usuarios Sem Acesso (2)
+        - paragraph [ref=e94]: Usuarios cadastrados mas que nao possuem acesso a nenhum tenant. Eles podem visualizar apenas a landing page.
+        - generic [ref=e95]:
           - generic [ref=e96]:
-            - generic [ref=e97]: "0"
-            - generic [ref=e98]: "1"
-          - generic [ref=e99]: Issue
-        - button "Collapse issues badge" [ref=e100]:
-          - img [ref=e101]
-  - 'heading "Application error: a client-side exception has occurred while loading localhost (see the browser console for more information)." [level=2] [ref=e105]'
+            - generic [ref=e97]:
+              - paragraph [ref=e98]: João Silva
+              - paragraph [ref=e99]: usuario.sem.acesso@example.com
+              - paragraph [ref=e100]: "+5511988776655"
+              - paragraph [ref=e101]: Cadastrado em 27/11/2025
+            - generic [ref=e102]:
+              - generic [ref=e103]: Sem Acesso
+              - button "Conceder Acesso" [ref=e104]:
+                - img
+                - text: Conceder Acesso
+          - generic [ref=e105]:
+            - generic [ref=e106]:
+              - paragraph [ref=e107]: Maria Santos
+              - paragraph [ref=e108]: maria.santos@example.com
+              - paragraph [ref=e109]: Cadastrado em 22/11/2025
+            - generic [ref=e110]:
+              - generic [ref=e111]: Sem Acesso
+              - button "Conceder Acesso" [ref=e112]:
+                - img
+                - text: Conceder Acesso
+      - generic [ref=e113]:
+        - generic [ref=e114]:
+          - generic [ref=e115]:
+            - heading "Usuarios com Acesso (2)" [level=3] [ref=e116]:
+              - img [ref=e117]
+              - text: Usuarios com Acesso (2)
+            - paragraph [ref=e122]: Usuarios que possuem acesso a pelo menos um tenant com permissoes especificas.
+          - generic [ref=e123]:
+            - button "Exportar CSV" [ref=e124]:
+              - img
+              - text: Exportar CSV
+            - generic [ref=e126]: "Items por página:"
+            - combobox [ref=e127]:
+              - option "5"
+              - option "10" [selected]
+              - option "25"
+              - option "50"
+        - table [ref=e129]:
+          - rowgroup [ref=e130]:
+            - row "Email Nome Tenants Último Acesso Acoes" [ref=e131]:
+              - columnheader "Email" [ref=e132]
+              - columnheader "Nome" [ref=e133]
+              - columnheader "Tenants" [ref=e134]
+              - columnheader "Último Acesso" [ref=e135]
+              - columnheader "Acoes" [ref=e136]
+          - rowgroup [ref=e137]:
+            - row "ddd@dddd.com Usuário Teste CLIENTE_01 (admin) 5min atrás" [ref=e138]:
+              - cell "ddd@dddd.com" [ref=e139]
+              - cell "Usuário Teste" [ref=e140]
+              - cell "CLIENTE_01 (admin)" [ref=e141]:
+                - generic [ref=e143]: CLIENTE_01 (admin)
+              - cell "5min atrás" [ref=e144]
+              - cell [ref=e145]:
+                - button [ref=e146]:
+                  - img
+            - row "teste@example.com Usuário Exemplo CLIENTE_01 (viewer) 2h atrás" [ref=e147]:
+              - cell "teste@example.com" [ref=e148]
+              - cell "Usuário Exemplo" [ref=e149]
+              - cell "CLIENTE_01 (viewer)" [ref=e150]:
+                - generic [ref=e152]: CLIENTE_01 (viewer)
+              - cell "2h atrás" [ref=e153]
+              - cell [ref=e154]:
+                - button [ref=e155]:
+                  - img
+      - generic [ref=e156]:
+        - generic [ref=e157]:
+          - heading "Tenants (2)" [level=3] [ref=e158]:
+            - img [ref=e159]
+            - text: Tenants (2)
+          - button "Criar Tenant" [ref=e163]:
+            - img
+            - text: Criar Tenant
+        - generic [ref=e164]:
+          - generic [ref=e165] [cursor=pointer]:
+            - generic [ref=e166]:
+              - generic [ref=e167]: CLIENTE_01
+              - generic [ref=e168]: active
+            - paragraph [ref=e169]: Cliente Principal
+            - paragraph [ref=e170]: 2 usuario(s)
+          - generic [ref=e171] [cursor=pointer]:
+            - generic [ref=e172]:
+              - generic [ref=e173]: CLIENTE_02
+              - generic [ref=e174]: active
+            - paragraph [ref=e175]: Cliente Secundário
+            - paragraph [ref=e176]: 0 usuario(s)
+      - generic [ref=e177]:
+        - generic [ref=e178]:
+          - heading "Logs de Auditoria" [level=3] [ref=e179]:
+            - img [ref=e180]
+            - text: Logs de Auditoria
+          - generic [ref=e183]: 6 registro(s)
+        - paragraph [ref=e184]: Histórico de todas as ações administrativas realizadas no sistema.
+        - generic [ref=e185]:
+          - generic [ref=e187]:
+            - img [ref=e189]
+            - generic [ref=e192]:
+              - generic [ref=e193]:
+                - generic [ref=e194]:
+                  - generic [ref=e195]: Acesso Concedido
+                  - generic [ref=e196]: CLIENTE_01
+                  - generic [ref=e197]: viewer
+                - paragraph [ref=e198]: Acesso concedido ao tenant CLIENTE_01
+                - generic [ref=e199]:
+                  - generic [ref=e200]:
+                    - img [ref=e201]
+                    - text: dkbotdani@gmail.com
+                  - generic [ref=e204]: →
+                  - generic [ref=e205]: teste@example.com
+                - group [ref=e206]:
+                  - generic "Ver detalhes" [ref=e207] [cursor=pointer]
+              - generic [ref=e208]:
+                - paragraph [ref=e209]: 10min atrás
+                - paragraph [ref=e210]: 07/12/2025, 14:38
+          - generic [ref=e212]:
+            - img [ref=e214]
+            - generic [ref=e217]:
+              - generic [ref=e218]:
+                - generic [ref=e219]:
+                  - generic [ref=e220]: Acesso Revogado
+                  - generic [ref=e221]: CLIENTE_01
+                - paragraph [ref=e222]: Acesso revogado do tenant CLIENTE_01
+                - generic [ref=e223]:
+                  - generic [ref=e224]:
+                    - img [ref=e225]
+                    - text: dkbotdani@gmail.com
+                  - generic [ref=e228]: →
+                  - generic [ref=e229]: usuario.removido@example.com
+                - group [ref=e230]:
+                  - generic "Ver detalhes" [ref=e231] [cursor=pointer]
+              - generic [ref=e232]:
+                - paragraph [ref=e233]: 2h atrás
+                - paragraph [ref=e234]: 07/12/2025, 12:48
+          - generic [ref=e236]:
+            - img [ref=e238]
+            - generic [ref=e241]:
+              - generic [ref=e242]:
+                - generic [ref=e243]:
+                  - generic [ref=e244]: Tenant Criado
+                  - generic [ref=e245]: CLIENTE_02
+                - paragraph [ref=e246]: Novo tenant criado
+                - generic [ref=e248]:
+                  - img [ref=e249]
+                  - text: dkbotdani@gmail.com
+                - group [ref=e252]:
+                  - generic "Ver detalhes" [ref=e253] [cursor=pointer]
+              - generic [ref=e254]:
+                - paragraph [ref=e255]: 5h atrás
+                - paragraph [ref=e256]: 07/12/2025, 09:48
+          - generic [ref=e258]:
+            - img [ref=e260]
+            - generic [ref=e263]:
+              - generic [ref=e264]:
+                - generic [ref=e265]:
+                  - generic [ref=e266]: Tenant Atualizado
+                  - generic [ref=e267]: CLIENTE_01
+                - paragraph [ref=e268]: Tenant atualizado
+                - generic [ref=e270]:
+                  - img [ref=e271]
+                  - text: dkbotdani@gmail.com
+                - group [ref=e274]:
+                  - generic "Ver detalhes" [ref=e275] [cursor=pointer]
+              - generic [ref=e276]:
+                - paragraph [ref=e277]: Ontem
+                - paragraph [ref=e278]: 06/12/2025, 14:48
+          - generic [ref=e280]:
+            - img [ref=e282]
+            - generic [ref=e285]:
+              - generic [ref=e286]:
+                - generic [ref=e287]:
+                  - generic [ref=e288]: Acesso Concedido
+                  - generic [ref=e289]: CLIENTE_01
+                  - generic [ref=e290]: admin
+                - paragraph [ref=e291]: Acesso concedido ao tenant CLIENTE_01
+                - generic [ref=e292]:
+                  - generic [ref=e293]:
+                    - img [ref=e294]
+                    - text: ibsenmaciel@gmail.com
+                  - generic [ref=e297]: →
+                  - generic [ref=e298]: maria.santos@example.com
+                - group [ref=e299]:
+                  - generic "Ver detalhes" [ref=e300] [cursor=pointer]
+              - generic [ref=e301]:
+                - paragraph [ref=e302]: 3d atrás
+                - paragraph [ref=e303]: 04/12/2025, 14:48
+          - generic [ref=e305]:
+            - img [ref=e307]
+            - generic [ref=e310]:
+              - generic [ref=e311]:
+                - generic [ref=e312]:
+                  - generic [ref=e313]: Tenant Desativado
+                  - generic [ref=e314]: CLIENTE_OLD
+                - paragraph [ref=e315]: Tenant desativado
+                - generic [ref=e317]:
+                  - img [ref=e318]
+                  - text: dkbotdani@gmail.com
+                - group [ref=e321]:
+                  - generic "Ver detalhes" [ref=e322] [cursor=pointer]
+              - generic [ref=e323]:
+                - paragraph [ref=e324]: 1sem atrás
+                - paragraph [ref=e325]: 30/11/2025, 14:48
+      - generic [ref=e326]:
+        - generic [ref=e327]:
+          - heading "Métricas de Uso" [level=3] [ref=e328]:
+            - img [ref=e329]
+            - text: Métricas de Uso
+          - generic [ref=e331]: Atualizado agora
+        - generic [ref=e332]:
+          - generic [ref=e333]:
+            - generic [ref=e334]:
+              - generic [ref=e335]: Última Hora
+              - img [ref=e336]
+            - paragraph [ref=e339]: "1"
+            - paragraph [ref=e340]: usuários ativos
+          - generic [ref=e341]:
+            - generic [ref=e342]:
+              - generic [ref=e343]: Últimas 24h
+              - img [ref=e344]
+            - paragraph [ref=e346]: "2"
+            - paragraph [ref=e347]: usuários ativos
+          - generic [ref=e348]:
+            - generic [ref=e349]:
+              - generic [ref=e350]: Últimos 7 dias
+              - img [ref=e351]
+            - paragraph [ref=e356]: "3"
+            - paragraph [ref=e357]: usuários ativos
+          - generic [ref=e358]:
+            - generic [ref=e359]:
+              - generic [ref=e360]: Crescimento
+              - img [ref=e361]
+            - paragraph [ref=e364]: +100%
+            - paragraph [ref=e365]: vs. período anterior
+        - generic [ref=e366]:
+          - generic [ref=e367]:
+            - heading "Distribuição por Permissão" [level=4] [ref=e368]
+            - generic [ref=e369]:
+              - generic [ref=e371]:
+                - generic [ref=e372]: Admin
+                - generic [ref=e373]: "1"
+              - generic [ref=e377]:
+                - generic [ref=e378]: Editor
+                - generic [ref=e379]: "0"
+              - generic [ref=e382]:
+                - generic [ref=e383]: Viewer
+                - generic [ref=e384]: "1"
+          - generic [ref=e387]:
+            - heading "Outras Métricas" [level=4] [ref=e388]
+            - generic [ref=e389]:
+              - generic [ref=e390]:
+                - generic [ref=e391]:
+                  - img [ref=e393]
+                  - generic [ref=e395]: Taxa de Ativação
+                - generic [ref=e396]: 100%
+              - generic [ref=e397]:
+                - generic [ref=e398]:
+                  - img [ref=e400]
+                  - generic [ref=e403]: Ações (Total)
+                - generic [ref=e404]: "6"
+              - generic [ref=e405]:
+                - generic [ref=e406]:
+                  - img [ref=e408]
+                  - generic [ref=e410]: Ações (24h)
+                - generic [ref=e411]: "3"
+    - generic [ref=e413]:
+      - heading "Conceder Acesso" [level=3] [ref=e414]
+      - generic [ref=e415]:
+        - generic [ref=e416]:
+          - text: Usuario
+          - paragraph [ref=e417]: pendente@example.com
+        - generic [ref=e418]:
+          - text: Tenant
+          - combobox "Tenant" [ref=e419]:
+            - option "CLIENTE_01 - Cliente Principal" [selected]
+            - option "CLIENTE_02 - Cliente Secundário"
+        - generic [ref=e420]:
+          - text: Permissao
+          - combobox "Permissao" [ref=e421]:
+            - option "Viewer (apenas visualizar)" [selected]
+            - option "Editor (visualizar e editar)"
+            - option "Admin (acesso total)"
+      - generic [ref=e422]:
+        - button "Cancelar" [ref=e423]
+        - button "Conceder" [ref=e424]:
+          - img
+          - text: Conceder
+  - button "Open Next.js Dev Tools" [ref=e430] [cursor=pointer]:
+    - img [ref=e431]
+  - alert [ref=e434]
+  - button "Contato via WhatsApp" [ref=e436]:
+    - img [ref=e437]
+  - dialog "Utilizamos cookies" [ref=e442]:
+    - generic [ref=e443]:
+      - generic [ref=e445]:
+        - img [ref=e447]
+        - generic [ref=e449]:
+          - heading "Utilizamos cookies" [level=3] [ref=e450]
+          - paragraph [ref=e451]:
+            - text: Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo. Ao clicar em "Aceitar todos", você concorda com o uso de cookies conforme descrito em nossa
+            - link "Política de Cookies" [ref=e452] [cursor=pointer]:
+              - /url: /cookies/
+            - text: .
+      - generic [ref=e453]:
+        - button "Personalizar" [ref=e454]:
+          - img [ref=e455]
+          - text: Personalizar
+        - button "Rejeitar não essenciais" [ref=e458]
+        - button "Aceitar todos" [ref=e459]
 ```

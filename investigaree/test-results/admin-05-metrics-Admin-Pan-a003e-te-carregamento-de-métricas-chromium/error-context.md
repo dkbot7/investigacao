@@ -1,82 +1,261 @@
 # Page snapshot
 
 ```yaml
-- generic [ref=e1]:
-  - generic [active]:
-    - generic [ref=e4]:
-      - generic [ref=e5]:
-        - generic [ref=e6]:
-          - navigation [ref=e7]:
-            - button "previous" [disabled] [ref=e8]:
-              - img "previous" [ref=e9]
-            - generic [ref=e11]:
-              - generic [ref=e12]: 1/
-              - text: "1"
-            - button "next" [disabled] [ref=e13]:
-              - img "next" [ref=e14]
+- generic [active] [ref=e1]:
+  - button "Open Next.js Dev Tools" [ref=e7] [cursor=pointer]:
+    - img [ref=e8]
+  - alert [ref=e11]
+  - banner [ref=e12]:
+    - navigation [ref=e14]:
+      - link "investigaree logo investigaree" [ref=e16] [cursor=pointer]:
+        - /url: /
+        - img "investigaree logo" [ref=e19]
+        - generic [ref=e20]: investigaree
+      - generic [ref=e21]:
+        - link "Home" [ref=e23] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e24]: Home
+        - link "Serviços" [ref=e26] [cursor=pointer]:
+          - /url: /servicos/
+          - generic [ref=e27]: Serviços
+        - link "Quem Somos" [ref=e29] [cursor=pointer]:
+          - /url: /quemsomos/
+          - generic [ref=e30]: Quem Somos
+        - button "Conteúdo" [ref=e32]:
+          - generic [ref=e33]: Conteúdo
+          - img [ref=e34]
+        - link "Contato" [ref=e37] [cursor=pointer]:
+          - /url: /contato/
+          - generic [ref=e38]: Contato
+      - generic [ref=e39]:
+        - button "Escuro" [ref=e41]:
+          - generic [ref=e42]:
+            - img
+          - generic [ref=e43]: Escuro
+        - button "PT 🇧🇷" [ref=e45]:
           - img
-        - generic [ref=e16]:
-          - link "Next.js 16.0.3 (stale) Turbopack" [ref=e17] [cursor=pointer]:
-            - /url: https://nextjs.org/docs/messages/version-staleness
-            - img [ref=e18]
-            - generic "There is a newer version (16.0.7) available, upgrade recommended!" [ref=e20]: Next.js 16.0.3 (stale)
-            - generic [ref=e21]: Turbopack
-          - img
-      - dialog "Runtime ReferenceError" [ref=e23]:
-        - generic [ref=e26]:
-          - generic [ref=e27]:
-            - generic [ref=e28]:
-              - generic [ref=e30]: Runtime ReferenceError
-              - generic [ref=e31]:
-                - button "Copy Error Info" [ref=e32] [cursor=pointer]:
-                  - img [ref=e33]
-                - button "No related documentation found" [disabled] [ref=e35]:
-                  - img [ref=e36]
-                - link "Learn more about enabling Node.js inspector for server code with Chrome DevTools" [ref=e38] [cursor=pointer]:
-                  - /url: https://nextjs.org/docs/app/building-your-application/configuring/debugging#server-side-code
-                  - img [ref=e39]
-            - generic [ref=e48]: usersWithAccess is not defined
-          - generic [ref=e49]:
-            - generic [ref=e50]:
-              - paragraph [ref=e52]:
-                - img [ref=e54]
-                - generic [ref=e57]: src/app/test-admin-panel/page.tsx (240:7) @ AdminPage
-                - button "Open in editor" [ref=e58] [cursor=pointer]:
-                  - img [ref=e60]
-              - generic [ref=e63]:
-                - generic [ref=e64]: 238 | ).length,
-                - generic [ref=e65]: "239 | };"
-                - generic [ref=e66]: "> 240 | }, [usersWithAccess, users, auditLogs]);"
-                - generic [ref=e67]: "| ^"
-                - generic [ref=e68]: 241 |
-                - generic [ref=e69]: 242 | // Debounce effect - atualiza a busca após 300ms de inatividade
-                - generic [ref=e70]: "243 | useEffect(() => {"
-            - generic [ref=e71]:
-              - generic [ref=e72]:
-                - paragraph [ref=e73]:
-                  - text: Call Stack
-                  - generic [ref=e74]: "13"
-                - button "Show 12 ignore-listed frame(s)" [ref=e75] [cursor=pointer]:
-                  - text: Show 12 ignore-listed frame(s)
-                  - img [ref=e76]
-              - generic [ref=e78]:
-                - generic [ref=e79]:
-                  - text: AdminPage
-                  - button "Open AdminPage in editor" [ref=e80] [cursor=pointer]:
-                    - img [ref=e81]
-                - text: src/app/test-admin-panel/page.tsx (240:7)
-        - generic [ref=e83]: "1"
-        - generic [ref=e84]: "2"
-    - generic [ref=e89] [cursor=pointer]:
-      - button "Open Next.js Dev Tools" [ref=e90]:
-        - img [ref=e91]
-      - generic [ref=e94]:
-        - button "Open issues overlay" [ref=e95]:
-          - generic [ref=e96]:
-            - generic [ref=e97]: "0"
-            - generic [ref=e98]: "1"
-          - generic [ref=e99]: Issue
-        - button "Collapse issues badge" [ref=e100]:
-          - img [ref=e101]
-  - 'heading "Application error: a client-side exception has occurred while loading localhost (see the browser console for more information)." [level=2] [ref=e105]'
+          - generic [ref=e46]: PT 🇧🇷
+        - button "Entrar" [ref=e49]
+        - button "Criar Investigação" [ref=e51]
+  - main [ref=e52]:
+    - region "Hero section - Due Diligence Empresarial" [ref=e53]:
+      - generic [ref=e56]:
+        - generic [ref=e58]:
+          - generic [ref=e60]: Plataforma de Investigação Digital
+          - generic [ref=e61]: "|"
+          - generic [ref=e62]: Validada por Perito Criminal Oficial
+        - generic [ref=e63]:
+          - heading "PROTEÇÃO PATRIMONIAL EM DIVÓRCIO" [level=1] [ref=e64]:
+            - text: PROTEÇÃO PATRIMONIAL
+            - text: EM DIVÓRCIO
+          - paragraph [ref=e65]: 70% dos divórcios têm ocultação de bens. Descubra a verdade.
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - generic [ref=e69]: "1"
+            - generic [ref=e70]: Famílias
+          - generic [ref=e71]:
+            - generic [ref=e73]: "2"
+            - generic [ref=e74]: Empresas
+          - generic [ref=e75]:
+            - generic [ref=e77]: "3"
+            - generic [ref=e78]: Investidores
+          - generic [ref=e79]:
+            - generic [ref=e81]: "4"
+            - generic [ref=e82]: Patrimônios
+          - generic [ref=e83]:
+            - generic [ref=e85]: "5"
+            - generic [ref=e86]: Divórcio
+        - button "Solicitar investigação particular - Proteger patrimônio" [ref=e89]:
+          - text: Solicitar Investigação Particular
+          - generic [ref=e90]:
+            - img
+    - generic [ref=e97]:
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - img [ref=e100]
+          - text: Nosso Time
+        - heading "Automacao Avancada + Pericia Forense" [level=2] [ref=e102]
+        - paragraph [ref=e103]: "Combinacao unica no Brasil: Arquiteta de Sistemas especialista em automacao + Perito Criminal Oficial (1o lugar PCE-PA)"
+      - generic [ref=e104]:
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - generic [ref=e109]:
+              - img "Dani Kaloi" [ref=e111]
+              - generic [ref=e113]: Analista
+            - generic [ref=e114]:
+              - heading "Dani Kaloi" [level=3] [ref=e115]
+              - paragraph [ref=e116]: Analista de Dados
+          - paragraph [ref=e117]: Desenvolvedora Full Stack e Arquiteta de sistemas que processam +100 mil registros simultaneamente, cruzando multiplas bases de dados publicas.
+          - generic [ref=e118]:
+            - heading "Tecnologias" [level=4] [ref=e119]
+            - generic [ref=e120]:
+              - generic [ref=e121]:
+                - img [ref=e122]
+                - text: Automacao
+              - generic [ref=e126]:
+                - img [ref=e127]
+                - text: OSINT
+              - generic [ref=e131]:
+                - img [ref=e132]
+                - text: Web Scraping
+              - generic [ref=e136]:
+                - img [ref=e137]
+                - text: APIs Publicas
+          - generic [ref=e141]:
+            - generic [ref=e142]:
+              - paragraph [ref=e143]: 100k+
+              - paragraph [ref=e144]: Registros/Investigação
+            - generic [ref=e145]:
+              - paragraph [ref=e146]: Multiplas
+              - paragraph [ref=e147]: Bases de Dados
+            - generic [ref=e148]:
+              - paragraph [ref=e149]: 13+
+              - paragraph [ref=e150]: Certificações
+          - generic [ref=e151]:
+            - generic [ref=e152]: Due Diligence
+            - generic [ref=e153]: Empresas
+            - generic [ref=e154]: Divorcios
+            - generic [ref=e155]: Automacao
+          - link "Ver perfil completo" [ref=e156] [cursor=pointer]:
+            - /url: /quemsomos/dani-kaloi/
+            - button "Ver perfil completo" [ref=e157]:
+              - text: Ver perfil completo
+              - img
+        - generic [ref=e160]:
+          - generic [ref=e161]:
+            - generic [ref=e162]:
+              - img "Ibsen Rodrigues Maciel" [ref=e164]
+              - generic [ref=e166]: Advisory
+            - generic [ref=e167]:
+              - heading "Ibsen Maciel" [level=3] [ref=e168]
+              - paragraph [ref=e169]: Perito Criminal Oficial
+          - paragraph [ref=e170]: Referência nacional em Perícia Forense Computacional. 1º lugar PCE-PA 2019. Diretor Nacional de Perícias ANPAJ (6.000+ associados).
+          - generic [ref=e171]:
+            - heading "Certificações Internacionais" [level=4] [ref=e172]
+            - generic [ref=e173]:
+              - generic [ref=e174]:
+                - img [ref=e175]
+                - text: CELLEBRITE UFED
+              - generic [ref=e178]:
+                - img [ref=e179]
+                - text: XRY (MSAB)
+              - generic [ref=e182]:
+                - img [ref=e183]
+                - text: Magnet AXIOM
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - paragraph [ref=e188]: 1º
+              - paragraph [ref=e189]: Lugar PCE-PA
+            - generic [ref=e190]:
+              - paragraph [ref=e191]: 6k+
+              - paragraph [ref=e192]: Associados ANPAJ
+            - generic [ref=e193]:
+              - paragraph [ref=e194]: LABCEDF
+              - paragraph [ref=e195]: PC-PA
+          - generic [ref=e196]:
+            - generic [ref=e197]: Perícia Forense
+            - generic [ref=e198]: Cibersegurança
+            - generic [ref=e199]: OSINT
+            - generic [ref=e200]: Cadeia de Custódia
+          - link "Ver perfil completo" [ref=e201] [cursor=pointer]:
+            - /url: /quemsomos/ibsen-maciel/
+            - button "Ver perfil completo" [ref=e202]:
+              - text: Ver perfil completo
+              - img
+    - generic [ref=e205]:
+      - heading "Quem protegemos" [level=3] [ref=e206]
+      - generic [ref=e207]:
+        - generic [ref=e208]:
+          - img [ref=e210]
+          - generic [ref=e213]: Investidores
+          - generic [ref=e214]: Angel investors e VCs
+        - generic [ref=e215]:
+          - img [ref=e217]
+          - generic [ref=e221]: Family Offices
+          - generic [ref=e222]: Gestão patrimonial
+        - generic [ref=e223]:
+          - img [ref=e225]
+          - generic [ref=e227]: Empresas
+          - generic [ref=e228]: Due diligence corporativa
+        - generic [ref=e229]:
+          - img [ref=e231]
+          - generic [ref=e234]: Famílias
+          - generic [ref=e235]: Proteção pessoal
+        - generic [ref=e236]:
+          - img [ref=e238]
+          - generic [ref=e243]: Startups
+          - generic [ref=e244]: Verificação de sócios
+    - generic [ref=e246]:
+      - generic [ref=e247]:
+        - generic [ref=e248]:
+          - generic [ref=e249]:
+            - img [ref=e250]
+            - generic [ref=e252]: investigaree
+          - paragraph [ref=e253]: Investigação Digital com Inteligência
+        - generic [ref=e254]:
+          - heading "Serviços" [level=4] [ref=e255]
+          - list [ref=e256]:
+            - listitem [ref=e257]:
+              - link "Red Flag Express" [ref=e258] [cursor=pointer]:
+                - /url: /servicos/
+            - listitem [ref=e259]:
+              - link "Due Diligence Corporativo" [ref=e260] [cursor=pointer]:
+                - /url: /servicos/
+            - listitem [ref=e261]:
+              - link "Startup & Founders" [ref=e262] [cursor=pointer]:
+                - /url: /servicos/
+        - generic [ref=e263]:
+          - heading "Empresa" [level=4] [ref=e264]
+          - list [ref=e265]:
+            - listitem [ref=e266]:
+              - link "Sobre" [ref=e267] [cursor=pointer]:
+                - /url: /sobre/
+            - listitem [ref=e268]:
+              - link "Equipe" [ref=e269] [cursor=pointer]:
+                - /url: /quemsomos/
+            - listitem [ref=e270]:
+              - link "FAQ" [ref=e271] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=e272]:
+              - button "WhatsApp" [ref=e273] [cursor=pointer]:
+                - img [ref=e274]
+                - text: WhatsApp
+        - generic [ref=e276]:
+          - heading "Legal" [level=4] [ref=e277]
+          - list [ref=e278]:
+            - listitem [ref=e279]:
+              - link "Termos de Uso" [ref=e280] [cursor=pointer]:
+                - /url: /termos/
+            - listitem [ref=e281]:
+              - link "Política de Privacidade" [ref=e282] [cursor=pointer]:
+                - /url: /privacidade/
+            - listitem [ref=e283]:
+              - link "Política de Cookies" [ref=e284] [cursor=pointer]:
+                - /url: /cookies/
+            - listitem [ref=e285]:
+              - link "Disclaimer" [ref=e286] [cursor=pointer]:
+                - /url: /disclaimer/
+            - listitem [ref=e287]:
+              - link "contato@investigaree.com.br" [ref=e288] [cursor=pointer]:
+                - /url: mailto:contato@investigaree.com.br
+      - paragraph [ref=e290]: © 2025 investigaree. Todos os direitos reservados.
+  - button "Contato via WhatsApp" [ref=e292]:
+    - img [ref=e293]
+  - dialog "Utilizamos cookies" [ref=e298]:
+    - generic [ref=e299]:
+      - generic [ref=e301]:
+        - img [ref=e303]
+        - generic [ref=e305]:
+          - heading "Utilizamos cookies" [level=3] [ref=e306]
+          - paragraph [ref=e307]:
+            - text: Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo. Ao clicar em "Aceitar todos", você concorda com o uso de cookies conforme descrito em nossa
+            - link "Política de Cookies" [ref=e308] [cursor=pointer]:
+              - /url: /cookies/
+            - text: .
+      - generic [ref=e309]:
+        - button "Personalizar" [ref=e310]:
+          - img [ref=e311]
+          - text: Personalizar
+        - button "Rejeitar não essenciais" [ref=e314]
+        - button "Aceitar todos" [ref=e315]
 ```

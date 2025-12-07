@@ -67,7 +67,7 @@
 - [x] Build corrigido
 - [x] Deploy funcional (manual)
 - [x] Firebase Emulator configurado
-- [ ] 58 testes E2E passando
+- [~] 180 testes E2E - 73% passando (44/60 Chromium)
 - [ ] CI/CD otimizado
 - [ ] Monitoring ativo
 
