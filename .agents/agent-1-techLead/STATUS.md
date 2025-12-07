@@ -1,12 +1,12 @@
 # 📊 STATUS - AGENT 1 (TECH LEAD)
 
 ## Status Atual: 🟢 WORKING
-**Última Atualização:** 2025-12-07 20:05
+**Última Atualização:** 2025-12-07 21:00
 
 ---
 
 ## 🎯 Trabalhando em:
-**TAREFA 1.4:** Executar 58 testes E2E e garantir que todos passem
+**TAREFA 1.4:** Executar 180 testes E2E e garantir que todos passem (EM PROGRESSO)
 
 ---
 
@@ -34,6 +34,13 @@
   - Created FIREBASE-EMULATOR.md documentation
   - Added NEXT_PUBLIC_USE_FIREBASE_EMULATOR to .env.local
   - Tested emulator startup successfully
+- 🔄 **TAREFA 1.4:** E2E Tests - EM PROGRESSO (73% passando)
+  - Total: 180 testes (60 Chromium, 60 Mobile Chrome, 60 Mobile Safari)
+  - Installed Playwright browsers (Firefox, Webkit)
+  - Chromium: 44/60 passed (73.3%) ✅
+  - Remaining: 16 failures to fix
+  - Created E2E-TESTS-STATUS.md documentation
+  - **Próximo:** Corrigir 16 testes falhando
 
 ---
 
@@ -43,16 +50,16 @@
 ---
 
 ## ⏭️ Próximo:
-- TAREFA 1.4: Executar 58 testes E2E e garantir que todos passem
+- TAREFA 1.4: Corrigir 16 testes E2E falhando (depois: testar Mobile Chrome e Mobile Safari)
 
 ---
 
 ## 📈 Progresso Geral:
-- Semana 1: 38% (3/8 tarefas) ✅✅✅
+- Semana 1: 38% (3/8 tarefas) ✅✅✅ + 🔄 (em progresso)
 - Semana 2-3: 0% (0/4 tarefas)
 - Semana 4: 0% (0/1 tarefa)
 
-**Total: 3/13 tarefas completadas (23%)**
+**Total: 3.5/13 tarefas completadas (27%)**
 
 ---
 
