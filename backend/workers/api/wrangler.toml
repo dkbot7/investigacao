@@ -1,0 +1,26 @@
+name = "investigaree-api"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "investigaree-db"
+database_id = "4b9ddf13-d347-4337-8500-8ba37fd08f55"
+
+# KV namespace for caching (será criado depois)
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = "xxx-xxx-xxx"
+
+# Environment variables (use wrangler secret put para credenciais sensíveis)
+[vars]
+ENVIRONMENT = "production"
+
+# SERPRO API credentials (usar wrangler secret put)
+# SERPRO_CPF_CONSUMER_KEY = "secret"
+# SERPRO_CPF_CONSUMER_SECRET = "secret"
+# SERPRO_CNPJ_CONSUMER_KEY = "secret"
+# SERPRO_CNPJ_CONSUMER_SECRET = "secret"
+# ... (mais 7 APIs)

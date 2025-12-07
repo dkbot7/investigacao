@@ -1,0 +1,31 @@
+{
+  "name": "investigaree-api",
+  "version": "1.0.0",
+  "description": "Investigaree Backend API - Cloudflare Workers + SERPRO APIs Integration",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:create": "wrangler d1 create investigaree-db",
+    "db:migrate": "wrangler d1 execute investigaree-db --file=../database/schema.sql",
+    "db:migrate:local": "wrangler d1 execute investigaree-db --file=../database/schema.sql --local",
+    "db:query": "wrangler d1 execute investigaree-db --command"
+  },
+  "keywords": ["cloudflare", "workers", "serpro", "api", "backend"],
+  "author": "Investigaree",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@hono/zod-validator": "^0.7.5",
+    "hono": "^4.10.7",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20251205.0",
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.53.0"
+  }
+}
