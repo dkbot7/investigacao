@@ -1,0 +1,667 @@
+---
+title: "Tribunais Brasileiros: Como Consultar Processos Judiciais para Due Diligence"
+excerpt: "Aprenda a consultar processos judiciais no PJe e tribunais estaduais - descubra ações, execuções e litígios que impactam sua investigação de pessoas e empresas."
+coverImage: "https://picsum.photos/seed/tribunais-processos/800/450"
+authorId: "dani-kaloi"
+contentType: "tutorial"
+topicId: "osint-brasil"
+skillLevel: "iniciante"
+tags:
+  - processos judiciais
+  - pje
+  - tribunais
+  - cnj
+  - due diligence
+  - litígios
+  - bnmp
+  - mandados de prisão
+publishedAt: "2025-12-09T10:00:00Z"
+series:
+  id: "fontes-publicas-brasil"
+  name: "Fontes Públicas Brasil"
+  part: 4
+featured: false
+---
+
+<SeriesNavigation
+  seriesName="Fontes Públicas Brasil"
+  seriesSlug="fontes-publicas-brasil"
+  seriesDescription="Série completa sobre como consultar cada fonte pública brasileira para investigação digital"
+  currentPart={4}
+  totalParts={10}
+  posts={[
+    { slug: "receita-federal-cpf-cnpj", title: "Receita Federal: CPF e CNPJ", partNumber: 1, isPublished: true },
+    { slug: "tse-candidaturas-doacoes", title: "TSE: Candidaturas e Doações", partNumber: 2, isPublished: true },
+    { slug: "portal-transparencia-ceis-cnep", title: "Portal da Transparência: CEIS e CNEP", partNumber: 3, isPublished: true },
+    { slug: "tribunais-processos-judiciais", title: "Tribunais: Processos Judiciais", partNumber: 4, isPublished: true },
+    { slug: "inss-dataprev-beneficios", title: "INSS e Dataprev: Benefícios", partNumber: 5, isPublished: false },
+    { slug: "juntas-comerciais-empresas", title: "Juntas Comerciais: Empresas", partNumber: 6, isPublished: false },
+    { slug: "cartorios-imoveis-protestos", title: "Cartórios: Imóveis e Protestos", partNumber: 7, isPublished: false },
+    { slug: "detran-veiculos", title: "DETRAN: Veículos", partNumber: 8, isPublished: false },
+    { slug: "diarios-oficiais", title: "Diários Oficiais", partNumber: 9, isPublished: false },
+    { slug: "redes-sociais-fonte", title: "Redes Sociais como Fonte OSINT", partNumber: 10, isPublished: false }
+  ]}
+  prevPost={{ slug: "portal-transparencia-ceis-cnep", title: "Portal da Transparência: CEIS e CNEP" }}
+  nextPost={{ slug: "inss-dataprev-beneficios", title: "INSS e Dataprev: Benefícios" }}
+/>
+
+Você já verificou CPF e CNPJ na Receita Federal. Consultou sancionados no Portal da Transparência. Mas ainda falta uma das fontes mais reveladoras em qualquer investigação:
+
+**Que processos judiciais essa pessoa ou empresa está enfrentando?**
+
+Ações trabalhistas, execuções fiscais, processos criminais, disputas cíveis — tudo isso está registrado nos tribunais brasileiros e é acessível publicamente. Neste quarto episódio da série "Fontes Públicas Brasil", você vai aprender a navegar no sistema judiciário para extrair informações cruciais de due diligence.
+
+# Por Que Processos Judiciais São Essenciais em Due Diligence
+
+Um CPF regular na Receita Federal não conta a história completa. Uma empresa pode estar "limpa" no CEIS/CNEP e ainda assim ter:
+
+- **Dezenas de ações trabalhistas** (indicando má gestão de RH)
+- **Execuções fiscais** (dívidas tributárias em cobrança judicial)
+- **Processos criminais** contra sócios (fraude, estelionato, crimes financeiros)
+- **Ações de indenização** (responsabilidade civil, danos materiais/morais)
+- **Recuperação judicial** (empresa em crise financeira)
+
+<KeyStat
+  value="81,4 Mi"
+  label="Processos judiciais em tramitação no Brasil"
+  source="CNJ - Justiça em Números 2024 (ano-base 2023)"
+  type="warning"
+  description="Mais de 81 milhões de processos ativos nos tribunais brasileiros, incluindo cível, criminal, trabalhista e eleitoral"
+/>
+
+O Conselho Nacional de Justiça (CNJ) reportou que em 2023 tramitavam **81,4 milhões de processos** nos tribunais brasileiros. Isso significa que estatisticamente, uma em cada três pessoas ou empresas no Brasil está envolvida em algum processo judicial.
+
+**Ignorar essa fonte em due diligence é negligência profissional.**
+
+<Callout type="info" title="Princípio da Publicidade Processual">
+  A Constituição Federal (Art. 93, IX) garante que todos os julgamentos do Poder Judiciário são públicos. Processos sob segredo de justiça são exceção. Isso significa que você tem **direito legal** de consultar a maioria dos processos judiciais no Brasil.
+</Callout>
+
+# Entendendo a Estrutura Judiciária Brasileira
+
+Antes de consultar, é fundamental entender **como o Judiciário brasileiro está organizado**. Isso determina onde você vai buscar cada tipo de processo.
+
+## As Três Justiças Principais
+
+<ComparisonTable
+  title="Estrutura do Poder Judiciário no Brasil"
+  headers={["Justiça", "O Que Julga", "Onde Consultar", "Exemplos"]}
+  items={[
+    {
+      feature: "Justiça Federal",
+      values: [
+        "Causas contra a União, autarquias federais, empresas públicas federais",
+        "Portal PJe, sites dos TRFs (Tribunais Regionais Federais)",
+        "Ações contra INSS, Receita Federal, execuções fiscais federais, crimes contra sistema financeiro"
+      ]
+    },
+    {
+      feature: "Justiça Estadual (Comum)",
+      values: [
+        "Maioria das ações cíveis, criminais, família, sucessões",
+        "Sites dos Tribunais de Justiça estaduais (TJ-SP, TJ-RJ, etc.)",
+        "Ações de cobrança, execuções, crimes comuns, divórcios, inventários"
+      ]
+    },
+    {
+      feature: "Justiça do Trabalho",
+      values: [
+        "Ações trabalhistas, relações de emprego",
+        "Portal PJe-JT, sites dos TRTs (Tribunais Regionais do Trabalho)",
+        "Reclamações trabalhistas, ações de sindicatos, execuções trabalhistas"
+      ]
+    }
+  ]}
+/>
+
+**Além dessas, existem justiças especializadas:**
+- **Justiça Eleitoral** (TSE e TREs) — crimes eleitorais, impugnações de candidaturas
+- **Justiça Militar** (crimes militares, muito específico)
+
+Para due diligence corporativa, você geralmente precisa consultar:
+1. **Justiça Estadual** (ações cíveis e criminais)
+2. **Justiça do Trabalho** (reclamações trabalhistas)
+3. **Justiça Federal** (execuções fiscais, ações contra órgãos federais)
+
+# PJe: O Sistema Unificado (Quando Funciona)
+
+O **PJe (Processo Judicial Eletrônico)** é o sistema desenvolvido pelo CNJ para unificar o processo eletrônico em todo o Brasil. Em tese, seria a solução ideal: um único sistema para consultar todos os processos.
+
+**Na prática:** a implementação é fragmentada. Nem todos os tribunais usam o PJe, e os que usam têm versões e interfaces diferentes.
+
+## Onde o PJe Funciona Bem
+
+### ✅ Justiça Federal (1ª Instância)
+A Justiça Federal adotou amplamente o PJe. Você pode consultar processos federais de 1ª instância em:
+
+**https://www.pje.jus.br/consulta/publica**
+
+**O que você encontra:**
+- Ações contra INSS (aposentadorias, benefícios)
+- Execuções fiscais da União
+- Ações contra Receita Federal, CAIXA, Banco do Brasil
+- Crimes federais (lavagem de dinheiro, tráfico internacional, crimes cibernéticos)
+
+### ✅ Justiça do Trabalho
+A Justiça do Trabalho também usa o PJe extensivamente:
+
+**https://pje.tst.jus.br/consultaprocessual** (2ª instância - TRTs)
+
+Para 1ª instância (Varas do Trabalho), cada TRT tem seu próprio portal. Exemplos:
+- TRT-2 (São Paulo): https://pje.trt2.jus.br/consultaprocessual
+- TRT-1 (Rio de Janeiro): https://pje.trt1.jus.br/consultaprocessual
+
+**O que você encontra:**
+- Reclamações trabalhistas
+- Ações de verbas rescisórias
+- Processos de assédio moral/sexual
+- Execuções trabalhistas
+
+### ⚠️ Justiça Estadual (Implementação Parcial)
+
+A Justiça Estadual está **migrando gradualmente** para o PJe, mas muitos estados ainda usam sistemas próprios:
+
+- **Estados que usam PJe:** Acre, Amapá, Espírito Santo, Mato Grosso, Piauí, Sergipe, Tocantins, entre outros
+- **Estados com sistemas próprios:** São Paulo (e-SAJ), Rio de Janeiro (e-Proc), Minas Gerais (Projudi), Rio Grande do Sul (e-Proc), entre outros
+
+<Callout type="warning" title="Atenção: São Paulo e Rio de Janeiro NÃO usam PJe">
+  Os dois estados mais populosos do Brasil (SP e RJ) **não** usam o PJe para a Justiça Estadual. Você precisa consultar diretamente nos sites dos Tribunais de Justiça (TJ-SP e TJ-RJ), usando os sistemas próprios de cada estado.
+</Callout>
+
+# Como Consultar Processos: Passo a Passo
+
+## Método 1: Consulta por Nome (Mais Abrangente)
+
+A consulta por nome é útil quando você quer descobrir **todos os processos** de uma pessoa ou empresa, sem saber números de processos.
+
+### Passo 1: Acesse o Portal do Tribunal Adequado
+
+**Para Justiça Federal (1ª instância):**
+- Acesse: https://www.pje.jus.br/consulta/publica
+- Clique em "Consulta Pública"
+- Escolha "Consulta por nome"
+
+**Para Justiça Estadual (exemplo: TJ-SP):**
+- Acesse: https://esaj.tjsp.jus.br/cpopg/open.do
+- Digite nome ou CPF/CNPJ no campo "Consulta de Processos"
+
+**Para Justiça do Trabalho (exemplo: TRT-2 São Paulo):**
+- Acesse: https://pje.trt2.jus.br/consultaprocessual
+- Clique em "Consulta Pública"
+- Digite nome ou CPF/CNPJ
+
+### Passo 2: Interprete os Resultados
+
+<Timeline
+  title="Fluxo de Consulta de Processos"
+  items={[
+    {
+      title: "Identificar Tribunal Correto",
+      description: "Federal, Estadual ou Trabalhista? Depende do tipo de ação",
+      status: "completed"
+    },
+    {
+      title: "Acessar Portal",
+      description: "Usar PJe (se disponível) ou site do tribunal específico",
+      status: "completed"
+    },
+    {
+      title: "Buscar por Nome/CPF/CNPJ",
+      description: "Digite exatamente como registrado ou use documento",
+      status: "completed"
+    },
+    {
+      title: "Filtrar Resultados",
+      description: "Verificar CPF/CNPJ para confirmar que é a pessoa/empresa correta",
+      status: "current"
+    },
+    {
+      title: "Analisar Cada Processo",
+      description: "Tipo de ação, valor da causa, fase atual, decisões",
+      status: "pending"
+    },
+    {
+      title: "Documentar Achados",
+      description: "Screenshot, número do processo, resumo para relatório",
+      status: "pending"
+    }
+  ]}
+/>
+
+Quando você encontra processos, preste atenção em:
+
+| Campo | O Que Analisar | Red Flag? |
+|-------|----------------|-----------|
+| **Classe Processual** | Tipo de ação (execução, cobrança, criminal, trabalhista) | Processos criminais e recuperação judicial são críticos |
+| **Polo Processual** | A pessoa/empresa é autora (está processando) ou ré (está sendo processada)? | Ser réu em múltiplos processos é preocupante |
+| **Valor da Causa** | Valor econômico envolvido | Alto valor indica risco financeiro |
+| **Fase Atual** | Aguardando julgamento, em execução, arquivado, transitado em julgado? | Execuções ativas indicam dívidas não pagas |
+| **Assunto** | Qual a natureza do litígio? | Fraude, estelionato, crimes contra ordem tributária são graves |
+| **Data de Distribuição** | Quando o processo começou | Processos antigos podem estar prescritos ou arquivados |
+
+### Exemplo Prático: Consultando Empresa no TJ-SP
+
+**Empresa:** "Construtora Exemplo Ltda" (CNPJ: 12.345.678/0001-99)
+
+**Passo a passo:**
+1. Acesse https://esaj.tjsp.jus.br/cpopg/open.do
+2. Digite "12345678000199" no campo CNPJ
+3. Clique em "Consultar"
+
+**Resultado hipotético:**
+```
+📄 15 processos encontrados
+
+Processo 1: 1000001-11.2024.8.26.0100
+- Classe: Execução de Título Extrajudicial
+- Polo: Construtora Exemplo Ltda (EXECUTADA)
+- Valor: R$ 450.000,00
+- Fase: Em execução (aguardando penhora de bens)
+- Assunto: Inadimplemento contratual
+
+Processo 2: 1000002-22.2023.8.26.0100
+- Classe: Reclamação Trabalhista
+- Polo: Construtora Exemplo Ltda (RECLAMADA)
+- Valor: R$ 85.000,00
+- Fase: Aguardando julgamento
+- Assunto: Verbas rescisórias não pagas
+
+Processo 3: 1000003-33.2022.8.26.0100
+- Classe: Ação de Cobrança
+- Polo: Construtora Exemplo Ltda (RÉ)
+- Valor: R$ 220.000,00
+- Fase: Sentença favorável à autora (não pago)
+- Assunto: Fornecimento de materiais não quitado
+
+[... mais 12 processos]
+```
+
+**Análise:**
+🔴 **RISCO ALTO**
+- Empresa está no polo passivo (ré/executada) em 13 dos 15 processos
+- Múltiplas execuções ativas (dívidas não pagas)
+- Padrão de inadimplência com fornecedores e empregados
+- Valor total estimado em litígio: **R$ 1,8 milhão**
+
+**Recomendação:** Não contratar sem garantias sólidas (seguro-garantia, caução, fiança bancária).
+
+## Método 2: BNMP - Banco Nacional de Mandados de Prisão
+
+Uma verificação crítica que muitos esquecem: **há mandados de prisão ativos contra a pessoa?**
+
+O CNJ mantém o **BNMP (Banco Nacional de Mandados de Prisão)**, um cadastro nacional de mandados de prisão expedidos e cumpridos.
+
+### Como Consultar
+
+**Acesse:** https://portalbnmp.cnj.jus.br
+
+**Consulta pública:**
+- Digite nome completo ou CPF
+- O sistema retorna se há mandados ativos ou cumpridos
+
+**O que aparece:**
+- Nome completo
+- CPF
+- Nome da mãe (para confirmação de identidade)
+- Tipo de mandado (prisão preventiva, temporária, sentença condenatória)
+- Órgão expedidor
+- Status: ativo, cumprido, revogado
+
+<Callout type="warning" title="BNMP é Sensível - Use com Responsabilidade">
+  A consulta ao BNMP deve ser feita apenas em contextos legítimos de due diligence, segurança ou investigação autorizada. O uso indevido de informações criminais pode violar a LGPD (Lei Geral de Proteção de Dados) e direitos da pessoa investigada.
+</Callout>
+
+**Quando usar o BNMP:**
+- Contratação de executivos de alto nível
+- Due diligence pré-investimento (verificação de fundadores)
+- Investigações de fraudes internas
+- Background check de candidatos a cargos de confiança
+
+**Red flags no BNMP:**
+- ✅ **Nenhum mandado** → Pessoa sem pendências criminais graves
+- 🟡 **Mandado cumprido ou revogado** → Houve problema no passado, mas está resolvido
+- 🔴 **Mandado ativo** → RISCO CRÍTICO. Pessoa pode ser presa a qualquer momento
+
+## Método 3: Consulta por Número de Processo
+
+Se você já tem o número de um processo específico (obtido em outra fonte, como diário oficial ou notícia), pode consultá-lo diretamente.
+
+**Formato do número de processo (CNJ):**
+```
+NNNNNNN-DD.AAAA.J.TR.OOOO
+```
+
+Exemplo: **0001234-56.2024.8.26.0100**
+- `0001234-56`: número sequencial + dígito verificador
+- `2024`: ano de distribuição
+- `8`: Justiça Estadual (5 = Trabalhista, 4 = Federal)
+- `26`: São Paulo (código do tribunal)
+- `0100`: vara/comarca
+
+Basta inserir esse número no campo de consulta do tribunal correspondente.
+
+# Estratégias Avançadas de Investigação Judicial
+
+## 1. Cruzamento de Fontes: Processos + CEIS/CNEP
+
+**Cenário:** Você encontra empresa sancionada no CEIS. Quer entender o motivo detalhado.
+
+**Solução:**
+1. No CEIS, anote o **número do processo administrativo** que originou a sanção
+2. Busque esse número no tribunal correspondente
+3. Leia a decisão completa, que detalha a fraude/irregularidade
+
+**Resultado:** Você transforma um dado superficial ("empresa sancionada") em análise profunda ("empresa fraudou medições de obras em 3 contratos diferentes, superfaturando R$ 2,5 milhões").
+
+## 2. Monitoramento de Movimentações
+
+Processos judiciais são dinâmicos. Uma empresa "limpa" hoje pode ter sentença condenatória amanhã.
+
+**Como monitorar:**
+- **Manualmente:** Salve os números dos processos e consulte semanalmente
+- **Automaticamente:** Use ferramentas como Investigaree, que monitoram processos e alertam sobre movimentações críticas (sentenças, penhoras, execuções)
+
+**Eventos críticos a monitorar:**
+- Sentença desfavorável
+- Início de execução
+- Penhora de bens
+- Bloqueio de contas bancárias
+- Decretação de recuperação judicial ou falência
+
+## 3. Análise Quantitativa: Padrões de Litígio
+
+Não basta contar processos. É preciso analisar **padrões**.
+
+**Exemplo:**
+- **Empresa A:** 50 processos (40 como autora em cobranças, 10 como ré)
+- **Empresa B:** 50 processos (5 como autora, 45 como ré em trabalhistas)
+
+Embora ambas tenham 50 processos, **Empresa B é muito mais arriscada**. O padrão indica problemas sistemáticos de gestão trabalhista.
+
+<ComparisonTable
+  title="Análise de Padrões de Litígio"
+  headers={["Padrão", "O Que Indica", "Nível de Risco"]}
+  items={[
+    {
+      feature: "Maioria como AUTOR em cobranças",
+      values: [
+        "Empresa tem clientes inadimplentes, mas atua judicialmente para cobrar",
+        "🟢 Baixo (indica gestão ativa de recebíveis)"
+      ]
+    },
+    {
+      feature: "Maioria como RÉU em trabalhistas",
+      values: [
+        "Problemas recorrentes com empregados (verbas não pagas, assédio, demissões irregulares)",
+        "🔴 Alto (má gestão de RH, passivo trabalhista)"
+      ]
+    },
+    {
+      feature: "Múltiplas execuções fiscais",
+      values: [
+        "Empresa não paga tributos, está sendo executada pela Receita/Fazenda",
+        "🔴 Crítico (risco de falência, bloqueios)"
+      ]
+    },
+    {
+      feature: "Processos criminais contra sócios",
+      values: [
+        "Sócios respondendo por fraude, estelionato, lavagem de dinheiro",
+        "🔴 Crítico (risco de inidoneidade, prisão)"
+      ]
+    },
+    {
+      feature: "Recuperação judicial em andamento",
+      values: [
+        "Empresa em grave crise financeira, tentando renegociar dívidas",
+        "🔴 Alto (risco de falência, inadimplência)"
+      ]
+    }
+  ]}
+/>
+
+<CTABanner
+  variant="highlight"
+  title="Monitore processos judiciais automaticamente"
+  description="O Investigaree acompanha em tempo real todos os tribunais brasileiros e alerta você sobre movimentações críticas nos processos de seus investigados."
+  features={[
+    "Monitoramento 24/7 de todos os tribunais (Federal, Estadual, Trabalhista)",
+    "Alertas instantâneos de sentenças, execuções e penhoras",
+    "Dashboard consolidado com análise quantitativa de litígios",
+    "Relatórios prontos com padrões de risco identificados",
+    "Integração com BNMP, CEIS/CNEP e outras fontes"
+  ]}
+  primaryButton={{ text: "Experimente Grátis por 14 Dias", href: "/contato?interesse=monitoramento" }}
+  secondaryButton={{ text: "Ver Recursos Completos", href: "/recursos" }}
+/>
+
+# Limitações e Boas Práticas
+
+## Limitações da Consulta Processual
+
+### 1. Fragmentação dos Sistemas
+**Problema:** Não existe um portal único que liste TODOS os processos de uma pessoa/empresa.
+
+**Solução:**
+- Consulte **pelo menos** 3 tribunais: Justiça Federal, TJ do estado onde a pessoa/empresa atua, e Justiça do Trabalho
+- Para due diligence completa de empresa com atuação nacional, consulte múltiplos TJs
+
+### 2. Processos em Segredo de Justiça
+**Problema:** Processos de família, envolvendo menores, ou com segredo industrial não aparecem em consulta pública.
+
+**Solução:**
+- A consulta pública nunca será 100% exaustiva
+- Documente que sua verificação cobriu fontes públicas acessíveis
+- Se o investigado é parte no contrato, exija certidão negativa de processos (documento oficial emitido pelo tribunal)
+
+### 3. Delay de Indexação
+**Problema:** Processos recém-distribuídos podem levar dias ou semanas para aparecer em consulta pública.
+
+**Solução:**
+- Documente a data da consulta
+- Em decisões críticas, repita a consulta após 7-15 dias
+- Use ferramentas de monitoramento contínuo
+
+### 4. Homonímia
+**Problema:** Buscas por nome podem retornar múltiplas pessoas com mesmo nome.
+
+**Solução:**
+- **Sempre valide com CPF/CNPJ**
+- Confira nome da mãe, data de nascimento quando disponível
+- Use filtros por comarca (se souber onde a pessoa reside/atua)
+
+## Boas Práticas em Consulta Processual
+
+<Callout type="tip" title="Checklist de Due Diligence Processual">
+  ✅ Consulte **pelo menos 3 justiças**: Federal, Estadual, Trabalhista
+
+  ✅ Busque por **nome E CPF/CNPJ** para cobertura completa
+
+  ✅ Verifique **BNMP** para mandados de prisão
+
+  ✅ Analise **padrões**, não apenas quantidade de processos
+
+  ✅ Documente **número de processo, tribunal, fase atual, valor**
+
+  ✅ Capture **screenshots** como evidência
+
+  ✅ Cruze processos com **CEIS/CNEP** quando relevante
+
+  ✅ Para empresas, verifique **processos dos sócios** também
+
+  ✅ **Monitore continuamente** processos críticos
+
+  ✅ Mantenha **registro da data de cada consulta**
+</Callout>
+
+# Casos de Uso Reais
+
+## Caso 1: Due Diligence Pré-Aquisição (M&A)
+
+**Cenário:** Fundo de private equity vai comprar empresa de logística por R$ 50 milhões.
+
+**Processo:**
+1. Consulta CNPJ no TJ-SP → **18 processos trabalhistas** como ré
+2. Consulta no TRT-2 (Justiça do Trabalho SP) → **32 reclamações trabalhistas ativas**
+3. Consulta Justiça Federal → **5 execuções fiscais** (dívida estimada: R$ 3,2 milhões)
+4. Análise detalhada: Processos trabalhistas são recorrentes (média 8 novos/ano nos últimos 4 anos)
+
+**Resultado:**
+🔴 **Passivo oculto identificado**
+- Passivo trabalhista estimado: R$ 4,5 milhões (valor das causas em andamento)
+- Passivo fiscal federal: R$ 3,2 milhões
+- **Total: R$ 7,7 milhões** não declarados no balanço
+
+**Ação:** Fundo renegocia preço de aquisição, descontando o passivo e exigindo garantias.
+
+## Caso 2: Verificação de Sócio em Startup
+
+**Cenário:** Investidor-anjo vai aportar R$ 500 mil em startup. Quer verificar fundador.
+
+**Processo:**
+1. Consulta CPF do CEO no BNMP → **Nenhum mandado**
+2. Consulta CPF no TJ-RJ → **2 processos como autor** (cobrança de dívidas pessoais)
+3. Consulta CPF no TJ-SP → **1 processo criminal** (estelionato, ano 2019)
+   - Leitura do processo: CEO foi denunciado por fraude em empresa anterior
+   - Fase atual: Processo suspenso (prescrição em análise)
+4. Consulta empresa anterior do CEO no TJ-SP → **Falência decretada em 2020**
+
+**Resultado:**
+🔴 **RISCO CRÍTICO**
+- CEO tem histórico de fraude em empresa anterior
+- Empresa anterior faliu logo após denúncia criminal
+- Padrão de má-fé identificado
+
+**Ação:** Investidor desiste do aporte.
+
+## Caso 3: Compliance de Fornecedores (Setor Público)
+
+**Cenário:** Prefeitura vai contratar empresa de TI para desenvolver sistema de gestão (R$ 2 milhões).
+
+**Processo:**
+1. Consulta CNPJ no CEIS/CNEP → **Nenhuma sanção**
+2. Consulta CNPJ na Justiça Federal → **3 execuções fiscais ativas** (dívida: R$ 850 mil)
+3. Consulta CPF do sócio administrador → **Processo criminal** (crime contra ordem tributária)
+4. Cruzamento: Processo criminal está relacionado às execuções fiscais (sonegação de impostos)
+
+**Resultado:**
+🔴 **Empresa INABILITADA para contratar**
+- Embora não esteja no CEIS, possui dívidas fiscais executadas
+- Sócio responde criminalmente por sonegação
+- Risco de futura inidoneidade
+
+**Ação:** Prefeitura desclassifica proposta na licitação.
+
+<Quiz
+  questions={[
+    {
+      question: "Qual a diferença entre Justiça Federal, Estadual e do Trabalho?",
+      options: [
+        "Justiça Federal julga crimes graves, Estadual julga causas cíveis, Trabalhista julga empresas",
+        "Justiça Federal julga causas contra União e órgãos federais, Estadual julga maioria das causas cíveis/criminais, Trabalhista julga relações de emprego",
+        "Justiça Federal é para grandes empresas, Estadual para pequenas, Trabalhista para autônomos",
+        "Não há diferença prática, são apenas nomes diferentes"
+      ],
+      correctAnswer: 1,
+      explanation: "Cada justiça tem competência específica: Federal julga causas envolvendo União, autarquias federais e crimes federais (ex: ações contra INSS, Receita Federal). Estadual julga a maioria das ações cíveis e criminais comuns. Trabalhista julga exclusivamente relações de emprego e ações trabalhistas. Saber onde buscar é fundamental para não perder processos importantes."
+    },
+    {
+      question: "O que é o BNMP e quando devo consultá-lo?",
+      options: [
+        "Banco Nacional de Multas e Penalidades - consultar sempre que houver dívidas",
+        "Banco Nacional de Mandados de Prisão - consultar em due diligence de alto risco ou contratações críticas",
+        "Base Nacional de Monitoramento Processual - consultar para acompanhar processos",
+        "Banco de Nomes de Pessoas Monitoradas - lista de investigados pela Polícia Federal"
+      ],
+      correctAnswer: 1,
+      explanation: "O BNMP (Banco Nacional de Mandados de Prisão) é mantido pelo CNJ e lista mandados de prisão ativos, cumpridos e revogados. Deve ser consultado em situações de due diligence de alto risco, como contratação de executivos C-level, verificação de fundadores em M&A, ou background check para cargos de extrema confiança. A existência de mandado ativo é um red flag crítico."
+    },
+    {
+      question: "Por que devo consultar processos dos sócios, e não apenas da empresa?",
+      options: [
+        "Porque a lei exige verificar ambos",
+        "Porque sócios podem ter processos criminais ou histórico de fraudes em outras empresas, contaminando a empresa atual",
+        "Apenas para empresas grandes, pequenas não precisam",
+        "Só é necessário verificar o sócio majoritário"
+      ],
+      correctAnswer: 1,
+      explanation: "Sócios podem ter histórico criminal, processos por fraude em empresas anteriores, ou mandados de prisão — riscos que não aparecem ao consultar apenas o CNPJ da empresa atual. É comum que pessoas inidôneas ou com passado fraudulento criem novas empresas. Verificar o CPF de TODOS os sócios (majoritários e minoritários) e administradores é essencial para uma due diligence completa."
+    },
+    {
+      question: "Encontrei 50 processos de uma empresa. Isso significa que ela é arriscada?",
+      options: [
+        "Sim, qualquer empresa com mais de 10 processos é arriscada",
+        "Não necessariamente - é preciso analisar o padrão: a empresa é autora ou ré? Que tipo de processos? Qual o valor?",
+        "Não, quantidade de processos não importa",
+        "Sim, empresas sérias não têm processos judiciais"
+      ],
+      correctAnswer: 1,
+      explanation: "A quantidade isolada não define risco. É preciso análise qualitativa: uma empresa com 50 processos como AUTORA (cobrando clientes inadimplentes) tem risco menor que uma com 10 processos como RÉ em trabalhistas ou execuções fiscais. Analise: polo processual, tipo de ação (criminal é crítico, cobrança é comum), valores envolvidos, padrões recorrentes. Empresas grandes naturalmente têm mais processos; o que importa é o perfil desses processos."
+    }
+  ]}
+/>
+
+# Conclusão: Processos Judiciais Como Termômetro de Risco
+
+A consulta aos tribunais brasileiros é **insubstituível** em due diligence. Processos judiciais revelam:
+
+✅ **Passivos ocultos** (trabalhistas, fiscais, cíveis)
+✅ **Padrões de comportamento** (inadimplência recorrente, má gestão)
+✅ **Riscos criminais** (fraudes, crimes financeiros)
+✅ **Situação financeira real** (execuções, recuperação judicial)
+✅ **Histórico dos sócios** (processos em empresas anteriores)
+
+**Principais aprendizados:**
+
+1. **Consulte pelo menos 3 justiças**: Federal, Estadual do estado de atuação, e Trabalhista
+2. **Use CPF/CNPJ, não apenas nome** para evitar homonímia
+3. **Verifique o BNMP** para mandados de prisão em casos críticos
+4. **Analise padrões, não apenas quantidade** de processos
+5. **Ser réu é mais grave que ser autor** — indica que a pessoa/empresa está sendo processada
+6. **Processos criminais e execuções são red flags críticos**
+7. **Cruze com outras fontes** (CEIS/CNEP, Receita Federal) para contexto completo
+8. **Monitore processos críticos continuamente** — situação pode mudar rapidamente
+9. **Documente tudo** — screenshots, números de processos, resumo dos achados
+10. **Considere padrões históricos** — processos recorrentes indicam problemas sistêmicos
+
+A consulta processual é:
+- ✅ **Pública e gratuita** (maioria dos tribunais)
+- ✅ **Fundamentada na Constituição** (princípio da publicidade)
+- ✅ **Acessível online** (não precisa ir presencialmente aos fóruns)
+- ✅ **Essencial para compliance** (especialmente contratos públicos)
+
+No próximo episódio da série "Fontes Públicas Brasil", vamos explorar **INSS e Dataprev** — como consultar benefícios sociais e vínculos empregatícios para detectar fraudes e validar informações de investigados.
+
+---
+
+**Recursos Adicionais:**
+
+- [Portal PJe - Consulta Pública](https://www.pje.jus.br/consulta/publica) (Justiça Federal 1ª instância)
+- [BNMP - Banco Nacional de Mandados de Prisão](https://portalbnmp.cnj.jus.br) (Consulta pública CNJ)
+- [CNJ - Justiça em Números 2024](https://www.cnj.jus.br/pesquisas-judiciarias/justica-em-numeros/) (Estatísticas oficiais)
+- [TJ-SP - Consulta Processual](https://esaj.tjsp.jus.br/cpopg/open.do) (Justiça Estadual São Paulo)
+- [TRT-2 - Consulta PJe](https://pje.trt2.jus.br/consultaprocessual) (Justiça do Trabalho São Paulo)
+
+---
+
+<SeriesNavigation
+  seriesName="Fontes Públicas Brasil"
+  seriesSlug="fontes-publicas-brasil"
+  seriesDescription="Série completa sobre como consultar cada fonte pública brasileira para investigação digital"
+  currentPart={4}
+  totalParts={10}
+  posts={[
+    { slug: "receita-federal-cpf-cnpj", title: "Receita Federal: CPF e CNPJ", partNumber: 1, isPublished: true },
+    { slug: "tse-candidaturas-doacoes", title: "TSE: Candidaturas e Doações", partNumber: 2, isPublished: true },
+    { slug: "portal-transparencia-ceis-cnep", title: "Portal da Transparência: CEIS e CNEP", partNumber: 3, isPublished: true },
+    { slug: "tribunais-processos-judiciais", title: "Tribunais: Processos Judiciais", partNumber: 4, isPublished: true },
+    { slug: "inss-dataprev-beneficios", title: "INSS e Dataprev: Benefícios", partNumber: 5, isPublished: false },
+    { slug: "juntas-comerciais-empresas", title: "Juntas Comerciais: Empresas", partNumber: 6, isPublished: false },
+    { slug: "cartorios-imoveis-protestos", title: "Cartórios: Imóveis e Protestos", partNumber: 7, isPublished: false },
+    { slug: "detran-veiculos", title: "DETRAN: Veículos", partNumber: 8, isPublished: false },
+    { slug: "diarios-oficiais", title: "Diários Oficiais", partNumber: 9, isPublished: false },
+    { slug: "redes-sociais-fonte", title: "Redes Sociais como Fonte OSINT", partNumber: 10, isPublished: false }
+  ]}
+  prevPost={{ slug: "portal-transparencia-ceis-cnep", title: "Portal da Transparência: CEIS e CNEP" }}
+  nextPost={{ slug: "inss-dataprev-beneficios", title: "INSS e Dataprev: Benefícios" }}
+/>
