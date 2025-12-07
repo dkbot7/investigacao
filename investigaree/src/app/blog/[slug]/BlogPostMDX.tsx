@@ -23,6 +23,7 @@ import {
   CONTENT_TYPES,
   SKILL_LEVELS,
 } from "@/types/blog";
+import { CombinedBlogSchema } from "@/components/blog/SchemaMarkup";
 
 interface BlogPostMDXProps {
   slug: string;
@@ -84,6 +85,27 @@ export default function BlogPostMDX({
 
   return (
     <>
+      {/* Schema Markup for SEO - BlogPosting + Breadcrumbs */}
+      <CombinedBlogSchema
+        blogPosting={{
+          title: frontmatter.title,
+          excerpt: frontmatter.excerpt,
+          authorName: author.name,
+          authorBio: author.bio,
+          authorImage: author.avatar,
+          publishedAt: frontmatter.publishedAt,
+          updatedAt: frontmatter.updatedAt,
+          coverImage: frontmatter.coverImage,
+          tags: frontmatter.tags,
+          url: `https://investigaree.com.br/blog/${slug}`,
+        }}
+        breadcrumbs={[
+          { name: 'Home', url: 'https://investigaree.com.br' },
+          { name: 'Blog', url: 'https://investigaree.com.br/blog' },
+          { name: frontmatter.title, url: `https://investigaree.com.br/blog/${slug}` },
+        ]}
+      />
+
       <Header />
       <main className="min-h-screen bg-slate-50 dark:bg-navy-950">
         {/* Hero do artigo */}
