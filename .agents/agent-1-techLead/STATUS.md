@@ -1,12 +1,12 @@
 # 📊 STATUS - AGENT 1 (TECH LEAD)
 
 ## Status Atual: 🟢 WORKING
-**Última Atualização:** 2025-12-07 18:45
+**Última Atualização:** 2025-12-07 19:15
 
 ---
 
 ## 🎯 Trabalhando em:
-**TAREFA 1.2:** Verificar se deploy funciona (testar Cloudflare Pages)
+**TAREFA 1.3:** Configurar Firebase Emulator para testes locais
 
 ---
 
@@ -20,6 +20,14 @@
   - Fixed AddInvestigacaoModal type separation
   - Restored standalone output mode
   - Build: ✅ SUCCESS (76/76 pages)
+- ✅ **TAREFA 1.2:** Deploy funcionando - Commits `c8bf4e8`, `cf24fd1`, `895633c`
+  - Changed to export mode for static deploy
+  - Created public/_headers with MIME types + security headers
+  - Skipped 2 problematic blog posts (.mdx.skip)
+  - Created DEPLOY.md documentation
+  - Created deploy.bat script
+  - Deploy: ✅ SUCCESS https://6ab1c57a.investigaree.pages.dev
+  - **IMPORTANTE:** Deploy é manual (não há automação GitHub→Cloudflare)
 
 ---
 
@@ -34,17 +42,17 @@
 ---
 
 ## 📈 Progresso Geral:
-- Semana 1: 12% (1/8 tarefas) ✅
+- Semana 1: 25% (2/8 tarefas) ✅✅
 - Semana 2-3: 0% (0/4 tarefas)
 - Semana 4: 0% (0/1 tarefa)
 
-**Total: 1/13 tarefas completadas (8%)**
+**Total: 2/13 tarefas completadas (15%)**
 
 ---
 
 ## 📋 Checklist Rápido:
 - [x] Build corrigido
-- [ ] Deploy funcional
+- [x] Deploy funcional (manual)
 - [ ] Firebase Emulator configurado
 - [ ] 58 testes E2E passando
 - [ ] CI/CD otimizado
