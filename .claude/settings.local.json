@@ -26,7 +26,8 @@
       "Bash(wc:*)",
       "Bash(npm install:*)",
       "Bash(timeout /t 30 /nobreak)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "WebFetch(domain:145ad275.investigaree.pages.dev)"
     ],
     "deny": [],
     "ask": []
