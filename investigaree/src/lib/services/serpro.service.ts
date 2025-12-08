@@ -49,7 +49,7 @@ export class SerproService {
     }
 
     const response = await apiClient.post<SerproApiResponse<CpfResponse>>(
-      '/api/serpro/cpf',
+      '/api/serpro/cpf/consultar',
       { cpf: cpfLimpo }
     )
 
@@ -71,9 +71,8 @@ export class SerproService {
       throw new SerproError('CNPJ inválido', 'INVALID_CNPJ')
     }
 
-    const response = await apiClient.post<SerproApiResponse<CnpjBasicaResponse>>(
-      '/api/serpro/cnpj/basica',
-      { cnpj: cnpjLimpo }
+    const response = await apiClient.get<SerproApiResponse<CnpjBasicaResponse>>(
+      `/api/serpro/cnpj/${cnpjLimpo}`
     )
 
     return response.data
@@ -94,9 +93,8 @@ export class SerproService {
       throw new SerproError('CNPJ inválido', 'INVALID_CNPJ')
     }
 
-    const response = await apiClient.post<SerproApiResponse<CnpjQsaResponse>>(
-      '/api/serpro/cnpj/qsa',
-      { cnpj: cnpjLimpo }
+    const response = await apiClient.get<SerproApiResponse<CnpjQsaResponse>>(
+      `/api/serpro/cnpj/${cnpjLimpo}/qsa`
     )
 
     return response.data
@@ -117,9 +115,8 @@ export class SerproService {
       throw new SerproError('CNPJ inválido', 'INVALID_CNPJ')
     }
 
-    const response = await apiClient.post<SerproApiResponse<CnpjEmpresaResponse>>(
-      '/api/serpro/cnpj/empresa',
-      { cnpj: cnpjLimpo }
+    const response = await apiClient.get<SerproApiResponse<CnpjEmpresaResponse>>(
+      `/api/serpro/cnpj/${cnpjLimpo}/estabelecimentos`
     )
 
     return response.data
@@ -141,7 +138,7 @@ export class SerproService {
     }
 
     const response = await apiClient.post<SerproApiResponse<DividaAtivaResponse>>(
-      '/api/serpro/divida-ativa',
+      '/api/serpro/divida-ativa/consultar',
       { ni: niLimpo }
     )
 
