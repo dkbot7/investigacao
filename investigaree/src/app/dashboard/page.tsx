@@ -123,7 +123,7 @@ export default function DashboardPage() {
         <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-6 text-center">
           <AlertCircle className="w-12 h-12 text-red-400 mx-auto mb-4" />
           <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Erro ao carregar dados</h2>
-          <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mb-4">{error}</p>
+          <p className="text-slate-600 dark:text-navy-400 mb-4">{error}</p>
           <Button onClick={refetch} className="bg-blue-500 hover:bg-blue-600 text-navy-950">
             <RefreshCw className="w-4 h-4 mr-2" />
             Tentar novamente
@@ -147,7 +147,7 @@ export default function DashboardPage() {
             <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white">
               Olá, {primeiroNome}!
             </h1>
-            <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
+            <p className="text-slate-600 dark:text-navy-400 mt-1">
               Bem-vindo ao seu painel de investigações
             </p>
           </div>
@@ -200,9 +200,9 @@ export default function DashboardPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="lg:col-span-2 bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl"
+            className="lg:col-span-2 bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl"
           >
-            <div className="p-4 border-b border-slate-400 dark:border-navy-700 flex items-center justify-between">
+            <div className="p-4 border-b border-slate-300 dark:border-navy-700 flex items-center justify-between">
               <h2 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
                 <Search className="w-5 h-5 text-blue-400" />
                 Investigações Recentes
@@ -219,10 +219,10 @@ export default function DashboardPage() {
             {investigacoes.length === 0 ? (
               <div className="p-8 text-center">
                 <div className="w-16 h-16 bg-slate-100 dark:bg-navy-800 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Search className="w-8 h-8 text-slate-900 dark:text-white/30" />
+                  <Search className="w-8 h-8 text-slate-400 dark:text-navy-600" />
                 </div>
                 <h3 className="text-slate-900 dark:text-white font-medium mb-2">Nenhuma investigação ainda</h3>
-                <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-sm mb-4">
+                <p className="text-slate-600 dark:text-navy-400 text-sm mb-4">
                   Comece solicitando sua primeira investigação
                 </p>
                 <Link href="/dashboard/funcionarios?novo=true">
@@ -249,7 +249,7 @@ export default function DashboardPage() {
             className="space-y-6"
           >
             {/* Ações */}
-            <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
+            <div className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl p-4">
               <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                 <ArrowRight className="w-5 h-5 text-blue-400" />
                 Ações Rápidas
@@ -299,7 +299,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Contato */}
-            <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
+            <div className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl p-4">
               <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                 <MessageSquare className="w-5 h-5 text-blue-400" />
                 Fale Conosco
@@ -316,9 +316,9 @@ export default function DashboardPage() {
                   </div>
                   <div className="flex-1 text-left">
                     <p className="text-slate-900 dark:text-white font-medium group-hover:text-purple-400 transition-colors">Formulário</p>
-                    <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Enviar mensagem</p>
+                    <p className="text-xs text-slate-500 dark:text-navy-400">Enviar mensagem</p>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-slate-900 dark:text-white/30 group-hover:text-purple-400" />
+                  <ChevronRight className="w-4 h-4 text-slate-400 dark:text-navy-600 group-hover:text-purple-400" />
                 </button>
 
                 {/* Email */}
@@ -331,9 +331,9 @@ export default function DashboardPage() {
                   </div>
                   <div className="flex-1">
                     <p className="text-slate-900 dark:text-white font-medium group-hover:text-blue-400 transition-colors">Email</p>
-                    <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">contato@investigaree.com.br</p>
+                    <p className="text-xs text-slate-500 dark:text-navy-400">contato@investigaree.com.br</p>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-slate-900 dark:text-white/30 group-hover:text-blue-400" />
+                  <ExternalLink className="w-4 h-4 text-slate-400 dark:text-navy-600 group-hover:text-blue-400" />
                 </a>
 
                 {/* WhatsApp */}
@@ -348,9 +348,9 @@ export default function DashboardPage() {
                   </div>
                   <div className="flex-1">
                     <p className="text-slate-900 dark:text-white font-medium group-hover:text-emerald-400 transition-colors">WhatsApp</p>
-                    <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Resposta rápida</p>
+                    <p className="text-xs text-slate-500 dark:text-navy-400">Resposta rápida</p>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-slate-900 dark:text-white/30 group-hover:text-emerald-400" />
+                  <ExternalLink className="w-4 h-4 text-slate-400 dark:text-navy-600 group-hover:text-emerald-400" />
                 </a>
               </div>
             </div>
@@ -362,7 +362,7 @@ export default function DashboardPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.3 }}
-          className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-6"
+          className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl p-6"
         >
           <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
             <FileText className="w-5 h-5 text-blue-400" />
@@ -379,10 +379,10 @@ export default function DashboardPage() {
                       <Icon className={`w-5 h-5 text-${config.color}-400`} />
                     </div>
                     <p className={`text-sm font-medium text-${config.color}-400`}>{config.label}</p>
-                    <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mt-1">{config.description}</p>
+                    <p className="text-xs text-slate-500 dark:text-navy-400 mt-1">{config.description}</p>
                   </div>
                   {index < 5 && (
-                    <div className="hidden lg:block absolute top-1/2 -right-2 transform -translate-y-1/2 text-slate-900 dark:text-white/20">
+                    <div className="hidden lg:block absolute top-1/2 -right-2 transform -translate-y-1/2 text-slate-400 dark:text-navy-700">
                       <ChevronRight className="w-4 h-4" />
                     </div>
                   )}
@@ -408,13 +408,13 @@ export default function DashboardPage() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-2xl p-6 z-50"
+              className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-2xl p-6 z-50"
             >
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white">Enviar Mensagem</h3>
                 <button
                   onClick={() => setShowContactForm(false)}
-                  className="p-2 text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white hover:bg-slate-100 dark:bg-navy-800 rounded-lg transition-colors"
+                  className="p-2 text-slate-600 dark:text-navy-400 hover:text-white hover:bg-slate-100 dark:bg-navy-800 rounded-lg transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -426,12 +426,12 @@ export default function DashboardPage() {
                     <CheckCircle className="w-8 h-8 text-emerald-400" />
                   </div>
                   <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Mensagem Enviada!</h4>
-                  <p className="text-slate-900 dark:text-slate-600 dark:text-white/60">Responderemos em breve.</p>
+                  <p className="text-slate-600 dark:text-navy-400">Responderemos em breve.</p>
                 </div>
               ) : (
                 <form onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-900 dark:text-slate-800 dark:text-white/80 mb-2">Assunto</label>
+                    <label className="block text-sm font-medium text-slate-800 dark:text-navy-200 mb-2">Assunto</label>
                     <select
                       value={contactForm.assunto}
                       onChange={(e) => setContactForm({ ...contactForm, assunto: e.target.value })}
@@ -449,7 +449,7 @@ export default function DashboardPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-900 dark:text-slate-800 dark:text-white/80 mb-2">Mensagem</label>
+                    <label className="block text-sm font-medium text-slate-800 dark:text-navy-200 mb-2">Mensagem</label>
                     <textarea
                       value={contactForm.mensagem}
                       onChange={(e) => setContactForm({ ...contactForm, mensagem: e.target.value })}
@@ -505,7 +505,7 @@ function InvestigacaoItem({ inv, index }: { inv: Investigacao; index: number }) 
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
-      className="p-4 hover:bg-slate-100 dark:bg-navy-800/50 transition-colors group cursor-pointer"
+      className="p-4 hover:bg-slate-100 dark:hover:bg-navy-800/50 transition-colors group cursor-pointer"
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -531,7 +531,7 @@ function InvestigacaoItem({ inv, index }: { inv: Investigacao; index: number }) 
               {inv.nome}
             </h4>
             <div className="flex items-center gap-3 mt-1">
-              <span className="text-sm text-slate-900 dark:text-slate-500 dark:text-white/50">{inv.documento}</span>
+              <span className="text-sm text-slate-500 dark:text-navy-400">{inv.documento}</span>
               <span className={`text-xs px-2 py-0.5 rounded-full bg-${catInfo.color}-500/20 text-${catInfo.color}-400`}>
                 {catInfo.label}
               </span>
@@ -548,7 +548,7 @@ function InvestigacaoItem({ inv, index }: { inv: Investigacao; index: number }) 
             </span>
           </div>
 
-          <ChevronRight className="w-5 h-5 text-slate-900 dark:text-white/30 group-hover:text-blue-400 transition-colors" />
+          <ChevronRight className="w-5 h-5 text-slate-400 dark:text-navy-600 group-hover:text-blue-400 transition-colors" />
         </div>
       </div>
 
@@ -567,7 +567,7 @@ function InvestigacaoItem({ inv, index }: { inv: Investigacao; index: number }) 
             />
           ))}
         </div>
-        <span className="text-xs text-slate-900 dark:text-white/40">{formatDate(inv.updated_at)}</span>
+        <span className="text-xs text-slate-500 dark:text-navy-500">{formatDate(inv.updated_at)}</span>
       </div>
     </motion.div>
   );
@@ -630,10 +630,10 @@ function StatCard({
           <Icon className={`w-6 h-6 ${iconColors[color]}`} />
           <div>
             <p className={`text-2xl font-bold ${iconColors[color]}`}>{value}</p>
-            <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">{title}</p>
+            <p className="text-sm text-slate-600 dark:text-navy-400">{title}</p>
           </div>
         </div>
-        <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-900 dark:text-white/20 group-hover:text-slate-500 dark:text-white/50 transition-colors" />
+        <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 dark:text-navy-700 group-hover:text-slate-500 dark:text-navy-400 transition-colors" />
       </motion.div>
     </Link>
   );
@@ -679,9 +679,9 @@ function ActionButton({
       </div>
       <div className="flex-1 text-left">
         <p className="text-slate-900 dark:text-white font-medium group-hover:text-blue-400 transition-colors">{label}</p>
-        <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">{description}</p>
+        <p className="text-xs text-slate-500 dark:text-navy-400">{description}</p>
       </div>
-      <ChevronRight className="w-4 h-4 text-slate-900 dark:text-white/30 group-hover:text-blue-400 transition-colors" />
+      <ChevronRight className="w-4 h-4 text-slate-400 dark:text-navy-600 group-hover:text-blue-400 transition-colors" />
     </Component>
   );
 }

@@ -17,6 +17,7 @@ import usageRoutes from './routes/usage.routes';
 import investigacoesRoutes from './routes/investigacoes.routes';
 import tenantsRoutes from './routes/tenants.routes';
 import serproCredentialsRoutes from './routes/serpro-credentials.routes';
+import authRoutes from './routes/auth.routes';
 import { processJobs } from './cron/process-jobs';
 
 // ============================================================================
@@ -112,12 +113,32 @@ app.get('/ping', (c) => {
 });
 
 // ============================================================================
+// PUBLIC AUTH ROUTES (no auth required)
+// ============================================================================
+
+// Mount Auth routes (register, sync) - NO AUTH REQUIRED
+app.route('/api/auth', authRoutes);
+
+// ============================================================================
 // PROTECTED ROUTES (auth + rate limit required)
 // ============================================================================
 
-// Apply auth and rate limiting to all /api/* routes
-app.use('/api/*', authMiddleware);
-app.use('/api/*', rateLimitMiddleware);
+// Apply auth and rate limiting to all /api/* routes EXCEPT /api/auth/*
+app.use('/api/*', async (c, next) => {
+  // Skip auth for /api/auth/* routes
+  if (c.req.path.startsWith('/api/auth/')) {
+    return next();
+  }
+  return authMiddleware(c, next);
+});
+
+app.use('/api/*', async (c, next) => {
+  // Skip rate limit for /api/auth/* routes
+  if (c.req.path.startsWith('/api/auth/')) {
+    return next();
+  }
+  return rateLimitMiddleware(c, next);
+});
 
 // Mount SERPRO routes
 app.route('/api/serpro', serproRoutes);

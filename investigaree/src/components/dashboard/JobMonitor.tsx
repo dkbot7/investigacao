@@ -139,10 +139,10 @@ export function JobMonitor({
 
   if (loading && jobs.length === 0) {
     return (
-      <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 rounded-xl p-6">
+      <div className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl p-6">
         <div className="flex items-center justify-center">
           <Loader2 className="w-6 h-6 animate-spin text-blue-400" />
-          <span className="ml-2 text-slate-600 dark:text-white/60">
+          <span className="ml-2 text-slate-600 dark:text-navy-400">
             Carregando jobs...
           </span>
         </div>
@@ -152,7 +152,7 @@ export function JobMonitor({
 
   if (error) {
     return (
-      <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 rounded-xl p-6">
+      <div className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl p-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-red-400">
             <AlertTriangle className="w-5 h-5" />
@@ -162,7 +162,7 @@ export function JobMonitor({
             onClick={loadJobs}
             size="sm"
             variant="ghost"
-            className="text-slate-400 hover:text-slate-600 dark:hover:text-white"
+            className="text-slate-400 hover:text-slate-600 dark:text-navy-400 dark:hover:text-white"
           >
             <RefreshCw className="w-4 h-4" />
           </Button>
@@ -173,13 +173,13 @@ export function JobMonitor({
 
   if (jobs.length === 0) {
     return (
-      <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 rounded-xl p-6">
+      <div className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl p-6">
         <div className="text-center py-8">
-          <Clock className="w-12 h-12 text-slate-400 dark:text-white/20 mx-auto mb-3" />
-          <p className="text-slate-600 dark:text-white/60">
+          <Clock className="w-12 h-12 text-slate-400 dark:text-navy-600 mx-auto mb-3" />
+          <p className="text-slate-600 dark:text-navy-400">
             Nenhum job em andamento
           </p>
-          <p className="text-sm text-slate-500 dark:text-white/40 mt-1">
+          <p className="text-sm text-slate-500 dark:text-navy-500 mt-1">
             Os jobs aparecerão aqui quando você importar funcionários
           </p>
         </div>
@@ -188,9 +188,9 @@ export function JobMonitor({
   }
 
   return (
-    <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 rounded-xl overflow-hidden">
+    <div className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-navy-700">
+      <div className="flex items-center justify-between p-4 border-b border-slate-300 dark:border-navy-700">
         <div className="flex items-center gap-2">
           <h3 className="font-semibold text-slate-900 dark:text-white">
             Jobs em Processamento
@@ -207,7 +207,7 @@ export function JobMonitor({
             className={
               isPolling
                 ? "text-blue-400 hover:text-blue-300"
-                : "text-slate-400 hover:text-slate-600 dark:hover:text-white"
+                : "text-slate-400 hover:text-slate-600 dark:text-navy-400 dark:hover:text-white"
             }
             title={isPolling ? "Auto-refresh ativado" : "Auto-refresh desativado"}
           >
@@ -219,9 +219,9 @@ export function JobMonitor({
       </div>
 
       {/* Jobs List */}
-      <div className="divide-y divide-slate-200 dark:divide-navy-700">
+      <div className="divide-y divide-slate-300 dark:divide-navy-700">
         {jobs.map((job) => (
-          <div key={job.id} className="p-4 hover:bg-slate-50 dark:hover:bg-navy-800/50 transition-colors">
+          <div key={job.id} className="p-4 hover:bg-slate-100 dark:hover:bg-navy-800/50 transition-colors">
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
@@ -230,11 +230,11 @@ export function JobMonitor({
                   </span>
                   {getStatusBadge(job.status)}
                 </div>
-                <p className="text-sm text-slate-600 dark:text-white/60">
+                <p className="text-sm text-slate-600 dark:text-navy-400">
                   Iniciado: {formatDate(job.created_at)}
                 </p>
                 {job.tenant_code && (
-                  <p className="text-xs text-slate-500 dark:text-white/40 mt-1">
+                  <p className="text-xs text-slate-500 dark:text-navy-500 mt-1">
                     Tenant: {job.tenant_code}
                   </p>
                 )}
@@ -245,14 +245,14 @@ export function JobMonitor({
             {(job.status === "processing" || job.status === "completed") && (
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-slate-600 dark:text-white/60">
+                  <span className="text-slate-600 dark:text-navy-400">
                     Progresso: {job.items_processed}/{job.items_total}
                   </span>
                   <span className="text-blue-400 font-medium">
                     {job.progress}%
                   </span>
                 </div>
-                <div className="w-full bg-slate-200 dark:bg-navy-800 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-slate-200 dark:bg-navy-700 rounded-full h-2 overflow-hidden">
                   <div
                     className={`h-full rounded-full transition-all duration-500 ${
                       job.status === "completed"

@@ -143,12 +143,12 @@ export function UploadCsvButton({
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white dark:bg-navy-900 rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-slate-200 dark:border-navy-700">
+            <div className="flex items-center justify-between p-6 border-b border-slate-300 dark:border-navy-700">
               <div>
                 <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                   Importar Funcionários (CSV)
                 </h2>
-                <p className="text-sm text-slate-600 dark:text-white/60 mt-1">
+                <p className="text-sm text-slate-600 dark:text-navy-400 mt-1">
                   Faça upload de um arquivo CSV com os dados dos funcionários
                 </p>
               </div>
@@ -157,7 +157,7 @@ export function UploadCsvButton({
                   setIsOpen(false);
                   handleReset();
                 }}
-                className="text-slate-400 hover:text-slate-600 dark:hover:text-white"
+                className="text-slate-400 hover:text-slate-600 dark:text-navy-400 dark:hover:text-white"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -173,7 +173,7 @@ export function UploadCsvButton({
                     <h3 className="font-medium text-blue-400 mb-1">
                       Template CSV
                     </h3>
-                    <p className="text-sm text-slate-600 dark:text-white/60 mb-3">
+                    <p className="text-sm text-slate-600 dark:text-navy-400 mb-3">
                       Baixe o template CSV para garantir que seu arquivo está no
                       formato correto.
                     </p>
@@ -201,7 +201,7 @@ export function UploadCsvButton({
                     type="file"
                     accept=".csv,.txt"
                     onChange={handleFileSelect}
-                    className="flex-1 text-sm text-slate-600 dark:text-white/60
+                    className="flex-1 text-sm text-slate-600 dark:text-navy-400
                       file:mr-4 file:py-2 file:px-4
                       file:rounded-lg file:border-0
                       file:text-sm file:font-semibold
@@ -214,7 +214,7 @@ export function UploadCsvButton({
                       onClick={handleReset}
                       size="sm"
                       variant="ghost"
-                      className="text-slate-400 hover:text-slate-600 dark:hover:text-white"
+                      className="text-slate-400 hover:text-slate-600 dark:text-navy-400 dark:hover:text-white"
                     >
                       <X className="w-4 h-4" />
                     </Button>
@@ -250,16 +250,16 @@ export function UploadCsvButton({
                         <table className="w-full text-sm">
                           <thead>
                             <tr className="border-b border-slate-300 dark:border-navy-700">
-                              <th className="text-left py-2 px-2 text-slate-600 dark:text-white/60">
+                              <th className="text-left py-2 px-2 text-slate-600 dark:text-navy-400">
                                 CPF
                               </th>
-                              <th className="text-left py-2 px-2 text-slate-600 dark:text-white/60">
+                              <th className="text-left py-2 px-2 text-slate-600 dark:text-navy-400">
                                 Nome
                               </th>
-                              <th className="text-left py-2 px-2 text-slate-600 dark:text-white/60">
+                              <th className="text-left py-2 px-2 text-slate-600 dark:text-navy-400">
                                 Grupo
                               </th>
-                              <th className="text-left py-2 px-2 text-slate-600 dark:text-white/60">
+                              <th className="text-left py-2 px-2 text-slate-600 dark:text-navy-400">
                                 Cargo
                               </th>
                             </tr>
@@ -330,7 +330,7 @@ export function UploadCsvButton({
                     <h4 className="text-sm font-medium text-amber-400 mb-1">
                       Processamento em Background
                     </h4>
-                    <p className="text-xs text-slate-600 dark:text-white/60">
+                    <p className="text-xs text-slate-600 dark:text-navy-400">
                       Os CPFs serão consultados no SERPRO em background (1
                       req/s). Você pode acompanhar o progresso na lista de jobs.
                     </p>
@@ -340,7 +340,7 @@ export function UploadCsvButton({
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-end gap-3 p-6 border-t border-slate-200 dark:border-navy-700">
+            <div className="flex items-center justify-end gap-3 p-6 border-t border-slate-300 dark:border-navy-700">
               <Button
                 onClick={() => {
                   setIsOpen(false);
