@@ -34,27 +34,74 @@ export abstract class SerproBaseService {
 
   /**
    * Get OAuth2 access token
-   * Implements token caching to avoid unnecessary requests
+   * Suporta dois modos:
+   * 1. Managed mode: usa credentials do Investigaree (env vars)
+   * 2. BYO mode: usa credentials do tenant (D1 database)
    */
-  protected async getToken(): Promise<string> {
+  protected async getToken(tenantId?: string): Promise<string> {
     // Check cache first
+    const cacheKey = tenantId ? `${tenantId}:${this.apiName}` : this.apiName;
     if (this.tokenCache && this.tokenCache.expiresAt > Date.now()) {
       return this.tokenCache.token;
     }
 
-    // Get credentials from environment
-    const apiNameUpper = this.apiName.toUpperCase().replace(/-/g, '_');
-    const consumerKey = this.env[`SERPRO_${apiNameUpper}_CONSUMER_KEY` as keyof Env];
-    const consumerSecret = this.env[`SERPRO_${apiNameUpper}_CONSUMER_SECRET` as keyof Env];
+    let consumerKey: string;
+    let consumerSecret: string;
+    let mode: 'managed' | 'byo' = 'managed';
 
-    if (!consumerKey || !consumerSecret) {
-      throw new Error(
-        `SERPRO ${this.apiName} credentials not configured. ` +
-        `Missing: SERPRO_${apiNameUpper}_CONSUMER_KEY or SERPRO_${apiNameUpper}_CONSUMER_SECRET`
-      );
+    // Determinar modo e buscar credenciais
+    if (tenantId) {
+      // Verificar modo do tenant
+      const tenant = await this.env.DB.prepare(
+        'SELECT serpro_mode FROM tenants WHERE id = ?'
+      ).bind(tenantId).first();
+
+      mode = (tenant?.serpro_mode as 'managed' | 'byo') || 'managed';
+
+      if (mode === 'byo') {
+        // BYO Mode: buscar credenciais do tenant no D1
+        const creds = await this.env.DB.prepare(`
+          SELECT consumer_key, consumer_secret_encrypted
+          FROM tenant_serpro_credentials
+          WHERE tenant_id = ? AND api_name = ? AND is_active = 1
+        `).bind(tenantId, this.apiName).first();
+
+        if (!creds) {
+          throw new Error(
+            `Tenant configurado para BYO mode mas não possui credenciais SERPRO para API ${this.apiName}. ` +
+            `Configure em /dashboard/configuracoes/serpro`
+          );
+        }
+
+        // Descriptografar secret
+        const { decrypt } = await import('../../utils/encryption');
+        const masterKey = this.env.ENCRYPTION_MASTER_KEY;
+
+        if (!masterKey) {
+          throw new Error('ENCRYPTION_MASTER_KEY not configured in environment');
+        }
+
+        consumerKey = creds.consumer_key as string;
+        consumerSecret = await decrypt(creds.consumer_secret_encrypted as string, masterKey);
+      }
     }
 
-    // Request new token
+    // Managed Mode: usar credentials do Investigaree (env vars)
+    if (mode === 'managed' || !tenantId) {
+      const apiNameUpper = this.apiName.toUpperCase().replace(/-/g, '_');
+      consumerKey = this.env[`SERPRO_${apiNameUpper}_CONSUMER_KEY` as keyof Env] as string;
+      consumerSecret = this.env[`SERPRO_${apiNameUpper}_CONSUMER_SECRET` as keyof Env] as string;
+
+      if (!consumerKey || !consumerSecret) {
+        throw new Error(
+          `SERPRO ${this.apiName} credentials not configured. ` +
+          `Missing: SERPRO_${apiNameUpper}_CONSUMER_KEY or SERPRO_${apiNameUpper}_CONSUMER_SECRET. ` +
+          `System is in MANAGED mode but credentials are not set.`
+        );
+      }
+    }
+
+    // Request new token (resto do código permanece igual)
     const tokenUrl = `${this.baseUrl}/token`;
     const credentials = btoa(`${consumerKey}:${consumerSecret}`);
 
@@ -70,12 +117,31 @@ export abstract class SerproBaseService {
 
       if (!response.ok) {
         const errorText = await response.text();
+
+        // Se BYO mode e falha de auth, registrar erro
+        if (mode === 'byo' && tenantId && response.status === 401) {
+          await this.env.DB.prepare(`
+            UPDATE tenant_serpro_credentials
+            SET validation_error = ?, last_validated_at = datetime('now')
+            WHERE tenant_id = ? AND api_name = ?
+          `).bind(`Authentication failed: ${errorText}`, tenantId, this.apiName).run();
+        }
+
         throw new Error(
           `Failed to get SERPRO token for ${this.apiName}: ${response.status} ${response.statusText}. ${errorText}`
         );
       }
 
       const data = (await response.json()) as OAuth2TokenResponse;
+
+      // Se BYO mode e sucesso, limpar erro de validação
+      if (mode === 'byo' && tenantId) {
+        await this.env.DB.prepare(`
+          UPDATE tenant_serpro_credentials
+          SET validation_error = NULL, last_validated_at = datetime('now')
+          WHERE tenant_id = ? AND api_name = ?
+        `).bind(tenantId, this.apiName).run();
+      }
 
       // Cache token (with 5 minute safety margin)
       this.tokenCache = {

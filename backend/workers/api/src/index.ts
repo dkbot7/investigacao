@@ -16,6 +16,7 @@ import dadosRoutes from './routes/dados.routes';
 import usageRoutes from './routes/usage.routes';
 import investigacoesRoutes from './routes/investigacoes.routes';
 import tenantsRoutes from './routes/tenants.routes';
+import serproCredentialsRoutes from './routes/serpro-credentials.routes';
 import { processJobs } from './cron/process-jobs';
 
 // ============================================================================
@@ -132,6 +133,9 @@ app.route('/api/investigacoes', investigacoesRoutes);
 
 // Mount Tenants routes (authenticated users, some admin-only)
 app.route('/api/tenants', tenantsRoutes);
+
+// Mount SERPRO Credentials Management routes (admin only)
+app.route('/api/admin/serpro-credentials', serproCredentialsRoutes);
 
 // ============================================================================
 // ERROR HANDLING

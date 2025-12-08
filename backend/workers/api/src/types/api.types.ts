@@ -49,6 +49,9 @@ export interface Env {
   SERPRO_RAIZ_TECH_CONSUMER_KEY: string;
   SERPRO_RAIZ_TECH_CONSUMER_SECRET: string;
 
+  // Master key para criptografia de credenciais SERPRO (BYO system)
+  ENCRYPTION_MASTER_KEY: string;
+
   // Environment
   ENVIRONMENT?: string;
 }

@@ -42,13 +42,13 @@ export default function RHCompliancePage() {
 
               {/* Subheadline */}
               <p className="text-xl text-slate-300 leading-relaxed">
-                <strong className="text-white">37% dos candidatos mentem em currículos.</strong> Nossa solução de background check profissional valida identidade, antecedentes e histórico em fontes oficiais — antes da contratação.
+                <strong className="text-white">61% dos profissionais de RH encontram imprecisões em currículos</strong> após background check (SHRM, 2024). Nossa solução valida identidade, antecedentes e histórico em fontes oficiais — antes da contratação.
               </p>
 
               {/* Key Benefits (3 bullets) */}
               <div className="space-y-3">
                 {[
-                  'Background check completo em 10 fontes públicas (CPF, CNPJ, CEIS, Tribunais, INSS)',
+                  'Background check em fontes públicas governamentais (CPF, CNPJ, CEIS, Tribunais, Diários Oficiais)',
                   'Identificação de red flags críticos (CPF suspenso, sanções, processos ocultos)',
                   'Relatórios periciais com valor probatório em juízo (conformidade LGPD)',
                 ].map((benefit, idx) => (
@@ -146,13 +146,13 @@ export default function RHCompliancePage() {
                 <div className="flex items-start gap-3">
                   <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
                   <div>
-                    <strong className="text-slate-900">37% dos currículos contêm mentiras</strong> sobre formação, experiência ou motivos de saída
+                    <strong className="text-slate-900">61% dos profissionais de RH encontram imprecisões em currículos</strong> após background check (SHRM, 2024)
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
                   <div>
-                    <strong className="text-slate-900">Custo de uma má contratação:</strong> até 5x o salário anual (demissão, recontratação, treinamento, produtividade perdida)
+                    <strong className="text-slate-900">Custo de uma má contratação:</strong> até 40% do salário anual (SHRM, 2024) — demissão, recontratação, treinamento, produtividade perdida
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
