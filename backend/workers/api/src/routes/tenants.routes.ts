@@ -672,4 +672,146 @@ router.post('/:id/revoke-access', authMiddleware, requireRole('admin'), async (c
   }
 });
 
+/**
+ * POST /api/tenants/create-personal
+ *
+ * Cria um tenant pessoal para um usuário existente (apenas admin)
+ * Útil para migrar usuários de tenants compartilhados para tenants pessoais
+ *
+ * Body:
+ * {
+ *   user_email: string,
+ *   revoke_existing_access?: boolean  // Se true, remove acesso aos tenants atuais
+ * }
+ *
+ * Response:
+ * {
+ *   success: true,
+ *   tenant: { id, code, name },
+ *   message: string
+ * }
+ */
+router.post('/create-personal', authMiddleware, requireRole('admin'), async (c) => {
+  try {
+    const { user_email, revoke_existing_access } = await c.req.json();
+
+    if (!user_email) {
+      return c.json({
+        success: false,
+        error: 'Campo obrigatório: user_email'
+      }, 400);
+    }
+
+    // 1. Buscar usuário pelo email
+    const userRecord = await c.env.DB.prepare(
+      'SELECT id, name, email, firebase_uid FROM users WHERE email = ?'
+    ).bind(user_email).first();
+
+    if (!userRecord) {
+      return c.json({
+        success: false,
+        error: 'Usuário não encontrado'
+      }, 404);
+    }
+
+    // 2. Verificar se já tem tenant pessoal
+    const existingPersonalTenant = await c.env.DB.prepare(`
+      SELECT t.* FROM tenants t
+      WHERE t.code LIKE 'USER_%' AND t.firebase_uid = ?
+    `).bind(userRecord.firebase_uid).first();
+
+    if (existingPersonalTenant) {
+      return c.json({
+        success: false,
+        error: 'Usuário já possui um tenant pessoal',
+        tenant: existingPersonalTenant
+      }, 409);
+    }
+
+    // 3. Criar tenant pessoal
+    const tenantId = `tenant_${userRecord.id.substring(0, 8)}`;
+    const tenantCode = `USER_${userRecord.id.substring(0, 8).toUpperCase()}`;
+    const tenantName = `${userRecord.name || userRecord.email} (Conta Pessoal)`;
+
+    await c.env.DB.prepare(`
+      INSERT INTO tenants (id, code, name, email, firebase_uid, status, serpro_mode, serpro_notes)
+      VALUES (?, ?, ?, ?, ?, 'active', 'managed', 'Tenant pessoal criado pelo admin.')
+    `).bind(tenantId, tenantCode, tenantName, userRecord.email, userRecord.firebase_uid).run();
+
+    logger.info('Personal tenant created by admin', {
+      tenant_id: tenantId,
+      tenant_code: tenantCode,
+      user_id: userRecord.id
+    });
+
+    // 4. Associar usuário ao tenant como admin
+    const accessId = crypto.randomUUID();
+    await c.env.DB.prepare(`
+      INSERT INTO user_tenants (id, user_id, tenant_id, role, granted_by, granted_at)
+      VALUES (?, ?, ?, 'admin', 'system', datetime('now'))
+    `).bind(accessId, userRecord.id, tenantId).run();
+
+    // 5. Se solicitado, revogar acesso aos tenants existentes
+    let revokedCount = 0;
+    if (revoke_existing_access) {
+      const result = await c.env.DB.prepare(`
+        UPDATE user_tenants
+        SET is_active = 0, updated_at = datetime('now')
+        WHERE user_id = ? AND tenant_id != ?
+      `).bind(userRecord.id, tenantId).run();
+
+      revokedCount = result.meta.changes || 0;
+
+      logger.info('Revoked existing tenant access', {
+        user_id: userRecord.id,
+        revoked_count: revokedCount
+      });
+    }
+
+    // 6. Criar configurações padrão do usuário (se não existir)
+    try {
+      const existingSettings = await c.env.DB.prepare(
+        'SELECT id FROM user_settings WHERE user_id = ?'
+      ).bind(userRecord.id).first();
+
+      if (!existingSettings) {
+        const settingsId = crypto.randomUUID();
+        await c.env.DB.prepare(`
+          INSERT INTO user_settings (
+            id, user_id, empresa_nome, plano, limite_consultas_mes,
+            notificacoes_email, notificacoes_push, theme, created_at
+          )
+          VALUES (?, ?, ?, 'free', 0, 1, 1, 'dark', datetime('now'))
+        `).bind(settingsId, userRecord.id, userRecord.name || userRecord.email).run();
+      }
+    } catch (error) {
+      logger.warn('Failed to create user settings', { error });
+    }
+
+    let message = `Tenant pessoal "${tenantCode}" criado com sucesso para ${user_email}`;
+    if (revoke_existing_access && revokedCount > 0) {
+      message += `. Acesso revogado de ${revokedCount} tenant(s) anterior(es)`;
+    }
+
+    return c.json({
+      success: true,
+      tenant: {
+        id: tenantId,
+        code: tenantCode,
+        name: tenantName
+      },
+      message,
+      revoked_count: revoke_existing_access ? revokedCount : 0
+    }, 201);
+
+  } catch (error: any) {
+    logger.error('Error creating personal tenant', error);
+    return c.json({
+      success: false,
+      error: 'Erro ao criar tenant pessoal',
+      details: error.message
+    }, 500);
+  }
+});
+
 export default router;
