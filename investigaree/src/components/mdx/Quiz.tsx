@@ -60,7 +60,7 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
   const percentage = Math.round((correctCount / questions.length) * 100);
 
   return (
-    <div className="my-6 rounded-xl border border-blue-500/10 bg-white dark:bg-white/50 dark:bg-navy-900/50 overflow-hidden">
+    <div className="my-6 rounded-xl border border-blue-500/10 bg-white dark:bg-navy-900 overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 bg-white dark:bg-navy-900 border-b border-blue-500/10">
         <div className="flex items-center gap-2">
@@ -133,7 +133,7 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="mt-4 p-4 rounded-lg bg-slate-100 dark:bg-navy-800/50 border border-blue-500/10"
+                  className="mt-4 p-4 rounded-lg bg-slate-50 dark:bg-navy-800 border border-blue-500/10"
                 >
                   <p className="text-sm text-slate-600 dark:text-navy-300">
                     <strong className={isCorrect ? "text-green-400" : "text-red-400"}>
