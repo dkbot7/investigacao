@@ -161,7 +161,11 @@ export async function processarJobs(): Promise<{
   jobs_found: number
   message: string
 }> {
-  const response = await apiClient.post('/api/admin/process-jobs', {})
+  const response = await apiClient.post<{
+    success: boolean
+    jobs_found: number
+    message: string
+  }>('/api/admin/process-jobs', {})
 
   return response
 }

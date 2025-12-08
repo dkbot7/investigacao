@@ -213,7 +213,7 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-white dark:bg-white/95 dark:bg-navy-900/95 backdrop-blur-lg border border-blue-500/20 rounded-xl shadow-xl overflow-hidden"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-white dark:bg-navy-900/95 backdrop-blur-lg border border-blue-500/20 rounded-xl shadow-xl overflow-hidden"
                   >
                     <div className="p-2">
                       {conteudoItems.map((item, index) => {
@@ -223,14 +223,14 @@ export default function Header() {
                             key={item.href}
                             href={item.href}
                             onClick={() => setIsConteudoOpen(false)}
-                            className="flex items-start gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors group"
+                            className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-colors group"
                           >
                             <div className="p-2 rounded-lg bg-blue-500/10 text-blue-500 group-hover:bg-blue-500/20 transition-colors">
                               <Icon className="w-4 h-4" />
                             </div>
                             <div>
                               <div className="text-slate-900 dark:text-white font-medium text-sm">{item.label}</div>
-                              <div className="text-slate-500 dark:text-navy-400 text-xs">{item.description}</div>
+                              <div className="text-slate-500 dark:text-navy-300 text-xs">{item.description}</div>
                             </div>
                           </Link>
                         );
