@@ -3,11 +3,13 @@ main = "src/index.ts"
 compatibility_date = "2024-01-01"
 compatibility_flags = ["nodejs_compat"]
 
+# Disable workers.dev subdomain (using custom domain only)
+workers_dev = false
+
 # Routes - Custom subdomain for API
-# routes = [
-#   { pattern = "api.investigaree.com.br/*", zone_name = "investigaree.com.br" }
-# ]
-# NOTA: Comentado temporariamente para testar no workers.dev
+routes = [
+  { pattern = "api.investigaree.com.br/*", zone_name = "investigaree.com.br" }
+]
 
 # D1 Database binding
 [[d1_databases]]
