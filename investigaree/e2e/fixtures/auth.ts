@@ -28,6 +28,19 @@ export const test = base.extend<AdminFixtures>({
     // Aguardar carregamento da página
     await page.waitForTimeout(2000); // Dar tempo para React renderizar
 
+    // Remover cookie banner global para não interferir nos testes
+    await page.evaluate(() => {
+      // Remover banner de cookies se existir
+      const cookieBanner = document.querySelector('[role="dialog"][aria-labelledby="cookie-banner-title"]');
+      if (cookieBanner) {
+        cookieBanner.remove();
+      }
+      // Também adicionar CSS para esconder qualquer banner futuro
+      const style = document.createElement('style');
+      style.textContent = '[role="dialog"].fixed.bottom-0 { display: none !important; }';
+      document.head.appendChild(style);
+    });
+
     // Verificar se carregou corretamente
     try {
       await page.waitForSelector('text=Usuarios Totais, text=Admin, h1', { timeout: 10000 });

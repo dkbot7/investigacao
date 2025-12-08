@@ -9,13 +9,6 @@ test.describe('Admin Panel - Alertas e Logs', () => {
     // Ir para aba de alertas
     await adminPage.click('button:has-text("Alertas")');
     await adminPage.waitForTimeout(500);
-
-    // Fechar cookie banner se aparecer (para não bloquear cliques)
-    const cookieBanner = adminPage.locator('[aria-label="Fechar banner de cookies"]');
-    if (await cookieBanner.count() > 0) {
-      await cookieBanner.click();
-      await adminPage.waitForTimeout(300);
-    }
   });
 
   test('deve exibir lista de alertas do sistema', async ({ adminPage }) => {
@@ -73,47 +66,57 @@ test.describe('Admin Panel - Alertas e Logs', () => {
 
   test('deve marcar alerta como lido', async ({ adminPage }) => {
     // Procurar alertas não lidos (sem opacity-60)
-    const alerts = adminPage.locator('div[class*="rounded-xl p-4 border"]:not([class*="opacity-60"])');
+    const unreadAlerts = adminPage.locator('div[class*="rounded-xl p-4 border"]:not([class*="opacity-60"])');
 
-    if (await alerts.count() > 0) {
-      // Procurar botão "Ignorar" no primeiro alerta
-      const ignoreButton = alerts.first().locator('button:has-text("Ignorar")');
-
-      if (await ignoreButton.count() > 0) {
-        // Forçar clique para ignorar cookie banner
-        await ignoreButton.click({ force: true });
-        await adminPage.waitForTimeout(500);
-
-        // Verificar que alerta foi marcado como lido (ganhou opacity-60)
-        const firstAlert = adminPage.locator('div[class*="rounded-xl p-4 border"]').first();
-        const classList = await firstAlert.getAttribute('class');
-
-        // Se foi marcado como lido, deve ter opacity-60
-        expect(classList).toContain('opacity-60');
-      }
+    const unreadCount = await unreadAlerts.count();
+    if (unreadCount === 0) {
+      // Não há alertas não lidos para testar - teste passa
+      return;
     }
+
+    // Procurar botão "Ignorar" no primeiro alerta não lido
+    const ignoreButton = unreadAlerts.first().locator('button:has-text("Ignorar")');
+
+    if (await ignoreButton.count() === 0) {
+      // Alerta não tem botão ignorar (pode ser de tipo diferente) - teste passa
+      return;
+    }
+
+    // Clicar no botão ignorar (cookie banner já foi removido no fixture)
+    await ignoreButton.click();
+    await adminPage.waitForTimeout(800);
+
+    // Verificar que quantidade de não lidos diminuiu
+    const newUnreadCount = await adminPage.locator('div[class*="rounded-xl p-4 border"]:not([class*="opacity-60"])').count();
+    expect(newUnreadCount).toBeLessThan(unreadCount);
   });
 
   test('deve marcar todos como lidos', async ({ adminPage }) => {
-    // Procurar botão "Marcar Todos como Lidos" (texto exato da página)
+    // Procurar botão "Marcar Todos como Lidos"
     const markAllButton = adminPage.locator('button:has-text("Marcar Todos como Lidos")');
 
-    if (await markAllButton.count() > 0) {
-      // Contar não lidos antes (alertas SEM opacity-60)
-      const unreadBefore = await adminPage.locator('div[class*="rounded-xl p-4 border"]:not([class*="opacity-60"])').count();
-
-      if (unreadBefore > 0) {
-        // Marcar todos (forçar clique para ignorar cookie banner)
-        await markAllButton.click({ force: true });
-        await adminPage.waitForTimeout(1500); // Aguardar atualização de estado
-
-        // Contar não lidos depois
-        const unreadAfter = await adminPage.locator('div[class*="rounded-xl p-4 border"]:not([class*="opacity-60"])').count();
-
-        // Pode ter 0 ou poucos alertas restantes (alguns podem ser de tipo diferente)
-        expect(unreadAfter).toBeLessThan(unreadBefore);
-      }
+    if (await markAllButton.count() === 0) {
+      // Botão não aparece se não houver alertas não lidos - teste passa
+      return;
     }
+
+    // Contar não lidos antes
+    const unreadBefore = await adminPage.locator('div[class*="rounded-xl p-4 border"]:not([class*="opacity-60"])').count();
+
+    if (unreadBefore === 0) {
+      // Nenhum alerta não lido - teste passa
+      return;
+    }
+
+    // Clicar em marcar todos (cookie banner já foi removido no fixture)
+    await markAllButton.click();
+    await adminPage.waitForTimeout(2000); // Aguardar processamento de todos os alertas
+
+    // Contar não lidos depois
+    const unreadAfter = await adminPage.locator('div[class*="rounded-xl p-4 border"]:not([class*="opacity-60"])').count();
+
+    // Deve ter marcado TODOS como lidos (ou quase todos)
+    expect(unreadAfter).toBeLessThanOrEqual(1); // Permite 1 alerta restante (pode ser de tipo especial)
   });
 
   test('deve exibir detalhes do alerta em modal', async ({ adminPage }) => {

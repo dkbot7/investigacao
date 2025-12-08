@@ -114,70 +114,72 @@ test.describe('Admin Panel - Gerenciamento de Usuários', () => {
   });
 
   test('deve abrir modal de conceder acesso', async ({ adminPage }) => {
-    // Scroll até seção de usuários sem acesso (abaixo da lista principal)
-    const usersWithoutAccessSection = adminPage.locator('text=Usuarios Sem Acesso');
-    if (await usersWithoutAccessSection.count() > 0) {
-      await usersWithoutAccessSection.scrollIntoViewIfNeeded();
-      await adminPage.waitForTimeout(500);
-    }
-
-    // Procurar botão "Conceder Acesso" (na seção de usuários sem acesso)
+    // Procurar botão "Conceder Acesso" (pode estar em várias seções)
     const grantButton = adminPage.locator('button:has-text("Conceder Acesso")').first();
 
-    if (await grantButton.count() > 0) {
-      // Clicar no botão
-      await grantButton.click();
-      await adminPage.waitForTimeout(500);
-
-      // Verificar que modal abriu
-      await expect(adminPage.locator('h2:has-text("Conceder Acesso"), h3:has-text("Conceder Acesso")')).toBeVisible({ timeout: 10000 });
-
-      // Verificar campos do formulário (tenant e role)
-      await expect(adminPage.locator('select').first()).toBeVisible();
-
-      // Fechar modal
-      const cancelButton = adminPage.locator('button:has-text("Cancelar")');
-      await cancelButton.click();
-      await adminPage.waitForTimeout(300);
+    // Se não houver usuários sem acesso, teste passa (feature não disponível)
+    if (await grantButton.count() === 0) {
+      // Skip test gracefully - não há usuários pendentes para testar
+      return;
     }
+
+    // Scroll até o botão se necessário
+    await grantButton.scrollIntoViewIfNeeded();
+    await adminPage.waitForTimeout(500);
+
+    // Clicar no botão
+    await grantButton.click();
+    await adminPage.waitForTimeout(500);
+
+    // Verificar que modal abriu
+    await expect(adminPage.locator('h2:has-text("Conceder Acesso"), h3:has-text("Conceder Acesso")')).toBeVisible({ timeout: 10000 });
+
+    // Verificar campos do formulário (tenant e role)
+    await expect(adminPage.locator('select').first()).toBeVisible();
+
+    // Fechar modal (cookie banner já removido no fixture)
+    const cancelButton = adminPage.locator('button:has-text("Cancelar")');
+    await cancelButton.click();
+    await adminPage.waitForTimeout(300);
   });
 
   test('deve validar formulário de conceder acesso', async ({ adminPage }) => {
-    // Scroll até seção de usuários sem acesso
-    const usersWithoutAccessSection = adminPage.locator('text=Usuarios Sem Acesso');
-    if (await usersWithoutAccessSection.count() > 0) {
-      await usersWithoutAccessSection.scrollIntoViewIfNeeded();
-      await adminPage.waitForTimeout(500);
-    }
-
     const grantButton = adminPage.locator('button:has-text("Conceder Acesso")').first();
 
-    if (await grantButton.count() > 0) {
-      await grantButton.click();
-      await adminPage.waitForTimeout(500);
-
-      // Selecionar tenant (primeiro select)
-      const tenantSelect = adminPage.locator('select').first();
-      await tenantSelect.waitFor({ state: 'visible', timeout: 5000 });
-      const options = await tenantSelect.locator('option').count();
-
-      if (options > 1) {
-        await tenantSelect.selectOption({ index: 1 }); // Seleciona primeira opção válida (index 0 é placeholder)
-
-        // Selecionar role (segundo select)
-        const roleSelect = adminPage.locator('select').nth(1);
-        await roleSelect.selectOption('viewer');
-
-        // Verificar botão Conceder habilitado
-        const confirmButton = adminPage.locator('button:has-text("Conceder")');
-        const isDisabled = await confirmButton.getAttribute('disabled');
-        expect(isDisabled).toBeNull();
-      }
-
-      // Cancelar
-      await adminPage.locator('button:has-text("Cancelar")').click();
-      await adminPage.waitForTimeout(300);
+    // Se não houver usuários sem acesso, teste passa
+    if (await grantButton.count() === 0) {
+      return;
     }
+
+    // Scroll até o botão
+    await grantButton.scrollIntoViewIfNeeded();
+    await adminPage.waitForTimeout(500);
+
+    // Abrir modal
+    await grantButton.click();
+    await adminPage.waitForTimeout(500);
+
+    // Selecionar tenant (primeiro select)
+    const tenantSelect = adminPage.locator('select').first();
+    await tenantSelect.waitFor({ state: 'visible', timeout: 5000 });
+    const options = await tenantSelect.locator('option').count();
+
+    if (options > 1) {
+      await tenantSelect.selectOption({ index: 1 }); // Seleciona primeira opção válida (index 0 é placeholder)
+
+      // Selecionar role (segundo select)
+      const roleSelect = adminPage.locator('select').nth(1);
+      await roleSelect.selectOption('viewer');
+
+      // Verificar botão Conceder habilitado
+      const confirmButton = adminPage.locator('button:has-text("Conceder")');
+      const isDisabled = await confirmButton.getAttribute('disabled');
+      expect(isDisabled).toBeNull();
+    }
+
+    // Cancelar (cookie banner já removido no fixture)
+    await adminPage.locator('button:has-text("Cancelar")').click();
+    await adminPage.waitForTimeout(300);
   });
 
   test('deve abrir modal de revogar acesso', async ({ adminPage }) => {
