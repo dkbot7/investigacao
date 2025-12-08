@@ -14,6 +14,8 @@ import { logger } from './utils/logger';
 import serproRoutes from './routes/serpro.routes';
 import dadosRoutes from './routes/dados.routes';
 import usageRoutes from './routes/usage.routes';
+import investigacoesRoutes from './routes/investigacoes.routes';
+import tenantsRoutes from './routes/tenants.routes';
 import { processJobs } from './cron/process-jobs';
 
 // ============================================================================
@@ -122,6 +124,12 @@ app.route('/api/admin', dadosRoutes);
 
 // Mount Usage/Stats routes (admin only)
 app.route('/api/admin/serpro', usageRoutes);
+
+// Mount Investigacoes routes (authenticated users)
+app.route('/api/investigacoes', investigacoesRoutes);
+
+// Mount Tenants routes (authenticated users, some admin-only)
+app.route('/api/tenants', tenantsRoutes);
 
 // ============================================================================
 // ERROR HANDLING
