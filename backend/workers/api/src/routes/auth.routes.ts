@@ -207,8 +207,8 @@ router.post('/sync', async (c) => {
     const tenantName = `${name || email.split('@')[0]} (Conta Pessoal)`;
 
     await c.env.DB.prepare(`
-      INSERT INTO tenants (id, code, name, email, firebase_uid, status, serpro_mode)
-      VALUES (?, ?, ?, ?, ?, 'active', 'managed')
+      INSERT INTO tenants (id, code, name, email, firebase_uid, status, serpro_mode, serpro_notes)
+      VALUES (?, ?, ?, ?, ?, 'active', 'managed', 'Tenant pessoal criado automaticamente. Entre em contato para ativar consultas.')
     `).bind(tenantId, tenantCode, tenantName, email, firebase_uid).run();
 
     // Associar ao tenant
