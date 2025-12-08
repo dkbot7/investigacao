@@ -154,6 +154,7 @@ app.route('/api/investigacoes', investigacoesRoutes);
 
 // Mount Tenants routes (authenticated users, some admin-only)
 app.route('/api/tenants', tenantsRoutes);
+app.route('/api/tenant', tenantsRoutes); // Alias singular para compatibilidade
 
 // Mount SERPRO Credentials Management routes (admin only)
 app.route('/api/admin/serpro-credentials', serproCredentialsRoutes);

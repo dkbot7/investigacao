@@ -21,6 +21,132 @@ import { logger } from '../utils/logger';
 const router = new Hono<{ Bindings: Env }>();
 
 // ============================================================================
+// USER TENANT INFO (for authenticated users)
+// ============================================================================
+
+/**
+ * GET /info
+ *
+ * Retorna informações dos tenants do usuário logado
+ * Endpoint usado pelo frontend para verificar acesso
+ *
+ * Response:
+ * {
+ *   hasAccess: boolean,
+ *   tenant: { code, name, ... } | null,
+ *   tenants: [{ code, name, role, ... }]
+ * }
+ */
+router.get('/info', authMiddleware, async (c) => {
+  try {
+    const user = c.get('user') as AuthenticatedUser;
+
+    // Buscar user_id do D1
+    const userRecord = await c.env.DB.prepare(
+      'SELECT id FROM users WHERE firebase_uid = ?'
+    ).bind(user.uid).first();
+
+    if (!userRecord) {
+      return c.json({
+        hasAccess: false,
+        tenant: null,
+        tenants: []
+      });
+    }
+
+    // Buscar todos os tenants ativos do usuário
+    const { results: userTenants } = await c.env.DB.prepare(`
+      SELECT
+        t.id, t.code, t.name, t.email, t.status,
+        ut.role, ut.granted_at, ut.is_active
+      FROM user_tenants ut
+      JOIN tenants t ON ut.tenant_id = t.id
+      WHERE ut.user_id = ? AND ut.is_active = 1
+      ORDER BY ut.granted_at DESC
+    `).bind(userRecord.id).all();
+
+    const hasAccess = (userTenants?.length || 0) > 0;
+    const activeTenant = userTenants?.[0] || null;
+
+    return c.json({
+      hasAccess,
+      tenant: activeTenant,
+      tenants: userTenants || []
+    });
+
+  } catch (error: any) {
+    logger.error('Error fetching tenant info', error);
+    return c.json({
+      hasAccess: false,
+      tenant: null,
+      tenants: [],
+      error: error.message
+    }, 500);
+  }
+});
+
+/**
+ * GET /dashboard
+ *
+ * Retorna dados do dashboard do tenant do usuário
+ * Endpoint usado pelo frontend para exibir dashboard
+ *
+ * Response: DashboardData
+ */
+router.get('/dashboard', authMiddleware, async (c) => {
+  try {
+    const user = c.get('user') as AuthenticatedUser;
+
+    // Buscar user_id do D1
+    const userRecord = await c.env.DB.prepare(
+      'SELECT id FROM users WHERE firebase_uid = ?'
+    ).bind(user.uid).first();
+
+    if (!userRecord) {
+      return c.json({
+        error: 'Usuário não encontrado'
+      }, 404);
+    }
+
+    // Buscar tenant ativo do usuário
+    const activeTenant = await c.env.DB.prepare(`
+      SELECT t.*
+      FROM user_tenants ut
+      JOIN tenants t ON ut.tenant_id = t.id
+      WHERE ut.user_id = ? AND ut.is_active = 1
+      ORDER BY ut.granted_at DESC
+      LIMIT 1
+    `).bind(userRecord.id).first();
+
+    if (!activeTenant) {
+      return c.json({
+        error: 'Usuário não tem acesso a nenhum tenant'
+      }, 403);
+    }
+
+    // Por enquanto, retornar dados vazios
+    // TODO: Implementar lógica de agregação de dados do tenant
+    return c.json({
+      tenant: activeTenant,
+      stats: {
+        total_funcionarios: 0,
+        total_obitos: 0,
+        total_candidatos: 0,
+        total_doadores: 0,
+        total_beneficiarios: 0
+      }
+    });
+
+  } catch (error: any) {
+    logger.error('Error fetching dashboard data', error);
+    return c.json({
+      error: 'Erro ao buscar dados do dashboard',
+      details: error.message
+    }, 500);
+  }
+});
+
+// ============================================================================
 // INTERFACES
 // ============================================================================
 
