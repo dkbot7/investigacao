@@ -85,7 +85,7 @@ router.post('/register', async (c) => {
 
     await c.env.DB.prepare(`
       INSERT INTO tenants (id, code, name, email, firebase_uid, status, serpro_mode, serpro_notes)
-      VALUES (?, ?, ?, ?, ?, 'active', 'managed', 'Tenant pessoal criado automaticamente. Trial de 30 dias.')
+      VALUES (?, ?, ?, ?, ?, 'active', 'managed', 'Tenant pessoal criado automaticamente. Entre em contato para ativar consultas.')
     `).bind(tenantId, tenantCode, tenantName, email, firebase_uid).run();
 
     logger.info('Personal tenant created', { tenant_id: tenantId, tenant_code: tenantCode });
@@ -111,7 +111,7 @@ router.post('/register', async (c) => {
           id, user_id, empresa_nome, plano, limite_consultas_mes,
           notificacoes_email, notificacoes_push, theme, created_at
         )
-        VALUES (?, ?, ?, 'trial', 100, 1, 1, 'dark', datetime('now'))
+        VALUES (?, ?, ?, 'free', 0, 1, 1, 'dark', datetime('now'))
       `).bind(settingsId, userId, name).run();
 
       logger.info('User settings created', { user_id: userId });
