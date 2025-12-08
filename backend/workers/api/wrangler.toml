@@ -4,9 +4,10 @@ compatibility_date = "2024-01-01"
 compatibility_flags = ["nodejs_compat"]
 
 # Routes - Custom subdomain for API
-routes = [
-  { pattern = "api.investigaree.com.br/*", zone_name = "investigaree.com.br" }
-]
+# routes = [
+#   { pattern = "api.investigaree.com.br/*", zone_name = "investigaree.com.br" }
+# ]
+# NOTA: Comentado temporariamente para testar no workers.dev
 
 # D1 Database binding
 [[d1_databases]]
@@ -31,5 +32,7 @@ ENVIRONMENT = "production"
 # ... (mais 7 APIs)
 
 # Cron Triggers - Processamento de jobs em background
-[triggers]
-crons = ["0 */1 * * *"]  # A cada 1 hora
+# [triggers]
+# crons = ["0 */1 * * *"]  # A cada 1 hora
+# NOTA: Cloudflare Free tier tem limite de 5 cron triggers
+# SOLUÇÃO: Usar endpoint manual POST /api/admin/process-jobs quando necessário

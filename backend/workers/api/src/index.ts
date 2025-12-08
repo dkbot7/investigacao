@@ -12,6 +12,9 @@ import { rateLimitMiddleware } from './middleware/rateLimit';
 import { ApiError } from './utils/errors';
 import { logger } from './utils/logger';
 import serproRoutes from './routes/serpro.routes';
+import dadosRoutes from './routes/dados.routes';
+import usageRoutes from './routes/usage.routes';
+import { processJobs } from './cron/process-jobs';
 
 // ============================================================================
 // APP INITIALIZATION
@@ -60,6 +63,8 @@ app.get('/', (c) => {
     endpoints: {
       health: '/health',
       serpro: '/api/serpro/*',
+      admin: '/api/admin/*',
+      usage: '/api/admin/serpro/usage',
     },
     documentation: 'https://investigaree.com.br/docs/api',
   });
@@ -111,6 +116,12 @@ app.use('/api/*', rateLimitMiddleware);
 
 // Mount SERPRO routes
 app.route('/api/serpro', serproRoutes);
+
+// Mount Dados routes (admin only)
+app.route('/api/admin', dadosRoutes);
+
+// Mount Usage/Stats routes (admin only)
+app.route('/api/admin/serpro', usageRoutes);
 
 // ============================================================================
 // ERROR HANDLING
@@ -173,4 +184,20 @@ app.notFound((c) => {
 // EXPORT
 // ============================================================================
 
-export default app;
+export default {
+  /**
+   * HTTP Request Handler
+   */
+  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+    return app.fetch(request, env, ctx);
+  },
+
+  /**
+   * Scheduled Event Handler (Cron Triggers)
+   * Executa a cada 1 hora (configurado em wrangler.toml)
+   */
+  async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
+    logger.info('[Cron] Scheduled event triggered', { cron: event.cron });
+    ctx.waitUntil(processJobs(env));
+  },
+};
