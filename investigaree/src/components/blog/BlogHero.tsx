@@ -14,7 +14,7 @@ export default function BlogHero({ searchValue = "", onSearchChange, onSearch }:
   return (
     <section className="relative pt-24 pb-6 overflow-hidden">
       {/* Background gradient - simplificado */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-50 to-navy-100 dark:from-navy-950 dark:to-navy-900" />
 
       <div className="container mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         <div className="max-w-4xl mx-auto">
@@ -26,11 +26,11 @@ export default function BlogHero({ searchValue = "", onSearchChange, onSearch }:
                 <Zap className="w-6 h-6 text-blue-500" />
               </div>
               <div>
-                <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                <h1 className="text-2xl sm:text-3xl font-bold text-navy-900 dark:text-white">
                   Blog{" "}
                   <span className="text-blue-500">Investigaree</span>
                 </h1>
-                <p className="text-sm text-slate-500 dark:text-navy-400">
+                <p className="text-sm text-navy-600 dark:text-navy-400">
                   Cases reais, OSINT e forense digital
                 </p>
               </div>
@@ -39,13 +39,13 @@ export default function BlogHero({ searchValue = "", onSearchChange, onSearch }:
             {/* Lado direito - Busca (acessível sem scroll) */}
             <form onSubmit={onSearch} className="w-full lg:w-auto lg:min-w-[300px]">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 dark:text-navy-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-navy-600 dark:text-navy-400" />
                 <Input
                   type="text"
                   placeholder="Buscar artigos..."
                   value={searchValue}
                   onChange={(e) => onSearchChange?.(e.target.value)}
-                  className="pl-10 pr-4 bg-slate-100 dark:bg-navy-800/50 border-blue-500/20 text-slate-900 dark:text-white placeholder:text-slate-500 dark:text-navy-400 focus:border-blue-500/50"
+                  className="pl-10 pr-4 bg-navy-100 dark:bg-navy-800/50 border-blue-500/20 text-navy-900 dark:text-white placeholder:text-navy-600 dark:placeholder:text-navy-400 focus:border-blue-500/50"
                 />
               </div>
             </form>
@@ -56,7 +56,7 @@ export default function BlogHero({ searchValue = "", onSearchChange, onSearch }:
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="flex flex-wrap items-center gap-4 mt-4 text-slate-900 dark:text-navy-500"
+            className="flex flex-wrap items-center gap-4 mt-4 text-navy-700 dark:text-navy-500"
           >
             <div className="flex items-center gap-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-green-500" />

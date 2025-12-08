@@ -18,7 +18,7 @@ export function LGPDDisclaimer({ variant = 'rh' }: LGPDDisclaimerProps) {
             'Tribunais (processos judiciais não sigilosos)',
             'Diários Oficiais (DOU, DOE, DOM - publicações legais)',
           ],
-          sensit iveData: [
+          sensitiveData: [
             {
               title: 'CNIS/INSS (Histórico Empregatício)',
               requirement: 'Requer autorização por escrito do candidato ou ordem judicial',
@@ -37,7 +37,7 @@ export function LGPDDisclaimer({ variant = 'rh' }: LGPDDisclaimerProps) {
             'Cartórios de Protesto (dívidas protestadas)',
             'Diários Oficiais (contratos, licitações, publicações)',
           ],
-          sensit iveData: [
+          sensitiveData: [
             {
               title: 'Dados Bancários e Financeiros',
               requirement: 'NÃO acessamos. Informamos ao cliente como solicitar judicialmente via CCS/Bacen.',
@@ -59,7 +59,7 @@ export function LGPDDisclaimer({ variant = 'rh' }: LGPDDisclaimerProps) {
             'ICIJ Database (Panama Papers, Paradise Papers - vazamentos publicados)',
             'Perfis PÚBLICOS em redes sociais (sem login)',
           ],
-          sensit iveData: [
+          sensitiveData: [
             {
               title: 'Contas Bancárias (CCS/Bacen)',
               requirement: '🔒 SOMENTE com requisição judicial específica',

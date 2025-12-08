@@ -432,7 +432,7 @@ export default function QuickFilters({
                 initial={{ scale: 0.8 }}
                 animate={{ scale: 1 }}
                 onClick={() => onFiltersChange({ ...filters, search: undefined })}
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium text-slate-800 dark:text-navy-100 bg-slate-200 dark:bg-navy-800/80 border border-slate-300 dark:border-navy-600 hover:opacity-80 transition-opacity"
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium text-navy-900 dark:text-navy-100 bg-navy-200 dark:bg-navy-800/80 border border-navy-300 dark:border-navy-600 hover:opacity-80 transition-opacity"
               >
                 <Search className="w-3 h-3" />
                 &ldquo;{filters.search}&rdquo;
