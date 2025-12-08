@@ -67,6 +67,8 @@ app.get('/', (c) => {
       serpro: '/api/serpro/*',
       admin: '/api/admin/*',
       usage: '/api/admin/serpro/usage',
+      investigacoes: '/api/investigacoes',
+      tenants: '/api/tenants',
     },
     documentation: 'https://investigaree.com.br/docs/api',
   });

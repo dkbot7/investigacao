@@ -73,7 +73,7 @@ export default function AuditoriaLicitacoesPage() {
 
               {/* Subheadline with stat */}
               <p className="text-xl text-slate-300 leading-relaxed">
-                <strong className="text-white">R$ 34 milhões em fraudes sancionadas pela CGU em setembro/2025.</strong> Nossa auditoria forense detecta empresas fantasmas, superfaturamento, direcionamento e cartéis — antes da assinatura do contrato.
+                <strong className="text-white">CGU alcançou recorde histórico com 76 Processos Administrativos de Responsabilização em 2024.</strong> Nossa auditoria forense detecta empresas fantasmas, superfaturamento, direcionamento e cartéis — antes da assinatura do contrato.
               </p>
 
               {/* Key Benefits (3 items, concise) */}
@@ -185,26 +185,26 @@ export default function AuditoriaLicitacoesPage() {
               </h2>
               <div className="space-y-4 text-slate-700">
                 <p className="text-lg leading-relaxed">
-                  <strong>ONU estima:</strong> corrupção aumenta o valor de contratos públicos em 10-20% globalmente. No Brasil, <strong>CGU sancionou 4 empresas com R$ 34 Mi em multas</strong> por fraudes em licitações (set/2025).
+                  <strong>TCU revela:</strong> 82% das organizações públicas brasileiras têm exposição alta ou muito alta à corrupção. No Brasil, <strong>CGU abriu 76 Processos Administrativos de Responsabilização em 2024</strong> — recorde histórico no combate a fraudes.
                 </p>
                 <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg">
-                  <p className="font-semibold text-red-900 mb-2">Operações recentes (2025):</p>
+                  <p className="font-semibold text-red-900 mb-2">Operações recentes (2024-2025):</p>
                   <ul className="space-y-2 text-sm text-red-800">
                     <li className="flex items-start gap-2">
                       <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                      <span><strong>Dez/2025 (Acre):</strong> R$ 3,3 Mi em prejuízos — empresas laranjas, documentos falsos</span>
+                      <span><strong>Fev/2025 (Operação Dissimulo - DF):</strong> CGU e PF investigaram fraudes em licitações de terceirização</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                      <span><strong>Mai/2025 (MS):</strong> R$ 20 Mi desviados em contratos de educação</span>
+                      <span><strong>Fev/2025 (Operação Dilapsio - AC):</strong> R$ 3,3 Mi em prejuízos — empresas laranjas, documentos falsos, contratos direcionados</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                      <span><strong>Mar/2025 (PI):</strong> R$ 237 mil em superfaturamento (reforma escolar)</span>
+                      <span><strong>2024:</strong> CGU abriu 76 Processos Administrativos de Responsabilização (PAR) — recorde histórico, superando marca de 73 processos em 2020</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                      <span><strong>Fev/2025 (DF):</strong> Operação Dissimulo — 26 mandados por cartel em terceirizações</span>
+                      <span><strong>2024:</strong> Menos de 2% das organizações públicas têm sistema adequado de proteção contra fraudes (TCU/PNPC)</span>
                     </li>
                   </ul>
                 </div>
