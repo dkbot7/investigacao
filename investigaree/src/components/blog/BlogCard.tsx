@@ -72,7 +72,7 @@ export default function BlogCard({ post, featured = false, compact = false, inde
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: index * 0.05, duration: 0.3 }}
-        className="group relative overflow-hidden rounded-lg bg-white dark:bg-white/40 dark:bg-navy-900/40 border border-blue-500/10 hover:border-blue-500/30 hover:bg-white dark:bg-white/60 dark:bg-navy-900/60 transition-all duration-200"
+        className="group relative overflow-hidden rounded-lg bg-white dark:bg-navy-900/40 border border-blue-500/10 hover:border-blue-500/30 hover:bg-white dark:hover:bg-navy-900/60 transition-all duration-200"
       >
         <Link href={`/blog/${post.slug}`} className="block">
           {/* Imagem de capa - menor */}
@@ -128,7 +128,7 @@ export default function BlogCard({ post, featured = false, compact = false, inde
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: index * 0.1, duration: 0.5 }}
-        className="group relative overflow-hidden rounded-2xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/10 hover:border-blue-500/30 transition-all duration-300"
+        className="group relative overflow-hidden rounded-2xl bg-white dark:bg-navy-900/50 border border-blue-500/10 hover:border-blue-500/30 transition-all duration-300"
       >
         <Link href={`/blog/${post.slug}`} className="block">
           {/* Imagem de capa */}
@@ -228,7 +228,7 @@ export default function BlogCard({ post, featured = false, compact = false, inde
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
-      className="group relative overflow-hidden rounded-xl bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-blue-500/10 hover:border-blue-500/20 hover:bg-white dark:bg-white/50 dark:bg-navy-900/50 transition-all duration-300"
+      className="group relative overflow-hidden rounded-xl bg-white dark:bg-navy-900/30 border border-blue-500/10 hover:border-blue-500/20 hover:bg-white dark:hover:bg-navy-900/50 transition-all duration-300"
     >
       <Link href={`/blog/${post.slug}`} className="block">
         {/* Imagem de capa */}

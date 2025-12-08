@@ -68,7 +68,7 @@ export default function BlogSidebar({
       <PopularPosts posts={popularPosts} />
 
       {/* Tópicos */}
-      <div className="bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-blue-500/10 rounded-xl p-5">
+      <div className="bg-white dark:bg-navy-900/30 border border-blue-500/10 rounded-xl p-5">
         <div className="flex items-center gap-2 mb-4 pb-3 border-b border-blue-500/10">
           <div className="p-1.5 rounded-lg bg-blue-500/10">
             <Folder className="w-4 h-4 text-blue-500" />
@@ -109,7 +109,7 @@ export default function BlogSidebar({
       </div>
 
       {/* Tags Populares */}
-      <div className="bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-blue-500/10 rounded-xl p-5">
+      <div className="bg-white dark:bg-navy-900/30 border border-blue-500/10 rounded-xl p-5">
         <div className="flex items-center gap-2 mb-4 pb-3 border-b border-blue-500/10">
           <div className="p-1.5 rounded-lg bg-blue-500/10">
             <Hash className="w-4 h-4 text-blue-500" />

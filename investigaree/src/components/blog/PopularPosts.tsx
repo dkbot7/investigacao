@@ -16,7 +16,7 @@ export default function PopularPosts({ posts, title = "Mais Lidos" }: PopularPos
   if (posts.length === 0) return null;
 
   return (
-    <div className="bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-blue-500/10 rounded-xl p-5">
+    <div className="bg-white dark:bg-navy-900/30 border border-blue-500/10 rounded-xl p-5">
       {/* Header */}
       <div className="flex items-center gap-2 mb-4 pb-3 border-b border-blue-500/10">
         <div className="p-1.5 rounded-lg bg-blue-500/10">
