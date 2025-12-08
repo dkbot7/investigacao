@@ -67,7 +67,7 @@ export interface CEAFRecord {
 // CONFIGURAÇÃO
 // ============================================================================
 
-const CGU_BASE_URL = 'http://api.portaldatransparencia.gov.br/api-de-dados';
+const CGU_BASE_URL = 'https://api.portaldatransparencia.gov.br/api-de-dados';
 
 // IMPORTANTE: Obter chave em https://portaldatransparencia.gov.br/api-de-dados
 // Para desenvolvimento, pode usar sem chave (limite baixo)

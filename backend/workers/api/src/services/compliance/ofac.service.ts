@@ -93,6 +93,9 @@ function calculateSimilarity(str1: string, str2: string): number {
  * Parse XML da SDN List
  *
  * Extrai registros do XML OFAC.
+ *
+ * NOTA: Usando regex para parse. Para produção ideal, adicionar biblioteca XML
+ * como 'fast-xml-parser' ao package.json para parsing mais robusto.
  */
 function parseSDNXML(xmlText: string): OFACMatch[] {
   const records: OFACMatch[] = [];

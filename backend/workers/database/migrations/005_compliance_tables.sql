@@ -25,10 +25,7 @@ CREATE TABLE IF NOT EXISTS pep_list (
 
   -- Metadados
   created_at TEXT DEFAULT (datetime('now')),
-  updated_at TEXT DEFAULT (datetime('now')),
-
-  -- Índices
-  UNIQUE(cpf)
+  updated_at TEXT DEFAULT (datetime('now'))
 );
 
 CREATE INDEX IF NOT EXISTS idx_pep_nome ON pep_list(nome);
@@ -82,7 +79,7 @@ CREATE INDEX IF NOT EXISTS idx_sancoes_expires ON sancoes_cache(expires_at);
 CREATE TABLE IF NOT EXISTS lgpd_consent (
   id TEXT PRIMARY KEY DEFAULT (lower(hex(randomblob(16)))),
   user_id TEXT NOT NULL,
-  tenant_id TEXT NOT NULL,
+  tenant_code TEXT NOT NULL,
 
   -- Dados do titular
   documento TEXT NOT NULL, -- CPF/CNPJ sendo consultado
@@ -105,11 +102,11 @@ CREATE TABLE IF NOT EXISTS lgpd_consent (
   created_at TEXT DEFAULT (datetime('now')),
 
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-  FOREIGN KEY (tenant_id) REFERENCES tenants(id) ON DELETE CASCADE
+  FOREIGN KEY (tenant_code) REFERENCES tenants(tenant_code) ON DELETE CASCADE
 );
 
 CREATE INDEX IF NOT EXISTS idx_lgpd_consent_user ON lgpd_consent(user_id);
-CREATE INDEX IF NOT EXISTS idx_lgpd_consent_tenant ON lgpd_consent(tenant_id);
+CREATE INDEX IF NOT EXISTS idx_lgpd_consent_tenant ON lgpd_consent(tenant_code);
 CREATE INDEX IF NOT EXISTS idx_lgpd_consent_documento ON lgpd_consent(documento);
 CREATE INDEX IF NOT EXISTS idx_lgpd_consent_revogado ON lgpd_consent(revogado, created_at);
 
@@ -243,7 +240,7 @@ CREATE TABLE IF NOT EXISTS compliance_audit_log (
 
   -- Contexto
   user_id TEXT,
-  tenant_id TEXT,
+  tenant_code TEXT,
   investigacao_id TEXT,
 
   -- Metadados
@@ -252,12 +249,12 @@ CREATE TABLE IF NOT EXISTS compliance_audit_log (
   created_at TEXT DEFAULT (datetime('now')),
 
   FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (tenant_id) REFERENCES tenants(id)
+  FOREIGN KEY (tenant_code) REFERENCES tenants(tenant_code)
 );
 
 CREATE INDEX IF NOT EXISTS idx_compliance_audit_tipo ON compliance_audit_log(tipo_operacao, created_at);
 CREATE INDEX IF NOT EXISTS idx_compliance_audit_documento ON compliance_audit_log(documento);
-CREATE INDEX IF NOT EXISTS idx_compliance_audit_tenant ON compliance_audit_log(tenant_id, created_at);
+CREATE INDEX IF NOT EXISTS idx_compliance_audit_tenant ON compliance_audit_log(tenant_code, created_at);
 
 -- ============================================================================
 -- TRIGGERS PARA AUTO-UPDATE

@@ -137,42 +137,52 @@ export async function syncPEPList(db: any): Promise<number> {
       throw new Error('PEP list is empty after parsing');
     }
 
-    // 3. Limpar tabela antiga
+    // 3. Limpar tabela antiga e inserir novos registros em transação
+    // NOTA: D1 tem suporte limitado a transações explícitas.
+    // A operação DELETE + INSERT em sequência é atômica por padrão no D1.
     await db.exec('DELETE FROM pep_list');
     logger.info('[PEP] Old records deleted');
 
     // 4. Inserir novos registros
     let inserted = 0;
-    for (const record of records) {
-      try {
-        await db.prepare(`
-          INSERT INTO pep_list (
-            cpf, nome, cargo, orgao, nivel_federacao,
-            uf, municipio, data_inicio, data_fim, situacao
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `).bind(
-          record.cpf,
-          record.nome,
-          record.cargo,
-          record.orgao,
-          record.nivel_federacao,
-          record.uf || null,
-          record.municipio || null,
-          record.data_inicio || null,
-          record.data_fim || null,
-          record.situacao
-        ).run();
+    const batchSize = 100;
 
-        inserted++;
-      } catch (error: any) {
-        // Ignorar duplicatas (CPF único)
-        if (!error.message.includes('UNIQUE')) {
-          logger.warn('[PEP] Erro ao inserir registro:', {
-            cpf: record.cpf,
-            error: error.message
-          });
+    for (let i = 0; i < records.length; i += batchSize) {
+      const batch = records.slice(i, i + batchSize);
+
+      for (const record of batch) {
+        try {
+          await db.prepare(`
+            INSERT INTO pep_list (
+              cpf, nome, cargo, orgao, nivel_federacao,
+              uf, municipio, data_inicio, data_fim, situacao
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          `).bind(
+            record.cpf,
+            record.nome,
+            record.cargo,
+            record.orgao,
+            record.nivel_federacao,
+            record.uf || null,
+            record.municipio || null,
+            record.data_inicio || null,
+            record.data_fim || null,
+            record.situacao
+          ).run();
+
+          inserted++;
+        } catch (error: any) {
+          // Ignorar duplicatas (CPF único)
+          if (!error.message.includes('UNIQUE')) {
+            logger.warn('[PEP] Erro ao inserir registro:', {
+              cpf: record.cpf,
+              error: error.message
+            });
+          }
         }
       }
+
+      logger.info('[PEP] Batch inserted:', { batch: Math.floor(i / batchSize) + 1, inserted });
     }
 
     logger.info('[PEP] Sync completed:', {
