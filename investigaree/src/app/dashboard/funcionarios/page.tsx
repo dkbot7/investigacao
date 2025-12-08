@@ -25,6 +25,7 @@ import {
   FolderOpen,
   Database,
   RefreshCw,
+  CheckCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -32,6 +33,8 @@ import { useAuth } from "@/contexts/AuthContext";
 import { FichaFuncionario } from "@/components/dashboard/FichaFuncionario";
 import { AddInvestigacaoModal } from "@/components/dashboard/AddInvestigacaoModal";
 import { KanbanView } from "@/components/dashboard/KanbanView";
+import { UploadCsvButton } from "@/components/dashboard/UploadCsvButton";
+import { JobMonitor } from "@/components/dashboard/JobMonitor";
 
 // BACKEND INTEGRATION (Agent 3 - TAREFA 3.5)
 import { listarFuncionarios } from "@/lib/services/dados.service";
@@ -89,6 +92,8 @@ export default function FuncionariosPage() {
   const [alertaFilter, setAlertaFilter] = useState<AlertaType>("todos");
   const [selectedFuncionario, setSelectedFuncionario] = useState<Funcionario | null>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [showJobMonitor, setShowJobMonitor] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const limit = 50;
 
@@ -158,6 +163,24 @@ export default function FuncionariosPage() {
 
   const handleAddSuccess = () => {
     loadFuncionarios(); // Recarregar lista após adicionar
+  };
+
+  // Handle CSV upload success
+  const handleUploadSuccess = (jobId: number, count: number) => {
+    setSuccessMessage(`${count} funcionários importados! Job #${jobId} criado.`);
+    setShowJobMonitor(true);
+
+    // Auto-hide success message after 5 seconds
+    setTimeout(() => setSuccessMessage(null), 5000);
+
+    // Reload data after 3 seconds to show new funcionarios
+    setTimeout(() => loadFuncionarios(), 3000);
+  };
+
+  // Handle upload error
+  const handleUploadError = (errorMsg: string) => {
+    setError(errorMsg);
+    setTimeout(() => setError(null), 5000);
   };
 
   // Aplicar filtros
@@ -305,6 +328,22 @@ export default function FuncionariosPage() {
                 </Button>
               </div>
             )}
+
+            {/* Success Message */}
+            {successMessage && (
+              <div className="mt-2 p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-emerald-400" />
+                <span className="text-sm text-emerald-400">{successMessage}</span>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => setSuccessMessage(null)}
+                  className="ml-auto text-emerald-400 hover:text-emerald-300"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* Actions Row - Tudo no topo esquerdo */}
@@ -363,8 +402,28 @@ export default function FuncionariosPage() {
               <UserPlus className="w-4 h-4 mr-2" />
               Adicionar
             </Button>
+
+            {/* Botão Upload CSV (TAREFA 3.12) */}
+            <UploadCsvButton
+              tenantCode={tenantCode}
+              onSuccess={handleUploadSuccess}
+              onError={handleUploadError}
+            />
           </div>
         </div>
+
+        {/* Job Monitor (TAREFA 3.12) */}
+        {showJobMonitor && (
+          <JobMonitor
+            autoRefresh={true}
+            refreshInterval={3000}
+            showCompleted={false}
+            onJobComplete={(job) => {
+              console.log('[FuncionariosPage] Job completed:', job);
+              loadFuncionarios(); // Reload data when job completes
+            }}
+          />
+        )}
 
         {/* Filters */}
         <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">

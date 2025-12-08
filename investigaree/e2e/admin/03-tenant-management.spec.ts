@@ -18,11 +18,11 @@ test.describe('Admin Panel - Gerenciamento de Tenants', () => {
     });
     await adminPage.waitForTimeout(300);
 
-    // Verificar título da seção
-    await expect(adminPage.locator('text=Tenants Cadastrados')).toBeVisible();
+    // Verificar título da seção (formato: "Tenants (X)")
+    await expect(adminPage.locator('text=/Tenants \\(\\d+\\)/')).toBeVisible({ timeout: 10000 });
 
-    // Verificar que há pelo menos um card de tenant
-    const tenantCards = adminPage.locator('[class*="border"]:has-text("Código:")');
+    // Verificar que há pelo menos um card de tenant (procurar por cards com status badge)
+    const tenantCards = adminPage.locator('div[class*="cursor-pointer"]:has(span[class*="bg-emerald"], span[class*="bg-red"])');
     const count = await tenantCards.count();
 
     expect(count).toBeGreaterThan(0);
@@ -265,9 +265,10 @@ test.describe('Admin Panel - Gerenciamento de Tenants', () => {
     await adminPage.evaluate(() => {
       window.scrollTo(0, document.body.scrollHeight);
     });
+    await adminPage.waitForTimeout(300);
 
-    // Verificar que cards mostram contagem de usuários
-    const userCountElements = adminPage.locator('text=/\\d+ usuário/, text=/\\d+ user/');
+    // Verificar que cards mostram contagem de usuários (formato: "X usuario(s)")
+    const userCountElements = adminPage.locator('text=/\\d+ usuario\\(s\\)/');
     const count = await userCountElements.count();
 
     expect(count).toBeGreaterThan(0);
@@ -330,12 +331,13 @@ test.describe('Admin Panel - Gerenciamento de Tenants', () => {
     await adminPage.evaluate(() => {
       window.scrollTo(0, document.body.scrollHeight);
     });
+    await adminPage.waitForTimeout(300);
 
-    // Verificar badges de Ativo (verde)
-    const activeBadges = adminPage.locator('[class*="bg-emerald"]:has-text("Ativo"), [class*="bg-green"]:has-text("Ativo")');
+    // Verificar badges de Active (verde) - o status no código é "active"
+    const activeBadges = adminPage.locator('[class*="bg-emerald"]:has-text("active")');
 
-    // Verificar badges de Inativo (vermelho/cinza)
-    const inactiveBadges = adminPage.locator('[class*="bg-red"]:has-text("Inativo"), [class*="bg-gray"]:has-text("Inativo")');
+    // Verificar badges de Inactive (vermelho) - o status no código é "inactive"
+    const inactiveBadges = adminPage.locator('[class*="bg-red"]:has-text("inactive")');
 
     const totalBadges = await activeBadges.count() + await inactiveBadges.count();
 

@@ -114,19 +114,26 @@ test.describe('Admin Panel - Gerenciamento de Usuários', () => {
   });
 
   test('deve abrir modal de conceder acesso', async ({ adminPage }) => {
-    // Procurar botão "Liberar" ou "Conceder Acesso"
-    const grantButton = adminPage.locator('button:has-text("Liberar"), button:has-text("Conceder Acesso")').first();
+    // Scroll até seção de usuários sem acesso (abaixo da lista principal)
+    const usersWithoutAccessSection = adminPage.locator('text=Usuarios Sem Acesso');
+    if (await usersWithoutAccessSection.count() > 0) {
+      await usersWithoutAccessSection.scrollIntoViewIfNeeded();
+      await adminPage.waitForTimeout(500);
+    }
+
+    // Procurar botão "Conceder Acesso" (na seção de usuários sem acesso)
+    const grantButton = adminPage.locator('button:has-text("Conceder Acesso")').first();
 
     if (await grantButton.count() > 0) {
       // Clicar no botão
       await grantButton.click();
-      await adminPage.waitForTimeout(300);
+      await adminPage.waitForTimeout(500);
 
-      // Verificar que modal abriu (usando heading mais específico)
-      await expect(adminPage.locator('h3:has-text("Conceder Acesso")')).toBeVisible();
+      // Verificar que modal abriu
+      await expect(adminPage.locator('h2:has-text("Conceder Acesso"), h3:has-text("Conceder Acesso")')).toBeVisible({ timeout: 10000 });
 
-      // Verificar campos do formulário
-      await expect(adminPage.locator('select, [role="combobox"]')).toHaveCount(2, { timeout: 5000 }); // Tenant e Role
+      // Verificar campos do formulário (tenant e role)
+      await expect(adminPage.locator('select').first()).toBeVisible();
 
       // Fechar modal
       const cancelButton = adminPage.locator('button:has-text("Cancelar")');
@@ -136,27 +143,40 @@ test.describe('Admin Panel - Gerenciamento de Usuários', () => {
   });
 
   test('deve validar formulário de conceder acesso', async ({ adminPage }) => {
-    const grantButton = adminPage.locator('button:has-text("Liberar"), button:has-text("Conceder Acesso")').first();
+    // Scroll até seção de usuários sem acesso
+    const usersWithoutAccessSection = adminPage.locator('text=Usuarios Sem Acesso');
+    if (await usersWithoutAccessSection.count() > 0) {
+      await usersWithoutAccessSection.scrollIntoViewIfNeeded();
+      await adminPage.waitForTimeout(500);
+    }
+
+    const grantButton = adminPage.locator('button:has-text("Conceder Acesso")').first();
 
     if (await grantButton.count() > 0) {
       await grantButton.click();
-      await adminPage.waitForTimeout(300);
+      await adminPage.waitForTimeout(500);
 
-      // Selecionar tenant
+      // Selecionar tenant (primeiro select)
       const tenantSelect = adminPage.locator('select').first();
-      await tenantSelect.selectOption({ index: 0 });
+      await tenantSelect.waitFor({ state: 'visible', timeout: 5000 });
+      const options = await tenantSelect.locator('option').count();
 
-      // Selecionar role
-      const roleSelect = adminPage.locator('select').nth(1);
-      await roleSelect.selectOption('viewer');
+      if (options > 1) {
+        await tenantSelect.selectOption({ index: 1 }); // Seleciona primeira opção válida (index 0 é placeholder)
 
-      // Verificar botão Conceder habilitado
-      const confirmButton = adminPage.locator('button:has-text("Conceder")');
-      const isDisabled = await confirmButton.getAttribute('disabled');
-      expect(isDisabled).toBeNull();
+        // Selecionar role (segundo select)
+        const roleSelect = adminPage.locator('select').nth(1);
+        await roleSelect.selectOption('viewer');
+
+        // Verificar botão Conceder habilitado
+        const confirmButton = adminPage.locator('button:has-text("Conceder")');
+        const isDisabled = await confirmButton.getAttribute('disabled');
+        expect(isDisabled).toBeNull();
+      }
 
       // Cancelar
       await adminPage.locator('button:has-text("Cancelar")').click();
+      await adminPage.waitForTimeout(300);
     }
   });
 

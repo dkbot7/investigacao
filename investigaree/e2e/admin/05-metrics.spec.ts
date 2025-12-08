@@ -25,8 +25,8 @@ test.describe('Admin Panel - Métricas e Analytics', () => {
   });
 
   test('deve calcular taxa de crescimento corretamente', async ({ adminPage }) => {
-    // Procurar indicador de crescimento
-    const growthIndicators = adminPage.locator('text=/[+\\-]\\d+%/, [class*="text-emerald"], [class*="text-red"]');
+    // Procurar indicador de crescimento (corrigido - buscar por regex OU classes)
+    const growthIndicators = adminPage.locator('[class*="text-emerald"], [class*="text-red"]').filter({ hasText: /[+\-]\d+%/ });
 
     if (await growthIndicators.count() > 0) {
       const growthText = await growthIndicators.first().textContent();
