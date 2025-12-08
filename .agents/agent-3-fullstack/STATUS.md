@@ -33,7 +33,8 @@ Upload CSV + Job Monitoring implementado:
 - ✅ **TAREFA 3.10:** Sistema de alertas em tempo real com polling
 - ✅ **TAREFA 3.11:** Enhanced CSV export com formatação BR (CPF, CNPJ, moeda)
 - ✅ **TAREFA 3.12:** Upload CSV + Job Monitoring ⚡ NOVO!
-- ✅ Types consolidados (serpro.types.ts, admin.types.ts, dados.types.ts)
+- ✅ **TAREFA 3.13:** Integração com endpoints de persistência do Agent 2 ⚡ NOVO!
+- ✅ Types consolidados (serpro.types.ts, admin.types.ts, dados.types.ts, user-investigacoes.types.ts, tenants.types.ts)
 
 **Commits realizados:**
 - `[A3] Add reusable UI components and async hooks` (3071bbb)
@@ -49,10 +50,11 @@ Upload CSV + Job Monitoring implementado:
 
 **Status Agent 1:** ✅ Firebase Emulator configurado!
 **Status Agent 2:** ✅ Backend deployado e operacional!
-- URL: https://investigaree-api.chatbotimoveis.workers.dev
+- URL: https://api.investigaree.com.br
 - Health check: ✅ Healthy
 - Database D1: ✅ Migrado
 - SERPRO secrets: ⚠️ Pendente (não bloqueia desenvolvimento)
+- Persistence endpoints: ✅ 13 endpoints deployados (investigacoes + tenants)
 
 **Nota:** Todas as tarefas restantes podem ser executadas! 🚀
 
@@ -91,7 +93,7 @@ Upload CSV + Job Monitoring implementado:
 - Semana 2-3: 🔄 50% (1/2 tarefas) ✅ - TAREFA 3.12 Batch Processing COMPLETA!
 - Semana 4: 0% (0/2 tarefas) - Accessibility + Performance
 
-**Total: 11/14 tarefas completadas (78%)** ⚡ +7% desde última atualização!
+**Total: 12/14 tarefas completadas (86%)** ⚡ +8% desde última atualização!
 
 **Tarefas independentes: 8/8 (100%)** ✅
 **Tarefas que dependiam de backend: 3/6 (50%)** 🟢 MEIO CAMINHO!
@@ -112,14 +114,18 @@ Upload CSV + Job Monitoring implementado:
 
 ## 🛠️ Recursos Criados:
 
-### Service Layer (TAREFAS 3.1-3.3, 3.5)
+### Service Layer (TAREFAS 3.1-3.3, 3.5, 3.13)
 - `lib/api-client.ts` - HTTP client com auth e retry
-- `lib/services/dados.service.ts` - CRUD funcionários + jobs ⚡ NOVO!
+- `lib/services/dados.service.ts` - CRUD funcionários + jobs
 - `lib/services/serpro.service.ts` - 10 métodos SERPRO
 - `lib/services/admin.service.ts` - CRUD users, tenants, alerts, logs
+- `lib/services/user-investigacoes.service.ts` - CRUD investigações (5 métodos) ⚡ NOVO!
+- `lib/services/tenants.service.ts` - Gerenciamento de tenants (8 métodos) ⚡ NOVO!
 - `lib/types/serpro.types.ts` - 50+ interfaces TypeScript
 - `lib/types/admin.types.ts` - 30+ interfaces TypeScript
-- `lib/types/dados.types.ts` - Funcionario, Job, Cache types ⚡ NOVO!
+- `lib/types/dados.types.ts` - Funcionario, Job, Cache types
+- `lib/types/user-investigacoes.types.ts` - Investigacao types ⚡ NOVO!
+- `lib/types/tenants.types.ts` - Tenant types ⚡ NOVO!
 
 ### PDF Reports (TAREFAS 3.6-3.7)
 - `lib/services/report.service.ts` - 9 seções de relatório
