@@ -266,7 +266,10 @@ export const adminService = new AdminService();
 
 ### DIA 2 - INTEGRAÇÃO DASHBOARD (8-10 horas)
 
-#### ✅ TAREFA 3.4: Conectar Admin Panel ao Backend Real
+#### ✅ TAREFA 3.4: Conectar Admin Panel ao Backend Real (CONCLUÍDO)
+
+**Status:** ✅ CONCLUÍDO - 2025-12-07
+**Commit:** `[A3] Connect admin panel to real backend API`
 
 **Objetivo:** Substituir mock data por API calls reais
 
@@ -308,16 +311,16 @@ export default function AdminPanel() {
 - Todos os componentes em `src/components/dashboard/`
 
 **Checklist:**
-- [ ] Substituir getMockUsers() por adminService.getUsers()
-- [ ] Substituir getMockTenants() por adminService.getTenants()
-- [ ] Adicionar loading states
-- [ ] Adicionar error handling com toast
-- [ ] Testar CRUD de users
-- [ ] Testar CRUD de tenants
-- [ ] Testar grant/revoke access
-- [ ] Commit: `[A3] Connect admin panel to real backend API`
-- [ ] Atualizar STATUS.md
-- [ ] **Postar em COORDINATION.md: Admin panel conectado ao backend!**
+- [x] Substituir getMockUsers() por adminService.getUsers()
+- [x] Substituir getMockTenants() por adminService.getTenants()
+- [x] Adicionar loading states
+- [x] Adicionar error handling com toast
+- [x] Testar CRUD de users
+- [x] Testar CRUD de tenants
+- [x] Testar grant/revoke access
+- [x] Commit: `[A3] Connect admin panel to real backend API`
+- [x] Atualizar STATUS.md
+- [x] **Postar em COORDINATION.md: Admin panel conectado ao backend!**
 
 ---
 
