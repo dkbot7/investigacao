@@ -12,10 +12,48 @@ import {
   SkillLevel
 } from "@/types/blog";
 
-// Função para gerar imagem placeholder com tema específico
+// Mapeamento de imagens reais do Unsplash para cada post
+const BLOG_IMAGES: Record<string, string> = {
+  // Red Flags & Alertas
+  "red-flags-cpf": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&h=675&fit=crop",
+  "relationship-check": "https://images.unsplash.com/photo-1516534775068-ba3e7458af70?w=1200&h=675&fit=crop",
+  "romance-scam": "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=1200&h=675&fit=crop",
+
+  // Perícia e Forense
+  "perito-forense": "https://images.unsplash.com/photo-1566933293069-b55c7f326dd4?w=1200&h=675&fit=crop",
+  "chain-custody": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=675&fit=crop",
+
+  // OSINT e Consultas
+  "cpf-consulta": "/images/blog/consulta-cpf-fontes-publicas.jpg",
+  "due-diligence-brasil": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1200&h=675&fit=crop",
+  "gov-apis": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&h=675&fit=crop",
+  "lgpd-compliance": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=675&fit=crop",
+
+  // Due Diligence e Negócios
+  "due-diligence": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop",
+  "business-partner": "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1200&h=675&fit=crop",
+  "supplier-check": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&h=675&fit=crop",
+  "startup-investor": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1200&h=675&fit=crop",
+
+  // Família e Segurança
+  "domestic-staff": "https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=1200&h=675&fit=crop",
+
+  // Patrimônio e Divórcio
+  "divorce-assets": "https://images.unsplash.com/photo-1450101215322-bf5cd27642fc?w=1200&h=675&fit=crop",
+  "shell-companies": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=675&fit=crop",
+
+  // Cases
+  "case-domestic-security": "https://images.unsplash.com/photo-1582139329536-e7284fece509?w=1200&h=675&fit=crop",
+  "case-digital-stalker": "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=1200&h=675&fit=crop",
+  "case-forensic-operation": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&h=675&fit=crop",
+  "case-corporate-espionage": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=675&fit=crop",
+  "case-study-investor": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1200&h=675&fit=crop",
+  "case-study-divorce": "https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1200&h=675&fit=crop",
+  "case-national-operation": "https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=1200&h=675&fit=crop",
+};
+
 const getPlaceholderImage = (seed: string, topic: string) => {
-  // Usando picsum.photos com seed para consistência
-  return `https://picsum.photos/seed/${seed}/800/450`;
+  return BLOG_IMAGES[seed] || `https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&h=675&fit=crop`;
 };
 
 // Dados mock para desenvolvimento - será substituído por API real
@@ -504,6 +542,146 @@ export const MOCK_POSTS: BlogPost[] = [
     readingTime: 20,
     featured: false,
     views: 3456
+  },
+
+  // ===== SÉRIE FONTES PÚBLICAS BRASIL (Posts Faltantes) =====
+  {
+    id: "27",
+    title: "Receita Federal: Como Consultar CPF e CNPJ para Due Diligence",
+    slug: "receita-federal-cpf-cnpj",
+    excerpt: "Guia completo e atualizado para consultar CPF e CNPJ na Receita Federal - a fonte primária de toda investigação de due diligence no Brasil, com novidades de 2025.",
+    content: "",
+    coverImage: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&h=675&fit=crop",
+    author: BLOG_AUTHORS[1], // Dani Kaloi
+    contentType: "tutorial",
+    topic: BLOG_TOPICS[2], // OSINT Brasil
+    skillLevel: "iniciante",
+    tags: ["cpf", "cnpj", "receita federal", "fontes públicas", "due diligence"],
+    publishedAt: "2025-12-01T10:00:00Z",
+    readingTime: 15,
+    featured: true,
+    popular: true,
+    views: 8234
+  },
+  {
+    id: "28",
+    title: "TSE: Como Consultar Candidaturas, Patrimônio e Doações Eleitorais",
+    slug: "tse-candidaturas-doacoes",
+    excerpt: "Guia completo para consultar candidaturas, declarações de bens e doações eleitorais no Tribunal Superior Eleitoral - dados essenciais para identificar PEPs e mapear conexões políticas.",
+    content: "",
+    coverImage: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?w=1200&h=675&fit=crop",
+    author: BLOG_AUTHORS[1], // Dani Kaloi
+    contentType: "tutorial",
+    topic: BLOG_TOPICS[2], // OSINT Brasil
+    skillLevel: "iniciante",
+    tags: ["tse", "candidaturas", "doações eleitorais", "pep"],
+    publishedAt: "2025-12-02T10:00:00Z",
+    readingTime: 18,
+    featured: false,
+    popular: true,
+    views: 6543
+  },
+  {
+    id: "29",
+    title: "Portal da Transparência: Como Consultar CEIS e CNEP para Verificação de Sancionados",
+    slug: "portal-transparencia-ceis-cnep",
+    excerpt: "Guia completo sobre como consultar empresas e pessoas físicas sancionadas usando o CEIS e CNEP do Portal da Transparência - essencial para compliance e due diligence.",
+    content: "",
+    coverImage: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1200&h=675&fit=crop",
+    author: BLOG_AUTHORS[1], // Dani Kaloi
+    contentType: "tutorial",
+    topic: BLOG_TOPICS[2], // OSINT Brasil
+    skillLevel: "iniciante",
+    tags: ["portal da transparência", "ceis", "cnep", "sancionados", "compliance"],
+    publishedAt: "2025-12-07T10:00:00Z",
+    readingTime: 16,
+    featured: false,
+    views: 5321
+  },
+  {
+    id: "30",
+    title: "Tribunais Brasileiros: Como Consultar Processos Judiciais para Due Diligence",
+    slug: "tribunais-processos-judiciais",
+    excerpt: "Aprenda a consultar processos judiciais no PJe e tribunais estaduais - descubra ações, execuções e litígios que impactam sua investigação de pessoas e empresas.",
+    content: "",
+    coverImage: "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=1200&h=675&fit=crop",
+    author: BLOG_AUTHORS[1], // Dani Kaloi
+    contentType: "tutorial",
+    topic: BLOG_TOPICS[2], // OSINT Brasil
+    skillLevel: "iniciante",
+    tags: ["processos judiciais", "pje", "tribunais", "due diligence"],
+    publishedAt: "2025-12-07T11:00:00Z",
+    readingTime: 20,
+    featured: false,
+    views: 4876
+  },
+  {
+    id: "31",
+    title: "INSS e Dataprev: Como Verificar Benefícios Sociais e Detectar Fraudes",
+    slug: "inss-dataprev-beneficios",
+    excerpt: "Aprenda a consultar benefícios previdenciários, CNIS (vínculos empregatícios) e detectar fraudes em auxílios sociais - ferramentas essenciais para investigação e compliance.",
+    content: "",
+    coverImage: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&h=675&fit=crop",
+    author: BLOG_AUTHORS[1], // Dani Kaloi
+    contentType: "tutorial",
+    topic: BLOG_TOPICS[2], // OSINT Brasil
+    skillLevel: "intermediario",
+    tags: ["inss", "dataprev", "benefícios sociais", "cnis", "fraudes"],
+    publishedAt: "2025-12-07T12:00:00Z",
+    readingTime: 17,
+    featured: false,
+    views: 3987
+  },
+  {
+    id: "32",
+    title: "Juntas Comerciais: Como Investigar Histórico Societário e Vínculos Empresariais",
+    slug: "juntas-comerciais-empresas",
+    excerpt: "Guia completo para consultar Juntas Comerciais e descobrir alterações contratuais, vínculos societários ocultos e histórico empresarial completo no Brasil.",
+    content: "",
+    coverImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=675&fit=crop",
+    author: BLOG_AUTHORS[1], // Dani Kaloi
+    contentType: "tutorial",
+    topic: BLOG_TOPICS[2], // OSINT Brasil
+    skillLevel: "intermediario",
+    tags: ["juntas comerciais", "vínculos societários", "qsa", "histórico empresarial"],
+    publishedAt: "2025-12-07T13:00:00Z",
+    readingTime: 19,
+    featured: false,
+    views: 4123
+  },
+  {
+    id: "33",
+    title: "Cartórios: Como Consultar Imóveis e Protestos para Descobrir Patrimônio Oculto",
+    slug: "cartorios-imoveis-protestos",
+    excerpt: "Guia completo para consultar cartórios de registro de imóveis e protestos - descubra patrimônio não declarado, dívidas ocultas e inadimplência em investigações.",
+    content: "",
+    coverImage: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=675&fit=crop",
+    author: BLOG_AUTHORS[1], // Dani Kaloi
+    contentType: "tutorial",
+    topic: BLOG_TOPICS[2], // OSINT Brasil
+    skillLevel: "intermediario",
+    tags: ["cartórios", "registro de imóveis", "protestos", "patrimônio oculto"],
+    publishedAt: "2025-12-07T14:00:00Z",
+    readingTime: 22,
+    featured: false,
+    views: 5234
+  },
+  {
+    id: "34",
+    title: "DETRAN e Senatran: Como Consultar Veículos e Descobrir Patrimônio Móvel Oculto",
+    slug: "detran-veiculos",
+    excerpt: "Guia completo para consultar veículos, multas e CNH via DETRAN e Senatran - descubra patrimônio móvel não declarado e infrações que revelam padrões de comportamento.",
+    content: "",
+    coverImage: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1200&h=675&fit=crop",
+    author: BLOG_AUTHORS[1], // Dani Kaloi
+    contentType: "tutorial",
+    topic: BLOG_TOPICS[2], // OSINT Brasil
+    skillLevel: "iniciante",
+    tags: ["detran", "senatran", "veículos", "multas", "patrimônio móvel"],
+    publishedAt: "2025-12-07T15:00:00Z",
+    readingTime: 18,
+    featured: false,
+    views: 4567
   }
 ];
 
@@ -538,9 +716,6 @@ export function useBlog(initialFilters?: BlogFilters): UseBlogReturn {
     setError(null);
 
     try {
-      // TODO: Substituir por chamada real à API
-      // const response = await fetchAPI<BlogResponse>('/blog/posts', { params: { ...filters, page: pagination.page } });
-
       // Simulação com dados mock
       await new Promise(resolve => setTimeout(resolve, 400));
 
@@ -549,7 +724,8 @@ export function useBlog(initialFilters?: BlogFilters): UseBlogReturn {
       // Filtro por tópico
       if (filters.topic) {
         filteredPosts = filteredPosts.filter(
-          post => post.topic.slug === filters.topic
+          post => (typeof post.topic === 'object' && post.topic?.slug === filters.topic) ||
+                  (typeof post.topic === 'string' && post.topic === filters.topic)
         );
       }
 
@@ -578,18 +754,26 @@ export function useBlog(initialFilters?: BlogFilters): UseBlogReturn {
       if (filters.search) {
         const searchLower = filters.search.toLowerCase();
         filteredPosts = filteredPosts.filter(
-          post =>
-            post.title.toLowerCase().includes(searchLower) ||
-            post.excerpt.toLowerCase().includes(searchLower) ||
-            post.tags.some(tag => tag.toLowerCase().includes(searchLower)) ||
-            post.topic.name.toLowerCase().includes(searchLower)
+          post => {
+            const topic = post.topic as any;
+            const topicMatch = typeof topic === 'string'
+              ? (topic as string).toLowerCase().includes(searchLower)
+              : topic?.name
+              ? (topic.name as string).toLowerCase().includes(searchLower)
+              : false;
+
+            return post.title.toLowerCase().includes(searchLower) ||
+              post.excerpt.toLowerCase().includes(searchLower) ||
+              post.tags.some(tag => tag.toLowerCase().includes(searchLower)) ||
+              topicMatch;
+          }
         );
       }
 
       // Filtro por autor
       if (filters.author) {
         filteredPosts = filteredPosts.filter(
-          post => post.author.id === filters.author
+          post => (typeof post.author === 'string' ? post.author === filters.author : post.author?.id === filters.author)
         );
       }
 

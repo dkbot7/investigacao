@@ -1,0 +1,209 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e4]:
+      - link "investigaree logo investigaree" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "investigaree logo" [ref=e9]
+        - generic [ref=e10]: investigaree
+      - generic [ref=e11]:
+        - link "Home" [ref=e13] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e14]: Home
+        - link "Serviços" [ref=e16] [cursor=pointer]:
+          - /url: /servicos/
+          - generic [ref=e17]: Serviços
+        - link "Quem Somos" [ref=e19] [cursor=pointer]:
+          - /url: /quemsomos/
+          - generic [ref=e20]: Quem Somos
+        - button "Conteúdo" [ref=e22]:
+          - generic [ref=e23]: Conteúdo
+          - img [ref=e24]
+        - link "Contato" [ref=e27] [cursor=pointer]:
+          - /url: /contato/
+          - generic [ref=e28]: Contato
+      - generic [ref=e29]:
+        - button "Escuro" [ref=e31]:
+          - generic [ref=e32]:
+            - img
+          - generic [ref=e33]: Escuro
+        - button "PT 🇧🇷" [ref=e35]:
+          - img
+          - generic [ref=e36]: PT 🇧🇷
+        - button "Entrar" [ref=e39]
+        - button "Criar Investigação" [ref=e41]
+  - main [ref=e42]:
+    - generic [ref=e45]:
+      - generic [ref=e46]:
+        - img [ref=e48]
+        - generic [ref=e51]:
+          - heading "Servicos de Investigacao" [level=1] [ref=e52]
+          - paragraph [ref=e53]: +100 mil registros por investigacao
+      - generic [ref=e54]:
+        - generic [ref=e55]: Automacao
+        - generic [ref=e56]: 50+ Bases
+        - generic [ref=e57]: LGPD
+    - generic [ref=e60]:
+      - generic [ref=e61]:
+        - heading "Tecnologia + Pericia Forense" [level=2] [ref=e62]
+        - paragraph [ref=e63]:
+          - text: "Combinacao unica no Brasil:"
+          - strong [ref=e64]: Analista de Dados
+          - text: especialista em automacao +
+          - strong [ref=e65]: Perito Criminal Oficial
+          - text: (1o lugar PCE-PA 2019) no Advisory Board.
+        - generic [ref=e66]:
+          - generic [ref=e67]: Automacao
+          - generic [ref=e68]: 50+ Bases
+          - generic [ref=e69]: OSINT
+          - generic [ref=e70]: Validade Judicial
+      - generic [ref=e71]:
+        - link "Dani Kaloi Dani Kaloi Analista de Dados" [ref=e72] [cursor=pointer]:
+          - /url: /quemsomos/dani-kaloi/
+          - img "Dani Kaloi" [ref=e74]
+          - paragraph [ref=e75]: Dani Kaloi
+          - paragraph [ref=e76]: Analista de Dados
+        - link "Ibsen Maciel Ibsen Maciel Perito Criminal" [ref=e77] [cursor=pointer]:
+          - /url: /quemsomos/ibsen-maciel/
+          - img "Ibsen Maciel" [ref=e79]
+          - paragraph [ref=e80]: Ibsen Maciel
+          - paragraph [ref=e81]: Perito Criminal
+    - generic [ref=e84]:
+      - tablist [ref=e85]:
+        - tab "Proteção Familiar" [ref=e86]:
+          - img [ref=e87]
+          - generic [ref=e90]: Proteção Familiar
+        - tab "Proteção Empresarial" [selected] [ref=e91]:
+          - img [ref=e92]
+          - generic [ref=e96]: Proteção Empresarial
+        - tab "Investimentos" [ref=e97]:
+          - img [ref=e98]
+          - generic [ref=e101]: Investimentos
+        - tab "Divórcios" [ref=e102]:
+          - img [ref=e103]
+          - generic [ref=e107]: Divórcios
+      - tabpanel "Proteção Empresarial" [ref=e108]:
+        - generic [ref=e110] [cursor=pointer]:
+          - generic [ref=e112]:
+            - img [ref=e114]
+            - generic [ref=e116]:
+              - generic [ref=e117]: Serviço em Preparação
+              - generic [ref=e118]: Detalhes deste serviço serão adicionados em breve. Entre em contato para mais informações.
+          - generic [ref=e120]:
+            - list [ref=e121]:
+              - listitem [ref=e122]:
+                - img [ref=e123]
+                - generic [ref=e126]: Conteúdo em preparação
+            - generic [ref=e128]:
+              - generic [ref=e129]: Sob consulta
+              - button "Ver mais" [ref=e130]:
+                - text: Ver mais
+                - img
+    - generic [ref=e132]:
+      - heading "Precisa investigar grandes volumes?" [level=2] [ref=e133]
+      - paragraph [ref=e134]:
+        - text: Folhas de pagamento, funcionarios, fornecedores, socios...
+        - text: Processamos qualquer volume com precisao e velocidade.
+      - generic [ref=e135]:
+        - generic [ref=e136]: Empresas
+        - generic [ref=e137]: Familias
+        - generic [ref=e138]: Mulheres em Divorcio
+        - generic [ref=e139]: Investidores
+      - generic [ref=e140]:
+        - button "Solicitar Orcamento" [ref=e141]:
+          - text: Solicitar Orcamento
+          - img
+        - button "Falar com Especialista" [ref=e142]:
+          - img
+          - text: Falar com Especialista
+      - generic [ref=e143]:
+        - link "Dani Kaloi Dani Kaloi Analista de Dados" [ref=e144] [cursor=pointer]:
+          - /url: /quemsomos/dani-kaloi/
+          - img "Dani Kaloi" [ref=e146]
+          - paragraph [ref=e147]: Dani Kaloi
+          - paragraph [ref=e148]: Analista de Dados
+        - link "Ibsen Maciel Ibsen Maciel Perito Criminal" [ref=e149] [cursor=pointer]:
+          - /url: /quemsomos/ibsen-maciel/
+          - img "Ibsen Maciel" [ref=e151]
+          - paragraph [ref=e152]: Ibsen Maciel
+          - paragraph [ref=e153]: Perito Criminal
+  - contentinfo [ref=e154]:
+    - generic [ref=e155]:
+      - generic [ref=e156]:
+        - generic [ref=e157]:
+          - generic [ref=e158]:
+            - img [ref=e159]
+            - generic [ref=e161]: investigaree
+          - paragraph [ref=e162]: Investigação Digital com Inteligência
+        - generic [ref=e163]:
+          - heading "Serviços" [level=4] [ref=e164]
+          - list [ref=e165]:
+            - listitem [ref=e166]:
+              - link "Red Flag Express" [ref=e167] [cursor=pointer]:
+                - /url: /servicos/
+            - listitem [ref=e168]:
+              - link "Due Diligence Corporativo" [ref=e169] [cursor=pointer]:
+                - /url: /servicos/
+            - listitem [ref=e170]:
+              - link "Startup & Founders" [ref=e171] [cursor=pointer]:
+                - /url: /servicos/
+        - generic [ref=e172]:
+          - heading "Empresa" [level=4] [ref=e173]
+          - list [ref=e174]:
+            - listitem [ref=e175]:
+              - link "Sobre" [ref=e176] [cursor=pointer]:
+                - /url: /sobre/
+            - listitem [ref=e177]:
+              - link "Equipe" [ref=e178] [cursor=pointer]:
+                - /url: /quemsomos/
+            - listitem [ref=e179]:
+              - link "FAQ" [ref=e180] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=e181]:
+              - button "WhatsApp" [ref=e182] [cursor=pointer]:
+                - img [ref=e183]
+                - text: WhatsApp
+        - generic [ref=e185]:
+          - heading "Legal" [level=4] [ref=e186]
+          - list [ref=e187]:
+            - listitem [ref=e188]:
+              - link "Termos de Uso" [ref=e189] [cursor=pointer]:
+                - /url: /termos/
+            - listitem [ref=e190]:
+              - link "Política de Privacidade" [ref=e191] [cursor=pointer]:
+                - /url: /privacidade/
+            - listitem [ref=e192]:
+              - link "Política de Cookies" [ref=e193] [cursor=pointer]:
+                - /url: /cookies/
+            - listitem [ref=e194]:
+              - link "Disclaimer" [ref=e195] [cursor=pointer]:
+                - /url: /disclaimer/
+            - listitem [ref=e196]:
+              - link "contato@investigaree.com.br" [ref=e197] [cursor=pointer]:
+                - /url: mailto:contato@investigaree.com.br
+      - paragraph [ref=e199]: © 2025 investigaree. Todos os direitos reservados.
+  - button "Open Next.js Dev Tools" [ref=e205] [cursor=pointer]:
+    - img [ref=e206]
+  - alert [ref=e209]
+  - button "Contato via WhatsApp" [ref=e211]:
+    - img [ref=e212]
+  - dialog "Utilizamos cookies" [ref=e217]:
+    - generic [ref=e218]:
+      - generic [ref=e220]:
+        - img [ref=e222]
+        - generic [ref=e224]:
+          - heading "Utilizamos cookies" [level=3] [ref=e225]
+          - paragraph [ref=e226]:
+            - text: Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo. Ao clicar em "Aceitar todos", você concorda com o uso de cookies conforme descrito em nossa
+            - link "Política de Cookies" [ref=e227] [cursor=pointer]:
+              - /url: /cookies/
+            - text: .
+      - generic [ref=e228]:
+        - button "Personalizar" [ref=e229]:
+          - img [ref=e230]
+          - text: Personalizar
+        - button "Rejeitar não essenciais" [ref=e233]
+        - button "Aceitar todos" [ref=e234]
+```

@@ -95,6 +95,100 @@ export async function importarFuncionarios(
   return response
 }
 
+/**
+ * Cria funcionário a partir de consulta SERPRO (Integração Kanban)
+ *
+ * Endpoint: POST /api/admin/tenants/:code/funcionarios/from-serpro
+ *
+ * Este método é usado após consultas SERPRO para auto-criar cards no Kanban.
+ * Status padrão: 'investigando'
+ *
+ * @param tenantCode Código do tenant
+ * @param data Dados da consulta SERPRO
+ * @returns Funcionário criado/atualizado
+ *
+ * @example
+ * // Após consultar CPF no SERPRO:
+ * const resultado = await serproService.consultarCpf('12345678900');
+ *
+ * // Auto-criar card no Kanban:
+ * await criarFuncionarioDeSerpro('CLIENTE_01', {
+ *   cpf: '12345678900',
+ *   tipo: 'consulta_cpf',
+ *   metadata: {
+ *     api: 'cpf',
+ *     nome: resultado.nome,
+ *     nascimento: resultado.nascimento,
+ *     situacao: resultado.situacao
+ *   },
+ *   custo: 0.50,
+ *   status_investigacao: 'investigando'
+ * });
+ */
+export async function criarFuncionarioDeSerpro(
+  tenantCode: string,
+  data: {
+    cpf?: string
+    cnpj?: string
+    tipo: string
+    metadata: Record<string, any>
+    custo: number
+    status_investigacao?: 'investigar' | 'investigando' | 'relatorio' | 'monitoramento' | 'aprovado' | 'bloqueado'
+  }
+): Promise<{ success: boolean; funcionario: Funcionario; created: boolean }> {
+  const response = await apiClient.post<{
+    success: boolean
+    funcionario: Funcionario
+    created: boolean
+  }>(
+    `/api/admin/tenants/${tenantCode}/funcionarios/from-serpro`,
+    data
+  )
+
+  return response
+}
+
+/**
+ * Atualiza status do funcionário (Kanban drag & drop)
+ *
+ * Endpoint: PATCH /api/admin/tenants/:code/funcionarios/:id
+ *
+ * @param tenantCode Código do tenant
+ * @param funcionarioId ID do funcionário
+ * @param updates Campos a atualizar
+ * @returns Funcionário atualizado
+ *
+ * @example
+ * // Drag & drop no Kanban:
+ * await atualizarFuncionario('CLIENTE_01', 123, {
+ *   status_investigacao: 'aprovado'
+ * });
+ *
+ * // Adicionar observação:
+ * await atualizarFuncionario('CLIENTE_01', 123, {
+ *   observacoes: 'Verificado em 08/12/2025. Tudo OK.'
+ * });
+ */
+export async function atualizarFuncionario(
+  tenantCode: string,
+  funcionarioId: number,
+  updates: {
+    status_investigacao?: 'investigar' | 'investigando' | 'relatorio' | 'monitoramento' | 'aprovado' | 'bloqueado'
+    observacoes?: string
+    arquivado?: 0 | 1
+  }
+): Promise<{ success: boolean; funcionario: Funcionario }> {
+  const response = await apiClient.patch<{
+    success: boolean
+    funcionario: Funcionario
+  }>(
+    `/api/admin/tenants/${tenantCode}/funcionarios/${funcionarioId}`,
+    updates
+  )
+
+  return response
+}
+
 // ============================================================================
 // JOBS (Background Processing)
 // ============================================================================

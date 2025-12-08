@@ -1,0 +1,54 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - img [ref=e9]
+        - heading "Admin Login" [level=1] [ref=e11]
+        - paragraph [ref=e12]: Acesso restrito a administradores
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - text: Email
+          - generic [ref=e15]:
+            - img [ref=e16]
+            - textbox "Email" [ref=e19]:
+              - /placeholder: admin@investigaree.com.br
+        - generic [ref=e20]:
+          - text: Senha
+          - generic [ref=e21]:
+            - img [ref=e22]
+            - textbox "Senha" [ref=e25]:
+              - /placeholder: Digite sua senha
+            - button [ref=e26]:
+              - img [ref=e27]
+        - button "Entrar como Admin" [ref=e30]:
+          - img
+          - text: Entrar como Admin
+      - link "Voltar para o site" [ref=e32] [cursor=pointer]:
+        - /url: /
+    - paragraph [ref=e33]: Acesso monitorado e registrado por seguranca
+  - button "Open Next.js Dev Tools" [ref=e39] [cursor=pointer]:
+    - img [ref=e40]
+  - alert [ref=e43]
+  - button "Contato via WhatsApp" [ref=e45]:
+    - img [ref=e46]
+  - dialog "Utilizamos cookies" [ref=e51]:
+    - generic [ref=e52]:
+      - generic [ref=e54]:
+        - img [ref=e56]
+        - generic [ref=e58]:
+          - heading "Utilizamos cookies" [level=3] [ref=e59]
+          - paragraph [ref=e60]:
+            - text: Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo. Ao clicar em "Aceitar todos", você concorda com o uso de cookies conforme descrito em nossa
+            - link "Política de Cookies" [ref=e61] [cursor=pointer]:
+              - /url: /cookies/
+            - text: .
+      - generic [ref=e62]:
+        - button "Personalizar" [ref=e63]:
+          - img [ref=e64]
+          - text: Personalizar
+        - button "Rejeitar não essenciais" [ref=e67]
+        - button "Aceitar todos" [ref=e68]
+```

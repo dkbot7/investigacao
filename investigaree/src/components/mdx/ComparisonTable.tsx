@@ -37,7 +37,7 @@ export default function ComparisonTable({ headers, items, title }: ComparisonTab
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="bg-white dark:bg-white/70 dark:bg-navy-900/70">
+            <tr className="bg-slate-50 dark:bg-navy-900">
               <th className="px-4 py-3 text-left text-sm font-medium text-slate-600 dark:text-navy-300 border-b border-blue-500/10">
                 Característica
               </th>
@@ -55,7 +55,7 @@ export default function ComparisonTable({ headers, items, title }: ComparisonTab
             {items.map((item, rowIndex) => (
               <tr
                 key={rowIndex}
-                className="border-b border-blue-500/5 hover:bg-white dark:bg-white/30 dark:bg-navy-900/30 transition-colors"
+                className="border-b border-blue-500/5 hover:bg-slate-50 dark:hover:bg-navy-800/50 transition-colors"
               >
                 <td className="px-4 py-3 text-sm text-slate-900 dark:text-white">{item.feature}</td>
                 {item.values.map((value, colIndex) => (

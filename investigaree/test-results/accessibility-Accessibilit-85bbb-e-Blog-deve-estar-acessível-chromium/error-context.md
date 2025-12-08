@@ -1,0 +1,596 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e4]:
+      - link "investigaree logo investigaree" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "investigaree logo" [ref=e9]
+        - generic [ref=e10]: investigaree
+      - generic [ref=e11]:
+        - link "Home" [ref=e13] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e14]: Home
+        - link "Serviços" [ref=e16] [cursor=pointer]:
+          - /url: /servicos/
+          - generic [ref=e17]: Serviços
+        - link "Quem Somos" [ref=e19] [cursor=pointer]:
+          - /url: /quemsomos/
+          - generic [ref=e20]: Quem Somos
+        - button "Conteúdo" [ref=e22]:
+          - generic [ref=e23]: Conteúdo
+          - img [ref=e24]
+        - link "Contato" [ref=e27] [cursor=pointer]:
+          - /url: /contato/
+          - generic [ref=e28]: Contato
+      - generic [ref=e29]:
+        - button "Escuro" [ref=e31]:
+          - generic [ref=e32]:
+            - img
+          - generic [ref=e33]: Escuro
+        - button "PT 🇧🇷" [ref=e35]:
+          - img
+          - generic [ref=e36]: PT 🇧🇷
+        - button "Entrar" [ref=e39]
+        - button "Criar Investigação" [ref=e41]
+  - main [ref=e42]:
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - img [ref=e50]
+          - generic [ref=e52]:
+            - heading "Blog Investigaree" [level=1] [ref=e53]
+            - paragraph [ref=e54]: Cases reais, OSINT e forense digital
+        - generic [ref=e56]:
+          - img [ref=e57]
+          - textbox "Buscar artigos..." [ref=e60]
+      - generic [ref=e61]:
+        - generic [ref=e64]: Atualizado semanalmente
+        - generic [ref=e67]: Especialistas DFIR
+        - generic [ref=e70]: Legislação brasileira
+    - generic [ref=e72]:
+      - generic [ref=e73]:
+        - generic [ref=e75]:
+          - img [ref=e77]
+          - generic [ref=e79]:
+            - heading "Todos os Artigos" [level=2] [ref=e80]
+            - paragraph [ref=e81]: 26 artigos disponíveis
+        - generic [ref=e82]:
+          - generic [ref=e83]:
+            - button "Todos" [ref=e84]:
+              - img [ref=e85]
+              - generic [ref=e88]: Todos
+            - button "Artigo" [ref=e89]:
+              - img [ref=e90]
+              - generic [ref=e93]: Artigo
+            - button "Notícia" [ref=e94]:
+              - img [ref=e95]
+              - generic [ref=e98]: Notícia
+            - button "Tutorial" [ref=e99]:
+              - img [ref=e100]
+              - generic [ref=e103]: Tutorial
+            - button "Case Study" [ref=e104]:
+              - img [ref=e105]
+              - generic [ref=e108]: Case Study
+            - button "Review" [ref=e109]:
+              - img [ref=e110]
+              - generic [ref=e112]: Review
+            - button "Entrevista" [ref=e113]:
+              - img [ref=e114]
+              - generic [ref=e117]: Entrevista
+            - button "White Paper" [ref=e118]:
+              - img [ref=e119]
+              - generic [ref=e121]: White Paper
+            - button "Vídeo" [ref=e122]:
+              - img [ref=e123]
+              - generic [ref=e125]: Vídeo
+            - button "Podcast" [ref=e126]:
+              - img [ref=e127]
+              - generic [ref=e129]: Podcast
+          - generic [ref=e130]:
+            - button "Tópico" [ref=e132]:
+              - img [ref=e133]
+              - generic [ref=e138]: Tópico
+              - img [ref=e139]
+            - button "Nível" [ref=e142]:
+              - img [ref=e143]
+              - generic [ref=e145]: Nível
+              - img [ref=e146]
+            - button "Mais filtros" [ref=e148]:
+              - img [ref=e149]
+              - text: Mais filtros
+            - generic [ref=e151]: 26 resultados
+      - generic [ref=e152]:
+        - generic [ref=e153]:
+          - generic [ref=e154]:
+            - article [ref=e155]:
+              - 'link "Ibsen Maciel: 1º Lugar Polícia Científica do Pará - A Trajetória de 5 Anos até a Aprovação Entrevista Metodologia Forense Ibsen Maciel: 1º Lugar Polícia Científica do Pará - A Trajetória de 5 Anos até a Aprovação Em entrevista exclusiva, Ibsen Maciel conta como saiu do setor privado, passou em 1º lugar no Exército e conquistou o 1º lugar na Polícia Científica do Pará após 5 anos de dedicação. Ibsen Rodrigues Maciel Ibsen Rodrigues Maciel 15 min #ibsen maciel #perito criminal #polícia científica +4" [ref=e156] [cursor=pointer]':
+                - /url: /blog/ibsen-maciel-1-lugar-policia-cientifica-para-trajetoria/
+                - generic [ref=e157]:
+                  - 'img "Ibsen Maciel: 1º Lugar Polícia Científica do Pará - A Trajetória de 5 Anos até a Aprovação" [ref=e158]'
+                  - generic [ref=e160]:
+                    - generic [ref=e161]:
+                      - img [ref=e162]
+                      - text: Entrevista
+                    - generic "Iniciante" [ref=e165]:
+                      - img [ref=e166]
+                  - generic [ref=e170]: Metodologia Forense
+                - generic [ref=e171]:
+                  - 'heading "Ibsen Maciel: 1º Lugar Polícia Científica do Pará - A Trajetória de 5 Anos até a Aprovação" [level=3] [ref=e172]'
+                  - paragraph [ref=e173]: Em entrevista exclusiva, Ibsen Maciel conta como saiu do setor privado, passou em 1º lugar no Exército e conquistou o 1º lugar na Polícia Científica do Pará após 5 anos de dedicação.
+                  - generic [ref=e174]:
+                    - generic [ref=e175]:
+                      - img "Ibsen Rodrigues Maciel" [ref=e176]
+                      - generic [ref=e177]: Ibsen Rodrigues Maciel
+                    - generic [ref=e179]:
+                      - img [ref=e180]
+                      - text: 15 min
+                  - generic [ref=e183]:
+                    - generic [ref=e184]: "#ibsen maciel"
+                    - generic [ref=e185]: "#perito criminal"
+                    - generic [ref=e186]: "#polícia científica"
+                    - generic [ref=e187]: "+4"
+            - article [ref=e188]:
+              - 'link "Dia do Perito Criminal: Homenagem a Ibsen Maciel, Nosso Advisory Board Artigo Metodologia Forense Dia do Perito Criminal: Homenagem a Ibsen Maciel, Nosso Advisory Board Neste 4 de dezembro, celebramos o Dia do Perito Criminal com uma homenagem especial a Ibsen Maciel, Perito Criminal Oficial e membro do Advisory Board da Investigaree. Dani Kaloi Dani Kaloi 5 min #ibsen maciel #dia do perito criminal #homenagem +3" [ref=e189] [cursor=pointer]':
+                - /url: /blog/dia-perito-criminal-homenagem-ibsen-maciel/
+                - generic [ref=e190]:
+                  - 'img "Dia do Perito Criminal: Homenagem a Ibsen Maciel, Nosso Advisory Board" [ref=e191]'
+                  - generic [ref=e193]:
+                    - generic [ref=e194]:
+                      - img [ref=e195]
+                      - text: Artigo
+                    - generic "Iniciante" [ref=e198]:
+                      - img [ref=e199]
+                  - generic [ref=e203]: Metodologia Forense
+                - generic [ref=e204]:
+                  - 'heading "Dia do Perito Criminal: Homenagem a Ibsen Maciel, Nosso Advisory Board" [level=3] [ref=e205]'
+                  - paragraph [ref=e206]: Neste 4 de dezembro, celebramos o Dia do Perito Criminal com uma homenagem especial a Ibsen Maciel, Perito Criminal Oficial e membro do Advisory Board da Investigaree.
+                  - generic [ref=e207]:
+                    - generic [ref=e208]:
+                      - img "Dani Kaloi" [ref=e209]
+                      - generic [ref=e210]: Dani Kaloi
+                    - generic [ref=e212]:
+                      - img [ref=e213]
+                      - text: 5 min
+                  - generic [ref=e216]:
+                    - generic [ref=e217]: "#ibsen maciel"
+                    - generic [ref=e218]: "#dia do perito criminal"
+                    - generic [ref=e219]: "#homenagem"
+                    - generic [ref=e220]: "+3"
+            - article [ref=e221]:
+              - 'link "4 de Dezembro: Dia Nacional do Perito Criminal - Uma Homenagem aos Guardiões da Verdade Artigo Metodologia Forense 4 de Dezembro: Dia Nacional do Perito Criminal - Uma Homenagem aos Guardiões da Verdade Hoje celebramos o Dia Nacional do Perito Criminal, instituído pela Lei 11.654/2008. Uma homenagem a todos os profissionais que dedicam suas vidas à busca da verdade técnica e científica. Dani Kaloi Dani Kaloi 8 min #dia do perito criminal #4 de dezembro #perícia criminal +3" [ref=e222] [cursor=pointer]':
+                - /url: /blog/dia-do-perito-criminal-4-dezembro-homenagem/
+                - generic [ref=e223]:
+                  - 'img "4 de Dezembro: Dia Nacional do Perito Criminal - Uma Homenagem aos Guardiões da Verdade" [ref=e224]'
+                  - generic [ref=e226]:
+                    - generic [ref=e227]:
+                      - img [ref=e228]
+                      - text: Artigo
+                    - generic "Iniciante" [ref=e231]:
+                      - img [ref=e232]
+                  - generic [ref=e236]: Metodologia Forense
+                - generic [ref=e237]:
+                  - 'heading "4 de Dezembro: Dia Nacional do Perito Criminal - Uma Homenagem aos Guardiões da Verdade" [level=3] [ref=e238]'
+                  - paragraph [ref=e239]: Hoje celebramos o Dia Nacional do Perito Criminal, instituído pela Lei 11.654/2008. Uma homenagem a todos os profissionais que dedicam suas vidas à busca da verdade técnica e científica.
+                  - generic [ref=e240]:
+                    - generic [ref=e241]:
+                      - img "Dani Kaloi" [ref=e242]
+                      - generic [ref=e243]: Dani Kaloi
+                    - generic [ref=e245]:
+                      - img [ref=e246]
+                      - text: 8 min
+                  - generic [ref=e249]:
+                    - generic [ref=e250]: "#dia do perito criminal"
+                    - generic [ref=e251]: "#4 de dezembro"
+                    - generic [ref=e252]: "#perícia criminal"
+                    - generic [ref=e253]: "+3"
+            - article [ref=e254]:
+              - 'link "Como um Perito Criminal Oficial Analisa Evidências Digitais Artigo Metodologia Forense Como um Perito Criminal Oficial Analisa Evidências Digitais Entenda a metodologia científica utilizada por peritos criminais oficiais para garantir a validade jurídica de evidências digitais. Ibsen Rodrigues Maciel Ibsen Rodrigues Maciel 12 min #perícia #evidência digital #cadeia de custódia +2" [ref=e255] [cursor=pointer]':
+                - /url: /blog/como-perito-criminal-analisa-evidencias-digitais/
+                - generic [ref=e256]:
+                  - img "Como um Perito Criminal Oficial Analisa Evidências Digitais" [ref=e257]
+                  - generic [ref=e259]:
+                    - generic [ref=e260]:
+                      - img [ref=e261]
+                      - text: Artigo
+                    - generic "Iniciante" [ref=e264]:
+                      - img [ref=e265]
+                  - generic [ref=e269]: Metodologia Forense
+                - generic [ref=e270]:
+                  - heading "Como um Perito Criminal Oficial Analisa Evidências Digitais" [level=3] [ref=e271]
+                  - paragraph [ref=e272]: Entenda a metodologia científica utilizada por peritos criminais oficiais para garantir a validade jurídica de evidências digitais.
+                  - generic [ref=e273]:
+                    - generic [ref=e274]:
+                      - img "Ibsen Rodrigues Maciel" [ref=e275]
+                      - generic [ref=e276]: Ibsen Rodrigues Maciel
+                    - generic [ref=e278]:
+                      - img [ref=e279]
+                      - text: 12 min
+                  - generic [ref=e282]:
+                    - generic [ref=e283]: "#perícia"
+                    - generic [ref=e284]: "#evidência digital"
+                    - generic [ref=e285]: "#cadeia de custódia"
+                    - generic [ref=e286]: "+2"
+            - article [ref=e287]:
+              - 'link "Case: Doméstica de 8 Anos Repassava Rotina da Família para Quadrilha Case Study Cases Práticos Case: Doméstica de 8 Anos Repassava Rotina da Família para Quadrilha Como a análise de mudanças patrimoniais suspeitas revelou que funcionária de confiança estava colaborando com criminosos para planejar sequestro. Ibsen Rodrigues Maciel Ibsen Rodrigues Maciel 12 min #case study #funcionários #segurança familiar +2" [ref=e288] [cursor=pointer]':
+                - /url: /blog/case-domestica-vazava-informacoes-quadrilha/
+                - generic [ref=e289]:
+                  - 'img "Case: Doméstica de 8 Anos Repassava Rotina da Família para Quadrilha" [ref=e290]'
+                  - generic [ref=e292]:
+                    - generic [ref=e293]:
+                      - img [ref=e294]
+                      - text: Case Study
+                    - generic "Iniciante" [ref=e297]:
+                      - img [ref=e298]
+                  - generic [ref=e302]: Cases Práticos
+                - generic [ref=e303]:
+                  - 'heading "Case: Doméstica de 8 Anos Repassava Rotina da Família para Quadrilha" [level=3] [ref=e304]'
+                  - paragraph [ref=e305]: Como a análise de mudanças patrimoniais suspeitas revelou que funcionária de confiança estava colaborando com criminosos para planejar sequestro.
+                  - generic [ref=e306]:
+                    - generic [ref=e307]:
+                      - img "Ibsen Rodrigues Maciel" [ref=e308]
+                      - generic [ref=e309]: Ibsen Rodrigues Maciel
+                    - generic [ref=e311]:
+                      - img [ref=e312]
+                      - text: 12 min
+                  - generic [ref=e315]:
+                    - generic [ref=e316]: "#case study"
+                    - generic [ref=e317]: "#funcionários"
+                    - generic [ref=e318]: "#segurança familiar"
+                    - generic [ref=e319]: "+2"
+            - article [ref=e320]:
+              - 'link "Cadeia de Custódia Digital: O que Valida uma Prova em Juízo Artigo Metodologia Forense Cadeia de Custódia Digital: O que Valida uma Prova em Juízo Aprenda os princípios fundamentais que tornam uma evidência digital admissível em processos judiciais. Ibsen Rodrigues Maciel Ibsen Rodrigues Maciel 10 min #cadeia de custódia #prova digital #tribunal +2" [ref=e321] [cursor=pointer]':
+                - /url: /blog/cadeia-custodia-digital-prova-juizo/
+                - generic [ref=e322]:
+                  - 'img "Cadeia de Custódia Digital: O que Valida uma Prova em Juízo" [ref=e323]'
+                  - generic [ref=e325]:
+                    - generic [ref=e326]:
+                      - img [ref=e327]
+                      - text: Artigo
+                    - generic "Intermediário" [ref=e330]:
+                      - img [ref=e331]
+                  - generic [ref=e334]: Metodologia Forense
+                - generic [ref=e335]:
+                  - 'heading "Cadeia de Custódia Digital: O que Valida uma Prova em Juízo" [level=3] [ref=e336]'
+                  - paragraph [ref=e337]: Aprenda os princípios fundamentais que tornam uma evidência digital admissível em processos judiciais.
+                  - generic [ref=e338]:
+                    - generic [ref=e339]:
+                      - img "Ibsen Rodrigues Maciel" [ref=e340]
+                      - generic [ref=e341]: Ibsen Rodrigues Maciel
+                    - generic [ref=e343]:
+                      - img [ref=e344]
+                      - text: 10 min
+                  - generic [ref=e347]:
+                    - generic [ref=e348]: "#cadeia de custódia"
+                    - generic [ref=e349]: "#prova digital"
+                    - generic [ref=e350]: "#tribunal"
+                    - generic [ref=e351]: "+2"
+            - article [ref=e352]:
+              - 'link "Case: Predador Digital Monitorava Adolescente por 6 Meses Sem a Família Saber Case Study Cases Práticos Case: Predador Digital Monitorava Adolescente por 6 Meses Sem a Família Saber Investigação digital identificou stalker que se passava por colega de escola para monitorar adolescente de 15 anos. Ação preventiva evitou encontro presencial. Dani Kaloi Dani Kaloi 10 min #case study #stalker #proteção familiar +3" [ref=e353] [cursor=pointer]':
+                - /url: /blog/case-predador-digital-stalker-adolescente/
+                - generic [ref=e354]:
+                  - 'img "Case: Predador Digital Monitorava Adolescente por 6 Meses Sem a Família Saber" [ref=e355]'
+                  - generic [ref=e357]:
+                    - generic [ref=e358]:
+                      - img [ref=e359]
+                      - text: Case Study
+                    - generic "Iniciante" [ref=e362]:
+                      - img [ref=e363]
+                  - generic [ref=e367]: Cases Práticos
+                - generic [ref=e368]:
+                  - 'heading "Case: Predador Digital Monitorava Adolescente por 6 Meses Sem a Família Saber" [level=3] [ref=e369]'
+                  - paragraph [ref=e370]: Investigação digital identificou stalker que se passava por colega de escola para monitorar adolescente de 15 anos. Ação preventiva evitou encontro presencial.
+                  - generic [ref=e371]:
+                    - generic [ref=e372]:
+                      - img "Dani Kaloi" [ref=e373]
+                      - generic [ref=e374]: Dani Kaloi
+                    - generic [ref=e376]:
+                      - img [ref=e377]
+                      - text: 10 min
+                  - generic [ref=e380]:
+                    - generic [ref=e381]: "#case study"
+                    - generic [ref=e382]: "#stalker"
+                    - generic [ref=e383]: "#proteção familiar"
+                    - generic [ref=e384]: "+3"
+            - article [ref=e385]:
+              - 'link "Guia Completo: Como Consultar CPF em Fontes Públicas Legalmente Tutorial OSINT Brasil Guia Completo: Como Consultar CPF em Fontes Públicas Legalmente Tutorial passo a passo para verificar informações de CPF usando apenas fontes públicas oficiais do governo brasileiro. Dani Kaloi Dani Kaloi 15 min #cpf #receita federal #fontes públicas +2" [ref=e386] [cursor=pointer]':
+                - /url: /blog/guia-consultar-cpf-fontes-publicas-legalmente/
+                - generic [ref=e387]:
+                  - 'img "Guia Completo: Como Consultar CPF em Fontes Públicas Legalmente" [ref=e388]'
+                  - generic [ref=e390]:
+                    - generic [ref=e391]:
+                      - img [ref=e392]
+                      - text: Tutorial
+                    - generic "Iniciante" [ref=e395]:
+                      - img [ref=e396]
+                  - generic [ref=e400]: OSINT Brasil
+                - generic [ref=e401]:
+                  - 'heading "Guia Completo: Como Consultar CPF em Fontes Públicas Legalmente" [level=3] [ref=e402]'
+                  - paragraph [ref=e403]: Tutorial passo a passo para verificar informações de CPF usando apenas fontes públicas oficiais do governo brasileiro.
+                  - generic [ref=e404]:
+                    - generic [ref=e405]:
+                      - img "Dani Kaloi" [ref=e406]
+                      - generic [ref=e407]: Dani Kaloi
+                    - generic [ref=e409]:
+                      - img [ref=e410]
+                      - text: 15 min
+                  - generic [ref=e413]:
+                    - generic [ref=e414]: "#cpf"
+                    - generic [ref=e415]: "#receita federal"
+                    - generic [ref=e416]: "#fontes públicas"
+                    - generic [ref=e417]: "+2"
+            - article [ref=e418]:
+              - 'link "Case: Operação Castelo de Cartas - Perícia Forense em Tempo Real Case Study Cases Práticos Case: Operação Castelo de Cartas - Perícia Forense em Tempo Real Bastidores de como a perícia forense digital com extração de dados in loco permitiu laudos no mesmo dia em operação contra o crime organizado. Ibsen Rodrigues Maciel Ibsen Rodrigues Maciel 15 min #case study #perícia forense #operação policial +2" [ref=e419] [cursor=pointer]':
+                - /url: /blog/case-operacao-castelo-cartas-pericia-forense/
+                - generic [ref=e420]:
+                  - 'img "Case: Operação Castelo de Cartas - Perícia Forense em Tempo Real" [ref=e421]'
+                  - generic [ref=e423]:
+                    - generic [ref=e424]:
+                      - img [ref=e425]
+                      - text: Case Study
+                    - generic "Intermediário" [ref=e428]:
+                      - img [ref=e429]
+                  - generic [ref=e432]: Cases Práticos
+                - generic [ref=e433]:
+                  - 'heading "Case: Operação Castelo de Cartas - Perícia Forense em Tempo Real" [level=3] [ref=e434]'
+                  - paragraph [ref=e435]: Bastidores de como a perícia forense digital com extração de dados in loco permitiu laudos no mesmo dia em operação contra o crime organizado.
+                  - generic [ref=e436]:
+                    - generic [ref=e437]:
+                      - img "Ibsen Rodrigues Maciel" [ref=e438]
+                      - generic [ref=e439]: Ibsen Rodrigues Maciel
+                    - generic [ref=e441]:
+                      - img [ref=e442]
+                      - text: 15 min
+                  - generic [ref=e445]:
+                    - generic [ref=e446]: "#case study"
+                    - generic [ref=e447]: "#perícia forense"
+                    - generic [ref=e448]: "#operação policial"
+                    - generic [ref=e449]: "+2"
+          - generic [ref=e450]:
+            - paragraph [ref=e451]: Mostrando 1 a 9 de 26 artigos
+            - generic [ref=e452]:
+              - button "Anterior" [disabled]:
+                - img
+                - text: Anterior
+              - generic [ref=e453]:
+                - button "1" [ref=e454]
+                - button "2" [ref=e455]
+                - button "3" [ref=e456]
+              - button "Próximo" [ref=e457]:
+                - text: Próximo
+                - img
+        - complementary [ref=e460]:
+          - generic [ref=e461]:
+            - generic [ref=e462]:
+              - img [ref=e464]
+              - heading "Mais Lidos" [level=3] [ref=e467]
+            - generic [ref=e468]:
+              - article [ref=e469]:
+                - link "1 Artigo Como um Perito Criminal Oficial Analisa Evidências Digitais 12 min 4.521" [ref=e470] [cursor=pointer]:
+                  - /url: /blog/como-perito-criminal-analisa-evidencias-digitais/
+                  - generic [ref=e472]: "1"
+                  - generic [ref=e473]:
+                    - generic [ref=e474]: Artigo
+                    - heading "Como um Perito Criminal Oficial Analisa Evidências Digitais" [level=4] [ref=e475]
+                    - generic [ref=e476]:
+                      - generic [ref=e477]:
+                        - img [ref=e478]
+                        - text: 12 min
+                      - generic [ref=e481]:
+                        - img [ref=e482]
+                        - text: "4.521"
+              - article [ref=e485]:
+                - 'link "2 Tutorial Guia Completo: Como Consultar CPF em Fontes Públicas Legalmente 15 min 8.234" [ref=e486] [cursor=pointer]':
+                  - /url: /blog/guia-consultar-cpf-fontes-publicas-legalmente/
+                  - generic [ref=e488]: "2"
+                  - generic [ref=e489]:
+                    - generic [ref=e490]: Tutorial
+                    - 'heading "Guia Completo: Como Consultar CPF em Fontes Públicas Legalmente" [level=4] [ref=e491]'
+                    - generic [ref=e492]:
+                      - generic [ref=e493]:
+                        - img [ref=e494]
+                        - text: 15 min
+                      - generic [ref=e497]:
+                        - img [ref=e498]
+                        - text: "8.234"
+              - article [ref=e501]:
+                - 'link "3 Tutorial TSE, CEIS e CNEP: As 3 Consultas Essenciais em Due Diligence 18 min 5.432" [ref=e502] [cursor=pointer]':
+                  - /url: /blog/tse-ceis-cnep-consultas-essenciais-due-diligence/
+                  - generic [ref=e504]: "3"
+                  - generic [ref=e505]:
+                    - generic [ref=e506]: Tutorial
+                    - 'heading "TSE, CEIS e CNEP: As 3 Consultas Essenciais em Due Diligence" [level=4] [ref=e507]'
+                    - generic [ref=e508]:
+                      - generic [ref=e509]:
+                        - img [ref=e510]
+                        - text: 18 min
+                      - generic [ref=e513]:
+                        - img [ref=e514]
+                        - text: "5.432"
+              - article [ref=e517]:
+                - link "4 Artigo O que é Due Diligence Digital e Por Que Você Precisa 8 min 6.789" [ref=e518] [cursor=pointer]:
+                  - /url: /blog/o-que-e-due-diligence-digital-porque-precisa/
+                  - generic [ref=e520]: "4"
+                  - generic [ref=e521]:
+                    - generic [ref=e522]: Artigo
+                    - heading "O que é Due Diligence Digital e Por Que Você Precisa" [level=4] [ref=e523]
+                    - generic [ref=e524]:
+                      - generic [ref=e525]:
+                        - img [ref=e526]
+                        - text: 8 min
+                      - generic [ref=e529]:
+                        - img [ref=e530]
+                        - text: "6.789"
+              - article [ref=e533]:
+                - link "5 Artigo 5 Red Flags em Novos Relacionamentos que Você Pode Verificar Online 7 min 12.543" [ref=e534] [cursor=pointer]:
+                  - /url: /blog/5-red-flags-relacionamentos-verificar-online/
+                  - generic [ref=e536]: "5"
+                  - generic [ref=e537]:
+                    - generic [ref=e538]: Artigo
+                    - heading "5 Red Flags em Novos Relacionamentos que Você Pode Verificar Online" [level=4] [ref=e539]
+                    - generic [ref=e540]:
+                      - generic [ref=e541]:
+                        - img [ref=e542]
+                        - text: 7 min
+                      - generic [ref=e545]:
+                        - img [ref=e546]
+                        - text: "12.543"
+            - link "Ver todos os populares" [ref=e549] [cursor=pointer]:
+              - /url: /blog/?sort=popular
+              - text: Ver todos os populares
+              - img [ref=e550]
+          - generic [ref=e552]:
+            - generic [ref=e553]:
+              - img [ref=e555]
+              - heading "Tópicos" [level=3] [ref=e557]
+            - generic [ref=e558]:
+              - button "Metodologia Forense" [ref=e559]:
+                - img [ref=e561]
+                - generic [ref=e563]: Metodologia Forense
+              - button "Laboratório Pericial" [ref=e564]:
+                - img [ref=e566]
+                - generic [ref=e568]: Laboratório Pericial
+              - button "OSINT Brasil" [ref=e569]:
+                - img [ref=e571]
+                - generic [ref=e574]: OSINT Brasil
+              - button "Due Diligence" [ref=e575]:
+                - img [ref=e577]
+                - generic [ref=e579]: Due Diligence
+              - button "Proteção Familiar" [ref=e580]:
+                - img [ref=e582]
+                - generic [ref=e584]: Proteção Familiar
+              - button "Proteção Empresarial" [ref=e585]:
+                - img [ref=e587]
+                - generic [ref=e589]: Proteção Empresarial
+              - button "Proteção de Investimentos" [ref=e590]:
+                - img [ref=e592]
+                - generic [ref=e595]: Proteção de Investimentos
+              - button "Divórcio & Patrimônio" [ref=e596]:
+                - img [ref=e598]
+                - generic [ref=e602]: Divórcio & Patrimônio
+              - button "Cases Práticos" [ref=e603]:
+                - img [ref=e605]
+                - generic [ref=e607]: Cases Práticos
+              - button "Red Flags" [ref=e608]:
+                - img [ref=e610]
+                - generic [ref=e612]: Red Flags
+              - button "LGPD & Compliance" [ref=e613]:
+                - img [ref=e615]
+                - generic [ref=e617]: LGPD & Compliance
+              - button "Ferramentas" [ref=e618]:
+                - img [ref=e620]
+                - generic [ref=e622]: Ferramentas
+          - generic [ref=e623]:
+            - generic [ref=e624]:
+              - img [ref=e626]
+              - heading "Tags Populares" [level=3] [ref=e629]
+            - generic [ref=e630]:
+              - button "#due diligence" [ref=e631]
+              - button "#background check" [ref=e632]
+              - button "#verificação" [ref=e633]
+              - button "#cpf" [ref=e634]
+              - button "#cnpj" [ref=e635]
+              - button "#receita federal" [ref=e636]
+              - button "#tse" [ref=e637]
+              - button "#ceis" [ref=e638]
+              - button "#cnep" [ref=e639]
+              - button "#tribunal" [ref=e640]
+              - button "#divórcio" [ref=e641]
+              - button "#ocultação de bens" [ref=e642]
+          - generic [ref=e643]:
+            - heading "Newsletter DFIR" [level=3] [ref=e644]
+            - paragraph [ref=e645]: Receba as novidades semanalmente.
+            - generic [ref=e646]:
+              - textbox "seu@email.com" [ref=e647]
+              - button "Inscrever-se" [ref=e648]
+    - generic [ref=e651]:
+      - generic [ref=e652]:
+        - img [ref=e653]
+        - generic [ref=e656]: Newsletter DFIR
+      - heading "Mantenha-se à frente nas investigações digitais" [level=3] [ref=e657]
+      - paragraph [ref=e658]: Receba semanalmente as últimas inovações em forense digital, cases práticos e atualizações sobre LGPD e legislação brasileira.
+      - generic [ref=e659]:
+        - textbox "Seu melhor email profissional" [ref=e660]
+        - button "Inscrever-se" [ref=e661]
+      - generic [ref=e662]:
+        - generic [ref=e663]: Gratuito
+        - generic [ref=e665]: Sem spam
+        - generic [ref=e667]: Cancele quando quiser
+    - generic [ref=e670]:
+      - generic [ref=e671]:
+        - generic [ref=e672]:
+          - generic [ref=e673]:
+            - img [ref=e674]
+            - generic [ref=e676]: investigaree
+          - paragraph [ref=e677]: Investigação Digital com Inteligência
+        - generic [ref=e678]:
+          - heading "Serviços" [level=4] [ref=e679]
+          - list [ref=e680]:
+            - listitem [ref=e681]:
+              - link "Red Flag Express" [ref=e682] [cursor=pointer]:
+                - /url: /servicos/
+            - listitem [ref=e683]:
+              - link "Due Diligence Corporativo" [ref=e684] [cursor=pointer]:
+                - /url: /servicos/
+            - listitem [ref=e685]:
+              - link "Startup & Founders" [ref=e686] [cursor=pointer]:
+                - /url: /servicos/
+        - generic [ref=e687]:
+          - heading "Empresa" [level=4] [ref=e688]
+          - list [ref=e689]:
+            - listitem [ref=e690]:
+              - link "Sobre" [ref=e691] [cursor=pointer]:
+                - /url: /sobre/
+            - listitem [ref=e692]:
+              - link "Equipe" [ref=e693] [cursor=pointer]:
+                - /url: /quemsomos/
+            - listitem [ref=e694]:
+              - link "FAQ" [ref=e695] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=e696]:
+              - button "WhatsApp" [ref=e697] [cursor=pointer]:
+                - img [ref=e698]
+                - text: WhatsApp
+        - generic [ref=e700]:
+          - heading "Legal" [level=4] [ref=e701]
+          - list [ref=e702]:
+            - listitem [ref=e703]:
+              - link "Termos de Uso" [ref=e704] [cursor=pointer]:
+                - /url: /termos/
+            - listitem [ref=e705]:
+              - link "Política de Privacidade" [ref=e706] [cursor=pointer]:
+                - /url: /privacidade/
+            - listitem [ref=e707]:
+              - link "Política de Cookies" [ref=e708] [cursor=pointer]:
+                - /url: /cookies/
+            - listitem [ref=e709]:
+              - link "Disclaimer" [ref=e710] [cursor=pointer]:
+                - /url: /disclaimer/
+            - listitem [ref=e711]:
+              - link "contato@investigaree.com.br" [ref=e712] [cursor=pointer]:
+                - /url: mailto:contato@investigaree.com.br
+      - paragraph [ref=e714]: © 2025 investigaree. Todos os direitos reservados.
+  - button "Open Next.js Dev Tools" [ref=e720] [cursor=pointer]:
+    - img [ref=e721]
+  - alert [ref=e724]
+  - button "Contato via WhatsApp" [ref=e726]:
+    - img [ref=e727]
+  - dialog "Utilizamos cookies" [ref=e732]:
+    - generic [ref=e733]:
+      - generic [ref=e735]:
+        - img [ref=e737]
+        - generic [ref=e739]:
+          - heading "Utilizamos cookies" [level=3] [ref=e740]
+          - paragraph [ref=e741]:
+            - text: Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo. Ao clicar em "Aceitar todos", você concorda com o uso de cookies conforme descrito em nossa
+            - link "Política de Cookies" [ref=e742] [cursor=pointer]:
+              - /url: /cookies/
+            - text: .
+      - generic [ref=e743]:
+        - button "Personalizar" [ref=e744]:
+          - img [ref=e745]
+          - text: Personalizar
+        - button "Rejeitar não essenciais" [ref=e748]
+        - button "Aceitar todos" [ref=e749]
+```

@@ -55,15 +55,18 @@ router.get('/info', authMiddleware, async (c) => {
     }
 
     // Buscar todos os tenants ativos do usuário
+    // PRIORIDADE: Tenant pessoal (firebase_uid match) vem primeiro
     const { results: userTenants } = await c.env.DB.prepare(`
       SELECT
-        t.id, t.code, t.name, t.email, t.status,
+        t.id, t.code, t.name, t.email, t.status, t.firebase_uid,
         ut.role, ut.granted_at, ut.is_active
       FROM user_tenants ut
       JOIN tenants t ON ut.tenant_id = t.id
       WHERE ut.user_id = ? AND ut.is_active = 1
-      ORDER BY ut.granted_at DESC
-    `).bind(userRecord.id).all();
+      ORDER BY
+        CASE WHEN t.firebase_uid = ? THEN 0 ELSE 1 END,
+        ut.granted_at DESC
+    `).bind(userRecord.id, user.uid).all();
 
     const hasAccess = (userTenants?.length || 0) > 0;
     const activeTenant = userTenants?.[0] || null;

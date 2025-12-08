@@ -1,0 +1,196 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e4]:
+      - link "investigaree logo investigaree" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "investigaree logo" [ref=e9]
+        - generic [ref=e10]: investigaree
+      - generic [ref=e11]:
+        - link "Home" [ref=e13] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e14]: Home
+        - link "Serviços" [ref=e16] [cursor=pointer]:
+          - /url: /servicos/
+          - generic [ref=e17]: Serviços
+        - link "Quem Somos" [ref=e19] [cursor=pointer]:
+          - /url: /quemsomos/
+          - generic [ref=e20]: Quem Somos
+        - button "Conteúdo" [ref=e22]:
+          - generic [ref=e23]: Conteúdo
+          - img [ref=e24]
+        - link "Contato" [ref=e27] [cursor=pointer]:
+          - /url: /contato/
+          - generic [ref=e28]: Contato
+      - generic [ref=e29]:
+        - button "Escuro" [ref=e31]:
+          - generic [ref=e32]:
+            - img
+          - generic [ref=e33]: Escuro
+        - button "PT 🇧🇷" [ref=e35]:
+          - img
+          - generic [ref=e36]: PT 🇧🇷
+        - button "Entrar" [ref=e39]
+        - button "Criar Investigação" [ref=e41]
+  - main [ref=e42]:
+    - generic [ref=e44]:
+      - link "Voltar ao início" [ref=e45] [cursor=pointer]:
+        - /url: /
+        - img [ref=e46]
+        - text: Voltar ao início
+      - generic [ref=e48]:
+        - img [ref=e50]
+        - generic [ref=e52]:
+          - heading "Sobre a investigaree" [level=1] [ref=e53]
+          - paragraph [ref=e54]: Investigação Digital com Inteligência
+      - paragraph [ref=e55]: Somos uma empresa especializada em investigação particular e due diligence digital, com metodologia validada por Perito Criminal Oficial. Protegemos o patrimônio de investidores, empresários e famílias através de análises profundas e relatórios precisos.
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - img [ref=e61]
+        - heading "Missão" [level=2] [ref=e65]
+        - paragraph [ref=e66]: Proteger o patrimônio e a reputação de nossos clientes através de investigações éticas, legais e tecnicamente rigorosas, entregando informações confiáveis para tomadas de decisão seguras.
+      - generic [ref=e67]:
+        - img [ref=e69]
+        - heading "Visão" [level=2] [ref=e72]
+        - paragraph [ref=e73]: Ser a referência nacional em due diligence digital, reconhecida pela excelência técnica, ética profissional e pela metodologia validada por especialistas em perícia forense.
+      - generic [ref=e74]:
+        - img [ref=e76]
+        - heading "Valores" [level=2] [ref=e79]
+        - list [ref=e80]:
+          - listitem [ref=e81]:
+            - img [ref=e82]
+            - text: Ética e legalidade
+          - listitem [ref=e85]:
+            - img [ref=e86]
+            - text: Sigilo absoluto
+          - listitem [ref=e89]:
+            - img [ref=e90]
+            - text: Rigor técnico
+          - listitem [ref=e93]:
+            - img [ref=e94]
+            - text: Agilidade na entrega
+    - generic [ref=e98]:
+      - heading "Nossos Diferenciais" [level=2] [ref=e99]
+      - generic [ref=e100]:
+        - generic [ref=e101]:
+          - heading "Metodologia Forense" [level=3] [ref=e102]
+          - paragraph [ref=e103]: Nossa metodologia foi desenvolvida e validada por Perito Criminal Oficial em Forense Computacional, garantindo padrões de qualidade equivalentes aos utilizados em investigações criminais de nível nacional.
+        - generic [ref=e104]:
+          - heading "Advisory Board Especializado" [level=3] [ref=e105]
+          - paragraph [ref=e106]: Contamos com um conselho consultivo composto por especialistas renomados, incluindo peritos criminais oficiais e profissionais com certificações internacionais em análise forense digital.
+        - generic [ref=e107]:
+          - heading "Tecnologia Avançada" [level=3] [ref=e108]
+          - paragraph [ref=e109]: Utilizamos ferramentas de última geração para análise de dados, OSINT (Open Source Intelligence), verificação de documentos e monitoramento de fontes públicas em tempo real.
+        - generic [ref=e110]:
+          - heading "Conformidade Legal" [level=3] [ref=e111]
+          - paragraph [ref=e112]: Todas as nossas investigações são realizadas em conformidade com a LGPD, o Marco Civil da Internet e demais legislações aplicáveis. Trabalhamos exclusivamente com métodos éticos e legais.
+    - generic [ref=e114]:
+      - heading "Nossos Compromissos" [level=2] [ref=e115]
+      - generic [ref=e116]:
+        - generic [ref=e117]:
+          - paragraph [ref=e118]: 48h
+          - paragraph [ref=e119]: Entrega Express
+        - generic [ref=e120]:
+          - paragraph [ref=e121]: 100%
+          - paragraph [ref=e122]: LGPD Compliant
+        - generic [ref=e123]:
+          - paragraph [ref=e124]: 100%
+          - paragraph [ref=e125]: Sigilo garantido
+        - generic [ref=e126]:
+          - paragraph [ref=e127]: ANPAJ
+          - paragraph [ref=e128]: Advisory Board
+    - generic [ref=e130]:
+      - generic [ref=e131]:
+        - img [ref=e132]
+        - heading "Nossa Equipe" [level=2] [ref=e137]
+      - paragraph [ref=e138]: Nossa equipe é composta por profissionais altamente qualificados, incluindo investigadores particulares experientes, analistas de inteligência, especialistas em OSINT e consultores com background em segurança pública e privada.
+      - link "Conheça nossa equipe completa" [ref=e139] [cursor=pointer]:
+        - /url: /quemsomos/
+        - text: Conheça nossa equipe completa
+        - img [ref=e140]
+    - generic [ref=e143]:
+      - heading "Pronto para proteger seu patrimônio?" [level=2] [ref=e144]
+      - paragraph [ref=e145]: Entre em contato conosco e descubra como podemos ajudar você a tomar decisões mais seguras.
+      - button "Falar com um especialista" [ref=e146] [cursor=pointer]:
+        - img [ref=e147]
+        - text: Falar com um especialista
+  - contentinfo [ref=e149]:
+    - generic [ref=e150]:
+      - generic [ref=e151]:
+        - generic [ref=e152]:
+          - generic [ref=e153]:
+            - img [ref=e154]
+            - generic [ref=e156]: investigaree
+          - paragraph [ref=e157]: Investigação Digital com Inteligência
+        - generic [ref=e158]:
+          - heading "Serviços" [level=4] [ref=e159]
+          - list [ref=e160]:
+            - listitem [ref=e161]:
+              - link "Red Flag Express" [ref=e162] [cursor=pointer]:
+                - /url: /servicos/
+            - listitem [ref=e163]:
+              - link "Due Diligence Corporativo" [ref=e164] [cursor=pointer]:
+                - /url: /servicos/
+            - listitem [ref=e165]:
+              - link "Startup & Founders" [ref=e166] [cursor=pointer]:
+                - /url: /servicos/
+        - generic [ref=e167]:
+          - heading "Empresa" [level=4] [ref=e168]
+          - list [ref=e169]:
+            - listitem [ref=e170]:
+              - link "Sobre" [ref=e171] [cursor=pointer]:
+                - /url: /sobre/
+            - listitem [ref=e172]:
+              - link "Equipe" [ref=e173] [cursor=pointer]:
+                - /url: /quemsomos/
+            - listitem [ref=e174]:
+              - link "FAQ" [ref=e175] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=e176]:
+              - button "WhatsApp" [ref=e177] [cursor=pointer]:
+                - img [ref=e178]
+                - text: WhatsApp
+        - generic [ref=e180]:
+          - heading "Legal" [level=4] [ref=e181]
+          - list [ref=e182]:
+            - listitem [ref=e183]:
+              - link "Termos de Uso" [ref=e184] [cursor=pointer]:
+                - /url: /termos/
+            - listitem [ref=e185]:
+              - link "Política de Privacidade" [ref=e186] [cursor=pointer]:
+                - /url: /privacidade/
+            - listitem [ref=e187]:
+              - link "Política de Cookies" [ref=e188] [cursor=pointer]:
+                - /url: /cookies/
+            - listitem [ref=e189]:
+              - link "Disclaimer" [ref=e190] [cursor=pointer]:
+                - /url: /disclaimer/
+            - listitem [ref=e191]:
+              - link "contato@investigaree.com.br" [ref=e192] [cursor=pointer]:
+                - /url: mailto:contato@investigaree.com.br
+      - paragraph [ref=e194]: © 2025 investigaree. Todos os direitos reservados.
+  - button "Open Next.js Dev Tools" [ref=e200] [cursor=pointer]:
+    - img [ref=e201]
+  - alert [ref=e204]
+  - button "Contato via WhatsApp" [ref=e206]:
+    - img [ref=e207]
+  - dialog "Utilizamos cookies" [ref=e212]:
+    - generic [ref=e213]:
+      - generic [ref=e215]:
+        - img [ref=e217]
+        - generic [ref=e219]:
+          - heading "Utilizamos cookies" [level=3] [ref=e220]
+          - paragraph [ref=e221]:
+            - text: Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo. Ao clicar em "Aceitar todos", você concorda com o uso de cookies conforme descrito em nossa
+            - link "Política de Cookies" [ref=e222] [cursor=pointer]:
+              - /url: /cookies/
+            - text: .
+      - generic [ref=e223]:
+        - button "Personalizar" [ref=e224]:
+          - img [ref=e225]
+          - text: Personalizar
+        - button "Rejeitar não essenciais" [ref=e228]
+        - button "Aceitar todos" [ref=e229]
+```

@@ -267,4 +267,215 @@ router.get('/jobs', authMiddleware, async (c) => {
   }
 });
 
+/**
+ * POST /api/admin/tenants/:code/funcionarios/from-serpro
+ *
+ * Cria ou atualiza um funcionário a partir de uma consulta SERPRO
+ * Integração com Kanban: auto-cria card com status 'investigando'
+ *
+ * Body:
+ * {
+ *   cpf: "12345678900",
+ *   tipo: "consulta_cpf",
+ *   metadata: {
+ *     api: "cpf",
+ *     nome: "João da Silva",
+ *     nascimento: "01/01/1990",
+ *     situacao: "regular"
+ *   },
+ *   custo: 0.50,
+ *   status_investigacao: "investigando"  // opcional, default: 'investigando'
+ * }
+ *
+ * Response:
+ * {
+ *   success: true,
+ *   funcionario: { id, cpf, nome, ... },
+ *   created: true
+ * }
+ */
+router.post('/tenants/:code/funcionarios/from-serpro', authMiddleware, async (c) => {
+  const tenantCode = c.req.param('code');
+  const { cpf, tipo, metadata, custo, status_investigacao, cnpj } = await c.req.json();
+
+  // Validações
+  if (!cpf && !cnpj) {
+    return c.json({ error: 'CPF ou CNPJ obrigatório' }, 400);
+  }
+
+  if (!tipo) {
+    return c.json({ error: 'Tipo obrigatório (ex: consulta_cpf, consulta_cnpj)' }, 400);
+  }
+
+  try {
+    const userId = c.get('userId') || 'system';
+    const documento = cpf || cnpj;
+    const statusKanban = status_investigacao || 'investigando';
+    const metadataJson = JSON.stringify(metadata || {});
+    const custoValue = custo || 0.00;
+
+    // Verificar se funcionário já existe
+    const existing = await c.env.DB.prepare(`
+      SELECT id FROM funcionarios
+      WHERE tenant_code = ? AND cpf = ?
+    `).bind(tenantCode, documento).first();
+
+    let funcionarioId;
+
+    if (existing) {
+      // Atualizar existente
+      await c.env.DB.prepare(`
+        UPDATE funcionarios SET
+          nome_importado = ?,
+          tipo = ?,
+          metadata = ?,
+          custo = custo + ?,
+          consultado_em = CURRENT_TIMESTAMP,
+          status_investigacao = ?,
+          updated_at = CURRENT_TIMESTAMP
+        WHERE tenant_code = ? AND cpf = ?
+      `).bind(
+        metadata?.nome || null,
+        tipo,
+        metadataJson,
+        custoValue,
+        statusKanban,
+        tenantCode,
+        documento
+      ).run();
+
+      funcionarioId = existing.id;
+
+    } else {
+      // Criar novo
+      const result = await c.env.DB.prepare(`
+        INSERT INTO funcionarios (
+          tenant_code, cpf, nome_importado, tipo, metadata,
+          custo, consultado_em, status_investigacao
+        ) VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?)
+        RETURNING id
+      `).bind(
+        tenantCode,
+        documento,
+        metadata?.nome || null,
+        tipo,
+        metadataJson,
+        custoValue,
+        statusKanban
+      ).first();
+
+      funcionarioId = result?.id;
+    }
+
+    // Log de auditoria
+    await c.env.DB.prepare(`
+      INSERT INTO audit_logs (user_id, action, entity_type, entity_id, metadata)
+      VALUES (?, ?, ?, ?, ?)
+    `).bind(
+      userId,
+      existing ? 'update' : 'create',
+      'funcionario_serpro',
+      String(funcionarioId),
+      metadataJson
+    ).run();
+
+    // Buscar dados completos do funcionário criado/atualizado
+    const funcionario = await c.env.DB.prepare(`
+      SELECT
+        f.id, f.cpf, f.nome_importado as nome, f.grupo, f.cargo, f.salario,
+        f.tipo, f.metadata, f.custo, f.consultado_em, f.status_investigacao,
+        f.observacoes, f.arquivado, f.created_at, f.updated_at
+      FROM funcionarios f
+      WHERE f.id = ?
+    `).bind(funcionarioId).first();
+
+    return c.json({
+      success: true,
+      funcionario: funcionario,
+      created: !existing,
+      tenant_code: tenantCode
+    });
+
+  } catch (error: any) {
+    console.error('[From SERPRO] Erro:', error);
+    return c.json({
+      error: 'Erro ao criar funcionário',
+      details: error.message
+    }, 500);
+  }
+});
+
+/**
+ * PATCH /api/admin/tenants/:code/funcionarios/:id
+ *
+ * Atualiza status e campos de um funcionário (Kanban drag & drop)
+ *
+ * Body:
+ * {
+ *   status_investigacao?: "investigar" | "investigando" | "relatorio" | "monitoramento" | "aprovado" | "bloqueado",
+ *   observacoes?: "texto livre",
+ *   arquivado?: 0 | 1
+ * }
+ */
+router.patch('/tenants/:code/funcionarios/:id', authMiddleware, async (c) => {
+  const tenantCode = c.req.param('code');
+  const funcionarioId = c.req.param('id');
+  const updates = await c.req.json();
+
+  try {
+    const userId = c.get('userId') || 'system';
+
+    // Construir SQL dinamicamente baseado nos campos enviados
+    const allowedFields = ['status_investigacao', 'observacoes', 'arquivado'];
+    const updateFields = Object.keys(updates)
+      .filter(key => allowedFields.includes(key))
+      .map(key => `${key} = ?`);
+
+    if (updateFields.length === 0) {
+      return c.json({ error: 'Nenhum campo válido para atualizar' }, 400);
+    }
+
+    const values = Object.keys(updates)
+      .filter(key => allowedFields.includes(key))
+      .map(key => updates[key]);
+
+    await c.env.DB.prepare(`
+      UPDATE funcionarios SET
+        ${updateFields.join(', ')},
+        updated_at = CURRENT_TIMESTAMP
+      WHERE tenant_code = ? AND id = ?
+    `).bind(...values, tenantCode, funcionarioId).run();
+
+    // Log de auditoria
+    await c.env.DB.prepare(`
+      INSERT INTO audit_logs (user_id, action, entity_type, entity_id, metadata)
+      VALUES (?, ?, ?, ?, ?)
+    `).bind(
+      userId,
+      'update',
+      'funcionario',
+      funcionarioId,
+      JSON.stringify(updates)
+    ).run();
+
+    // Retornar funcionário atualizado
+    const funcionario = await c.env.DB.prepare(`
+      SELECT * FROM funcionarios
+      WHERE tenant_code = ? AND id = ?
+    `).bind(tenantCode, funcionarioId).first();
+
+    return c.json({
+      success: true,
+      funcionario: funcionario
+    });
+
+  } catch (error: any) {
+    console.error('[Update Funcionário] Erro:', error);
+    return c.json({
+      error: 'Erro ao atualizar funcionário',
+      details: error.message
+    }, 500);
+  }
+});
+
 export default router;

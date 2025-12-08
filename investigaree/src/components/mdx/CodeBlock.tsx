@@ -29,7 +29,7 @@ export default function CodeBlock({
   const lines = code.trim().split("\n");
 
   return (
-    <div className="my-6 rounded-xl overflow-hidden border border-blue-500/10 bg-white dark:bg-white/70 dark:bg-navy-900/70">
+    <div className="my-6 rounded-xl overflow-hidden border border-blue-500/10 bg-white dark:bg-navy-900">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-2 bg-white dark:bg-navy-900 border-b border-blue-500/10">
         <div className="flex items-center gap-2">

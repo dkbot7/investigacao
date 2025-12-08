@@ -15,33 +15,33 @@ interface KeyStatProps {
 const statConfig = {
   info: {
     icon: Info,
-    bgColor: "bg-blue-500/10",
-    borderColor: "border-blue-500/20",
-    valueColor: "text-blue-400",
+    bgColor: "bg-blue-50 dark:bg-navy-800",
+    borderColor: "border-blue-200 dark:border-blue-500/20",
+    valueColor: "text-blue-600 dark:text-blue-400",
   },
   warning: {
     icon: AlertTriangle,
-    bgColor: "bg-amber-500/10",
-    borderColor: "border-amber-500/20",
-    valueColor: "text-amber-400",
+    bgColor: "bg-amber-50 dark:bg-amber-900/20",
+    borderColor: "border-amber-200 dark:border-amber-500/20",
+    valueColor: "text-amber-600 dark:text-amber-400",
   },
   success: {
     icon: CheckCircle,
-    bgColor: "bg-green-500/10",
-    borderColor: "border-green-500/20",
-    valueColor: "text-green-400",
+    bgColor: "bg-green-50 dark:bg-green-900/20",
+    borderColor: "border-green-200 dark:border-green-500/20",
+    valueColor: "text-green-600 dark:text-green-400",
   },
   "trend-up": {
     icon: TrendingUp,
-    bgColor: "bg-red-500/10",
-    borderColor: "border-red-500/20",
-    valueColor: "text-red-400",
+    bgColor: "bg-red-50 dark:bg-red-900/20",
+    borderColor: "border-red-200 dark:border-red-500/20",
+    valueColor: "text-red-600 dark:text-red-400",
   },
   "trend-down": {
     icon: TrendingDown,
-    bgColor: "bg-green-500/10",
-    borderColor: "border-green-500/20",
-    valueColor: "text-green-400",
+    bgColor: "bg-green-50 dark:bg-green-900/20",
+    borderColor: "border-green-200 dark:border-green-500/20",
+    valueColor: "text-green-600 dark:text-green-400",
   },
 };
 
@@ -60,7 +60,7 @@ export default function KeyStat({
       className={`${config.bgColor} ${config.borderColor} border rounded-xl p-6 my-6`}
     >
       <div className="flex items-start gap-4">
-        <div className="p-2 rounded-lg bg-white dark:bg-white/50 dark:bg-navy-900/50">
+        <div className="p-2 rounded-lg bg-white dark:bg-navy-900">
           <Icon className={`w-6 h-6 ${config.valueColor}`} />
         </div>
         <div className="flex-1">

@@ -12,6 +12,7 @@ import {
   Shield,
   Clock,
   FolderOpen,
+  DollarSign,
 } from "lucide-react";
 
 interface Funcionario {
@@ -36,6 +37,11 @@ interface Funcionario {
   sancionado_ofac?: number;
   is_grupo?: number;
   grupo_total_documentos?: number;
+  // Kanban integration fields
+  tipo?: string;
+  custo?: number;
+  consultado_em?: string;
+  metadata?: string | Record<string, any>;
 }
 
 interface KanbanViewProps {
@@ -150,6 +156,11 @@ export function KanbanView({ funcionarios, onSelectFuncionario }: KanbanViewProp
         const columnFuncionarios = groupedByStatus[column.id] || [];
         const Icon = column.icon;
 
+        // Calculate total cost for this column
+        const totalCost = columnFuncionarios.reduce((sum, func) => {
+          return sum + (func.custo || 0);
+        }, 0);
+
         return (
           <div
             key={column.id}
@@ -157,7 +168,7 @@ export function KanbanView({ funcionarios, onSelectFuncionario }: KanbanViewProp
           >
             {/* Column Header */}
             <div className={`p-4 border-b border-slate-400 dark:border-navy-700 ${column.bgColor} ${column.borderColor} border-t-2`}>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <Icon className={`w-5 h-5 ${column.color}`} />
                   <h3 className={`font-semibold ${column.color}`}>{column.title}</h3>
@@ -166,6 +177,16 @@ export function KanbanView({ funcionarios, onSelectFuncionario }: KanbanViewProp
                   {columnFuncionarios.length}
                 </span>
               </div>
+
+              {/* Total Cost Badge */}
+              {totalCost > 0 && (
+                <div className="flex items-center gap-1 text-xs text-slate-900 dark:text-white/60">
+                  <DollarSign className="w-3 h-3" />
+                  <span className="font-mono">
+                    R$ {totalCost.toFixed(2)}
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Column Cards */}
@@ -290,6 +311,21 @@ export function KanbanView({ funcionarios, onSelectFuncionario }: KanbanViewProp
                           <p className="text-xs text-slate-900 dark:text-white/40 mt-2">
                             Salário: R$ {func.salario.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                           </p>
+                        )}
+
+                        {/* Cost Badge (if exists) */}
+                        {func.custo && func.custo > 0 && (
+                          <div className="flex items-center gap-1 mt-2 pt-2 border-t border-slate-400 dark:border-navy-700">
+                            <DollarSign className="w-3 h-3 text-emerald-400" />
+                            <span className="text-xs text-slate-900 dark:text-white/60 font-mono">
+                              R$ {func.custo.toFixed(2)}
+                            </span>
+                            {func.tipo && (
+                              <span className="text-xs text-slate-900 dark:text-white/40 ml-1">
+                                • {func.tipo.replace('consulta_', '').toUpperCase()}
+                              </span>
+                            )}
+                          </div>
                         )}
                       </>
                     )}

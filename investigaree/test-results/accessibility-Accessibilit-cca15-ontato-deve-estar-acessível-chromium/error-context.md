@@ -1,0 +1,202 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e4]:
+      - link "investigaree logo investigaree" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "investigaree logo" [ref=e9]
+        - generic [ref=e10]: investigaree
+      - generic [ref=e11]:
+        - link "Home" [ref=e13] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e14]: Home
+        - link "Serviços" [ref=e16] [cursor=pointer]:
+          - /url: /servicos/
+          - generic [ref=e17]: Serviços
+        - link "Quem Somos" [ref=e19] [cursor=pointer]:
+          - /url: /quemsomos/
+          - generic [ref=e20]: Quem Somos
+        - button "Conteúdo" [ref=e22]:
+          - generic [ref=e23]: Conteúdo
+          - img [ref=e24]
+        - link "Contato" [ref=e27] [cursor=pointer]:
+          - /url: /contato/
+          - generic [ref=e28]: Contato
+      - generic [ref=e29]:
+        - button "Escuro" [ref=e31]:
+          - generic [ref=e32]:
+            - img
+          - generic [ref=e33]: Escuro
+        - button "PT 🇧🇷" [ref=e35]:
+          - img
+          - generic [ref=e36]: PT 🇧🇷
+        - button "Entrar" [ref=e39]
+        - button "Criar Investigação" [ref=e41]
+  - main [ref=e42]:
+    - generic [ref=e45]:
+      - generic [ref=e46]:
+        - img [ref=e48]
+        - generic [ref=e50]:
+          - heading "Fale Conosco" [level=1] [ref=e51]
+          - paragraph [ref=e52]: +100 mil registros por investigação
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - img [ref=e55]
+          - text: Divórcios
+        - generic [ref=e59]:
+          - img [ref=e60]
+          - text: Empresas
+        - generic [ref=e64]:
+          - img [ref=e65]
+          - text: Investidores
+    - generic [ref=e68]:
+      - generic [ref=e69]:
+        - generic [ref=e70]:
+          - generic [ref=e71]:
+            - img [ref=e73]
+            - generic [ref=e75]: WhatsApp
+            - generic [ref=e76]: Atendimento rápido e sigiloso
+          - generic [ref=e77]:
+            - button "Iniciar conversa" [ref=e78] [cursor=pointer]
+            - paragraph [ref=e79]: Resposta em até 24h
+        - generic [ref=e80]:
+          - generic [ref=e81]:
+            - img "Ibsen Maciel" [ref=e83]
+            - generic [ref=e84]: Ibsen Maciel
+            - generic [ref=e85]: Perito Criminal • Advisory Board
+            - generic [ref=e86]: Forense Computacional
+          - generic [ref=e87]:
+            - link "Enviar email" [ref=e88] [cursor=pointer]:
+              - /url: mailto:ibsenmaciel@gmail.com?subject=Contato%20via%20investigaree
+              - img [ref=e89]
+              - text: Enviar email
+            - paragraph [ref=e92]: ibsenmaciel@gmail.com
+        - generic [ref=e93]:
+          - generic [ref=e94]:
+            - img "Dani Kaloi" [ref=e96]
+            - generic [ref=e97]: Dani Kaloi
+            - generic [ref=e98]: Fundadora & Arquiteta de Sistemas
+            - generic [ref=e99]:
+              - generic [ref=e100]:
+                - img [ref=e101]
+                - text: Automacao
+              - generic [ref=e109]: OSINT
+          - generic [ref=e110]:
+            - link "Enviar email" [ref=e111] [cursor=pointer]:
+              - /url: mailto:kaloidani@gmail.com?subject=Contato%20via%20investigaree
+              - img [ref=e112]
+              - text: Enviar email
+            - paragraph [ref=e115]: kaloidani@gmail.com
+      - generic [ref=e118]: ou preencha o formulário
+      - generic [ref=e120]:
+        - generic [ref=e121]:
+          - generic [ref=e122]:
+            - img [ref=e123]
+            - text: Formulário de Contato
+          - generic [ref=e126]: Preencha os campos abaixo e entraremos em contato
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - generic [ref=e130]:
+              - text: Nome completo
+              - textbox "Nome completo" [ref=e131]:
+                - /placeholder: Seu nome
+            - generic [ref=e132]:
+              - text: E-mail
+              - textbox "E-mail" [ref=e133]:
+                - /placeholder: seu@email.com
+          - generic [ref=e134]:
+            - text: Assunto
+            - textbox "Assunto" [ref=e135]:
+              - /placeholder: Sobre o que deseja falar?
+          - generic [ref=e136]:
+            - text: Mensagem
+            - textbox "Mensagem" [ref=e137]:
+              - /placeholder: Descreva como podemos ajudar...
+          - button "Enviar mensagem" [ref=e138]:
+            - generic [ref=e139]:
+              - img
+              - text: Enviar mensagem
+          - paragraph [ref=e140]:
+            - text: Ao enviar, você concorda com nossa
+            - link "Política de Privacidade" [ref=e141] [cursor=pointer]:
+              - /url: /privacidade/
+  - contentinfo [ref=e142]:
+    - generic [ref=e143]:
+      - generic [ref=e144]:
+        - generic [ref=e145]:
+          - generic [ref=e146]:
+            - img [ref=e147]
+            - generic [ref=e149]: investigaree
+          - paragraph [ref=e150]: Investigação Digital com Inteligência
+        - generic [ref=e151]:
+          - heading "Serviços" [level=4] [ref=e152]
+          - list [ref=e153]:
+            - listitem [ref=e154]:
+              - link "Red Flag Express" [ref=e155] [cursor=pointer]:
+                - /url: /servicos/
+            - listitem [ref=e156]:
+              - link "Due Diligence Corporativo" [ref=e157] [cursor=pointer]:
+                - /url: /servicos/
+            - listitem [ref=e158]:
+              - link "Startup & Founders" [ref=e159] [cursor=pointer]:
+                - /url: /servicos/
+        - generic [ref=e160]:
+          - heading "Empresa" [level=4] [ref=e161]
+          - list [ref=e162]:
+            - listitem [ref=e163]:
+              - link "Sobre" [ref=e164] [cursor=pointer]:
+                - /url: /sobre/
+            - listitem [ref=e165]:
+              - link "Equipe" [ref=e166] [cursor=pointer]:
+                - /url: /quemsomos/
+            - listitem [ref=e167]:
+              - link "FAQ" [ref=e168] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=e169]:
+              - button "WhatsApp" [ref=e170] [cursor=pointer]:
+                - img [ref=e171]
+                - text: WhatsApp
+        - generic [ref=e173]:
+          - heading "Legal" [level=4] [ref=e174]
+          - list [ref=e175]:
+            - listitem [ref=e176]:
+              - link "Termos de Uso" [ref=e177] [cursor=pointer]:
+                - /url: /termos/
+            - listitem [ref=e178]:
+              - link "Política de Privacidade" [ref=e179] [cursor=pointer]:
+                - /url: /privacidade/
+            - listitem [ref=e180]:
+              - link "Política de Cookies" [ref=e181] [cursor=pointer]:
+                - /url: /cookies/
+            - listitem [ref=e182]:
+              - link "Disclaimer" [ref=e183] [cursor=pointer]:
+                - /url: /disclaimer/
+            - listitem [ref=e184]:
+              - link "contato@investigaree.com.br" [ref=e185] [cursor=pointer]:
+                - /url: mailto:contato@investigaree.com.br
+      - paragraph [ref=e187]: © 2025 investigaree. Todos os direitos reservados.
+  - button "Open Next.js Dev Tools" [ref=e193] [cursor=pointer]:
+    - img [ref=e194]
+  - alert [ref=e197]
+  - button "Contato via WhatsApp" [ref=e199]:
+    - img [ref=e200]
+  - dialog "Utilizamos cookies" [ref=e205]:
+    - generic [ref=e206]:
+      - generic [ref=e208]:
+        - img [ref=e210]
+        - generic [ref=e212]:
+          - heading "Utilizamos cookies" [level=3] [ref=e213]
+          - paragraph [ref=e214]:
+            - text: Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo. Ao clicar em "Aceitar todos", você concorda com o uso de cookies conforme descrito em nossa
+            - link "Política de Cookies" [ref=e215] [cursor=pointer]:
+              - /url: /cookies/
+            - text: .
+      - generic [ref=e216]:
+        - button "Personalizar" [ref=e217]:
+          - img [ref=e218]
+          - text: Personalizar
+        - button "Rejeitar não essenciais" [ref=e221]
+        - button "Aceitar todos" [ref=e222]
+```
