@@ -44,9 +44,9 @@ export default function SeriesNavigation({
   return (
     <div className="my-8 rounded-2xl overflow-hidden border border-blue-500/20 bg-gradient-to-br from-navy-900 to-navy-950">
       {/* Header */}
-      <div className="p-4 bg-white dark:bg-white/50 dark:bg-navy-900/50 border-b border-blue-500/10">
+      <div className="p-4 bg-white dark:bg-navy-900 border-b border-blue-500/10">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-blue-500/10">
+          <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-500/10">
             <BookOpen className="w-5 h-5 text-blue-500" />
           </div>
           <div className="flex-1">
@@ -92,8 +92,8 @@ export default function SeriesNavigation({
                 key={post.slug}
                 className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
                   isCurrent
-                    ? "bg-blue-500/10 border border-blue-500/20"
-                    : "hover:bg-slate-100 dark:bg-navy-800/50"
+                    ? "bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20"
+                    : "hover:bg-slate-50 dark:hover:bg-navy-800/50"
                 }`}
               >
                 {/* Status icon */}
@@ -146,11 +146,11 @@ export default function SeriesNavigation({
       </div>
 
       {/* Navigation buttons */}
-      <div className="p-4 bg-white dark:bg-white/30 dark:bg-navy-900/30 border-t border-blue-500/10 flex items-center justify-between gap-4">
+      <div className="p-4 bg-white dark:bg-navy-900 border-t border-blue-500/10 flex items-center justify-between gap-4">
         {previousPost ? (
           <Link
             href={`/blog/${previousPost.slug}`}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-navy-800 hover:bg-navy-700 text-slate-600 dark:text-navy-300 hover:text-slate-900 dark:text-white transition-colors text-sm"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-navy-800 hover:bg-slate-200 dark:hover:bg-navy-700 text-slate-600 dark:text-navy-300 hover:text-slate-900 dark:hover:text-white transition-colors text-sm"
           >
             <ChevronLeft className="w-4 h-4" />
             <span className="hidden sm:inline">Anterior</span>

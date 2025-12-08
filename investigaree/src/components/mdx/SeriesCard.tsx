@@ -35,7 +35,7 @@ export default function SeriesCard({
     <Link href={`/series/${slug}`}>
       <motion.article
         whileHover={{ y: -4 }}
-        className="group relative rounded-2xl overflow-hidden border border-blue-500/10 bg-white dark:bg-white/50 dark:bg-navy-900/50 hover:border-blue-500/30 transition-colors h-full"
+        className="group relative rounded-2xl overflow-hidden border border-blue-500/10 bg-white dark:bg-navy-900 hover:border-blue-500/30 transition-colors h-full"
       >
         {/* Cover image */}
         <div className="relative h-40 overflow-hidden">
