@@ -219,7 +219,7 @@ export default function ExportarPage() {
         <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
             <Filter className="w-4 h-4 text-slate-900 dark:text-slate-500 dark:text-white/50" />
-            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70">Filtrar por Grupo (aplicavel a Funcionarios)</span>
+            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-navy-300">Filtrar por Grupo (aplicavel a Funcionarios)</span>
           </div>
           <div className="flex flex-wrap gap-2">
             <button

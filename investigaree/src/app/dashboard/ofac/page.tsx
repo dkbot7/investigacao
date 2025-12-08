@@ -161,7 +161,7 @@ export default function OFACPage() {
           <Flag className="w-6 h-6 text-orange-400 flex-shrink-0 mt-0.5" />
           <div>
             <h3 className="text-orange-400 font-semibold">Importante - Leia com Atencao</h3>
-            <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm mt-1">
+            <p className="text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm mt-1">
               A lista OFAC SDN (Specially Designated Nationals) do Tesouro dos EUA contem nomes de pessoas e entidades sancionadas.
               Os matches abaixo sao baseados em <strong className="text-slate-900 dark:text-white">similaridade de nome (50%+)</strong> e{" "}
               <strong className="text-orange-300">NAO indicam necessariamente</strong> que a pessoa seja a mesma da lista.
@@ -225,7 +225,7 @@ export default function OFACPage() {
         <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
             <Filter className="w-4 h-4 text-slate-900 dark:text-slate-500 dark:text-white/50" />
-            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70">Filtrar por Programa de Sancao</span>
+            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-navy-300">Filtrar por Programa de Sancao</span>
           </div>
           <div className="flex flex-wrap gap-2">
             <button
@@ -280,7 +280,7 @@ export default function OFACPage() {
                         {ofac.nome}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 font-mono text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 font-mono text-sm">
                       {ofac.cpf}
                     </td>
                     <td className="py-3 px-4">
@@ -291,7 +291,7 @@ export default function OFACPage() {
                       </div>
                     </td>
                     <td className="py-3 px-4">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-navy-300">
                         {ofac.programa}
                       </span>
                     </td>
@@ -307,7 +307,7 @@ export default function OFACPage() {
                       </span>
                     </td>
                     <td className="py-3 px-4">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-navy-300">
                         {ofac.grupo}
                       </span>
                     </td>

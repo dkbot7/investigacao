@@ -268,7 +268,7 @@ export function UploadCsvButton({
                             {parseResult.data.slice(0, 5).map((func, idx) => (
                               <tr
                                 key={idx}
-                                className="border-b border-slate-200 dark:border-navy-800"
+                                className="border-b border-slate-300 dark:border-navy-700"
                               >
                                 <td className="py-2 px-2 font-mono text-slate-900 dark:text-white">
                                   {func.cpf}
@@ -287,7 +287,7 @@ export function UploadCsvButton({
                           </tbody>
                         </table>
                         {parseResult.data.length > 5 && (
-                          <p className="text-xs text-slate-500 dark:text-white/50 mt-2">
+                          <p className="text-xs text-slate-500 dark:text-navy-400 mt-2">
                             + {parseResult.data.length - 5} registros
                           </p>
                         )}

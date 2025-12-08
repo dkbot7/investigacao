@@ -141,7 +141,7 @@ export default function ConfiguracoesPage() {
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                       isActive
                         ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
-                        : "text-slate-700 dark:text-white/70 hover:text-white hover:bg-slate-100 dark:bg-navy-800"
+                        : "text-slate-700 dark:text-navy-300 hover:text-white hover:bg-slate-100 dark:bg-navy-800"
                     }`}
                   >
                     <Icon className="w-5 h-5" />
@@ -302,7 +302,7 @@ export default function ConfiguracoesPage() {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70 uppercase tracking-wide">Por Email</h3>
+                    <h3 className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-navy-300 uppercase tracking-wide">Por Email</h3>
 
                     <label className="flex items-center justify-between p-4 bg-slate-100 dark:bg-navy-800/50 rounded-lg cursor-pointer hover:bg-slate-100 dark:bg-navy-800 transition-colors">
                       <div>
@@ -345,7 +345,7 @@ export default function ConfiguracoesPage() {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70 uppercase tracking-wide">Notificações Push</h3>
+                    <h3 className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-navy-300 uppercase tracking-wide">Notificações Push</h3>
 
                     <label className="flex items-center justify-between p-4 bg-slate-100 dark:bg-navy-800/50 rounded-lg cursor-pointer hover:bg-slate-100 dark:bg-navy-800 transition-colors">
                       <div>
@@ -414,7 +414,7 @@ export default function ConfiguracoesPage() {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70 uppercase tracking-wide">Alterar Senha</h3>
+                    <h3 className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-navy-300 uppercase tracking-wide">Alterar Senha</h3>
 
                     <div className="space-y-2">
                       <label className="block text-sm font-medium text-slate-900 dark:text-slate-800 dark:text-white/80">Senha Atual</label>
@@ -532,7 +532,7 @@ export default function ConfiguracoesPage() {
 
                   {/* Plan Features */}
                   <div className="space-y-3">
-                    <h4 className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70">Recursos incluídos:</h4>
+                    <h4 className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-navy-300">Recursos incluídos:</h4>
                     <ul className="space-y-2">
                       {[
                         "Investigações ilimitadas",
@@ -550,7 +550,7 @@ export default function ConfiguracoesPage() {
 
                   {/* Contact for Payment */}
                   <div className="bg-slate-100 dark:bg-navy-800/50 border border-slate-400 dark:border-navy-700 rounded-xl p-6">
-                    <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm mb-4">
+                    <p className="text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm mb-4">
                       Para renovar sua assinatura ou alterar seu plano, entre em contato conosco pelo WhatsApp.
                     </p>
                     <a

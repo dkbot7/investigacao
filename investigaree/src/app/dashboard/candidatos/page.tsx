@@ -157,7 +157,7 @@ export default function CandidatosPage() {
           <Vote className="w-6 h-6 text-purple-400 flex-shrink-0 mt-0.5" />
           <div>
             <h3 className="text-purple-400 font-semibold">Participacao Eleitoral</h3>
-            <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm mt-1">
+            <p className="text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm mt-1">
               Foram identificados <strong className="text-slate-900 dark:text-white">{CLIENTE_01_CANDIDATOS.length} funcionarios</strong> que
               participaram como candidatos em eleicoes. Esta informacao e publica e proveniente do TSE.
             </p>
@@ -219,7 +219,7 @@ export default function CandidatosPage() {
         <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
             <Filter className="w-4 h-4 text-slate-900 dark:text-slate-500 dark:text-white/50" />
-            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70">Filtrar por Partido</span>
+            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-navy-300">Filtrar por Partido</span>
           </div>
           <div className="flex flex-wrap gap-2">
             <button
@@ -275,10 +275,10 @@ export default function CandidatosPage() {
                         {candidato.nome}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 font-mono text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 font-mono text-sm">
                       {candidato.cpf}
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm">
                       {candidato.cargo}
                     </td>
                     <td className="py-3 px-4">
@@ -286,10 +286,10 @@ export default function CandidatosPage() {
                         {candidato.partido}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm">
                       {candidato.uf}
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm">
                       {candidato.ano}
                     </td>
                     <td className="py-3 px-4">

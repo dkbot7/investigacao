@@ -149,7 +149,7 @@ export default function SancionadosPage() {
           <AlertTriangle className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" />
           <div>
             <h3 className="text-red-400 font-semibold">Alerta de Integridade</h3>
-            <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm mt-1">
+            <p className="text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm mt-1">
               Foram identificados <strong className="text-slate-900 dark:text-white">{CLIENTE_01_STATS?.totais?.sancionados || 0} funcionario(s)</strong> com
               sancoes ativas no CEIS (Cadastro de Empresas Inidoineas e Suspensas) ou CNEP (Cadastro Nacional de Empresas Punidas).
               Recomenda-se verificacao imediata da compatibilidade com os cargos ocupados.
@@ -226,7 +226,7 @@ export default function SancionadosPage() {
                         {sancionado.nome}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 font-mono text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 font-mono text-sm">
                       {sancionado.cpf}
                     </td>
                     <td className="py-3 px-4">
@@ -238,16 +238,16 @@ export default function SancionadosPage() {
                         {sancionado.tipo}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm">
                       {sancionado.orgao}
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm max-w-[300px]">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm max-w-[300px]">
                       {sancionado.motivo}
                     </td>
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-1 text-sm">
                         <Calendar className="w-3.5 h-3.5 text-slate-900 dark:text-white/40" />
-                        <span className="text-slate-900 dark:text-slate-700 dark:text-white/70">{sancionado.dataInicio}</span>
+                        <span className="text-slate-900 dark:text-slate-700 dark:text-navy-300">{sancionado.dataInicio}</span>
                         <span className="text-slate-900 dark:text-white/40">a</span>
                         <span className="text-red-400 font-medium">{sancionado.dataFim}</span>
                       </div>

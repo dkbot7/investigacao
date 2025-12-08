@@ -170,7 +170,7 @@ export default function BeneficiosPage() {
           <DollarSign className="w-6 h-6 text-blue-400 flex-shrink-0 mt-0.5" />
           <div>
             <h3 className="text-blue-400 font-semibold">Recebimento de Beneficios Sociais</h3>
-            <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm mt-1">
+            <p className="text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm mt-1">
               Foram identificados <strong className="text-slate-900 dark:text-white">{CLIENTE_01_STATS?.totais?.beneficiarios || 0} funcionarios</strong> que
               receberam beneficios de programas sociais como Auxilio Emergencial, Bolsa Familia, BPC, entre outros.
               Esta verificacao e importante para analise de compatibilidade com o vinculo empregaticio.
@@ -237,7 +237,7 @@ export default function BeneficiosPage() {
         <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
             <Filter className="w-4 h-4 text-slate-900 dark:text-slate-500 dark:text-white/50" />
-            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70">Filtrar por Tipo de Beneficio</span>
+            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-navy-300">Filtrar por Tipo de Beneficio</span>
           </div>
           <div className="flex flex-wrap gap-2">
             <button
@@ -292,7 +292,7 @@ export default function BeneficiosPage() {
                         {beneficio.nome}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 font-mono text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 font-mono text-sm">
                       {beneficio.cpf}
                     </td>
                     <td className="py-3 px-4">
@@ -305,11 +305,11 @@ export default function BeneficiosPage() {
                         R$ {beneficio.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm">
                       {beneficio.ano}
                     </td>
                     <td className="py-3 px-4">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-navy-300">
                         {beneficio.grupo}
                       </span>
                     </td>

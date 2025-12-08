@@ -173,7 +173,7 @@ export default function VinculosPage() {
           <Briefcase className="w-6 h-6 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
             <h3 className="text-amber-400 font-semibold">Participacoes Societarias</h3>
-            <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm mt-1">
+            <p className="text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm mt-1">
               Foram identificados <strong className="text-slate-900 dark:text-white">{CLIENTE_01_STATS?.totais?.socios || 0} funcionarios</strong> com
               vinculos societarios em <strong className="text-slate-900 dark:text-white">{CLIENTE_01_STATS?.totais?.cnpjs || 0} empresas</strong>.
               Dados provenientes da Receita Federal (QSA - Quadro de Socios e Administradores).
@@ -236,7 +236,7 @@ export default function VinculosPage() {
         <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
             <Filter className="w-4 h-4 text-slate-900 dark:text-slate-500 dark:text-white/50" />
-            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70">Filtrar por Situacao Cadastral</span>
+            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-navy-300">Filtrar por Situacao Cadastral</span>
           </div>
           <div className="flex flex-wrap gap-2">
             <button
@@ -293,17 +293,17 @@ export default function VinculosPage() {
                         {vinculo.nome}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 font-mono text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 font-mono text-sm">
                       {vinculo.cpf}
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 font-mono text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 font-mono text-sm">
                       {formatCNPJ(vinculo.cnpj)}
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm max-w-[250px] truncate">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm max-w-[250px] truncate">
                       {vinculo.razao_social}
                     </td>
                     <td className="py-3 px-4">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-navy-300">
                         {vinculo.qualificacao}
                       </span>
                     </td>

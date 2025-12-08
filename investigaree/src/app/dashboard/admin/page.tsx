@@ -742,7 +742,7 @@ export default function AdminPage() {
           <Button
             onClick={loadData}
             variant="outline"
-            className="border-navy-600 text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white"
+            className="border-navy-600 text-slate-900 dark:text-slate-700 dark:text-navy-300 hover:text-white"
           >
             <RefreshCw className="w-4 h-4 mr-2" />
             Atualizar
@@ -921,7 +921,7 @@ export default function AdminPage() {
                 <Button
                   size="sm"
                   variant="outline"
-                  className="border-navy-600 text-slate-900 dark:text-slate-700 dark:text-white/70"
+                  className="border-navy-600 text-slate-900 dark:text-slate-700 dark:text-navy-300"
                   onClick={handleMarkAllAsRead}
                 >
                   <CheckCheck className="w-4 h-4 mr-2" />
@@ -953,7 +953,7 @@ export default function AdminPage() {
                             {new Date(alert.created_at).toLocaleString('pt-BR')}
                           </span>
                         </div>
-                        <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70 mt-1">{alert.message}</p>
+                        <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-navy-300 mt-1">{alert.message}</p>
                         {alert.data && (
                           <div className="mt-2 text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 bg-white dark:bg-navy-900/50 rounded p-2">
                             {alert.data.email && <p>Email: {alert.data.email}</p>}
@@ -1244,7 +1244,7 @@ export default function AdminPage() {
                   {paginationData.paginatedItems.map((u) => (
                     <tr key={u.id} className="border-b border-slate-300 dark:border-navy-800">
                       <td className="py-3 px-3 text-slate-900 dark:text-white text-sm">{u.email}</td>
-                      <td className="py-3 px-3 text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm">{u.name || "-"}</td>
+                      <td className="py-3 px-3 text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm">{u.name || "-"}</td>
                       <td className="py-3 px-3">
                         <div className="flex flex-wrap gap-1">
                           {u.tenants.map((t) => (
@@ -1399,7 +1399,7 @@ export default function AdminPage() {
                     size="sm"
                     onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                     disabled={currentPage === 1}
-                    className="border-navy-600 text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="border-navy-600 text-slate-900 dark:text-slate-700 dark:text-navy-300 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <ChevronLeft className="w-4 h-4" />
                     Anterior
@@ -1430,7 +1430,7 @@ export default function AdminPage() {
                           className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
                             page === currentPage
                               ? 'bg-blue-500 text-white'
-                              : 'bg-slate-100 dark:bg-navy-800 text-slate-700 dark:text-white/70 hover:bg-navy-700 hover:text-white'
+                              : 'bg-slate-100 dark:bg-navy-800 text-slate-700 dark:text-navy-300 hover:bg-navy-700 hover:text-white'
                           }`}
                         >
                           {page}
@@ -1444,7 +1444,7 @@ export default function AdminPage() {
                     size="sm"
                     onClick={() => setCurrentPage(prev => Math.min(paginationData.totalPages, prev + 1))}
                     disabled={currentPage === paginationData.totalPages}
-                    className="border-navy-600 text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="border-navy-600 text-slate-900 dark:text-slate-700 dark:text-navy-300 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Próxima
                     <ChevronRight className="w-4 h-4" />
@@ -1735,7 +1735,7 @@ export default function AdminPage() {
                     <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
                       <Shield className="w-4 h-4 text-blue-400" />
                     </div>
-                    <span className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70">Taxa de Ativação</span>
+                    <span className="text-sm text-slate-900 dark:text-slate-700 dark:text-navy-300">Taxa de Ativação</span>
                   </div>
                   <span className="text-lg font-bold text-blue-400">{usageMetrics.activationRate}%</span>
                 </div>
@@ -1744,7 +1744,7 @@ export default function AdminPage() {
                     <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center">
                       <FileText className="w-4 h-4 text-purple-400" />
                     </div>
-                    <span className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70">Ações (Total)</span>
+                    <span className="text-sm text-slate-900 dark:text-slate-700 dark:text-navy-300">Ações (Total)</span>
                   </div>
                   <span className="text-lg font-bold text-purple-400">{usageMetrics.totalActions}</span>
                 </div>
@@ -1753,7 +1753,7 @@ export default function AdminPage() {
                     <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
                       <Activity className="w-4 h-4 text-blue-400" />
                     </div>
-                    <span className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70">Ações (24h)</span>
+                    <span className="text-sm text-slate-900 dark:text-slate-700 dark:text-navy-300">Ações (24h)</span>
                   </div>
                   <span className="text-lg font-bold text-blue-400">{usageMetrics.actionsLastDay}</span>
                 </div>
@@ -1778,11 +1778,11 @@ export default function AdminPage() {
             </h3>
             <div className="space-y-4">
               <div>
-                <Label className="text-slate-900 dark:text-slate-700 dark:text-white/70">Usuario</Label>
+                <Label className="text-slate-900 dark:text-slate-700 dark:text-navy-300">Usuario</Label>
                 <p className="text-slate-900 dark:text-white font-medium">{selectedUser.email}</p>
               </div>
               <div>
-                <Label htmlFor="tenant" className="text-slate-900 dark:text-slate-700 dark:text-white/70">Tenant</Label>
+                <Label htmlFor="tenant" className="text-slate-900 dark:text-slate-700 dark:text-navy-300">Tenant</Label>
                 <select
                   id="tenant"
                   value={grantForm.tenant_code}
@@ -1797,7 +1797,7 @@ export default function AdminPage() {
                 </select>
               </div>
               <div>
-                <Label htmlFor="role" className="text-slate-900 dark:text-slate-700 dark:text-white/70">Permissao</Label>
+                <Label htmlFor="role" className="text-slate-900 dark:text-slate-700 dark:text-navy-300">Permissao</Label>
                 <select
                   id="role"
                   value={grantForm.role}
@@ -1864,7 +1864,7 @@ export default function AdminPage() {
 
             <form onSubmit={(e) => { e.preventDefault(); handleCreateTenant(); }} className="space-y-4">
               <div>
-                <Label htmlFor="code" className="text-slate-900 dark:text-slate-700 dark:text-white/70">
+                <Label htmlFor="code" className="text-slate-900 dark:text-slate-700 dark:text-navy-300">
                   Código do Tenant <span className="text-red-400">*</span>
                 </Label>
                 <Input
@@ -1888,7 +1888,7 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <Label htmlFor="name" className="text-slate-900 dark:text-slate-700 dark:text-white/70">
+                <Label htmlFor="name" className="text-slate-900 dark:text-slate-700 dark:text-navy-300">
                   Nome do Tenant <span className="text-red-400">*</span>
                 </Label>
                 <Input
@@ -1909,7 +1909,7 @@ export default function AdminPage() {
 
               <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3">
                 <p className="text-blue-400 text-sm font-medium mb-1">ℹ️ Informação</p>
-                <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 text-xs">
+                <p className="text-slate-900 dark:text-slate-700 dark:text-navy-300 text-xs">
                   O tenant será criado com status ativo. Você poderá adicionar usuários após a criação.
                 </p>
               </div>
@@ -1964,7 +1964,7 @@ export default function AdminPage() {
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                   Confirmar Revogação de Acesso
                 </h3>
-                <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm mb-4">
+                <p className="text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm mb-4">
                   Tem certeza que deseja revogar o acesso de{" "}
                   <span className="font-semibold text-slate-900 dark:text-white">{revokeData.userEmail}</span>{" "}
                   ao tenant{" "}
@@ -2251,7 +2251,7 @@ export default function AdminPage() {
                 </div>
                 <Button
                   variant="outline"
-                  className="w-full border-navy-600 text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white"
+                  className="w-full border-navy-600 text-slate-900 dark:text-slate-700 dark:text-navy-300 hover:text-white"
                   onClick={() => {
                     setShowTenantDetailsModal(false);
                     setSelectedTenant(null);

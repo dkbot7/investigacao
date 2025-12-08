@@ -497,7 +497,7 @@ function DashboardContent({
                     <ChevronRight className="w-4 h-4 text-slate-900 dark:text-white/40" />
                   </div>
                 </div>
-                <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70 mt-2">{alerta.detalhe}</p>
+                <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-navy-300 mt-2">{alerta.detalhe}</p>
               </div>
             ))}
           </div>
@@ -694,7 +694,7 @@ function CandidatosDetail({ candidatos }: { candidatos: typeof CLIENTE_01_DATA.c
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-500/20 text-purple-400">
                 {c.partido}
               </span>
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-navy-300">
                 {c.ano}
               </span>
             </div>
@@ -862,7 +862,7 @@ function OFACDetail({ ofacMatches, totalMatches }: { ofacMatches: typeof CLIENTE
           <Flag className="w-5 h-5 text-orange-400 mt-0.5" />
           <div>
             <p className="text-orange-400 font-medium">Sobre esta analise</p>
-            <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70 mt-1">
+            <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-navy-300 mt-1">
               A lista OFAC SDN (Specially Designated Nationals) do Tesouro dos EUA contem nomes de pessoas e entidades sancionadas.
               Os matches abaixo sao baseados em <strong>similaridade de nome (50%)</strong> e <strong>NAO indicam necessariamente</strong> que
               a pessoa seja a mesma da lista. Recomenda-se verificacao manual adicional.
@@ -907,7 +907,7 @@ function OFACDetail({ ofacMatches, totalMatches }: { ofacMatches: typeof CLIENTE
             <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mb-1">Match na Lista OFAC:</p>
             <p className="text-sm text-orange-300 font-medium">{m.matchOFAC}</p>
             <div className="flex items-center gap-2 mt-2">
-              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
+              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-navy-300">
                 {m.programa}
               </span>
               <span className="text-xs text-slate-900 dark:text-white/40">Programa de Sancoes</span>
@@ -936,7 +936,7 @@ function ObitoDetail({ verificacao }: { verificacao: typeof CLIENTE_01_DATA.veri
           <HeartPulse className="w-5 h-5 text-blue-400 mt-0.5" />
           <div>
             <p className="text-blue-400 font-medium">Sobre esta verificacao</p>
-            <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-white/70 mt-1">
+            <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-navy-300 mt-1">
               Consulta realizada na Receita Federal para verificar a situacao cadastral dos CPFs.
               Identifica se a pessoa esta viva, falecida ou com pendencias de regularizacao.
             </p>
@@ -1117,7 +1117,7 @@ function RelatoriosContent({ data }: { data: typeof CLIENTE_01_DATA }) {
           <Shield className="w-5 h-5 text-blue-400" />
           Sobre os Relatorios
         </h3>
-        <ul className="space-y-2 text-sm text-slate-900 dark:text-slate-700 dark:text-white/70">
+        <ul className="space-y-2 text-sm text-slate-900 dark:text-slate-700 dark:text-navy-300">
           <li>Os relatorios sao gerados com base em dados publicos oficiais</li>
           <li>Fontes: TSE, CGU (CEIS/CNEP), Portal da Transparencia, Receita Federal</li>
           <li>Os documentos sao confidenciais e de uso exclusivo do cliente</li>
@@ -1212,7 +1212,7 @@ function ProgressBarClickable({
       onClick={onClick}
     >
       <div className="flex justify-between text-sm mb-1">
-        <span className="text-slate-900 dark:text-slate-700 dark:text-white/70 flex items-center gap-1">
+        <span className="text-slate-900 dark:text-slate-700 dark:text-navy-300 flex items-center gap-1">
           {label}
           <ChevronRight className="w-3 h-3 opacity-50" />
         </span>

@@ -136,7 +136,7 @@ export default function ObitosPage() {
           <AlertTriangle className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" />
           <div>
             <h3 className="text-red-400 font-semibold">Alerta Critico de Integridade</h3>
-            <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm mt-1">
+            <p className="text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm mt-1">
               Foram identificados <strong className="text-slate-900 dark:text-white">{CLIENTE_01_OBITOS.length} funcionarios falecidos</strong> ainda
               constando em registros da COMURG. Recomenda-se verificacao imediata junto ao setor de RH
               para regularizacao cadastral e possivel identificacao de pagamentos indevidos.
@@ -199,7 +199,7 @@ export default function ObitosPage() {
 
         {/* Timeline por ano */}
         <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
-          <h3 className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70 mb-4">Distribuicao por Ano de Obito</h3>
+          <h3 className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-navy-300 mb-4">Distribuicao por Ano de Obito</h3>
           <div className="flex flex-wrap gap-2">
             {anosOrdenados.map(ano => (
               <div
@@ -209,7 +209,7 @@ export default function ObitosPage() {
                     ? "bg-red-500/10 border-red-500/30 text-red-400"
                     : ano >= 2020
                     ? "bg-orange-500/10 border-orange-500/30 text-orange-400"
-                    : "bg-slate-100 dark:bg-navy-800 border-navy-600 text-slate-700 dark:text-white/70"
+                    : "bg-slate-100 dark:bg-navy-800 border-navy-600 text-slate-700 dark:text-navy-300"
                 }`}
               >
                 <span className="font-bold">{ano}</span>
@@ -265,11 +265,11 @@ export default function ObitosPage() {
                         {obito.nome}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 font-mono text-sm">
+                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 font-mono text-sm">
                       {obito.cpf}
                     </td>
                     <td className="py-3 px-4">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-navy-300">
                         {obito.grupo}
                       </span>
                     </td>
@@ -279,7 +279,7 @@ export default function ObitosPage() {
                           ? "bg-red-500/20 text-red-400"
                           : obito.ano_obito >= 2020
                           ? "bg-orange-500/20 text-orange-400"
-                          : "bg-navy-700 text-slate-700 dark:text-white/70"
+                          : "bg-navy-700 text-slate-700 dark:text-navy-300"
                       }`}>
                         {obito.ano_obito}
                       </span>

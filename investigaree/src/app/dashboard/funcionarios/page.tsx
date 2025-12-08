@@ -429,7 +429,7 @@ export default function FuncionariosPage() {
         <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
             <Filter className="w-4 h-4 text-slate-900 dark:text-slate-500 dark:text-white/50" />
-            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-white/70">Filtros</span>
+            <span className="text-sm font-medium text-slate-900 dark:text-slate-700 dark:text-navy-300">Filtros</span>
           </div>
 
           {/* Categoria Filter */}
@@ -543,13 +543,13 @@ export default function FuncionariosPage() {
                           {func.nome}
                         </span>
                       </td>
-                      <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 font-mono text-sm">{func.cpf}</td>
+                      <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 font-mono text-sm">{func.cpf}</td>
                       <td className="py-3 px-4">
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-white/70">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-slate-900 dark:text-slate-700 dark:text-navy-300">
                           {func.grupo}
                         </span>
                       </td>
-                      <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-white/70 text-sm">{func.cargo || "-"}</td>
+                      <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm">{func.cargo || "-"}</td>
                       <td className="py-3 px-4">
                         {func.esta_morto?.includes("SIM") ? (
                           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-red-500/20 text-red-400">
