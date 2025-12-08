@@ -161,7 +161,7 @@ export default function DashboardLayout({
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group ${
                   isActive
                     ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
-                    : "text-slate-700 dark:text-white/70 hover:bg-slate-100 dark:bg-navy-800 hover:text-white"
+                    : "text-slate-700 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-white"
                 }`}
               >
                 <Icon className={`w-5 h-5 ${isActive ? "text-blue-400" : item.color || "text-slate-500 dark:text-white/50"}`} />
@@ -185,7 +185,7 @@ export default function DashboardLayout({
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group ${
                   isActiveRoute(adminNavItem.href)
                     ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
-                    : "text-slate-700 dark:text-white/70 hover:bg-slate-100 dark:bg-navy-800 hover:text-white"
+                    : "text-slate-700 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-white"
                 }`}
               >
                 <adminNavItem.icon className={`w-5 h-5 ${isActiveRoute(adminNavItem.href) ? "text-blue-400" : adminNavItem.color || "text-slate-500 dark:text-white/50"}`} />
@@ -258,6 +258,16 @@ export default function DashboardLayout({
                     <CreditCard className="w-4 h-4" />
                     <span className="text-sm">Assinatura</span>
                   </Link>
+                  {isAdmin && (
+                    <Link
+                      href="/dashboard/configuracoes/serpro"
+                      onClick={() => setUserMenuOpen(false)}
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 transition-colors"
+                    >
+                      <Settings className="w-4 h-4" />
+                      <span className="text-sm">Credenciais SERPRO</span>
+                    </Link>
+                  )}
                   <div className="border-t border-slate-400 dark:border-navy-700 my-1" />
                   <Link
                     href="/ajuda"
@@ -360,7 +370,7 @@ export default function DashboardLayout({
                       className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
                         isActive
                           ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
-                          : "text-slate-700 dark:text-white/70 hover:bg-slate-100 dark:bg-navy-800 hover:text-white"
+                          : "text-slate-700 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-white"
                       }`}
                     >
                       <Icon className={`w-5 h-5 ${isActive ? "text-blue-400" : item.color || "text-slate-500 dark:text-white/50"}`} />

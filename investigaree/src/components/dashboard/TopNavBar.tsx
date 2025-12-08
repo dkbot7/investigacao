@@ -64,7 +64,7 @@ export function TopNavBar() {
   const unreadCount = notifications.filter(n => n.unread).length;
 
   return (
-    <div className="sticky top-0 z-40 bg-white dark:bg-white/95 dark:bg-navy-900/95 backdrop-blur-lg border-b border-slate-300 dark:border-navy-800">
+    <div className="sticky top-0 z-40 bg-white dark:bg-navy-900/95 backdrop-blur-lg border-b border-slate-300 dark:border-navy-800">
       <div className="flex items-center justify-between px-4 lg:px-8 h-16">
         {/* Left: Main Navigation Links */}
         <nav className="hidden md:flex items-center gap-1">
@@ -79,7 +79,7 @@ export function TopNavBar() {
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                   isActive
                     ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
-                    : "text-slate-700 dark:text-white/70 hover:text-white hover:bg-slate-100 dark:bg-navy-800"
+                    : "text-slate-700 dark:text-navy-300 hover:text-white hover:bg-slate-100 dark:hover:bg-navy-800"
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -95,7 +95,7 @@ export function TopNavBar() {
               className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                 isActiveRoute("/dashboard/admin")
                   ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
-                  : "text-slate-700 dark:text-white/70 hover:text-white hover:bg-slate-100 dark:bg-navy-800"
+                  : "text-slate-700 dark:text-navy-300 hover:text-white hover:bg-slate-100 dark:hover:bg-navy-800"
               }`}
             >
               <Shield className="w-4 h-4" />
@@ -121,7 +121,7 @@ export function TopNavBar() {
                 setNotificationsOpen(!notificationsOpen);
                 setUserMenuOpen(false);
               }}
-              className="relative p-2 rounded-lg text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white hover:bg-slate-100 dark:bg-navy-800 transition-colors"
+              className="relative p-2 rounded-lg text-slate-900 dark:text-navy-300 hover:text-white hover:bg-slate-100 dark:hover:bg-navy-800 transition-colors"
             >
               <Bell className="w-5 h-5" />
               {unreadCount > 0 && (
@@ -136,13 +136,13 @@ export function TopNavBar() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="absolute right-0 top-full mt-2 w-80 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-xl shadow-xl overflow-hidden"
+                  className="absolute right-0 top-full mt-2 w-80 bg-slate-100 dark:bg-navy-800 border border-slate-300 dark:border-navy-700 rounded-xl shadow-xl overflow-hidden"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <div className="p-4 border-b border-slate-400 dark:border-navy-700">
+                  <div className="p-4 border-b border-slate-300 dark:border-navy-700">
                     <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Notificações</h3>
                     {unreadCount > 0 && (
-                      <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mt-0.5">
+                      <p className="text-xs text-slate-500 dark:text-navy-400 mt-0.5">
                         {unreadCount} {unreadCount === 1 ? "nova" : "novas"}
                       </p>
                     )}
@@ -151,20 +151,20 @@ export function TopNavBar() {
                     {notifications.map((notification) => (
                       <button
                         key={notification.id}
-                        className={`w-full p-4 text-left border-b border-slate-400 dark:border-navy-700 last:border-0 transition-colors ${
+                        className={`w-full p-4 text-left border-b border-slate-300 dark:border-navy-700 last:border-0 transition-colors ${
                           notification.unread
                             ? "bg-blue-500/5 hover:bg-blue-500/10"
                             : "hover:bg-navy-700"
                         }`}
                       >
-                        <p className={`text-sm ${notification.unread ? "text-white font-medium" : "text-slate-700 dark:text-white/70"}`}>
+                        <p className={`text-sm ${notification.unread ? "text-white font-medium" : "text-slate-700 dark:text-navy-300"}`}>
                           {notification.message}
                         </p>
-                        <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 mt-1">{notification.time}</p>
+                        <p className="text-xs text-slate-500 dark:text-navy-400 mt-1">{notification.time}</p>
                       </button>
                     ))}
                   </div>
-                  <div className="p-3 border-t border-slate-400 dark:border-navy-700">
+                  <div className="p-3 border-t border-slate-300 dark:border-navy-700">
                     <button className="w-full text-xs text-center text-blue-400 hover:text-blue-300 font-medium">
                       Ver todas
                     </button>
@@ -181,7 +181,7 @@ export function TopNavBar() {
                 setUserMenuOpen(!userMenuOpen);
                 setNotificationsOpen(false);
               }}
-              className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-slate-100 dark:bg-navy-800 transition-colors"
+              className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-navy-800 transition-colors"
             >
               <div className="w-8 h-8 bg-navy-700 rounded-full flex items-center justify-center">
                 <span className="text-xs font-medium text-slate-900 dark:text-white">
@@ -193,7 +193,7 @@ export function TopNavBar() {
                   {user?.displayName || user?.email?.split('@')[0]}
                 </p>
               </div>
-              <ChevronDown className={`w-4 h-4 text-slate-500 dark:text-white/50 transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`w-4 h-4 text-slate-500 dark:text-navy-400 transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {/* User Menu Dropdown */}
@@ -203,15 +203,15 @@ export function TopNavBar() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="absolute right-0 top-full mt-2 w-56 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-xl shadow-xl overflow-hidden"
+                  className="absolute right-0 top-full mt-2 w-56 bg-slate-100 dark:bg-navy-800 border border-slate-300 dark:border-navy-700 rounded-xl shadow-xl overflow-hidden"
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* User Info */}
-                  <div className="p-4 border-b border-slate-400 dark:border-navy-700">
+                  <div className="p-4 border-b border-slate-300 dark:border-navy-700">
                     <p className="text-sm font-medium text-slate-900 dark:text-white truncate">
                       {user?.displayName || user?.email?.split('@')[0]}
                     </p>
-                    <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50 truncate">{user?.email}</p>
+                    <p className="text-xs text-slate-500 dark:text-navy-400 truncate">{user?.email}</p>
                   </div>
 
                   {/* Menu Items */}
@@ -219,7 +219,7 @@ export function TopNavBar() {
                     <Link
                       href="/dashboard/configuracoes"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-navy-300 hover:text-white hover:bg-navy-700 transition-colors"
                     >
                       <User className="w-4 h-4" />
                       <span className="text-sm">Meu Perfil</span>
@@ -227,7 +227,7 @@ export function TopNavBar() {
                     <Link
                       href="/dashboard/configuracoes?tab=seguranca"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-navy-300 hover:text-white hover:bg-navy-700 transition-colors"
                     >
                       <Key className="w-4 h-4" />
                       <span className="text-sm">Segurança</span>
@@ -235,7 +235,7 @@ export function TopNavBar() {
                     <Link
                       href="/dashboard/configuracoes?tab=assinatura"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-navy-300 hover:text-white hover:bg-navy-700 transition-colors"
                     >
                       <CreditCard className="w-4 h-4" />
                       <span className="text-sm">Assinatura</span>
@@ -243,18 +243,18 @@ export function TopNavBar() {
                     <Link
                       href="/dashboard/configuracoes"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-navy-300 hover:text-white hover:bg-navy-700 transition-colors"
                     >
                       <Settings className="w-4 h-4" />
                       <span className="text-sm">Configurações</span>
                     </Link>
 
-                    <div className="border-t border-slate-400 dark:border-navy-700 my-1" />
+                    <div className="border-t border-slate-300 dark:border-navy-700 my-1" />
 
                     <Link
                       href="/ajuda"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-slate-700 dark:text-white/70 hover:text-white hover:bg-navy-700 transition-colors"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-900 dark:text-navy-300 hover:text-white hover:bg-navy-700 transition-colors"
                     >
                       <HelpCircle className="w-4 h-4" />
                       <span className="text-sm">Ajuda</span>
