@@ -201,7 +201,7 @@ export default function BlogPage() {
                 <input
                   type="email"
                   placeholder="Seu melhor email profissional"
-                  className="flex-1 px-5 py-3.5 rounded-xl bg-slate-100 dark:bg-navy-800/50 border border-blue-500/20 text-slate-900 dark:text-white placeholder:text-slate-500 dark:text-navy-400 focus:outline-none focus:border-blue-500/50 transition-colors"
+                  className="flex-1 px-5 py-3.5 rounded-xl bg-navy-100 dark:bg-navy-800/50 border border-blue-500/20 text-slate-900 dark:text-white placeholder:text-navy-600 dark:placeholder:text-navy-400 focus:outline-none focus:border-blue-500/50 transition-colors"
                 />
                 <motion.button
                   type="submit"

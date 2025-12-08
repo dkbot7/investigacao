@@ -89,7 +89,7 @@ export default function BlogSidebar({
                 className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left text-sm transition-all ${
                   isActive
                     ? "text-navy-950 font-medium"
-                    : "text-slate-600 dark:text-navy-300 hover:text-white hover:bg-slate-100 dark:bg-navy-800/50"
+                    : "text-slate-600 dark:text-navy-300 hover:text-white hover:bg-navy-100 dark:hover:bg-navy-800/50"
                 }`}
                 style={{
                   backgroundColor: isActive ? topic.color : undefined
@@ -130,7 +130,7 @@ export default function BlogSidebar({
                 className={`px-2.5 py-1 rounded-full text-xs transition-all ${
                   isActive
                     ? "bg-blue-500 text-navy-950 font-medium"
-                    : "bg-slate-100 dark:bg-navy-800/50 text-slate-500 dark:text-navy-400 hover:bg-slate-100 dark:bg-navy-800 hover:text-white"
+                    : "bg-navy-100 dark:bg-navy-800/50 text-slate-500 dark:text-navy-400 hover:bg-navy-200 dark:hover:bg-navy-800 hover:text-white"
                 }`}
               >
                 #{tag}
@@ -152,7 +152,7 @@ export default function BlogSidebar({
           <input
             type="email"
             placeholder="seu@email.com"
-            className="w-full px-3 py-2 rounded-lg bg-white dark:bg-white/80 dark:bg-navy-900/80 border border-blue-500/20 text-sm text-slate-900 dark:text-white placeholder:text-slate-900 dark:text-navy-500 focus:outline-none focus:border-blue-500/50 transition-colors"
+            className="w-full px-3 py-2 rounded-lg bg-navy-100 dark:bg-navy-900/80 border border-blue-500/20 text-sm text-slate-900 dark:text-white placeholder:text-navy-600 dark:placeholder:text-navy-500 focus:outline-none focus:border-blue-500/50 transition-colors"
           />
           <button
             type="submit"

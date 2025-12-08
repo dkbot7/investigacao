@@ -159,7 +159,7 @@ export default function BlogCard({ post, featured = false, compact = false, inde
               {/* Nível */}
               <Badge
                 variant="outline"
-                className="text-xs bg-slate-50 dark:bg-navy-950/80 backdrop-blur-sm"
+                className="text-xs bg-navy-100 dark:bg-navy-950/80 backdrop-blur-sm"
                 style={{
                   borderColor: skillLevelInfo?.color,
                   color: skillLevelInfo?.color
@@ -329,13 +329,13 @@ export default function BlogCard({ post, featured = false, compact = false, inde
               {post.tags.slice(0, 3).map(tag => (
                 <span
                   key={tag}
-                  className="text-[10px] text-slate-900 dark:text-navy-500 bg-slate-100 dark:bg-navy-800/50 px-2 py-0.5 rounded"
+                  className="text-[10px] text-slate-900 dark:text-navy-400 bg-navy-100 dark:bg-navy-800/50 px-2 py-0.5 rounded"
                 >
                   #{tag}
                 </span>
               ))}
               {post.tags.length > 3 && (
-                <span className="text-[10px] text-slate-900 dark:text-navy-500">
+                <span className="text-[10px] text-slate-900 dark:text-navy-400">
                   +{post.tags.length - 3}
                 </span>
               )}
