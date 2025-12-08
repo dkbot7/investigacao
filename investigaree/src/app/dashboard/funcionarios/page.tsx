@@ -40,9 +40,9 @@ import { JobMonitor } from "@/components/dashboard/JobMonitor";
 import { listarFuncionarios } from "@/lib/services/dados.service";
 import type { Funcionario as FuncionarioBackend, CacheStats } from "@/lib/types/dados.types";
 
-// Dados mock para fallback (se backend não disponível)
+// Mock data imports mantidos apenas para funcionalidades complementares
+// (candidaturas, doações, vínculos, sanções, benefícios ainda não estão no backend)
 import {
-  CLIENTE_01_FUNCIONARIOS,
   getCandidaturasByCPF,
   getDoacoesByCPF,
   getVinculosByCPF,
@@ -130,7 +130,7 @@ export default function FuncionariosPage() {
       setLoading(true);
       setError(null);
 
-      // Tentar carregar do backend real
+      // Carregar do backend real
       const response = await listarFuncionarios(tenantCode);
 
       // Converter dados do backend para formato UI
@@ -145,13 +145,16 @@ export default function FuncionariosPage() {
         cache_stats: response.cache_stats,
       });
     } catch (err: any) {
-      console.error('[Funcionarios] ❌ Erro ao carregar do backend, usando mock:', err);
+      console.error('[Funcionarios] ❌ Erro ao carregar do backend:', err);
 
-      // Fallback para dados mock
-      setFuncionarios(CLIENTE_01_FUNCIONARIOS);
+      // Erro real - sem fallback para mock
+      setFuncionarios([]);
       setCacheStats(null);
       setUsingBackend(false);
-      setError('Backend indisponível. Usando dados de demonstração.');
+      setError(
+        err.message ||
+        'Erro ao conectar com o backend. Verifique sua conexão e tente novamente.'
+      );
     } finally {
       setLoading(false);
     }
