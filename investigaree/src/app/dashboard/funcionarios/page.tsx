@@ -23,14 +23,21 @@ import {
   LayoutList,
   LayoutGrid,
   FolderOpen,
+  Database,
+  RefreshCw,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/contexts/AuthContext";
 import { FichaFuncionario } from "@/components/dashboard/FichaFuncionario";
 import { AddInvestigacaoModal } from "@/components/dashboard/AddInvestigacaoModal";
 import { KanbanView } from "@/components/dashboard/KanbanView";
 
-// Dados mock até a API estar pronta
+// BACKEND INTEGRATION (Agent 3 - TAREFA 3.5)
+import { listarFuncionarios } from "@/lib/services/dados.service";
+import type { Funcionario as FuncionarioBackend, CacheStats } from "@/lib/types/dados.types";
+
+// Dados mock para fallback (se backend não disponível)
 import {
   CLIENTE_01_FUNCIONARIOS,
   getCandidaturasByCPF,
@@ -42,6 +49,7 @@ import {
 
 type AlertaType = "todos" | "obito" | "beneficio" | "sancionado" | "doador" | "candidato" | "socio" | "grupos";
 
+// Compatibilidade entre backend e UI (conversão de tipos)
 interface Funcionario {
   id: string;
   cadastro?: string;
@@ -73,6 +81,9 @@ export default function FuncionariosPage() {
   const [funcionarios, setFuncionarios] = useState<Funcionario[]>([]);
   const [filteredFuncionarios, setFilteredFuncionarios] = useState<Funcionario[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [cacheStats, setCacheStats] = useState<CacheStats | null>(null);
+  const [usingBackend, setUsingBackend] = useState(true);
   const [search, setSearch] = useState("");
   const [viewMode, setViewMode] = useState<"list" | "kanban">("list");
   const [alertaFilter, setAlertaFilter] = useState<AlertaType>("todos");
@@ -80,6 +91,9 @@ export default function FuncionariosPage() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [page, setPage] = useState(1);
   const limit = 50;
+
+  // TODO: Implementar tenant selection (por enquanto hardcoded)
+  const tenantCode = "CLIENTE_01";
 
   // Verificar se deve abrir o modal automaticamente
   useEffect(() => {
@@ -90,12 +104,53 @@ export default function FuncionariosPage() {
     }
   }, [searchParams, router]);
 
-  // Carregar dados
-  const loadFuncionarios = useCallback(() => {
-    // Por enquanto usa dados mock
-    setFuncionarios(CLIENTE_01_FUNCIONARIOS);
-    setLoading(false);
-  }, []);
+  // Converter funcionario do backend para formato UI
+  const convertBackendToUI = (backendFunc: FuncionarioBackend): Funcionario => {
+    return {
+      id: backendFunc.id.toString(),
+      nome: backendFunc.nome,
+      cpf: backendFunc.cpf,
+      grupo: backendFunc.grupo,
+      cargo: backendFunc.cargo,
+      salario: backendFunc.salario,
+      esta_morto: backendFunc.esta_morto === 1 ? "SIM" : "NÃO",
+      recebe_beneficio: backendFunc.recebe_beneficio,
+      socio_empresa: backendFunc.socio_empresa,
+    };
+  };
+
+  // Carregar dados do backend
+  const loadFuncionarios = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      // Tentar carregar do backend real
+      const response = await listarFuncionarios(tenantCode);
+
+      // Converter dados do backend para formato UI
+      const convertedFuncionarios = response.funcionarios.map(convertBackendToUI);
+
+      setFuncionarios(convertedFuncionarios);
+      setCacheStats(response.cache_stats);
+      setUsingBackend(true);
+
+      console.log('[Funcionarios] ✅ Dados carregados do backend:', {
+        total: response.total,
+        cache_stats: response.cache_stats,
+      });
+    } catch (err: any) {
+      console.error('[Funcionarios] ❌ Erro ao carregar do backend, usando mock:', err);
+
+      // Fallback para dados mock
+      setFuncionarios(CLIENTE_01_FUNCIONARIOS);
+      setCacheStats(null);
+      setUsingBackend(false);
+      setError('Backend indisponível. Usando dados de demonstração.');
+    } finally {
+      setLoading(false);
+    }
+  }, [tenantCode]);
 
   useEffect(() => {
     loadFuncionarios();
@@ -194,13 +249,62 @@ export default function FuncionariosPage() {
         <div className="space-y-4">
           {/* Title */}
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <Users className="w-7 h-7 text-blue-400" />
-              Investigações
-            </h1>
+            <div className="flex items-center gap-3 mb-2">
+              <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                <Users className="w-7 h-7 text-blue-400" />
+                Investigações
+              </h1>
+
+              {/* Backend Status Badge */}
+              {usingBackend ? (
+                <Badge variant="default" className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
+                  <Database className="w-3 h-3 mr-1" />
+                  Backend Conectado
+                </Badge>
+              ) : (
+                <Badge variant="destructive" className="bg-amber-500/20 text-amber-400 border-amber-500/30">
+                  <AlertTriangle className="w-3 h-3 mr-1" />
+                  Modo Demo
+                </Badge>
+              )}
+
+              {/* Cache Stats Badge */}
+              {cacheStats && (
+                <Badge
+                  variant={cacheStats.percentage >= 80 ? "default" : "secondary"}
+                  className={
+                    cacheStats.percentage >= 80
+                      ? "bg-blue-500/20 text-blue-400 border-blue-500/30"
+                      : "bg-amber-500/20 text-amber-400 border-amber-500/30"
+                  }
+                  title={`${cacheStats.cached} cached, ${cacheStats.pending} pending, ${cacheStats.expired} expired`}
+                >
+                  <Database className="w-3 h-3 mr-1" />
+                  Cache: {cacheStats.percentage}%
+                </Badge>
+              )}
+            </div>
+
             <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
               {filteredFuncionarios.length.toLocaleString()} {filteredFuncionarios.length === 1 ? 'registro' : 'registros'} de {funcionarios.length.toLocaleString()} total
             </p>
+
+            {/* Error Message */}
+            {error && (
+              <div className="mt-2 p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-amber-400" />
+                <span className="text-sm text-amber-400">{error}</span>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={loadFuncionarios}
+                  className="ml-auto text-amber-400 hover:text-amber-300"
+                >
+                  <RefreshCw className="w-4 h-4 mr-1" />
+                  Tentar novamente
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* Actions Row - Tudo no topo esquerdo */}
