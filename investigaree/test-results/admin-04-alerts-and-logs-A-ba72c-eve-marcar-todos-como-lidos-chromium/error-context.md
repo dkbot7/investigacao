@@ -63,7 +63,7 @@
           - generic [ref=e82]:
             - generic [ref=e83]:
               - heading "Novo usuário cadastrado" [level=4] [ref=e84]
-              - generic [ref=e85]: 05/12/2025, 15:43:42
+              - generic [ref=e85]: 06/12/2025, 05:00:00
             - paragraph [ref=e86]: Um novo usuário se registrou e aguarda liberação de acesso
             - generic [ref=e87]:
               - paragraph [ref=e88]: "Email: pendente@example.com"
@@ -78,7 +78,7 @@
           - generic [ref=e97]:
             - generic [ref=e98]:
               - heading "Nova lead capturada" [level=4] [ref=e99]
-              - generic [ref=e100]: 07/12/2025, 10:43:42
+              - generic [ref=e100]: 08/12/2025, 00:00:00
             - paragraph [ref=e101]: Um visitante preencheu o formulário de contato
             - generic [ref=e102]:
               - paragraph [ref=e103]: "Email: lead@example.com"
@@ -102,21 +102,4 @@
   - alert [ref=e126]
   - button "Contato via WhatsApp" [ref=e128]:
     - img [ref=e129]
-  - dialog "Utilizamos cookies" [ref=e134]:
-    - generic [ref=e135]:
-      - generic [ref=e137]:
-        - img [ref=e139]
-        - generic [ref=e141]:
-          - heading "Utilizamos cookies" [level=3] [ref=e142]
-          - paragraph [ref=e143]:
-            - text: Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo. Ao clicar em "Aceitar todos", você concorda com o uso de cookies conforme descrito em nossa
-            - link "Política de Cookies" [ref=e144] [cursor=pointer]:
-              - /url: /cookies/
-            - text: .
-      - generic [ref=e145]:
-        - button "Personalizar" [ref=e146]:
-          - img [ref=e147]
-          - text: Personalizar
-        - button "Rejeitar não essenciais" [ref=e150]
-        - button "Aceitar todos" [ref=e151]
 ```

@@ -63,8 +63,8 @@
             - paragraph [ref=e84]: pendente@example.com
             - paragraph [ref=e85]: "+5511988887777"
           - generic [ref=e86]:
-            - generic [ref=e87]: 05/12/2025
-            - button "Liberar" [active] [ref=e88]:
+            - generic [ref=e87]: 06/12/2025
+            - button "Liberar" [ref=e88]:
               - img
               - text: Liberar
       - generic [ref=e89]:
@@ -78,17 +78,17 @@
               - paragraph [ref=e98]: João Silva
               - paragraph [ref=e99]: usuario.sem.acesso@example.com
               - paragraph [ref=e100]: "+5511988776655"
-              - paragraph [ref=e101]: Cadastrado em 27/11/2025
+              - paragraph [ref=e101]: Cadastrado em 28/11/2025
             - generic [ref=e102]:
               - generic [ref=e103]: Sem Acesso
-              - button "Conceder Acesso" [ref=e104]:
+              - button "Conceder Acesso" [active] [ref=e104]:
                 - img
                 - text: Conceder Acesso
           - generic [ref=e105]:
             - generic [ref=e106]:
               - paragraph [ref=e107]: Maria Santos
               - paragraph [ref=e108]: maria.santos@example.com
-              - paragraph [ref=e109]: Cadastrado em 22/11/2025
+              - paragraph [ref=e109]: Cadastrado em 23/11/2025
             - generic [ref=e110]:
               - generic [ref=e111]: Sem Acesso
               - button "Conceder Acesso" [ref=e112]:
@@ -186,7 +186,7 @@
                   - generic "Ver detalhes" [ref=e207] [cursor=pointer]
               - generic [ref=e208]:
                 - paragraph [ref=e209]: 10min atrás
-                - paragraph [ref=e210]: 07/12/2025, 15:32
+                - paragraph [ref=e210]: 08/12/2025, 04:50
           - generic [ref=e212]:
             - img [ref=e214]
             - generic [ref=e217]:
@@ -205,7 +205,7 @@
                   - generic "Ver detalhes" [ref=e231] [cursor=pointer]
               - generic [ref=e232]:
                 - paragraph [ref=e233]: 2h atrás
-                - paragraph [ref=e234]: 07/12/2025, 13:42
+                - paragraph [ref=e234]: 08/12/2025, 03:00
           - generic [ref=e236]:
             - img [ref=e238]
             - generic [ref=e241]:
@@ -221,7 +221,7 @@
                   - generic "Ver detalhes" [ref=e253] [cursor=pointer]
               - generic [ref=e254]:
                 - paragraph [ref=e255]: 5h atrás
-                - paragraph [ref=e256]: 07/12/2025, 10:42
+                - paragraph [ref=e256]: 08/12/2025, 00:00
           - generic [ref=e258]:
             - img [ref=e260]
             - generic [ref=e263]:
@@ -237,7 +237,7 @@
                   - generic "Ver detalhes" [ref=e275] [cursor=pointer]
               - generic [ref=e276]:
                 - paragraph [ref=e277]: Ontem
-                - paragraph [ref=e278]: 06/12/2025, 15:42
+                - paragraph [ref=e278]: 07/12/2025, 05:00
           - generic [ref=e280]:
             - img [ref=e282]
             - generic [ref=e285]:
@@ -257,7 +257,7 @@
                   - generic "Ver detalhes" [ref=e300] [cursor=pointer]
               - generic [ref=e301]:
                 - paragraph [ref=e302]: 3d atrás
-                - paragraph [ref=e303]: 04/12/2025, 15:42
+                - paragraph [ref=e303]: 05/12/2025, 05:00
           - generic [ref=e305]:
             - img [ref=e307]
             - generic [ref=e310]:
@@ -273,7 +273,7 @@
                   - generic "Ver detalhes" [ref=e322] [cursor=pointer]
               - generic [ref=e323]:
                 - paragraph [ref=e324]: 1sem atrás
-                - paragraph [ref=e325]: 30/11/2025, 15:42
+                - paragraph [ref=e325]: 01/12/2025, 05:00
       - generic [ref=e326]:
         - generic [ref=e327]:
           - heading "Métricas de Uso" [level=3] [ref=e328]:
@@ -341,7 +341,7 @@
       - generic [ref=e415]:
         - generic [ref=e416]:
           - text: Usuario
-          - paragraph [ref=e417]: pendente@example.com
+          - paragraph [ref=e417]: usuario.sem.acesso@example.com
         - generic [ref=e418]:
           - text: Tenant
           - combobox "Tenant" [ref=e419]:
@@ -359,30 +359,25 @@
           - img
           - text: Conceder
   - button "Open Next.js Dev Tools" [ref=e430] [cursor=pointer]:
-    - generic [ref=e433]:
-      - text: Compiling
-      - generic [ref=e434]:
-        - generic [ref=e435]: .
-        - generic [ref=e436]: .
-        - generic [ref=e437]: .
-  - alert [ref=e438]
-  - button "Contato via WhatsApp" [ref=e440]:
-    - img [ref=e441]
-  - dialog "Utilizamos cookies" [ref=e446]:
-    - generic [ref=e447]:
-      - generic [ref=e449]:
-        - img [ref=e451]
-        - generic [ref=e453]:
-          - heading "Utilizamos cookies" [level=3] [ref=e454]
-          - paragraph [ref=e455]:
+    - img [ref=e431]
+  - alert [ref=e434]
+  - button "Contato via WhatsApp" [ref=e436]:
+    - img [ref=e437]
+  - dialog "Utilizamos cookies" [ref=e442]:
+    - generic [ref=e443]:
+      - generic [ref=e445]:
+        - img [ref=e447]
+        - generic [ref=e449]:
+          - heading "Utilizamos cookies" [level=3] [ref=e450]
+          - paragraph [ref=e451]:
             - text: Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo. Ao clicar em "Aceitar todos", você concorda com o uso de cookies conforme descrito em nossa
-            - link "Política de Cookies" [ref=e456] [cursor=pointer]:
+            - link "Política de Cookies" [ref=e452] [cursor=pointer]:
               - /url: /cookies/
             - text: .
-      - generic [ref=e457]:
-        - button "Personalizar" [ref=e458]:
-          - img [ref=e459]
+      - generic [ref=e453]:
+        - button "Personalizar" [ref=e454]:
+          - img [ref=e455]
           - text: Personalizar
-        - button "Rejeitar não essenciais" [ref=e462]
-        - button "Aceitar todos" [ref=e463]
+        - button "Rejeitar não essenciais" [ref=e458]
+        - button "Aceitar todos" [ref=e459]
 ```
