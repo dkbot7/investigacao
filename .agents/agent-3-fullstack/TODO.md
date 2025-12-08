@@ -22,9 +22,11 @@
 
 ### DIA 1 - PREPARAÇÃO FRONTEND (6-8 horas)
 
-#### ✅ TAREFA 3.1: Refatorar Service Layer
+#### ✅ TAREFA 3.1: Refatorar Service Layer (CONCLUÍDO)
 
 **Objetivo:** Preparar frontend para receber dados reais
+**Status:** ✅ CONCLUÍDO - 2025-12-07
+**Commit:** `[A3] Create API client service layer`
 
 **Arquivo:** `investigaree/src/lib/api-client.ts` (novo arquivo)
 
@@ -100,18 +102,21 @@ export const apiClient = new ApiClient(
 ```
 
 **Checklist:**
-- [ ] Criar api-client.ts
-- [ ] Implementar métodos HTTP (GET, POST, PATCH, DELETE)
-- [ ] Adicionar auth token automático
-- [ ] Adicionar tenant header
-- [ ] Error handling global
-- [ ] Retry logic com exponential backoff
-- [ ] Commit: `[A3] Create API client service layer`
-- [ ] Atualizar STATUS.md
+- [x] Criar api-client.ts
+- [x] Implementar métodos HTTP (GET, POST, PATCH, DELETE)
+- [x] Adicionar auth token automático
+- [x] Adicionar tenant header
+- [x] Error handling global
+- [x] Retry logic com exponential backoff
+- [x] Commit: `[A3] Create API client service layer`
+- [x] Atualizar STATUS.md
 
 ---
 
-#### ✅ TAREFA 3.2: Criar SERPRO Service (4-5 horas)
+#### ✅ TAREFA 3.2: Criar SERPRO Service (CONCLUÍDO)
+
+**Status:** ✅ CONCLUÍDO - 2025-12-07
+**Commit:** `[A3] Create SERPRO service layer`
 
 **Arquivo:** `investigaree/src/lib/services/serpro.service.ts`
 
@@ -160,17 +165,20 @@ export const serproService = new SerproService();
 ```
 
 **Checklist:**
-- [ ] Criar serpro.service.ts
-- [ ] Métodos para 3 APIs core (CPF, CNPJ, Dívida Ativa)
-- [ ] Criar types em `src/lib/types/serpro.types.ts`
-- [ ] Validação de inputs (CPF/CNPJ format)
-- [ ] Loading states
-- [ ] Commit: `[A3] Create SERPRO service layer`
-- [ ] Atualizar STATUS.md
+- [x] Criar serpro.service.ts
+- [x] Métodos para 10 APIs SERPRO (CPF, CNPJ, Dívida Ativa, etc.)
+- [x] Criar types em `src/lib/types/serpro.types.ts`
+- [x] Validação de inputs (CPF/CNPJ format)
+- [x] Loading states
+- [x] Commit: `[A3] Create SERPRO service layer`
+- [x] Atualizar STATUS.md
 
 ---
 
-#### ✅ TAREFA 3.3: Criar Admin Service (3-4 horas)
+#### ✅ TAREFA 3.3: Criar Admin Service (CONCLUÍDO)
+
+**Status:** ✅ CONCLUÍDO - 2025-12-07
+**Commit:** `[A3] Create admin service layer`
 
 **Arquivo:** `investigaree/src/lib/services/admin.service.ts`
 
@@ -247,12 +255,12 @@ export const adminService = new AdminService();
 ```
 
 **Checklist:**
-- [ ] Criar admin.service.ts
-- [ ] Implementar todos os métodos (users, tenants, alerts, logs, stats)
-- [ ] Criar/atualizar types em `src/lib/types/admin.types.ts`
-- [ ] Error handling específico
-- [ ] Commit: `[A3] Create admin service layer`
-- [ ] Atualizar STATUS.md
+- [x] Criar admin.service.ts
+- [x] Implementar todos os métodos (users, tenants, alerts, logs, stats)
+- [x] Criar/atualizar types em `src/lib/types/admin.types.ts`
+- [x] Error handling específico
+- [x] Commit: `[A3] Create admin service layer`
+- [x] Atualizar STATUS.md
 
 ---
 

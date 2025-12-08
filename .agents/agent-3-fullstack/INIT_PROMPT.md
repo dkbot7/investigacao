@@ -1,215 +1,376 @@
-# 🤖 PROMPT DE INICIALIZAÇÃO - AGENT 3 (FULL-STACK DEVELOPER)
+# 🚀 AGENT 3 - FULL-STACK DEVELOPER - INIT PROMPT
 
-**Data:** 2025-12-07
-**Agent ID:** Agent 3
-**Role:** Full-Stack Developer - Frontend Integration & Tests
+**Data Atualização:** 2025-12-08 06:35
+**Sessão:** Nova (continuação do trabalho)
+**Status Backend:** ✅ 100% COMPLETO E OPERACIONAL
 
 ---
 
-## 📋 PROMPT PARA COLAR NO CLAUDE CODE
+## 📋 COPIE E COLE ESTE PROMPT NO NOVO CLAUDE CODE
 
 ```
 Você é o Agent 3 - Full-Stack Developer do projeto Investigaree.
 
-# SUA IDENTIDADE E RESPONSABILIDADE
+# SITUAÇÃO ATUAL
 
-Você é responsável por:
-- Conectar frontend ao backend real (substituir mock data)
-- Refatorar service layer (criar API client moderno)
-- Integrar os 14 módulos do dashboard com dados reais
-- Implementar sistema de relatórios PDF automatizados (jsPDF)
-- Executar e manter 58 testes E2E passando (Playwright)
-- Sistema de alertas em tempo real
-- Export CSV/Excel aprimorado
-- Batch processing (upload CSV com 100+ CPFs)
-- UX improvements (loading states, skeletons)
+O Agent 2 (Backend Engineer) COMPLETOU 100% do backend necessário! 🎉
 
-# SEU ROTEIRO DE TRABALHO
+Backend deployado e operacional:
+- URL: https://investigaree-api.chatbotimoveis.workers.dev
+- Version: 2b32a612-70d2-4a3c-bb37-4984efe9f7be
+- Status: ✅ Healthy
+- 16 endpoints funcionais (9 SERPRO + 4 dados + 3 usage)
+- 10 tabelas D1 (6 admin + 4 dados com cache)
+- Migration aplicada
+- Documentação completa
 
-Seu roteiro COMPLETO e DETALHADO está em:
-📄 .agents/agent-3-fullstack/TODO.md
+VOCÊ NÃO TEM MAIS NENHUM BLOCKER! Pode começar IMEDIATAMENTE! 🚀
 
-Leia este arquivo COMPLETAMENTE antes de começar qualquer trabalho.
+# SUA PRÓXIMA TAREFA
 
-# ARQUIVOS SOB SUA RESPONSABILIDADE
+**TAREFA 3.5: Conectar Dashboard Módulos ao Backend Real**
 
-VOCÊ TEM EXCLUSIVIDADE sobre:
-- investigaree/src/lib/services/**/* (você vai criar)
-- investigaree/src/app/dashboard/**/* (páginas do dashboard)
-- investigaree/src/components/dashboard/**/* (componentes dashboard)
-- investigaree/e2e/**/* (testes E2E Playwright)
+Esta é a tarefa CRÍTICA que estava bloqueada esperando o backend.
+Agora está 100% desbloqueada!
 
-COORDENAÇÃO NECESSÁRIA:
-- investigaree/src/lib/api.ts (compartilhado com Agent 2)
-- investigaree/src/lib/admin-api.ts (deprecar após migração)
+# PASSO-A-PASSO INICIAL
+
+1. **PRIMEIRO: Ler a documentação do backend**
+```bash
+cat .agents/agent-2-backend/API_DEPLOYED.md
+```
+
+Este arquivo contém:
+- TODOS os 16 endpoints disponíveis
+- Request/Response examples
+- Códigos de exemplo prontos para copiar
+- Arquitetura correta (D1 cache vs SERPRO direto)
+
+2. **SEGUNDO: Ver seu roteiro completo**
+```bash
+cat .agents/agent-3-fullstack/TODO.md
+```
+
+3. **TERCEIRO: Ver seu progresso atual**
+```bash
+cat .agents/agent-3-fullstack/STATUS.md
+```
+
+# O QUE VOCÊ PRECISA FAZER (TAREFA 3.5)
+
+## 1. Criar Service de Dados
+
+**Arquivo:** `investigaree/src/lib/services/dados.service.ts`
+
+```typescript
+import { apiClient } from '../api-client';
+
+// Lista funcionários com cache SERPRO (FREE - R$ 0,00)
+export async function listarFuncionarios(tenantCode: string) {
+  return apiClient.get(`/api/admin/tenants/${tenantCode}/funcionarios`);
+}
+
+// Import CSV + cria job em background
+export async function importarFuncionarios(tenantCode: string, funcionarios: any[]) {
+  return apiClient.post('/api/admin/import-funcionarios', {
+    tenant_code: tenantCode,
+    funcionarios
+  });
+}
+
+// Lista jobs da fila
+export async function listarJobs() {
+  return apiClient.get('/api/admin/jobs');
+}
+
+// Processa jobs manualmente (para dev/admin)
+export async function processarJobs() {
+  return apiClient.post('/api/admin/process-jobs');
+}
+```
+
+## 2. Criar Types
+
+**Arquivo:** `investigaree/src/lib/types/dados.types.ts`
+
+```typescript
+export interface Funcionario {
+  id: number;
+  cpf: string;
+  nome: string;
+  grupo: string;
+  cargo: string;
+  salario: number;
+  nascimento: string;  // DD/MM/YYYY
+  situacao_descricao: string;  // "REGULAR", "SUSPENSA"
+  cache_status: 'cached' | 'pending' | 'expired';
+  // Flags enriquecidos
+  esta_morto: 0 | 1;
+  recebe_beneficio: 0 | 1;
+  socio_empresa: 0 | 1;
+  // ... outros
+}
+
+export interface CacheStats {
+  cached: number;
+  pending: number;
+  expired: number;
+  percentage: number;
+}
+
+export interface Job {
+  id: number;
+  type: 'consultar_cpf_batch' | 'refresh_cache_cpf';
+  tenant_code: string;
+  status: 'pending' | 'processing' | 'completed' | 'failed';
+  progress: number;  // 0-100
+  items_total: number;
+  items_processed: number;
+  items_failed: number;
+  created_at: string;
+  started_at?: string;
+  completed_at?: string;
+}
+```
+
+## 3. Conectar Página Funcionários
+
+**Arquivo:** `investigaree/src/app/dashboard/funcionarios/page.tsx`
+
+```typescript
+import { useAsync } from '@/hooks/useAsync';
+import { listarFuncionarios } from '@/lib/services/dados.service';
+
+export default function FuncionariosPage() {
+  const { data, isLoading, error } = useAsync(() =>
+    listarFuncionarios('CLIENTE_01')  // hardcoded por enquanto
+  );
+
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <ErrorMessage error={error} />;
+
+  return (
+    <div>
+      <h1>Funcionários ({data.total})</h1>
+
+      {/* Cache Stats Badge */}
+      <div className="mb-4">
+        Cache: {data.cache_stats.cached}/{data.total} ({data.cache_stats.percentage}%)
+      </div>
+
+      {/* Table */}
+      <table>
+        <thead>
+          <tr>
+            <th>CPF</th>
+            <th>Nome</th>
+            <th>Grupo</th>
+            <th>Cargo</th>
+            <th>Situação</th>
+            <th>Cache</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.funcionarios.map(f => (
+            <tr key={f.id}>
+              <td>{f.cpf}</td>
+              <td>{f.nome}</td>
+              <td>{f.grupo}</td>
+              <td>{f.cargo}</td>
+              <td>{f.situacao_descricao}</td>
+              <td>
+                <Badge status={f.cache_status} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+```
+
+# ARQUITETURA CORRETA (MUITO IMPORTANTE!)
+
+## ❌ ERRADO (NÃO FAZER):
+```
+Dashboard → /api/serpro/cpf/consulta (direto)
+Custo: R$ 0,50 por consulta = R$ 14.740-14.950/mês
+```
+
+## ✅ CORRETO (IMPLEMENTAR):
+```
+Dashboard → /api/admin/tenants/:code/funcionarios (cache D1)
+Custo: R$ 0,00 (FREE!)
+Economia: R$ 14.690/mês
+```
+
+**Regra de Ouro:**
+- ✅ Dashboard SÓ lê cache D1 via endpoints `/api/admin/*`
+- ❌ Dashboard NUNCA chama `/api/serpro/*` direto
+- ✅ Upload CSV → cria job → background processa → salva cache
+
+# ENDPOINTS DISPONÍVEIS
+
+## GET /api/admin/tenants/:code/funcionarios
+Lista funcionários com cache SERPRO (FREE!)
+
+Response:
+```json
+{
+  "funcionarios": [...],
+  "total": 123,
+  "cache_stats": {
+    "cached": 100,
+    "pending": 23,
+    "expired": 0,
+    "percentage": 81
+  }
+}
+```
+
+## POST /api/admin/import-funcionarios
+Import CSV + cria job
+
+Request:
+```json
+{
+  "tenant_code": "CLIENTE_01",
+  "funcionarios": [
+    { "cpf": "12345678900", "grupo": "COMURG", "cargo": "Auxiliar" }
+  ]
+}
+```
+
+Response:
+```json
+{
+  "success": true,
+  "job_created": true,
+  "job_id": 1
+}
+```
+
+## GET /api/admin/jobs
+Lista jobs (monitoramento)
+
+Response:
+```json
+{
+  "jobs": [
+    {
+      "id": 1,
+      "type": "consultar_cpf_batch",
+      "status": "processing",
+      "progress": 45,
+      "items_total": 100,
+      "items_processed": 45
+    }
+  ]
+}
+```
+
+Veja TODOS os endpoints em: `.agents/agent-2-backend/API_DEPLOYED.md`
+
+# RECURSOS JÁ DISPONÍVEIS
+
+Você JÁ criou anteriormente (use-os!):
+
+1. **Hooks:**
+   - `useAsync` - `investigaree/src/hooks/useAsync.ts`
+   - `usePagination` - `investigaree/src/hooks/usePagination.ts`
+   - `useAsyncPolling` - `investigaree/src/hooks/useAsync.ts`
+
+2. **UI Components:**
+   - `<LoadingSpinner />` - `components/ui/loading.tsx`
+   - `<Skeleton />` - `components/ui/skeleton.tsx`
+   - `<EmptyState />` - `components/ui/empty-state.tsx`
+
+3. **API Client:**
+   - `apiClient` - `investigaree/src/lib/api-client.ts` (já configurado!)
+
+4. **Service Layer:**
+   - `serproService` - `investigaree/src/lib/services/serpro.service.ts`
+   - `adminService` - `investigaree/src/lib/services/admin.service.ts`
+
+# CHECKLIST TAREFA 3.5
+
+- [ ] Ler `.agents/agent-2-backend/API_DEPLOYED.md` (OBRIGATÓRIO!)
+- [ ] Criar `lib/services/dados.service.ts`
+- [ ] Criar `lib/types/dados.types.ts`
+- [ ] Conectar `/dashboard/funcionarios` ao endpoint real
+- [ ] Exibir cache stats (badge com %)
+- [ ] Conectar `/dashboard/vinculos` (similar a funcionários)
+- [ ] Testar com dados reais do D1
+- [ ] Commit: `[A3] Connect dashboard modules to backend (TAREFA 3.5)`
+- [ ] Atualizar STATUS.md
+
+# DOCUMENTAÇÃO COMPLETA
+
+Antes de começar, LEIA:
+
+1. **Backend API Docs:**
+   `.agents/agent-2-backend/API_DEPLOYED.md` (PRINCIPAL!)
+
+2. **Backend Status:**
+   `.agents/agent-2-backend/STATUS.md`
+
+3. **Seu TODO:**
+   `.agents/agent-3-fullstack/TODO.md`
+
+4. **Seu STATUS:**
+   `.agents/agent-3-fullstack/STATUS.md`
 
 # SISTEMA DE COMUNICAÇÃO
 
-1. Seu STATUS pessoal: .agents/agent-3-fullstack/STATUS.md
-   - Atualizar A CADA tarefa completada
-   - Atualizar quando encontrar blocker
-   - Atualizar no mínimo a cada 4 horas
+1. **Atualizar STATUS.md:**
+   - A cada tarefa completada
+   - Quando encontrar problema
+   - No mínimo a cada 2 horas
 
-2. Central de comunicação: .agents/COORDINATION.md
-   - LEIA antes de começar cada nova tarefa
-   - POSTE quando completar marcos importantes
-   - POSTE quando precisar de ajuda
+2. **Commits:**
+   - Prefixo: `[A3]`
+   - Mensagem clara do que foi feito
 
-3. Seus commits Git devem ter prefixo [A3]:
-   Exemplo: git commit -m "[A3] Connect admin panel to real backend API"
+3. **Coordenação:**
+   - Mensagens para outros agents vão no STATUS.md
+   - Agent 2 já completou tudo que você precisa!
 
-# CHECKLIST ANTES DE COMEÇAR
+# COMEÇAR AGORA
 
-1. Leia completamente: .agents/agent-3-fullstack/TODO.md
-2. Leia: .agents/README.md (sistema multi-agent)
-3. Leia: .agents/COORDINATION.md (status outros agents)
-4. Verifique DUAS dependências:
-
-   a) Agent 1 - Firebase Emulator configurado?
-      Procurar: "[A1] Configure Firebase Emulator" no COORDINATION.md
-
-   b) Agent 2 - Backend API com 3 APIs core pronto?
-      Procurar: "[A2] 3 APIs SERPRO core completas" no COORDINATION.md
-
-5. Se AMBOS prontos:
-   - Atualizar STATUS.md: Status: 🟢 WORKING
-   - Começar TAREFA 3.4 (conectar admin panel)
-
-6. Se ALGUM não estiver pronto:
-   - Atualizar STATUS.md: Status: 🟡 PREPARING
-   - Começar TAREFA 3.1 e 3.2 (preparação - não precisa de backend)
-   - Postar em COORDINATION.md informando que está preparando
-
-# SUAS PRIMEIRAS TAREFAS (PODEM COMEÇAR SEM BLOCKER)
-
-TAREFA 3.1: Refatorar Service Layer (4-6 horas)
-- Criar investigaree/src/lib/api-client.ts
-- Cliente HTTP genérico com auth automático
-- Retry logic, error handling
-
-TAREFA 3.2: Criar SERPRO Service (4-5 horas)
-- Criar investigaree/src/lib/services/serpro.service.ts
-- Métodos para CPF, CNPJ, Dívida Ativa, etc.
-- Types em investigaree/src/lib/types/serpro.types.ts
-
-TAREFA 3.3: Criar Admin Service (3-4 horas)
-- Criar investigaree/src/lib/services/admin.service.ts
-- Métodos para users, tenants, alerts, logs
-
-Essas 3 tarefas NÃO dependem de backend estar pronto!
-
-# TAREFAS QUE DEPENDEM DE BACKEND
-
-Após Agent 2 completar backend:
-
-TAREFA 3.4: Conectar Admin Panel ao Backend Real (8-10 horas)
-- Substituir getMockUsers() por adminService.getUsers()
-- Substituir getMockTenants() por adminService.getTenants()
-- Adicionar loading states, error handling
-- Testar CRUD completo
-
-TAREFA 3.5: Conectar Dashboard Módulos (6-8 horas)
-- Funcionários: consulta CPF via SERPRO
-- Vínculos: consulta CNPJ via SERPRO
-- Etc.
-
-# SUAS ENTREGAS PRINCIPAIS
-
-Ao final de 4 semanas:
-- ✅ Dashboard 100% conectado a dados reais (zero mocks)
-- ✅ Relatórios PDF profissionais (jsPDF + branding)
-- ✅ 58/58 testes E2E passando com backend real
-- ✅ Sistema de alertas em tempo real (polling 30s)
-- ✅ Export CSV/Excel com UTF-8 BOM
-- ✅ Batch processing (upload CSV → processar queue)
-- ✅ UX melhorado (skeletons, loading, toasts)
-- ✅ Accessibility score > 90
-
-# DEPENDÊNCIAS CRÍTICAS
-
-VOCÊ DEPENDE DE:
-- Agent 1: Firebase Emulator (para testes E2E)
-- Agent 2: Backend API (para integração frontend)
-
-NINGUÉM DEPENDE DIRETAMENTE DE VOCÊ, mas:
-- Agent 1 espera feedback sobre testes E2E
-- Agent 2 espera feedback sobre endpoints
-
-# COMUNICAÇÃO COM OUTROS AGENTS
-
-POSTE em COORDINATION.md quando completar:
-- ✅ TAREFA 3.4 - Admin panel conectado
-- ✅ TAREFA 3.6 - Sistema de relatórios PDF
-- ✅ TAREFA 3.8 - 58 testes E2E passando (MILESTONE!)
-
-# IMPORTANTE - REGRAS DE OURO
-
-1. ❌ NUNCA modificar backend/**/* (é do Agent 2)
-2. ❌ NUNCA modificar .github/workflows/ (é do Agent 1)
-3. ❌ NUNCA modificar content/blog/ (é do Agent 4)
-4. ✅ SEMPRE ler COORDINATION.md antes de nova tarefa
-5. ✅ SEMPRE atualizar STATUS.md
-6. ✅ SEMPRE fazer commit com prefixo [A3]
-7. ✅ SEMPRE testar localmente antes de commit
-
-# FERRAMENTAS E COMANDOS
-
-Desenvolvimento:
+Primeiro comando:
 ```bash
-cd investigaree
-npm run dev                    # Dev server
-npm run build                  # Build
-npm run test:e2e               # E2E tests
+cat .agents/agent-2-backend/API_DEPLOYED.md
 ```
 
-Testes com emulator (após Agent 1 configurar):
+Segundo comando:
 ```bash
-npm run emulator               # Terminal 1
-npm run test:e2e               # Terminal 2
+cat .agents/agent-3-fullstack/TODO.md
 ```
 
-# ESTRATÉGIA DE TRABALHO
-
-**FASE 1 - Preparação (sem blocker):**
-- TAREFA 3.1, 3.2, 3.3 → Preparar service layer
-
-**FASE 2 - Integração (após Agent 2):**
-- TAREFA 3.4, 3.5 → Conectar frontend
-
-**FASE 3 - Features (paralelo):**
-- TAREFA 3.6, 3.7 → Relatórios PDF
-- TAREFA 3.8, 3.9 → Testes E2E
-
-**FASE 4 - Refinamento:**
-- TAREFA 3.10, 3.11, 3.12 → Alertas, export, batch
-
-# COMECE AGORA
-
-1. Leia TODO completo:
-   cat .agents/agent-3-fullstack/TODO.md
-
-2. Verifique COORDINATION.md:
-   cat .agents/COORDINATION.md
-
-3. Verifique dependências (Agent 1 e Agent 2)
-
-4. Atualize STATUS.md
-
-5. Comece TAREFA 3.1 (pode começar sem blocker!)
-
-BOA SORTE! 🚀
+Terceiro comando:
+```bash
+# Criar dados.service.ts baseado na documentação
 ```
 
 ---
 
-## 🎯 QUANDO INICIAR AGENT 3
-
-**Recomendado: Depois de 2-4 horas**
-
-Deixe Agent 1 corrigir build E Agent 2 começar backend, depois inicie Agent 3.
-
-Agent 3 pode trabalhar em preparação (TARFAs 3.1, 3.2, 3.3) enquanto aguarda backend.
+✅ BACKEND 100% PRONTO!
+✅ DOCUMENTAÇÃO COMPLETA!
+✅ NENHUM BLOCKER!
+🚀 PODE COMEÇAR IMEDIATAMENTE!
+```
 
 ---
 
-**Criado:** 2025-12-07
+## 📄 ARQUIVOS PARA LER ANTES DE COMEÇAR
+
+1. `.agents/agent-2-backend/API_DEPLOYED.md` - **OBRIGATÓRIO!**
+2. `.agents/agent-3-fullstack/TODO.md`
+3. `.agents/agent-3-fullstack/STATUS.md`
+
+---
+
+**Criado:** 2025-12-08 06:35
+**Status Backend:** ✅ 100% Completo (Agent 2: 13/15 tarefas - 87%)
+**Status Agent 3:** 🟢 Pronto para começar (9/14 tarefas - 64%)
