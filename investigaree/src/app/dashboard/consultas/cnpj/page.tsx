@@ -142,7 +142,7 @@ export default function ConsultaCnpjPage() {
 
   const handleGoToKanban = () => {
     const cnpjNumeros = cnpj.replace(/\D/g, '');
-    router.push(`/dashboard/funcionarios?view=kanban&highlight=cnpj-${cnpjNumeros}`);
+    router.push(`/dashboard/investigacoes?view=kanban&highlight=cnpj-${cnpjNumeros}`);
   };
 
   return (

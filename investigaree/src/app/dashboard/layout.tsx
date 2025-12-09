@@ -47,7 +47,7 @@ const ADMIN_EMAILS = [
 
 const navItems: NavItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Investigações", href: "/dashboard/funcionarios", icon: Users },
+  { label: "Investigações", href: "/dashboard/investigacoes", icon: Users },
   { label: "Relatórios", href: "/dashboard/analitico", icon: BarChart3, color: "text-blue-400" },
 ];
 

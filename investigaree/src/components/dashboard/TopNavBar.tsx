@@ -36,7 +36,7 @@ const ADMIN_EMAILS = [
 ];
 
 const topNavLinks: TopNavLink[] = [
-  { label: "Investigações", href: "/dashboard/funcionarios", icon: Users },
+  { label: "Investigações", href: "/dashboard/investigacoes", icon: Users },
   { label: "Analítico", href: "/dashboard/analitico", icon: BarChart3 },
   { label: "Relatórios", href: "/dashboard/relatorios", icon: FileText },
   { label: "Exportar", href: "/dashboard/exportar", icon: Download },

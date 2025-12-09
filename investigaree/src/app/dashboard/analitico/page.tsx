@@ -157,7 +157,7 @@ export default function RelatoriosPage() {
               </div>
 
               {/* CTA */}
-              <Link href="/dashboard/funcionarios?novo=true">
+              <Link href="/dashboard/investigacoes?novo=true">
                 <Button className="bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold px-8 py-6 text-lg">
                   <Plus className="w-5 h-5 mr-2" />
                   Iniciar Nova Investigação

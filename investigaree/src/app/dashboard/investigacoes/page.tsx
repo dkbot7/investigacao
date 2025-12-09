@@ -105,7 +105,7 @@ export default function FuncionariosPage() {
     if (searchParams.get("novo") === "true") {
       setIsAddModalOpen(true);
       // Limpar o parâmetro da URL
-      router.replace("/dashboard/funcionarios", { scroll: false });
+      router.replace("/dashboard/investigacoes", { scroll: false });
     }
   }, [searchParams, router]);
 

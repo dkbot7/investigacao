@@ -151,7 +151,7 @@ export default function DashboardPage() {
               Bem-vindo ao seu painel de investigações
             </p>
           </div>
-          <Link href="/dashboard/funcionarios?novo=true">
+          <Link href="/dashboard/investigacoes?novo=true">
             <Button className="bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold">
               <Plus className="w-5 h-5 mr-2" />
               Nova Investigação
@@ -166,14 +166,14 @@ export default function DashboardPage() {
             value={displayStats.total}
             icon={FolderOpen}
             color="gold"
-            href="/dashboard/funcionarios"
+            href="/dashboard/investigacoes"
           />
           <StatCard
             title="Em Andamento"
             value={displayStats.emAndamento}
             icon={Clock}
             color="blue"
-            href="/dashboard/funcionarios?status=investigando"
+            href="/dashboard/investigacoes?status=investigando"
             pulse={displayStats.emAndamento > 0}
           />
           <StatCard
@@ -189,7 +189,7 @@ export default function DashboardPage() {
             value={displayStats.concluidas}
             icon={CheckCircle}
             color="emerald"
-            href="/dashboard/funcionarios?status=aprovado"
+            href="/dashboard/investigacoes?status=aprovado"
           />
         </div>
 
@@ -208,7 +208,7 @@ export default function DashboardPage() {
                 Investigações Recentes
               </h2>
               <Link
-                href="/dashboard/funcionarios"
+                href="/dashboard/investigacoes"
                 className="text-sm text-blue-400 hover:text-blue-300 flex items-center gap-1"
               >
                 Ver todas
@@ -225,7 +225,7 @@ export default function DashboardPage() {
                 <p className="text-slate-600 dark:text-navy-400 text-sm mb-4">
                   Comece solicitando sua primeira investigação
                 </p>
-                <Link href="/dashboard/funcionarios?novo=true">
+                <Link href="/dashboard/investigacoes?novo=true">
                   <Button className="bg-blue-500 hover:bg-blue-600 text-navy-950">
                     <Plus className="w-4 h-4 mr-2" />
                     Nova Investigação
@@ -256,7 +256,7 @@ export default function DashboardPage() {
               </h2>
 
               <div className="space-y-3">
-                <Link href="/dashboard/funcionarios?novo=true" className="block">
+                <Link href="/dashboard/investigacoes?novo=true" className="block">
                   <ActionButton
                     icon={Plus}
                     label="Nova Investigação"

@@ -96,7 +96,7 @@ export default function ConsultaCpfPage() {
 
   const handleGoToKanban = () => {
     const cpfNumeros = cpf.replace(/\D/g, '');
-    router.push(`/dashboard/funcionarios?view=kanban&highlight=cpf-${cpfNumeros}`);
+    router.push(`/dashboard/investigacoes?view=kanban&highlight=cpf-${cpfNumeros}`);
   };
 
   return (
