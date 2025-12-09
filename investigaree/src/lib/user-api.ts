@@ -51,6 +51,13 @@ export interface UserInfo {
     id: string
     email: string
   }
+  tenant?: {
+    id: string
+    code: string
+    name: string
+    email: string
+    status: string
+  }
   settings: {
     empresa_nome?: string
     plano: string
@@ -248,7 +255,31 @@ export interface Pagination {
  * Obter informacoes do usuario logado
  */
 export async function getUserInfo(): Promise<UserInfo> {
-  return fetchAPI<UserInfo>('/api/userdata/info')
+  // Buscar informacoes basicas do usuario
+  const userInfo = await fetchAPI<UserInfo>('/api/userdata/info')
+
+  // Buscar informacoes do tenant
+  try {
+    const tenantInfo = await fetchAPI<{
+      hasAccess: boolean
+      tenant: {
+        id: string
+        code: string
+        name: string
+        email: string
+        status: string
+      } | null
+    }>('/api/tenants/info')
+
+    // Adicionar tenant ao userInfo
+    if (tenantInfo.tenant) {
+      userInfo.tenant = tenantInfo.tenant
+    }
+  } catch (err) {
+    console.warn('Erro ao buscar info do tenant:', err)
+  }
+
+  return userInfo
 }
 
 /**
