@@ -47,7 +47,6 @@ interface Servico {
   riscoDeNaoContratar?: string; // O que acontece se NÃO contratar
   casoDeUso?: string; // História real (anonimizada)
   garantia?: string; // Redução de risco
-  vagasDisponiveis?: number; // Escassez real
   casosResolvidosRecente?: number; // Prova social
 }
 
@@ -75,7 +74,6 @@ const SERVICOS_PROTECAO: Servico[] = [
     riscoDeNaoContratar: "Conteúdo íntimo compartilhado sem consentimento pode continuar se espalhando",
     casoDeUso: "Já auxiliamos na remoção de conteúdo em diversas plataformas através de solicitações baseadas na LGPD",
     garantia: "Atuamos com máximo esforço, mas dependemos da cooperação das plataformas. Prazo varia conforme cada caso",
-    vagasDisponiveis: 2,
     casosResolvidosRecente: 7
   },
   {
@@ -97,7 +95,6 @@ const SERVICOS_PROTECAO: Servico[] = [
     riscoDeNaoContratar: "Seus dados pessoais continuarão expostos em dezenas de sites públicos, facilitando fraudes, invasão de privacidade e perseguição digital",
     casoDeUso: "Já auxiliamos na remoção de dados de clientes em 47 sites catalogados, incluindo plataformas que expunham CPF, endereço e telefone sem consentimento",
     garantia: "Solicitação de remoção em todos os 47 sites catalogados. Efetividade depende da cooperação de cada plataforma e conformidade com LGPD",
-    vagasDisponiveis: 3,
     casosResolvidosRecente: 5
   },
   {
@@ -119,7 +116,6 @@ const SERVICOS_PROTECAO: Servico[] = [
     riscoDeNaoContratar: "Perfis falsos podem continuar espalhando difamação, prejudicando sua reputação profissional e pessoal sem consequências",
     casoDeUso: "Identificamos e documentamos perfis falsos em casos de perseguição online, fornecendo evidências técnicas que auxiliaram em medidas judiciais",
     garantia: "Análise técnica completa com coleta de evidências digitais. Remoção depende das políticas de cada plataforma e pode requerer ação judicial",
-    vagasDisponiveis: 3,
     casosResolvidosRecente: 8
   },
   {
@@ -141,7 +137,6 @@ const SERVICOS_PROTECAO: Servico[] = [
     riscoDeNaoContratar: "Conteúdos negativos como processos antigos, notícias indesejadas ou informações desatualizadas permanecerão visíveis nas buscas do seu nome",
     casoDeUso: "Auxiliamos na solicitação de desindexação de links prejudiciais utilizando as ferramentas oficiais do Google e fundamentação baseada na LGPD",
     garantia: "Solicitação formal ao Google com fundamentação legal. Decisão de remoção é do Google conforme suas políticas e legislação aplicável",
-    vagasDisponiveis: 2,
     casosResolvidosRecente: 6
   },
   {
@@ -163,7 +158,6 @@ const SERVICOS_PROTECAO: Servico[] = [
     riscoDeNaoContratar: "Imagens não autorizadas podem continuar circulando online, causando constrangimento e violação dos seus direitos de imagem",
     casoDeUso: "Atuamos na remoção de fotos não íntimas publicadas sem autorização em redes sociais e sites, usando LGPD e direito de imagem",
     garantia: "Solicitação formal com fundamentação legal. Remoção depende da cooperação das plataformas conforme suas políticas",
-    vagasDisponiveis: 3,
     casosResolvidosRecente: 4
   },
   {
@@ -185,7 +179,6 @@ const SERVICOS_PROTECAO: Servico[] = [
     riscoDeNaoContratar: "Seu endereço exposto facilita perseguição, invasão de privacidade e riscos à segurança em separações ou conflitos",
     casoDeUso: "Auxiliamos na remoção de endereços em casos de separação judicial e proteção contra perseguição, solicitando remoção com base na LGPD",
     garantia: "Solicitação em múltiplos sites com fundamentação legal. Efetividade depende da cooperação de cada plataforma",
-    vagasDisponiveis: 2,
     casosResolvidosRecente: 3
   },
   {
@@ -207,7 +200,6 @@ const SERVICOS_PROTECAO: Servico[] = [
     riscoDeNaoContratar: "Perfis falsos podem continuar prejudicando sua reputação, causando danos profissionais e pessoais sem identificação do responsável",
     casoDeUso: "Identificamos perfis fakes em casos de difamação online, coletando evidências técnicas como IP, dispositivo e horários de acesso quando disponíveis",
     garantia: "Análise técnica do perfil com coleta de evidências. Identificação do responsável depende de dados disponíveis e pode requerer ação judicial",
-    vagasDisponiveis: 3,
     casosResolvidosRecente: 7
   },
   {
@@ -229,7 +221,6 @@ const SERVICOS_PROTECAO: Servico[] = [
     riscoDeNaoContratar: "Sua residência e rotina familiar ficam expostas no Street View, facilitando invasões, monitoramento não autorizado e violação de privacidade",
     casoDeUso: "Auxiliamos na solicitação de desfoque de residências no Street View para clientes em situações de separação ou que valorizam discrição",
     garantia: "Solicitação formal ao Google com formulário oficial. Decisão de remoção/desfoque é do Google conforme suas políticas",
-    vagasDisponiveis: 4,
     casosResolvidosRecente: 6
   },
   {
@@ -251,7 +242,6 @@ const SERVICOS_PROTECAO: Servico[] = [
     riscoDeNaoContratar: "Links prejudiciais podem continuar circulando, causando danos reputacionais contínuos e afetando oportunidades profissionais",
     casoDeUso: "Atuamos na solicitação de remoção de publicações ofensivas em redes sociais e sites, usando termos de uso das plataformas e LGPD",
     garantia: "Denúncia formal às plataformas com fundamentação legal. Remoção depende da análise e políticas de cada plataforma",
-    vagasDisponiveis: 3,
     casosResolvidosRecente: 9
   },
   {
@@ -276,7 +266,6 @@ const SERVICOS_PROTECAO: Servico[] = [
     riscoDeNaoContratar: "Conteúdos negativos acumulados podem destruir oportunidades profissionais, prejudicar relações pessoais e causar danos permanentes à imagem",
     casoDeUso: "Auxiliamos em casos de crise reputacional com varredura completa em buscadores, redes sociais e sites, solicitando remoção de conteúdos ofensivos",
     garantia: "Análise completa com estratégia de contenção e solicitações múltiplas. Efetividade depende das políticas de cada plataforma e pode requerer ações judiciais",
-    vagasDisponiveis: 1,
     casosResolvidosRecente: 3
   }
 ];
@@ -305,7 +294,6 @@ const SERVICOS_INVESTIGACAO: Servico[] = [
     riscoDeNaoContratar: "Decisões importantes tomadas sem informações completas podem resultar em prejuízos financeiros, parcerias arriscadas ou contratações problemáticas",
     casoDeUso: "Realizamos due diligence que identificou processos trabalhistas ocultos e vínculos empresariais não declarados antes de uma fusão empresarial",
     garantia: "Relatório baseado em dados públicos de 1600+ fontes com análise por IA. Não garantimos descoberta de informações específicas",
-    vagasDisponiveis: 2,
     casosResolvidosRecente: 12
   },
   {
@@ -327,7 +315,6 @@ const SERVICOS_INVESTIGACAO: Servico[] = [
     riscoDeNaoContratar: "Parcerias ou investimentos podem envolver pessoas com vínculos ocultos, processos ou conflitos de interesse não detectados",
     casoDeUso: "Mapeamos vínculos corporativos que revelaram participação oculta de sócio em empresa concorrente, evitando conflito de interesse",
     garantia: "Análise baseada em dados públicos com ML para padrões. Vínculos ocultos intencionalmente podem não ser detectados",
-    vagasDisponiveis: 2,
     casosResolvidosRecente: 5
   },
   {
@@ -352,7 +339,6 @@ const SERVICOS_INVESTIGACAO: Servico[] = [
     riscoDeNaoContratar: "Segundo estudos do IBDFAM, em processos litigiosos pode haver ocultação patrimonial não identificada",
     casoDeUso: "Em um caso real, identificamos R$ 3,2M em criptomoedas não declaradas que resultaram em nova partilha judicial",
     garantia: "Metodologia baseada em cruzamento de dados públicos e análise patrimonial. Sem garantia de resultados específicos",
-    vagasDisponiveis: 3,
     casosResolvidosRecente: 2
   },
   {
@@ -374,7 +360,6 @@ const SERVICOS_INVESTIGACAO: Servico[] = [
     riscoDeNaoContratar: "Prints comuns feitos por você podem ser questionados em processos judiciais por falta de autenticação técnica e cadeia de custódia",
     casoDeUso: "Preservamos evidências digitais de difamação em redes sociais que foram aceitas como prova válida em processo judicial",
     garantia: "Captura técnica com metadata e carimbo de tempo. Aceitação judicial depende do juiz e contexto do processo",
-    vagasDisponiveis: 5,
     casosResolvidosRecente: 18
   },
   {
@@ -396,7 +381,6 @@ const SERVICOS_INVESTIGACAO: Servico[] = [
     riscoDeNaoContratar: "Contratações ou parcerias sem verificação podem envolver pessoas com sanções, processos ou histórico problemático não declarado",
     casoDeUso: "Background check identificou execuções fiscais ativas e sanção administrativa não declarada antes de contratação para cargo de confiança",
     garantia: "Verificação baseada em dados públicos (CEIS, CNEP, tribunais). Informações ocultas ou não públicas podem não aparecer",
-    vagasDisponiveis: 3,
     casosResolvidosRecente: 8
   },
   {
@@ -418,7 +402,6 @@ const SERVICOS_INVESTIGACAO: Servico[] = [
     riscoDeNaoContratar: "Decisões estratégicas sem análise de risco estruturada podem resultar em prejuízos por não antever problemas detectáveis",
     casoDeUso: "Relatório de risco identificou padrão de processos trabalhistas recorrentes que sinalizou gestão problemática antes de investimento",
     garantia: "Análise baseada em dados públicos com ML. Predições são probabilísticas, não garantem eventos futuros",
-    vagasDisponiveis: 2,
     casosResolvidosRecente: 4
   },
   {
@@ -440,7 +423,6 @@ const SERVICOS_INVESTIGACAO: Servico[] = [
     riscoDeNaoContratar: "Empresas sem auditoria de conformidade podem ter sanções ou irregularidades não detectadas, gerando riscos legais e reputacionais",
     casoDeUso: "Auditoria identificou sanções administrativas em CNEP e não conformidades LGPD antes de processo de certificação empresarial",
     garantia: "Verificação baseada em bases públicas (CEIS, CNEP, ANPD). Análise LGPD baseada em legislação vigente, não substitui consultoria jurídica",
-    vagasDisponiveis: 2,
     casosResolvidosRecente: 6
   },
   {
@@ -462,7 +444,6 @@ const SERVICOS_INVESTIGACAO: Servico[] = [
     riscoDeNaoContratar: "Mudanças importantes como processos novos, sanções ou alterações societárias podem passar despercebidas sem monitoramento ativo",
     casoDeUso: "Sistema alertou em tempo real sobre abertura de processo judicial contra parceiro comercial, permitindo ação preventiva imediata",
     garantia: "Monitoramento nas fontes configuradas com alertas automatizados. Disponibilidade depende das fontes de dados",
-    vagasDisponiveis: 3,
     casosResolvidosRecente: 11
   },
   {
@@ -484,7 +465,6 @@ const SERVICOS_INVESTIGACAO: Servico[] = [
     riscoDeNaoContratar: "Ambientes sem monitoramento visual ficam vulneráveis a invasões, furtos ou situações não documentadas visualmente",
     casoDeUso: "Sistema de câmeras instalado flagrou tentativa de invasão, fornecendo evidências que auxiliaram na identificação dos responsáveis",
     garantia: "Instalação profissional com equipamentos homologados. Qualidade da gravação depende de condições ambientais e conectividade",
-    vagasDisponiveis: 1,
     casosResolvidosRecente: 4
   },
   {
@@ -506,7 +486,6 @@ const SERVICOS_INVESTIGACAO: Servico[] = [
     riscoDeNaoContratar: "Alvos de alto risco sem monitoramento podem realizar ações prejudiciais não detectadas em tempo hábil",
     casoDeUso: "Monitoramento identificou padrão de movimentações suspeitas e abertura de empresa em nome de terceiros durante processo judicial",
     garantia: "Monitoramento digital em fontes públicas. Atividades offline ou em canais privados podem não ser detectadas",
-    vagasDisponiveis: 1,
     casosResolvidosRecente: 2
   },
   {
@@ -531,7 +510,6 @@ const SERVICOS_INVESTIGACAO: Servico[] = [
     riscoDeNaoContratar: "Consultas manuais em grande volume são inviáveis, lentas e sujeitas a erros humanos em processos repetitivos",
     casoDeUso: "Processamos 50 mil CPFs em poucas horas para cliente do setor financeiro, identificando restrições e inconsistências cadastrais",
     garantia: "Processamento automatizado com tecnologia própria. Velocidade depende da disponibilidade das fontes de dados consultadas",
-    vagasDisponiveis: 2,
     casosResolvidosRecente: 7
   },
   {
@@ -553,7 +531,6 @@ const SERVICOS_INVESTIGACAO: Servico[] = [
     riscoDeNaoContratar: "Dados complexos analisados apenas em planilhas ou PDFs perdem poder analítico e dificultam identificação de padrões",
     casoDeUso: "Dashboard revelou padrão temporal de movimentações financeiras suspeitas que não era visível em relatórios tradicionais",
     garantia: "Dashboard customizado com dados fornecidos. Qualidade da análise depende da completude dos dados disponíveis",
-    vagasDisponiveis: 2,
     casosResolvidosRecente: 5
   }
 ];
@@ -582,7 +559,6 @@ const SERVICOS_PERICIA: Servico[] = [
     riscoDeNaoContratar: "Provas sem metodologia adequada podem ter sua validade questionada em processos judiciais",
     casoDeUso: "Nossos laudos seguem metodologia forense e são validados por perito oficial concursado (1º lugar PCE-PA 2019)",
     garantia: "Seguimos rigorosamente as normas técnicas forenses. Aceitação judicial depende do caso concreto e decisão do juiz",
-    vagasDisponiveis: 1,
     casosResolvidosRecente: 3
   },
   {
@@ -607,7 +583,6 @@ const SERVICOS_PERICIA: Servico[] = [
     riscoDeNaoContratar: "Extração sem metodologia forense pode contaminar evidências e torná-las inadmissíveis judicialmente",
     casoDeUso: "Extração forense recuperou conversas deletadas e arquivos ocultos que se tornaram provas decisivas em processo judicial",
     garantia: "Metodologia forense certificada com cadeia de custódia. Recuperação de dados deletados depende do estado do dispositivo",
-    vagasDisponiveis: 1,
     casosResolvidosRecente: 2
   },
   {
@@ -629,7 +604,6 @@ const SERVICOS_PERICIA: Servico[] = [
     riscoDeNaoContratar: "Evidências sem cadeia de custódia adequada podem ser questionadas ou rejeitadas em processos judiciais",
     casoDeUso: "Cadeia de custódia certificada garantiu integridade de evidências digitais que foram aceitas como prova válida em tribunal",
     garantia: "Metodologia forense com cadeia de custódia completa. Aceitação judicial depende do contexto e decisão do magistrado",
-    vagasDisponiveis: 1,
     casosResolvidosRecente: 3
   },
   {
@@ -651,7 +625,6 @@ const SERVICOS_PERICIA: Servico[] = [
     riscoDeNaoContratar: "Equipes sem capacitação adequada podem perder evidências importantes, violar privacidade ou realizar investigações ineficazes",
     casoDeUso: "Treinamos equipes de compliance e advocacia em técnicas OSINT que aumentaram significativamente a efetividade investigativa interna",
     garantia: "Treinamento com conteúdo atualizado e instrutora experiente. Aplicação prática depende do esforço e contexto de cada participante",
-    vagasDisponiveis: 2,
     casosResolvidosRecente: 4
   },
   {
@@ -673,7 +646,6 @@ const SERVICOS_PERICIA: Servico[] = [
     riscoDeNaoContratar: "Investigações sem planejamento estratégico podem desperdiçar recursos, perder evidências ou usar metodologia inadequada",
     casoDeUso: "Consultoria estratégica direcionou investigação complexa de fraude corporativa, economizando tempo e recursos com foco nas fontes certas",
     garantia: "Consultoria com metodologia forense reconhecida. Resultados dependem da execução do plano e circunstâncias do caso",
-    vagasDisponiveis: 3,
     casosResolvidosRecente: 6
   }
 ];
@@ -749,16 +721,6 @@ function ServiceModal({ service, isOpen, onClose }: { service: Servico | null; i
             </div>
           )}
 
-          {/* Escassez */}
-          {service.vagasDisponiveis && service.vagasDisponiveis <= 3 && (
-            <div className="flex items-center justify-center gap-2 p-3 bg-orange-500/10 dark:bg-orange-500/20 border border-orange-500/30 rounded-lg">
-              <Flame className="w-5 h-5 text-orange-500 animate-pulse" />
-              <span className="text-orange-700 dark:text-orange-400 font-bold">
-                🔥 Apenas {service.vagasDisponiveis} {service.vagasDisponiveis === 1 ? 'vaga disponível' : 'vagas disponíveis'} por mês
-              </span>
-            </div>
-          )}
-
           {/* Características */}
           <div>
             <h4 className="font-semibold text-lg mb-3 text-slate-900 dark:text-white">O que está incluído:</h4>
@@ -821,7 +783,7 @@ function ServiceModal({ service, isOpen, onClose }: { service: Servico | null; i
                 size="lg"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
-                Garantir Minha Vaga AGORA
+                Falar com Especialista Agora
               </Button>
               <Button variant="outline" onClick={onClose} size="lg" className="h-14">
                 Voltar
@@ -880,16 +842,6 @@ function ServicosContent() {
           }} />
 
           <div className="container max-w-6xl px-4 relative z-10">
-            {/* Urgência Real - Atendimentos Limitados */}
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="flex items-center gap-2 bg-orange-500/10 dark:bg-orange-500/20 border border-orange-400/30 px-4 py-2 rounded-full">
-                <Flame className="w-4 h-4 text-orange-500 animate-pulse" />
-                <span className="text-sm font-semibold text-orange-700 dark:text-orange-400">
-                  Apenas 6 vagas disponíveis esta semana
-                </span>
-              </div>
-            </div>
-
             {/* Badge de Confiança */}
             <div className="flex justify-center mb-4">
               <Badge className="bg-blue-500 text-navy-900 text-sm px-4 py-2 flex items-center gap-2">
@@ -1005,16 +957,6 @@ function ServicosContent() {
                                 <UserCheck className="w-4 h-4 text-blue-500" />
                                 <span className="text-slate-600 dark:text-navy-300">
                                   <strong className="text-blue-500">{service.casosResolvidosRecente} casos</strong> resolvidos nos últimos 7 dias
-                                </span>
-                              </div>
-                            )}
-
-                            {/* Escassez - Vagas Disponíveis */}
-                            {service.vagasDisponiveis && service.vagasDisponiveis <= 3 && (
-                              <div className="flex items-center gap-2 p-2 bg-orange-50 dark:bg-orange-500/10 border border-orange-200 dark:border-orange-500/20 rounded">
-                                <Flame className="w-4 h-4 text-orange-500 animate-pulse" />
-                                <span className="text-sm text-orange-700 dark:text-orange-400 font-semibold">
-                                  Apenas {service.vagasDisponiveis} {service.vagasDisponiveis === 1 ? 'vaga disponível' : 'vagas disponíveis'}
                                 </span>
                               </div>
                             )}
