@@ -155,7 +155,7 @@ export async function listKanbanCards(params: ListCardsParams): Promise<ListCard
   if (params.arquivado !== undefined) queryParams.append('arquivado', params.arquivado.toString());
 
   const response = await apiClient.get(`/api/kanban/cards?${queryParams.toString()}`);
-  return response;
+  return response as ListCardsResponse;
 }
 
 /**
@@ -163,7 +163,7 @@ export async function listKanbanCards(params: ListCardsParams): Promise<ListCard
  */
 export async function getKanbanCard(cardId: number): Promise<{ success: boolean; card: KanbanCard & { consult_history: any[] } }> {
   const response = await apiClient.get(`/api/kanban/cards/${cardId}`);
-  return response;
+  return response as { success: boolean; card: KanbanCard & { consult_history: any[] } };
 }
 
 /**
@@ -176,7 +176,7 @@ export async function createKanbanCard(
   const response = await apiClient.post('/api/kanban/cards', params, {
     tenantCode,
   });
-  return response;
+  return response as { success: boolean; card: KanbanCard };
 }
 
 /**
@@ -187,7 +187,7 @@ export async function updateKanbanCard(
   params: UpdateCardParams
 ): Promise<{ success: boolean; card: KanbanCard }> {
   const response = await apiClient.put(`/api/kanban/cards/${cardId}`, params);
-  return response;
+  return response as { success: boolean; card: KanbanCard };
 }
 
 /**
@@ -198,7 +198,7 @@ export async function moveKanbanCard(
   params: MoveCardParams
 ): Promise<{ success: boolean; card: KanbanCard; message: string }> {
   const response = await apiClient.patch(`/api/kanban/cards/${cardId}/move`, params);
-  return response;
+  return response as { success: boolean; card: KanbanCard; message: string };
 }
 
 /**
@@ -206,7 +206,7 @@ export async function moveKanbanCard(
  */
 export async function archiveKanbanCard(cardId: number): Promise<{ success: boolean; message: string }> {
   const response = await apiClient.delete(`/api/kanban/cards/${cardId}`);
-  return response;
+  return response as { success: boolean; message: string };
 }
 
 /**
@@ -214,7 +214,7 @@ export async function archiveKanbanCard(cardId: number): Promise<{ success: bool
  */
 export async function deleteKanbanCard(cardId: number): Promise<{ success: boolean; message: string }> {
   const response = await apiClient.delete(`/api/kanban/cards/${cardId}?hard=true`);
-  return response;
+  return response as { success: boolean; message: string };
 }
 
 /**
@@ -230,7 +230,7 @@ export async function consultKanbanCard(
   cost: number;
 }> {
   const response = await apiClient.post(`/api/kanban/cards/${cardId}/consult`, params);
-  return response;
+  return response as { success: boolean; card: KanbanCard; consult_result: any; cost: number };
 }
 
 /**
@@ -239,7 +239,7 @@ export async function consultKanbanCard(
 export async function getKanbanStats(tenantCode?: string): Promise<KanbanStats> {
   const queryParams = tenantCode ? `?tenant_code=${tenantCode}` : '';
   const response = await apiClient.get(`/api/kanban/stats${queryParams}`);
-  return response;
+  return response as KanbanStats;
 }
 
 // ============================================================================
