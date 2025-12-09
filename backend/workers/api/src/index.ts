@@ -18,6 +18,7 @@ import investigacoesRoutes from './routes/investigacoes.routes';
 import tenantsRoutes from './routes/tenants.routes';
 import serproCredentialsRoutes from './routes/serpro-credentials.routes';
 import authRoutes from './routes/auth.routes';
+import kanbanRoutes from './routes/kanban.routes';
 import { processJobs } from './cron/process-jobs';
 
 // ============================================================================
@@ -71,6 +72,7 @@ app.get('/', (c) => {
       usage: '/api/admin/serpro/usage',
       investigacoes: '/api/investigacoes',
       tenants: '/api/tenants',
+      kanban: '/api/kanban/*',
     },
     documentation: 'https://investigaree.com.br/docs/api',
   });
@@ -158,6 +160,9 @@ app.route('/api/tenant', tenantsRoutes); // Alias singular para compatibilidade
 
 // Mount SERPRO Credentials Management routes (admin only)
 app.route('/api/admin/serpro-credentials', serproCredentialsRoutes);
+
+// Mount Kanban routes (authenticated users)
+app.route('/api/kanban', kanbanRoutes);
 
 // ============================================================================
 // ERROR HANDLING
