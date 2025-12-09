@@ -21,6 +21,8 @@ import {
   CreditCard,
   HelpCircle,
   ChevronDown,
+  ShieldCheck,
+  Lock,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useUserAccess } from "@/hooks/useUserData";

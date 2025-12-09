@@ -1,13 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // ✅ Static export for Cloudflare Pages
-  output: "export",
+  // ✅ OpenNext Cloudflare requires standalone output
+  output: "standalone",
   trailingSlash: true,
   // Extend pageExtensions to include MDX
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
-  // Empty turbopack config to use Turbopack (Next.js 16 default)
-  turbopack: {},
 
   // ============================================================================
   // PERFORMANCE OPTIMIZATIONS (Agent 3 - TAREFA 3.14)
@@ -53,3 +51,9 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+// ============================================================================
+// OPENNEXT CLOUDFLARE - DEV MODE INITIALIZATION
+// ============================================================================
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+initOpenNextCloudflareForDev();
