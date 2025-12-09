@@ -4,7 +4,17 @@
 
 import { auth } from './firebase'
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.investigaree.com.br'
+// Detectar automaticamente se está rodando em localhost
+const isLocalhost = typeof window !== 'undefined' && (
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1'
+)
+
+// Se localhost, usa próprio servidor Next.js (API Routes)
+// Se produção, usa Worker da Cloudflare
+const API_BASE_URL = isLocalhost
+  ? (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3001')
+  : (process.env.NEXT_PUBLIC_API_URL || 'https://api.investigaree.com.br')
 
 /**
  * Faz uma requisição autenticada para a API

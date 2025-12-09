@@ -1,9 +1,37 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Building2 } from "lucide-react";
+import { useUserAccess } from "@/hooks/useUserData";
 
 export default function ComurgCedidosPage() {
+  const { userInfo, loading } = useUserAccess();
+  const router = useRouter();
+
+  // Proteção: apenas usuários do tenant COMURG podem acessar
+  useEffect(() => {
+    if (!loading && userInfo?.tenant?.code !== 'COMURG') {
+      console.warn("[ComurgCedidos] Acesso negado - tenant:", userInfo?.tenant?.code);
+      router.push('/dashboard');
+    }
+  }, [userInfo, loading, router]);
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="p-4 lg:p-8 flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+      </div>
+    );
+  }
+
+  // Bloquear renderização se não for COMURG
+  if (userInfo?.tenant?.code !== 'COMURG') {
+    return null;
+  }
+
   return (
     <div className="p-4 lg:p-8">
       <motion.div
