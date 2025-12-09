@@ -1,10 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export", // Static export for Cloudflare Pages (dev mode)
-  images: {
-    unoptimized: true,
-  },
+  // ✅ Static export for Cloudflare Pages
+  output: "export",
   trailingSlash: true,
   // Extend pageExtensions to include MDX
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
