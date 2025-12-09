@@ -23,6 +23,7 @@ import {
   ChevronDown,
   ShieldCheck,
   Lock,
+  Building2,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useUserAccess } from "@/hooks/useUserData";
@@ -50,6 +51,14 @@ const navItems: NavItem[] = [
   { label: "Investigações", href: "/dashboard/investigacoes", icon: Users },
   { label: "Relatórios", href: "/dashboard/analitico", icon: BarChart3, color: "text-blue-400" },
 ];
+
+// Item específico do tenant COMURG
+const comurgNavItem: NavItem = {
+  label: "COMURG Cedidos",
+  href: "/dashboard/comurgecedidos",
+  icon: Building2,
+  color: "text-emerald-400",
+};
 
 // Item admin (apenas para admins)
 const adminNavItem: NavItem = {
@@ -177,6 +186,22 @@ export default function DashboardLayout({
               </Link>
             );
           })}
+
+          {/* Item COMURG Cedidos (apenas para tenant COMURG) */}
+          {userInfo?.tenant?.code === 'COMURG' && (
+            <Link
+              href={comurgNavItem.href}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group ${
+                isActiveRoute(comurgNavItem.href)
+                  ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
+                  : "text-slate-700 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-white"
+              }`}
+            >
+              <comurgNavItem.icon className={`w-5 h-5 ${isActiveRoute(comurgNavItem.href) ? "text-blue-400" : comurgNavItem.color || "text-slate-500 dark:text-navy-400"}`} />
+              <span className="flex-1 text-sm font-medium">{comurgNavItem.label}</span>
+              {isActiveRoute(comurgNavItem.href) && <ChevronRight className="w-4 h-4 text-blue-400/50" />}
+            </Link>
+          )}
 
           {/* Item Admin (apenas para admins) */}
           {user.email && ADMIN_EMAILS.includes(user.email) && (
@@ -380,6 +405,22 @@ export default function DashboardLayout({
                     </Link>
                   );
                 })}
+
+                {/* Item COMURG Cedidos (apenas para tenant COMURG) */}
+                {userInfo?.tenant?.code === 'COMURG' && (
+                  <Link
+                    href={comurgNavItem.href}
+                    onClick={() => setSidebarOpen(false)}
+                    className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
+                      isActiveRoute(comurgNavItem.href)
+                        ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
+                        : "text-slate-700 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-white"
+                    }`}
+                  >
+                    <comurgNavItem.icon className={`w-5 h-5 ${isActiveRoute(comurgNavItem.href) ? "text-blue-400" : comurgNavItem.color || "text-slate-500 dark:text-navy-400"}`} />
+                    <span className="flex-1 text-sm font-medium">{comurgNavItem.label}</span>
+                  </Link>
+                )}
               </nav>
 
               <div className="p-4 border-t border-slate-300 dark:border-navy-800">
