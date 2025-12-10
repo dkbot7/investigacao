@@ -24,9 +24,17 @@ import {
   ShieldCheck,
   Lock,
   Building2,
+  FileText,
+  Skull,
+  AlertTriangle,
+  Gift,
+  Vote,
+  Globe,
+  CheckCircle2,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useUserAccess } from "@/hooks/useUserData";
+import { ComurgDataProvider } from "@/contexts/ComurgDataContext";
 import { Button } from "@/components/ui/button";
 import { TopNavBar } from "@/components/dashboard/TopNavBar";
 import { Toaster } from "sonner";
@@ -52,13 +60,16 @@ const navItems: NavItem[] = [
   { label: "Relatórios", href: "/dashboard/analitico", icon: BarChart3, color: "text-blue-400" },
 ];
 
-// Item específico do tenant COMURG
-const comurgNavItem: NavItem = {
-  label: "COMURG Cedidos",
-  href: "/dashboard/comurgecedidos",
-  icon: Building2,
-  color: "text-emerald-400",
-};
+// Itens do tenant COMURG
+const comurgNavItems: NavItem[] = [
+  { label: "Funcionários Cedidos", href: "/dashboard/comurgecedidos", icon: Building2, color: "text-emerald-400" },
+  { label: "Achados Críticos", href: "/dashboard/comurgachadoscriticos", icon: AlertTriangle, color: "text-red-400" },
+  { label: "Óbitos Confirmados", href: "/dashboard/comurgobitos", icon: Skull, color: "text-red-500" },
+  { label: "Vínculos Empresariais", href: "/dashboard/comurgempresas", icon: Building2, color: "text-orange-400" },
+  { label: "Benefícios Federais", href: "/dashboard/comurgbenefícios", icon: Gift, color: "text-blue-400" },
+  { label: "Atividade Política", href: "/dashboard/comurgatividadepolitica", icon: Vote, color: "text-purple-400" },
+  { label: "Análise de Risco", href: "/dashboard/comurganaliserisco", icon: Shield, color: "text-blue-400" },
+];
 
 // Item admin (apenas para admins)
 const adminNavItem: NavItem = {
@@ -79,6 +90,7 @@ export default function DashboardLayout({
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [comurgSectionOpen, setComurgSectionOpen] = useState(true);
 
   // Redirecionar se não autenticado
   useEffect(() => {
@@ -187,20 +199,37 @@ export default function DashboardLayout({
             );
           })}
 
-          {/* Item COMURG Cedidos (apenas para tenant COMURG) */}
+          {/* Itens COMURG (apenas para tenant COMURG) */}
           {userInfo?.tenant?.code === 'COMURG' && (
-            <Link
-              href={comurgNavItem.href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group ${
-                isActiveRoute(comurgNavItem.href)
-                  ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
-                  : "text-slate-700 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-white"
-              }`}
-            >
-              <comurgNavItem.icon className={`w-5 h-5 ${isActiveRoute(comurgNavItem.href) ? "text-blue-400" : comurgNavItem.color || "text-slate-500 dark:text-navy-400"}`} />
-              <span className="flex-1 text-sm font-medium">{comurgNavItem.label}</span>
-              {isActiveRoute(comurgNavItem.href) && <ChevronRight className="w-4 h-4 text-blue-400/50" />}
-            </Link>
+            <>
+              <div className="my-2 border-t border-slate-300 dark:border-navy-700" />
+              <button
+                onClick={() => setComurgSectionOpen(!comurgSectionOpen)}
+                className="w-full flex items-center justify-between px-3 py-2 text-slate-500 dark:text-navy-500 hover:bg-slate-100 dark:hover:bg-navy-800 rounded-lg transition-colors"
+              >
+                <p className="text-xs font-semibold uppercase tracking-wider">COMURG</p>
+                <ChevronDown className={`w-4 h-4 transition-transform ${comurgSectionOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {comurgSectionOpen && comurgNavItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = isActiveRoute(item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group ${
+                      isActive
+                        ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
+                        : "text-slate-700 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-white"
+                    }`}
+                  >
+                    <Icon className={`w-5 h-5 ${isActive ? "text-blue-400" : item.color || "text-slate-500 dark:text-navy-400"}`} />
+                    <span className="flex-1 text-sm font-medium">{item.label}</span>
+                    {isActive && <ChevronRight className="w-4 h-4 text-blue-400/50" />}
+                  </Link>
+                );
+              })}
+            </>
           )}
 
           {/* Item Admin (apenas para admins) */}
@@ -406,20 +435,37 @@ export default function DashboardLayout({
                   );
                 })}
 
-                {/* Item COMURG Cedidos (apenas para tenant COMURG) */}
+                {/* Itens COMURG (apenas para tenant COMURG) */}
                 {userInfo?.tenant?.code === 'COMURG' && (
-                  <Link
-                    href={comurgNavItem.href}
-                    onClick={() => setSidebarOpen(false)}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
-                      isActiveRoute(comurgNavItem.href)
-                        ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
-                        : "text-slate-700 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-white"
-                    }`}
-                  >
-                    <comurgNavItem.icon className={`w-5 h-5 ${isActiveRoute(comurgNavItem.href) ? "text-blue-400" : comurgNavItem.color || "text-slate-500 dark:text-navy-400"}`} />
-                    <span className="flex-1 text-sm font-medium">{comurgNavItem.label}</span>
-                  </Link>
+                  <>
+                    <div className="my-2 border-t border-slate-300 dark:border-navy-700" />
+                    <button
+                      onClick={() => setComurgSectionOpen(!comurgSectionOpen)}
+                      className="w-full flex items-center justify-between px-3 py-2 text-slate-500 dark:text-navy-500 hover:bg-slate-100 dark:hover:bg-navy-800 rounded-lg transition-colors"
+                    >
+                      <p className="text-xs font-semibold uppercase tracking-wider">COMURG</p>
+                      <ChevronDown className={`w-4 h-4 transition-transform ${comurgSectionOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {comurgSectionOpen && comurgNavItems.map((item) => {
+                      const Icon = item.icon;
+                      const isActive = isActiveRoute(item.href);
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setSidebarOpen(false)}
+                          className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
+                            isActive
+                              ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
+                              : "text-slate-700 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-white"
+                          }`}
+                        >
+                          <Icon className={`w-5 h-5 ${isActive ? "text-blue-400" : item.color || "text-slate-500 dark:text-navy-400"}`} />
+                          <span className="flex-1 text-sm font-medium">{item.label}</span>
+                        </Link>
+                      );
+                    })}
+                  </>
                 )}
               </nav>
 
@@ -448,7 +494,11 @@ export default function DashboardLayout({
 
         {/* Page Content - padding top para compensar mobile header */}
         <div className="pt-16 lg:pt-0 min-h-screen">
-          {children}
+          {userInfo?.tenant?.code === 'COMURG' ? (
+            <ComurgDataProvider>{children}</ComurgDataProvider>
+          ) : (
+            children
+          )}
         </div>
       </main>
     </div>
