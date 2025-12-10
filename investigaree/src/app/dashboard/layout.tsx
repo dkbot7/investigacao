@@ -68,6 +68,7 @@ const comurgNavItems: NavItem[] = [
   { label: "Vínculos Empresariais", href: "/dashboard/comurgempresas", icon: Building2, color: "text-orange-400" },
   { label: "Benefícios Federais", href: "/dashboard/comurgbeneficios", icon: Gift, color: "text-blue-400" },
   { label: "Atividade Política", href: "/dashboard/comurgatividadepolitica", icon: Vote, color: "text-purple-400" },
+  { label: "Listas Restritivas", href: "/dashboard/comurglistasrestritivas", icon: ShieldCheck, color: "text-yellow-400" },
   { label: "Análise de Risco", href: "/dashboard/comurganaliserisco", icon: Shield, color: "text-blue-400" },
 ];
 
