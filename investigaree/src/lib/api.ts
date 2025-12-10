@@ -289,7 +289,7 @@ export interface InvestigationData {
  * Cria uma nova investigação
  */
 export async function createInvestigation(data: InvestigationData) {
-  return fetchAPI<{ success: boolean; id: string; message: string }>('/api/investigations', {
+  return fetchAPI<{ success: boolean; id: string; message: string }>('/api/investigacoes', {
     method: 'POST',
     body: JSON.stringify(data),
   })
@@ -313,21 +313,21 @@ export async function getInvestigations(params?: {
   if (params?.limit) searchParams.set('limit', params.limit.toString())
 
   const query = searchParams.toString()
-  return fetchAPI(`/api/investigations${query ? `?${query}` : ''}`)
+  return fetchAPI(`/api/investigacoes${query ? `?${query}` : ''}`)
 }
 
 /**
  * Busca detalhes de uma investigação
  */
 export async function getInvestigationDetails(id: string) {
-  return fetchAPI(`/api/investigations/${id}`)
+  return fetchAPI(`/api/investigacoes/${id}`)
 }
 
 /**
  * Estatísticas das investigações
  */
 export async function getInvestigationsStats() {
-  return fetchAPI('/api/investigations/stats')
+  return fetchAPI('/api/investigacoes/stats')
 }
 
 /**
@@ -340,7 +340,7 @@ export async function importInvestigations(data: {
   nivel_urgencia?: string
   motivo_investigacao?: string
 }) {
-  return fetchAPI<{ success: boolean; imported: number; grupo: string; message: string }>('/api/investigations/import', {
+  return fetchAPI<{ success: boolean; imported: number; grupo: string; message: string }>('/api/investigacoes/import', {
     method: 'POST',
     body: JSON.stringify(data),
   })

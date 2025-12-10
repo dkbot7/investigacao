@@ -66,43 +66,10 @@ export function TopNavBar() {
   return (
     <div className="sticky top-0 z-40 bg-white dark:bg-navy-900/95 backdrop-blur-lg border-b border-slate-300 dark:border-navy-800">
       <div className="flex items-center justify-between px-4 lg:px-8 h-16">
-        {/* Left: Main Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1">
-          {topNavLinks.map((link) => {
-            const Icon = link.icon;
-            const isActive = isActiveRoute(link.href);
-
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                  isActive
-                    ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
-                    : "text-slate-700 dark:text-navy-300 hover:text-white hover:bg-slate-100 dark:hover:bg-navy-800"
-                }`}
-              >
-                <Icon className="w-4 h-4" />
-                {link.label}
-              </Link>
-            );
-          })}
-
-          {/* Admin Link (apenas para admins) */}
-          {isAdmin && (
-            <Link
-              href="/dashboard/admin"
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                isActiveRoute("/dashboard/admin")
-                  ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
-                  : "text-slate-700 dark:text-navy-300 hover:text-white hover:bg-slate-100 dark:hover:bg-navy-800"
-              }`}
-            >
-              <Shield className="w-4 h-4" />
-              Admin
-            </Link>
-          )}
-        </nav>
+        {/* Left: Empty space (navigation links removed) */}
+        <div className="hidden md:flex items-center gap-1">
+          {/* Navigation links removed - usando apenas menu lateral */}
+        </div>
 
         {/* Mobile: Page Title */}
         <div className="md:hidden text-slate-900 dark:text-white font-semibold">

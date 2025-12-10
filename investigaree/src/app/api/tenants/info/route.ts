@@ -36,8 +36,21 @@ export async function GET(request: NextRequest) {
     const decoded = decodeFirebaseToken(token)
     const userEmail = decoded.email || 'unknown@example.com'
 
+    // Lista de emails autorizados para o tenant COMURG
+    const COMURG_EMAILS = [
+      'cliente01@investigaree.com.br',
+      'dkbotdani@gmail.com',
+      'ibsenmaciel@gmail.com',
+      'contato@investigaree.com.br',
+      // Adicione outros emails COMURG aqui
+    ]
+
     // Verificar se usuário é do tenant COMURG
-    const isCOMURG = userEmail === 'cliente01@investigaree.com.br'
+    const isCOMURG = COMURG_EMAILS.includes(userEmail.toLowerCase())
+
+    // Logging para debug
+    console.log('[API /tenants/info] Email:', userEmail)
+    console.log('[API /tenants/info] isCOMURG:', isCOMURG)
 
     // Mock de dados para desenvolvimento local
     const tenantInfo = {
@@ -47,7 +60,8 @@ export async function GET(request: NextRequest) {
           id: "comurg-tenant-id",
           code: "COMURG",
           name: "COMURG - Companhia Urbanizadora da Região do Goiânia",
-          email: "contato@comurg.go.gov.br"
+          email: "contato@comurg.go.gov.br",
+          status: "active"
         },
         tenants: [
           {

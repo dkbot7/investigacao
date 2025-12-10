@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import {
   X,
   User,
@@ -29,6 +30,7 @@ import {
   Clock,
   BadgeCheck,
   BadgeX,
+  ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -129,7 +131,9 @@ export function FichaFuncionario({
   beneficios = [],
   onClose,
 }: FichaFuncionarioProps) {
+  const router = useRouter();
   const isFalecido = funcionario.esta_morto?.includes("SIM");
+  const isComurgEmpresa = funcionario.cargo === "Empresa" || funcionario.grupo?.toLowerCase().includes("empresa");
   const totalDoacoes = doacoes.reduce((sum, d) => sum + (d.valor || 0), 0);
   const temAlertas = isFalecido || funcionario.sancionado_ceis === 1 || sancoes.length > 0;
 
@@ -191,6 +195,21 @@ export function FichaFuncionario({
                     {isFalecido ? `Falecido (${funcionario.ano_obito})` : "Vivo"}
                   </span>
                 </div>
+
+                {/* Botão COMURG */}
+                {isComurgEmpresa && (
+                  <button
+                    onClick={() => {
+                      router.push('/dashboard/comurgecedidos');
+                      onClose();
+                    }}
+                    className="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors text-sm font-medium"
+                  >
+                    <Building2 className="w-4 h-4" />
+                    Ver Funcionários Cedidos
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                )}
               </div>
             </div>
             <button

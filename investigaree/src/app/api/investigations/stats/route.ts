@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 const WORKER_URL = 'https://api.investigaree.com.br'
 
 /**
- * GET /api/investigations/stats
+ * GET /api/investigacoes/stats
  * Retorna estatísticas das investigações (proxy para Worker com D1)
  */
 export async function GET(request: NextRequest) {
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const workerUrl = `${WORKER_URL}/api/investigations/stats`
+    const workerUrl = `${WORKER_URL}/api/investigacoes/stats`
 
     console.log('[API Proxy Stats] Forwarding to:', workerUrl)
 

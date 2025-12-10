@@ -12,11 +12,11 @@ const isLocalhost = typeof window !== 'undefined' && (
   window.location.hostname === '127.0.0.1'
 )
 
-// Se localhost, usa próprio servidor Next.js (API Routes)
-// Se produção, usa Worker da Cloudflare
-const API_URL = isLocalhost
-  ? (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3001')
-  : (process.env.NEXT_PUBLIC_API_URL || 'https://api.investigaree.com.br')
+// IMPORTANTE: As API routes do frontend estão no próprio Worker (investigaree.com.br)
+// Sempre usar o origin atual para chamadas de API do frontend
+const API_URL = typeof window !== 'undefined'
+  ? window.location.origin
+  : (isLocalhost ? 'http://localhost:3001' : 'https://investigaree.com.br')
 
 async function getAuthHeaders(): Promise<HeadersInit> {
   const user = auth.currentUser

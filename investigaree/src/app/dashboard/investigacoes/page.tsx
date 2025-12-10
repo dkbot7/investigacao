@@ -37,7 +37,7 @@ import { UploadCsvButton } from "@/components/dashboard/UploadCsvButton";
 import { JobMonitor } from "@/components/dashboard/JobMonitor";
 
 // BACKEND INTEGRATION (Agent 3 - TAREFA 3.5)
-import { listarFuncionarios } from "@/lib/services/dados.service";
+import { getInvestigations, getInvestigationsStats } from "@/lib/api";
 import type { Funcionario as FuncionarioBackend, CacheStats } from "@/lib/types/dados.types";
 
 // Mock data imports mantidos apenas para funcionalidades complementares
@@ -131,13 +131,27 @@ export default function FuncionariosPage() {
       setError(null);
 
       // Carregar do backend real
-      const response = await listarFuncionarios(tenantCode);
+      const response = await getInvestigations() as any;
+
+      // Convert to funcionarios format for now
+      // TODO: Refactor page to use investigation format directly
 
       // Converter dados do backend para formato UI
-      const convertedFuncionarios = response.funcionarios.map(convertBackendToUI);
+      const investigations = response.data || response.investigacoes || [];
+      const convertedFuncionarios = investigations.map((inv: any) => ({
+        id: inv.id,
+        nome: inv.nome,
+        cpf: inv.documento,
+        grupo: inv.grupo || inv.categoria || 'N/A',
+        cargo: inv.tipo_pessoa === 'juridica' ? 'Empresa' : 'Pessoa Física',
+        salario: 0,
+        esta_morto: 'NÃO',
+        recebe_beneficio: 0,
+        socio_empresa: inv.tipo_pessoa === 'juridica' ? 1 : 0,
+      }));
 
       setFuncionarios(convertedFuncionarios);
-      setCacheStats(response.cache_stats);
+      setCacheStats(null);
       setUsingBackend(true);
 
       console.log('[Funcionarios] ✅ Dados carregados do backend:', {

@@ -33,7 +33,9 @@
       "Bash(git commit:*)",
       "Bash(npx firebase:*)",
       "Bash(tree:*)",
-      "Bash(move \"diarios-oficiais-dou-djen.mdx.skip\" \"diarios-oficiais-dou-djen.mdx\")"
+      "Bash(move \"diarios-oficiais-dou-djen.mdx.skip\" \"diarios-oficiais-dou-djen.mdx\")",
+      "WebFetch(domain:github.com)",
+      "Bash(Select-String -Pattern \"(✓|error|Error|SUCCESS|failed|Failed|Build complete)\" -Context 0,2)"
     ],
     "deny": [],
     "ask": []

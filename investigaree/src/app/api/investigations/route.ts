@@ -46,20 +46,20 @@ async function proxyToWorker(request: NextRequest, endpoint: string, options: Re
 }
 
 /**
- * GET /api/investigations
+ * GET /api/investigacoes
  * Lista investigações do usuário
  */
 export async function GET(request: NextRequest) {
-  return proxyToWorker(request, '/api/investigations', { method: 'GET' })
+  return proxyToWorker(request, '/api/investigacoes', { method: 'GET' })
 }
 
 /**
- * POST /api/investigations
+ * POST /api/investigacoes
  * Cria uma nova investigação
  */
 export async function POST(request: NextRequest) {
   const body = await request.json()
-  return proxyToWorker(request, '/api/investigations', {
+  return proxyToWorker(request, '/api/investigacoes', {
     method: 'POST',
     body: JSON.stringify(body),
   })
