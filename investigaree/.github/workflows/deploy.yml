@@ -32,7 +32,7 @@ jobs:
 
       - name: Deploy to Cloudflare Workers
         working-directory: ./investigaree
-        run: npx @opennextjs/cloudflare deploy
+        run: npx wrangler deploy --route "investigaree.com.br/*" --route "www.investigaree.com.br/*"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
