@@ -49,8 +49,36 @@ interface Servico {
   garantia?: string; // Redução de risco
 }
 
-// TAB 1: PROTEÇÃO & REMOÇÃO (10 serviços)
+// TAB 1: PROTEÇÃO & REMOÇÃO (11 serviços)
 const SERVICOS_PROTECAO: Servico[] = [
+  {
+    id: "seguranca-residencial",
+    nome: "Segurança Residencial e Patrimonial (Física)",
+    descricao: "Instalação profissional de câmeras inteligentes Full HD com visão 360°, monitoramento remoto 24h e notificações em tempo real para proteger sua casa e família.",
+    icon: Video,
+    destaque: true,
+    caracteristicas: [
+      "Câmera Full HD 1080p com visão 360° panorâmica",
+      "Auto Tracking - rastreamento automático de movimento",
+      "Notificações instantâneas de movimento suspeito",
+      "Controle remoto total via smartphone (iOS/Android)",
+      "Visão noturna inteligente até 10 metros",
+      "Áudio bidirecional - veja, ouça e fale em tempo real",
+      "Função babá eletrônica para monitorar crianças",
+      "Armazenamento em nuvem ou cartão microSD (até 256GB)",
+      "Instalação profissional inclusa",
+      "Suporte técnico e garantia de 1 ano"
+    ],
+    preco: "Sob consulta",
+    prazo: "Instalação em 48-72h",
+    idealPara: "Residências, empresas e propriedades rurais",
+    badge: "INSTALAÇÃO INCLUSA",
+    badgeColor: "blue",
+    beneficioEmocional: "Proteção completa com monitoramento 24h: veja sua casa de qualquer lugar, receba alertas instantâneos e interaja por voz em tempo real",
+    riscoDeNaoContratar: "Sua residência fica vulnerável a invasões, furtos e situações não documentadas. Sem monitoramento visual, você não tem provas em caso de incidentes",
+    casoDeUso: "Sistema instalado em residência flagrou tentativa de invasão em tempo real, permitindo acionamento imediato da polícia e fornecendo imagens que identificaram os responsáveis",
+    garantia: "Instalação profissional com equipamentos homologados pela Anatel. Garantia de 1 ano do fabricante. Qualidade da imagem depende de iluminação ambiente e conexão Wi-Fi estável",
+  },
   {
     id: "apaga-meu-ex",
     nome: "Apagar Fotos Íntimas", // Antigo: "Apaga Meu Ex"
