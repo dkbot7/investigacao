@@ -5,6 +5,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recha
 interface CommunicationsData {
   name: string;
   value: number;
+  [key: string]: string | number;
 }
 
 interface CommunicationsPieChartProps {
@@ -40,7 +41,7 @@ export function CommunicationsPieChart({ data }: CommunicationsPieChartProps) {
             outerRadius={80}
             fill="#8884d8"
             dataKey="value"
-            label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
+            label={({ name, percent }) => `${((percent || 0) * 100).toFixed(0)}%`}
             labelLine={{ stroke: '#94a3b8' }}
           >
             {data.map((entry, index) => (

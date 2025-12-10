@@ -5,6 +5,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recha
 interface SeverityData {
   name: string;
   value: number;
+  [key: string]: string | number;
 }
 
 interface SeverityDonutChartProps {
@@ -44,7 +45,7 @@ export function SeverityDonutChart({ data }: SeverityDonutChartProps) {
             outerRadius={100}
             fill="#8884d8"
             dataKey="value"
-            label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+            label={({ name, percent }) => `${name}: ${((percent || 0) * 100).toFixed(0)}%`}
             labelLine={{ stroke: '#94a3b8' }}
           >
             {data.map((entry, index) => (

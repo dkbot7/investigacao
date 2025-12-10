@@ -305,9 +305,9 @@ export function useAchadosAnalytics(achados: FuncionarioCompleto[]) {
           diretoria: achado.diretoria,
           score,
           empresas: empresas,
-          obito: achado.esta_morto && String(achado.esta_morto).toUpperCase().includes('SIM'),
-          sancao: (achado.possui_sancao_cgu && String(achado.possui_sancao_cgu).toUpperCase().includes('SIM')) ||
-                  (achado.alerta_ofac && String(achado.alerta_ofac).toUpperCase().includes('SIM')),
+          obito: !!(achado.esta_morto && String(achado.esta_morto).toUpperCase().includes('SIM')),
+          sancao: !!((achado.possui_sancao_cgu && String(achado.possui_sancao_cgu).toUpperCase().includes('SIM')) ||
+                  (achado.alerta_ofac && String(achado.alerta_ofac).toUpperCase().includes('SIM'))),
           dano: dano,
           achados: achado.achados_contabeis || 'N/A'
         };

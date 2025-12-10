@@ -302,8 +302,8 @@ export default function ComurgCedidosPage() {
       Cadastro: Number(funcionario.cadastro),
       Nome: funcionario.nome,
       CPF: funcionario.cpf,
-      Nascimento: funcionario.nascimento,
-      "Admissão": funcionario.admissao,
+      Nascimento: Number(funcionario.nascimento),
+      "Admissão": Number(funcionario.admissao),
       Sexo: funcionario.sexo,
       "Vínculo": funcionario.vinculo,
       "Situação": funcionario.situacao,
@@ -365,7 +365,7 @@ export default function ComurgCedidosPage() {
   const visibleCount = Object.values(visibleColumns).filter(Boolean).length;
 
   // Format cell value
-  const formatCellValue = (key: keyof FuncionarioData, value: any) => {
+  const formatCellValue = (key: keyof FuncionarioCSV, value: any) => {
     if (value === null || value === undefined || value === '') return 'N/A';
 
     if (key === 'salario') {

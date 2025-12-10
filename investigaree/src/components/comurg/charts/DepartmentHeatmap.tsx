@@ -103,7 +103,7 @@ export function DepartmentHeatmap({ xLabels, yLabels, data }: DepartmentHeatmapP
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded" style={{ backgroundColor: '#ef4444' }}></div>
-            <span className="text-slate-400">Crítico (>{Math.ceil(maxValue * 0.75)})</span>
+            <span className="text-slate-400">Crítico ({'>'}{Math.ceil(maxValue * 0.75)})</span>
           </div>
         </div>
       </div>
