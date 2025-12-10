@@ -66,7 +66,7 @@ const comurgNavItems: NavItem[] = [
   { label: "Achados Críticos", href: "/dashboard/comurgachadoscriticos", icon: AlertTriangle, color: "text-red-400" },
   { label: "Óbitos Confirmados", href: "/dashboard/comurgobitos", icon: Skull, color: "text-red-500" },
   { label: "Vínculos Empresariais", href: "/dashboard/comurgempresas", icon: Building2, color: "text-orange-400" },
-  { label: "Benefícios Federais", href: "/dashboard/comurgbenefícios", icon: Gift, color: "text-blue-400" },
+  { label: "Benefícios Federais", href: "/dashboard/comurgbeneficios", icon: Gift, color: "text-blue-400" },
   { label: "Atividade Política", href: "/dashboard/comurgatividadepolitica", icon: Vote, color: "text-purple-400" },
   { label: "Análise de Risco", href: "/dashboard/comurganaliserisco", icon: Shield, color: "text-blue-400" },
 ];
