@@ -15,9 +15,20 @@ import {
   ArrowRight,
   Users,
   FolderOpen,
+  Shield,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useAuth } from "@/contexts/AuthContext";
+import { getInvestigations } from "@/lib/api";
+import { getAdminInvestigacoes } from "@/lib/admin-api";
+
+// Admin emails
+const ADMIN_EMAILS = [
+  "dkbotdani@gmail.com",
+  "ibsenmaciel@gmail.com",
+  "contato@investigaree.com.br"
+];
 
 interface Relatorio {
   id: string;
@@ -28,23 +39,62 @@ interface Relatorio {
   data_criacao: string;
   data_conclusao?: string;
   analista?: string;
+  relatorio_url?: string;
+  user_email?: string; // Para admin ver de quem é o relatório
 }
 
-// Mock - por enquanto vazio para mostrar estado vazio
-const mockRelatorios: Relatorio[] = [];
-
 export default function RelatoriosPage() {
+  const { user } = useAuth();
   const [relatorios, setRelatorios] = useState<Relatorio[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
+  // Detectar se é admin
+  const isAdmin = user?.email && ADMIN_EMAILS.includes(user.email);
+
   useEffect(() => {
-    // Simular carregamento
-    setTimeout(() => {
-      setRelatorios(mockRelatorios);
-      setLoading(false);
-    }, 500);
-  }, []);
+    const loadRelatorios = async () => {
+      try {
+        setLoading(true);
+
+        // Admin vê TODOS os relatórios, usuário normal vê apenas os seus
+        const response = isAdmin
+          ? await getAdminInvestigacoes({ limit: 1000 }) as any
+          : await getInvestigations() as any;
+
+        const investigations = response.data || response.investigacoes || [];
+
+        // Filtrar apenas investigações com relatório
+        const relatoriosData = investigations
+          .filter((inv: any) => inv.relatorio_url || inv.status === 'relatorio')
+          .map((inv: any) => ({
+            id: inv.id,
+            titulo: `Relatório - ${inv.nome}`,
+            investigado: inv.nome,
+            tipo: inv.tipo_pessoa === 'juridica' ? 'pessoa_juridica' : inv.is_grupo ? 'grupo' : 'pessoa_fisica',
+            status: inv.relatorio_url ? 'concluido' : 'em_analise',
+            data_criacao: inv.created_at,
+            data_conclusao: inv.relatorio_gerado_em,
+            relatorio_url: inv.relatorio_url,
+            user_email: inv.user_email, // Para admin
+          }));
+
+        setRelatorios(relatoriosData);
+
+        console.log(`[Relatórios] ✅ Dados carregados (${isAdmin ? 'ADMIN - GLOBAL' : 'USER'}):`, {
+          total: relatoriosData.length,
+          isAdmin
+        });
+      } catch (err: any) {
+        console.error('[Relatórios] ❌ Erro ao carregar:', err);
+        setRelatorios([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadRelatorios();
+  }, [isAdmin]);
 
   const filteredRelatorios = relatorios.filter(r =>
     r.titulo.toLowerCase().includes(search.toLowerCase()) ||
@@ -71,12 +121,23 @@ export default function RelatoriosPage() {
         >
           {/* Header */}
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <FileText className="w-7 h-7 text-blue-400" />
-              Relatórios
-            </h1>
+            <div className="flex items-center gap-3">
+              <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                <FileText className="w-7 h-7 text-blue-400" />
+                Relatórios
+              </h1>
+              {isAdmin && (
+                <span className="px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded-full text-xs font-semibold text-blue-400 flex items-center gap-1.5">
+                  <Shield className="w-3.5 h-3.5" />
+                  Visão Global (Admin)
+                </span>
+              )}
+            </div>
             <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
-              Acompanhe os relatórios das suas investigações
+              {isAdmin
+                ? "Visualizando todos os relatórios de todos os usuários"
+                : "Acompanhe os relatórios das suas investigações"
+              }
             </p>
           </div>
 

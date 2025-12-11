@@ -38,7 +38,15 @@ import { JobMonitor } from "@/components/dashboard/JobMonitor";
 
 // BACKEND INTEGRATION (Agent 3 - TAREFA 3.5)
 import { getInvestigations, getInvestigationsStats } from "@/lib/api";
+import { getAdminInvestigacoes } from "@/lib/admin-api";
 import type { Funcionario as FuncionarioBackend, CacheStats } from "@/lib/types/dados.types";
+
+// Admin emails
+const ADMIN_EMAILS = [
+  "dkbotdani@gmail.com",
+  "ibsenmaciel@gmail.com",
+  "contato@investigaree.com.br"
+];
 
 // Mock data imports mantidos apenas para funcionalidades complementares
 // (candidaturas, doações, vínculos, sanções, benefícios ainda não estão no backend)
@@ -88,7 +96,7 @@ export default function FuncionariosPage() {
   const [cacheStats, setCacheStats] = useState<CacheStats | null>(null);
   const [usingBackend, setUsingBackend] = useState(true);
   const [search, setSearch] = useState("");
-  const [viewMode, setViewMode] = useState<"list" | "kanban">("list");
+  const [viewMode, setViewMode] = useState<"list" | "kanban">("kanban"); // SEMPRE INICIA EM KANBAN
   const [alertaFilter, setAlertaFilter] = useState<AlertaType>("todos");
   const [selectedFuncionario, setSelectedFuncionario] = useState<Funcionario | null>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -96,6 +104,9 @@ export default function FuncionariosPage() {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const limit = 50;
+
+  // Detectar se é admin
+  const isAdmin = user?.email && ADMIN_EMAILS.includes(user.email);
 
   // TODO: Implementar tenant selection (por enquanto hardcoded)
   const tenantCode = "CLIENTE_01";
@@ -130,8 +141,10 @@ export default function FuncionariosPage() {
       setLoading(true);
       setError(null);
 
-      // Carregar do backend real
-      const response = await getInvestigations() as any;
+      // Admin vê TODAS as investigações, usuário normal vê apenas as suas
+      const response = isAdmin
+        ? await getAdminInvestigacoes({ limit: 1000 }) as any
+        : await getInvestigations() as any;
 
       // Convert to funcionarios format for now
       // TODO: Refactor page to use investigation format directly
@@ -148,15 +161,17 @@ export default function FuncionariosPage() {
         esta_morto: 'NÃO',
         recebe_beneficio: 0,
         socio_empresa: inv.tipo_pessoa === 'juridica' ? 1 : 0,
+        user_email: inv.user_email, // Para admin ver de quem é a investigação
       }));
 
       setFuncionarios(convertedFuncionarios);
       setCacheStats(null);
       setUsingBackend(true);
 
-      console.log('[Funcionarios] ✅ Dados carregados do backend:', {
-        total: response.total,
+      console.log(`[Funcionarios] ✅ Dados carregados do backend (${isAdmin ? 'ADMIN - GLOBAL' : 'USER'}):`, {
+        total: response.total || investigations.length,
         cache_stats: response.cache_stats,
+        isAdmin
       });
     } catch (err: any) {
       console.error('[Funcionarios] ❌ Erro ao carregar do backend:', err);
@@ -172,7 +187,7 @@ export default function FuncionariosPage() {
     } finally {
       setLoading(false);
     }
-  }, [tenantCode]);
+  }, [tenantCode, isAdmin]);
 
   useEffect(() => {
     loadFuncionarios();

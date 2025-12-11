@@ -33,6 +33,7 @@ import {
   TrendingUp,
   TrendingDown,
   Minus,
+  Trash2,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -48,6 +49,10 @@ import {
   markAlertAsRead,
   markAllAlertsAsRead,
   getAdminStats,
+  updateUser,
+  deleteUser,
+  updateTenant,
+  getAuditLogs,
   AdminUser,
   AdminTenant,
   PendingUser,
@@ -106,6 +111,18 @@ export default function AdminPage() {
   const [revokeData, setRevokeData] = useState<{ userEmail: string; tenantCode: string } | null>(null);
   const [revoking, setRevoking] = useState(false);
 
+  // Estados para modal de edição de usuário
+  const [showEditUserModal, setShowEditUserModal] = useState(false);
+  const [editingUser, setEditingUser] = useState<AdminUser | null>(null);
+  const [editUserForm, setEditUserForm] = useState({ name: "", phone: "" });
+  const [updatingUser, setUpdatingUser] = useState(false);
+
+  // Estados para modal de confirmação de deleção de usuário
+  const [showDeleteUserModal, setShowDeleteUserModal] = useState(false);
+  const [deletingUser, setDeletingUser] = useState<AdminUser | null>(null);
+  const [confirmDeleteText, setConfirmDeleteText] = useState("");
+  const [deletingUserInProgress, setDeletingUserInProgress] = useState(false);
+
   // Estados para modal de detalhes do tenant
   const [showTenantDetailsModal, setShowTenantDetailsModal] = useState(false);
   const [selectedTenant, setSelectedTenant] = useState<AdminTenant | null>(null);
@@ -119,80 +136,16 @@ export default function AdminPage() {
   const [updatingTenant, setUpdatingTenant] = useState(false);
 
   // Estado para banner de modo mock
-  const [showDevBanner, setShowDevBanner] = useState(true);
+  const [showDevBanner, setShowDevBanner] = useState(false); // Sempre usar dados reais do banco D1
 
-  // Logs de auditoria (mock data)
-  const auditLogs = useMemo(() => {
-    const currentUserEmail = user?.email || 'admin@investigaree.com';
-    return [
-      {
-        id: '1',
-        action: 'grant_access',
-        description: 'Acesso concedido ao tenant CLIENTE_01',
-        user_email: currentUserEmail,
-        target_email: 'teste@example.com',
-        tenant_code: 'CLIENTE_01',
-        role: 'viewer',
-        timestamp: new Date(Date.now() - 10 * 60 * 1000).toISOString(), // 10min atrás
-        metadata: { ip: '192.168.1.100' }
-      },
-      {
-        id: '2',
-        action: 'revoke_access',
-        description: 'Acesso revogado do tenant CLIENTE_01',
-        user_email: currentUserEmail,
-        target_email: 'usuario.removido@example.com',
-        tenant_code: 'CLIENTE_01',
-        role: null,
-        timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), // 2h atrás
-        metadata: { ip: '192.168.1.100' }
-      },
-      {
-        id: '3',
-        action: 'create_tenant',
-        description: 'Novo tenant criado',
-        user_email: currentUserEmail,
-        target_email: null,
-        tenant_code: 'CLIENTE_02',
-        role: null,
-        timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(), // 5h atrás
-        metadata: { tenant_name: 'Cliente Secundário' }
-      },
-      {
-        id: '4',
-        action: 'update_tenant',
-        description: 'Tenant atualizado',
-        user_email: currentUserEmail,
-        target_email: null,
-        tenant_code: 'CLIENTE_01',
-        role: null,
-        timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(), // 1 dia atrás
-        metadata: { old_name: 'Cliente Principal', new_name: 'Cliente Principal Atualizado' }
-      },
-      {
-        id: '5',
-        action: 'grant_access',
-        description: 'Acesso concedido ao tenant CLIENTE_01',
-        user_email: 'ibsenmaciel@gmail.com',
-        target_email: 'maria.santos@example.com',
-        tenant_code: 'CLIENTE_01',
-        role: 'admin',
-        timestamp: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(), // 3 dias atrás
-        metadata: { ip: '192.168.1.105' }
-      },
-      {
-        id: '6',
-        action: 'deactivate_tenant',
-        description: 'Tenant desativado',
-        user_email: currentUserEmail,
-        target_email: null,
-        tenant_code: 'CLIENTE_OLD',
-        role: null,
-        timestamp: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 dias atrás
-        metadata: { reason: 'Contrato expirado' }
-      },
-    ];
-  }, [user]);
+  // Estados para Logs de auditoria
+  const [auditLogs, setAuditLogs] = useState<any[]>([]);
+  const [auditLogsLoading, setAuditLogsLoading] = useState(false);
+  const [auditLogsFilters, setAuditLogsFilters] = useState({
+    action: '',
+    entityType: '',
+    limit: 50
+  });
 
   // Métricas de uso (mock data calculado)
   const usageMetrics = useMemo(() => {
@@ -335,6 +288,46 @@ export default function AdminPage() {
     }
   }
 
+  async function loadAuditLogs() {
+    setAuditLogsLoading(true);
+    try {
+      const filters: any = {
+        limit: auditLogsFilters.limit,
+        offset: 0
+      };
+      if (auditLogsFilters.action) filters.action = auditLogsFilters.action;
+      if (auditLogsFilters.entityType) filters.entityType = auditLogsFilters.entityType;
+
+      const response = await getAuditLogs(filters);
+      // Transform API response to match component expected format
+      const transformedLogs = response.success && response.data?.logs ? response.data.logs.map((log: any) => ({
+        id: log.id,
+        action: log.action,
+        description: `${log.action} - ${log.entity_type}`,
+        user_email: log.user_email || 'System',
+        target_email: null,
+        tenant_code: null,
+        role: null,
+        timestamp: log.created_at,
+        metadata: log.metadata ? (typeof log.metadata === 'string' ? JSON.parse(log.metadata) : log.metadata) : {}
+      })) : [];
+      setAuditLogs(transformedLogs);
+    } catch (err: any) {
+      console.error("Erro ao carregar logs de auditoria:", err);
+      toast.error("Erro ao carregar logs de auditoria");
+      setAuditLogs([]);
+    } finally {
+      setAuditLogsLoading(false);
+    }
+  }
+
+  // Load audit logs when component mounts and when filters change
+  useEffect(() => {
+    if (isAdmin) {
+      loadAuditLogs();
+    }
+  }, [isAdmin, auditLogsFilters]);
+
   async function handleMarkAsRead(alertId: string) {
     try {
       await markAlertAsRead(alertId);
@@ -467,6 +460,78 @@ export default function AdminPage() {
     }
   }
 
+  function handleEditUser(user: AdminUser) {
+    setEditingUser(user);
+    setEditUserForm({
+      name: user.name || "",
+      phone: user.phone || ""
+    });
+    setShowEditUserModal(true);
+  }
+
+  async function confirmEditUser() {
+    if (!editingUser) return;
+
+    setUpdatingUser(true);
+
+    const promise = updateUser(editingUser.id, {
+      name: editUserForm.name,
+      phone: editUserForm.phone
+    }).then(async () => {
+      await loadData();
+      setShowEditUserModal(false);
+      setEditingUser(null);
+      setEditUserForm({ name: "", phone: "" });
+    });
+
+    toast.promise(promise, {
+      loading: 'Atualizando usuário...',
+      success: `Usuário ${editingUser.email} atualizado com sucesso!`,
+      error: (err) => err.message || "Erro ao atualizar usuário",
+    });
+
+    try {
+      await promise;
+    } finally {
+      setUpdatingUser(false);
+    }
+  }
+
+  function handleDeleteUser(user: AdminUser) {
+    setDeletingUser(user);
+    setConfirmDeleteText("");
+    setShowDeleteUserModal(true);
+  }
+
+  async function confirmDeleteUser() {
+    if (!deletingUser) return;
+    if (confirmDeleteText !== deletingUser.email) {
+      toast.error("O email digitado não corresponde ao email do usuário");
+      return;
+    }
+
+    setDeletingUserInProgress(true);
+
+    const promise = deleteUser(deletingUser.id).then(async () => {
+      await loadData();
+      setShowDeleteUserModal(false);
+      setDeletingUser(null);
+      setConfirmDeleteText("");
+    });
+
+    toast.promise(promise, {
+      loading: 'Deletando usuário...',
+      success: `Usuário ${deletingUser.email} deletado com sucesso!`,
+      error: (err) => err.message || "Erro ao deletar usuário",
+    });
+
+    try {
+      await promise;
+    } finally {
+      setDeletingUserInProgress(false);
+    }
+  }
+
   function validateTenantForm() {
     const errors: { code?: string; name?: string } = {};
 
@@ -564,33 +629,22 @@ export default function AdminPage() {
 
     setUpdatingTenant(true);
 
-    const promise = (async () => {
-      // Em modo mock, apenas simula a atualização
-      console.log('[Admin] Atualizando tenant (mock):', selectedTenant.code, editTenantForm);
-
-      // Atualiza tenant nos dados locais (simulação)
-      const updatedTenants = tenants.map(t =>
-        t.id === selectedTenant.id
-          ? { ...t, name: editTenantForm.name, status: editTenantForm.status }
-          : t
-      );
-
-      setTenants(updatedTenants);
+    const promise = updateTenant(selectedTenant.code, {
+      name: editTenantForm.name,
+      status: editTenantForm.status
+    }).then(async () => {
+      await loadData();
+      setIsEditingTenant(false);
       setSelectedTenant({
         ...selectedTenant,
         name: editTenantForm.name,
         status: editTenantForm.status
       });
-      setIsEditingTenant(false);
-
-      // Em produção, chamaria a API:
-      // await updateTenant(selectedTenant.id, { name: editTenantForm.name, status: editTenantForm.status });
-      // await loadData();
-    })();
+    });
 
     toast.promise(promise, {
       loading: 'Atualizando tenant...',
-      success: 'Tenant atualizado com sucesso!',
+      success: `Tenant ${selectedTenant.code} atualizado com sucesso!`,
       error: (err) => err.message || "Erro ao atualizar tenant",
     });
 
@@ -610,24 +664,13 @@ export default function AdminPage() {
 
     setUpdatingTenant(true);
 
-    const promise = (async () => {
-      // Em modo mock, apenas simula a mudança de status
-      console.log('[Admin] Alterando status do tenant (mock):', selectedTenant.code, newStatus);
-
-      // Atualiza status nos dados locais (simulação)
-      const updatedTenants = tenants.map(t =>
-        t.id === selectedTenant.id
-          ? { ...t, status: newStatus }
-          : t
-      );
-
-      setTenants(updatedTenants);
+    const promise = updateTenant(selectedTenant.code, {
+      name: selectedTenant.name,
+      status: newStatus
+    }).then(async () => {
+      await loadData();
       setSelectedTenant({ ...selectedTenant, status: newStatus });
-
-      // Em produção, chamaria a API:
-      // await updateTenantStatus(selectedTenant.id, newStatus);
-      // await loadData();
-    })();
+    });
 
     toast.promise(promise, {
       loading: `${actionText === "ativar" ? "Ativando" : "Desativando"} tenant...`,
@@ -693,6 +736,54 @@ export default function AdminPage() {
       toast.success(`${usersWithAccess.length} usuário(s) exportado(s) com sucesso!`);
     } catch (error) {
       console.error('Erro ao exportar CSV:', error);
+      toast.error('Erro ao exportar CSV. Tente novamente.');
+    }
+  }
+
+  // Função para exportar tenants para CSV
+  function handleExportTenantsCSV() {
+    try {
+      // Define os headers do CSV
+      const headers = ['Código', 'Nome', 'Status', 'Usuários', 'Criado em'];
+
+      // Mapeia os dados dos tenants para linhas CSV
+      const rows = tenants.map(tenant => {
+        const createdAt = new Date(tenant.created_at).toLocaleDateString('pt-BR');
+        const statusText = tenant.status === 'active' ? 'Ativo' : 'Inativo';
+
+        return [
+          tenant.code,
+          tenant.name,
+          statusText,
+          tenant.user_count.toString(),
+          createdAt
+        ];
+      });
+
+      // Cria o conteúdo CSV
+      const csvContent = [
+        headers.join(','),
+        ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+      ].join('\n');
+
+      // Cria um Blob com o conteúdo CSV
+      const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+
+      // Cria um link de download
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+
+      link.setAttribute('href', url);
+      link.setAttribute('download', `tenants_${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.visibility = 'hidden';
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast.success(`${tenants.length} tenant(s) exportado(s) com sucesso!`);
+    } catch (error) {
+      console.error('Erro ao exportar CSV de tenants:', error);
       toast.error('Erro ao exportar CSV. Tente novamente.');
     }
   }
@@ -1282,17 +1373,38 @@ export default function AdminPage() {
                         </span>
                       </td>
                       <td className="py-3 px-3">
-                        {u.tenants.map((t) => (
+                        <div className="flex items-center gap-1">
                           <Button
-                            key={t.code}
+                            size="sm"
+                            variant="ghost"
+                            className="text-blue-400 hover:text-blue-300 hover:bg-blue-500/10"
+                            onClick={() => handleEditUser(u)}
+                            title="Editar usuário"
+                          >
+                            <Edit className="w-4 h-4" />
+                          </Button>
+                          <Button
                             size="sm"
                             variant="ghost"
                             className="text-red-400 hover:text-red-300 hover:bg-red-500/10"
-                            onClick={() => handleRevokeAccess(u.email, t.code)}
+                            onClick={() => handleDeleteUser(u)}
+                            title="Deletar usuário"
                           >
-                            <X className="w-4 h-4" />
+                            <Trash2 className="w-4 h-4" />
                           </Button>
-                        ))}
+                          {u.tenants.map((t) => (
+                            <Button
+                              key={t.code}
+                              size="sm"
+                              variant="ghost"
+                              className="text-amber-400 hover:text-amber-300 hover:bg-amber-500/10"
+                              onClick={() => handleRevokeAccess(u.email, t.code)}
+                              title={`Revogar acesso ao ${t.code}`}
+                            >
+                              <X className="w-4 h-4" />
+                            </Button>
+                          ))}
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -1367,14 +1479,32 @@ export default function AdminPage() {
 
                   {/* Ações */}
                   <div className="border-t border-slate-400 dark:border-navy-700 pt-3">
-                    <p className="text-xs text-slate-900 dark:text-white/40 mb-2">Gerenciar Acesso:</p>
+                    <p className="text-xs text-slate-900 dark:text-white/40 mb-2">Ações:</p>
                     <div className="flex flex-wrap gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="text-blue-400 border-blue-500/30 hover:bg-blue-500/10 hover:border-blue-500/50 text-xs"
+                        onClick={() => handleEditUser(u)}
+                      >
+                        <Edit className="w-3 h-3 mr-1" />
+                        Editar
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="text-red-400 border-red-500/30 hover:bg-red-500/10 hover:border-red-500/50 text-xs"
+                        onClick={() => handleDeleteUser(u)}
+                      >
+                        <Trash2 className="w-3 h-3 mr-1" />
+                        Deletar
+                      </Button>
                       {u.tenants.map((t) => (
                         <Button
                           key={t.code}
                           size="sm"
                           variant="outline"
-                          className="text-red-400 border-red-500/30 hover:bg-red-500/10 hover:border-red-500/50 text-xs"
+                          className="text-amber-400 border-amber-500/30 hover:bg-amber-500/10 hover:border-amber-500/50 text-xs"
                           onClick={() => handleRevokeAccess(u.email, t.code)}
                         >
                           <X className="w-3 h-3 mr-1" />
@@ -1458,18 +1588,28 @@ export default function AdminPage() {
 
         {/* Lista de Tenants */}
         <div data-section="tenants" className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-6">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
             <h3 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
               <Building2 className="w-5 h-5 text-emerald-400" />
               Tenants ({tenants.length})
             </h3>
-            <Button
-              onClick={() => setShowCreateTenantModal(true)}
-              className="bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30"
-            >
-              <Building2 className="w-4 h-4 mr-2" />
-              Criar Tenant
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                onClick={handleExportTenantsCSV}
+                variant="outline"
+                className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Exportar CSV
+              </Button>
+              <Button
+                onClick={() => setShowCreateTenantModal(true)}
+                className="bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30"
+              >
+                <Building2 className="w-4 h-4 mr-2" />
+                Criar Tenant
+              </Button>
+            </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {tenants.map((t) => (
@@ -1513,8 +1653,68 @@ export default function AdminPage() {
           <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mb-4">
             Histórico de todas as ações administrativas realizadas no sistema.
           </p>
-          <div className="space-y-3">
-            {auditLogs.map((log) => {
+
+          {/* Filtros */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+            <div>
+              <Label htmlFor="filter-action" className="text-xs text-slate-900 dark:text-slate-600 dark:text-white/60 mb-1">Ação</Label>
+              <select
+                id="filter-action"
+                value={auditLogsFilters.action}
+                onChange={(e) => setAuditLogsFilters({ ...auditLogsFilters, action: e.target.value })}
+                className="w-full bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg px-3 py-2 text-slate-900 dark:text-white text-sm"
+              >
+                <option value="">Todas as ações</option>
+                <option value="create">Criar</option>
+                <option value="update">Atualizar</option>
+                <option value="delete">Deletar</option>
+                <option value="grant">Conceder</option>
+                <option value="revoke">Revogar</option>
+              </select>
+            </div>
+            <div>
+              <Label htmlFor="filter-entity" className="text-xs text-slate-900 dark:text-slate-600 dark:text-white/60 mb-1">Tipo de Entidade</Label>
+              <select
+                id="filter-entity"
+                value={auditLogsFilters.entityType}
+                onChange={(e) => setAuditLogsFilters({ ...auditLogsFilters, entityType: e.target.value })}
+                className="w-full bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg px-3 py-2 text-slate-900 dark:text-white text-sm"
+              >
+                <option value="">Todos os tipos</option>
+                <option value="user">Usuário</option>
+                <option value="tenant">Tenant</option>
+                <option value="access">Acesso</option>
+              </select>
+            </div>
+            <div>
+              <Label htmlFor="filter-limit" className="text-xs text-slate-900 dark:text-slate-600 dark:text-white/60 mb-1">Limite</Label>
+              <select
+                id="filter-limit"
+                value={auditLogsFilters.limit}
+                onChange={(e) => setAuditLogsFilters({ ...auditLogsFilters, limit: Number(e.target.value) })}
+                className="w-full bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg px-3 py-2 text-slate-900 dark:text-white text-sm"
+              >
+                <option value="10">10 registros</option>
+                <option value="25">25 registros</option>
+                <option value="50">50 registros</option>
+                <option value="100">100 registros</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Lista de Logs */}
+          {auditLogsLoading ? (
+            <div className="flex items-center justify-center py-8">
+              <Loader2 className="w-6 h-6 animate-spin text-purple-400" />
+            </div>
+          ) : auditLogs.length === 0 ? (
+            <div className="text-center py-8">
+              <FileText className="w-12 h-12 text-slate-900 dark:text-white/20 mx-auto mb-3" />
+              <p className="text-slate-900 dark:text-slate-500 dark:text-white/50">Nenhum log encontrado</p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {auditLogs.map((log) => {
               const style = getLogActionStyle(log.action);
               return (
                 <motion.div
@@ -1593,7 +1793,8 @@ export default function AdminPage() {
                 </motion.div>
               );
             })}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* Dashboard de Métricas */}
@@ -1832,6 +2033,162 @@ export default function AdminPage() {
                   <>
                     <Check className="w-4 h-4 mr-2" />
                     Conceder
+                  </>
+                )}
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Modal Editar Usuário */}
+      {showEditUserModal && editingUser && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="bg-white dark:bg-navy-900 rounded-xl border border-slate-400 dark:border-navy-700 p-4 sm:p-6 w-full max-w-full sm:max-w-md"
+          >
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+              <Edit className="w-5 h-5 text-blue-400" />
+              Editar Usuário
+            </h3>
+            <div className="space-y-4">
+              <div>
+                <Label className="text-slate-900 dark:text-slate-700 dark:text-navy-300">Email</Label>
+                <p className="text-slate-900 dark:text-white font-medium text-sm">{editingUser.email}</p>
+              </div>
+              <div>
+                <Label htmlFor="edit-user-name" className="text-slate-900 dark:text-slate-700 dark:text-navy-300">Nome</Label>
+                <Input
+                  id="edit-user-name"
+                  value={editUserForm.name}
+                  onChange={(e) => setEditUserForm({ ...editUserForm, name: e.target.value })}
+                  className="mt-1 bg-slate-100 dark:bg-navy-800 border border-navy-600 text-slate-900 dark:text-white placeholder:text-white/40"
+                  placeholder="Nome completo do usuário"
+                />
+              </div>
+              <div>
+                <Label htmlFor="edit-user-phone" className="text-slate-900 dark:text-slate-700 dark:text-navy-300">Telefone</Label>
+                <Input
+                  id="edit-user-phone"
+                  value={editUserForm.phone}
+                  onChange={(e) => setEditUserForm({ ...editUserForm, phone: e.target.value })}
+                  className="mt-1 bg-slate-100 dark:bg-navy-800 border border-navy-600 text-slate-900 dark:text-white placeholder:text-white/40"
+                  placeholder="+55 11 99999-9999"
+                />
+              </div>
+            </div>
+            <div className="flex gap-3 mt-6">
+              <Button
+                variant="outline"
+                className="flex-1 border-navy-600 text-slate-900 dark:text-slate-700 dark:text-navy-300"
+                onClick={() => {
+                  setShowEditUserModal(false);
+                  setEditingUser(null);
+                  setEditUserForm({ name: "", phone: "" });
+                }}
+                disabled={updatingUser}
+              >
+                Cancelar
+              </Button>
+              <Button
+                className="flex-1 bg-blue-500 hover:bg-blue-600 text-slate-900 dark:text-white"
+                onClick={confirmEditUser}
+                disabled={updatingUser}
+              >
+                {updatingUser ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <>
+                    <Save className="w-4 h-4 mr-2" />
+                    Salvar
+                  </>
+                )}
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Modal Deletar Usuário */}
+      {showDeleteUserModal && deletingUser && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="bg-white dark:bg-navy-900 rounded-xl border border-red-500/30 p-4 sm:p-6 w-full max-w-full sm:max-w-md"
+          >
+            <h3 className="text-lg font-bold text-red-400 mb-4 flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5" />
+              Deletar Usuário
+            </h3>
+            <div className="space-y-4">
+              <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                <p className="text-red-400 text-sm font-medium mb-2">⚠️ Ação Irreversível</p>
+                <p className="text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm">
+                  Esta ação não pode ser desfeita. Todos os dados do usuário serão permanentemente removidos,
+                  incluindo todos os acessos a tenants.
+                </p>
+              </div>
+              <div>
+                <Label className="text-slate-900 dark:text-slate-700 dark:text-navy-300">Usuário a ser deletado</Label>
+                <div className="mt-2 p-3 bg-slate-100 dark:bg-navy-800/50 border border-navy-700 rounded-lg">
+                  <p className="text-slate-900 dark:text-white font-medium text-sm">{deletingUser.email}</p>
+                  {deletingUser.name && (
+                    <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-xs mt-1">{deletingUser.name}</p>
+                  )}
+                  {deletingUser.tenants.length > 0 && (
+                    <div className="mt-2 pt-2 border-t border-navy-700">
+                      <p className="text-slate-900 dark:text-white/40 text-xs mb-1">Tenants com acesso:</p>
+                      <div className="flex flex-wrap gap-1">
+                        {deletingUser.tenants.map(t => (
+                          <span key={t.code} className="px-2 py-0.5 rounded text-xs bg-white/10 text-slate-900 dark:text-white/60">
+                            {t.code}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div>
+                <Label htmlFor="confirm-delete-email" className="text-slate-900 dark:text-slate-700 dark:text-navy-300">
+                  Digite o email do usuário para confirmar
+                </Label>
+                <Input
+                  id="confirm-delete-email"
+                  value={confirmDeleteText}
+                  onChange={(e) => setConfirmDeleteText(e.target.value)}
+                  className="mt-1 bg-slate-100 dark:bg-navy-800 border border-red-500/30 text-slate-900 dark:text-white placeholder:text-white/40"
+                  placeholder={deletingUser.email}
+                />
+              </div>
+            </div>
+            <div className="flex gap-3 mt-6">
+              <Button
+                variant="outline"
+                className="flex-1 border-navy-600 text-slate-900 dark:text-slate-700 dark:text-navy-300"
+                onClick={() => {
+                  setShowDeleteUserModal(false);
+                  setDeletingUser(null);
+                  setConfirmDeleteText("");
+                }}
+                disabled={deletingUserInProgress}
+              >
+                Cancelar
+              </Button>
+              <Button
+                className="flex-1 bg-red-500 hover:bg-red-600 text-slate-900 dark:text-white disabled:opacity-50"
+                onClick={confirmDeleteUser}
+                disabled={deletingUserInProgress || confirmDeleteText !== deletingUser.email}
+              >
+                {deletingUserInProgress ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <>
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    Deletar Permanentemente
                   </>
                 )}
               </Button>

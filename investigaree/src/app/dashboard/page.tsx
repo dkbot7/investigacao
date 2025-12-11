@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
@@ -24,10 +24,19 @@ import {
   X,
   ExternalLink,
   FolderOpen,
+  Shield,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { useInvestigations, type Investigacao, type InvestigacaoStatus, type Categoria } from "@/hooks/useInvestigations";
+import { getAdminInvestigacoes, getAdminInvestigacoesStats, getAdminDashboard } from "@/lib/admin-api";
+
+// Admin emails
+const ADMIN_EMAILS = [
+  "dkbotdani@gmail.com",
+  "ibsenmaciel@gmail.com",
+  "contato@investigaree.com.br"
+];
 
 // Status config
 const statusConfig: Record<InvestigacaoStatus, { label: string; color: string; icon: React.ElementType; description: string }> = {
@@ -49,11 +58,52 @@ const categoriaConfig: Record<Categoria, { label: string; color: string }> = {
 
 export default function DashboardPage() {
   const { user } = useAuth();
-  const { investigacoes, stats, loading, error, sendMessage, refetch } = useInvestigations();
+  const { investigacoes: userInvestigacoes, stats: userStats, loading: userLoading, error: userError, sendMessage, refetch: userRefetch } = useInvestigations();
   const [showContactForm, setShowContactForm] = useState(false);
   const [contactForm, setContactForm] = useState({ assunto: "", mensagem: "" });
   const [sendingMessage, setSendingMessage] = useState(false);
   const [messageSent, setMessageSent] = useState(false);
+
+  // Admin state
+  const [adminInvestigacoes, setAdminInvestigacoes] = useState<Investigacao[]>([]);
+  const [adminStats, setAdminStats] = useState<any>(null);
+  const [adminLoading, setAdminLoading] = useState(false);
+  const [adminError, setAdminError] = useState<string | null>(null);
+
+  // Detectar se é admin
+  const isAdmin = user?.email && ADMIN_EMAILS.includes(user.email);
+
+  // Buscar dados admin
+  useEffect(() => {
+    if (!isAdmin) return;
+
+    const fetchAdminData = async () => {
+      setAdminLoading(true);
+      setAdminError(null);
+      try {
+        const [investigacoesRes, statsRes] = await Promise.all([
+          getAdminInvestigacoes({ limit: 10 }),
+          getAdminInvestigacoesStats()
+        ]);
+        setAdminInvestigacoes(investigacoesRes.investigacoes || []);
+        setAdminStats(statsRes.stats || null);
+      } catch (err: any) {
+        console.error('[Admin Dashboard] Error:', err);
+        setAdminError(err.message || 'Erro ao carregar dados admin');
+      } finally {
+        setAdminLoading(false);
+      }
+    };
+
+    fetchAdminData();
+  }, [isAdmin, user]);
+
+  // Selecionar dados baseado se é admin ou não
+  const investigacoes = isAdmin ? adminInvestigacoes : userInvestigacoes;
+  const stats = isAdmin ? adminStats : userStats;
+  const loading = isAdmin ? adminLoading : userLoading;
+  const error = isAdmin ? adminError : userError;
+  const refetch = isAdmin ? () => window.location.reload() : userRefetch;
 
   // Primeiro nome do usuário
   const primeiroNome = user?.displayName?.split(" ")[0] || user?.email?.split("@")[0] || "Usuário";
@@ -144,11 +194,22 @@ export default function DashboardPage() {
         {/* Header com Boas-vindas */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
-            <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white">
-              Olá, {primeiroNome}!
-            </h1>
+            <div className="flex items-center gap-3">
+              <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white">
+                Olá, {primeiroNome}!
+              </h1>
+              {isAdmin && (
+                <span className="px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded-full text-xs font-semibold text-blue-400 flex items-center gap-1.5">
+                  <Shield className="w-3.5 h-3.5" />
+                  Visão Global (Admin)
+                </span>
+              )}
+            </div>
             <p className="text-slate-600 dark:text-navy-400 mt-1">
-              Bem-vindo ao seu painel de investigações
+              {isAdmin
+                ? "Painel administrativo - visualizando todas as investigações do sistema"
+                : "Bem-vindo ao seu painel de investigações"
+              }
             </p>
           </div>
           <Link href="/dashboard/investigacoes?novo=true">
