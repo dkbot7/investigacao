@@ -70,7 +70,7 @@ import {
 } from "@/lib/admin-api";
 import { toast } from "sonner";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from 'recharts';
-import { StatCard, SearchBar, Pagination } from "@/components/dashboard";
+import { StatCard, SearchBar, Pagination, SkeletonCard, SkeletonTable, SkeletonChart } from "@/components/dashboard";
 import { KanbanView } from "@/components/dashboard/KanbanView";
 
 // Admin emails permitidos
@@ -1272,9 +1272,21 @@ export default function AdminPage() {
         {activeTab === 'investigations' && (
           <div className="space-y-6">
             {investigationsLoading ? (
-              <div className="flex items-center justify-center py-12">
-                <Loader2 className="w-8 h-8 text-blue-400 animate-spin" />
-              </div>
+              <>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+                  <SkeletonCard />
+                  <SkeletonCard />
+                  <SkeletonCard />
+                  <SkeletonCard />
+                  <SkeletonCard />
+                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+                  <SkeletonChart type="pie" title="Distribuição por Categoria" />
+                  <SkeletonChart type="bar" title="Top 10 Usuários Mais Ativos" />
+                  <SkeletonChart type="bar" title="Distribuição por Status" />
+                </div>
+                <SkeletonTable rows={10} columns={7} />
+              </>
             ) : investigationsStats ? (
               <>
                 {/* Stats Cards */}
