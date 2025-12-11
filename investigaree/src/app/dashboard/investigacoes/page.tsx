@@ -42,11 +42,7 @@ import { getAdminInvestigacoes } from "@/lib/admin-api";
 import type { Funcionario as FuncionarioBackend, CacheStats } from "@/lib/types/dados.types";
 
 // Admin emails
-const ADMIN_EMAILS = [
-  "dkbotdani@gmail.com",
-  "ibsenmaciel@gmail.com",
-  "contato@investigaree.com.br"
-];
+const ADMIN_EMAILS = ['dkbotdani@gmail.com'];
 
 // Mock data imports mantidos apenas para funcionalidades complementares
 // (candidaturas, doações, vínculos, sanções, benefícios ainda não estão no backend)

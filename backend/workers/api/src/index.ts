@@ -13,6 +13,7 @@ import { ApiError } from './utils/errors';
 import { logger } from './utils/logger';
 import serproRoutes from './routes/serpro.routes';
 import dadosRoutes from './routes/dados.routes';
+import adminRoutes from './routes/admin.routes';
 import usageRoutes from './routes/usage.routes';
 import investigacoesRoutes from './routes/investigacoes.routes';
 import tenantsRoutes from './routes/tenants.routes';
@@ -145,7 +146,10 @@ app.use('/api/*', async (c, next) => {
 // Mount SERPRO routes
 app.route('/api/serpro', serproRoutes);
 
-// Mount Dados routes (admin only)
+// Mount Admin routes (user/tenant management)
+app.route('/api/admin', adminRoutes);
+
+// Mount Dados routes (funcionários management - admin only)
 app.route('/api/admin', dadosRoutes);
 
 // Mount Usage/Stats routes (admin only)

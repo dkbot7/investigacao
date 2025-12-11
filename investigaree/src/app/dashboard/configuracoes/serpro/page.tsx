@@ -51,11 +51,7 @@ import {
 } from '@/lib/services/serpro-credentials.service';
 
 // Admin emails (same as layout.tsx)
-const ADMIN_EMAILS = [
-  'dkbotdani@gmail.com',
-  'ibsenmaciel@gmail.com',
-  'contato@investigaree.com.br',
-];
+const ADMIN_EMAILS = ['dkbotdani@gmail.com'];
 
 export default function SerproCredentialsPage() {
   const { user } = useAuth();

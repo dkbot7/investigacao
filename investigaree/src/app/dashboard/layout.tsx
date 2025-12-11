@@ -48,11 +48,7 @@ interface NavItem {
 }
 
 // Admin emails
-const ADMIN_EMAILS = [
-  "dkbotdani@gmail.com",
-  "ibsenmaciel@gmail.com",
-  "contato@investigaree.com.br"
-];
+const ADMIN_EMAILS = ['dkbotdani@gmail.com'];
 
 const navItems: NavItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },

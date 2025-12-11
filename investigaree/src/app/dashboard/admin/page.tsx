@@ -62,11 +62,7 @@ import {
 import { toast } from "sonner";
 
 // Admin emails permitidos
-const ADMIN_EMAILS = [
-  "dkbotdani@gmail.com",
-  "ibsenmaciel@gmail.com",
-  "contato@investigaree.com.br"
-];
+const ADMIN_EMAILS = ['dkbotdani@gmail.com'];
 
 export default function AdminPage() {
   const { user } = useAuth();

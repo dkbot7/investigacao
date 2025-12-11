@@ -29,11 +29,7 @@ interface TopNavLink {
 }
 
 // Admin emails
-const ADMIN_EMAILS = [
-  "dkbotdani@gmail.com",
-  "ibsenmaciel@gmail.com",
-  "contato@investigaree.com.br"
-];
+const ADMIN_EMAILS = ['dkbotdani@gmail.com'];
 
 const topNavLinks: TopNavLink[] = [
   { label: "Investigações", href: "/dashboard/investigacoes", icon: Users },

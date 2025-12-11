@@ -32,11 +32,7 @@ import { useInvestigations, type Investigacao, type InvestigacaoStatus, type Cat
 import { getAdminInvestigacoes, getAdminInvestigacoesStats, getAdminDashboard } from "@/lib/admin-api";
 
 // Admin emails
-const ADMIN_EMAILS = [
-  "dkbotdani@gmail.com",
-  "ibsenmaciel@gmail.com",
-  "contato@investigaree.com.br"
-];
+const ADMIN_EMAILS = ['dkbotdani@gmail.com'];
 
 // Status config
 const statusConfig: Record<InvestigacaoStatus, { label: string; color: string; icon: React.ElementType; description: string }> = {

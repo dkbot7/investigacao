@@ -24,11 +24,7 @@ import { getInvestigations } from "@/lib/api";
 import { getAdminInvestigacoes } from "@/lib/admin-api";
 
 // Admin emails
-const ADMIN_EMAILS = [
-  "dkbotdani@gmail.com",
-  "ibsenmaciel@gmail.com",
-  "contato@investigaree.com.br"
-];
+const ADMIN_EMAILS = ['dkbotdani@gmail.com'];
 
 interface Relatorio {
   id: string;

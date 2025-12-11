@@ -11,11 +11,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 
 // Emails de administradores autorizados
-const ADMIN_EMAILS = [
-  "dkbotdani@gmail.com",
-  "ibsenmaciel@gmail.com",
-  "contato@investigaree.com.br"
-];
+const ADMIN_EMAILS = ['dkbotdani@gmail.com'];
 
 export default function LoginAdminPage() {
   const router = useRouter();
