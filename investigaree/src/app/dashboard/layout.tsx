@@ -91,7 +91,7 @@ export default function DashboardLayout({
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const [comurgSectionOpen, setComurgSectionOpen] = useState(true);
+  const [comurgSectionOpen, setComurgSectionOpen] = useState(false);
 
   // Redirecionar se não autenticado
   useEffect(() => {
