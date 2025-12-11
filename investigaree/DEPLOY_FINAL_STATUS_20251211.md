@@ -1,35 +1,33 @@
 # Deploy Final e Melhorias Implementadas - InvestigaRee
 
-**Data:** 11/12/2025 às 13:15
-**Status:** ✅ DEPLOY COMPLETO + MELHORIAS IMPLEMENTADAS
+**Data:** 11/12/2025 às 13:30 (Atualizado)
+**Status:** ✅ DEPLOY COMPLETO + VERSÃO DE PRODUÇÃO 100%
 
 ---
 
 ## 📊 Resumo Executivo
 
-**Deploy realizado com sucesso:**
-- ✅ Frontend (Cloudflare Pages)
-- ✅ Backend (Cloudflare Workers)
+**Deploy realizado com sucesso via WSL:**
+- ✅ Frontend + Backend Unificado (Cloudflare Workers)
 - ✅ Melhorias de Performance e UX implementadas
+- ✅ Configuração de Produção: ADMIN_EMAILS = ['dkbotdani@gmail.com']
+- ✅ Build OpenNext via WSL para evitar file lock do Windows
 
 ---
 
 ## 🚀 Deploy Realizado
 
-### **Frontend (Cloudflare Pages)**
-- **Versão:** `1088fe00-xxxx-xxxx-xxxx-xxxxxxxxxxxx`
-- **Commit:** `6baa082` (feat: Adicionar componentes de performance e UX)
+### **Aplicação Completa (Cloudflare Workers)**
+- **Versão:** `10652772-26d0-4815-80a9-ee90244b1a1b`
+- **Commit:** `695b80a` (docs: Adicionar relatório de deploy final e melhorias)
 - **URL Produção:** https://investigaree.com.br
-- **URL Preview:** https://1088fe00.investigaree.pages.dev
+- **URL Alternativa:** https://www.investigaree.com.br
 - **Status:** ✅ ATIVO
 - **Build:** Compilado com sucesso (95 páginas geradas)
-
-### **Backend (Cloudflare Workers)**
-- **Versão:** `6b748617-f02b-48ed-8b38-aabe7489c010`
-- **URL:** https://api.investigaree.com.br
-- **Status:** ✅ ATIVO
-- **Triggers:** api.investigaree.com.br/*
-- **Worker Startup Time:** 11 ms
+- **Worker Startup Time:** 20 ms
+- **Arquitetura:** Next.js 15.1.9 + OpenNext Cloudflare Workers
+- **Assets Uploaded:** 58 novos arquivos (110 já existentes)
+- **Total Upload:** 14354.25 KiB / gzip: 2673.20 KiB
 
 ---
 
@@ -317,7 +315,7 @@ useEffect(() => {
 
 Todas as funcionalidades do dashboard estão:
 - ✅ Implementadas
-- ✅ Deployadas em produção
+- ✅ Deployadas em produção (versão 100% produção)
 - ✅ Documentadas
 - ✅ Otimizadas para performance
 
@@ -327,13 +325,20 @@ Todas as funcionalidades do dashboard estão:
 - ✅ Better UX durante carregamento
 - ✅ Performance otimizada para listas grandes
 
-**Versões em Produção:**
-- Frontend: `1088fe00` (Cloudflare Pages)
-- Backend: `6b748617` (Cloudflare Workers)
-- Commits: `9c4d1cd` + `6baa082`
+**Versão em Produção:**
+- **Worker ID:** `10652772-26d0-4815-80a9-ee90244b1a1b`
+- **Commit:** `695b80a` (docs: Adicionar relatório de deploy final e melhorias)
+- **Configuração:** ADMIN_EMAILS = ['dkbotdani@gmail.com']
+- **Arquitetura:** Next.js 15.1.9 + OpenNext Cloudflare Workers
+
+**Processo de Deploy:**
+1. ✅ Build Next.js via WSL: `wsl bash -c "npm run build"`
+2. ✅ Build OpenNext Worker via WSL: `wsl bash -c "npm run build:worker"`
+3. ✅ Deploy para Cloudflare: `npm run deploy`
+4. ✅ Resolução de file lock do Windows usando WSL
 
 ---
 
-**Última atualização:** 11/12/2025 às 13:15
+**Última atualização:** 11/12/2025 às 13:30
 **Responsável:** Claude Code Agent
-**Status:** ✅ COMPLETO
+**Status:** ✅ COMPLETO - VERSÃO DE PRODUÇÃO 100%
