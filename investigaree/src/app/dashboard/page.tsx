@@ -25,10 +25,15 @@ import {
   ExternalLink,
   FolderOpen,
   Shield,
+  DollarSign,
+  Activity,
+  TrendingUp,
+  Database,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { useInvestigations, type Investigacao, type InvestigacaoStatus, type Categoria } from "@/hooks/useInvestigations";
+import { usePersonalUsage } from "@/hooks/usePersonalUsage";
 
 // Status config
 const statusConfig: Record<InvestigacaoStatus, { label: string; color: string; icon: React.ElementType; description: string }> = {
@@ -51,6 +56,7 @@ const categoriaConfig: Record<Categoria, { label: string; color: string }> = {
 export default function DashboardPage() {
   const { user } = useAuth();
   const { investigacoes, stats, loading, error, sendMessage, refetch } = useInvestigations();
+  const { summary, byApi, loading: usageLoading } = usePersonalUsage({ period: 'month' });
   const [showContactForm, setShowContactForm] = useState(false);
   const [contactForm, setContactForm] = useState({ assunto: "", mensagem: "" });
   const [sendingMessage, setSendingMessage] = useState(false);
@@ -193,6 +199,93 @@ export default function DashboardPage() {
             href="/dashboard/investigacoes?status=aprovado"
           />
         </div>
+
+        {/* Estatísticas de Uso SERPRO */}
+        {summary && summary.total_queries > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl p-4 sm:p-6"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                <Activity className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
+                Meu Uso (Últimos 30 dias)
+              </h2>
+              {usageLoading && (
+                <Loader2 className="w-4 h-4 text-blue-400 animate-spin" />
+              )}
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-4">
+              <div className="bg-slate-50 dark:bg-navy-800/50 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-1">
+                  <Database className="w-4 h-4 text-blue-400" />
+                  <span className="text-xs text-slate-600 dark:text-navy-400">Consultas</span>
+                </div>
+                <p className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  {summary.total_queries}
+                </p>
+              </div>
+
+              <div className="bg-slate-50 dark:bg-navy-800/50 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-1">
+                  <DollarSign className="w-4 h-4 text-emerald-400" />
+                  <span className="text-xs text-slate-600 dark:text-navy-400">Custo Total</span>
+                </div>
+                <p className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  R$ {summary.total_cost.toFixed(2)}
+                </p>
+              </div>
+
+              <div className="bg-slate-50 dark:bg-navy-800/50 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-1">
+                  <TrendingUp className="w-4 h-4 text-purple-400" />
+                  <span className="text-xs text-slate-600 dark:text-navy-400">Taxa Sucesso</span>
+                </div>
+                <p className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  {summary.success_rate}%
+                </p>
+              </div>
+
+              <div className="bg-slate-50 dark:bg-navy-800/50 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-1">
+                  <Clock className="w-4 h-4 text-amber-400" />
+                  <span className="text-xs text-slate-600 dark:text-navy-400">Tempo Médio</span>
+                </div>
+                <p className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  {summary.avg_response_time.toFixed(0)}ms
+                </p>
+              </div>
+            </div>
+
+            {byApi.length > 0 && (
+              <div className="border-t border-slate-300 dark:border-navy-700 pt-4">
+                <h3 className="text-sm font-medium text-slate-900 dark:text-white mb-3">
+                  Uso por API
+                </h3>
+                <div className="space-y-2">
+                  {byApi.slice(0, 3).map((api: any) => (
+                    <div key={api.api_name} className="flex items-center justify-between">
+                      <span className="text-xs sm:text-sm text-slate-600 dark:text-navy-400">
+                        {api.api_name}
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-slate-500 dark:text-navy-500">
+                          {api.queries} consultas
+                        </span>
+                        <span className="text-xs sm:text-sm font-medium text-slate-900 dark:text-white">
+                          R$ {api.cost.toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </motion.div>
+        )}
 
         {/* Grid Principal */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">

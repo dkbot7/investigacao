@@ -337,3 +337,58 @@ export async function importInvestigations(data: {
     body: JSON.stringify(data),
   })
 }
+
+// ============================================
+// SERPRO USAGE API (PERSONAL)
+// ============================================
+
+export interface PersonalUsageSummary {
+  total_queries: number
+  total_cost: number
+  avg_response_time: number
+  success_rate: number
+}
+
+export interface UsageByApi {
+  api_name: string
+  queries: number
+  cost: number
+  avg_response_time: number
+}
+
+export interface UsageByDate {
+  date: string
+  queries: number
+  cost: number
+}
+
+export interface RecentQuery {
+  api_name: string
+  document: string
+  cost: number
+  response_status: number
+  response_time_ms: number
+  created_at: string
+}
+
+export interface PersonalUsageResponse {
+  success: boolean
+  summary: PersonalUsageSummary
+  by_api: UsageByApi[]
+  by_date: UsageByDate[]
+  recent_queries: RecentQuery[]
+  filters: {
+    period: string
+    user_id: string
+  }
+  meta: {
+    timestamp: string
+  }
+}
+
+/**
+ * Busca estatísticas de uso pessoal SERPRO
+ */
+export async function getPersonalUsage(period: 'today' | 'week' | 'month' | 'all' = 'month'): Promise<PersonalUsageResponse> {
+  return fetchAPI<PersonalUsageResponse>(`/api/serpro/usage/personal?period=${period}`)
+}

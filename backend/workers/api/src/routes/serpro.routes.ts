@@ -282,4 +282,142 @@ serpro.get('/pricing', (c) => {
   });
 });
 
+// ============================================================================
+// USAGE STATISTICS (PERSONAL)
+// ============================================================================
+
+/**
+ * GET /usage/personal
+ * Get usage statistics for the authenticated user
+ *
+ * Query params:
+ * - period: 'today' | 'week' | 'month' | 'all' (default: 'month')
+ *
+ * Response:
+ * {
+ *   summary: { total_queries, total_cost, avg_response_time, success_rate },
+ *   by_api: [{ api_name, queries, cost, avg_response_time }],
+ *   by_date: [{ date, queries, cost }],
+ *   recent_queries: [{ api_name, document, cost, created_at }]
+ * }
+ */
+serpro.get('/usage/personal', async (c) => {
+  try {
+    const user = c.get('user') as AuthenticatedUser;
+    const period = c.req.query('period') || 'month';
+
+    // Calculate date range
+    let dateFilter = '';
+    const params: any[] = [user.uid];
+
+    if (period === 'today') {
+      dateFilter = "AND DATE(created_at) = DATE('now')";
+    } else if (period === 'week') {
+      dateFilter = "AND created_at >= datetime('now', '-7 days')";
+    } else if (period === 'month') {
+      dateFilter = "AND created_at >= datetime('now', '-30 days')";
+    } else if (period === 'all') {
+      dateFilter = '';
+    } else {
+      // Default to last 30 days
+      dateFilter = "AND created_at >= datetime('now', '-30 days')";
+    }
+
+    // 1. SUMMARY (totals for user)
+    const summaryQuery = `
+      SELECT
+        COUNT(*) as total_queries,
+        COALESCE(SUM(cost), 0) as total_cost,
+        COALESCE(AVG(response_time_ms), 0) as avg_response_time,
+        ROUND(CAST(SUM(CASE WHEN response_status = 200 THEN 1 ELSE 0 END) AS REAL) / COUNT(*) * 100, 2) as success_rate
+      FROM serpro_usage
+      WHERE user_id = ? ${dateFilter}
+    `;
+
+    const summary = await c.env.DB.prepare(summaryQuery)
+      .bind(...params)
+      .first();
+
+    // 2. BY API (grouped by API)
+    const byApiQuery = `
+      SELECT
+        api_name,
+        COUNT(*) as queries,
+        COALESCE(SUM(cost), 0) as cost,
+        COALESCE(AVG(response_time_ms), 0) as avg_response_time
+      FROM serpro_usage
+      WHERE user_id = ? ${dateFilter}
+      GROUP BY api_name
+      ORDER BY cost DESC
+    `;
+
+    const byApi = await c.env.DB.prepare(byApiQuery)
+      .bind(...params)
+      .all();
+
+    // 3. BY DATE (last 30 days)
+    const byDateQuery = `
+      SELECT
+        DATE(created_at) as date,
+        COUNT(*) as queries,
+        COALESCE(SUM(cost), 0) as cost
+      FROM serpro_usage
+      WHERE user_id = ? ${dateFilter}
+      GROUP BY DATE(created_at)
+      ORDER BY date DESC
+      LIMIT 30
+    `;
+
+    const byDate = await c.env.DB.prepare(byDateQuery)
+      .bind(...params)
+      .all();
+
+    // 4. RECENT QUERIES (last 10)
+    const recentQueriesQuery = `
+      SELECT
+        api_name,
+        document,
+        cost,
+        response_status,
+        response_time_ms,
+        created_at
+      FROM serpro_usage
+      WHERE user_id = ?
+      ORDER BY created_at DESC
+      LIMIT 10
+    `;
+
+    const recentQueries = await c.env.DB.prepare(recentQueriesQuery)
+      .bind(user.uid)
+      .all();
+
+    return c.json({
+      success: true,
+      summary: summary || {
+        total_queries: 0,
+        total_cost: 0,
+        avg_response_time: 0,
+        success_rate: 0
+      },
+      by_api: byApi.results || [],
+      by_date: byDate.results || [],
+      recent_queries: recentQueries.results || [],
+      filters: {
+        period,
+        user_id: user.uid
+      },
+      meta: {
+        timestamp: new Date().toISOString()
+      }
+    });
+
+  } catch (error: any) {
+    logger.error('Personal usage stats error', { error: error.message });
+    return c.json({
+      error: 'Erro ao buscar estatísticas pessoais',
+      details: error.message
+    }, 500);
+  }
+});
+
 export default serpro;
