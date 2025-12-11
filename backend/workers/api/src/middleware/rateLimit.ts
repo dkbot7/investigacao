@@ -5,7 +5,7 @@
 // ============================================================================
 
 import type { Context, Next } from 'hono';
-import type { Env, AuthenticatedUser } from '../types/api.types';
+import type { Env, AuthenticatedUser, ContextVariables } from '../types/api.types';
 import { RateLimitError } from '../utils/errors';
 import { logger } from '../utils/logger';
 
@@ -36,7 +36,7 @@ const RATE_LIMIT_CONFIG = {
  * Rate limiting middleware
  * Limits users to 60 requests per minute
  */
-export async function rateLimitMiddleware(c: Context<{ Bindings: Env }>, next: Next) {
+export async function rateLimitMiddleware(c: Context<{ Bindings: Env; Variables: ContextVariables }>, next: Next) {
   const user = c.get('user') as AuthenticatedUser | undefined;
 
   if (!user) {

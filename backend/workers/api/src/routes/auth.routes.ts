@@ -7,11 +7,10 @@
  */
 
 import { Hono } from 'hono';
-import type { Env } from '../types/api.types';
+import type { Env, ContextVariables } from '../types/api.types';
 import { logger } from '../utils/logger';
-import { ApiError } from '../utils/errors';
 
-const router = new Hono<{ Bindings: Env }>();
+const router = new Hono<{ Bindings: Env; Variables: ContextVariables }>();
 
 /**
  * POST /api/auth/register

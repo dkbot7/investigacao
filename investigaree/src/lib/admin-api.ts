@@ -21,6 +21,8 @@ export interface AdminUser {
   email: string;
   name: string | null;
   phone: string | null;
+  status?: string;
+  subscription_tier?: string;
   created_at: string;
   last_access: string | null;
   tenants: Array<{ code: string; role: string }>;
@@ -469,7 +471,7 @@ export async function getAdminStats(): Promise<AdminStats> {
 /**
  * Atualiza dados de um usuário
  */
-export async function updateUser(userId: string, data: { name: string; phone: string }): Promise<{ success: boolean; data: any }> {
+export async function updateUser(userId: string, data: { name?: string; phone?: string; status?: string; subscription_tier?: string }): Promise<{ success: boolean; data: any }> {
   return fetchAPI(`/api/admin/users/${userId}`, {
     method: 'PATCH',
     body: JSON.stringify(data),

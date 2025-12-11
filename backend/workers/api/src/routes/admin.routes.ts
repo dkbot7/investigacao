@@ -11,9 +11,32 @@
 
 import { Hono } from 'hono';
 import { authMiddleware } from '../middleware/auth';
-import type { Env } from '../types/api.types';
+import type { Env, ContextVariables } from '../types/api.types';
+import type { Context } from 'hono';
 
-const router = new Hono<{ Bindings: Env }>();
+const router = new Hono<{ Bindings: Env; Variables: ContextVariables }>();
+
+// ============================================================================
+// HELPER FUNCTIONS
+// ============================================================================
+
+/**
+ * Busca o ID do usuário admin no banco D1 usando o Firebase UID
+ * Usado para inserir logs de auditoria com a FK correta
+ */
+async function getAdminUserId(c: Context<{ Bindings: Env; Variables: ContextVariables }>): Promise<string> {
+  const adminUser = c.get('user');
+
+  if (!adminUser?.uid) {
+    return 'system';
+  }
+
+  const adminUserRecord = await c.env.DB.prepare(`
+    SELECT id FROM users WHERE firebase_uid = ?
+  `).bind(adminUser.uid).first();
+
+  return adminUserRecord ? (adminUserRecord.id as string) : 'system';
+}
 
 // ============================================================================
 // USER MANAGEMENT
@@ -33,6 +56,8 @@ router.get('/users', authMiddleware, async (c) => {
         email,
         name,
         phone,
+        status,
+        subscription_tier,
         created_at,
         updated_at,
         (SELECT MAX(created_at) FROM audit_logs WHERE user_id = users.id) as last_access
@@ -44,15 +69,19 @@ router.get('/users', authMiddleware, async (c) => {
     const usersWithTenants = await Promise.all(
       users.map(async (user: any) => {
         const { results: tenants } = await c.env.DB.prepare(`
-          SELECT tenant_code, access_level as role
-          FROM user_tenants
-          WHERE user_id = ?
-          ORDER BY granted_at DESC
+          SELECT t.code as tenant_code, ut.role
+          FROM user_tenants ut
+          JOIN tenants t ON ut.tenant_id = t.id
+          WHERE ut.user_id = ?
+          ORDER BY ut.granted_at DESC
         `).bind(user.id).all();
 
         return {
           ...user,
-          tenants: tenants
+          tenants: tenants.map((t: any) => ({
+            code: t.tenant_code,
+            role: t.role
+          }))
         };
       })
     );
@@ -104,9 +133,10 @@ router.get('/users/:id', authMiddleware, async (c) => {
 
     // Buscar tenants do usuário
     const { results: tenants } = await c.env.DB.prepare(`
-      SELECT tenant_code, access_level as role, granted_at, granted_by
-      FROM user_tenants
-      WHERE user_id = ?
+      SELECT t.code as tenant_code, ut.role, ut.granted_at, ut.granted_by
+      FROM user_tenants ut
+      JOIN tenants t ON ut.tenant_id = t.id
+      WHERE ut.user_id = ?
     `).bind(userId).all();
 
     return c.json({
@@ -137,7 +167,7 @@ router.get('/users/:id', authMiddleware, async (c) => {
  */
 router.patch('/users/:id', authMiddleware, async (c) => {
   const userId = c.req.param('id');
-  const { name, phone } = await c.req.json();
+  const { name, phone, status, subscription_tier } = await c.req.json();
 
   try {
     // Verificar se usuário existe
@@ -155,15 +185,63 @@ router.patch('/users/:id', authMiddleware, async (c) => {
       }, 404);
     }
 
+    // Validar status se fornecido
+    const validStatuses = ['active', 'inactive', 'suspended'];
+    if (status && !validStatuses.includes(status)) {
+      return c.json({
+        success: false,
+        error: {
+          code: 'INVALID_STATUS',
+          message: 'Status inválido. Use: active, inactive ou suspended'
+        }
+      }, 400);
+    }
+
+    // Validar subscription_tier se fornecido
+    const validTiers = ['free', 'paid', 'premium', 'vip'];
+    if (subscription_tier && !validTiers.includes(subscription_tier)) {
+      return c.json({
+        success: false,
+        error: {
+          code: 'INVALID_TIER',
+          message: 'Tier inválido. Use: free, paid, premium ou vip'
+        }
+      }, 400);
+    }
+
+    // Construir query de atualização dinamicamente
+    const updates = [];
+    const bindings = [];
+
+    if (name !== undefined) {
+      updates.push('name = ?');
+      bindings.push(name);
+    }
+    if (phone !== undefined) {
+      updates.push('phone = ?');
+      bindings.push(phone);
+    }
+    if (status !== undefined) {
+      updates.push('status = ?');
+      bindings.push(status);
+    }
+    if (subscription_tier !== undefined) {
+      updates.push('subscription_tier = ?');
+      bindings.push(subscription_tier);
+    }
+
+    updates.push("updated_at = datetime('now')");
+    bindings.push(userId);
+
     // Atualizar usuário
     await c.env.DB.prepare(`
       UPDATE users
-      SET name = ?, phone = ?, updated_at = CURRENT_TIMESTAMP
+      SET ${updates.join(', ')}
       WHERE id = ?
-    `).bind(name, phone, userId).run();
+    `).bind(...bindings).run();
 
     // Log de auditoria
-    const adminUserId = c.get('userId') || 'system';
+    const adminUserId = await getAdminUserId(c);
     await c.env.DB.prepare(`
       INSERT INTO audit_logs (user_id, action, entity_type, entity_id, metadata)
       VALUES (?, ?, ?, ?, ?)
@@ -172,12 +250,12 @@ router.patch('/users/:id', authMiddleware, async (c) => {
       'update',
       'user',
       userId,
-      JSON.stringify({ name, phone })
+      JSON.stringify({ name, phone, status, subscription_tier })
     ).run();
 
     // Buscar usuário atualizado
     const updatedUser = await c.env.DB.prepare(`
-      SELECT id, email, name, phone, created_at, updated_at
+      SELECT id, email, name, phone, status, subscription_tier, created_at, updated_at
       FROM users
       WHERE id = ?
     `).bind(userId).first();
@@ -235,7 +313,7 @@ router.delete('/users/:id', authMiddleware, async (c) => {
     `).bind(userId).run();
 
     // Log de auditoria
-    const adminUserId = c.get('userId') || 'system';
+    const adminUserId = await getAdminUserId(c);
     await c.env.DB.prepare(`
       INSERT INTO audit_logs (user_id, action, entity_type, entity_id, metadata)
       VALUES (?, ?, ?, ?, ?)
@@ -279,11 +357,11 @@ router.get('/tenants', authMiddleware, async (c) => {
     const { results: tenants } = await c.env.DB.prepare(`
       SELECT
         t.id,
-        t.tenant_code as code,
+        t.code,
         t.name,
         t.status,
         t.created_at,
-        (SELECT COUNT(*) FROM user_tenants WHERE tenant_code = t.tenant_code) as user_count
+        (SELECT COUNT(*) FROM user_tenants WHERE tenant_id = t.id) as user_count
       FROM tenants t
       ORDER BY t.created_at DESC
     `).all();
@@ -298,16 +376,16 @@ router.get('/tenants', authMiddleware, async (c) => {
           WHERE entity_type = 'serpro_query'
             AND created_at > datetime('now', '-30 days')
             AND user_id IN (
-              SELECT user_id FROM user_tenants WHERE tenant_code = ?
+              SELECT user_id FROM user_tenants WHERE tenant_id = ?
             )
-        `).bind(tenant.code).first();
+        `).bind(tenant.id).first();
 
         // Contar total de usuários com acesso
         const totalUsers = await c.env.DB.prepare(`
           SELECT COUNT(*) as count
           FROM user_tenants
-          WHERE tenant_code = ?
-        `).bind(tenant.code).first();
+          WHERE tenant_id = ?
+        `).bind(tenant.id).first();
 
         return {
           ...tenant,
@@ -359,18 +437,18 @@ router.post('/tenants', authMiddleware, async (c) => {
 
   try {
     const result = await c.env.DB.prepare(`
-      INSERT INTO tenants (tenant_code, name, status)
-      VALUES (?, ?, 'active')
-      RETURNING id, tenant_code as code, name, status, created_at
-    `).bind(code, name).first();
+      INSERT INTO tenants (code, name, email, status)
+      VALUES (?, ?, ?, 'active')
+      RETURNING id, code, name, status, created_at
+    `).bind(code, name, `${code}@investigaree.com.br`).first();
 
     // Log de auditoria
-    const userId = c.get('userId') || 'system';
+    const adminUserId = await getAdminUserId(c);
     await c.env.DB.prepare(`
       INSERT INTO audit_logs (user_id, action, entity_type, entity_id, metadata)
       VALUES (?, ?, ?, ?, ?)
     `).bind(
-      userId,
+      adminUserId,
       'create',
       'tenant',
       code,
@@ -409,7 +487,7 @@ router.patch('/tenants/:code', authMiddleware, async (c) => {
   try {
     // Verificar se tenant existe
     const tenant = await c.env.DB.prepare(`
-      SELECT tenant_code FROM tenants WHERE tenant_code = ?
+      SELECT id, code FROM tenants WHERE code = ?
     `).bind(tenantCode).first();
 
     if (!tenant) {
@@ -425,12 +503,12 @@ router.patch('/tenants/:code', authMiddleware, async (c) => {
     // Atualizar tenant
     await c.env.DB.prepare(`
       UPDATE tenants
-      SET name = ?, status = ?, updated_at = CURRENT_TIMESTAMP
-      WHERE tenant_code = ?
+      SET name = ?, status = ?, updated_at = datetime('now')
+      WHERE code = ?
     `).bind(name, status, tenantCode).run();
 
     // Log de auditoria
-    const adminUserId = c.get('userId') || 'system';
+    const adminUserId = await getAdminUserId(c);
     await c.env.DB.prepare(`
       INSERT INTO audit_logs (user_id, action, entity_type, entity_id, metadata)
       VALUES (?, ?, ?, ?, ?)
@@ -444,9 +522,9 @@ router.patch('/tenants/:code', authMiddleware, async (c) => {
 
     // Buscar tenant atualizado
     const updatedTenant = await c.env.DB.prepare(`
-      SELECT id, tenant_code as code, name, status, created_at, updated_at
+      SELECT id, code, name, status, created_at, updated_at
       FROM tenants
-      WHERE tenant_code = ?
+      WHERE code = ?
     `).bind(tenantCode).first();
 
     return c.json({
@@ -507,7 +585,7 @@ router.post('/grant-access', authMiddleware, async (c) => {
 
     // Verificar se tenant existe
     const tenant = await c.env.DB.prepare(`
-      SELECT tenant_code FROM tenants WHERE tenant_code = ?
+      SELECT id, code FROM tenants WHERE code = ?
     `).bind(tenant_code).first();
 
     if (!tenant) {
@@ -520,17 +598,19 @@ router.post('/grant-access', authMiddleware, async (c) => {
       }, 404);
     }
 
-    const adminUserId = c.get('userId') || 'system';
+    // Buscar ID do admin para logs (precisa ser o ID da tabela users, não Firebase UID)
+    const adminUserId = await getAdminUserId(c);
 
     // Inserir ou atualizar acesso
     await c.env.DB.prepare(`
-      INSERT INTO user_tenants (user_id, tenant_code, access_level, granted_by)
-      VALUES (?, ?, ?, ?)
-      ON CONFLICT(user_id, tenant_code) DO UPDATE SET
-        access_level = excluded.access_level,
+      INSERT INTO user_tenants (user_id, tenant_id, role, granted_by, granted_at)
+      VALUES (?, ?, ?, ?, datetime('now'))
+      ON CONFLICT(user_id, tenant_id) DO UPDATE SET
+        role = excluded.role,
         granted_by = excluded.granted_by,
-        granted_at = CURRENT_TIMESTAMP
-    `).bind((user as any).id, tenant_code, role, adminUserId).run();
+        granted_at = datetime('now'),
+        updated_at = datetime('now')
+    `).bind((user as any).id, (tenant as any).id, role, adminUserId).run();
 
     // Log de auditoria
     await c.env.DB.prepare(`
@@ -598,11 +678,26 @@ router.delete('/revoke-access', authMiddleware, async (c) => {
       }, 404);
     }
 
+    // Buscar tenant por code
+    const tenant = await c.env.DB.prepare(`
+      SELECT id FROM tenants WHERE code = ?
+    `).bind(tenant_code).first();
+
+    if (!tenant) {
+      return c.json({
+        success: false,
+        error: {
+          code: 'TENANT_NOT_FOUND',
+          message: `Tenant ${tenant_code} não encontrado`
+        }
+      }, 404);
+    }
+
     // Deletar acesso
     const result = await c.env.DB.prepare(`
       DELETE FROM user_tenants
-      WHERE user_id = ? AND tenant_code = ?
-    `).bind((user as any).id, tenant_code).run();
+      WHERE user_id = ? AND tenant_id = ?
+    `).bind((user as any).id, (tenant as any).id).run();
 
     if (!result.success || result.meta.changes === 0) {
       return c.json({
@@ -615,7 +710,7 @@ router.delete('/revoke-access', authMiddleware, async (c) => {
     }
 
     // Log de auditoria
-    const adminUserId = c.get('userId') || 'system';
+    const adminUserId = await getAdminUserId(c);
     await c.env.DB.prepare(`
       INSERT INTO audit_logs (user_id, action, entity_type, entity_id, metadata)
       VALUES (?, ?, ?, ?, ?)

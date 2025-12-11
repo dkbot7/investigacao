@@ -66,6 +66,16 @@ export interface AuthenticatedUser {
 }
 
 /**
+ * Hono Context Variables
+ * Variables that can be stored in the context via c.set()
+ */
+export interface ContextVariables {
+  user?: AuthenticatedUser;
+  userId?: string;
+  tenantCode?: string;
+}
+
+/**
  * Standard API Response
  */
 export interface ApiResponse<T> {

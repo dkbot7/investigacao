@@ -5,7 +5,7 @@
 // ============================================================================
 
 import { Hono } from 'hono';
-import type { Env } from './types/api.types';
+import type { Env, ContextVariables } from './types/api.types';
 import { corsMiddleware } from './middleware/cors';
 import { authMiddleware } from './middleware/auth';
 import { rateLimitMiddleware } from './middleware/rateLimit';
@@ -26,7 +26,7 @@ import { processJobs } from './cron/process-jobs';
 // APP INITIALIZATION
 // ============================================================================
 
-const app = new Hono<{ Bindings: Env }>();
+const app = new Hono<{ Bindings: Env; Variables: ContextVariables }>();
 
 // ============================================================================
 // GLOBAL MIDDLEWARES
@@ -186,7 +186,7 @@ app.onError((err, c) => {
 
   // Handle known API errors
   if (err instanceof ApiError) {
-    return c.json(err.toJSON(), err.statusCode);
+    return c.json(err.toJSON(), err.statusCode as any);
   }
 
   // Handle unknown errors
@@ -205,7 +205,7 @@ app.onError((err, c) => {
             : undefined,
       },
     },
-    500
+    500 as any
   );
 });
 

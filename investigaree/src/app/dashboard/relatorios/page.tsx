@@ -210,20 +210,21 @@ export default function RelatoriosPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900">
       {/* Header */}
       <header className="border-b border-slate-300 dark:border-navy-800 bg-white dark:bg-navy-900/50 backdrop-blur-lg sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-4">
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex justify-between items-center gap-2">
+          <div className="flex items-center gap-2 sm:gap-4 min-w-0">
             <Link href="/dashboard">
-              <Button variant="ghost" size="sm" className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white hover:bg-slate-100 dark:bg-navy-800">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Voltar
+              <Button variant="ghost" size="sm" className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white hover:bg-slate-100 dark:bg-navy-800 px-2 sm:px-3">
+                <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Voltar</span>
               </Button>
             </Link>
-            <h1 className="text-2xl font-bold gradient-text">investigaree</h1>
+            <h1 className="text-lg sm:text-2xl font-bold gradient-text truncate">investigaree</h1>
           </div>
           <Button
             onClick={logout}
             variant="ghost"
-            className="border border-slate-400 dark:border-navy-700 text-slate-900 dark:text-white hover:bg-slate-100 dark:bg-navy-800 hover:text-white"
+            size="sm"
+            className="border border-slate-400 dark:border-navy-700 text-slate-900 dark:text-white hover:bg-slate-100 dark:bg-navy-800 hover:text-white text-xs sm:text-sm px-2 sm:px-4 flex-shrink-0"
           >
             Sair
           </Button>
@@ -232,17 +233,17 @@ export default function RelatoriosPage() {
 
       {/* Tab Navigation */}
       <div className="border-b border-slate-300 dark:border-navy-800 bg-white dark:bg-navy-900/30">
-        <div className="container mx-auto px-4">
-          <div className="flex gap-1">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="flex gap-1 overflow-x-auto scrollbar-thin">
             <button
               onClick={() => setActiveTab("dashboard")}
-              className={`px-6 py-4 font-medium transition-all relative ${
+              className={`px-4 sm:px-6 py-3 sm:py-4 font-medium transition-all relative whitespace-nowrap text-sm sm:text-base ${
                 activeTab === "dashboard"
                   ? "text-blue-400"
                   : "text-slate-600 dark:text-white/60 hover:text-white"
               }`}
             >
-              <TrendingUp className="w-4 h-4 inline mr-2" />
+              <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 inline mr-1 sm:mr-2" />
               Dashboard
               {activeTab === "dashboard" && (
                 <motion.div
@@ -253,13 +254,13 @@ export default function RelatoriosPage() {
             </button>
             <button
               onClick={() => setActiveTab("relatorios")}
-              className={`px-6 py-4 font-medium transition-all relative ${
+              className={`px-4 sm:px-6 py-3 sm:py-4 font-medium transition-all relative whitespace-nowrap text-sm sm:text-base ${
                 activeTab === "relatorios"
                   ? "text-blue-400"
                   : "text-slate-600 dark:text-white/60 hover:text-white"
               }`}
             >
-              <FileText className="w-4 h-4 inline mr-2" />
+              <FileText className="w-3 h-3 sm:w-4 sm:h-4 inline mr-1 sm:mr-2" />
               Relatorios
               {activeTab === "relatorios" && (
                 <motion.div
@@ -273,7 +274,7 @@ export default function RelatoriosPage() {
       </div>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
         {activeTab === "dashboard" ? (
           <DashboardContent
             data={data}

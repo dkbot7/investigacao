@@ -10,18 +10,19 @@ import type { Context, Next } from 'hono';
  * CORS middleware configuration
  * Allows requests from Investigaree frontend domains
  */
-export async function corsMiddleware(c: Context, next: Next) {
+export async function corsMiddleware(c: Context, next: Next): Promise<Response | void> {
   // Allow these origins
   const allowedOrigins = [
     'https://investigaree.com.br',
     'https://www.investigaree.com.br',
     'https://investigaree.pages.dev',
-    'http://localhost:3000', // Local development
-    'http://localhost:3001',
   ];
 
   const origin = c.req.header('Origin');
-  const isAllowed = origin && allowedOrigins.includes(origin);
+
+  // Allow any localhost port for development
+  const isLocalhost = origin && origin.startsWith('http://localhost:');
+  const isAllowed = (origin && allowedOrigins.includes(origin)) || isLocalhost;
 
   // Set CORS headers
   if (isAllowed) {
@@ -35,8 +36,8 @@ export async function corsMiddleware(c: Context, next: Next) {
 
   // Handle preflight requests
   if (c.req.method === 'OPTIONS') {
-    return c.text('', 204);
+    return c.text('', 204 as any);
   }
 
-  await next();
+  return await next();
 }

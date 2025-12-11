@@ -128,40 +128,40 @@ export default function GerarRelatorioPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900">
       {/* Header */}
       <header className="border-b border-slate-300 dark:border-navy-800 bg-white dark:bg-navy-900/50 backdrop-blur-lg sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-4">
+        <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
+          <div className="flex items-center gap-3 sm:gap-4">
             <Link href="/dashboard/relatorios">
               <Button
                 variant="ghost"
                 size="sm"
                 className="text-slate-600 dark:text-white/60 hover:text-white hover:bg-navy-800"
               >
-                <ArrowLeft className="w-4 h-4 mr-2" />
+                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Voltar
               </Button>
             </Link>
-            <h1 className="text-2xl font-bold gradient-text">Gerar Relatório</h1>
+            <h1 className="text-xl sm:text-2xl font-bold gradient-text">Gerar Relatório</h1>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-2 gap-6">
+      <main className="container mx-auto px-4 sm:px-6 py-4 sm:py-6 lg:py-8">
+        <div className="grid lg:grid-cols-2 gap-4 sm:gap-6">
           {/* Formulário */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
             {/* Informações da Investigação */}
-            <div className="bg-white dark:bg-navy-900 border border-navy-700 rounded-xl p-6">
-              <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <FileSignature className="w-5 h-5 text-blue-400" />
+            <div className="bg-white dark:bg-navy-900 border border-navy-700 rounded-xl p-4 sm:p-6">
+              <h2 className="text-base sm:text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                <FileSignature className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
                 Informações da Investigação
               </h2>
 
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-white/60 mb-2">
                     ID da Investigação *
@@ -176,7 +176,7 @@ export default function GerarRelatorioPage() {
                         investigacao: { ...formData.investigacao!, id: e.target.value },
                       })
                     }
-                    className="bg-navy-800 border-navy-700 text-white"
+                    className="bg-navy-800 border-navy-700 text-white text-sm sm:text-base pl-3 sm:pl-4 pr-3 sm:pr-4 py-2 sm:py-2.5"
                   />
                 </div>
 
@@ -195,7 +195,7 @@ export default function GerarRelatorioPage() {
                         },
                       })
                     }
-                    className="w-full px-3 py-2 bg-navy-800 border border-navy-700 rounded-lg text-white"
+                    className="w-full px-3 sm:px-3 py-2 sm:py-2 bg-navy-800 border border-navy-700 rounded-lg text-sm sm:text-base text-white"
                   >
                     <option value="pessoa_fisica">Pessoa Física</option>
                     <option value="pessoa_juridica">Pessoa Jurídica</option>
@@ -221,7 +221,7 @@ export default function GerarRelatorioPage() {
                         },
                       })
                     }
-                    className="bg-navy-800 border-navy-700 text-white"
+                    className="bg-navy-800 border-navy-700 text-white text-sm sm:text-base pl-3 sm:pl-4 pr-3 sm:pr-4 py-2 sm:py-2.5"
                   />
                 </div>
 
@@ -241,20 +241,20 @@ export default function GerarRelatorioPage() {
                         },
                       })
                     }
-                    className="bg-navy-800 border-navy-700 text-white"
+                    className="bg-navy-800 border-navy-700 text-white text-sm sm:text-base pl-3 sm:pl-4 pr-3 sm:pr-4 py-2 sm:py-2.5"
                   />
                 </div>
               </div>
             </div>
 
             {/* Dados da Pessoa */}
-            <div className="bg-white dark:bg-navy-900 border border-navy-700 rounded-xl p-6">
-              <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <User className="w-5 h-5 text-blue-400" />
+            <div className="bg-white dark:bg-navy-900 border border-navy-700 rounded-xl p-4 sm:p-6">
+              <h2 className="text-base sm:text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                <User className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
                 Dados da Pessoa
               </h2>
 
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-white/60 mb-2">
                     Nome Completo *
@@ -269,11 +269,11 @@ export default function GerarRelatorioPage() {
                         pessoa: { ...formData.pessoa!, nome: e.target.value },
                       })
                     }
-                    className="bg-navy-800 border-navy-700 text-white"
+                    className="bg-navy-800 border-navy-700 text-white text-sm sm:text-base pl-3 sm:pl-4 pr-3 sm:pr-4 py-2 sm:py-2.5"
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div>
                     <label className="block text-sm font-medium text-white/60 mb-2">
                       CPF
@@ -288,7 +288,7 @@ export default function GerarRelatorioPage() {
                           pessoa: { ...formData.pessoa!, cpf: e.target.value },
                         })
                       }
-                      className="bg-navy-800 border-navy-700 text-white"
+                      className="bg-navy-800 border-navy-700 text-white text-sm sm:text-base pl-3 sm:pl-4 pr-3 sm:pr-4 py-2 sm:py-2.5"
                     />
                   </div>
 
@@ -306,12 +306,12 @@ export default function GerarRelatorioPage() {
                           pessoa: { ...formData.pessoa!, cnpj: e.target.value },
                         })
                       }
-                      className="bg-navy-800 border-navy-700 text-white"
+                      className="bg-navy-800 border-navy-700 text-white text-sm sm:text-base pl-3 sm:pl-4 pr-3 sm:pr-4 py-2 sm:py-2.5"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div>
                     <label className="block text-sm font-medium text-white/60 mb-2">
                       Data de Nascimento
@@ -325,7 +325,7 @@ export default function GerarRelatorioPage() {
                           pessoa: { ...formData.pessoa!, nascimento: e.target.value },
                         })
                       }
-                      className="bg-navy-800 border-navy-700 text-white"
+                      className="bg-navy-800 border-navy-700 text-white text-sm sm:text-base pl-3 sm:pl-4 pr-3 sm:pr-4 py-2 sm:py-2.5"
                     />
                   </div>
 
@@ -343,7 +343,7 @@ export default function GerarRelatorioPage() {
                           pessoa: { ...formData.pessoa!, rg: e.target.value },
                         })
                       }
-                      className="bg-navy-800 border-navy-700 text-white"
+                      className="bg-navy-800 border-navy-700 text-white text-sm sm:text-base pl-3 sm:pl-4 pr-3 sm:pr-4 py-2 sm:py-2.5"
                     />
                   </div>
                 </div>
@@ -362,14 +362,14 @@ export default function GerarRelatorioPage() {
                         pessoa: { ...formData.pessoa!, email: e.target.value },
                       })
                     }
-                    className="bg-navy-800 border-navy-700 text-white"
+                    className="bg-navy-800 border-navy-700 text-white text-sm sm:text-base pl-3 sm:pl-4 pr-3 sm:pr-4 py-2 sm:py-2.5"
                   />
                 </div>
               </div>
             </div>
 
             {/* Ações */}
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button
                 onClick={handleGeneratePreview}
                 disabled={loading || !validateForm()}
@@ -377,12 +377,12 @@ export default function GerarRelatorioPage() {
               >
                 {loading ? (
                   <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 mr-2 animate-spin" />
                     Gerando...
                   </>
                 ) : (
                   <>
-                    <Eye className="w-4 h-4 mr-2" />
+                    <Eye className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     Gerar Preview
                   </>
                 )}
@@ -395,12 +395,12 @@ export default function GerarRelatorioPage() {
               >
                 {loading ? (
                   <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 mr-2 animate-spin" />
                     Baixando...
                   </>
                 ) : (
                   <>
-                    <Download className="w-4 h-4 mr-2" />
+                    <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     Baixar PDF
                   </>
                 )}
@@ -430,9 +430,9 @@ export default function GerarRelatorioPage() {
             animate={{ opacity: 1, x: 0 }}
             className="lg:sticky lg:top-24 h-fit"
           >
-            <div className="bg-white dark:bg-navy-900 border border-navy-700 rounded-xl p-6">
-              <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <FileText className="w-5 h-5 text-blue-400" />
+            <div className="bg-white dark:bg-navy-900 border border-navy-700 rounded-xl p-4 sm:p-6">
+              <h2 className="text-base sm:text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
                 Preview do Relatório
               </h2>
 

@@ -100,10 +100,10 @@ export default function ConsultaCpfPage() {
   };
 
   return (
-    <div className="container max-w-4xl py-8 space-y-6">
+    <div className="container max-w-4xl py-4 sm:py-6 lg:py-8 space-y-4 sm:space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Consulta CPF</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Consulta CPF</h1>
         <p className="text-muted-foreground mt-2">
           Consulte dados de CPF no SERPRO e adicione automaticamente ao Kanban
         </p>
@@ -117,10 +117,10 @@ export default function ConsultaCpfPage() {
             Digite o CPF para consultar no SERPRO. Custo: R$ 0,50 por consulta.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 sm:space-y-4">
           <div className="space-y-2">
             <Label htmlFor="cpf">CPF</Label>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-2">
               <Input
                 id="cpf"
                 placeholder="000.000.000-00"
@@ -128,7 +128,7 @@ export default function ConsultaCpfPage() {
                 onChange={(e) => handleCpfChange(e.target.value)}
                 maxLength={14}
                 disabled={loading}
-                className="font-mono"
+                className="font-mono text-sm sm:text-base pl-3 sm:pl-4 pr-3 sm:pr-4 py-2 sm:py-2.5"
               />
               <Button
                 onClick={handleConsultar}
@@ -137,12 +137,12 @@ export default function ConsultaCpfPage() {
               >
                 {loading ? (
                   <>
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 mr-2 animate-spin" />
                     Consultando...
                   </>
                 ) : (
                   <>
-                    <Search className="h-4 w-4 mr-2" />
+                    <Search className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     Consultar
                   </>
                 )}
@@ -163,19 +163,19 @@ export default function ConsultaCpfPage() {
       {resultado && (
         <Card>
           <CardHeader>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-2 sm:gap-0">
               <CardTitle>Resultado da Consulta</CardTitle>
               {kanbanCardCreated && (
-                <Badge variant="default" className="flex items-center gap-1">
+                <Badge variant="default" className="flex items-center gap-1 px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs">
                   <CheckCircle className="h-3 w-3" />
                   Adicionado ao Kanban
                 </Badge>
               )}
             </div>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-4 sm:space-y-6">
             {/* Dados Principais */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Nome</Label>
                 <div className="flex items-center gap-2">
@@ -216,14 +216,14 @@ export default function ConsultaCpfPage() {
             </div>
 
             {/* Ações */}
-            <div className="flex items-center gap-3 pt-4 border-t">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3 pt-4 border-t">
               <Button
                 onClick={handleGoToKanban}
                 size="lg"
                 className="flex-1"
               >
                 Ir para o Kanban
-                <ArrowRight className="h-4 w-4 ml-2" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
               </Button>
 
               <Button

@@ -72,13 +72,13 @@ export default async function LGPDPage() {
   const stats = await getLGPDStats()
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-navy-950 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="min-h-screen bg-slate-50 dark:bg-navy-950 p-4 sm:p-6">
+      <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
         {/* Header */}
-        <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 rounded-xl p-6">
+        <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 rounded-xl p-4 sm:p-6">
           <div className="flex items-center gap-3 mb-2">
-            <Shield className="w-8 h-8 text-green-500" />
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
+            <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-green-500" />
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
               LGPD - Conformidade e Privacidade
             </h1>
           </div>
@@ -89,7 +89,7 @@ export default async function LGPDPage() {
 
         {/* Estatísticas */}
         <ComplianceErrorBoundary>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <StatCard
               title="Consentimentos Ativos"
               value={stats.consentimentosAtivos}
@@ -121,14 +121,14 @@ export default async function LGPDPage() {
         </ComplianceErrorBoundary>
 
         {/* Direitos do Titular (Art. 18) */}
-        <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 rounded-xl p-6">
+        <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 rounded-xl p-4 sm:p-6">
           <div className="flex items-center gap-3 mb-4">
-            <Settings className="w-6 h-6 text-slate-400" />
-            <h3 className="font-semibold text-slate-900 dark:text-white">
+            <Settings className="w-5 h-5 sm:w-6 sm:h-6 text-slate-400" />
+            <h3 className="text-sm sm:text-base font-semibold text-slate-900 dark:text-white">
               Direitos do Titular de Dados (Art. 18 LGPD)
             </h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
             <DireitoCard
               numero="I"
               titulo="Confirmação e Acesso"
@@ -173,10 +173,10 @@ export default async function LGPDPage() {
         </div>
 
         {/* Bases Legais */}
-        <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 rounded-xl p-6">
+        <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 rounded-xl p-4 sm:p-6">
           <div className="flex items-center gap-3 mb-4">
-            <FileText className="w-6 h-6 text-slate-400" />
-            <h3 className="font-semibold text-slate-900 dark:text-white">
+            <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-slate-400" />
+            <h3 className="text-sm sm:text-base font-semibold text-slate-900 dark:text-white">
               Bases Legais de Tratamento (Art. 7º LGPD)
             </h3>
           </div>
@@ -209,8 +209,8 @@ export default async function LGPDPage() {
         </div>
 
         {/* Links Úteis */}
-        <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 rounded-xl p-6">
-          <h3 className="font-semibold text-slate-900 dark:text-white mb-3">
+        <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 rounded-xl p-4 sm:p-6">
+          <h3 className="text-sm sm:text-base font-semibold text-slate-900 dark:text-white mb-3">
             Recursos e Documentação
           </h3>
           <ul className="space-y-2 text-sm text-slate-600 dark:text-white/60">
@@ -293,26 +293,26 @@ function StatCard({ title, value, total, icon: Icon, color, badge }: StatCardPro
   const config = colorConfig[color]
 
   return (
-    <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 rounded-xl p-4">
+    <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 rounded-xl p-3 sm:p-4">
       <div className="flex items-start justify-between mb-3">
         <div className={`p-2 rounded-lg ${config.bg}`}>
-          <Icon className={`w-5 h-5 ${config.text}`} />
+          <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${config.text}`} />
         </div>
         {badge && (
-          <span className="text-xs px-2 py-0.5 bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 rounded">
+          <span className="text-[10px] sm:text-xs px-2 sm:px-2 py-0.5 sm:py-0.5 bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 rounded">
             {badge}
           </span>
         )}
       </div>
-      <p className="text-3xl font-bold text-slate-900 dark:text-white mb-1">
+      <p className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-1">
         {value}
         {total && (
-          <span className="text-sm font-normal text-slate-500 dark:text-white/40">
+          <span className="text-xs sm:text-sm font-normal text-slate-500 dark:text-white/40">
             {' '}/ {total}
           </span>
         )}
       </p>
-      <p className="text-sm font-medium text-slate-700 dark:text-slate-300">{title}</p>
+      <p className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300">{title}</p>
     </div>
   )
 }

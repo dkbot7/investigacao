@@ -11,12 +11,12 @@ import { Bell, Info } from 'lucide-react'
  */
 export default function AlertasPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900 p-4 sm:p-6">
+      <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-3 sm:gap-0">
           <div>
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
               Alertas em Tempo Real
             </h1>
             <p className="mt-2 text-slate-600 dark:text-white/60">
@@ -29,9 +29,9 @@ export default function AlertasPage() {
 
         {/* Info Card */}
         <Card className="bg-blue-500/10 border-blue-500/20">
-          <CardHeader>
+          <CardHeader className="p-3 sm:p-4">
             <div className="flex items-start gap-3">
-              <Info className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+              <Info className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 flex-shrink-0 mt-0.5" />
               <div>
                 <CardTitle className="text-blue-400">Sistema de Polling Automático</CardTitle>
                 <CardDescription className="text-blue-400/80">
@@ -52,13 +52,13 @@ export default function AlertasPage() {
 
         {/* Documentation */}
         <Card className="bg-navy-900 border-navy-700">
-          <CardHeader>
+          <CardHeader className="p-3 sm:p-4">
             <CardTitle className="text-white flex items-center gap-2">
-              <Bell className="w-5 h-5" />
+              <Bell className="w-5 h-5 sm:w-6 sm:h-6" />
               Funcionalidades
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-white/80 space-y-4">
+          <CardContent className="text-white/80 space-y-4 sm:space-y-4 p-3 sm:p-4">
             <div>
               <h3 className="font-semibold text-white mb-2">Recursos Principais:</h3>
               <ul className="space-y-2 list-disc list-inside">

@@ -108,17 +108,17 @@ export default function ConfiguracoesPage() {
   };
 
   return (
-    <div className="p-4 lg:p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="space-y-6"
+        className="space-y-4 sm:space-y-6"
       >
         {/* Header */}
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-            <Settings className="w-7 h-7 text-blue-400" />
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <Settings className="w-6 h-6 sm:w-7 sm:h-7 text-blue-400" />
             Configurações
           </h1>
           <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
@@ -126,9 +126,9 @@ export default function ConfiguracoesPage() {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex flex-col sm:flex-row lg:flex-row gap-4 sm:gap-6">
           {/* Sidebar Tabs */}
-          <div className="lg:w-64 flex-shrink-0">
+          <div className="sm:w-full lg:w-64 flex-shrink-0">
             <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-2 space-y-1">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
@@ -154,17 +154,17 @@ export default function ConfiguracoesPage() {
 
           {/* Content Area */}
           <div className="flex-1">
-            <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-6">
+            <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4 sm:p-6">
               {/* Perfil Tab */}
               {activeTab === "perfil" && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="space-y-6"
+                  className="space-y-4 sm:space-y-6"
                 >
                   <div className="flex items-center justify-between border-b border-slate-400 dark:border-navy-700 pb-4">
                     <div>
-                      <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Informações Pessoais</h2>
+                      <h2 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-white">Informações Pessoais</h2>
                       <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Atualize suas informações de perfil</p>
                     </div>
                   </div>
@@ -188,7 +188,7 @@ export default function ConfiguracoesPage() {
                   </div>
 
                   {/* Form Fields */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-2">
                       <label className="block text-sm font-medium text-slate-900 dark:text-slate-800 dark:text-white/80">Nome Completo</label>
                       <div className="relative">
@@ -197,7 +197,7 @@ export default function ConfiguracoesPage() {
                           type="text"
                           value={profile.nome}
                           onChange={(e) => setProfile({ ...profile, nome: e.target.value })}
-                          className="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                           placeholder="Seu nome"
                         />
                       </div>
@@ -211,7 +211,7 @@ export default function ConfiguracoesPage() {
                           type="email"
                           value={profile.email}
                           onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-                          className="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                           placeholder="seu@email.com"
                           disabled
                         />
@@ -227,7 +227,7 @@ export default function ConfiguracoesPage() {
                           type="tel"
                           value={profile.telefone}
                           onChange={(e) => setProfile({ ...profile, telefone: e.target.value })}
-                          className="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                           placeholder="(00) 00000-0000"
                         />
                       </div>
@@ -241,7 +241,7 @@ export default function ConfiguracoesPage() {
                           type="text"
                           value={profile.empresa}
                           onChange={(e) => setProfile({ ...profile, empresa: e.target.value })}
-                          className="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                           placeholder="Nome da empresa"
                         />
                       </div>
@@ -255,7 +255,7 @@ export default function ConfiguracoesPage() {
                           type="text"
                           value={profile.endereco}
                           onChange={(e) => setProfile({ ...profile, endereco: e.target.value })}
-                          className="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                           placeholder="Rua, número, cidade - UF"
                         />
                       </div>
@@ -294,10 +294,10 @@ export default function ConfiguracoesPage() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="space-y-6"
+                  className="space-y-4 sm:space-y-6"
                 >
                   <div className="border-b border-slate-400 dark:border-navy-700 pb-4">
-                    <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Preferências de Notificação</h2>
+                    <h2 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-white">Preferências de Notificação</h2>
                     <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Escolha como deseja receber atualizações</p>
                   </div>
 
@@ -406,10 +406,10 @@ export default function ConfiguracoesPage() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="space-y-6"
+                  className="space-y-4 sm:space-y-6"
                 >
                   <div className="border-b border-slate-400 dark:border-navy-700 pb-4">
-                    <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Segurança da Conta</h2>
+                    <h2 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-white">Segurança da Conta</h2>
                     <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Altere sua senha e configure a segurança</p>
                   </div>
 
@@ -424,7 +424,7 @@ export default function ConfiguracoesPage() {
                           type={showPasswords.atual ? "text" : "password"}
                           value={security.senha_atual}
                           onChange={(e) => setSecurity({ ...security, senha_atual: e.target.value })}
-                          className="w-full pl-10 pr-12 py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                           placeholder="••••••••"
                         />
                         <button
@@ -445,7 +445,7 @@ export default function ConfiguracoesPage() {
                           type={showPasswords.nova ? "text" : "password"}
                           value={security.nova_senha}
                           onChange={(e) => setSecurity({ ...security, nova_senha: e.target.value })}
-                          className="w-full pl-10 pr-12 py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                           placeholder="••••••••"
                         />
                         <button
@@ -467,7 +467,7 @@ export default function ConfiguracoesPage() {
                           type={showPasswords.confirmar ? "text" : "password"}
                           value={security.confirmar_senha}
                           onChange={(e) => setSecurity({ ...security, confirmar_senha: e.target.value })}
-                          className="w-full pl-10 pr-12 py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                           placeholder="••••••••"
                         />
                         <button
@@ -508,10 +508,10 @@ export default function ConfiguracoesPage() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="space-y-6"
+                  className="space-y-4 sm:space-y-6"
                 >
                   <div className="border-b border-slate-400 dark:border-navy-700 pb-4">
-                    <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Assinatura</h2>
+                    <h2 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-white">Assinatura</h2>
                     <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Visualize o status da sua assinatura</p>
                   </div>
 

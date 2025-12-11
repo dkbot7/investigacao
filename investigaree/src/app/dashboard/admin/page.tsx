@@ -34,6 +34,13 @@ import {
   TrendingDown,
   Minus,
   Trash2,
+  FolderOpen,
+  CheckCircle,
+  LayoutList,
+  LayoutGrid,
+  Filter,
+  Eye,
+  Pencil,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -53,6 +60,8 @@ import {
   deleteUser,
   updateTenant,
   getAuditLogs,
+  getAdminInvestigacoes,
+  getAdminInvestigacoesStats,
   AdminUser,
   AdminTenant,
   PendingUser,
@@ -60,9 +69,15 @@ import {
   AdminStats,
 } from "@/lib/admin-api";
 import { toast } from "sonner";
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from 'recharts';
+import { StatCard, SearchBar, Pagination } from "@/components/dashboard";
+import { KanbanView } from "@/components/dashboard/KanbanView";
 
 // Admin emails permitidos
 const ADMIN_EMAILS = ['dkbotdani@gmail.com'];
+
+// Cores para os gráficos
+const COLORS = ['#ec4899', '#3b82f6', '#10b981', '#a855f7', '#f59e0b', '#ef4444', '#06b6d4', '#8b5cf6'];
 
 export default function AdminPage() {
   const { user } = useAuth();
@@ -76,6 +91,17 @@ export default function AdminPage() {
   const [stats, setStats] = useState<AdminStats | null>(null);
   const [unreadCount, setUnreadCount] = useState(0);
 
+  // Estados para investigações (tab investigations)
+  const [investigations, setInvestigations] = useState<any[]>([]);
+  const [investigationsStats, setInvestigationsStats] = useState<any>(null);
+  const [investigationsLoading, setInvestigationsLoading] = useState(false);
+  const [invViewMode, setInvViewMode] = useState<'list' | 'kanban'>('kanban');
+  const [invSearchQuery, setInvSearchQuery] = useState('');
+  const [invFilterCategory, setInvFilterCategory] = useState<string>('todos');
+  const [invPage, setInvPage] = useState(1);
+  const [invPageSize, setInvPageSize] = useState(50);
+  const [selectedInvestigation, setSelectedInvestigation] = useState<any>(null);
+
   const [showGrantModal, setShowGrantModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState<PendingUser | null>(null);
   const [grantForm, setGrantForm] = useState({
@@ -83,7 +109,7 @@ export default function AdminPage() {
     role: "viewer" as "admin" | "editor" | "viewer",
   });
   const [granting, setGranting] = useState(false);
-  const [activeTab, setActiveTab] = useState<'overview' | 'alerts' | 'users'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'alerts' | 'users' | 'investigations'>('overview');
 
   // Estados para criar tenant
   const [showCreateTenantModal, setShowCreateTenantModal] = useState(false);
@@ -110,7 +136,7 @@ export default function AdminPage() {
   // Estados para modal de edição de usuário
   const [showEditUserModal, setShowEditUserModal] = useState(false);
   const [editingUser, setEditingUser] = useState<AdminUser | null>(null);
-  const [editUserForm, setEditUserForm] = useState({ name: "", phone: "" });
+  const [editUserForm, setEditUserForm] = useState({ name: "", phone: "", status: "active", subscription_tier: "free" });
   const [updatingUser, setUpdatingUser] = useState(false);
 
   // Estados para modal de confirmação de deleção de usuário
@@ -246,6 +272,68 @@ export default function AdminPage() {
     };
   }, [filteredUsersWithAccess, currentPage, pageSize]);
 
+  // Filtrar e paginar investigações
+  const filteredInvestigations = useMemo(() => {
+    let filtered = [...investigations];
+
+    // Filtro por categoria
+    if (invFilterCategory !== 'todos') {
+      filtered = filtered.filter(inv =>
+        (inv.categoria || inv.grupo || '').toLowerCase() === invFilterCategory.toLowerCase()
+      );
+    }
+
+    // Filtro por busca
+    if (invSearchQuery) {
+      const query = invSearchQuery.toLowerCase();
+      filtered = filtered.filter(inv =>
+        (inv.nome || '').toLowerCase().includes(query) ||
+        (inv.documento || inv.cpf || '').includes(invSearchQuery) ||
+        (inv.user_email || '').toLowerCase().includes(query)
+      );
+    }
+
+    return filtered;
+  }, [investigations, invFilterCategory, invSearchQuery]);
+
+  const invPaginationData = useMemo(() => {
+    const totalItems = filteredInvestigations.length;
+    const totalPages = Math.ceil(totalItems / invPageSize);
+    const startIndex = (invPage - 1) * invPageSize;
+    const endIndex = startIndex + invPageSize;
+    const paginatedItems = filteredInvestigations.slice(startIndex, endIndex);
+
+    return {
+      totalItems,
+      totalPages,
+      startIndex,
+      endIndex,
+      paginatedItems,
+    };
+  }, [filteredInvestigations, invPage, invPageSize]);
+
+  // Converter investigações para formato Funcionario (para KanbanView)
+  const investigationsAsFuncionarios = useMemo(() => {
+    return filteredInvestigations.map((inv: any) => ({
+      id: inv.id?.toString() || '',
+      nome: inv.nome || '',
+      cpf: inv.documento || inv.cpf || '',
+      grupo: inv.categoria || inv.grupo || 'N/A',
+      cargo: inv.tipo_pessoa === 'juridica' ? 'Empresa' : 'Pessoa Física',
+      status_investigacao: inv.status_investigacao || 'investigar',
+      user_email: inv.user_email,
+      is_grupo: inv.is_grupo || 0,
+      grupo_total_documentos: inv.grupo_total_documentos || 0,
+      esta_morto: 'NÃO',
+      recebe_beneficio: 0,
+      socio_empresa: inv.tipo_pessoa === 'juridica' ? 1 : 0,
+      sancionado_ceis: 0,
+      candidato: 0,
+      doador_campanha: 0,
+      qtd_empresas: 0,
+    }));
+  }, [filteredInvestigations]);
+
   // Verificar se e admin
   const isAdmin = user?.email && ADMIN_EMAILS.includes(user.email);
 
@@ -256,6 +344,13 @@ export default function AdminPage() {
       setLoading(false);
     }
   }, [isAdmin]);
+
+  // Carregar dados de investigações quando mudar para a tab
+  useEffect(() => {
+    if (isAdmin && activeTab === 'investigations' && investigations.length === 0) {
+      loadInvestigationsData();
+    }
+  }, [isAdmin, activeTab]);
 
   async function loadData() {
     setLoading(true);
@@ -282,6 +377,68 @@ export default function AdminPage() {
     } finally {
       setLoading(false);
     }
+  }
+
+  async function loadInvestigationsData() {
+    setInvestigationsLoading(true);
+
+    try {
+      const [investigationsRes, statsRes] = await Promise.all([
+        getAdminInvestigacoes({ limit: 50 }),
+        getAdminInvestigacoesStats(),
+      ]);
+
+      setInvestigations(investigationsRes.investigacoes || []);
+      setInvestigationsStats(statsRes.stats || null);
+    } catch (err: any) {
+      console.error("Erro ao carregar investigações:", err);
+      toast.error("Erro ao carregar investigações");
+    } finally {
+      setInvestigationsLoading(false);
+    }
+  }
+
+  function exportInvestigationsToCSV() {
+    if (filteredInvestigations.length === 0) {
+      toast.error('Nenhuma investigação para exportar');
+      return;
+    }
+
+    // Preparar cabeçalhos
+    const headers = ['ID', 'Nome', 'Documento', 'Categoria', 'Tipo', 'Usuário', 'Status', 'Data Criação'];
+
+    // Preparar linhas
+    const rows = filteredInvestigations.map((inv: any) => [
+      inv.id || '',
+      inv.nome || '',
+      inv.documento || inv.cpf || '',
+      inv.categoria || inv.grupo || '',
+      inv.tipo_pessoa === 'juridica' ? 'Empresa' : 'Pessoa Física',
+      inv.user_email || '',
+      inv.status || 'Em Andamento',
+      inv.created_at || '',
+    ]);
+
+    // Criar conteúdo CSV
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    // Criar blob e download
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+
+    link.setAttribute('href', url);
+    link.setAttribute('download', `investigacoes_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    toast.success(`${filteredInvestigations.length} investigações exportadas com sucesso!`);
   }
 
   async function loadAuditLogs() {
@@ -460,7 +617,9 @@ export default function AdminPage() {
     setEditingUser(user);
     setEditUserForm({
       name: user.name || "",
-      phone: user.phone || ""
+      phone: user.phone || "",
+      status: user.status || "active",
+      subscription_tier: user.subscription_tier || "free"
     });
     setShowEditUserModal(true);
   }
@@ -472,12 +631,14 @@ export default function AdminPage() {
 
     const promise = updateUser(editingUser.id, {
       name: editUserForm.name,
-      phone: editUserForm.phone
+      phone: editUserForm.phone,
+      status: editUserForm.status,
+      subscription_tier: editUserForm.subscription_tier
     }).then(async () => {
       await loadData();
       setShowEditUserModal(false);
       setEditingUser(null);
-      setEditUserForm({ name: "", phone: "" });
+      setEditUserForm({ name: "", phone: "", status: "active", subscription_tier: "free" });
     });
 
     toast.promise(promise, {
@@ -809,27 +970,28 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="p-4 lg:p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="space-y-6"
+        className="space-y-4 sm:space-y-6"
       >
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <Shield className="w-7 h-7 text-blue-400" />
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2 sm:gap-3">
+              <Shield className="w-6 h-6 sm:w-7 sm:h-7 text-blue-400" />
               Administracao
             </h1>
-            <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
+            <p className="text-sm sm:text-base text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
               Gerenciar usuarios e acessos
             </p>
           </div>
           <Button
             onClick={loadData}
             variant="outline"
-            className="border-navy-600 text-slate-900 dark:text-slate-700 dark:text-navy-300 hover:text-white"
+            size="sm"
+            className="border-navy-600 text-slate-900 dark:text-slate-700 dark:text-navy-300 hover:text-white w-full sm:w-auto"
           >
             <RefreshCw className="w-4 h-4 mr-2" />
             Atualizar
@@ -842,9 +1004,9 @@ export default function AdminPage() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 flex items-start gap-3"
+            className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 sm:p-4 flex items-start gap-2 sm:gap-3"
           >
-            <Database className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+            <Database className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 flex-shrink-0 mt-0.5" />
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -880,26 +1042,22 @@ export default function AdminPage() {
         )}
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <motion.div
-            whileHover={{ scale: 1.02, y: -2 }}
-            className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4 cursor-pointer hover:border-blue-500/50 transition-all"
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <StatCard
+            title="Usuarios Totais"
+            value={stats?.total_users || users.length}
+            icon={Users}
+            color="blue"
             onClick={() => setActiveTab('users')}
-          >
-            <div className="flex items-center gap-3">
-              <Users className="w-8 h-8 text-blue-400" />
-              <div>
-                <p className="text-2xl font-bold text-slate-900 dark:text-white">{stats?.total_users || users.length}</p>
-                <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Usuarios Totais</p>
-              </div>
-            </div>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.02, y: -2 }}
-            className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4 cursor-pointer hover:border-emerald-500/50 transition-all"
+          />
+
+          <StatCard
+            title="Tenants Ativos"
+            value={stats?.active_tenants || tenants.length}
+            icon={Building2}
+            color="emerald"
             onClick={() => {
               setActiveTab('users');
-              // Scroll para seção de tenants
               setTimeout(() => {
                 const tenantsSection = document.querySelector('[data-section="tenants"]');
                 if (tenantsSection) {
@@ -907,21 +1065,15 @@ export default function AdminPage() {
                 }
               }, 100);
             }}
-          >
-            <div className="flex items-center gap-3">
-              <Building2 className="w-8 h-8 text-emerald-400" />
-              <div>
-                <p className="text-2xl font-bold text-slate-900 dark:text-white">{stats?.active_tenants || tenants.length}</p>
-                <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Tenants Ativos</p>
-              </div>
-            </div>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.02, y: -2 }}
-            className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4 cursor-pointer hover:border-amber-500/50 transition-all"
+          />
+
+          <StatCard
+            title="Aguardando Liberacao"
+            value={stats?.pending_users || pendingUsers.length}
+            icon={Clock}
+            color="amber"
             onClick={() => {
               setActiveTab('overview');
-              // Scroll para seção de pendentes
               setTimeout(() => {
                 const pendingSection = document.querySelector('[data-section="pending"]');
                 if (pendingSection) {
@@ -929,39 +1081,23 @@ export default function AdminPage() {
                 }
               }, 100);
             }}
-          >
-            <div className="flex items-center gap-3">
-              <Clock className="w-8 h-8 text-amber-400" />
-              <div>
-                <p className="text-2xl font-bold text-slate-900 dark:text-white">{stats?.pending_users || pendingUsers.length}</p>
-                <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Aguardando Liberacao</p>
-              </div>
-            </div>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.02, y: -2 }}
-            className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4 cursor-pointer hover:border-red-500/50 transition-all"
+          />
+
+          <StatCard
+            title="Alertas Nao Lidos"
+            value={unreadCount}
+            icon={unreadCount > 0 ? BellRing : Bell}
+            color="red"
+            pulse={unreadCount > 0}
             onClick={() => setActiveTab('alerts')}
-          >
-            <div className="flex items-center gap-3">
-              {unreadCount > 0 ? (
-                <BellRing className="w-8 h-8 text-red-400 animate-pulse" />
-              ) : (
-                <Bell className="w-8 h-8 text-slate-500 dark:text-gray-400" />
-              )}
-              <div>
-                <p className="text-2xl font-bold text-slate-900 dark:text-white">{unreadCount}</p>
-                <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Alertas Nao Lidos</p>
-              </div>
-            </div>
-          </motion.div>
+          />
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2 border-b border-slate-400 dark:border-navy-700">
+        <div className="flex gap-2 border-b border-slate-400 dark:border-navy-700 overflow-x-auto pb-px -mb-px scrollbar-thin scrollbar-thumb-navy-700 scrollbar-track-transparent">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`px-4 py-2 text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap ${
               activeTab === 'overview'
                 ? 'text-blue-400 border-b-2 border-blue-400'
                 : 'text-slate-600 dark:text-white/60 hover:text-white'
@@ -971,7 +1107,7 @@ export default function AdminPage() {
           </button>
           <button
             onClick={() => setActiveTab('alerts')}
-            className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-2 ${
+            className={`px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors flex items-center gap-1 sm:gap-2 whitespace-nowrap ${
               activeTab === 'alerts'
                 ? 'text-blue-400 border-b-2 border-blue-400'
                 : 'text-slate-600 dark:text-white/60 hover:text-white'
@@ -979,20 +1115,30 @@ export default function AdminPage() {
           >
             Alertas
             {unreadCount > 0 && (
-              <span className="bg-red-500 text-slate-900 dark:text-white text-xs px-1.5 py-0.5 rounded-full">
+              <span className="bg-red-500 text-slate-900 dark:text-white text-[10px] sm:text-xs px-1.5 py-0.5 rounded-full">
                 {unreadCount}
               </span>
             )}
           </button>
           <button
             onClick={() => setActiveTab('users')}
-            className={`px-4 py-2 text-sm font-medium transition-colors ${
+            className={`px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
               activeTab === 'users'
                 ? 'text-blue-400 border-b-2 border-blue-400'
                 : 'text-slate-600 dark:text-white/60 hover:text-white'
             }`}
           >
             Usuarios e Tenants
+          </button>
+          <button
+            onClick={() => setActiveTab('investigations')}
+            className={`px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap ${
+              activeTab === 'investigations'
+                ? 'text-blue-400 border-b-2 border-blue-400'
+                : 'text-slate-600 dark:text-white/60 hover:text-white'
+            }`}
+          >
+            Investigacoes Globais
           </button>
         </div>
 
@@ -1122,42 +1268,379 @@ export default function AdminPage() {
           </div>
         )}
 
+        {/* Tab Content: Investigations */}
+        {activeTab === 'investigations' && (
+          <div className="space-y-6">
+            {investigationsLoading ? (
+              <div className="flex items-center justify-center py-12">
+                <Loader2 className="w-8 h-8 text-blue-400 animate-spin" />
+              </div>
+            ) : investigationsStats ? (
+              <>
+                {/* Stats Cards */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+                  <StatCard
+                    title="Total"
+                    value={investigationsStats.total || 0}
+                    icon={FolderOpen}
+                    color="yellow"
+                  />
+
+                  <StatCard
+                    title="Em Andamento"
+                    value={investigationsStats.em_andamento || 0}
+                    icon={Clock}
+                    color="blue"
+                  />
+
+                  <StatCard
+                    title="Com Relatório"
+                    value={investigationsStats.com_relatorio || 0}
+                    icon={FileText}
+                    color="purple"
+                  />
+
+                  <StatCard
+                    title="Concluídas"
+                    value={investigationsStats.concluidas || 0}
+                    icon={CheckCircle}
+                    color="emerald"
+                  />
+
+                  <StatCard
+                    title="Bloqueadas"
+                    value={investigationsStats.bloqueadas || 0}
+                    icon={AlertCircle}
+                    color="red"
+                  />
+                </div>
+
+                {/* Charts Section */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+                  {/* PieChart - Distribuição por Categoria */}
+                  {investigationsStats.por_categoria && investigationsStats.por_categoria.length > 0 && (
+                    <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4 sm:p-6">
+                      <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-3 sm:mb-4">Distribuição por Categoria</h3>
+                      <div className="h-[250px] sm:h-[300px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <PieChart>
+                            <Pie
+                              data={investigationsStats.por_categoria}
+                              cx="50%"
+                              cy="50%"
+                              labelLine={false}
+                              label={({ categoria, count, percent }) => `${categoria} (${(percent * 100).toFixed(0)}%)`}
+                              outerRadius={60}
+                              fill="#8884d8"
+                              dataKey="count"
+                              nameKey="categoria"
+                            >
+                              {investigationsStats.por_categoria.map((entry: any, index: number) => (
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                              ))}
+                            </Pie>
+                            <RechartsTooltip
+                              contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px' }}
+                              labelStyle={{ color: '#f1f5f9' }}
+                            />
+                            <Legend wrapperStyle={{ fontSize: '11px' }} />
+                          </PieChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* BarChart - Top 10 Usuários */}
+                  {investigationsStats.por_usuario && investigationsStats.por_usuario.length > 0 && (
+                    <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4 sm:p-6">
+                      <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-3 sm:mb-4">Top 10 Usuários Mais Ativos</h3>
+                      <div className="h-[250px] sm:h-[300px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart data={investigationsStats.por_usuario}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                            <XAxis
+                              dataKey="name"
+                              stroke="#94a3b8"
+                              fontSize={9}
+                              angle={-45}
+                              textAnchor="end"
+                              height={70}
+                            />
+                            <YAxis stroke="#94a3b8" fontSize={10} />
+                            <RechartsTooltip
+                              contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px', fontSize: '12px' }}
+                              labelStyle={{ color: '#f1f5f9' }}
+                            />
+                            <Bar dataKey="count" fill="#3b82f6" radius={[8, 8, 0, 0]} />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* BarChart - Distribuição por Status */}
+                  {investigationsStats.por_status && investigationsStats.por_status.length > 0 && (
+                    <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4 sm:p-6">
+                      <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-3 sm:mb-4">Distribuição por Status</h3>
+                      <div className="h-[250px] sm:h-[300px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart data={investigationsStats.por_status} layout="vertical">
+                            <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                            <XAxis type="number" stroke="#94a3b8" fontSize={10} />
+                            <YAxis
+                              type="category"
+                              dataKey="status"
+                              stroke="#94a3b8"
+                              fontSize={10}
+                              width={80}
+                            />
+                            <RechartsTooltip
+                              contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px', fontSize: '12px' }}
+                              labelStyle={{ color: '#f1f5f9' }}
+                            />
+                            <Bar dataKey="count" fill="#10b981" radius={[0, 8, 8, 0]} />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Filters and Search */}
+                <div className="space-y-3 sm:space-y-4">
+                  {/* Search Bar and View Toggle */}
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <div className="relative flex-1">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                      <input
+                        type="text"
+                        placeholder="Buscar por nome, documento ou usuário..."
+                        value={invSearchQuery}
+                        onChange={(e) => setInvSearchQuery(e.target.value)}
+                        className="w-full pl-10 pr-10 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 text-sm sm:text-base"
+                      />
+                      {invSearchQuery && (
+                        <button
+                          onClick={() => setInvSearchQuery("")}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Toggle View Mode */}
+                    <div className="flex gap-1 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg p-1">
+                      <button
+                        onClick={() => setInvViewMode("list")}
+                        className={`flex-1 sm:flex-none px-3 py-2 rounded transition-all ${
+                          invViewMode === "list"
+                            ? "bg-blue-500 text-navy-950"
+                            : "text-slate-600 dark:text-white/60 hover:text-white"
+                        }`}
+                        title="Visualização em Lista"
+                      >
+                        <LayoutList className="w-4 h-4 mx-auto" />
+                      </button>
+                      <button
+                        onClick={() => setInvViewMode("kanban")}
+                        className={`flex-1 sm:flex-none px-3 py-2 rounded transition-all ${
+                          invViewMode === "kanban"
+                            ? "bg-blue-500 text-navy-950"
+                            : "text-slate-600 dark:text-white/60 hover:text-white"
+                        }`}
+                        title="Visualização Kanban"
+                      >
+                        <LayoutGrid className="w-4 h-4 mx-auto" />
+                      </button>
+                    </div>
+
+                    {/* Export CSV Button */}
+                    <button
+                      onClick={exportInvestigationsToCSV}
+                      className="px-4 py-2 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/30 rounded-lg font-medium transition-all flex items-center justify-center gap-2 text-sm sm:text-base whitespace-nowrap"
+                      title="Exportar para CSV"
+                    >
+                      <Download className="w-4 h-4" />
+                      <span className="hidden sm:inline">Exportar CSV</span>
+                      <span className="sm:hidden">Exportar</span>
+                    </button>
+                  </div>
+
+                  {/* Category Filters */}
+                  <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Filter className="w-4 h-4 text-slate-500 dark:text-white/50" />
+                      <span className="text-sm font-medium text-slate-900 dark:text-navy-300">Filtros por Categoria</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {['todos', 'familia', 'clientes', 'funcionarios', 'empresas', 'relacionamentos'].map((category) => (
+                        <button
+                          key={category}
+                          onClick={() => setInvFilterCategory(category)}
+                          className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                            invFilterCategory === category
+                              ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                              : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
+                          }`}
+                        >
+                          {category.charAt(0).toUpperCase() + category.slice(1)}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Results Count */}
+                  <p className="text-sm text-slate-900 dark:text-white/60">
+                    {filteredInvestigations.length.toLocaleString()} {filteredInvestigations.length === 1 ? 'investigação' : 'investigações'} de {investigations.length.toLocaleString()} total
+                  </p>
+                </div>
+
+                {/* Table or Kanban View */}
+                {invViewMode === "list" ? (
+                  <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl overflow-hidden">
+                    <div className="overflow-x-auto -mx-px">
+                      <table className="w-full min-w-[640px]">
+                        <thead>
+                          <tr className="bg-slate-100 dark:bg-navy-800/50 border-b border-slate-400 dark:border-navy-700">
+                            <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-white/60">Nome</th>
+                            <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-white/60">Documento</th>
+                            <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-white/60">Categoria</th>
+                            <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-white/60">Tipo</th>
+                            <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-white/60">Usuário</th>
+                            <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-white/60">Status</th>
+                            <th className="text-center py-3 px-4 text-sm font-medium text-slate-900 dark:text-white/60">Ações</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {invPaginationData.paginatedItems.length > 0 ? (
+                            invPaginationData.paginatedItems.map((inv: any, index: number) => (
+                              <tr
+                                key={inv.id || index}
+                                className="border-b border-slate-300 dark:border-navy-800 hover:bg-slate-100 dark:hover:bg-navy-800/50 transition-colors"
+                              >
+                                <td className="py-3 px-4">
+                                  <span className="text-slate-900 dark:text-white font-medium">
+                                    {inv.nome || '-'}
+                                  </span>
+                                </td>
+                                <td className="py-3 px-4 text-slate-900 dark:text-navy-300 font-mono text-sm">
+                                  {inv.documento || inv.cpf || '-'}
+                                </td>
+                                <td className="py-3 px-4">
+                                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-navy-700 text-navy-300">
+                                    {inv.categoria || inv.grupo || 'N/A'}
+                                  </span>
+                                </td>
+                                <td className="py-3 px-4 text-slate-900 dark:text-navy-300 text-sm">
+                                  {inv.tipo_pessoa === 'juridica' ? 'Empresa' : 'Pessoa Física'}
+                                </td>
+                                <td className="py-3 px-4 text-slate-900 dark:text-navy-300 text-sm">
+                                  {inv.user_email || '-'}
+                                </td>
+                                <td className="py-3 px-4">
+                                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-emerald-500/20 text-emerald-400">
+                                    {inv.status || 'Em Andamento'}
+                                  </span>
+                                </td>
+                                <td className="py-3 px-4">
+                                  <div className="flex items-center justify-center gap-2">
+                                    <button
+                                      onClick={() => setSelectedInvestigation(inv)}
+                                      className="p-1.5 rounded hover:bg-blue-500/20 text-blue-400 hover:text-blue-300 transition-colors"
+                                      title="Visualizar"
+                                    >
+                                      <Eye className="w-4 h-4" />
+                                    </button>
+                                    <button
+                                      onClick={() => {
+                                        toast.info('Edição em desenvolvimento');
+                                      }}
+                                      className="p-1.5 rounded hover:bg-amber-500/20 text-amber-400 hover:text-amber-300 transition-colors"
+                                      title="Editar"
+                                    >
+                                      <Pencil className="w-4 h-4" />
+                                    </button>
+                                    <button
+                                      onClick={() => {
+                                        if (confirm(`Tem certeza que deseja deletar a investigação "${inv.nome}"?`)) {
+                                          toast.info('Exclusão em desenvolvimento');
+                                        }
+                                      }}
+                                      className="p-1.5 rounded hover:bg-red-500/20 text-red-400 hover:text-red-300 transition-colors"
+                                      title="Deletar"
+                                    >
+                                      <Trash2 className="w-4 h-4" />
+                                    </button>
+                                  </div>
+                                </td>
+                              </tr>
+                            ))
+                          ) : (
+                            <tr>
+                              <td colSpan={7} className="py-8 text-center text-slate-900 dark:text-white/50">
+                                Nenhuma investigação encontrada
+                              </td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {/* Pagination */}
+                    {invPaginationData.totalPages > 1 && (
+                      <div className="border-t border-slate-400 dark:border-navy-700 p-4">
+                        <Pagination
+                          currentPage={invPage}
+                          totalPages={invPaginationData.totalPages}
+                          pageSize={invPageSize}
+                          totalItems={invPaginationData.totalItems}
+                          startIndex={invPaginationData.startIndex}
+                          endIndex={invPaginationData.endIndex}
+                          onPageChange={setInvPage}
+                          onPageSizeChange={(newSize) => {
+                            setInvPageSize(newSize);
+                            setInvPage(1);
+                          }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-3 sm:p-6 overflow-x-auto">
+                    <KanbanView
+                      funcionarios={investigationsAsFuncionarios as any}
+                      onSelectFuncionario={(func) => setSelectedInvestigation(func)}
+                    />
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-8 text-center">
+                <AlertCircle className="w-12 h-12 text-slate-900 dark:text-white/20 mx-auto mb-3" />
+                <p className="text-slate-900 dark:text-slate-500 dark:text-white/50">Nenhuma investigação encontrada</p>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Tab Content: Overview & Users */}
         {(activeTab === 'overview' || activeTab === 'users') && (
           <>
         {/* Barra de Busca */}
         {activeTab === 'users' && (
           <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
-            <div className="relative">
-              {searchQuery !== debouncedSearchQuery ? (
-                <Loader2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-400 animate-spin" />
-              ) : (
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-900 dark:text-white/40" />
-              )}
-              <Input
-                type="text"
-                placeholder="Buscar por email, nome ou tenant..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-slate-100 dark:bg-navy-800 border-navy-600 text-slate-900 dark:text-white placeholder:text-white/40"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-900 dark:text-white/40 hover:text-white transition-colors"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
-            </div>
+            <SearchBar
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder="Buscar por email, nome ou tenant..."
+              loading={searchQuery !== debouncedSearchQuery}
+            />
             {debouncedSearchQuery && (
               <div className="flex items-center gap-2 mt-2">
                 <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">
                   {filteredUsers.length} resultado(s) encontrado(s)
                 </p>
-                {searchQuery !== debouncedSearchQuery && (
-                  <span className="text-xs text-blue-400 animate-pulse">Buscando...</span>
-                )}
               </div>
             )}
           </div>
@@ -1515,68 +1998,19 @@ export default function AdminPage() {
 
             {/* Controles de Paginação */}
             {paginationData.totalPages > 1 && (
-              <div className="mt-6 flex items-center justify-between">
-                <div className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">
-                  Mostrando {paginationData.startIndex + 1} a {Math.min(paginationData.endIndex, paginationData.totalItems)} de {paginationData.totalItems} usuários
-                </div>
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                    disabled={currentPage === 1}
-                    className="border-navy-600 text-slate-900 dark:text-slate-700 dark:text-navy-300 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                    Anterior
-                  </Button>
-
-                  <div className="flex items-center gap-1">
-                    {Array.from({ length: paginationData.totalPages }, (_, i) => i + 1).map((page) => {
-                      // Mostrar apenas páginas próximas da atual (max 7 botões)
-                      const showPage =
-                        page === 1 ||
-                        page === paginationData.totalPages ||
-                        (page >= currentPage - 2 && page <= currentPage + 2);
-
-                      const showEllipsis =
-                        (page === currentPage - 3 && currentPage > 4) ||
-                        (page === currentPage + 3 && currentPage < paginationData.totalPages - 3);
-
-                      if (showEllipsis) {
-                        return <span key={page} className="text-slate-900 dark:text-white/40 px-2">...</span>;
-                      }
-
-                      if (!showPage) return null;
-
-                      return (
-                        <button
-                          key={page}
-                          onClick={() => setCurrentPage(page)}
-                          className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
-                            page === currentPage
-                              ? 'bg-blue-500 text-white'
-                              : 'bg-slate-100 dark:bg-navy-800 text-slate-700 dark:text-navy-300 hover:bg-navy-700 hover:text-white'
-                          }`}
-                        >
-                          {page}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setCurrentPage(prev => Math.min(paginationData.totalPages, prev + 1))}
-                    disabled={currentPage === paginationData.totalPages}
-                    className="border-navy-600 text-slate-900 dark:text-slate-700 dark:text-navy-300 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Próxima
-                    <ChevronRight className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
+              <Pagination
+                currentPage={currentPage}
+                totalPages={paginationData.totalPages}
+                pageSize={pageSize}
+                totalItems={paginationData.totalItems}
+                startIndex={paginationData.startIndex}
+                endIndex={paginationData.endIndex}
+                onPageChange={setCurrentPage}
+                onPageSizeChange={(newSize) => {
+                  setPageSize(newSize);
+                  setCurrentPage(1);
+                }}
+              />
             )}
           </>
           )}
@@ -2074,6 +2508,33 @@ export default function AdminPage() {
                   placeholder="+55 11 99999-9999"
                 />
               </div>
+              <div>
+                <Label htmlFor="edit-user-status" className="text-slate-900 dark:text-slate-700 dark:text-navy-300">Status</Label>
+                <select
+                  id="edit-user-status"
+                  value={editUserForm.status}
+                  onChange={(e) => setEditUserForm({ ...editUserForm, status: e.target.value })}
+                  className="mt-1 w-full bg-slate-100 dark:bg-navy-800 border border-navy-600 text-slate-900 dark:text-white rounded-md px-3 py-2"
+                >
+                  <option value="active">Ativo - Pode acessar a plataforma</option>
+                  <option value="inactive">Inativo - Não pode acessar</option>
+                  <option value="suspended">Suspenso - Bloqueado temporariamente</option>
+                </select>
+              </div>
+              <div>
+                <Label htmlFor="edit-user-tier" className="text-slate-900 dark:text-slate-700 dark:text-navy-300">Plano de Assinatura</Label>
+                <select
+                  id="edit-user-tier"
+                  value={editUserForm.subscription_tier}
+                  onChange={(e) => setEditUserForm({ ...editUserForm, subscription_tier: e.target.value })}
+                  className="mt-1 w-full bg-slate-100 dark:bg-navy-800 border border-navy-600 text-slate-900 dark:text-white rounded-md px-3 py-2"
+                >
+                  <option value="free">Grátis - Recursos básicos</option>
+                  <option value="paid">Pago - Recursos grátis + pagos</option>
+                  <option value="premium">Premium - Recursos grátis + premium + pagos</option>
+                  <option value="vip">VIP - Whitelabel + todos os recursos</option>
+                </select>
+              </div>
             </div>
             <div className="flex gap-3 mt-6">
               <Button
@@ -2082,7 +2543,7 @@ export default function AdminPage() {
                 onClick={() => {
                   setShowEditUserModal(false);
                   setEditingUser(null);
-                  setEditUserForm({ name: "", phone: "" });
+                  setEditUserForm({ name: "", phone: "", status: "active", subscription_tier: "free" });
                 }}
                 disabled={updatingUser}
               >

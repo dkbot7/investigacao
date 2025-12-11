@@ -29,10 +29,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { useInvestigations, type Investigacao, type InvestigacaoStatus, type Categoria } from "@/hooks/useInvestigations";
-import { getAdminInvestigacoes, getAdminInvestigacoesStats, getAdminDashboard } from "@/lib/admin-api";
-
-// Admin emails
-const ADMIN_EMAILS = ['dkbotdani@gmail.com'];
 
 // Status config
 const statusConfig: Record<InvestigacaoStatus, { label: string; color: string; icon: React.ElementType; description: string }> = {
@@ -54,52 +50,11 @@ const categoriaConfig: Record<Categoria, { label: string; color: string }> = {
 
 export default function DashboardPage() {
   const { user } = useAuth();
-  const { investigacoes: userInvestigacoes, stats: userStats, loading: userLoading, error: userError, sendMessage, refetch: userRefetch } = useInvestigations();
+  const { investigacoes, stats, loading, error, sendMessage, refetch } = useInvestigations();
   const [showContactForm, setShowContactForm] = useState(false);
   const [contactForm, setContactForm] = useState({ assunto: "", mensagem: "" });
   const [sendingMessage, setSendingMessage] = useState(false);
   const [messageSent, setMessageSent] = useState(false);
-
-  // Admin state
-  const [adminInvestigacoes, setAdminInvestigacoes] = useState<Investigacao[]>([]);
-  const [adminStats, setAdminStats] = useState<any>(null);
-  const [adminLoading, setAdminLoading] = useState(false);
-  const [adminError, setAdminError] = useState<string | null>(null);
-
-  // Detectar se é admin
-  const isAdmin = user?.email && ADMIN_EMAILS.includes(user.email);
-
-  // Buscar dados admin
-  useEffect(() => {
-    if (!isAdmin) return;
-
-    const fetchAdminData = async () => {
-      setAdminLoading(true);
-      setAdminError(null);
-      try {
-        const [investigacoesRes, statsRes] = await Promise.all([
-          getAdminInvestigacoes({ limit: 10 }),
-          getAdminInvestigacoesStats()
-        ]);
-        setAdminInvestigacoes(investigacoesRes.investigacoes || []);
-        setAdminStats(statsRes.stats || null);
-      } catch (err: any) {
-        console.error('[Admin Dashboard] Error:', err);
-        setAdminError(err.message || 'Erro ao carregar dados admin');
-      } finally {
-        setAdminLoading(false);
-      }
-    };
-
-    fetchAdminData();
-  }, [isAdmin, user]);
-
-  // Selecionar dados baseado se é admin ou não
-  const investigacoes = isAdmin ? adminInvestigacoes : userInvestigacoes;
-  const stats = isAdmin ? adminStats : userStats;
-  const loading = isAdmin ? adminLoading : userLoading;
-  const error = isAdmin ? adminError : userError;
-  const refetch = isAdmin ? () => window.location.reload() : userRefetch;
 
   // Primeiro nome do usuário
   const primeiroNome = user?.displayName?.split(" ")[0] || user?.email?.split("@")[0] || "Usuário";
@@ -180,44 +135,33 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="p-4 lg:p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="space-y-6"
+        className="space-y-4 sm:space-y-6"
       >
         {/* Header com Boas-vindas */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 sm:gap-4">
           <div>
-            <div className="flex items-center gap-3">
-              <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white">
-                Olá, {primeiroNome}!
-              </h1>
-              {isAdmin && (
-                <span className="px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded-full text-xs font-semibold text-blue-400 flex items-center gap-1.5">
-                  <Shield className="w-3.5 h-3.5" />
-                  Visão Global (Admin)
-                </span>
-              )}
-            </div>
-            <p className="text-slate-600 dark:text-navy-400 mt-1">
-              {isAdmin
-                ? "Painel administrativo - visualizando todas as investigações do sistema"
-                : "Bem-vindo ao seu painel de investigações"
-              }
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white">
+              Olá, {primeiroNome}!
+            </h1>
+            <p className="text-sm sm:text-base text-slate-600 dark:text-navy-400 mt-1">
+              Bem-vindo ao seu painel de investigações
             </p>
           </div>
-          <Link href="/dashboard/investigacoes?novo=true">
-            <Button className="bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold">
-              <Plus className="w-5 h-5 mr-2" />
+          <Link href="/dashboard/investigacoes?novo=true" className="w-full lg:w-auto">
+            <Button className="bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold w-full lg:w-auto">
+              <Plus className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               Nova Investigação
             </Button>
           </Link>
         </div>
 
         {/* Cards de Status */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard
             title="Total"
             value={displayStats.total}
@@ -251,7 +195,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Grid Principal */}
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Investigações Recentes - Ocupa 2 colunas */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -259,27 +203,27 @@ export default function DashboardPage() {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="lg:col-span-2 bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl"
           >
-            <div className="p-4 border-b border-slate-300 dark:border-navy-700 flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-                <Search className="w-5 h-5 text-blue-400" />
+            <div className="p-3 sm:p-4 border-b border-slate-300 dark:border-navy-700 flex items-center justify-between">
+              <h2 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                <Search className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
                 Investigações Recentes
               </h2>
               <Link
                 href="/dashboard/investigacoes"
-                className="text-sm text-blue-400 hover:text-blue-300 flex items-center gap-1"
+                className="text-xs sm:text-sm text-blue-400 hover:text-blue-300 flex items-center gap-1"
               >
                 Ver todas
-                <ChevronRight className="w-4 h-4" />
+                <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
               </Link>
             </div>
 
             {investigacoes.length === 0 ? (
-              <div className="p-8 text-center">
-                <div className="w-16 h-16 bg-slate-100 dark:bg-navy-800 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Search className="w-8 h-8 text-slate-400 dark:text-navy-600" />
+              <div className="p-6 sm:p-8 text-center">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-slate-100 dark:bg-navy-800 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <Search className="w-6 h-6 sm:w-8 sm:h-8 text-slate-400 dark:text-navy-600" />
                 </div>
-                <h3 className="text-slate-900 dark:text-white font-medium mb-2">Nenhuma investigação ainda</h3>
-                <p className="text-slate-600 dark:text-navy-400 text-sm mb-4">
+                <h3 className="text-base sm:text-lg text-slate-900 dark:text-white font-medium mb-2">Nenhuma investigação ainda</h3>
+                <p className="text-slate-600 dark:text-navy-400 text-xs sm:text-sm mb-3 sm:mb-4">
                   Comece solicitando sua primeira investigação
                 </p>
                 <Link href="/dashboard/investigacoes?novo=true">
@@ -303,12 +247,12 @@ export default function DashboardPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
             {/* Ações */}
-            <div className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl p-4">
-              <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                <ArrowRight className="w-5 h-5 text-blue-400" />
+            <div className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl p-3 sm:p-4">
+              <h2 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-3 sm:mb-4 flex items-center gap-2">
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
                 Ações Rápidas
               </h2>
 
@@ -356,9 +300,9 @@ export default function DashboardPage() {
             </div>
 
             {/* Contato */}
-            <div className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl p-4">
-              <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-blue-400" />
+            <div className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl p-3 sm:p-4">
+              <h2 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-3 sm:mb-4 flex items-center gap-2">
+                <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
                 Fale Conosco
               </h2>
 
@@ -419,24 +363,24 @@ export default function DashboardPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.3 }}
-          className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl p-6"
+          className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl p-4 sm:p-6"
         >
-          <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-            <FileText className="w-5 h-5 text-blue-400" />
+          <h2 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-4 sm:mb-6 flex items-center gap-2">
+            <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
             Como funciona o processo
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
             {Object.entries(statusConfig).map(([key, config], index) => {
               const Icon = config.icon;
               return (
                 <div key={key} className="relative">
-                  <div className={`p-4 rounded-xl bg-${config.color}-500/10 border border-${config.color}-500/20 text-center`}>
-                    <div className={`w-10 h-10 mx-auto mb-2 rounded-full bg-${config.color}-500/20 flex items-center justify-center`}>
-                      <Icon className={`w-5 h-5 text-${config.color}-400`} />
+                  <div className={`p-3 sm:p-4 rounded-xl bg-${config.color}-500/10 border border-${config.color}-500/20 text-center`}>
+                    <div className={`w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-1.5 sm:mb-2 rounded-full bg-${config.color}-500/20 flex items-center justify-center`}>
+                      <Icon className={`w-4 h-4 sm:w-5 sm:h-5 text-${config.color}-400`} />
                     </div>
-                    <p className={`text-sm font-medium text-${config.color}-400`}>{config.label}</p>
-                    <p className="text-xs text-slate-500 dark:text-navy-400 mt-1">{config.description}</p>
+                    <p className={`text-xs sm:text-sm font-medium text-${config.color}-400`}>{config.label}</p>
+                    <p className="text-[10px] sm:text-xs text-slate-500 dark:text-navy-400 mt-1">{config.description}</p>
                   </div>
                   {index < 5 && (
                     <div className="hidden lg:block absolute top-1/2 -right-2 transform -translate-y-1/2 text-slate-400 dark:text-navy-700">
@@ -465,34 +409,34 @@ export default function DashboardPage() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-2xl p-6 z-50"
+              className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] sm:w-full max-w-md bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-2xl p-4 sm:p-6 z-50 max-h-[90vh] overflow-y-auto"
             >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Enviar Mensagem</h3>
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">Enviar Mensagem</h3>
                 <button
                   onClick={() => setShowContactForm(false)}
-                  className="p-2 text-slate-600 dark:text-navy-400 hover:text-white hover:bg-slate-100 dark:bg-navy-800 rounded-lg transition-colors"
+                  className="p-1.5 sm:p-2 text-slate-600 dark:text-navy-400 hover:text-white hover:bg-slate-100 dark:bg-navy-800 rounded-lg transition-colors"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
 
               {messageSent ? (
-                <div className="text-center py-8">
-                  <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle className="w-8 h-8 text-emerald-400" />
+                <div className="text-center py-6 sm:py-8">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                    <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-400" />
                   </div>
-                  <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Mensagem Enviada!</h4>
-                  <p className="text-slate-600 dark:text-navy-400">Responderemos em breve.</p>
+                  <h4 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-2">Mensagem Enviada!</h4>
+                  <p className="text-sm sm:text-base text-slate-600 dark:text-navy-400">Responderemos em breve.</p>
                 </div>
               ) : (
-                <form onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }} className="space-y-4">
+                <form onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }} className="space-y-3 sm:space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-800 dark:text-navy-200 mb-2">Assunto</label>
+                    <label className="block text-xs sm:text-sm font-medium text-slate-800 dark:text-navy-200 mb-1.5 sm:mb-2">Assunto</label>
                     <select
                       value={contactForm.assunto}
                       onChange={(e) => setContactForm({ ...contactForm, assunto: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                       required
                     >
                       <option value="">Selecione...</option>
@@ -506,11 +450,11 @@ export default function DashboardPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-800 dark:text-navy-200 mb-2">Mensagem</label>
+                    <label className="block text-xs sm:text-sm font-medium text-slate-800 dark:text-navy-200 mb-1.5 sm:mb-2">Mensagem</label>
                     <textarea
                       value={contactForm.mensagem}
                       onChange={(e) => setContactForm({ ...contactForm, mensagem: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 min-h-[120px] resize-none"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 min-h-[100px] sm:min-h-[120px] resize-none"
                       placeholder="Descreva sua solicitação..."
                       required
                     />
@@ -519,7 +463,7 @@ export default function DashboardPage() {
                   <Button
                     type="submit"
                     disabled={sendingMessage || !contactForm.assunto || !contactForm.mensagem}
-                    className="w-full bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold"
+                    className="w-full bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold text-sm sm:text-base"
                   >
                     {sendingMessage ? (
                       <>
@@ -562,12 +506,12 @@ function InvestigacaoItem({ inv, index }: { inv: Investigacao; index: number }) 
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
-      className="p-4 hover:bg-slate-100 dark:hover:bg-navy-800/50 transition-colors group cursor-pointer"
+      className="p-3 sm:p-4 hover:bg-slate-100 dark:hover:bg-navy-800/50 transition-colors group cursor-pointer"
     >
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="flex items-start sm:items-center justify-between gap-2 sm:gap-0">
+        <div className="flex items-start sm:items-center gap-2 sm:gap-4 flex-1 min-w-0">
           {/* Ícone do tipo */}
-          <div className={`p-2.5 rounded-lg ${
+          <div className={`p-2 sm:p-2.5 rounded-lg flex-shrink-0 ${
             inv.is_grupo
               ? "bg-blue-500/20"
               : inv.tipo_pessoa === "juridica"
@@ -575,42 +519,47 @@ function InvestigacaoItem({ inv, index }: { inv: Investigacao; index: number }) 
               : "bg-blue-500/20"
           }`}>
             {inv.is_grupo ? (
-              <FolderOpen className="w-5 h-5 text-blue-400" />
+              <FolderOpen className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
             ) : inv.tipo_pessoa === "juridica" ? (
-              <Building2 className="w-5 h-5 text-purple-400" />
+              <Building2 className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" />
             ) : (
-              <User className="w-5 h-5 text-blue-400" />
+              <User className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
             )}
           </div>
 
-          <div>
-            <h4 className="text-slate-900 dark:text-white font-medium group-hover:text-blue-400 transition-colors">
+          <div className="flex-1 min-w-0">
+            <h4 className="text-sm sm:text-base text-slate-900 dark:text-white font-medium group-hover:text-blue-400 transition-colors truncate">
               {inv.nome}
             </h4>
-            <div className="flex items-center gap-3 mt-1">
-              <span className="text-sm text-slate-500 dark:text-navy-400">{inv.documento}</span>
-              <span className={`text-xs px-2 py-0.5 rounded-full bg-${catInfo.color}-500/20 text-${catInfo.color}-400`}>
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-1">
+              <span className="text-xs sm:text-sm text-slate-500 dark:text-navy-400 font-mono">{inv.documento}</span>
+              <span className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-${catInfo.color}-500/20 text-${catInfo.color}-400`}>
                 {catInfo.label}
               </span>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
           {/* Status Badge */}
-          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg bg-${statusInfo.color}-500/10 border border-${statusInfo.color}-500/30`}>
+          <div className={`hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-${statusInfo.color}-500/10 border border-${statusInfo.color}-500/30`}>
             <StatusIcon className={`w-4 h-4 text-${statusInfo.color}-400`} />
             <span className={`text-sm font-medium text-${statusInfo.color}-400`}>
               {statusInfo.label}
             </span>
           </div>
 
-          <ChevronRight className="w-5 h-5 text-slate-400 dark:text-navy-600 group-hover:text-blue-400 transition-colors" />
+          {/* Status Icon only on mobile */}
+          <div className={`sm:hidden p-1.5 rounded-lg bg-${statusInfo.color}-500/10 border border-${statusInfo.color}-500/30`}>
+            <StatusIcon className={`w-3.5 h-3.5 text-${statusInfo.color}-400`} />
+          </div>
+
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 dark:text-navy-600 group-hover:text-blue-400 transition-colors" />
         </div>
       </div>
 
       {/* Barra de progresso visual */}
-      <div className="mt-3 flex items-center gap-2">
+      <div className="mt-2 sm:mt-3 flex items-center gap-2">
         <div className="flex-1 h-1.5 bg-slate-100 dark:bg-navy-800 rounded-full overflow-hidden flex">
           {Object.keys(statusConfig).slice(0, Object.keys(statusConfig).indexOf(inv.status) + 1).map((s) => (
             <div
@@ -624,7 +573,7 @@ function InvestigacaoItem({ inv, index }: { inv: Investigacao; index: number }) 
             />
           ))}
         </div>
-        <span className="text-xs text-slate-500 dark:text-navy-500">{formatDate(inv.updated_at)}</span>
+        <span className="text-[10px] sm:text-xs text-slate-500 dark:text-navy-500">{formatDate(inv.updated_at)}</span>
       </div>
     </motion.div>
   );
@@ -666,10 +615,10 @@ function StatCard({
     <Link href={href}>
       <motion.div
         whileHover={{ y: -2, scale: 1.02 }}
-        className={`${colorClasses[color]} border rounded-xl p-4 transition-all cursor-pointer relative overflow-hidden group`}
+        className={`${colorClasses[color]} border rounded-xl p-3 sm:p-4 transition-all cursor-pointer relative overflow-hidden group`}
       >
         {pulse && (
-          <div className="absolute top-3 right-3">
+          <div className="absolute top-2 sm:top-3 right-2 sm:right-3">
             <span className="flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
@@ -677,20 +626,20 @@ function StatCard({
           </div>
         )}
         {badge && (
-          <div className="absolute top-2 right-2">
-            <span className="px-2 py-0.5 bg-purple-500 text-slate-900 dark:text-white text-xs font-bold rounded-full">
+          <div className="absolute top-1.5 sm:top-2 right-1.5 sm:right-2">
+            <span className="px-1.5 sm:px-2 py-0.5 bg-purple-500 text-slate-900 dark:text-white text-[10px] sm:text-xs font-bold rounded-full">
               {badge}
             </span>
           </div>
         )}
-        <div className="flex items-center gap-3">
-          <Icon className={`w-6 h-6 ${iconColors[color]}`} />
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${iconColors[color]}`} />
           <div>
-            <p className={`text-2xl font-bold ${iconColors[color]}`}>{value}</p>
-            <p className="text-sm text-slate-600 dark:text-navy-400">{title}</p>
+            <p className={`text-xl sm:text-2xl font-bold ${iconColors[color]}`}>{value}</p>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-navy-400">{title}</p>
           </div>
         </div>
-        <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 dark:text-navy-700 group-hover:text-slate-500 dark:text-navy-400 transition-colors" />
+        <ChevronRight className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-slate-400 dark:text-navy-700 group-hover:text-slate-500 dark:text-navy-400 transition-colors" />
       </motion.div>
     </Link>
   );
@@ -729,16 +678,16 @@ function ActionButton({
   return (
     <Component
       onClick={onClick}
-      className={`w-full flex items-center gap-3 p-3 ${colorClasses[color]} border rounded-lg transition-all group`}
+      className={`w-full flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 ${colorClasses[color]} border rounded-lg transition-all group`}
     >
-      <div className={`p-2 rounded-lg ${iconColors[color]}`}>
-        <Icon className="w-5 h-5" />
+      <div className={`p-1.5 sm:p-2 rounded-lg ${iconColors[color]}`}>
+        <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
       </div>
-      <div className="flex-1 text-left">
-        <p className="text-slate-900 dark:text-white font-medium group-hover:text-blue-400 transition-colors">{label}</p>
-        <p className="text-xs text-slate-500 dark:text-navy-400">{description}</p>
+      <div className="flex-1 text-left min-w-0">
+        <p className="text-sm sm:text-base text-slate-900 dark:text-white font-medium group-hover:text-blue-400 transition-colors truncate">{label}</p>
+        <p className="text-[10px] sm:text-xs text-slate-500 dark:text-navy-400 truncate">{description}</p>
       </div>
-      <ChevronRight className="w-4 h-4 text-slate-400 dark:text-navy-600 group-hover:text-blue-400 transition-colors" />
+      <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400 dark:text-navy-600 group-hover:text-blue-400 transition-colors flex-shrink-0" />
     </Component>
   );
 }

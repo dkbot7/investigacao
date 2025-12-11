@@ -114,18 +114,18 @@ export default function BeneficiosPage() {
   };
 
   return (
-    <div className="p-4 lg:p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="space-y-6"
+        className="space-y-4 sm:space-y-6"
       >
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <DollarSign className="w-7 h-7 text-blue-400" />
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2 sm:gap-3">
+              <DollarSign className="w-6 h-6 sm:w-7 sm:h-7 text-blue-400" />
               Beneficiarios de Programas Sociais
             </h1>
             <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
@@ -133,16 +133,16 @@ export default function BeneficiosPage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
             {/* Search */}
-            <div className="relative w-full lg:w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-900 dark:text-white/40" />
+            <div className="relative w-full sm:w-64">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-slate-900 dark:text-white/40" />
               <input
                 type="text"
                 placeholder="Buscar..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 text-sm"
+                className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 text-sm sm:text-base"
               />
               {search && (
                 <button
@@ -157,17 +157,17 @@ export default function BeneficiosPage() {
             <Button
               onClick={exportCSV}
               variant="ghost"
-              className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700 hover:bg-slate-100 dark:bg-navy-800"
+              className="text-slate-900 dark:text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700 hover:bg-slate-100 dark:bg-navy-800 px-3 sm:px-4 py-2 text-sm sm:text-base"
             >
-              <Download className="w-4 h-4 mr-2" />
+              <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               CSV
             </Button>
           </div>
         </div>
 
         {/* Info Banner */}
-        <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-4 flex items-start gap-3">
-          <DollarSign className="w-6 h-6 text-blue-400 flex-shrink-0 mt-0.5" />
+        <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
+          <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 flex-shrink-0 mt-0.5" />
           <div>
             <h3 className="text-blue-400 font-semibold">Recebimento de Beneficios Sociais</h3>
             <p className="text-slate-900 dark:text-slate-700 dark:text-navy-300 text-sm mt-1">
@@ -179,15 +179,15 @@ export default function BeneficiosPage() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-500/10 rounded-lg">
-                <Users className="w-5 h-5 text-blue-400" />
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-3 sm:p-4">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="p-1.5 sm:p-2 bg-blue-500/10 rounded-lg">
+                <Users className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-slate-900 dark:text-white">{beneficiariosUnicos}</p>
-                <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Beneficiarios</p>
+                <p className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">{beneficiariosUnicos}</p>
+                <p className="text-[10px] sm:text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Beneficiarios</p>
               </div>
             </div>
           </div>
@@ -272,12 +272,12 @@ export default function BeneficiosPage() {
             <table className="w-full">
               <thead>
                 <tr className="bg-slate-100 dark:bg-navy-800/50 border-b border-slate-400 dark:border-navy-700">
-                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Nome</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">CPF</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Tipo de Beneficio</th>
-                  <th className="text-right py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Valor</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Ano</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Grupo</th>
+                  <th className="text-left py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Nome</th>
+                  <th className="text-left py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">CPF</th>
+                  <th className="text-left py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Tipo de Beneficio</th>
+                  <th className="text-right py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Valor</th>
+                  <th className="text-left py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Ano</th>
+                  <th className="text-left py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-medium text-slate-900 dark:text-slate-600 dark:text-white/60">Grupo</th>
                 </tr>
               </thead>
               <tbody>
@@ -287,16 +287,16 @@ export default function BeneficiosPage() {
                     className="border-b border-slate-300 dark:border-navy-800 hover:bg-slate-100 dark:bg-navy-800/50 transition-colors cursor-pointer"
                     onClick={() => handleSelectBeneficio(beneficio)}
                   >
-                    <td className="py-3 px-4">
-                      <span className="text-slate-900 dark:text-white font-medium hover:text-blue-400 transition-colors">
+                    <td className="py-2 sm:py-3 px-2 sm:px-4">
+                      <span className="text-slate-900 dark:text-white font-medium hover:text-blue-400 transition-colors text-sm sm:text-base">
                         {beneficio.nome}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 font-mono text-sm">
+                    <td className="py-2 sm:py-3 px-2 sm:px-4 text-slate-900 dark:text-slate-700 dark:text-navy-300 font-mono text-xs sm:text-sm">
                       {beneficio.cpf}
                     </td>
-                    <td className="py-3 px-4">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400">
+                    <td className="py-2 sm:py-3 px-2 sm:px-4">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] sm:text-xs font-medium bg-blue-500/20 text-blue-400">
                         {formatTipo(beneficio.tipo)}
                       </span>
                     </td>

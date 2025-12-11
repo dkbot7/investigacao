@@ -146,10 +146,10 @@ export default function ConsultaCnpjPage() {
   };
 
   return (
-    <div className="container max-w-6xl py-8 space-y-6">
+    <div className="container max-w-6xl py-4 sm:py-6 lg:py-8 space-y-4 sm:space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Consulta CNPJ</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Consulta CNPJ</h1>
         <p className="text-muted-foreground mt-2">
           Consulte dados de CNPJ no SERPRO e adicione automaticamente ao Kanban
         </p>
@@ -163,18 +163,18 @@ export default function ConsultaCnpjPage() {
             Escolha o tipo de consulta e digite o CNPJ.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-4 sm:space-y-6">
           {/* Tipo de Consulta */}
-          <div className="space-y-3">
+          <div className="space-y-3 sm:space-y-3">
             <Label>Tipo de Consulta</Label>
             <RadioGroup
               value={tipoConsulta}
               onValueChange={(value) => setTipoConsulta(value as TipoConsulta)}
-              className="grid grid-cols-1 md:grid-cols-3 gap-4"
+              className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4"
             >
               <Label
                 htmlFor="basica"
-                className={`flex flex-col items-start gap-2 rounded-lg border-2 p-4 cursor-pointer transition-colors ${
+                className={`flex flex-col items-start gap-2 rounded-lg border-2 p-3 sm:p-4 cursor-pointer transition-colors ${
                   tipoConsulta === 'basica' ? 'border-primary bg-primary/5' : 'border-muted'
                 }`}
               >
@@ -184,13 +184,13 @@ export default function ConsultaCnpjPage() {
                     <div className="font-semibold">Básica</div>
                     <div className="text-xs text-muted-foreground">Dados cadastrais</div>
                   </div>
-                  <Badge variant="secondary">R$ 0,50</Badge>
+                  <Badge variant="secondary" className="px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs">R$ 0,50</Badge>
                 </div>
               </Label>
 
               <Label
                 htmlFor="qsa"
-                className={`flex flex-col items-start gap-2 rounded-lg border-2 p-4 cursor-pointer transition-colors ${
+                className={`flex flex-col items-start gap-2 rounded-lg border-2 p-3 sm:p-4 cursor-pointer transition-colors ${
                   tipoConsulta === 'qsa' ? 'border-primary bg-primary/5' : 'border-muted'
                 }`}
               >
@@ -200,13 +200,13 @@ export default function ConsultaCnpjPage() {
                     <div className="font-semibold">QSA</div>
                     <div className="text-xs text-muted-foreground">Quadro Societário</div>
                   </div>
-                  <Badge variant="secondary">R$ 1,00</Badge>
+                  <Badge variant="secondary" className="px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs">R$ 1,00</Badge>
                 </div>
               </Label>
 
               <Label
                 htmlFor="completa"
-                className={`flex flex-col items-start gap-2 rounded-lg border-2 p-4 cursor-pointer transition-colors ${
+                className={`flex flex-col items-start gap-2 rounded-lg border-2 p-3 sm:p-4 cursor-pointer transition-colors ${
                   tipoConsulta === 'completa' ? 'border-primary bg-primary/5' : 'border-muted'
                 }`}
               >
@@ -216,7 +216,7 @@ export default function ConsultaCnpjPage() {
                     <div className="font-semibold">Completa</div>
                     <div className="text-xs text-muted-foreground">Básica + QSA</div>
                   </div>
-                  <Badge variant="secondary">R$ 1,50</Badge>
+                  <Badge variant="secondary" className="px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs">R$ 1,50</Badge>
                 </div>
               </Label>
             </RadioGroup>
@@ -225,7 +225,7 @@ export default function ConsultaCnpjPage() {
           {/* Campo CNPJ */}
           <div className="space-y-2">
             <Label htmlFor="cnpj">CNPJ</Label>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-2">
               <Input
                 id="cnpj"
                 placeholder="00.000.000/0000-00"
@@ -233,7 +233,7 @@ export default function ConsultaCnpjPage() {
                 onChange={(e) => handleCnpjChange(e.target.value)}
                 maxLength={18}
                 disabled={loading}
-                className="font-mono"
+                className="font-mono text-sm sm:text-base pl-3 sm:pl-4 pr-3 sm:pr-4 py-2 sm:py-2.5"
               />
               <Button
                 onClick={handleConsultar}
@@ -242,12 +242,12 @@ export default function ConsultaCnpjPage() {
               >
                 {loading ? (
                   <>
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 mr-2 animate-spin" />
                     Consultando...
                   </>
                 ) : (
                   <>
-                    <Search className="h-4 w-4 mr-2" />
+                    <Search className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     Consultar ({getCusto(tipoConsulta).toFixed(2)})
                   </>
                 )}
@@ -268,10 +268,10 @@ export default function ConsultaCnpjPage() {
       {resultado && (
         <Card>
           <CardHeader>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-2 sm:gap-0">
               <CardTitle>Resultado da Consulta</CardTitle>
               {kanbanCardCreated && (
-                <Badge variant="default" className="flex items-center gap-1">
+                <Badge variant="default" className="flex items-center gap-1 px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs">
                   <CheckCircle className="h-3 w-3" />
                   Adicionado ao Kanban
                 </Badge>
@@ -289,9 +289,9 @@ export default function ConsultaCnpjPage() {
                 )}
               </TabsList>
 
-              <TabsContent value="dados" className="space-y-6 mt-6">
+              <TabsContent value="dados" className="space-y-4 sm:space-y-6 mt-6">
                 {/* Dados Principais */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <div className="space-y-1">
                     <Label className="text-xs text-muted-foreground">Razão Social</Label>
                     <div className="flex items-center gap-2">
@@ -387,14 +387,14 @@ export default function ConsultaCnpjPage() {
             </Tabs>
 
             {/* Ações */}
-            <div className="flex items-center gap-3 pt-6 mt-6 border-t">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3 pt-6 mt-6 border-t">
               <Button
                 onClick={handleGoToKanban}
                 size="lg"
                 className="flex-1"
               >
                 Ir para o Kanban
-                <ArrowRight className="h-4 w-4 ml-2" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
               </Button>
 
               <Button

@@ -5,7 +5,7 @@
 // ============================================================================
 
 import type { Context, Next } from 'hono';
-import type { Env, AuthenticatedUser } from '../types/api.types';
+import type { Env, AuthenticatedUser, ContextVariables } from '../types/api.types';
 import { UnauthorizedError, ForbiddenError } from '../utils/errors';
 import { logger } from '../utils/logger';
 
@@ -13,7 +13,7 @@ import { logger } from '../utils/logger';
  * Firebase Auth middleware
  * Validates Firebase ID tokens and adds user to context
  */
-export async function authMiddleware(c: Context<{ Bindings: Env }>, next: Next) {
+export async function authMiddleware(c: Context<{ Bindings: Env; Variables: ContextVariables }>, next: Next) {
   const authHeader = c.req.header('Authorization');
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -87,7 +87,7 @@ async function verifyFirebaseToken(token: string): Promise<AuthenticatedUser> {
  * Optional auth middleware (doesn't throw on missing token)
  * Useful for endpoints that work both authenticated and unauthenticated
  */
-export async function optionalAuthMiddleware(c: Context<{ Bindings: Env }>, next: Next) {
+export async function optionalAuthMiddleware(c: Context<{ Bindings: Env; Variables: ContextVariables }>, next: Next) {
   const authHeader = c.req.header('Authorization');
 
   if (authHeader && authHeader.startsWith('Bearer ')) {
@@ -109,7 +109,7 @@ export async function optionalAuthMiddleware(c: Context<{ Bindings: Env }>, next
  * Requires user to have specific role
  */
 export function requireRole(...allowedRoles: string[]) {
-  return async (c: Context<{ Bindings: Env }>, next: Next) => {
+  return async (c: Context<{ Bindings: Env; Variables: ContextVariables }>, next: Next) => {
     const user = c.get('user') as AuthenticatedUser | undefined;
 
     if (!user) {
