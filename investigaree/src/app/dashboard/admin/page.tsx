@@ -1329,7 +1329,7 @@ export default function AdminPage() {
                               cx="50%"
                               cy="50%"
                               labelLine={false}
-                              label={({ categoria, count, percent }) => `${categoria} (${(percent * 100).toFixed(0)}%)`}
+                              label={(props: any) => `${props.name} (${(props.percent * 100).toFixed(0)}%)`}
                               outerRadius={60}
                               fill="#8884d8"
                               dataKey="count"
