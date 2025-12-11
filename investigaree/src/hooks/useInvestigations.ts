@@ -116,7 +116,7 @@ export function useInvestigations() {
       if (filters?.categoria) params.append('categoria', filters.categoria)
       if (filters?.busca) params.append('busca', filters.busca)
 
-      const response = await fetch(`${API_URL}/api/investigations?${params}`, {
+      const response = await fetch(`${API_URL}/api/investigacoes?${params}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -159,7 +159,7 @@ export function useInvestigations() {
       const token = await getToken()
       if (!token) return
 
-      const response = await fetch(`${API_URL}/api/investigations/stats`, {
+      const response = await fetch(`${API_URL}/api/investigacoes/stats`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -188,7 +188,7 @@ export function useInvestigations() {
       throw new Error('Não autenticado')
     }
 
-    const response = await fetch(`${API_URL}/api/investigations`, {
+    const response = await fetch(`${API_URL}/api/investigacoes`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -220,7 +220,7 @@ export function useInvestigations() {
       throw new Error('Não autenticado')
     }
 
-    const response = await fetch(`${API_URL}/api/investigations/import`, {
+    const response = await fetch(`${API_URL}/api/investigacoes/import`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -249,7 +249,7 @@ export function useInvestigations() {
       throw new Error('Não autenticado')
     }
 
-    const response = await fetch(`${API_URL}/api/investigations/${id}`, {
+    const response = await fetch(`${API_URL}/api/investigacoes/${id}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -277,7 +277,7 @@ export function useInvestigations() {
       throw new Error('Não autenticado')
     }
 
-    const response = await fetch(`${API_URL}/api/investigations/${id}`, {
+    const response = await fetch(`${API_URL}/api/investigacoes/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -305,7 +305,7 @@ export function useInvestigations() {
       throw new Error('Não autenticado')
     }
 
-    const response = await fetch(`${API_URL}/api/investigations/mensagem`, {
+    const response = await fetch(`${API_URL}/api/investigacoes/mensagem`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -370,7 +370,7 @@ export function useInvestigation(id: string) {
 
       try {
         const token = await user.getIdToken()
-        const response = await globalThis.fetch(`${API_URL}/api/investigations/${id}`, {
+        const response = await globalThis.fetch(`${API_URL}/api/investigacoes/${id}`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
