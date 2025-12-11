@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { createInvestigation, importInvestigations } from "@/lib/api";
 import { useAuth } from "@/contexts/AuthContext";
-import { saveLocalInvestigation } from "@/lib/localStorage";
 import type { Categoria } from "@/types/investigacao";
 
 type ModalMode = "select" | "pessoa_fisica" | "pessoa_juridica" | "arquivo";
@@ -356,65 +355,6 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
       // Preparar categoria principal (primeira selecionada)
       const categoriaPrincipal = (categoriasArray.length > 0 ? categoriasArray[0] : "funcionarios") as Categoria;
 
-      // Verificar se está em modo de desenvolvimento
-      const isDev = process.env.NEXT_PUBLIC_DEV_MODE === 'true';
-
-      if (isDev) {
-        // Modo de desenvolvimento: salva no localStorage
-        if (!user?.uid) {
-          setError("Usuário não autenticado");
-          return;
-        }
-
-        try {
-          // Dados para localStorage (com arrays/objects)
-          const localData = {
-            nome: formData.nome.trim(),
-            documento: docFormatted,
-            tipo_pessoa: tipoPessoa,
-            categoria: categoriaPrincipal,
-            nivel_urgencia: formData.nivel_urgencia,
-
-            // Dados pessoais
-            rg: formData.rg || undefined,
-            data_nascimento: formData.data_nascimento || undefined,
-            estado_civil: formData.estado_civil || undefined,
-            profissao: formData.profissao || undefined,
-
-            // Contato
-            telefones: formData.telefones.filter(t => t.trim()),
-            email: formData.email || undefined,
-            endereco: formData.endereco || undefined,
-            redes_sociais: formData.redes_sociais,
-
-            // Investigação
-            motivo_investigacao: formData.motivo_investigacao,
-            escopo_investigacao: escopoInvestigacao,
-            prazo_desejado: formData.prazo_desejado || undefined,
-            orcamento_maximo: formData.orcamento_maximo || undefined,
-            observacoes: formData.observacoes || undefined,
-
-            // Opcionais
-            placa_veiculo: formData.placa_veiculo || undefined,
-            grupo: formData.grupo || undefined,
-          };
-
-          // Salvar no localStorage
-          const savedInvestigation = saveLocalInvestigation(user.uid, localData);
-          console.log("[DEV MODE] Investigação salva no localStorage:", savedInvestigation);
-
-          setError(null);
-          alert("✅ Modo DEV: Investigação cadastrada com sucesso!\n\nDados salvos localmente. Você pode vê-la na lista de investigações.");
-          onSuccess(); // Trigger refresh of investigations list
-          handleClose();
-          return;
-        } catch (err: any) {
-          console.error("[DEV MODE] Erro ao salvar no localStorage:", err);
-          setError("Erro ao salvar investigação localmente");
-          return;
-        }
-      }
-
       // Dados para API (com strings)
       const apiData = {
         nome: formData.nome.trim(),
@@ -447,7 +387,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
         grupo: formData.grupo || undefined,
       };
 
-      // Modo produção: chama a API real
+      // Criar investigação via API
       await createInvestigation(apiData);
 
       onSuccess();

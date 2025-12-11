@@ -273,6 +273,94 @@ router.get('/', authMiddleware, async (c) => {
 });
 
 /**
+ * GET /api/investigacoes/stats
+ *
+ * Retorna estatísticas das investigações do usuário
+ * IMPORTANTE: Deve vir ANTES de /:id para não ser capturado pela rota dinâmica
+ *
+ * Response:
+ * {
+ *   success: true,
+ *   stats: {
+ *     total: 10,
+ *     por_status: { investigar: 5, investigando: 3, relatorio: 2 },
+ *     por_categoria: { funcionarios: 6, empresas: 4 }
+ *   }
+ * }
+ */
+router.get('/stats', authMiddleware, async (c) => {
+  try {
+    const user = c.get('user') as AuthenticatedUser;
+
+    // Buscar user_id do D1
+    const userRecord = await c.env.DB.prepare(
+      'SELECT id FROM users WHERE firebase_uid = ?'
+    ).bind(user.uid).first();
+
+    if (!userRecord) {
+      return c.json({
+        success: true,
+        stats: {
+          total: 0,
+          por_status: {},
+          por_categoria: {}
+        }
+      });
+    }
+
+    // Total de investigações
+    const totalResult = await c.env.DB.prepare(`
+      SELECT COUNT(*) as total FROM user_investigacoes
+      WHERE user_id = ?
+    `).bind(userRecord.id).first();
+
+    // Por status
+    const { results: porStatus } = await c.env.DB.prepare(`
+      SELECT status, COUNT(*) as count
+      FROM user_investigacoes
+      WHERE user_id = ?
+      GROUP BY status
+    `).bind(userRecord.id).all();
+
+    // Por categoria
+    const { results: porCategoria } = await c.env.DB.prepare(`
+      SELECT categoria, COUNT(*) as count
+      FROM user_investigacoes
+      WHERE user_id = ?
+      GROUP BY categoria
+    `).bind(userRecord.id).all();
+
+    // Formatar resultados
+    const statusMap: any = {};
+    porStatus.forEach((row: any) => {
+      statusMap[row.status] = row.count;
+    });
+
+    const categoriaMap: any = {};
+    porCategoria.forEach((row: any) => {
+      categoriaMap[row.categoria] = row.count;
+    });
+
+    return c.json({
+      success: true,
+      stats: {
+        total: totalResult?.total || 0,
+        por_status: statusMap,
+        por_categoria: categoriaMap
+      }
+    });
+
+  } catch (error: any) {
+    logger.error('Error fetching stats', error);
+    return c.json({
+      success: false,
+      error: 'Erro ao buscar estatísticas',
+      details: error.message
+    }, 500);
+  }
+});
+
+/**
  * GET /api/investigacoes/:id
  *
  * Busca uma investigação específica
@@ -450,93 +538,6 @@ router.put('/:id', authMiddleware, async (c) => {
     return c.json({
       success: false,
       error: 'Erro ao atualizar investigação',
-      details: error.message
-    }, 500);
-  }
-});
-
-/**
- * GET /api/investigacoes/stats
- *
- * Retorna estatísticas das investigações do usuário
- *
- * Response:
- * {
- *   success: true,
- *   stats: {
- *     total: 10,
- *     por_status: { investigar: 5, investigando: 3, relatorio: 2 },
- *     por_categoria: { funcionarios: 6, empresas: 4 }
- *   }
- * }
- */
-router.get('/stats', authMiddleware, async (c) => {
-  try {
-    const user = c.get('user') as AuthenticatedUser;
-
-    // Buscar user_id do D1
-    const userRecord = await c.env.DB.prepare(
-      'SELECT id FROM users WHERE firebase_uid = ?'
-    ).bind(user.uid).first();
-
-    if (!userRecord) {
-      return c.json({
-        success: true,
-        stats: {
-          total: 0,
-          por_status: {},
-          por_categoria: {}
-        }
-      });
-    }
-
-    // Total de investigações
-    const totalResult = await c.env.DB.prepare(`
-      SELECT COUNT(*) as total FROM user_investigacoes
-      WHERE user_id = ?
-    `).bind(userRecord.id).first();
-
-    // Por status
-    const { results: porStatus } = await c.env.DB.prepare(`
-      SELECT status, COUNT(*) as count
-      FROM user_investigacoes
-      WHERE user_id = ?
-      GROUP BY status
-    `).bind(userRecord.id).all();
-
-    // Por categoria
-    const { results: porCategoria } = await c.env.DB.prepare(`
-      SELECT categoria, COUNT(*) as count
-      FROM user_investigacoes
-      WHERE user_id = ?
-      GROUP BY categoria
-    `).bind(userRecord.id).all();
-
-    // Formatar resultados
-    const statusMap: any = {};
-    porStatus.forEach((row: any) => {
-      statusMap[row.status] = row.count;
-    });
-
-    const categoriaMap: any = {};
-    porCategoria.forEach((row: any) => {
-      categoriaMap[row.categoria] = row.count;
-    });
-
-    return c.json({
-      success: true,
-      stats: {
-        total: totalResult?.total || 0,
-        por_status: statusMap,
-        por_categoria: categoriaMap
-      }
-    });
-
-  } catch (error: any) {
-    logger.error('Error fetching stats', error);
-    return c.json({
-      success: false,
-      error: 'Erro ao buscar estatísticas',
       details: error.message
     }, 500);
   }
