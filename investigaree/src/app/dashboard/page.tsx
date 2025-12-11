@@ -34,6 +34,7 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { useInvestigations, type Investigacao, type InvestigacaoStatus, type Categoria } from "@/hooks/useInvestigations";
 import { usePersonalUsage } from "@/hooks/usePersonalUsage";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer } from 'recharts';
 
 // Status config
 const statusConfig: Record<InvestigacaoStatus, { label: string; color: string; icon: React.ElementType; description: string }> = {
@@ -56,7 +57,7 @@ const categoriaConfig: Record<Categoria, { label: string; color: string }> = {
 export default function DashboardPage() {
   const { user } = useAuth();
   const { investigacoes, stats, loading, error, sendMessage, refetch } = useInvestigations();
-  const { summary, byApi, loading: usageLoading } = usePersonalUsage({ period: 'month' });
+  const { summary, byApi, byDate, loading: usageLoading } = usePersonalUsage({ period: 'month' });
   const [showContactForm, setShowContactForm] = useState(false);
   const [contactForm, setContactForm] = useState({ assunto: "", mensagem: "" });
   const [sendingMessage, setSendingMessage] = useState(false);
@@ -281,6 +282,83 @@ export default function DashboardPage() {
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+            )}
+
+            {byDate.length > 0 && (
+              <div className="border-t border-slate-300 dark:border-navy-700 pt-4 mt-4">
+                <h3 className="text-sm font-medium text-slate-900 dark:text-white mb-3">
+                  Uso ao Longo do Tempo
+                </h3>
+                <div className="h-48 sm:h-64">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                      data={byDate.slice(0, 30).reverse()}
+                      margin={{ top: 5, right: 5, left: -20, bottom: 5 }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" className="stroke-slate-300 dark:stroke-navy-700" opacity={0.3} />
+                      <XAxis
+                        dataKey="date"
+                        tickFormatter={(date) => {
+                          const d = new Date(date);
+                          return `${d.getDate()}/${d.getMonth() + 1}`;
+                        }}
+                        className="text-xs"
+                        stroke="currentColor"
+                        style={{ fontSize: '0.7rem' }}
+                      />
+                      <YAxis
+                        className="text-xs"
+                        stroke="currentColor"
+                        style={{ fontSize: '0.7rem' }}
+                      />
+                      <RechartsTooltip
+                        contentStyle={{
+                          backgroundColor: 'rgba(30, 41, 59, 0.95)',
+                          border: '1px solid rgba(148, 163, 184, 0.2)',
+                          borderRadius: '8px',
+                          color: '#fff',
+                          fontSize: '0.75rem',
+                        }}
+                        formatter={(value: any, name: string) => {
+                          if (name === 'queries') return [value, 'Consultas'];
+                          if (name === 'cost') return [`R$ ${value.toFixed(2)}`, 'Custo'];
+                          return [value, name];
+                        }}
+                        labelFormatter={(date) => {
+                          const d = new Date(date);
+                          return d.toLocaleDateString('pt-BR');
+                        }}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="queries"
+                        stroke="#3b82f6"
+                        strokeWidth={2}
+                        dot={{ fill: '#3b82f6', r: 3 }}
+                        activeDot={{ r: 5 }}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="cost"
+                        stroke="#10b981"
+                        strokeWidth={2}
+                        dot={{ fill: '#10b981', r: 3 }}
+                        activeDot={{ r: 5 }}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className="flex items-center justify-center gap-4 mt-2 text-xs">
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                    <span className="text-slate-600 dark:text-navy-400">Consultas</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
+                    <span className="text-slate-600 dark:text-navy-400">Custo (R$)</span>
+                  </div>
                 </div>
               </div>
             )}
