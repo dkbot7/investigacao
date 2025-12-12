@@ -392,3 +392,100 @@ export interface PersonalUsageResponse {
 export async function getPersonalUsage(period: 'today' | 'week' | 'month' | 'all' = 'month'): Promise<PersonalUsageResponse> {
   return fetchAPI<PersonalUsageResponse>(`/api/serpro/usage/personal?period=${period}`)
 }
+
+// ============================================
+// ALERTS API
+// ============================================
+
+export interface GetAlertsParams {
+  limit?: number
+  unread?: boolean
+}
+
+export interface GetAlertsResponse {
+  alerts: Array<{
+    id: string
+    investigation_id: string
+    tenant_id: string
+    user_id: string
+    alert_type: string
+    severity: string
+    title: string
+    description: string
+    old_value: string
+    new_value: string
+    is_read: number
+    email_sent: number
+    created_at: number
+    read_at: number | null
+    nome_investigado: string
+    cpf_cnpj: string
+  }>
+  count: number
+}
+
+/**
+ * Busca alertas do usuário
+ */
+export async function getAlerts(params: GetAlertsParams = {}): Promise<GetAlertsResponse> {
+  const queryParams = new URLSearchParams()
+  if (params.limit) queryParams.set('limit', params.limit.toString())
+  if (params.unread) queryParams.set('unread', 'true')
+
+  const query = queryParams.toString() ? `?${queryParams.toString()}` : ''
+  return fetchAPI<GetAlertsResponse>(`/api/alerts${query}`)
+}
+
+/**
+ * Marca alerta como lido
+ */
+export async function markAlertAsRead(alertId: string): Promise<{ success: boolean; alertId: string; readAt: number }> {
+  return fetchAPI(`/api/alerts/${alertId}/read`, {
+    method: 'POST'
+  })
+}
+
+/**
+ * Marca todos os alertas como lidos
+ */
+export async function markAllAlertsAsRead(): Promise<{ success: boolean; markedCount: number }> {
+  return fetchAPI('/api/alerts/mark-all-read', {
+    method: 'POST'
+  })
+}
+
+/**
+ * Busca contagem de alertas não lidos
+ */
+export async function getUnreadCount(): Promise<{ count: number }> {
+  return fetchAPI<{ count: number }>('/api/alerts/unread-count')
+}
+
+/**
+ * Busca configuração de alertas do tenant
+ */
+export async function getAlertConfig(): Promise<{
+  enabled: boolean
+  email_enabled: boolean
+  alert_types: string[]
+  check_frequency_hours: number
+  notification_email: string | null
+}> {
+  return fetchAPI('/api/alerts/config')
+}
+
+/**
+ * Atualiza configuração de alertas do tenant
+ */
+export async function updateAlertConfig(config: {
+  enabled?: boolean
+  email_enabled?: boolean
+  alert_types?: string[]
+  check_frequency_hours?: number
+  notification_email?: string | null
+}): Promise<{ success: boolean; tenantId: string }> {
+  return fetchAPI('/api/alerts/config', {
+    method: 'PUT',
+    body: JSON.stringify(config)
+  })
+}

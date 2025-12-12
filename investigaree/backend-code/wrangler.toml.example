@@ -1,0 +1,27 @@
+# Exemplo de configuração Cloudflare Worker com Cron Triggers
+# Adicionar ao wrangler.toml do backend
+
+name = "investigaree-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+# Cron Trigger para alertas automáticos
+# Executa diariamente às 9h UTC (6h BRT)
+[triggers]
+crons = ["0 9 * * *"]
+
+# Bindings
+[[d1_databases]]
+binding = "DB"
+database_name = "investigaree-db"
+database_id = "your-database-id"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "production"
+RESEND_API_KEY = "re_..."
+
+# Routes
+[[routes]]
+pattern = "api.investigaree.com.br/*"
+zone_name = "investigaree.com.br"
