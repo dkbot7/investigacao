@@ -1280,7 +1280,7 @@ export default function AdminPage() {
                   <SkeletonCard />
                   <SkeletonCard />
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                   <SkeletonChart type="pie" title="Distribuição por Categoria" />
                   <SkeletonChart type="bar" title="Top 10 Usuários Mais Ativos" />
                   <SkeletonChart type="bar" title="Distribuição por Status" />
@@ -1328,12 +1328,12 @@ export default function AdminPage() {
                 </div>
 
                 {/* Charts Section */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                   {/* PieChart - Distribuição por Categoria */}
                   {investigationsStats.por_categoria && investigationsStats.por_categoria.length > 0 && (
                     <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4 sm:p-6">
-                      <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-3 sm:mb-4">Distribuição por Categoria</h3>
-                      <div className="h-[250px] sm:h-[300px]">
+                      <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-slate-900 dark:text-white mb-3 sm:mb-4">Distribuição por Categoria</h3>
+                      <div className="h-[280px] sm:h-[320px]">
                         <ResponsiveContainer width="100%" height="100%">
                           <PieChart>
                             <Pie
@@ -1341,8 +1341,8 @@ export default function AdminPage() {
                               cx="50%"
                               cy="50%"
                               labelLine={false}
-                              label={(props: any) => `${props.name} (${(props.percent * 100).toFixed(0)}%)`}
-                              outerRadius={60}
+                              label={false}
+                              outerRadius={80}
                               fill="#8884d8"
                               dataKey="count"
                               nameKey="categoria"
@@ -1355,7 +1355,7 @@ export default function AdminPage() {
                               contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px' }}
                               labelStyle={{ color: '#f1f5f9' }}
                             />
-                            <Legend wrapperStyle={{ fontSize: '11px' }} />
+                            <Legend wrapperStyle={{ fontSize: '12px' }} />
                           </PieChart>
                         </ResponsiveContainer>
                       </div>
@@ -1365,8 +1365,8 @@ export default function AdminPage() {
                   {/* BarChart - Top 10 Usuários */}
                   {investigationsStats.por_usuario && investigationsStats.por_usuario.length > 0 && (
                     <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4 sm:p-6">
-                      <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-3 sm:mb-4">Top 10 Usuários Mais Ativos</h3>
-                      <div className="h-[250px] sm:h-[300px]">
+                      <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-slate-900 dark:text-white mb-3 sm:mb-4">Top 10 Usuários Mais Ativos</h3>
+                      <div className="h-[280px] sm:h-[320px]">
                         <ResponsiveContainer width="100%" height="100%">
                           <BarChart data={investigationsStats.por_usuario}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
@@ -1393,8 +1393,8 @@ export default function AdminPage() {
                   {/* BarChart - Distribuição por Status */}
                   {investigationsStats.por_status && investigationsStats.por_status.length > 0 && (
                     <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4 sm:p-6">
-                      <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-3 sm:mb-4">Distribuição por Status</h3>
-                      <div className="h-[250px] sm:h-[300px]">
+                      <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-slate-900 dark:text-white mb-3 sm:mb-4">Distribuição por Status</h3>
+                      <div className="h-[280px] sm:h-[320px]">
                         <ResponsiveContainer width="100%" height="100%">
                           <BarChart data={investigationsStats.por_status} layout="vertical">
                             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
