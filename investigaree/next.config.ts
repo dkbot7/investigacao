@@ -21,6 +21,9 @@ const nextConfig: NextConfig = {
 
   // Experimental features for better performance
   experimental: {
+    // Partial Prerendering (PPR) - Requires Next.js canary
+    // ppr: 'incremental',
+
     // Optimize package imports (tree-shaking)
     optimizePackageImports: [
       "lucide-react",

@@ -1,0 +1,59 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "investigaree-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+# Cron Trigger para alertas automáticos
+# Executa diariamente às 9h UTC (6h BRT)
+# DESABILITADO: Limite de crons atingido no plano
+# Para habilitar: remover cron triggers não usados ou upgrade plano
+# [triggers]
+# crons = ["0 9 * * *"]
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "investigaree-db"
+database_id = "4b9ddf13-d347-4337-8500-8ba37fd08f55"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "production"
+
+# Secrets (configurar via: wrangler secret put RESEND_API_KEY)
+# RESEND_API_KEY = "..."
+
+# Rate Limiting bindings
+# https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/
+[[unsafe.bindings]]
+type = "ratelimit"
+name = "RATE_LIMITER_GLOBAL"
+namespace_id = "1001"
+# Free tier: 100 req/min
+simple = { limit = 100, period = 60 }
+
+[[unsafe.bindings]]
+type = "ratelimit"
+name = "RATE_LIMITER_API"
+namespace_id = "1002"
+# Free tier: 50 req/min
+simple = { limit = 50, period = 60 }
+
+[[unsafe.bindings]]
+type = "ratelimit"
+name = "RATE_LIMITER_INVESTIGATIONS"
+namespace_id = "1003"
+# Free tier: 20 req/min
+simple = { limit = 20, period = 60 }
+
+[[unsafe.bindings]]
+type = "ratelimit"
+name = "RATE_LIMITER_BATCH"
+namespace_id = "1004"
+# Free tier: 5 req/min
+simple = { limit = 5, period = 60 }
+
+# Routes (configurar no Cloudflare Dashboard ou aqui)
+[[routes]]
+pattern = "api.investigaree.com.br/*"
+zone_name = "investigaree.com.br"

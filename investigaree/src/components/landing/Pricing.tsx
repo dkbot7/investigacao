@@ -24,7 +24,7 @@ const PLANS = [
     cta: "Proteger Família",
     popular: false,
     color: "neutral",
-    tab: "familiar"
+    tab: "protecao"
   },
   {
     name: "Proteção Empresarial",
@@ -43,7 +43,7 @@ const PLANS = [
     cta: "Solicitar Proposta",
     popular: true,
     color: "primary",
-    tab: "empresarial"
+    tab: "protecao"
   },
   {
     name: "Proteção de Investimentos",
@@ -62,7 +62,7 @@ const PLANS = [
     cta: "Falar com Especialista",
     popular: false,
     color: "secondary",
-    tab: "investimentos"
+    tab: "pericia"
   }
 ];
 

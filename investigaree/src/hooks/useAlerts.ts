@@ -57,7 +57,7 @@ export function useAlerts(options: UseAlertsOptions = {}) {
     try {
       setError(null);
       const data = await getAlerts({ limit, unread: onlyUnread });
-      setAlerts(data.alerts || []);
+      setAlerts((data.alerts || []) as Alert[]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erro ao carregar alertas');
       console.error('Error fetching alerts:', err);

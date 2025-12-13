@@ -287,259 +287,6 @@ const SERVICOS_PROTECAO: Servico[] = [
   }
 ];
 
-// TAB 2: INVESTIGAÇÃO & DUE DILIGENCE (12 serviços)
-const SERVICOS_INVESTIGACAO: Servico[] = [
-  {
-    id: "dossie-digital",
-    nome: "Investigação Completa", // Antigo: "Dossiê Digital"
-    descricao: "Enriquecimento automatizado com 1600+ fontes OSINT e cruzamento inteligente de dados.",
-    icon: FileSearch,
-    destaque: true,
-    caracteristicas: [
-      "1600+ fontes OSINT catalogadas",
-      "Cruzamento automatizado de dados",
-      "Rastreabilidade completa",
-      "Relatório executivo detalhado",
-      "Powered by IA para red flags"
-    ],
-    preco: "Sob consulta", //R$ 2.500",
-    prazo: "48-72h",
-    idealPara: "Due diligence inicial",
-    badge: "IA + 1600 FONTES",
-    badgeColor: "blue",
-    beneficioEmocional: "Relatório completo com cruzamento automatizado de 1600+ fontes OSINT e IA para identificar inconsistências e red flags",
-    riscoDeNaoContratar: "Decisões importantes tomadas sem informações completas podem resultar em prejuízos financeiros, parcerias arriscadas ou contratações problemáticas",
-    casoDeUso: "Realizamos due diligence que identificou processos trabalhistas ocultos e vínculos empresariais não declarados antes de uma fusão empresarial",
-    garantia: "Relatório baseado em dados públicos de 1600+ fontes com análise por IA. Não garantimos descoberta de informações específicas",
-  },
-  {
-    id: "radar-corporativo",
-    nome: "Ver Vínculos de Empresa", // Antigo: "Radar Corporativo"
-    descricao: "Rastreamento de vínculos empresariais, financeiros e políticos com análise de rede.",
-    icon: TrendingUp,
-    caracteristicas: [
-      "Mapeamento de vínculos ocultos",
-      "Grafos interativos de relacionamentos",
-      "ML para padrões suspeitos",
-      "Análise de conflitos de interesse",
-      "Monitoramento contínuo disponível"
-    ],
-    preco: "Sob consulta", //R$ 4.500",
-    prazo: "5-7 dias",
-    idealPara: "Parcerias e investimentos",
-    beneficioEmocional: "Mapeamento de vínculos empresariais, financeiros e políticos com grafos interativos para identificar conflitos de interesse",
-    riscoDeNaoContratar: "Parcerias ou investimentos podem envolver pessoas com vínculos ocultos, processos ou conflitos de interesse não detectados",
-    casoDeUso: "Mapeamos vínculos corporativos que revelaram participação oculta de sócio em empresa concorrente, evitando conflito de interesse",
-    garantia: "Análise baseada em dados públicos com ML para padrões. Vínculos ocultos intencionalmente podem não ser detectados",
-  },
-  {
-    id: "renda-realidade",
-    nome: "Descobrir Dinheiro Oculto", // Antigo: "Renda x Realidade"
-    descricao: "Detecção de incompatibilidade entre renda declarada e patrimônio real, incluindo cripto.",
-    icon: AlertTriangle,
-    destaque: true,
-    caracteristicas: [
-      "Cruzamento renda x patrimônio",
-      "Rastreamento de criptomoedas",
-      "Identificação de bens ocultos",
-      "Relatório com evidências",
-      "Validade judicial (IBDFAM alerta)"
-    ],
-    preco: "Sob consulta", //R$ 5.000",
-    prazo: "7-10 dias",
-    idealPara: "Divórcios e auditorias",
-    badge: "INCLUI CRIPTO",
-    badgeColor: "orange",
-    beneficioEmocional: "Ajudamos você a encontrar bens e valores que podem estar ocultos em processos de partilha",
-    riscoDeNaoContratar: "Segundo estudos do IBDFAM, em processos litigiosos pode haver ocultação patrimonial não identificada",
-    casoDeUso: "Em um caso real, identificamos R$ 3,2M em criptomoedas não declaradas que resultaram em nova partilha judicial",
-    garantia: "Metodologia baseada em cruzamento de dados públicos e análise patrimonial. Sem garantia de resultados específicos",
-  },
-  {
-    id: "prova-digital",
-    nome: "Guardar Provas", // Antigo: "Prova Digital"
-    descricao: "Captura legal e preservação de provas digitais com carimbo de data autenticado.",
-    icon: FileCheck,
-    caracteristicas: [
-      "Captura profissional de prints",
-      "Carimbo de data digital",
-      "Validação da fonte",
-      "PDF com metadata",
-      "Entrega em 24h"
-    ],
-    preco: "Sob consulta", //R$ 800",
-    prazo: "24 horas",
-    idealPara: "Processos judiciais",
-    beneficioEmocional: "Preservação profissional de provas digitais com carimbo de data, metadata e validação de fonte para uso judicial",
-    riscoDeNaoContratar: "Prints comuns feitos por você podem ser questionados em processos judiciais por falta de autenticação técnica e cadeia de custódia",
-    casoDeUso: "Preservamos evidências digitais de difamação em redes sociais que foram aceitas como prova válida em processo judicial",
-    garantia: "Captura técnica com metadata e carimbo de tempo. Aceitação judicial depende do juiz e contexto do processo",
-  },
-  {
-    id: "background-check-empresarial",
-    nome: "Verificar Passado de Pessoa", // Antigo: "Background Check Empresarial"
-    descricao: "Verificação completa de sócios, parceiros e funcionários com cruzamento em bases de sanções.",
-    icon: Briefcase,
-    caracteristicas: [
-      "Verificação de antecedentes",
-      "Cruzamento com CEIS/CNEP",
-      "Análise de vínculos empresariais",
-      "Processos judiciais ativos",
-      "Relatório individual detalhado"
-    ],
-    preco: "Sob consulta", //R$ 3.500",
-    prazo: "3-5 dias",
-    idealPara: "Contratações e parcerias",
-    beneficioEmocional: "Verificação completa de antecedentes com cruzamento em CEIS/CNEP, processos judiciais e vínculos empresariais",
-    riscoDeNaoContratar: "Contratações ou parcerias sem verificação podem envolver pessoas com sanções, processos ou histórico problemático não declarado",
-    casoDeUso: "Background check identificou execuções fiscais ativas e sanção administrativa não declarada antes de contratação para cargo de confiança",
-    garantia: "Verificação baseada em dados públicos (CEIS, CNEP, tribunais). Informações ocultas ou não públicas podem não aparecer",
-  },
-  {
-    id: "relatorio-risco",
-    nome: "Avaliar Riscos", // Antigo: "Relatório de Risco"
-    descricao: "Indicadores jurídicos, reputacionais e financeiros com análise preditiva.",
-    icon: BarChart3,
-    caracteristicas: [
-      "Scoring de risco automatizado",
-      "Análise preditiva com ML",
-      "Indicadores jurídicos/financeiros",
-      "Benchmark de mercado",
-      "Dashboard interativo"
-    ],
-    preco: "Sob consulta", //R$ 4.000",
-    prazo: "5 dias",
-    idealPara: "Decisões estratégicas",
-    beneficioEmocional: "Análise de risco com scoring automatizado, ML preditivo e indicadores jurídicos/financeiros/reputacionais em dashboard interativo",
-    riscoDeNaoContratar: "Decisões estratégicas sem análise de risco estruturada podem resultar em prejuízos por não antever problemas detectáveis",
-    casoDeUso: "Relatório de risco identificou padrão de processos trabalhistas recorrentes que sinalizou gestão problemática antes de investimento",
-    garantia: "Análise baseada em dados públicos com ML. Predições são probabilísticas, não garantem eventos futuros",
-  },
-  {
-    id: "compliance-check",
-    nome: "Verificar Conformidade", // Antigo: "Compliance Check"
-    descricao: "Auditoria de conformidade com LGPD, verificação em CEIS e CNEP.",
-    icon: Scale,
-    caracteristicas: [
-      "Auditoria LGPD completa",
-      "Verificação CEIS/CNEP",
-      "Análise de sanções administrativas",
-      "Relatório de conformidade",
-      "Recomendações de adequação"
-    ],
-    preco: "Sob consulta", //R$ 3.000",
-    prazo: "5-7 dias",
-    idealPara: "Compliance corporativo",
-    beneficioEmocional: "Auditoria de conformidade LGPD e verificação em bases de sanções (CEIS/CNEP) com relatório e recomendações de adequação",
-    riscoDeNaoContratar: "Empresas sem auditoria de conformidade podem ter sanções ou irregularidades não detectadas, gerando riscos legais e reputacionais",
-    casoDeUso: "Auditoria identificou sanções administrativas em CNEP e não conformidades LGPD antes de processo de certificação empresarial",
-    garantia: "Verificação baseada em bases públicas (CEIS, CNEP, ANPD). Análise LGPD baseada em legislação vigente, não substitui consultoria jurídica",
-  },
-  {
-    id: "alerta-digital",
-    nome: "Avisar Mudanças", // Antigo: "Alerta Digital"
-    descricao: "Monitoramento contínuo de CPFs, empresas ou termos com alertas em tempo real.",
-    icon: Bell,
-    caracteristicas: [
-      "Monitoramento 24/7",
-      "Alertas em tempo real",
-      "Múltiplas fontes de dados",
-      "Relatórios mensais",
-      "Dashboard de acompanhamento"
-    ],
-    preco: "Sob consulta", //R$ 1.500/mês",
-    prazo: "Contínuo",
-    idealPara: "Vigilância ativa",
-    beneficioEmocional: "Monitoramento contínuo 24/7 com alertas em tempo real sobre mudanças em CPFs, CNPJs ou termos específicos",
-    riscoDeNaoContratar: "Mudanças importantes como processos novos, sanções ou alterações societárias podem passar despercebidas sem monitoramento ativo",
-    casoDeUso: "Sistema alertou em tempo real sobre abertura de processo judicial contra parceiro comercial, permitindo ação preventiva imediata",
-    garantia: "Monitoramento nas fontes configuradas com alertas automatizados. Disponibilidade depende das fontes de dados",
-  },
-  {
-    id: "olho-seguro",
-    nome: "Instalar Câmeras", // Antigo: "Olho Seguro"
-    descricao: "Instalação de câmeras inteligentes com acesso remoto e gravação criptografada.",
-    icon: Video,
-    caracteristicas: [
-      "Instalação profissional",
-      "Acesso remoto 24h",
-      "Gravação criptografada",
-      "Detecção de movimento IA",
-      "Armazenamento em nuvem"
-    ],
-    preco: "Sob consulta", //R$ 8.000",
-    prazo: "Instalação em 48h",
-    idealPara: "Segurança física",
-    beneficioEmocional: "Instalação profissional de câmeras com acesso remoto 24h, gravação criptografada e detecção inteligente de movimento",
-    riscoDeNaoContratar: "Ambientes sem monitoramento visual ficam vulneráveis a invasões, furtos ou situações não documentadas visualmente",
-    casoDeUso: "Sistema de câmeras instalado flagrou tentativa de invasão, fornecendo evidências que auxiliaram na identificação dos responsáveis",
-    garantia: "Instalação profissional com equipamentos homologados. Qualidade da gravação depende de condições ambientais e conectividade",
-  },
-  {
-    id: "vigilancia-estrategica",
-    nome: "Monitorar Pessoa", // Antigo: "Vigilância Estratégica"
-    descricao: "Monitoramento contínuo e profundo de alvos de alto risco.",
-    icon: Eye,
-    caracteristicas: [
-      "Monitoramento dedicado",
-      "Análise comportamental",
-      "Relatórios semanais",
-      "Alertas críticos imediatos",
-      "Equipe especializada"
-    ],
-    preco: "Sob consulta", //R$ 5.000/mês",
-    prazo: "Contínuo",
-    idealPara: "Casos complexos",
-    beneficioEmocional: "Monitoramento digital contínuo com análise comportamental, relatórios semanais e alertas críticos para casos complexos",
-    riscoDeNaoContratar: "Alvos de alto risco sem monitoramento podem realizar ações prejudiciais não detectadas em tempo hábil",
-    casoDeUso: "Monitoramento identificou padrão de movimentações suspeitas e abertura de empresa em nome de terceiros durante processo judicial",
-    garantia: "Monitoramento digital em fontes públicas. Atividades offline ou em canais privados podem não ser detectadas",
-  },
-  {
-    id: "dados-turbo",
-    nome: "Processar Muitos Dados", // Antigo: "Dados Turbo"
-    descricao: "Automação de consultas em massa (até 100.000 registros) com cruzamento inteligente.",
-    icon: Zap,
-    destaque: true,
-    caracteristicas: [
-      "Até 100.000 registros/hora",
-      "Cruzamento em 15+ fontes",
-      "Python + Selenium + Pandas",
-      "Exportação multi-formato",
-      "APIs customizadas disponíveis"
-    ],
-    preco: "Sob consulta",
-    prazo: "Conforme volume",
-    idealPara: "Processamento em escala",
-    badge: "100K REGISTROS/HORA",
-    badgeColor: "yellow",
-    beneficioEmocional: "Processamento automatizado em massa (até 100k registros/hora) com cruzamento em 15+ fontes e exportação customizada",
-    riscoDeNaoContratar: "Consultas manuais em grande volume são inviáveis, lentas e sujeitas a erros humanos em processos repetitivos",
-    casoDeUso: "Processamos 50 mil CPFs em poucas horas para cliente do setor financeiro, identificando restrições e inconsistências cadastrais",
-    garantia: "Processamento automatizado com tecnologia própria. Velocidade depende da disponibilidade das fontes de dados consultadas",
-  },
-  {
-    id: "dashboard-forense",
-    nome: "Ver Dados em Gráficos", // Antigo: "Dashboard Forense"
-    descricao: "Relatórios interativos com Business Intelligence aplicado a investigação.",
-    icon: BarChart3,
-    caracteristicas: [
-      "BI investigativo avançado",
-      "Grafos de relacionamento",
-      "Timeline interativa de eventos",
-      "Exportação multi-formato",
-      "Atualização em tempo real"
-    ],
-    preco: "Sob consulta", //R$ 6.000",
-    prazo: "7-10 dias",
-    idealPara: "Análise estratégica",
-    beneficioEmocional: "Dashboards interativos com BI investigativo, grafos de relacionamento e timeline de eventos para análise visual completa",
-    riscoDeNaoContratar: "Dados complexos analisados apenas em planilhas ou PDFs perdem poder analítico e dificultam identificação de padrões",
-    casoDeUso: "Dashboard revelou padrão temporal de movimentações financeiras suspeitas que não era visível em relatórios tradicionais",
-    garantia: "Dashboard customizado com dados fornecidos. Qualidade da análise depende da completude dos dados disponíveis",
-  }
-];
-
 // TAB 3: PERÍCIA FORENSE (5 serviços)
 const SERVICOS_PERICIA: Servico[] = [
   {
@@ -782,13 +529,13 @@ function ServiceModal({ service, isOpen, onClose }: { service: Servico | null; i
 
 function ServicosContent() {
   const searchParams = useSearchParams();
-  const [activeTab, setActiveTab] = useState("investigacao");
+  const [activeTab, setActiveTab] = useState("protecao");
   const [selectedService, setSelectedService] = useState<Servico | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const tab = searchParams.get("tab");
-    if (tab && ["protecao", "investigacao", "pericia"].includes(tab)) {
+    if (tab && ["protecao", "pericia"].includes(tab)) {
       setActiveTab(tab);
     }
   }, [searchParams]);
@@ -797,8 +544,6 @@ function ServicosContent() {
     switch(tab) {
       case "protecao":
         return SERVICOS_PROTECAO;
-      case "investigacao":
-        return SERVICOS_INVESTIGACAO;
       case "pericia":
         return SERVICOS_PERICIA;
       default:
@@ -848,11 +593,394 @@ function ServicosContent() {
           </div>
         </section>
 
+        {/* Soluções Especializadas Section */}
+        <section className="py-20 bg-white dark:bg-navy-950">
+          <div className="container max-w-7xl px-4">
+            <div className="text-center mb-12">
+              <Badge className="bg-blue-500/20 text-blue-500 border-blue-500/30 mb-4">
+                Soluções Especializadas
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                Investigação Profunda para Decisões Críticas
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-navy-300 max-w-3xl mx-auto">
+                Análises completas com metodologia forense para due diligence, compliance e proteção patrimonial
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Due Diligence */}
+              <Link href="/solucoes/due-diligence">
+                <Card className="h-full hover:shadow-xl hover:border-blue-500/50 transition-all cursor-pointer group bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800">
+                  <CardHeader>
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-blue-50 dark:bg-blue-500/10 rounded-lg group-hover:bg-blue-100 dark:group-hover:bg-blue-500/20 transition-colors">
+                        <FileSearch className="w-6 h-6 text-blue-700 dark:text-blue-400" />
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors">
+                          Due Diligence Empresarial
+                        </CardTitle>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-slate-600 dark:text-navy-300 mb-4">
+                      Investigação completa de empresas, sócios e contratos antes de fusões, aquisições ou parcerias comerciais.
+                    </CardDescription>
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Validação CNPJ e quadro societário
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Verificação CEIS/CNEP e processos
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Relatório pericial em 48-72h
+                      </div>
+                    </div>
+                    <div className="pt-4 border-t border-slate-200 dark:border-navy-800">
+                      <Button variant="ghost" size="sm" className="w-full text-blue-500 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-500/10">
+                        Saiba Mais <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              {/* Background Check Executivos */}
+              <Link href="/solucoes/background-check-executivos">
+                <Card className="h-full hover:shadow-xl hover:border-blue-500/50 transition-all cursor-pointer group bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800">
+                  <CardHeader>
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-purple-50 dark:bg-purple-500/10 rounded-lg group-hover:bg-purple-100 dark:group-hover:bg-purple-500/20 transition-colors">
+                        <UserCheck className="w-6 h-6 text-purple-700 dark:text-purple-400" />
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg text-slate-900 dark:text-white group-hover:text-purple-500 transition-colors">
+                          Background Check Executivos
+                        </CardTitle>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-slate-600 dark:text-navy-300 mb-4">
+                      Verificação profunda de antecedentes para contratações estratégicas, cargos de confiança e parcerias executivas.
+                    </CardDescription>
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Histórico profissional completo
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Sanções e processos judiciais
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Vínculos empresariais ocultos
+                      </div>
+                    </div>
+                    <div className="pt-4 border-t border-slate-200 dark:border-navy-800">
+                      <Button variant="ghost" size="sm" className="w-full text-purple-500 hover:text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-500/10">
+                        Saiba Mais <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              {/* Investigação Patrimonial */}
+              <Link href="/solucoes/investigacao-patrimonial">
+                <Card className="h-full hover:shadow-xl hover:border-blue-500/50 transition-all cursor-pointer group bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800">
+                  <CardHeader>
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-orange-50 dark:bg-orange-500/10 rounded-lg group-hover:bg-orange-100 dark:group-hover:bg-orange-500/20 transition-colors">
+                        <TrendingDown className="w-6 h-6 text-orange-700 dark:text-orange-400" />
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg text-slate-900 dark:text-white group-hover:text-orange-500 transition-colors">
+                          Investigação Patrimonial
+                        </CardTitle>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-slate-600 dark:text-navy-300 mb-4">
+                      Rastreamento de bens, imóveis, veículos e ativos financeiros para processos de divórcio, execuções e recuperação de crédito.
+                    </CardDescription>
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Detecção de bens ocultos
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Rastreamento de criptomoedas
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Análise de incompatibilidade patrimonial
+                      </div>
+                    </div>
+                    <div className="pt-4 border-t border-slate-200 dark:border-navy-800">
+                      <Button variant="ghost" size="sm" className="w-full text-orange-500 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-500/10">
+                        Saiba Mais <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              {/* RH & Compliance */}
+              <Link href="/solucoes/rh-compliance">
+                <Card className="h-full hover:shadow-xl hover:border-blue-500/50 transition-all cursor-pointer group bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800">
+                  <CardHeader>
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-green-50 dark:bg-green-500/10 rounded-lg group-hover:bg-green-100 dark:group-hover:bg-green-500/20 transition-colors">
+                        <Users className="w-6 h-6 text-green-700 dark:text-green-400" />
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg text-slate-900 dark:text-white group-hover:text-green-500 transition-colors">
+                          RH & Compliance
+                        </CardTitle>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-slate-600 dark:text-navy-300 mb-4">
+                      Verificação em massa de colaboradores, fornecedores e terceiros para conformidade LGPD e mitigação de riscos trabalhistas.
+                    </CardDescription>
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Processamento em lote (até 100k registros)
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Auditoria LGPD completa
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Verificação CEIS/CNEP automatizada
+                      </div>
+                    </div>
+                    <div className="pt-4 border-t border-slate-200 dark:border-navy-800">
+                      <Button variant="ghost" size="sm" className="w-full text-green-500 hover:text-green-600 hover:bg-green-50 dark:hover:bg-green-500/10">
+                        Saiba Mais <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              {/* Auditoria em Licitações */}
+              <Link href="/solucoes/auditoria-licitacoes">
+                <Card className="h-full hover:shadow-xl hover:border-blue-500/50 transition-all cursor-pointer group bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800">
+                  <CardHeader>
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-amber-50 dark:bg-amber-500/10 rounded-lg group-hover:bg-amber-100 dark:group-hover:bg-amber-500/20 transition-colors">
+                        <Scale className="w-6 h-6 text-amber-700 dark:text-amber-400" />
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg text-slate-900 dark:text-white group-hover:text-amber-500 transition-colors">
+                          Auditoria em Licitações
+                        </CardTitle>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-slate-600 dark:text-navy-300 mb-4">
+                      Verificação de empresas e sócios participantes de licitações públicas para identificação de sanções e impedimentos legais.
+                    </CardDescription>
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Cruzamento com CEIS/CNEP/TCU
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Verificação de impedimentos legais
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Relatório para controle interno
+                      </div>
+                    </div>
+                    <div className="pt-4 border-t border-slate-200 dark:border-navy-800">
+                      <Button variant="ghost" size="sm" className="w-full text-amber-500 hover:text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-500/10">
+                        Saiba Mais <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              {/* Proteção e Remoção */}
+              <Link href="/solucoes/protecao-remocao">
+                <Card className="h-full hover:shadow-xl hover:border-blue-500/50 transition-all cursor-pointer group bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800">
+                  <CardHeader>
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-red-50 dark:bg-red-500/10 rounded-lg group-hover:bg-red-100 dark:group-hover:bg-red-500/20 transition-colors">
+                        <Shield className="w-6 h-6 text-red-700 dark:text-red-400" />
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg text-slate-900 dark:text-white group-hover:text-red-500 transition-colors">
+                          Proteção e Remoção
+                        </CardTitle>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-slate-600 dark:text-navy-300 mb-4">
+                      Remoção emergencial de fotos íntimas, dados pessoais e conteúdos ofensivos da internet com base na LGPD.
+                    </CardDescription>
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Atendimento emergencial 24-72h
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Blindagem CPF em 47 sites
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Desindexação Google e redes sociais
+                      </div>
+                    </div>
+                    <div className="pt-4 border-t border-slate-200 dark:border-navy-800">
+                      <Button variant="ghost" size="sm" className="w-full text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10">
+                        Saiba Mais <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              {/* Due Diligence para Divórcios */}
+              <Link href="/solucoes/due-diligence-divorcios">
+                <Card className="h-full hover:shadow-xl hover:border-blue-500/50 transition-all cursor-pointer group bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800">
+                  <CardHeader>
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-orange-50 dark:bg-orange-500/10 rounded-lg group-hover:bg-orange-100 dark:group-hover:bg-orange-500/20 transition-colors">
+                        <TrendingDown className="w-6 h-6 text-orange-700 dark:text-orange-400" />
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg text-slate-900 dark:text-white group-hover:text-orange-500 transition-colors">
+                          Investigação para Divórcios
+                        </CardTitle>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-slate-600 dark:text-navy-300 mb-4">
+                      Rastreamento de bens ocultos, imóveis, veículos e criptomoedas para garantir partilha justa em processos de divórcio.
+                    </CardDescription>
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Detecção de patrimônio oculto
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Rastreamento de criptomoedas
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Análise de incompatibilidade patrimonial
+                      </div>
+                    </div>
+                    <div className="pt-4 border-t border-slate-200 dark:border-navy-800">
+                      <Button variant="ghost" size="sm" className="w-full text-orange-500 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-500/10">
+                        Saiba Mais <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              {/* Coleta de Provas Digitais */}
+              <Link href="/solucoes/coleta-provas-digitais">
+                <Card className="h-full hover:shadow-xl hover:border-blue-500/50 transition-all cursor-pointer group bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800">
+                  <CardHeader>
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-blue-50 dark:bg-blue-500/10 rounded-lg group-hover:bg-blue-100 dark:group-hover:bg-blue-500/20 transition-colors">
+                        <FileCheck className="w-6 h-6 text-blue-700 dark:text-blue-400" />
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors">
+                          Coleta de Provas Digitais
+                        </CardTitle>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-slate-600 dark:text-navy-300 mb-4">
+                      Preservação legal de evidências digitais com cadeia de custódia certificada e validação por Perito Criminal.
+                    </CardDescription>
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Metadata preservada e autenticada
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Cadeia de custódia completa
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-navy-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Validação por Perito Oficial
+                      </div>
+                    </div>
+                    <div className="pt-4 border-t border-slate-200 dark:border-navy-800">
+                      <Button variant="ghost" size="sm" className="w-full text-blue-500 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-500/10">
+                        Saiba Mais <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              {/* Card Placeholder para último item */}
+              <Card className="h-full bg-gradient-to-br from-blue-50 to-slate-50 dark:from-navy-800 dark:to-navy-900 border-2 border-dashed border-blue-300 dark:border-blue-700">
+                <CardHeader>
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-blue-50 dark:bg-blue-500/10 rounded-lg">
+                      <Sparkles className="w-6 h-6 text-blue-700 dark:text-blue-400" />
+                    </div>
+                    <div className="flex-1">
+                      <CardTitle className="text-lg text-slate-900 dark:text-white">
+                        Solução Customizada
+                      </CardTitle>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-slate-600 dark:text-navy-300 mb-4">
+                    Precisa de uma investigação específica ou combinação de serviços? Desenvolvemos soluções sob medida para seu caso.
+                  </CardDescription>
+                  <div className="pt-4">
+                    <Link href="/contato">
+                      <Button size="sm" className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+                        Fale Conosco <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* Services Tabs */}
         <section className="py-20">
           <div className="container max-w-7xl px-4">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
-              <TabsList className="grid w-full max-w-4xl mx-auto grid-cols-3 h-auto p-2 bg-slate-100 dark:bg-navy-900 gap-2">
+              <TabsList className="grid w-full max-w-4xl mx-auto grid-cols-2 h-auto p-2 bg-slate-100 dark:bg-navy-900 gap-2">
                 <TabsTrigger
                   value="protecao"
                   className="flex flex-col items-center justify-center gap-2 py-4 px-4 text-sm md:text-base font-semibold data-[state=active]:bg-blue-500 data-[state=active]:text-navy-950 data-[state=inactive]:bg-white dark:data-[state=inactive]:bg-navy-800 data-[state=inactive]:text-slate-700 dark:data-[state=inactive]:text-navy-300 hover:bg-blue-500 hover:text-navy-950 transition-all"
@@ -861,15 +989,6 @@ function ServicosContent() {
                   <span className="hidden sm:inline">Proteção & Remoção</span>
                   <span className="sm:hidden">Proteção</span>
                   <span className="text-xs opacity-70 hidden md:block">Emergencial (72h)</span>
-                </TabsTrigger>
-                <TabsTrigger
-                  value="investigacao"
-                  className="flex flex-col items-center justify-center gap-2 py-4 px-4 text-sm md:text-base font-semibold data-[state=active]:bg-blue-500 data-[state=active]:text-navy-950 data-[state=inactive]:bg-white dark:data-[state=inactive]:bg-navy-800 data-[state=inactive]:text-slate-700 dark:data-[state=inactive]:text-navy-300 hover:bg-blue-500 hover:text-navy-950 transition-all"
-                >
-                  <Search className="w-5 h-5 md:w-6 md:h-6" />
-                  <span className="hidden sm:inline">Investigação & Due Diligence</span>
-                  <span className="sm:hidden">Investigação</span>
-                  <span className="text-xs opacity-70 hidden md:block">Inteligência + IA</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="pericia"
@@ -882,7 +1001,7 @@ function ServicosContent() {
                 </TabsTrigger>
               </TabsList>
 
-              {["protecao", "investigacao", "pericia"].map(tabValue => (
+              {["protecao", "pericia"].map(tabValue => (
                 <TabsContent key={tabValue} value={tabValue} className="space-y-8">
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {getServicesForTab(tabValue).map((service) => (

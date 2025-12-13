@@ -5,7 +5,11 @@
       "Bash(find:*)",
       "WebSearch",
       "WebFetch(domain:developers.cloudflare.com)",
-      "WebFetch(domain:resend.com)"
+      "WebFetch(domain:resend.com)",
+      "Bash(npm run build:worker:*)",
+      "Bash(npm run deploy:*)",
+      "Bash(npx wrangler deploy:*)",
+      "Bash(npm run build:*)"
     ]
   }
 }

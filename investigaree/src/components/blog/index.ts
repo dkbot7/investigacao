@@ -7,3 +7,4 @@ export { default as BlogSkeleton, BlogCardSkeleton, FeaturedPostSkeleton } from 
 export { default as QuickFilters } from "./QuickFilters";
 export { default as PopularPosts } from "./PopularPosts";
 export { default as BlogSidebar } from "./BlogSidebar";
+export { default as BlogPageClient } from "./BlogPageClient";

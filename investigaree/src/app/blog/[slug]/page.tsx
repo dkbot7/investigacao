@@ -85,6 +85,9 @@ export async function generateStaticParams() {
   return allSlugs;
 }
 
+// ISR: Revalidar a cada 1 hora (3600 segundos)
+export const revalidate = 3600;
+
 // Metadata dinâmica
 export async function generateMetadata({
   params,

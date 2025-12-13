@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Download, FileSpreadsheet, Loader2 } from 'lucide-react'
+import { Download, FileSpreadsheet, Loader2, FileText, FileCode } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -14,6 +14,9 @@ import {
 import { Progress } from '@/components/ui/progress'
 import { cn } from '@/lib/utils'
 import { exportToCSV, exportMultipleSheets, CsvColumn, CsvSheet } from '@/lib/utils/csv-export'
+import { exportService, type ExportFormat } from '@/lib/services/export.service'
+import { type ReportData } from '@/lib/services/report.service'
+import { toast } from 'sonner'
 
 interface ExportButtonProps<T> {
   /** Dados para exportar */
@@ -329,5 +332,152 @@ export function ExportProgress({ progress }: { progress: number }) {
       </div>
       <Progress value={progress} className="h-2" />
     </div>
+  )
+}
+
+// ============================================
+// MULTI-FORMAT REPORT EXPORT
+// ============================================
+
+interface ReportExportButtonProps {
+  /** Dados do relatório */
+  data: ReportData
+  /** Nome base do arquivo */
+  filename?: string
+  /** Variante do botão */
+  variant?: 'default' | 'outline' | 'ghost' | 'secondary'
+  /** Tamanho do botão */
+  size?: 'default' | 'sm' | 'lg' | 'icon'
+  /** Mostrar label */
+  showLabel?: boolean
+  /** Classe CSS adicional */
+  className?: string
+}
+
+/**
+ * Botão de exportação multi-formato para relatórios de Due Diligence
+ * Suporta: PDF, Excel, Word, CSV
+ *
+ * @example
+ * ```tsx
+ * <ReportExportButton
+ *   data={reportData}
+ *   filename="relatorio-due-diligence"
+ *   showLabel={true}
+ * />
+ * ```
+ */
+export function ReportExportButton({
+  data,
+  filename,
+  variant = 'default',
+  size = 'default',
+  showLabel = true,
+  className,
+}: ReportExportButtonProps) {
+  const [isExporting, setIsExporting] = useState(false)
+  const [exportingFormat, setExportingFormat] = useState<ExportFormat | null>(null)
+
+  const handleExport = async (format: ExportFormat) => {
+    setIsExporting(true)
+    setExportingFormat(format)
+
+    try {
+      await exportService.exportReport(data, {
+        format,
+        filename,
+        includeTimestamp: true,
+      })
+
+      toast.success(`Relatório exportado com sucesso!`, {
+        description: `Formato: ${format.toUpperCase()}`,
+      })
+    } catch (error) {
+      console.error('Erro ao exportar:', error)
+      toast.error('Erro ao exportar relatório', {
+        description: error instanceof Error ? error.message : 'Tente novamente',
+      })
+    } finally {
+      setIsExporting(false)
+      setExportingFormat(null)
+    }
+  }
+
+  const exportOptions = [
+    {
+      format: 'pdf' as ExportFormat,
+      label: 'PDF',
+      description: 'Documento formatado e profissional',
+      icon: FileText,
+    },
+    {
+      format: 'excel' as ExportFormat,
+      label: 'Excel',
+      description: 'Planilha com múltiplas abas',
+      icon: FileSpreadsheet,
+    },
+    {
+      format: 'word' as ExportFormat,
+      label: 'Word',
+      description: 'Documento editável (.docx)',
+      icon: FileText,
+    },
+    {
+      format: 'csv' as ExportFormat,
+      label: 'CSV',
+      description: 'Formato simples para análise',
+      icon: FileCode,
+    },
+  ]
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant={variant} size={size} disabled={isExporting} className={cn('gap-2', className)}>
+          {isExporting && exportingFormat ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              {exportingFormat.toUpperCase()}...
+            </>
+          ) : (
+            <>
+              <Download className="h-4 w-4" />
+              {showLabel && 'Exportar Relatório'}
+            </>
+          )}
+        </Button>
+      </DropdownMenuTrigger>
+
+      <DropdownMenuContent align="end" className="w-64">
+        <DropdownMenuLabel>Escolha o formato</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+
+        {exportOptions.map((option) => {
+          const Icon = option.icon
+          const isCurrentlyExporting = isExporting && exportingFormat === option.format
+
+          return (
+            <DropdownMenuItem
+              key={option.format}
+              onClick={() => handleExport(option.format)}
+              disabled={isExporting}
+              className="cursor-pointer"
+            >
+              <div className="flex items-start gap-3 w-full">
+                {isCurrentlyExporting ? (
+                  <Loader2 className="h-4 w-4 mt-0.5 animate-spin text-blue-500" />
+                ) : (
+                  <Icon className="h-4 w-4 mt-0.5" />
+                )}
+                <div className="flex-1">
+                  <div className="font-medium text-sm">{option.label}</div>
+                  <div className="text-xs text-muted-foreground">{option.description}</div>
+                </div>
+              </div>
+            </DropdownMenuItem>
+          )
+        })}
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
