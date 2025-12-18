@@ -959,7 +959,7 @@ function ServicosContent() {
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-              <a href="https://wa.me/5511999999999?text=Olá!%20Preciso%20de%20uma%20investigação%20urgente" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/5547992602673?text=Olá!%20Preciso%20de%20uma%20investigação%20urgente" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline" className="border-green-500/50 text-green-600 hover:bg-green-500 hover:text-white hover:border-green-500 min-h-[56px] h-14 px-8 text-base font-semibold">
                   <MessageCircle className="mr-2 w-5 h-5" />
                   💬 WhatsApp Direto (24h)
@@ -983,7 +983,7 @@ function ServicosContent() {
         <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white dark:bg-navy-900 border-t-2 border-green-500 shadow-2xl">
           <div className="container px-4 py-3">
             <a
-              href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20em%20investigação"
+              href="https://wa.me/5547992602673?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20em%20investigação"
               target="_blank"
               rel="noopener noreferrer"
               className="block"
