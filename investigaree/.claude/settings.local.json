@@ -9,7 +9,9 @@
       "Bash(npm run build:worker:*)",
       "Bash(npm run deploy:*)",
       "Bash(npx wrangler deploy:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }

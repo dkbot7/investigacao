@@ -1,12 +1,15 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import {
   BlogPost,
   BlogTopic,
   BlogFilters,
   BlogPagination,
   BLOG_TOPICS,
+  ContentType,
+  SkillLevel,
 } from "@/types/blog";
 import { MOCK_POSTS } from "@/data/mockPosts";
 
@@ -27,17 +30,66 @@ interface UseBlogReturn {
   refetch: () => void;
 }
 
-export function useBlog(initialFilters?: BlogFilters): UseBlogReturn {
+interface UseBlogOptions {
+  initialFilters?: BlogFilters;
+  syncWithUrl?: boolean;
+}
+
+export function useBlog(options?: UseBlogOptions): UseBlogReturn {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Ler filtros da URL se syncWithUrl=true
+  const urlFilters = useMemo(() => {
+    if (!options?.syncWithUrl) return {};
+    return {
+      topic: searchParams.get('topic') || undefined,
+      contentType: searchParams.get('type') as ContentType || undefined,
+      skillLevel: searchParams.get('level') as SkillLevel || undefined,
+      search: searchParams.get('search') || undefined,
+    };
+  }, [searchParams, options?.syncWithUrl]);
+
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [filters, setFilters] = useState<BlogFilters>(initialFilters || {});
+  const [filtersInternal, setFiltersInternal] = useState<BlogFilters>(
+    options?.syncWithUrl ? urlFilters : (options?.initialFilters || {})
+  );
   const [pagination, setPagination] = useState<BlogPagination>({
     page: 1,
     limit: 9,
     total: 0,
     totalPages: 0
   });
+
+  // Sincronizar filtros com URL
+  const setFilters = useCallback((newFilters: BlogFilters) => {
+    setFiltersInternal(newFilters);
+
+    if (options?.syncWithUrl) {
+      const params = new URLSearchParams();
+      if (newFilters.topic) params.set('topic', newFilters.topic);
+      if (newFilters.contentType) params.set('type', newFilters.contentType);
+      if (newFilters.skillLevel) params.set('level', newFilters.skillLevel);
+      if (newFilters.search) params.set('search', newFilters.search);
+
+      const newUrl = params.toString()
+        ? `${pathname}?${params.toString()}`
+        : pathname;
+
+      router.replace(newUrl, { scroll: false });
+    }
+  }, [options?.syncWithUrl, pathname, router]);
+
+  // Unificar filtros
+  const activeFilters: BlogFilters = useMemo(() => {
+    const base = options?.syncWithUrl ? urlFilters : filtersInternal;
+    return { ...filtersInternal, ...base };
+  }, [options?.syncWithUrl, urlFilters, filtersInternal]);
+
+  const filters = activeFilters;
 
   const fetchPosts = useCallback(async () => {
     setLoading(true);
