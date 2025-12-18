@@ -85,8 +85,10 @@ export async function generateStaticParams() {
   return allSlugs;
 }
 
-// ISR: Revalidar a cada 1 hora (3600 segundos)
-export const revalidate = 3600;
+// Force static generation for all posts (required for Cloudflare Workers)
+export const dynamic = 'force-static';
+export const dynamicParams = false;
+export const revalidate = false;
 
 // Metadata dinâmica
 export async function generateMetadata({
