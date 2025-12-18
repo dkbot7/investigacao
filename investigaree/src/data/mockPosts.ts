@@ -466,7 +466,7 @@ export const MOCK_POSTS: BlogPost[] = [
     slug: "dia-do-perito-criminal-4-dezembro-homenagem",
     excerpt: "Hoje celebramos o Dia Nacional do Perito Criminal, instituído pela Lei 11.654/2008. Uma homenagem a todos os profissionais que dedicam suas vidas à busca da verdade técnica e científica.",
     content: "",
-    coverImage: "/images/dia-perito-criminal.jpg",
+    coverImage: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&h=675&fit=crop",
     author: BLOG_AUTHORS[1], // Dani Kaloi
     contentType: "artigo",
     topic: BLOG_TOPICS[0], // Metodologia Forense
@@ -484,7 +484,7 @@ export const MOCK_POSTS: BlogPost[] = [
     slug: "dia-perito-criminal-homenagem-ibsen-maciel",
     excerpt: "Neste 4 de dezembro, celebramos o Dia do Perito Criminal com uma homenagem especial a Ibsen Maciel, Perito Criminal Oficial e membro do Advisory Board da Investigaree.",
     content: "",
-    coverImage: "/images/dia-perito-criminal-ibsen.png",
+    coverImage: "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=1200&h=675&fit=crop",
     author: BLOG_AUTHORS[1], // Dani Kaloi
     contentType: "artigo",
     topic: BLOG_TOPICS[0], // Metodologia Forense
