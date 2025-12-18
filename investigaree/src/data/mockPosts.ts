@@ -17,7 +17,7 @@ const BLOG_IMAGES: Record<string, string> = {
   "chain-custody": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=675&fit=crop",
 
   // OSINT e Consultas
-  "cpf-consulta": "/images/blog/consulta-cpf-fontes-publicas.jpg",
+  "cpf-consulta": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=675&fit=crop",
   "due-diligence-brasil": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1200&h=675&fit=crop",
   "gov-apis": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&h=675&fit=crop",
   "lgpd-compliance": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=675&fit=crop",
