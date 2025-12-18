@@ -12,10 +12,14 @@ import {
   Zap,
   Scale,
   Wrench,
-  TrendingUp
+  TrendingUp,
+  MessageCircle,
+  Lock,
+  CheckCircle
 } from "lucide-react";
 import { BlogPost, BlogFilters, BlogTopic, BLOG_TOPICS, POPULAR_TAGS } from "@/types/blog";
 import PopularPosts from "./PopularPosts";
+import { Button } from "@/components/ui/button";
 
 // Mapeamento de ícones para tópicos
 const topicIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -140,27 +144,41 @@ export default function BlogSidebar({
         </div>
       </div>
 
-      {/* CTA Newsletter Compacto */}
-      <div className="bg-gradient-to-br from-blue-500/10 to-navy-900/50 border border-blue-500/20 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">
-          Newsletter DFIR
-        </h3>
-        <p className="text-xs text-slate-500 dark:text-navy-400 mb-3">
-          Receba as novidades semanalmente.
+      {/* CTA WhatsApp Sidebar */}
+      <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-2 border-green-500/30 rounded-xl p-5 sticky top-24">
+        <div className="flex items-center gap-2 mb-3">
+          <div className="p-2 rounded-lg bg-green-500/20">
+            <MessageCircle className="w-5 h-5 text-green-600" />
+          </div>
+          <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
+            Precisa Investigar?
+          </h3>
+        </div>
+        <p className="text-xs text-slate-600 dark:text-navy-300 mb-4 leading-relaxed">
+          Nossa equipe responde em até 24h. Consulta inicial gratuita.
         </p>
-        <form className="space-y-2">
-          <input
-            type="email"
-            placeholder="seu@email.com"
-            className="w-full px-3 py-2 rounded-lg bg-navy-100 dark:bg-navy-900/80 border border-blue-500/20 text-sm text-slate-900 dark:text-white placeholder:text-navy-600 dark:placeholder:text-navy-500 focus:outline-none focus:border-blue-500/50 transition-colors"
-          />
-          <button
-            type="submit"
-            className="w-full px-3 py-2 bg-blue-500 hover:bg-blue-600 text-navy-950 text-sm font-medium rounded-lg transition-colors"
-          >
-            Inscrever-se
-          </button>
-        </form>
+        <Button
+          onClick={() => {
+            if (typeof window !== 'undefined' && (window as any).openWhatsAppModal) {
+              (window as any).openWhatsAppModal(
+                "Olá! Preciso de ajuda com investigação.",
+                "blog-sidebar-cta"
+              );
+            }
+          }}
+          className="w-full bg-green-600 hover:bg-green-700 text-white"
+        >
+          <MessageCircle className="w-4 h-4 mr-2" />
+          WhatsApp Direto
+        </Button>
+        <div className="flex items-center justify-center gap-3 mt-3 text-[10px] text-slate-500 dark:text-navy-400">
+          <span className="flex items-center gap-1">
+            <Lock className="w-3 h-3" /> 100% confidencial
+          </span>
+          <span className="flex items-center gap-1">
+            <CheckCircle className="w-3 h-3" /> Resposta garantida
+          </span>
+        </div>
       </div>
     </aside>
   );

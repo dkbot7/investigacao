@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Library, Mail } from "lucide-react";
 import Header from "@/components/landing/Header";
@@ -32,6 +32,24 @@ export default function BlogPage() {
 
   const [showFullFilters, setShowFullFilters] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+
+  // Expor função WhatsApp globalmente para CTAs
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as any).openWhatsAppModal = (message: string, source: string) => {
+        // Trigger WhatsApp modal via custom event
+        const event = new CustomEvent('openWhatsApp', {
+          detail: { message, source }
+        });
+        window.dispatchEvent(event);
+      };
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        delete (window as any).openWhatsAppModal;
+      }
+    };
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -193,8 +211,8 @@ export default function BlogPage() {
                 Mantenha-se à frente nas investigações digitais
               </h3>
               <p className="text-slate-600 dark:text-navy-300 mb-8 text-lg">
-                Receba semanalmente as últimas inovações em forense digital,
-                cases práticos e atualizações sobre LGPD e legislação brasileira.
+                Receba semanalmente as últimas inovações em forense digital +
+                <strong className="text-blue-500"> Checklist Gratuito de Due Diligence (PDF)</strong>
               </p>
 
               <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-6">

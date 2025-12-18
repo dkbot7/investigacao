@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Zap, Search } from "lucide-react";
+import { Zap, Search, MessageCircle, CheckCircle, Clock, ShieldCheck, Star } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 interface BlogHeroProps {
   searchValue?: string;
@@ -51,24 +52,66 @@ export default function BlogHero({ searchValue = "", onSearchChange, onSearch }:
             </form>
           </div>
 
-          {/* Trust badges inline - compactos */}
+          {/* CTA WhatsApp - Above the Fold */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mt-6 p-4 bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-2 border-green-500/30 rounded-xl"
+          >
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+              <div className="flex items-center gap-3 flex-1">
+                <div className="p-2 rounded-lg bg-green-500/20 flex-shrink-0">
+                  <MessageCircle className="w-6 h-6 text-green-600" />
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-900 dark:text-white text-sm sm:text-base">
+                    Dúvidas sobre investigação digital?
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-navy-300">
+                    Fale com especialista agora. Resposta em 24h.
+                  </p>
+                </div>
+              </div>
+              <Button
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).openWhatsAppModal) {
+                    (window as any).openWhatsAppModal(
+                      "Olá! Vim do blog e gostaria de saber mais sobre investigação.",
+                      "blog-hero"
+                    );
+                  }
+                }}
+                className="bg-green-600 hover:bg-green-700 text-white w-full sm:w-auto flex-shrink-0"
+              >
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Falar Agora
+              </Button>
+            </div>
+          </motion.div>
+
+          {/* Trust badges com social proof */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="flex flex-wrap items-center gap-4 mt-4 text-navy-700 dark:text-navy-500"
+            transition={{ delay: 0.4 }}
+            className="flex flex-wrap items-center gap-3 sm:gap-4 mt-4 text-navy-700 dark:text-navy-500"
           >
             <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-              <span className="text-xs">Atualizado semanalmente</span>
+              <CheckCircle className="w-3.5 h-3.5 text-green-500" />
+              <span className="text-xs">5.950 investigações realizadas</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-              <span className="text-xs">Especialistas DFIR</span>
+              <Clock className="w-3.5 h-3.5 text-blue-500" />
+              <span className="text-xs">Resposta em 24h</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-              <span className="text-xs">Legislação brasileira</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-blue-500" />
+              <span className="text-xs">Perito Criminal Oficial</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Star className="w-3.5 h-3.5 text-yellow-500" />
+              <span className="text-xs">4.9/5 estrelas</span>
             </div>
           </motion.div>
         </div>
