@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Library, Mail } from "lucide-react";
+import { Library, Mail, Shield, MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import {
@@ -30,7 +32,6 @@ export default function BlogPage() {
     setPage
   } = useBlog();
 
-  const [showFullFilters, setShowFullFilters] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
   // Expor função WhatsApp globalmente para CTAs
@@ -90,26 +91,9 @@ export default function BlogPage() {
               <QuickFilters
                 filters={filters}
                 onFiltersChange={setFilters}
-                onOpenFullFilters={() => setShowFullFilters(!showFullFilters)}
                 totalResults={pagination.total}
                 topics={topics}
               />
-
-              {/* Filtros expandidos */}
-              {showFullFilters && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="mt-4"
-                >
-                  <BlogFilters
-                    filters={filters}
-                    onFiltersChange={setFilters}
-                    topics={topics}
-                  />
-                </motion.div>
-              )}
             </div>
 
             {/* Layout com Sidebar */}
@@ -137,10 +121,53 @@ export default function BlogPage() {
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
                       >
                         {posts.map((post, index) => (
-                          <BlogCard key={post.id} post={post} index={index} />
+                          <React.Fragment key={post.id}>
+                            <BlogCard post={post} index={index} />
+
+                            {/* Card promocional a cada 6 posts */}
+                            {index === 5 && (
+                              <div className="sm:col-span-2 lg:col-span-3 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-navy-900 dark:to-purple-900/20 border-2 border-blue-500/20 rounded-xl p-6">
+                                <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+                                  <div className="p-3 bg-blue-500/10 rounded-xl flex-shrink-0">
+                                    <Shield className="w-8 h-8 text-blue-500" />
+                                  </div>
+                                  <div className="flex-1">
+                                    <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-1">
+                                      🔍 Precisa de Investigação Profissional?
+                                    </h3>
+                                    <p className="text-sm text-slate-600 dark:text-navy-300 mb-3">
+                                      17 serviços especializados: Due Diligence, Background Check, Perícia Forense
+                                    </p>
+                                    <div className="flex flex-wrap gap-2">
+                                      <Link href="/servicos">
+                                        <Button variant="default" size="sm">
+                                          Ver Todos os Serviços
+                                        </Button>
+                                      </Link>
+                                      <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => {
+                                          if (typeof window !== 'undefined' && (window as any).openWhatsAppModal) {
+                                            (window as any).openWhatsAppModal(
+                                              "Olá! Vim do blog e gostaria de conhecer os serviços.",
+                                              "blog-grid-promo"
+                                            );
+                                          }
+                                        }}
+                                      >
+                                        <MessageCircle className="w-4 h-4 mr-2" />
+                                        Falar Agora
+                                      </Button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </React.Fragment>
                         ))}
                       </motion.div>
                     ) : (

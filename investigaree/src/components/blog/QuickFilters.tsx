@@ -89,7 +89,7 @@ const topicIconMap: Record<string, React.ComponentType<{ className?: string }>> 
 interface QuickFiltersProps {
   filters: FilterType;
   onFiltersChange: (filters: FilterType) => void;
-  onOpenFullFilters: () => void;
+  onOpenFullFilters?: () => void;
   totalResults: number;
   topics?: BlogTopic[];
 }

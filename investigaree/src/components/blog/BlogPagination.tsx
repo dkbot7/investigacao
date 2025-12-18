@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BlogPagination as PaginationType } from "@/types/blog";
+import { cn } from "@/lib/utils";
 
 interface BlogPaginationProps {
   pagination: PaginationType;
@@ -55,7 +56,11 @@ export default function BlogPagination({ pagination, onPageChange }: BlogPaginat
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8"
+      className={cn(
+        "flex flex-col sm:flex-row items-center justify-between gap-4 py-6",
+        "lg:sticky lg:bottom-0 lg:bg-slate-50/95 lg:backdrop-blur-sm lg:border-t lg:border-blue-500/10 lg:z-10",
+        "dark:lg:bg-navy-950/95"
+      )}
     >
       {/* Info de resultados */}
       <p className="text-sm text-slate-500 dark:text-navy-400">
