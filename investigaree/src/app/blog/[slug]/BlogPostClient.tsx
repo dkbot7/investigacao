@@ -18,6 +18,7 @@ import Footer from "@/components/landing/Footer";
 import { Badge } from "@/components/ui/badge";
 import { useBlogPost, useRelatedPosts } from "@/hooks/useBlog";
 import { CONTENT_TYPES, SKILL_LEVELS } from "@/types/blog";
+import compiledPosts from "@/data/compiledPosts.json";
 
 interface BlogPostClientProps {
   slug: string;
@@ -241,32 +242,11 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="prose prose-invert prose-gold max-w-none prose-headings:text-slate-900 dark:text-white prose-p:text-slate-600 dark:text-navy-300 prose-a:text-blue-400 hover:prose-a:text-blue-300 prose-strong:text-white prose-code:text-purple-400 prose-code:bg-white dark:bg-navy-900/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded"
-              >
-                <p className="text-lg leading-relaxed">
-                  {post.excerpt}
-                </p>
-
-                <div className="my-8 p-6 rounded-xl bg-blue-500/10 border border-blue-500/20">
-                  <p className="text-blue-400 font-medium mb-2">
-                    Conteúdo completo em breve
-                  </p>
-                  <p className="text-slate-600 dark:text-navy-300 text-sm">
-                    Este artigo está sendo preparado por nossa equipe de especialistas.
-                    Enquanto isso, explore outros artigos do nosso blog.
-                  </p>
-                </div>
-
-                <h2>Sobre este tema</h2>
-                <p>
-                  A categoria <strong>{post.topic.name}</strong> aborda {post.topic.description?.toLowerCase() || "temas relevantes para investigação digital"}.
-                </p>
-
-                <h2>Para quem é este conteúdo</h2>
-                <p>
-                  Este é um conteúdo de nível <strong>{skillLevel?.name}</strong> - {skillLevel?.description?.toLowerCase() || "adequado para diferentes perfis de leitores"}.
-                </p>
-              </motion.div>
+                className="prose prose-invert prose-gold max-w-none prose-headings:text-slate-900 dark:prose-headings:text-white prose-p:text-slate-600 dark:prose-p:text-navy-300 prose-a:text-blue-500 hover:prose-a:text-blue-400 prose-strong:text-slate-900 dark:prose-strong:text-white prose-code:text-purple-600 dark:prose-code:text-purple-400 prose-code:bg-slate-100 dark:prose-code:bg-navy-900/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-900 dark:prose-pre:bg-navy-950 prose-pre:text-slate-100 prose-blockquote:border-l-blue-500 prose-blockquote:text-slate-600 dark:prose-blockquote:text-navy-300"
+                dangerouslySetInnerHTML={{
+                  __html: (compiledPosts as any)[slug]?.html || `<p class="text-lg leading-relaxed">${post.excerpt}</p><div class="my-8 p-6 rounded-xl bg-blue-500/10 border border-blue-500/20"><p class="text-blue-400 font-medium mb-2">Conteúdo completo em breve</p><p class="text-slate-600 dark:text-navy-300 text-sm">Este artigo está sendo preparado por nossa equipe de especialistas.</p></div>`
+                }}
+              />
 
               {/* Tags */}
               {post.tags.length > 0 && (

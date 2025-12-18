@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node compile-mdx-to-json.js",
     "build": "next build",
     "start": "next start",
     "build:worker": "npx @opennextjs/cloudflare build",
@@ -79,6 +80,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "firebase-tools": "^14.27.0",
+    "marked": "^13.0.3",
     "tailwindcss": "^4",
     "typescript": "^5",
     "wrangler": "^4.53.0"
