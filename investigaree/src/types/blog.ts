@@ -330,7 +330,48 @@ export interface BlogFilters {
   tag?: string;
   search?: string;
   author?: string;
+  // Ordenação
+  sortBy?: 'date' | 'views' | 'readingTime' | 'title';
+  sortOrder?: 'asc' | 'desc';
+  // Filtro por data
+  dateFrom?: string; // ISO date
+  dateTo?: string;   // ISO date
 }
+
+// ===== OPÇÕES DE ORDENAÇÃO =====
+export interface SortOption {
+  id: 'date' | 'views' | 'readingTime' | 'title';
+  name: string;
+  description: string;
+  icon: string;
+}
+
+export const SORT_OPTIONS: SortOption[] = [
+  {
+    id: 'date',
+    name: 'Mais Recentes',
+    description: 'Ordenar por data de publicação',
+    icon: 'CalendarDays'
+  },
+  {
+    id: 'views',
+    name: 'Mais Populares',
+    description: 'Ordenar por número de visualizações',
+    icon: 'TrendingUp'
+  },
+  {
+    id: 'readingTime',
+    name: 'Tempo de Leitura',
+    description: 'Ordenar por duração',
+    icon: 'Clock'
+  },
+  {
+    id: 'title',
+    name: 'Alfabética',
+    description: 'Ordenar por título',
+    icon: 'SortAsc'
+  }
+];
 
 export interface BlogPagination {
   page: number;

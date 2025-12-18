@@ -15,7 +15,8 @@ import {
   TrendingUp,
   MessageCircle,
   Lock,
-  CheckCircle
+  CheckCircle,
+  Calendar
 } from "lucide-react";
 import { BlogPost, BlogFilters, BlogTopic, BLOG_TOPICS, POPULAR_TAGS } from "@/types/blog";
 import PopularPosts from "./PopularPosts";
@@ -141,6 +142,89 @@ export default function BlogSidebar({
               </motion.button>
             );
           })}
+        </div>
+      </div>
+
+      {/* Filtro por Data */}
+      <div className="bg-white dark:bg-navy-900/50 border border-blue-500/10 rounded-xl p-5">
+        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-blue-500/10">
+          <div className="p-1.5 rounded-lg bg-blue-500/10">
+            <Calendar className="w-4 h-4 text-blue-500" />
+          </div>
+          <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Filtrar por Data</h3>
+        </div>
+
+        <div className="space-y-3">
+          <div>
+            <label className="text-xs text-slate-600 dark:text-navy-300 mb-1 block">
+              De
+            </label>
+            <input
+              type="date"
+              value={filters.dateFrom || ''}
+              onChange={(e) => onFiltersChange({ ...filters, dateFrom: e.target.value })}
+              className="w-full px-3 py-2 text-sm bg-slate-50 dark:bg-navy-800 border border-blue-500/20 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:border-blue-500/50"
+            />
+          </div>
+
+          <div>
+            <label className="text-xs text-slate-600 dark:text-navy-300 mb-1 block">
+              Até
+            </label>
+            <input
+              type="date"
+              value={filters.dateTo || ''}
+              onChange={(e) => onFiltersChange({ ...filters, dateTo: e.target.value })}
+              className="w-full px-3 py-2 text-sm bg-slate-50 dark:bg-navy-800 border border-blue-500/20 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:border-blue-500/50"
+            />
+          </div>
+
+          {/* Quick presets */}
+          <div className="pt-2 border-t border-blue-500/10">
+            <p className="text-xs text-slate-600 dark:text-navy-300 mb-2">Atalhos:</p>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => {
+                  const now = new Date();
+                  const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
+                  onFiltersChange({
+                    ...filters,
+                    dateFrom: lastMonth.toISOString().split('T')[0],
+                    dateTo: now.toISOString().split('T')[0]
+                  });
+                }}
+                className="text-xs px-2 py-1 bg-slate-100 dark:bg-navy-800 hover:bg-slate-200 dark:hover:bg-navy-700 rounded text-slate-700 dark:text-navy-200"
+              >
+                Último mês
+              </button>
+              <button
+                onClick={() => {
+                  const now = new Date();
+                  const last3Months = new Date(now.getFullYear(), now.getMonth() - 3, now.getDate());
+                  onFiltersChange({
+                    ...filters,
+                    dateFrom: last3Months.toISOString().split('T')[0],
+                    dateTo: now.toISOString().split('T')[0]
+                  });
+                }}
+                className="text-xs px-2 py-1 bg-slate-100 dark:bg-navy-800 hover:bg-slate-200 dark:hover:bg-navy-700 rounded text-slate-700 dark:text-navy-200"
+              >
+                Últimos 3 meses
+              </button>
+              <button
+                onClick={() => {
+                  onFiltersChange({
+                    ...filters,
+                    dateFrom: undefined,
+                    dateTo: undefined
+                  });
+                }}
+                className="text-xs px-2 py-1 bg-slate-100 dark:bg-navy-800 hover:bg-slate-200 dark:hover:bg-navy-700 rounded text-slate-700 dark:text-navy-200"
+              >
+                Limpar
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 

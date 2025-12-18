@@ -48,6 +48,11 @@ export function useBlog(options?: UseBlogOptions): UseBlogReturn {
       contentType: searchParams.get('type') as ContentType || undefined,
       skillLevel: searchParams.get('level') as SkillLevel || undefined,
       search: searchParams.get('search') || undefined,
+      // Ordenação e data na URL
+      sortBy: searchParams.get('sortBy') as 'date' | 'views' | 'readingTime' | 'title' || undefined,
+      sortOrder: searchParams.get('sortOrder') as 'asc' | 'desc' || undefined,
+      dateFrom: searchParams.get('dateFrom') || undefined,
+      dateTo: searchParams.get('dateTo') || undefined,
     };
   }, [searchParams, options?.syncWithUrl]);
 
@@ -74,6 +79,11 @@ export function useBlog(options?: UseBlogOptions): UseBlogReturn {
       if (newFilters.contentType) params.set('type', newFilters.contentType);
       if (newFilters.skillLevel) params.set('level', newFilters.skillLevel);
       if (newFilters.search) params.set('search', newFilters.search);
+      // Ordenação e data
+      if (newFilters.sortBy) params.set('sortBy', newFilters.sortBy);
+      if (newFilters.sortOrder) params.set('sortOrder', newFilters.sortOrder);
+      if (newFilters.dateFrom) params.set('dateFrom', newFilters.dateFrom);
+      if (newFilters.dateTo) params.set('dateTo', newFilters.dateTo);
 
       const newUrl = params.toString()
         ? `${pathname}?${params.toString()}`
@@ -157,10 +167,45 @@ export function useBlog(options?: UseBlogOptions): UseBlogReturn {
         );
       }
 
-      // Ordenar por data (mais recente primeiro)
-      filteredPosts.sort(
-        (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-      );
+      // Filtro por data
+      if (filters.dateFrom) {
+        const fromDate = new Date(filters.dateFrom).getTime();
+        filteredPosts = filteredPosts.filter(
+          post => new Date(post.publishedAt).getTime() >= fromDate
+        );
+      }
+
+      if (filters.dateTo) {
+        const toDate = new Date(filters.dateTo).getTime();
+        filteredPosts = filteredPosts.filter(
+          post => new Date(post.publishedAt).getTime() <= toDate
+        );
+      }
+
+      // Ordenação dinâmica
+      const sortBy = filters.sortBy || 'date';
+      const sortOrder = filters.sortOrder || 'desc';
+
+      filteredPosts.sort((a, b) => {
+        let comparison = 0;
+
+        switch (sortBy) {
+          case 'date':
+            comparison = new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+            break;
+          case 'views':
+            comparison = (b.views || 0) - (a.views || 0);
+            break;
+          case 'readingTime':
+            comparison = b.readingTime - a.readingTime;
+            break;
+          case 'title':
+            comparison = a.title.localeCompare(b.title, 'pt-BR');
+            break;
+        }
+
+        return sortOrder === 'asc' ? -comparison : comparison;
+      });
 
       // Paginação
       const total = filteredPosts.length;

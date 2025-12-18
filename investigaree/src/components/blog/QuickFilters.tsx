@@ -32,7 +32,11 @@ import {
   Building2,
   AlertTriangle,
   FileCheck,
-  LayoutList
+  LayoutList,
+  CalendarDays,
+  Clock,
+  SortAsc,
+  ArrowUpDown
 } from "lucide-react";
 import {
   BlogFilters as FilterType,
@@ -41,7 +45,8 @@ import {
   CONTENT_TYPES,
   SKILL_LEVELS,
   BLOG_TOPICS,
-  BlogTopic
+  BlogTopic,
+  SORT_OPTIONS
 } from "@/types/blog";
 
 // Mapeamento de ícones para tipos de conteúdo
@@ -103,9 +108,11 @@ export default function QuickFilters({
 }: QuickFiltersProps) {
   const [topicDropdownOpen, setTopicDropdownOpen] = useState(false);
   const [levelDropdownOpen, setLevelDropdownOpen] = useState(false);
+  const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
 
   const topicRef = useRef<HTMLDivElement>(null);
   const levelRef = useRef<HTMLDivElement>(null);
+  const sortRef = useRef<HTMLDivElement>(null);
 
   // Fechar dropdowns ao clicar fora
   useEffect(() => {
@@ -115,6 +122,9 @@ export default function QuickFilters({
       }
       if (levelRef.current && !levelRef.current.contains(event.target as Node)) {
         setLevelDropdownOpen(false);
+      }
+      if (sortRef.current && !sortRef.current.contains(event.target as Node)) {
+        setSortDropdownOpen(false);
       }
     };
 
@@ -346,6 +356,74 @@ export default function QuickFilters({
                           </span>
                         </div>
                         {isActive && <span className="w-2 h-2 rounded-full bg-white/80 mt-1.5" />}
+                      </button>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Dropdown de Ordenação */}
+        <div ref={sortRef} className="relative">
+          <button
+            onClick={() => {
+              setSortDropdownOpen(!sortDropdownOpen);
+              setTopicDropdownOpen(false);
+              setLevelDropdownOpen(false);
+            }}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium bg-white dark:bg-navy-900/50 hover:bg-navy-100 dark:hover:bg-navy-800/80 border border-blue-500/20 hover:border-blue-500/40 text-navy-700 dark:text-navy-100 transition-all"
+          >
+            <ArrowUpDown className="w-4 h-4" />
+            <span>
+              {SORT_OPTIONS.find(s => s.id === filters.sortBy)?.name || 'Mais Recentes'}
+            </span>
+            <ChevronDown className={`w-4 h-4 transition-transform ${sortDropdownOpen ? "rotate-180" : ""}`} />
+          </button>
+
+          <AnimatePresence>
+            {sortDropdownOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="absolute top-full right-0 mt-2 w-64 bg-white dark:bg-navy-900 border border-blue-500/20 rounded-xl shadow-2xl z-50"
+              >
+                <div className="p-2">
+                  <div className="px-3 py-2 text-xs text-navy-900 dark:text-navy-200 uppercase tracking-wider border-b border-blue-500/10 mb-1">
+                    Ordenar por
+                  </div>
+                  {SORT_OPTIONS.map((option) => {
+                    const Icon = option.icon === 'CalendarDays' ? CalendarDays :
+                                 option.icon === 'TrendingUp' ? TrendingUp :
+                                 option.icon === 'Clock' ? Clock : SortAsc;
+                    const isActive = (filters.sortBy || 'date') === option.id;
+
+                    return (
+                      <button
+                        key={option.id}
+                        onClick={() => {
+                          onFiltersChange({
+                            ...filters,
+                            sortBy: option.id,
+                            sortOrder: option.id === 'title' ? 'asc' : 'desc'
+                          });
+                          setSortDropdownOpen(false);
+                        }}
+                        className={`w-full flex items-start gap-3 px-3 py-2.5 rounded-lg transition-all ${
+                          isActive
+                            ? "bg-blue-500/10 text-blue-500 dark:text-blue-300"
+                            : "text-navy-700 dark:text-navy-100 hover:bg-navy-100 dark:hover:bg-navy-800/50"
+                        }`}
+                      >
+                        <Icon className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                        <div className="text-left">
+                          <div className="font-medium text-sm">{option.name}</div>
+                          <div className="text-xs text-navy-900 dark:text-navy-200 mt-0.5">
+                            {option.description}
+                          </div>
+                        </div>
                       </button>
                     );
                   })}
