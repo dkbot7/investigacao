@@ -1,5 +1,5 @@
 // Auto-generated - Do not edit manually
-// Generated on: 2025-12-19T15:41:58.696Z
+// Generated on: 2025-12-19T17:24:23.569Z
 
 export const compiledPosts: Record<string, { html: string; frontmatter: any }> = {
   "10-red-flags-cpf-indicam-risco-fraude": {
@@ -542,7 +542,7 @@ export const compiledPosts: Record<string, { html: string; frontmatter: any }> =
       "excerpt": "Análise baseada em dados históricos revela padrões de fraudes digitais durante dezembro em Santa Catarina. Conheça os 7 esquemas mais comuns e como se proteger.",
       "coverImage": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&h=675&fit=crop",
       "authorId": "dani-kaloi",
-      "contentType": "reportagem",
+      "contentType": "noticia",
       "topicId": "fraudes-digitais",
       "skillLevel": "iniciante",
       "tags": [
@@ -745,7 +745,7 @@ export const compiledPosts: Record<string, { html: string; frontmatter: any }> =
       "excerpt": "Após 6 anos de tramitação, PEC 76/2019 é aprovada e coloca a perícia criminal brasileira no mesmo patamar constitucional da Polícia Civil e Militar. Entenda o que muda na prática.",
       "coverImage": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=675&fit=crop",
       "authorId": "dani-kaloi",
-      "contentType": "reportagem",
+      "contentType": "noticia",
       "topicId": "metodologia-forense",
       "skillLevel": "iniciante",
       "tags": [

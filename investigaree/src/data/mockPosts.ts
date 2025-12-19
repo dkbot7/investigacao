@@ -1,7 +1,7 @@
 /**
  * Blog Posts Data - Generated from MDX files
  *
- * Generated: 2025-12-19T17:20:38.115Z
+ * Generated: 2025-12-19T17:24:16.435Z
  * Total posts: 37
  *
  * Note: Content is loaded dynamically from MDX files.
@@ -19,7 +19,7 @@ export const MOCK_POSTS: BlogPost[] = [
     content: "", // Loaded from MDX
     coverImage: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=675&fit=crop",
     author: BLOG_AUTHORS.find(a => a.id === "dani-kaloi") || BLOG_AUTHORS[0],
-    contentType: "reportagem",
+    contentType: "noticia",
     topic: BLOG_TOPICS.find(t => t.id === "metodologia-forense") || BLOG_TOPICS[0],
     skillLevel: "iniciante",
     tags: ["perícia criminal","polícia científica","PEC 76/2019","constitucionalização","segurança pública","perícia forense"],
@@ -53,7 +53,7 @@ export const MOCK_POSTS: BlogPost[] = [
     content: "", // Loaded from MDX
     coverImage: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&h=675&fit=crop",
     author: BLOG_AUTHORS.find(a => a.id === "dani-kaloi") || BLOG_AUTHORS[0],
-    contentType: "reportagem",
+    contentType: "noticia",
     topic: BLOG_TOPICS.find(t => t.id === "fraudes-digitais") || BLOG_TOPICS[0],
     skillLevel: "iniciante",
     tags: ["fraudes","santa catarina","golpes","fim de ano","proteção","pix","e-commerce"],
