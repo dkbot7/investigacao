@@ -7,7 +7,11 @@
   "workers_dev": false,
   "routes": [
     {
-      "pattern": "api.investigaree.com.br/*",
+      "pattern": "investigaree.com.br/*",
+      "zone_name": "investigaree.com.br"
+    },
+    {
+      "pattern": "www.investigaree.com.br/*",
       "zone_name": "investigaree.com.br"
     }
   ],
