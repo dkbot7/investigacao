@@ -10,7 +10,7 @@
     "build:worker": "npx @opennextjs/cloudflare build",
     "dev:worker": "npx @opennextjs/cloudflare preview",
     "preview:worker": "npm run build:worker && npm run dev:worker",
-    "deploy": "npx wrangler deploy --route \"investigaree.com.br/*\" --route \"www.investigaree.com.br/*\"",
+    "deploy": "npx wrangler pages deploy .open-next/assets --project-name investigaree --branch main",
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
