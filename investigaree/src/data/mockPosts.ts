@@ -1,8 +1,8 @@
 /**
  * Blog Posts Data - Generated from MDX files
  *
- * Generated: 2025-12-18T20:04:14.176Z
- * Total posts: 34
+ * Generated: 2025-12-19T17:20:38.115Z
+ * Total posts: 37
  *
  * Note: Content is loaded dynamically from MDX files.
  * This file only contains metadata for listing/filtering.
@@ -13,6 +13,57 @@ import { BlogPost, BLOG_TOPICS, BLOG_AUTHORS } from "@/types/blog";
 export const MOCK_POSTS: BlogPost[] = [
   {
     id: "1",
+    slug: "pec-76-2019-policias-cientificas-constituicao-federal",
+    title: "Vitória Histórica: Senado Aprova PEC que Inclui Polícias Científicas na Constituição Federal",
+    excerpt: "Após 6 anos de tramitação, PEC 76/2019 é aprovada e coloca a perícia criminal brasileira no mesmo patamar constitucional da Polícia Civil e Militar. Entenda o que muda na prática.",
+    content: "", // Loaded from MDX
+    coverImage: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=675&fit=crop",
+    author: BLOG_AUTHORS.find(a => a.id === "dani-kaloi") || BLOG_AUTHORS[0],
+    contentType: "reportagem",
+    topic: BLOG_TOPICS.find(t => t.id === "metodologia-forense") || BLOG_TOPICS[0],
+    skillLevel: "iniciante",
+    tags: ["perícia criminal","polícia científica","PEC 76/2019","constitucionalização","segurança pública","perícia forense"],
+    publishedAt: "2025-12-19T18:00:00Z",
+    readingTime: 18,
+    featured: true,
+    popular: false
+  },
+  {
+    id: "2",
+    slug: "investigacao-empresas-dados-publicos-santa-catarina",
+    title: "Como Investigar Empresas em SC Usando Apenas Dados Públicos: Guia Completo 2025",
+    excerpt: "Tutorial detalhado de como realizar due diligence completa de empresas catarinenses usando fontes públicas gratuitas. Metodologia validada por perito criminal.",
+    content: "", // Loaded from MDX
+    coverImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=675&fit=crop",
+    author: BLOG_AUTHORS.find(a => a.id === "dani-kaloi") || BLOG_AUTHORS[0],
+    contentType: "tutorial",
+    topic: BLOG_TOPICS.find(t => t.id === "osint-brasil") || BLOG_TOPICS[0],
+    skillLevel: "intermediario",
+    tags: ["santa catarina","empresas","due diligence","osint","fontes públicas","jucesc","investigação"],
+    publishedAt: "2025-12-19T14:00:00Z",
+    readingTime: 15,
+    featured: true,
+    popular: false
+  },
+  {
+    id: "3",
+    slug: "fraudes-fim-ano-santa-catarina-2025",
+    title: "Golpes de Fim de Ano em SC: Como Se Proteger da Onda de Fraudes no Verão",
+    excerpt: "Análise baseada em dados históricos revela padrões de fraudes digitais durante dezembro em Santa Catarina. Conheça os 7 esquemas mais comuns e como se proteger.",
+    content: "", // Loaded from MDX
+    coverImage: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&h=675&fit=crop",
+    author: BLOG_AUTHORS.find(a => a.id === "dani-kaloi") || BLOG_AUTHORS[0],
+    contentType: "reportagem",
+    topic: BLOG_TOPICS.find(t => t.id === "fraudes-digitais") || BLOG_TOPICS[0],
+    skillLevel: "iniciante",
+    tags: ["fraudes","santa catarina","golpes","fim de ano","proteção","pix","e-commerce"],
+    publishedAt: "2025-12-19T10:00:00Z",
+    readingTime: 12,
+    featured: true,
+    popular: false
+  },
+  {
+    id: "4",
     slug: "detran-veiculos",
     title: "DETRAN e Senatran: Como Consultar Veículos e Descobrir Patrimônio Móvel Oculto",
     excerpt: "Guia completo para consultar veículos, multas e CNH via DETRAN e Senatran - descubra patrimônio móvel não declarado e infrações que revelam padrões de comportamento.",
@@ -29,7 +80,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "2",
+    id: "5",
     slug: "cartorios-imoveis-protestos",
     title: "Cartórios: Como Consultar Imóveis e Protestos para Descobrir Patrimônio Oculto",
     excerpt: "Guia completo para consultar cartórios de registro de imóveis e protestos - descubra patrimônio não declarado, dívidas ocultas e inadimplência em investigações.",
@@ -46,7 +97,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "3",
+    id: "6",
     slug: "juntas-comerciais-empresas",
     title: "Juntas Comerciais: Como Investigar Histórico Societário e Vínculos Empresariais",
     excerpt: "Guia completo para consultar Juntas Comerciais e descobrir alterações contratuais, vínculos societários ocultos e histórico empresarial completo no Brasil.",
@@ -63,7 +114,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "4",
+    id: "7",
     slug: "inss-dataprev-beneficios",
     title: "INSS e Dataprev: Como Verificar Benefícios Sociais e Detectar Fraudes",
     excerpt: "Aprenda a consultar benefícios previdenciários, CNIS (vínculos empregatícios) e detectar fraudes em auxílios sociais - ferramentas essenciais para investigação e compliance.",
@@ -80,7 +131,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "5",
+    id: "8",
     slug: "tribunais-processos-judiciais",
     title: "Tribunais Brasileiros: Como Consultar Processos Judiciais para Due Diligence",
     excerpt: "Aprenda a consultar processos judiciais no PJe e tribunais estaduais - descubra ações, execuções e litígios que impactam sua investigação de pessoas e empresas.",
@@ -97,7 +148,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "6",
+    id: "9",
     slug: "portal-transparencia-ceis-cnep",
     title: "Portal da Transparência: Como Consultar CEIS e CNEP para Verificação de Sancionados",
     excerpt: "Guia completo sobre como consultar empresas e pessoas físicas sancionadas usando o CEIS e CNEP do Portal da Transparência - essencial para compliance e due diligence.",
@@ -114,7 +165,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "7",
+    id: "10",
     slug: "ibsen-maciel-1-lugar-policia-cientifica-para-trajetoria",
     title: "Ibsen Maciel: 1º Lugar Polícia Científica do Pará - A Trajetória de 5 Anos até a Aprovação",
     excerpt: "Em entrevista exclusiva, Ibsen Maciel conta como saiu do setor privado, passou em 1º lugar no Exército e conquistou o 1º lugar na Polícia Científica do Pará após 5 anos de dedicação.",
@@ -132,7 +183,7 @@ export const MOCK_POSTS: BlogPost[] = [
     videoUrl: "https://www.youtube.com/watch?v=9K1FW2t1cLs"
   },
   {
-    id: "8",
+    id: "11",
     slug: "dia-perito-criminal-homenagem-ibsen-maciel",
     title: "Dia do Perito Criminal: Homenagem a Ibsen Maciel, Nosso Advisory Board",
     excerpt: "Neste 4 de dezembro, celebramos o Dia do Perito Criminal com uma homenagem especial a Ibsen Maciel, uma das maiores autoridades em Perícia Forense Computacional do Brasil.",
@@ -149,7 +200,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "9",
+    id: "12",
     slug: "guia-consultar-cpf-fontes-publicas-legalmente",
     title: "Guia Completo: Como Consultar CPF em Fontes Públicas Legalmente",
     excerpt: "Entenda como funciona a verificação de CPF em fontes públicas oficiais do governo brasileiro, quais informações estão disponíveis e como se proteger contra fraudes de identidade.",
@@ -166,7 +217,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "10",
+    id: "13",
     slug: "dia-do-perito-criminal-4-dezembro-homenagem",
     title: "4 de Dezembro: Dia Nacional do Perito Criminal - Homenagem aos Guardiões da Verdade",
     excerpt: "Hoje celebramos o Dia Nacional do Perito Criminal, instituído pela Lei 11.654/2008. Uma homenagem a todos os profissionais que dedicam suas vidas à busca da verdade técnica e científica.",
@@ -183,7 +234,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "11",
+    id: "14",
     slug: "tse-candidaturas-doacoes",
     title: "TSE: Como Consultar Candidaturas, Patrimônio e Doações Eleitorais",
     excerpt: "Guia completo para consultar candidaturas, declarações de bens e doações eleitorais no Tribunal Superior Eleitoral - dados essenciais para identificar PEPs e mapear conexões políticas.",
@@ -200,7 +251,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "12",
+    id: "15",
     slug: "case-domestica-vazava-informacoes-quadrilha",
     title: "Case: Doméstica de 8 Anos Repassava Rotina da Família para Quadrilha",
     excerpt: "Como a análise de mudanças patrimoniais suspeitas revelou que funcionária de confiança estava colaborando com criminosos para planejar sequestro.",
@@ -217,7 +268,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "13",
+    id: "16",
     slug: "como-perito-criminal-analisa-evidencias-digitais",
     title: "Como um Perito Criminal Oficial Analisa Evidências Digitais",
     excerpt: "Entenda a metodologia científica utilizada por peritos criminais oficiais para garantir a validade jurídica de evidências digitais, seguindo padrões NIST e ISO/IEC 27037.",
@@ -234,7 +285,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "14",
+    id: "17",
     slug: "receita-federal-cpf-cnpj",
     title: "Receita Federal: Como Consultar CPF e CNPJ para Due Diligence",
     excerpt: "Guia completo e atualizado para consultar CPF e CNPJ na Receita Federal - a fonte primária de toda investigação de due diligence no Brasil, com novidades de 2025.",
@@ -251,7 +302,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "15",
+    id: "18",
     slug: "cadeia-custodia-digital-prova-juizo",
     title: "Cadeia de Custódia Digital: O que Valida uma Prova em Juízo",
     excerpt: "Aprenda os princípios fundamentais que tornam uma evidência digital admissível em processos judiciais, seguindo padrões NIST e ISO/IEC 27037.",
@@ -268,7 +319,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "16",
+    id: "19",
     slug: "case-predador-digital-stalker-adolescente",
     title: "Case: Predador Digital Monitorava Adolescente por 6 Meses Sem a Família Saber",
     excerpt: "Investigação digital identificou stalker que se passava por colega de escola para monitorar adolescente de 15 anos. Ação preventiva evitou encontro presencial.",
@@ -285,7 +336,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "17",
+    id: "20",
     slug: "case-operacao-castelo-cartas-pericia-forense",
     title: "Case: Operação Castelo de Cartas - Perícia Forense em Tempo Real",
     excerpt: "Bastidores de como a perícia forense digital com extração de dados in loco permitiu laudos no mesmo dia em operação contra o crime organizado.",
@@ -302,7 +353,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "18",
+    id: "21",
     slug: "tse-ceis-cnep-consultas-essenciais-due-diligence",
     title: "TSE, CEIS e CNEP: As 3 Consultas Essenciais em Due Diligence",
     excerpt: "Descubra como cruzar dados do TSE (candidaturas), CEIS (empresas sancionadas) e CNEP (pessoas sancionadas) em investigações de due diligence.",
@@ -319,7 +370,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "19",
+    id: "22",
     slug: "case-ex-socio-chantagem-contra-inteligencia",
     title: "Case: Ex-Sócio Contratou Detetives para Chantagear Família",
     excerpt: "Como a contra-inteligência empresarial identificou e documentou tentativa de chantagem por ex-sócio vingativo, permitindo ação judicial preventiva.",
@@ -336,7 +387,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "20",
+    id: "23",
     slug: "o-que-e-due-diligence-digital-porque-precisa",
     title: "O que é Due Diligence Digital e Por Que Você Precisa",
     excerpt: "Entenda como a verificação de integridade digital pode proteger seu patrimônio, investimentos e família de fraudes e golpes cada vez mais sofisticados.",
@@ -353,7 +404,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "21",
+    id: "24",
     slug: "como-verificar-funcionarios-domesticos-babas-motoristas",
     title: "Como Verificar Funcionários Domésticos: Babás, Motoristas e Cuidadores",
     excerpt: "Guia prático para fazer background check de funcionários domésticos antes de confiar sua família a eles.",
@@ -370,7 +421,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "22",
+    id: "25",
     slug: "case-investidor-evitou-prejuizo-due-diligence",
     title: "Case: Investidor Evitou Prejuízo de R$2M ao Descobrir Fraude Oculta do Fundador",
     excerpt: "Due diligence digital revelou que fundador de startup 'promissora' tinha histórico de fraude e processos não divulgados.",
@@ -387,7 +438,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "23",
+    id: "26",
     slug: "5-red-flags-relacionamentos-verificar-online",
     title: "5 Red Flags em Novos Relacionamentos que Você Pode Verificar Online",
     excerpt: "Sinais de alerta que podem ser investigados em fontes públicas antes de se comprometer em um novo relacionamento.",
@@ -404,7 +455,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "24",
+    id: "27",
     slug: "case-patrimonio-oculto-divorcio-empresas-laranjas",
     title: "Case: Mulher Descobriu R$800 Mil em Patrimônio Oculto Durante Divórcio",
     excerpt: "Investigação patrimonial forense revelou rede de empresas em nome de terceiros e imóveis não declarados pelo cônjuge.",
@@ -421,7 +472,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "25",
+    id: "28",
     slug: "background-check-socios-empreendedor-verificar",
     title: "Background Check de Sócios: O Que Todo Empreendedor Deveria Verificar",
     excerpt: "Checklist completo de verificações essenciais antes de formalizar uma sociedade empresarial.",
@@ -438,7 +489,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "26",
+    id: "29",
     slug: "como-verificar-fornecedores-evitar-fraudes",
     title: "Como Verificar Fornecedores: Evitando Fraudes na Cadeia de Suprimentos",
     excerpt: "Metodologia para due diligence de fornecedores usando fontes públicas brasileiras.",
@@ -455,7 +506,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "27",
+    id: "30",
     slug: "due-diligence-investidores-verificar-fundadores-startups",
     title: "Due Diligence para Investidores: Como Verificar Fundadores de Startups",
     excerpt: "O checklist que todo investidor anjo deveria seguir antes de investir em uma startup.",
@@ -472,7 +523,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "28",
+    id: "31",
     slug: "case-operacao-nacional-cibercrimes-34-prisoes",
     title: "Case: Operação Nacional Desarticulou Quadrilha com 34 Prisões em SP",
     excerpt: "Como a perícia forense digital do Pará contribuiu para operação interestadual de combate a crimes cibernéticos com alcance nacional.",
@@ -489,7 +540,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "29",
+    id: "32",
     slug: "ocultacao-patrimonio-divorcio-identificar-bens-escondidos",
     title: "Ocultação de Patrimônio em Divórcio: Como Identificar Bens Escondidos",
     excerpt: "Técnicas legais para descobrir bens ocultos em processos de separação usando fontes públicas.",
@@ -506,7 +557,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "30",
+    id: "33",
     slug: "empresas-laranjas-descobrir-vinculos-ocultos",
     title: "Empresas em Nome de Laranjas: Como Descobrir Vínculos Ocultos",
     excerpt: "Metodologia forense para identificar empresas registradas em nome de terceiros para ocultar patrimônio.",
@@ -523,7 +574,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "31",
+    id: "34",
     slug: "10-red-flags-cpf-indicam-risco-fraude",
     title: "10 Red Flags em CPF que Indicam Risco de Fraude",
     excerpt: "Aprenda a identificar sinais de alerta ao analisar o histórico de um CPF em fontes públicas.",
@@ -540,7 +591,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "32",
+    id: "35",
     slug: "sinais-golpe-tinder-verificar-antes-conhecer",
     title: "Sinais de Golpe do Tinder: Como Verificar Antes de Conhecer Pessoalmente",
     excerpt: "Red flags em perfis de aplicativos de relacionamento e como fazer uma verificação básica.",
@@ -557,7 +608,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "33",
+    id: "36",
     slug: "background-check-lgpd-legal-consultar-brasil",
     title: "Background Check e LGPD: O Que é Legal Consultar no Brasil",
     excerpt: "Entenda os limites legais da investigação digital e quais fontes podem ser consultadas sem violar a LGPD.",
@@ -574,7 +625,7 @@ export const MOCK_POSTS: BlogPost[] = [
     popular: false
   },
   {
-    id: "34",
+    id: "37",
     slug: "apis-publicas-governo-brasileiro-investigacao",
     title: "APIs Públicas do Governo Brasileiro para Investigação Digital",
     excerpt: "Catálogo completo de APIs oficiais do governo que podem ser usadas em due diligence e background check.",

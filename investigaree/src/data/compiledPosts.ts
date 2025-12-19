@@ -1,5 +1,5 @@
 // Auto-generated - Do not edit manually
-// Generated on: 2025-12-19T14:23:06.278Z
+// Generated on: 2025-12-19T15:41:58.696Z
 
 export const compiledPosts: Record<string, { html: string; frontmatter: any }> = {
   "10-red-flags-cpf-indicam-risco-fraude": {
