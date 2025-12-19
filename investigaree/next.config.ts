@@ -7,6 +7,13 @@ const nextConfig: NextConfig = {
   // Extend pageExtensions to include MDX
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 
+  // Image optimization configuration for Cloudflare Workers
+  images: {
+    // Use unoptimized images to avoid Cloudflare Images costs
+    // External images from Unsplash are already optimized
+    unoptimized: true,
+  },
+
   // ============================================================================
   // PERFORMANCE OPTIMIZATIONS (Agent 3 - TAREFA 3.14)
   // ============================================================================
