@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -16,18 +13,15 @@ import {
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import { Badge } from "@/components/ui/badge";
-import { useBlogPost, useRelatedPosts } from "@/hooks/useBlog";
-import { CONTENT_TYPES, SKILL_LEVELS } from "@/types/blog";
-import { compiledPosts } from "@/data/compiledPosts";
+import { CONTENT_TYPES, SKILL_LEVELS, BlogPost } from "@/types/blog";
+import { MOCK_POSTS } from "@/data/mockPosts";
 
-interface BlogPostClientProps {
-  slug: string;
+interface BlogPostLayoutProps {
+  post: BlogPost;
+  compiledHtml?: string;
 }
 
-export default function BlogPostClient({ slug }: BlogPostClientProps) {
-  const { post, loading, error } = useBlogPost(slug);
-  const relatedPosts = useRelatedPosts(post, 3);
-
+export default function BlogPostLayout({ post, compiledHtml }: BlogPostLayoutProps) {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("pt-BR", {
       day: "2-digit",
@@ -36,67 +30,16 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
     });
   };
 
-  const contentType = post ? CONTENT_TYPES.find(t => t.id === post.contentType) : null;
-  const skillLevel = post ? SKILL_LEVELS.find(l => l.id === post.skillLevel) : null;
+  const contentType = CONTENT_TYPES.find(t => t.id === post.contentType);
+  const skillLevel = SKILL_LEVELS.find(l => l.id === post.skillLevel);
 
-  // Loading state
-  if (loading) {
-    return (
-      <>
-        <Header />
-        <main className="min-h-screen bg-slate-50 dark:bg-navy-950 pt-20">
-          <div className="container mx-auto px-4 py-16">
-            <div className="max-w-3xl mx-auto">
-              {/* Skeleton */}
-              <div className="animate-pulse space-y-4">
-                <div className="h-8 bg-slate-100 dark:bg-navy-800 rounded w-3/4" />
-                <div className="h-4 bg-slate-100 dark:bg-navy-800 rounded w-1/2" />
-                <div className="h-64 bg-slate-100 dark:bg-navy-800 rounded-xl mt-8" />
-                <div className="space-y-3 mt-8">
-                  <div className="h-4 bg-slate-100 dark:bg-navy-800 rounded" />
-                  <div className="h-4 bg-slate-100 dark:bg-navy-800 rounded" />
-                  <div className="h-4 bg-slate-100 dark:bg-navy-800 rounded w-5/6" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
-        <Footer />
-      </>
-    );
-  }
-
-  // Error state
-  if (error || !post) {
-    return (
-      <>
-        <Header />
-        <main className="min-h-screen bg-slate-50 dark:bg-navy-950 pt-20">
-          <div className="container mx-auto px-4 py-16">
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-slate-100 dark:bg-navy-800 flex items-center justify-center">
-                <span className="text-4xl">404</span>
-              </div>
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                Artigo não encontrado
-              </h1>
-              <p className="text-slate-500 dark:text-navy-400 mb-8">
-                O artigo que você está procurando não existe ou foi removido.
-              </p>
-              <Link
-                href="/blog"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold rounded-xl transition-colors"
-              >
-                <ChevronLeft className="w-4 h-4" />
-                Voltar ao Blog
-              </Link>
-            </div>
-          </div>
-        </main>
-        <Footer />
-      </>
-    );
-  }
+  // Get related posts (simple logic without hooks)
+  const relatedPosts = MOCK_POSTS
+    .filter(p =>
+      p.id !== post.id &&
+      (p.topic.id === post.topic.id || p.tags.some(tag => post.tags.includes(tag)))
+    )
+    .slice(0, 3);
 
   return (
     <>
@@ -148,11 +91,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
 
           {/* Conteúdo do header */}
           <div className="container mx-auto px-4 sm:px-8 lg:px-12 py-8 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="max-w-3xl mx-auto"
-            >
+            <div className="max-w-3xl mx-auto">
               {/* Tópico */}
               <Badge
                 variant="outline"
@@ -229,7 +168,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -237,25 +176,23 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
         <section className="py-12">
           <div className="container mx-auto px-4 sm:px-8 lg:px-12">
             <div className="max-w-3xl mx-auto">
-              {/* Conteúdo placeholder - será substituído por conteúdo real */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
+              {/* Conteúdo HTML pré-compilado */}
+              <div
                 className="prose prose-invert prose-gold max-w-none prose-headings:text-slate-900 dark:prose-headings:text-white prose-p:text-slate-600 dark:prose-p:text-navy-300 prose-a:text-blue-500 hover:prose-a:text-blue-400 prose-strong:text-slate-900 dark:prose-strong:text-white prose-code:text-purple-600 dark:prose-code:text-purple-400 prose-code:bg-slate-100 dark:prose-code:bg-navy-900/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-900 dark:prose-pre:bg-navy-950 prose-pre:text-slate-100 prose-blockquote:border-l-blue-500 prose-blockquote:text-slate-600 dark:prose-blockquote:text-navy-300"
                 dangerouslySetInnerHTML={{
-                  __html: compiledPosts[slug]?.html || `<p class="text-lg leading-relaxed">${post.excerpt}</p><div class="my-8 p-6 rounded-xl bg-blue-500/10 border border-blue-500/20"><p class="text-blue-400 font-medium mb-2">Conteúdo completo em breve</p><p class="text-slate-600 dark:text-navy-300 text-sm">Este artigo está sendo preparado por nossa equipe de especialistas.</p></div>`
+                  __html: compiledHtml || `
+                    <p class="text-lg leading-relaxed">${post.excerpt}</p>
+                    <div class="my-8 p-6 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                      <p class="text-blue-400 font-medium mb-2">Conteúdo completo em breve</p>
+                      <p class="text-slate-600 dark:text-navy-300 text-sm">Este artigo está sendo preparado por nossa equipe de especialistas.</p>
+                    </div>
+                  `
                 }}
               />
 
               {/* Tags */}
               {post.tags.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="mt-8 pt-8 border-t border-blue-500/10"
-                >
+                <div className="mt-8 pt-8 border-t border-blue-500/10">
                   <div className="flex items-center gap-2 mb-3">
                     <Tag className="w-4 h-4 text-slate-900 dark:text-navy-500" />
                     <p className="text-sm text-slate-900 dark:text-navy-500">Tags:</p>
@@ -271,16 +208,11 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                       </Link>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               )}
 
               {/* Autor */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="mt-8 p-6 rounded-xl bg-white dark:bg-navy-900/50 border border-blue-500/10"
-              >
+              <div className="mt-8 p-6 rounded-xl bg-white dark:bg-navy-900/50 border border-blue-500/10">
                 <div className="flex items-start gap-4">
                   {post.author.avatar ? (
                     <Image
@@ -305,7 +237,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                     )}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -320,14 +252,8 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {relatedPosts.map((relatedPost, index) => (
-                    <motion.article
-                      key={relatedPost.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="group"
-                    >
+                  {relatedPosts.map((relatedPost) => (
+                    <article key={relatedPost.id} className="group">
                       <Link href={`/blog/${relatedPost.slug}`}>
                         <div className="relative h-40 rounded-xl overflow-hidden mb-4">
                           <Image
@@ -356,7 +282,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                           {relatedPost.readingTime} min
                         </p>
                       </Link>
-                    </motion.article>
+                    </article>
                   ))}
                 </div>
 

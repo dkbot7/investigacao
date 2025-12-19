@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import BlogContent from './BlogContent';
 import { BLOG_TOPICS, CONTENT_TYPES, SKILL_LEVELS } from '@/types/blog';
+import { MOCK_POSTS } from '@/data/mockPosts';
 
 export async function generateMetadata({
   searchParams
@@ -81,5 +82,6 @@ export default async function BlogPage({
     search: params.search,
   };
 
-  return <BlogContent initialFilters={initialFilters} />;
+  // Server-side fetch for Cloudflare Workers compatibility
+  return <BlogContent initialFilters={initialFilters} initialPosts={MOCK_POSTS} />;
 }

@@ -16,14 +16,15 @@ import {
   QuickFilters,
   BlogSidebar
 } from "@/components/blog";
-import { useBlog } from "@/hooks/useBlog";
-import { BlogFilters } from "@/types/blog";
+import { useBlogSimple } from "@/hooks/useBlogSimple";
+import { BlogFilters, BlogPost } from "@/types/blog";
 
 interface BlogContentProps {
   initialFilters?: Partial<BlogFilters>;
+  initialPosts?: BlogPost[];
 }
 
-export default function BlogContent({ initialFilters }: BlogContentProps) {
+export default function BlogContent({ initialFilters, initialPosts }: BlogContentProps) {
   const {
     posts,
     featuredPosts,
@@ -35,7 +36,8 @@ export default function BlogContent({ initialFilters }: BlogContentProps) {
     filters,
     setFilters,
     setPage
-  } = useBlog({
+  } = useBlogSimple({
+    allPosts: initialPosts || [],
     initialFilters: initialFilters as BlogFilters,
     syncWithUrl: true
   });

@@ -4,7 +4,7 @@ const matter = require('gray-matter');
 const { marked } = require('marked');
 
 const blogDir = path.join(__dirname, 'content', 'blog');
-const outputFile = path.join(__dirname, 'src', 'data', 'compiledPosts.json');
+const outputFile = path.join(__dirname, 'src', 'data', 'compiledPosts.ts');
 
 console.log('🔨 Compiling MDX files to HTML...\n');
 
@@ -44,8 +44,16 @@ function compileMDX() {
     }
   }
 
-  // Write to JSON file
-  fs.writeFileSync(outputFile, JSON.stringify(compiledPosts, null, 2), 'utf-8');
+  // Write to TypeScript file
+  const tsContent = `// Auto-generated - Do not edit manually
+// Generated on: ${new Date().toISOString()}
+
+export const compiledPosts: Record<string, { html: string; frontmatter: any }> = ${JSON.stringify(compiledPosts, null, 2)};
+
+export default compiledPosts;
+`;
+
+  fs.writeFileSync(outputFile, tsContent, 'utf-8');
 
   console.log(`\n✅ Compiled ${Object.keys(compiledPosts).length} posts to ${outputFile}`);
   console.log(`📦 File size: ${(fs.statSync(outputFile).size / 1024 / 1024).toFixed(2)} MB`);

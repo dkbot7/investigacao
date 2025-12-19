@@ -15,7 +15,8 @@
       "Bash(dir /b /ad srcappblog)",
       "Bash(ls:*)",
       "Bash(done)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "WebFetch(domain:investigaree.com.br)"
     ]
   }
 }

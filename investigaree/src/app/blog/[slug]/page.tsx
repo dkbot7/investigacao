@@ -1,94 +1,15 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { compileMDX } from "next-mdx-remote/rsc";
-import remarkGfm from "remark-gfm";
-import rehypeSlug from "rehype-slug";
-import rehypeHighlight from "rehype-highlight";
+import { MOCK_POSTS } from "@/data/mockPosts";
+import { compiledPosts } from "@/data/compiledPosts";
+import BlogPostLayout from "./BlogPostLayout";
 
-import { getAllBlogSlugs } from "@/data/blogPosts";
-import BlogPostClient from "./BlogPostClient";
-import BlogPostMDX from "./BlogPostMDX";
-
-// MDX Components
-import {
-  Callout,
-  CodeBlock,
-  KeyStat,
-  ImageGallery,
-  FileLocation,
-  Timeline,
-  ComparisonTable,
-  VideoEmbed,
-  DownloadCard,
-  Quiz,
-  LeadCaptureCard,
-  CTABanner,
-  SeriesNavigation,
-  SeriesCard,
-} from "@/components/mdx";
-
-const POSTS_DIR = path.join(process.cwd(), "content", "blog");
-
-const mdxComponents = {
-  Callout,
-  CodeBlock,
-  KeyStat,
-  ImageGallery,
-  FileLocation,
-  Timeline,
-  ComparisonTable,
-  VideoEmbed,
-  DownloadCard,
-  Quiz,
-  LeadCaptureCard,
-  CTABanner,
-  SeriesNavigation,
-  SeriesCard,
-};
-
-// Verifica se existe arquivo MDX para um slug
-function getMDXFilePath(slug: string): string | null {
-  const filePath = path.join(POSTS_DIR, `${slug}.mdx`);
-  if (fs.existsSync(filePath)) {
-    return filePath;
-  }
-  return null;
-}
-
-// Lista todos os slugs MDX
-function getAllMDXSlugs(): { slug: string }[] {
-  if (!fs.existsSync(POSTS_DIR)) {
-    return [];
-  }
-  return fs
-    .readdirSync(POSTS_DIR)
-    .filter((file) => file.endsWith(".mdx"))
-    .map((file) => ({ slug: file.replace(/\.mdx$/, "") }));
-}
-
-// Gera os parâmetros estáticos para todas as páginas de blog
-export async function generateStaticParams() {
-  const mockSlugs = getAllBlogSlugs();
-  const mdxSlugs = getAllMDXSlugs();
-
-  // Combina slugs únicos de mock e MDX
-  const allSlugs = [...mockSlugs];
-  for (const mdxSlug of mdxSlugs) {
-    if (!allSlugs.some(s => s.slug === mdxSlug.slug)) {
-      allSlugs.push(mdxSlug);
-    }
-  }
-
-  return allSlugs;
-}
-
-// Force static generation for all posts (required for Cloudflare Workers)
-export const dynamic = 'force-static';
-export const dynamicParams = false;
-export const revalidate = false;
+// DYNAMIC RENDERING for Cloudflare Workers compatibility
+// IMPORTANTE: Não usar fs.* em Cloudflare Workers - usar apenas dados pré-compilados
+// Removido generateStaticParams() para forçar renderização dinâmica completa
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+export const revalidate = 0;
 
 // Metadata dinâmica
 export async function generateMetadata({
@@ -98,20 +19,19 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
 
-  // Tenta carregar metadados do MDX
-  const mdxPath = getMDXFilePath(slug);
-  if (mdxPath) {
-    const source = fs.readFileSync(mdxPath, "utf-8");
-    const { data } = matter(source);
+  // Busca metadados do post compilado
+  const post = MOCK_POSTS.find(p => p.slug === slug);
+
+  if (post) {
     return {
-      title: `${data.title} - Investigaree Blog`,
-      description: data.excerpt,
+      title: `${post.title} - Investigaree Blog`,
+      description: post.excerpt,
       openGraph: {
-        title: data.title,
-        description: data.excerpt,
-        images: data.coverImage ? [data.coverImage] : [],
+        title: post.title,
+        description: post.excerpt,
+        images: post.coverImage ? [post.coverImage] : [],
         type: "article",
-        publishedTime: data.publishedAt,
+        publishedTime: post.publishedAt,
       },
     };
   }
@@ -122,7 +42,9 @@ export async function generateMetadata({
   };
 }
 
-// Página do post
+// Página do post (SERVER COMPONENT)
+// IMPORTANTE: Não usar fs.* ou compileMDX em Cloudflare Workers
+// Todo conteúdo MDX já foi pré-compilado para HTML em compiledPosts.ts
 export default async function BlogPostPage({
   params,
 }: {
@@ -130,64 +52,15 @@ export default async function BlogPostPage({
 }) {
   const { slug } = await params;
 
-  // Verifica se existe arquivo MDX
-  const mdxPath = getMDXFilePath(slug);
+  // Busca o post nos dados pré-compilados
+  const post = MOCK_POSTS.find(p => p.slug === slug);
+  const compiledPost = compiledPosts[slug];
 
-  if (mdxPath) {
-    try {
-      const source = fs.readFileSync(mdxPath, "utf-8");
-      const { data, content: rawContent } = matter(source);
-
-      // Compila o MDX
-      const { content } = await compileMDX({
-        source: rawContent,
-        components: mdxComponents,
-        options: {
-          parseFrontmatter: false,
-          mdxOptions: {
-            remarkPlugins: [remarkGfm],
-            rehypePlugins: [rehypeSlug, rehypeHighlight],
-          },
-        },
-      });
-
-      // Calcula tempo de leitura
-      const wordsPerMinute = 200;
-      const words = rawContent.trim().split(/\s+/).length;
-      const readingTime = Math.ceil(words / wordsPerMinute);
-
-      // Cast frontmatter to expected type
-      const frontmatter = {
-        title: data.title as string,
-        excerpt: data.excerpt as string,
-        coverImage: data.coverImage as string,
-        authorId: data.authorId as string,
-        contentType: data.contentType as string,
-        topicId: data.topicId as string,
-        skillLevel: data.skillLevel as string,
-        tags: (data.tags || []) as string[],
-        publishedAt: data.publishedAt as string,
-        updatedAt: data.updatedAt as string | undefined,
-        readingTime: (data.readingTime || readingTime) as number,
-        featured: data.featured as boolean | undefined,
-        videoUrl: data.videoUrl as string | undefined,
-        podcastUrl: data.podcastUrl as string | undefined,
-        downloadUrl: data.downloadUrl as string | undefined,
-      };
-
-      return (
-        <BlogPostMDX
-          slug={slug}
-          frontmatter={frontmatter}
-          content={content}
-        />
-      );
-    } catch (error) {
-      console.error(`Error compiling MDX for ${slug}:`, error);
-      // Fall back to client component
-    }
+  // 404 se não encontrado
+  if (!post) {
+    notFound();
   }
 
-  // Use o componente cliente para posts mock
-  return <BlogPostClient slug={slug} />;
+  // Renderiza o layout com o HTML pré-compilado
+  return <BlogPostLayout post={post} compiledHtml={compiledPost?.html} />;
 }
