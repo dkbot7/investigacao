@@ -2,7 +2,7 @@
 title: "Como Investigar Empresas em SC Usando Apenas Dados Públicos: Guia Completo 2025"
 excerpt: "Tutorial detalhado de como realizar due diligence completa de empresas catarinenses usando fontes públicas gratuitas. Metodologia validada por perito criminal."
 coverImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=675&fit=crop"
-authorId: "ibsen-maciel"
+authorId: "dani-kaloi"
 contentType: "tutorial"
 topicId: "osint-brasil"
 skillLevel: "intermediario"
@@ -19,104 +19,74 @@ featured: true
 readingTime: 15
 ---
 
-*Por Ibsen Maciel, Perito Criminal Oficial*
-
 Você está prestes a fechar uma sociedade com uma empresa de Blumenau. Ou contratar um fornecedor de Joinville. Ou investir em uma startup de Florianópolis. Antes de assinar qualquer documento, existe uma pergunta que pode economizar milhões: **você realmente conhece essa empresa?**
 
-Este tutorial mostra o passo a passo completo de como investigar empresas em Santa Catarina usando exclusivamente fontes públicas e gratuitas — a mesma metodologia que utilizo em perícias oficiais.
+Este tutorial mostra o passo a passo completo de como investigar empresas em Santa Catarina usando exclusivamente fontes públicas e gratuitas — a mesma metodologia utilizada em perícias oficiais.
 
 <Callout type="info" title="Sobre Este Tutorial">
-  Este é um guia técnico baseado em 15 anos de experiência em investigação forense. Os procedimentos aqui descritos são os mesmos utilizados em investigações oficiais e aceitos como evidência em processos judiciais.
+  Este é um guia técnico baseado em experiência em investigação forense. Os procedimentos aqui descritos são utilizados em investigações oficiais. **Nota LGPD:** Casos mencionados são composições ilustrativas baseadas em situações reais, com dados alterados para proteção de identidade. Estatísticas são baseadas em tendências observadas.
 </Callout>
 
 # Por Que Verificar Empresas em SC
 
 Santa Catarina tem o **4º maior PIB per capita do Brasil** e é polo de inovação, indústria e tecnologia. Mas essa prosperidade também atrai golpistas e empresas fantasma.
 
-**Números que justificam a verificação:**
-
 <KeyStat
-  value="12.847"
-  label="empresas baixadas em SC em 2024"
-  source="JUCESC, 2024"
+  value="Milhares"
+  label="de empresas encerram atividades anualmente em SC"
+  source="Baseado em dados históricos JUCESC"
   type="warning"
-  description="Média de 35 empresas fechando por dia no estado"
+  description="Alta rotatividade empresarial requer due diligence"
 />
 
-- **23% das empresas abertas em SC fecham no primeiro ano**
-- **R$ 487 milhões** em dívidas trabalhistas não pagas (empresas baixadas irregularmente)
-- **1.234 empresas catarinenses** na lista do CEIS (impedidas de contratar com governo)
-- **89 casos** de empresas laranjas descobertos pela Receita Federal em SC em 2024
+**Números que justificam a verificação:**
+- **Cerca de 1 em cada 4 empresas** fecha nos primeiros anos de operação
+- **Milhões de reais** em dívidas trabalhistas não pagas anualmente
+- **Centenas de empresas catarinenses** em listas restritivas
+- **Casos frequentes** de empresas de fachada descobertos em SC
 
-# Estudo de Caso: A Devida Diligência que Salvou R$ 2,3 Milhões
+# Estudo de Caso Ilustrativo
 
-Antes de mergulharmos no tutorial, veja um caso real:
-
-**Contexto:** Empresa de tecnologia de Florianópolis estava prestes a fundir com startup de Joinville avaliada em R$ 8 milhões. Due diligence superficial não revelou problemas.
-
-**O que a investigação profunda encontrou:**
+**Contexto:** Empresa de tecnologia estava prestes a fundir com startup catarinense em negócio de alto valor.
 
 <Timeline
-  title="Descobertas da Investigação"
+  title="O Que a Investigação Revelou"
   items={[
     {
       date: "Dia 1",
-      title: "CNPJ e Quadro Societário (Receita Federal)",
-      description: "Empresa tinha 3 sócios. Verificação revelou que um deles tinha 14 outras empresas, 12 baixadas irregularmente.",
+      title: "Verificação de sócios (Receita Federal)",
+      description: "Sócio tinha 14 outras empresas, 12 baixadas irregularmente.",
       completed: true
     },
     {
       date: "Dia 2",
       title: "Histórico na JUCESC",
-      description: "Alterações contratuais frequentes. Sócio majoritário mudou 5 vezes em 2 anos — red flag de empresa laranja.",
+      description: "Sócio majoritário mudou 5 vezes em 2 anos — red flag de empresa laranja.",
       completed: true
     },
     {
       date: "Dia 3",
-      title: "Processos Judiciais (TJSC)",
-      description: "37 processos trabalhistas contra a empresa e sócios. Valor total: R$ 2,3 milhões.",
+      title: "Processos no TJSC",
+      description: "37 processos trabalhistas. Valor total: R$ 2,3 milhões.",
       completed: true
     },
     {
       date: "Dia 4",
-      title: "Listas Restritivas",
-      description: "Sócio minoritário estava no CEIS por fraude em licitação municipal há 3 anos.",
-      completed: true
-    },
-    {
-      date: "Dia 5",
-      title: "Cruzamento de Endereços",
-      description: "Endereço da sede era o mesmo de outras 47 empresas. Escritório virtual.",
+      title: "Listas restritivas",
+      description: "Sócio estava no CEIS por fraude em licitação municipal.",
       completed: true
     }
   ]}
 />
 
-**Resultado:** Fusão cancelada. Seis meses depois, a startup foi alvo de operação da PF por fraude em incentivos fiscais. Os sócios da empresa de Florianópolis economizaram R$ 2,3 milhões + exposição criminal.
+**Resultado:** Fusão cancelada. A verificação evitou prejuízo milionário e possível exposição criminal.
 
-# Metodologia: As 7 Camadas de Verificação
+# As 7 Camadas de Verificação
 
-A verificação profissional de empresas segue camadas progressivas, da superfície ao profundo:
+## CAMADA 1: Identidade Básica
 
-```
-Camada 1: Identidade Básica (CNPJ, razão social, situação cadastral)
-Camada 2: Estrutura Societária (sócios, capital, participações)
-Camada 3: Histórico Societário (alterações, mudanças de sócios)
-Camada 4: Saúde Financeira Indireta (protestos, dívidas, recuperação judicial)
-Camada 5: Processos Judiciais (trabalhistas, cíveis, criminais)
-Camada 6: Listas Restritivas (CEIS, CNEP, CADIN)
-Camada 7: Rede de Relacionamentos (empresas vinculadas, endereços compartilhados)
-```
-
-Vamos detalhar cada camada com exemplos práticos em Santa Catarina.
-
----
-
-# CAMADA 1: Identidade Básica da Empresa
-
-## Fonte: Receita Federal
-
-**URL:** `servicos.receita.fazenda.gov.br/servicos/cnpjreva/cnpjreva_solicitacao.asp`
+**Fonte: Receita Federal**
+URL: `servicos.receita.fazenda.gov.br`
 
 **O que verificar:**
 
@@ -125,629 +95,212 @@ Vamos detalhar cada camada com exemplos práticos em Santa Catarina.
   headers={["Item", "O Que Observar", "Red Flag"]}
   items={[
     { feature: "Situação Cadastral", values: ["ATIVA", "BAIXADA, SUSPENSA, INAPTA"] },
-    { feature: "Data de Abertura", values: ["Coerente com tempo de mercado alegado", "Empresa muito recente para contratos grandes"] },
-    { feature: "Natureza Jurídica", values: ["Compatível com atividade", "Incompatível (ex: MEI com 50 funcionários)"] },
-    { feature: "CNAE Principal", values: ["Relacionado ao negócio proposto", "Atividade declarada diferente da realizada"] },
-    { feature: "Capital Social", values: ["Compatível com porte", "R$ 1.000 para empresa que alega faturar milhões"] },
+    { feature: "Capital Social", values: ["Compatível com porte", "R$ 1.000 para empresa 'grande'"] },
+    { feature: "Data de Abertura", values: ["Coerente com tempo alegado", "Muito recente para contratos grandes"] },
     { feature: "Endereço", values: ["Comercial verificável", "Residencial ou inexistente"] }
   ]}
 />
 
-**Exemplo prático:**
+**Fonte: JUCESC (Junta Comercial de SC)**
+URL: `www.jucesc.sc.gov.br`
 
-Empresa XYZ Tecnologia LTDA de Joinville:
-- CNPJ: 12.345.678/0001-99
-- Data abertura: 15/03/2024 (menos de 1 ano)
-- Capital social: R$ 1.000
-- CNAE: 6201-5/00 (Desenvolvimento de software)
-- Endereço: Rua XV de Novembro, 123 - Centro
-
-**Red flags encontrados:**
-- Capital social de R$ 1.000 para empresa que alega ter 20 desenvolvedores
-- Menos de 1 ano de existência mas propõe contrato de 3 anos
-
-## Fonte: JUCESC (Junta Comercial de SC)
-
-**URL:** `www.jucesc.sc.gov.br`
-
-A JUCESC mantém registro de todas as empresas de Santa Catarina. Aqui você consegue:
-
-**Documentos disponíveis:**
-- Contrato social original
-- Alterações contratuais
-- Atas de reuniões
-- Histórico de modificações
-
-**Como acessar:**
-1. Acesse jucesc.sc.gov.br
-2. Clique em "Certidões e Documentos"
-3. Informe o CNPJ ou razão social
-4. Documentos podem ser pagos (em torno de R$ 20-50)
-
-**O que analisar no contrato social:**
+Aqui você consegue o contrato social completo e histórico de alterações.
 
 <Callout type="tip" title="Dica de Perito">
-  O contrato social revela muito mais que nomes de sócios. Cláusulas de saída, distribuição de lucros, poderes de cada sócio e endereço real da sede são informações críticas.
+  O contrato social revela muito mais que nomes de sócios. Cláusulas de saída, distribuição de lucros e endereço real da sede são informações críticas.
 </Callout>
 
----
+## CAMADA 2: Estrutura Societária
 
-# CAMADA 2: Estrutura Societária
-
-## Mapeando os Sócios
-
-**Objetivo:** Saber quem realmente controla a empresa e se esses sócios têm "histórico limpo".
-
-**Onde encontrar:**
-- Receita Federal (consulta CNPJ) — lista sócios e participação
-- JUCESC — contrato social com qualificação completa
-
-**Informações a coletar de cada sócio:**
-
-```
-- Nome completo
-- CPF
-- Percentual de participação
-- Qualificação (administrador, sócio, etc.)
-- Endereço declarado
-- Outras empresas onde é sócio
-```
-
-**Verificação cruzada essencial:**
+**Objetivo:** Saber quem realmente controla a empresa.
 
 Pegue o CPF de cada sócio e consulte:
-
-1. **Receita Federal** — quantas empresas tem no nome dele
+1. **Receita Federal** — quantas empresas tem no nome
 2. **Jusbrasil** — processos judiciais
-3. **TSE** — se é candidato ou doador político (importante para contratos públicos)
-4. **Portal da Transparência** — se é PEP (Pessoa Exposta Politicamente)
+3. **TSE** — se é candidato ou PEP
+4. **Portal da Transparência** — listas restritivas
 
-**Caso real documentado:**
+**Caso ilustrativo:**
+Empresa de construção tinha como sócio majoritário uma pessoa sem recursos financeiros aparentes, mas com capital subscrito expressivo. **Red flag clara:** Pessoa sem recursos controlando empresa de médio porte = empresa laranja.
 
-Empresa de Construção de Itajaí tinha como sócio majoritário (51%) um "laranja" — pessoa de baixa renda que emprestou o CPF. Descobrimos porque:
-- Endereço do sócio: comunidade sem saneamento
-- Profissão declarada: catador de recicláveis
-- Capital subscrito: R$ 500.000 (impossível para seu perfil)
-- Outras empresas: sócio em 8 empresas de ramos diferentes simultaneamente
-
-**Red flag clara:** Pessoa sem recursos controlando empresa de médio porte = empresa laranja.
-
----
-
-# CAMADA 3: Histórico Societário
-
-## Analisando Mudanças ao Longo do Tempo
+## CAMADA 3: Histórico Societário
 
 Empresas legítimas têm histórico estável. Empresas problemáticas mudam sócios frequentemente.
-
-**Onde encontrar:** JUCESC (alterações contratuais)
-
-**O que buscar:**
 
 <ComparisonTable
   title="Padrões de Alterações Societárias"
   headers={["Padrão", "Empresa Legítima", "Empresa Suspeita"]}
   items={[
-    { feature: "Mudança de sócios", values: ["Rara (1-2x em 10 anos)", "Frequente (5+ vezes em 2 anos)"] },
-    { feature: "Mudança de endereço", values: ["Justificada (crescimento)", "Múltipla sem justificativa"] },
-    { feature: "Mudança de CNAE", values: ["Evolução natural do negócio", "Mudanças radicais de ramo"] },
-    { feature: "Alteração de capital", values: ["Aumentos progressivos", "Reduções súbitas ou valores simbólicos"] }
+    { feature: "Mudança de sócios", values: ["Rara (1-2x em 10 anos)", "Frequente (5+ em 2 anos)"] },
+    { feature: "Alteração de capital", values: ["Aumentos progressivos", "Reduções súbitas"] },
+    { feature: "Mudança de CNAE", values: ["Evolução natural", "Mudanças radicais de ramo"] }
   ]}
 />
 
-**Exemplo de análise temporal:**
+## CAMADA 4: Saúde Financeira
 
-```
-Empresa ABC LTDA - Linha do Tempo (JUCESC):
-
-2019: Abertura - João Silva (80%) + Maria Santos (20%) - Capital R$ 50.000
-2019: Alteração 1 - Capital aumenta para R$ 200.000
-2020: Alteração 2 - Maria Santos sai / Pedro Souza entra (20%)
-2020: Alteração 3 - Mudança de endereço (Florianópolis → Palhoça)
-2021: Alteração 4 - João Silva sai / Carlos Lima entra (80%)
-2021: Alteração 5 - Capital reduz para R$ 10.000 (!!)
-2022: Alteração 6 - Pedro Souza sai / Ana Costa entra
-2023: Alteração 7 - Mudança de CNAE (construção → consultoria)
-2024: Alteração 8 - Carlos Lima sai / Novo "laranja" entra
-```
+**Protestos em Cartório**
+URL: `www.oficialdeprotesto.org.br`
 
 **Interpretação:**
-- 8 alterações em 5 anos = red flag
-- Redução brutal de capital (R$ 200k → R$ 10k) = problema financeiro grave ou manobra
-- Mudança completa de sócios = possível transferência para "laranjas"
-- Mudança radical de CNAE = empresa usada para outros fins
-
----
-
-# CAMADA 4: Saúde Financeira Indireta
-
-Como empresas não divulgam balanço publicamente (exceto S/A), precisamos de **indicadores indiretos** de saúde financeira.
-
-## 4.1 Protestos em Cartório
-
-**Fonte:** Central de Serviços de Protesto SC
-**URL:** `www.oficialdeprotesto.org.br` ou cartórios locais
-
-Protesto indica que a empresa não pagou título (cheque, nota promissória, duplicata).
-
-**Como consultar:**
-- Alguns cartórios disponibilizam online
-- Pode ser necessário ir presencialmente
-- Custo: gratuito a R$ 20
-
-**Interpretação:**
-
-<KeyStat
-  value="1+ protestos"
-  label="nos últimos 12 meses"
-  source="Análise forense"
-  type="warning"
-  description="Indica dificuldade financeira ou má-fé"
-/>
-
-**Detalhe importante:** Verifique o **valor** e a **quantidade**:
 - 1 protesto de R$ 500 = pode ser esquecimento
-- 10 protestos totalizando R$ 200 mil = empresa em crise grave
+- 10 protestos de R$ 200 mil = empresa em crise grave
 
-## 4.2 Recuperação Judicial
+**Recuperação Judicial (TJSC)**
+URL: `busca.tjsc.jus.br`
 
-**Fonte:** Tribunal de Justiça de Santa Catarina (TJSC)
-**URL:** `busca.tjsc.jus.br`
+Empresa em recuperação judicial = risco altíssimo.
 
-Empresa em recuperação judicial está protegida de credores mas em situação financeira crítica.
+## CAMADA 5: Processos Judiciais
 
-**Como buscar:**
-1. Acesse busca.tjsc.jus.br
-2. Busque pelo nome da empresa ou CNPJ
-3. Filtre por "Recuperação Judicial"
-
-**Red flag:** Empresa em recuperação judicial ou com pedido de falência = risco altíssimo.
-
-## 4.3 Execuções Fiscais
-
-**Fonte:** TJSC (processos de execução fiscal)
-
-Execução fiscal = empresa deve impostos (INSS, FGTS, ISS, ICMS).
-
-**Gravidade:**
-- Dívidas pequenas (até R$ 10 mil) = comum, risco baixo
-- Dívidas grandes (acima de R$ 100 mil) = risco médio-alto
-- Múltiplas execuções = empresa não paga tributos regularmente
-
----
-
-# CAMADA 5: Processos Judiciais
-
-## 5.1 Tribunal de Justiça de SC (TJSC)
-
-**URL:** `busca.tjsc.jus.br`
-
-**Tipos de processo a buscar:**
+**TJSC (Tribunal de Justiça de SC)**
+URL: `busca.tjsc.jus.br`
 
 <ComparisonTable
   title="Tipos de Processo e Gravidade"
   headers={["Tipo", "O Que Significa", "Nível de Risco"]}
   items={[
-    { feature: "Trabalhista", values: ["Funcionário processando por direitos não pagos", "Médio a Alto"] },
-    { feature: "Cível (fornecedor)", values: ["Fornecedor cobrando dívida", "Médio"] },
-    { feature: "Cível (consumidor)", values: ["Cliente insatisfeito processando", "Baixo a Médio"] },
-    { feature: "Execução Fiscal", values: ["Governo cobrando impostos não pagos", "Alto"] },
-    { feature: "Criminal", values: ["Sócio ou empresa acusada de crime", "Crítico"] }
+    { feature: "Trabalhista", values: ["Funcionário cobrando direitos", "Médio a Alto"] },
+    { feature: "Execução Fiscal", values: ["Governo cobrando impostos", "Alto"] },
+    { feature: "Criminal", values: ["Acusação de crime", "Crítico"] }
   ]}
 />
 
-**Como interpretar o volume de processos:**
+**TRT-SC (12ª Região)**
+URL: `www.trt12.jus.br`
 
-Pequena empresa (até 10 funcionários):
-- 0-2 processos = normal
-- 3-5 processos = atenção
-- 6+ processos = red flag
+Processos trabalhistas revelam como a empresa trata funcionários.
 
-Média empresa (10-50 funcionários):
-- 0-5 processos = normal
-- 6-15 processos = atenção
-- 16+ processos = red flag
+**Caso ilustrativo:**
+Empresa de call center tinha volume expressivo de processos trabalhistas ativos e passivo de milhões de reais. Faliu poucos meses depois com dívida ainda maior.
 
-**IMPORTANTE:** Não é só a quantidade, mas a **natureza**:
-- 10 processos de trânsito < 1 processo trabalhista coletivo
-- 1 processo criminal pesa mais que 50 processos cíveis
+## CAMADA 6: Listas Restritivas
 
-## 5.2 Tribunal Regional do Trabalho (TRT-SC)
-
-**URL:** `www.trt12.jus.br` (12ª Região - Santa Catarina)
-
-Processos trabalhistas revelam:
-- Como a empresa trata funcionários
-- Se paga direitos trabalhistas
-- Se tem passivo trabalhista oculto
-
-**Caso emblemático:**
-
-Empresa de call center de Florianópolis tinha:
-- 127 processos trabalhistas ativos
-- Passivo estimado: R$ 4,2 milhões
-- Padrão: não pagava horas extras, FGTS e férias
-
-Investidor que fez due diligence descobriu e recuou. Empresa faliu 8 meses depois com dívida trabalhista de R$ 6,7 milhões.
-
----
-
-# CAMADA 6: Listas Restritivas
-
-## 6.1 CEIS (Cadastro de Empresas Inidôneas e Suspensas)
-
-**URL:** `portaldatransparencia.gov.br/sancoes/ceis`
-
-Empresas no CEIS estão **impedidas de contratar com o governo**.
-
-**Motivos de inclusão:**
-- Fraude em licitação
-- Superfaturamento
-- Cartel
-- Corrupção ativa
-- Inexecução contratual grave
-
-**Verificação:**
-1. Acesse o portal
-2. Busque pelo CNPJ ou razão social
-3. Verifique também **CPF dos sócios** (sócios sancionados)
+**CEIS (Empresas Inidôneas)**
+URL: `portaldatransparencia.gov.br/sancoes/ceis`
 
 <Callout type="danger" title="Red Flag Crítico">
   Empresa ou sócio no CEIS = evitar parceria a todo custo. Indica histórico comprovado de conduta ilícita em contratos públicos.
 </Callout>
 
-## 6.2 CNEP (Cadastro Nacional de Empresas Punidas)
+**CNEP (Empresas Punidas - Lei Anticorrupção)**
+URL: `portaldatransparencia.gov.br/sancoes/cnep`
 
-**URL:** `portaldatransparencia.gov.br/sancoes/cnep`
+**CADIN (Devedores da União)**
+URL: `www.cadin.fazenda.gov.br`
 
-Empresas punidas pela **Lei Anticorrupção (12.846/2013)**.
+## CAMADA 7: Rede de Relacionamentos
 
-**Gravidade:** Altíssima. Empresas no CNEP cometeram atos como:
-- Corrupção ativa
-- Fraude em licitação
-- Desvio de recursos públicos
+**Mapeamento de Endereços Compartilhados**
 
-## 6.3 CADIN (Cadastro Informativo de Créditos não Quitados)
+Interpretação:
+- 1-3 empresas no endereço = normal
+- 4-10 = coworking possível
+- 11-30 = escritório virtual
+- 31+ = **endereço de fachada**
 
-**URL:** `www.cadin.fazenda.gov.br`
+**Caso ilustrativo:** Endereço no litoral catarinense tinha centenas de empresas registradas. Era escritório de contabilidade que "emprestava" endereço para empresas fantasma.
 
-Lista devedores da União (impostos federais, multas, contribuições).
-
-**Impacto:** Empresa no CADIN não consegue:
-- Certidão negativa de débitos
-- Empréstimos bancários com garantia pública
-- Participar de licitações
-
----
-
-# CAMADA 7: Rede de Relacionamentos
-
-Esta é a camada mais avançada: **mapear a rede de empresas e pessoas conectadas**.
-
-## Técnica: Mapeamento de Endereços Compartilhados
-
-**Objetivo:** Descobrir se o endereço da empresa é "sede real" ou "escritório virtual compartilhado por dezenas de CNPJs".
-
-**Como fazer:**
-
-1. Pegue o endereço completo da empresa (CEP, número, complemento)
-2. Google: `"Rua Tal, 123, Sala 45, Florianópolis" CNPJ`
-3. Consulte em buscadores de CNPJ quantas empresas têm aquele endereço
-
-**Interpretação:**
+# Checklist Completo
 
 ```
-1-3 empresas no mesmo endereço = normal (pode ser prédio comercial)
-4-10 empresas = possível escritório compartilhado (coworking)
-11-30 empresas = provavelmente escritório virtual
-31+ empresas = definitivamente endereço de fachada
+EMPRESA: ________________________ CNPJ: ________________________
+
+□ CAMADA 1: Identidade Básica
+  □ Situação cadastral (Receita Federal)
+  □ Capital social compatível
+  □ Endereço verificado
+
+□ CAMADA 2: Estrutura Societária
+  □ Lista de sócios obtida
+  □ CPF de cada sócio verificado
+  □ Outras empresas mapeadas
+
+□ CAMADA 3: Histórico
+  □ Contrato social analisado
+  □ Alterações verificadas
+
+□ CAMADA 4: Saúde Financeira
+  □ Protestos consultados
+  □ Sem recuperação judicial
+
+□ CAMADA 5: Processos
+  □ TJSC consultado
+  □ TRT-SC consultado
+
+□ CAMADA 6: Listas
+  □ CEIS verificado
+  □ CNEP verificado
+  □ CADIN verificado
+
+□ CAMADA 7: Rede
+  □ Endereço verificado
+  □ Empresas vinculadas analisadas
+
+RESULTADO:
+□ APROVADO - Risco baixo
+□ APROVADO COM RESSALVAS - Risco médio
+□ REPROVADO - Risco alto
 ```
 
-**Caso real:** Endereço em Balneário Camboriú tinha **247 empresas** registradas. Era um escritório de contabilidade que "emprestava" endereço para empresas fantasma.
+# Caso Completo: Due Diligence Ilustrativo
 
-## Técnica: Mapeamento de Sócios Comuns
+**Empresa-Alvo:** [Nome fictício para fins didáticos]
+**Contexto:** Fornecedor exclusivo para contrato de alto valor
 
-**Objetivo:** Descobrir se os sócios controlam outras empresas e qual a saúde delas.
+**Descobertas:**
 
-**Passo a passo:**
-
-1. Liste os CPFs de todos os sócios
-2. Para cada CPF, consulte na Receita Federal quantas empresas tem
-3. Para cada empresa encontrada, repita as camadas 1-6
-
-**Exemplo visual:**
-
-```
-João Silva (CPF 123.456.789-00)
-│
-├── Empresa A (ativa, sem processos) ✓
-├── Empresa B (baixada irregularmente) ⚠
-├── Empresa C (em recuperação judicial) ⚠⚠
-├── Empresa D (sócio no CEIS) ⚠⚠⚠
-└── Empresa E (alvo, que você está verificando) ❓
-```
-
-**Interpretação:** Se João Silva tem múltiplas empresas problemáticas, a Empresa E (alvo da verificação) tem risco elevado.
-
----
-
-# Ferramentas e Recursos para SC
-
-## Fontes Públicas Essenciais
-
-<ComparisonTable
-  title="Checklist de Fontes - Santa Catarina"
-  headers={["Fonte", "URL", "O Que Consultar"]}
+<Timeline
+  title="Red Flags Encontrados"
   items={[
-    { feature: "Receita Federal", values: ["servicos.receita.fazenda.gov.br", "CNPJ, situação, sócios"] },
-    { feature: "JUCESC", values: ["jucesc.sc.gov.br", "Contrato social, alterações"] },
-    { feature: "TJSC", values: ["busca.tjsc.jus.br", "Processos cíveis, criminais, execuções"] },
-    { feature: "TRT-SC (12ª Região)", values: ["trt12.jus.br", "Processos trabalhistas"] },
-    { feature: "Portal da Transparência", values: ["portaldatransparencia.gov.br", "CEIS, CNEP, sanções"] },
-    { feature: "CADIN", values: ["cadin.fazenda.gov.br", "Dívidas com União"] },
-    { feature: "TSE", values: ["tse.jus.br", "Doações, candidaturas, PEPs"] },
-    { feature: "Jusbrasil", values: ["jusbrasil.com.br", "Busca agregada de processos"] }
+    {
+      date: "Camada 1",
+      title: "Capital social R$ 10.000",
+      description: "Muito baixo para porte alegado.",
+      completed: true
+    },
+    {
+      date: "Camada 2",
+      title: "Sócio com 3 empresas baixadas",
+      description: "Padrão de abandonar empresas com dívidas.",
+      completed: true
+    },
+    {
+      date: "Camada 4",
+      title: "R$ 26.800 em protestos ativos",
+      description: "Não paga fornecedores regularmente.",
+      completed: true
+    },
+    {
+      date: "Camada 6",
+      title: "R$ 63.000 em dívidas (CADIN)",
+      description: "Sem certidão negativa.",
+      completed: true
+    },
+    {
+      date: "Camada 7",
+      title: "38 empresas no mesmo endereço",
+      description: "Escritório virtual, não é sede real.",
+      completed: true
+    }
   ]}
 />
 
-## Checklist Completo de Verificação
+**DECISÃO: ❌ NÃO CONTRATAR**
 
-Para facilitar, aqui está o checklist que uso em investigações oficiais:
+**Desfecho ilustrativo:**
+A verificação evitou contratação de fornecedor com múltiplos red flags que indicavam alto risco de inadimplência e fraude.
 
-```markdown
-EMPRESA: __________________________________________
-CNPJ: __________________________________________
+# Como o Investigaree Automatiza
 
-[ ] CAMADA 1: Identidade Básica
-    [ ] Situação cadastral (Receita Federal)
-    [ ] Data de abertura coerente
-    [ ] Capital social compatível com porte
-    [ ] CNAE compatível com atividade
-    [ ] Endereço verificado (Google Maps)
-
-[ ] CAMADA 2: Estrutura Societária
-    [ ] Lista de sócios obtida
-    [ ] CPF de cada sócio verificado
-    [ ] Outras empresas dos sócios mapeadas
-    [ ] Nenhum sócio é PEP não declarado
-
-[ ] CAMADA 3: Histórico (JUCESC)
-    [ ] Contrato social analisado
-    [ ] Alterações contratuais verificadas
-    [ ] Padrão de mudanças é normal
-
-[ ] CAMADA 4: Saúde Financeira
-    [ ] Consulta de protestos realizada
-    [ ] Sem recuperação judicial
-    [ ] Execuções fiscais verificadas
-
-[ ] CAMADA 5: Processos Judiciais
-    [ ] TJSC consultado (empresa e sócios)
-    [ ] TRT-SC consultado
-    [ ] Volume/natureza aceitáveis
-
-[ ] CAMADA 6: Listas Restritivas
-    [ ] CEIS verificado (empresa + sócios)
-    [ ] CNEP verificado
-    [ ] CADIN verificado
-    [ ] Nenhuma sanção ativa
-
-[ ] CAMADA 7: Rede de Relacionamentos
-    [ ] Endereço verificado (não é compartilhado)
-    [ ] Empresas vinculadas aos sócios analisadas
-    [ ] Sem red flags em empresas relacionadas
-
-RESULTADO FINAL:
-[ ] APROVADO - Risco baixo
-[ ] APROVADO COM RESSALVAS - Risco médio, monitorar
-[ ] REPROVADO - Risco alto, evitar parceria
-```
-
----
-
-# Quando Contratar Investigação Profissional
-
-Nem sempre uma verificação manual é suficiente. Contrate investigação profissional quando:
-
-**1. Valor do Negócio é Alto**
-- Contrato acima de R$ 500 mil
-- Fusão ou aquisição
-- Sociedade com divisão de patrimônio
-
-**2. Riscos São Elevados**
-- Empresa do setor de construção (alto risco trabalhista)
-- Fornecedor exclusivo (dependência total)
-- Parceiro internacional
-
-**3. Sinais de Alerta Foram Encontrados**
-- Sócio com histórico duvidoso
-- Endereço compartilhado por muitas empresas
-- Processos em volume preocupante
-
-**4. Prazo é Curto**
-- Você não tem tempo para verificar 7 camadas manualmente
-- Decisão precisa ser tomada em dias
-
-**5. Necessita Evidência Legal**
-- Relatório será anexado a contrato
-- Pode haver disputa judicial futura
-- Compliance exige documentação auditável
+O Investigaree integra todas essas fontes em uma única plataforma:
 
 <CTABanner
   type="professional"
   title="Due Diligence Profissional em SC"
-  description="Investigação completa de empresas catarinenses com metodologia forense validada por perito criminal. Relatório aceito como evidência."
-  features={["40+ fontes públicas e privadas", "Entrega em 48-72h", "Assinado por perito criminal", "Validade jurídica"]}
+  description="Investigação completa de empresas catarinenses com metodologia forense. Relatório aceito como evidência."
+  features={["40+ fontes públicas", "Entrega em 48-72h", "Assinado por perito", "Validade jurídica"]}
 />
-
----
-
-# Estudo de Caso Final: Due Diligence Completa
-
-Vamos aplicar toda a metodologia em um caso real (dados alterados):
-
-**Cenário:**
-Empresa de tecnologia de Joinville quer contratar a "TechSolutions SC LTDA" de Florianópolis como fornecedor exclusivo de infraestrutura cloud. Contrato de 3 anos, R$ 1,2 milhão.
-
-**CAMADA 1: Identidade**
-- CNPJ: 99.888.777/0001-66
-- Razão Social: TechSolutions Santa Catarina LTDA
-- Situação: ATIVA
-- Data abertura: 12/06/2022 (2,5 anos)
-- Capital: R$ 10.000
-- CNAE: 6311-9/00 (Tratamento de dados)
-- Endereço: Av. Beira-Mar Norte, 500, Sala 1203, Florianópolis
-
-✅ Situação ativa
-⚠ Capital baixo para o porte alegado
-⚠ Empresa relativamente nova (menos de 3 anos)
-
-**CAMADA 2: Sócios**
-
-Sócio 1: Carlos Eduardo Mendes (CPF 111.222.333-44) - 70%
-Sócio 2: Ana Paula Costa (CPF 555.666.777-88) - 30%
-
-Verificação do Sócio 1 (Carlos):
-- Outras empresas: 6 CNPJs
-  - TechSolutions SC (alvo) - ATIVA
-  - DataCloud Ltda - BAIXADA (2021)
-  - CloudMaster - BAIXADA (2020)
-  - InfoTech Brasil - ATIVA
-  - Digital Services - BAIXADA (2019)
-  - Inovação Digital - ATIVA
-
-⚠⚠ **Red flag:** 3 empresas baixadas em 3 anos consecutivos
-
-**CAMADA 3: Histórico (JUCESC)**
-
-Alterações contratuais:
-- 12/06/2022: Abertura - Carlos (100%)
-- 03/11/2022: Ana Paula entra como sócia (30%)
-- 15/04/2023: Mudança de endereço (Sala 803 → Sala 1203)
-- 22/01/2024: Capital aumenta R$ 5.000 → R$ 10.000
-
-✅ Alterações parecem normais
-⚠ Mudança de sala no mesmo prédio (possível upgrade ou fuga de dívida)
-
-**CAMADA 4: Saúde Financeira**
-
-Protestos: 3 encontrados
-- R$ 8.500 (fornecedor de TI)
-- R$ 12.000 (empresa de telecom)
-- R$ 6.300 (locação)
-- Total: R$ 26.800
-
-⚠⚠ **Red flag crítico:** R$ 26 mil em protestos recentes (últimos 6 meses)
-
-Recuperação judicial: NÃO
-
-Execuções fiscais: 2 encontradas
-- R$ 45.000 (INSS)
-- R$ 18.000 (ISS Florianópolis)
-
-⚠⚠ **Red flag:** Não paga tributos regularmente
-
-**CAMADA 5: Processos**
-
-TJSC: 4 processos encontrados
-1. Ação trabalhista - ex-funcionário cobrando R$ 32 mil (ativa)
-2. Ação trabalhista - ex-funcionário cobrando R$ 28 mil (ativa)
-3. Ação de cobrança - fornecedor cobrando R$ 67 mil (ativa)
-4. Execução fiscal - INSS (ativa)
-
-TRT-SC: 2 processos (já contados acima)
-
-⚠⚠ **Red flag:** Padrão de não pagamento (trabalhistas + fornecedores)
-
-**CAMADA 6: Listas Restritivas**
-
-CEIS: NÃO consta
-CNEP: NÃO consta
-CADIN: **SIM - Consta com R$ 63.000 em dívidas**
-
-⚠⚠ **Red flag:** Empresa no CADIN (sem certidão negativa)
-
-**CAMADA 7: Rede**
-
-Endereço (Av. Beira-Mar Norte, 500, Sala 1203):
-- Google: Encontradas **38 empresas** no mesmo endereço
-
-⚠⚠⚠ **Red flag crítico:** Escritório virtual, não é sede real
-
-Empresas do sócio Carlos:
-- DataCloud: BAIXADA com R$ 120 mil em dívidas trabalhistas
-- CloudMaster: BAIXADA com processos de fraude
-- Digital Services: BAIXADA irregularmente
-
-⚠⚠⚠ **Red flag crítico:** Histórico de abandonar empresas com dívidas
-
----
-
-**RESULTADO FINAL DA VERIFICAÇÃO:**
-
-```
-EMPRESA: TechSolutions Santa Catarina LTDA
-CNPJ: 99.888.777/0001-66
-DECISÃO: ❌ REPROVADO - NÃO CONTRATAR
-
-RESUMO DE RED FLAGS:
-• Sócio com 3 empresas baixadas irregularmente
-• R$ 26.800 em protestos ativos
-• R$ 63.000 em dívidas com União (CADIN)
-• 4 processos ativos (trabalhistas + cobrança)
-• 38 empresas no mesmo endereço (escritório virtual)
-• Padrão de não pagar fornecedores e funcionários
-
-RISCO: ALTÍSSIMO
-PROBABILIDADE DE CALOTE: 85%+
-
-RECOMENDAÇÃO: Buscar fornecedor alternativo
-```
-
-**Desfecho real (6 meses depois):**
-A TechSolutions foi alvo de busca e apreensão por fraude. Sócio Carlos foi denunciado por estelionato. Empresa teve falência decretada. Clientes que contrataram perderam dinheiro e ficaram sem serviço.
-
----
-
-# Conclusão: Verificação é Investimento, Não Custo
-
-Este tutorial mostrou que é possível realizar due diligence robusta usando apenas fontes públicas gratuitas. O processo leva tempo (8-15 horas para verificação completa), mas pode **economizar milhões** e **evitar processos judiciais**.
-
-**Tempo investido vs. Risco evitado:**
-
-<ComparisonTable
-  title="ROI da Verificação"
-  headers={["Investimento", "Retorno", "Exemplo"]}
-  items={[
-    { feature: "10 horas de pesquisa manual", values: ["Evitar R$ 500 mil em calote", "Fornecedor inadimplente descoberto"] },
-    { feature: "R$ 2.000 em relatório profissional", values: ["Evitar R$ 2,3 milhões em fusão", "Startup fraudulenta identificada"] },
-    { feature: "R$ 500 em certidões", values: ["Evitar R$ 120 mil em dívidas ocultas", "Sócio com empresa laranja"] }
-  ]}
-/>
-
-**Lembre-se:** A pergunta não é "posso me dar ao luxo de verificar?", mas sim **"posso me dar ao luxo de NÃO verificar?"**.
-
----
-
-<Callout type="success" title="Checklist Final: Leve Com Você">
-  Salve este checklist e use antes de fechar qualquer negócio em SC:
-
-  ✓ CNPJ ativo na Receita Federal
-  ✓ Capital social compatível
-  ✓ Sócios verificados (sem empresas baixadas irregularmente)
-  ✓ Sem protestos ou protestos justificados
-  ✓ Sem processos críticos (trabalhistas em massa, fraude)
-  ✓ Fora do CEIS, CNEP e CADIN
-  ✓ Endereço real verificado (não é escritório virtual)
-  ✓ Empresas vinculadas aos sócios estão saudáveis
-
-  Se marcar **TODOS** os itens, risco é baixo. Se falhar em 3+, risco é alto.
-</Callout>
-
----
-
-**Sobre o autor:**
-*Ibsen Maciel é Perito Criminal Oficial há 15 anos, especializado em investigação forense digital e financeira. Atuou em operações de combate à corrupção e crimes financeiros em Santa Catarina. Este tutorial é baseado em metodologia validada em centenas de investigações oficiais.*
 
 ---
 
@@ -757,29 +310,29 @@ Este tutorial mostrou que é possível realizar due diligence robusta usando ape
   title="Verificação de Empresas em SC"
   questions={[
     {
-      question: "Empresa tem capital social de R$ 5.000 mas alega ter 30 funcionários e faturar R$ 2 milhões/ano. Qual a conclusão?",
+      question: "Empresa tem capital de R$ 5.000 mas alega ter 30 funcionários e faturar R$ 2 milhões/ano. Qual a conclusão?",
       options: [
         "Normal, capital social não importa",
-        "Red flag - capital incompatível com porte alegado",
+        "Red flag - capital incompatível com porte",
         "Positivo - empresa eficiente",
-        "Neutro - precisa verificar outras camadas"
+        "Precisa verificar outras camadas"
       ],
       correctIndex: 1,
-      explanation: "Capital social muito baixo para porte alegado é red flag clássico. Empresa com 30 funcionários deveria ter capital proporcional à operação. Pode indicar subdeclaração ou empresa de fachada."
+      explanation: "Capital social muito baixo para porte alegado é red flag clássico. Pode indicar subdeclaração ou empresa de fachada."
     },
     {
       question: "Sócio tem 5 empresas baixadas nos últimos 3 anos. O que isso indica?",
       options: [
-        "Empreendedor de sucesso com múltiplos negócios",
-        "Red flag grave - possível padrão de abrir/abandonar empresas",
+        "Empreendedor de sucesso",
+        "Red flag grave - padrão de abrir/abandonar empresas",
         "Normal em tempos de crise",
-        "Nada, é irrelevante"
+        "Irrelevante"
       ],
       correctIndex: 1,
-      explanation: "Múltiplas empresas baixadas em curto período, especialmente se irregulares, é red flag grave. Pode indicar padrão de criar empresas, gerar dívidas e abandonar."
+      explanation: "Múltiplas empresas baixadas em curto período é red flag grave. Pode indicar padrão de criar empresas, gerar dívidas e abandonar."
     },
     {
-      question: "Encontrado 47 empresas no mesmo endereço comercial. Significa:",
+      question: "47 empresas no mesmo endereço. Significa:",
       options: [
         "Prédio comercial grande",
         "Coworking moderno",
@@ -787,28 +340,7 @@ Este tutorial mostrou que é possível realizar due diligence robusta usando ape
         "Polo de tecnologia"
       ],
       correctIndex: 2,
-      explanation: "47 empresas no mesmo endereço indica escritório virtual / endereço de fachada. Empresas não têm sede real lá. Red flag para verificar se empresa opera de fato."
-    },
-    {
-      question: "Empresa está no CEIS. Pode contratar como fornecedor particular?",
-      options: [
-        "Sim, CEIS só impede contrato com governo",
-        "Não, é proibido por lei",
-        "Sim, mas é péssima ideia - indica fraude comprovada",
-        "Depende do valor do contrato"
-      ],
-      correctIndex: 2,
-      explanation: "Legalmente pode (CEIS só impede contrato público), mas é péssima ideia. Empresa no CEIS tem fraude/corrupção COMPROVADA. Risco altíssimo de problemas futuros."
+      explanation: "47 empresas no mesmo endereço indica escritório virtual / endereço de fachada. Empresas não têm sede real lá."
     }
   ]}
 />
-
----
-
-**Recursos adicionais:**
-
-- [Download do Checklist PDF](/recursos/checklist-verificacao-empresas-sc.pdf)
-- [Template de Relatório de Due Diligence](/recursos/template-relatorio-dd.docx)
-- [Planilha de Mapeamento de Sócios](/recursos/planilha-mapeamento-socios.xlsx)
-
-**Ficou com dúvidas?** Entre em contato através do [formulário de contato](/contato) ou WhatsApp.
