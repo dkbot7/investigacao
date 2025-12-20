@@ -69,7 +69,7 @@ export const PACOTES_SERVICOS: PacoteServico[] = [
     icon: ShieldCheck,
     servicos: ['pericia-forense-validada', 'extracao-forense-dispositivos', 'cadeia-custodia-certificada', 'seguranca-residencial'],
     caracteristicas: [
-      'Metodologia CELLEBRITE/XRY/AXIOM',
+      'Extração com Avilla Forensics e indexação com IPED',
       'Validação por Perito Criminal Oficial (Ibsen Maciel)',
       'Cadeia de custódia certificada',
       'Recuperação de dados deletados',

@@ -16,7 +16,10 @@
       "Bash(ls:*)",
       "Bash(done)",
       "Bash(node:*)",
-      "WebFetch(domain:investigaree.com.br)"
+      "WebFetch(domain:investigaree.com.br)",
+      "Bash(npx wrangler:*)",
+      "Bash(timeout /t 3)"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true
 }

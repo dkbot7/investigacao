@@ -48,15 +48,141 @@ interface Servico {
   categoria?: "protecao" | "pericia" | "personalizado";
 }
 
-// TODOS OS SERVIÇOS COMBINADOS
-const TODOS_SERVICOS: Servico[] = [
-  // PROTEÇÃO & REMOÇÃO (11 serviços)
+// SERVIÇOS ORGANIZADOS POR SEGMENTO
+
+// B2C - PARA VOCÊ (Pessoa Física)
+const SERVICOS_B2C: Servico[] = [
+  // REMOÇÃO - 3 NÍVEIS (CONSOLIDADOS)
+  {
+    id: "remocao-emergencial",
+    nome: "Remoção Emergencial",
+    descricao: "Remoção imediata de fotos íntimas e conteúdo sensível em 24-72h",
+    icon: Trash2,
+    destaque: true,
+    caracteristicas: [
+      "Atendimento emergencial 24-72h",
+      "Fotos íntimas e conteúdo sensível",
+      "Solicitação baseada na LGPD",
+      "Orientação jurídica incluída",
+      "Acompanhamento do processo",
+      "Contenção rápida da circulação"
+    ],
+    preco: "A partir de R$ 800",
+    prazo: "24-72h",
+    idealPara: "Vítimas de vazamento ou exposição",
+    badge: "EMERGENCIAL 24H",
+    badgeColor: "red",
+    categoria: "protecao"
+  },
+  {
+    id: "remocao-direcionada",
+    nome: "Remoção Direcionada",
+    descricao: "Remoção de conteúdos em Google, Jusbrasil, redes sociais e links específicos",
+    icon: Globe,
+    destaque: true,
+    caracteristicas: [
+      "Desindexação Google (processos antigos)",
+      "Remoção Jusbrasil e Escavador",
+      "Redes sociais (Facebook, Instagram, Twitter)",
+      "Links ofensivos e fotos não autorizadas",
+      "Fundamentação LGPD completa",
+      "Relatório de progresso",
+      "Proteção de CPF e dados pessoais"
+    ],
+    preco: "A partir de R$ 1.500",
+    prazo: "15-30 dias",
+    idealPara: "Proteção de reputação e privacidade",
+    badge: "MAIS POPULAR",
+    badgeColor: "blue",
+    categoria: "protecao"
+  },
+  {
+    id: "varredura-completa",
+    nome: "Varredura Reputacional Completa",
+    descricao: "Análise reputacional 360° + remoção em massa + monitoramento contínuo",
+    icon: Search,
+    destaque: true,
+    caracteristicas: [
+      "Varredura completa reputacional",
+      "Análise em 100+ fontes públicas",
+      "Estratégia de contenção customizada",
+      "Remoção em massa coordenada",
+      "Plano de recuperação de imagem",
+      "Monitoramento contínuo (90 dias)",
+      "Relatório executivo completo"
+    ],
+    preco: "A partir de R$ 3.500",
+    prazo: "30-45 dias",
+    idealPara: "Crises graves de reputação",
+    badge: "PACOTE PREMIUM",
+    badgeColor: "purple",
+    categoria: "protecao"
+  },
+  // PERÍCIA FORENSE
+  {
+    id: "pericia-forense-validada",
+    nome: "Investigação Forense Validada",
+    descricao: "Relatório forense validado por Perito Criminal Oficial",
+    icon: ShieldCheck,
+    destaque: true,
+    caracteristicas: [
+      "Metodologia forense certificada",
+      "Assinado por Perito Criminal Oficial",
+      "Cadeia de custódia garantida",
+      "Fontes públicas (OSINT)",
+      "Validade judicial",
+      "Conformidade total com LGPD"
+    ],
+    preco: "Sob consulta",
+    prazo: "10-15 dias",
+    idealPara: "Processos judiciais e defesas",
+    badge: "PERITO OFICIAL",
+    badgeColor: "gold",
+    categoria: "pericia"
+  },
+  {
+    id: "extracao-forense-dispositivos",
+    nome: "Extração Forense de Celular",
+    descricao: "Extração forense com Avilla Forensics e indexação com IPED para dispositivo próprio",
+    icon: Smartphone,
+    caracteristicas: [
+      "Extração com Avilla Forensics",
+      "Indexação e análise com IPED",
+      "Recuperação de dados deletados",
+      "Cadeia de custódia oficial",
+      "Validação por Perito Oficial",
+      "Relatório técnico completo"
+    ],
+    preco: "Sob consulta",
+    prazo: "7-10 dias",
+    idealPara: "Provas de fraude e processos",
+    badge: "FORENSE",
+    badgeColor: "gold",
+    categoria: "pericia"
+  },
+  {
+    id: "cadeia-custodia-certificada",
+    nome: "Guardar Provas Digitais",
+    descricao: "Preservação legal de evidências com cadeia de custódia certificada",
+    icon: Lock,
+    caracteristicas: [
+      "Coleta profissional de evidências",
+      "Preservação com integridade",
+      "Validação por Perito Criminal",
+      "Documentação completa",
+      "Validade judicial garantida"
+    ],
+    preco: "Sob consulta",
+    prazo: "5-7 dias",
+    idealPara: "Provas críticas para processos",
+    categoria: "pericia"
+  },
+  // SEGURANÇA
   {
     id: "seguranca-residencial",
     nome: "Segurança Residencial",
     descricao: "Câmeras Full HD 360° com monitoramento 24h e instalação profissional",
     icon: Video,
-    destaque: true,
     caracteristicas: [
       "Câmera Full HD 1080p visão 360°",
       "Auto Tracking de movimento",
@@ -65,175 +191,14 @@ const TODOS_SERVICOS: Servico[] = [
       "Áudio bidirecional",
       "Instalação profissional inclusa"
     ],
-    preco: "Sob consulta",
+    preco: "A partir de R$ 1.500",
     prazo: "48-72h",
-    idealPara: "Residências e empresas",
+    idealPara: "Residências e pequenos comércios",
     badge: "INSTALAÇÃO INCLUSA",
     badgeColor: "blue",
     categoria: "protecao"
   },
-  {
-    id: "apaga-meu-ex",
-    nome: "Apagar Fotos Íntimas",
-    descricao: "Remoção emergencial de conteúdo íntimo compartilhado sem consentimento",
-    icon: Trash2,
-    destaque: true,
-    caracteristicas: [
-      "Atendimento emergencial prioritário",
-      "Solicitação baseada na LGPD",
-      "Acompanhamento do processo",
-      "Orientação jurídica incluída"
-    ],
-    preco: "Sob consulta",
-    prazo: "Imediato",
-    idealPara: "Vítimas de vazamento",
-    badge: "EMERGENCIAL",
-    badgeColor: "red",
-    categoria: "protecao"
-  },
-  {
-    id: "cpf-blindado",
-    nome: "Tirar CPF da Internet",
-    descricao: "Remoção de dados pessoais de 47 sites comerciais conforme LGPD",
-    icon: Shield,
-    caracteristicas: [
-      "Solicitação em 47 sites catalogados",
-      "Proteção contra exposição indevida",
-      "Relatório de progresso",
-      "Conformidade LGPD total"
-    ],
-    preco: "Sob consulta",
-    prazo: "30 dias",
-    idealPara: "Proteção de privacidade",
-    categoria: "protecao"
-  },
-  {
-    id: "espiao-exposto",
-    nome: "Denunciar Perfil Falso",
-    descricao: "Identificação e denúncia de perfis falsos usados para perseguição",
-    icon: UserX,
-    caracteristicas: [
-      "Análise técnica do perfil",
-      "Coleta de evidências públicas",
-      "Denúncia em massa",
-      "Relatório jurídico"
-    ],
-    preco: "Sob consulta",
-    prazo: "5-7 dias",
-    idealPara: "Vítimas de perseguição",
-    categoria: "protecao"
-  },
-  {
-    id: "google-limpo",
-    nome: "Tirar Nome do Google",
-    descricao: "Desindexação de processos antigos e conteúdos negativos do Google",
-    icon: Globe,
-    caracteristicas: [
-      "Listagem de links ofensivos",
-      "Solicitação via Google oficial",
-      "Fundamentação LGPD",
-      "Proteção reputacional"
-    ],
-    preco: "Sob consulta",
-    prazo: "15-30 dias",
-    idealPara: "Proteção de reputação",
-    categoria: "protecao"
-  },
-  {
-    id: "foto-sumida",
-    nome: "Apagar Minhas Fotos",
-    descricao: "Remoção de fotos pessoais publicadas sem autorização",
-    icon: Eye,
-    caracteristicas: [
-      "Denúncia por violação de imagem",
-      "Acompanhamento das solicitações",
-      "Retomada do controle de imagem"
-    ],
-    preco: "Sob consulta",
-    prazo: "7-10 dias",
-    idealPara: "Exposição não autorizada",
-    categoria: "protecao"
-  },
-  {
-    id: "endereco-off",
-    nome: "Esconder Meu Endereço",
-    descricao: "Remoção de endereço residencial de sites públicos",
-    icon: MapPin,
-    caracteristicas: [
-      "Localização do endereço online",
-      "Solicitação LGPD",
-      "Proteção contra perseguição"
-    ],
-    preco: "Sob consulta",
-    prazo: "15 dias",
-    idealPara: "Separações conturbadas",
-    categoria: "protecao"
-  },
-  {
-    id: "perfil-cacado",
-    nome: "Achar Perfil Falso",
-    descricao: "Rastreamento de perfis falsos com evidências públicas",
-    icon: Target,
-    caracteristicas: [
-      "Análise de dados públicos",
-      "Registro de evidências",
-      "Denúncia formal",
-      "Relatório investigativo"
-    ],
-    preco: "Sob consulta",
-    prazo: "7 dias",
-    idealPara: "Calúnia e ameaça",
-    categoria: "protecao"
-  },
-  {
-    id: "mapa-secreto",
-    nome: "Esconder Minha Casa",
-    descricao: "Remoção de residência do Google Street View",
-    icon: MapPin,
-    caracteristicas: [
-      "Localização no Street View",
-      "Formulário oficial Google",
-      "Privacidade geográfica"
-    ],
-    preco: "Sob consulta",
-    prazo: "10 dias",
-    idealPara: "Segurança residencial",
-    categoria: "protecao"
-  },
-  {
-    id: "link-cortado",
-    nome: "Apagar Links Ruins",
-    descricao: "Remoção de links ofensivos de redes sociais e sites",
-    icon: LinkIcon,
-    caracteristicas: [
-      "Análise de conteúdo ofensivo",
-      "Denúncia às plataformas",
-      "Contenção da circulação"
-    ],
-    preco: "Sob consulta",
-    prazo: "5 dias",
-    idealPara: "Difamação online",
-    categoria: "protecao"
-  },
-  {
-    id: "varredura-reputacional",
-    nome: "Limpar Minha Imagem",
-    descricao: "Varredura completa e remoção em massa de conteúdos prejudiciais",
-    icon: Search,
-    destaque: true,
-    caracteristicas: [
-      "Análise completa reputacional",
-      "Estratégia de contenção",
-      "Solicitações múltiplas",
-      "Plano de recuperação"
-    ],
-    preco: "Sob consulta",
-    prazo: "30-45 dias",
-    idealPara: "Crises graves",
-    badge: "PACOTE COMPLETO",
-    badgeColor: "purple",
-    categoria: "protecao"
-  },
+];
   // PERÍCIA FORENSE (5 serviços)
   {
     id: "pericia-forense-validada",
@@ -257,11 +222,12 @@ const TODOS_SERVICOS: Servico[] = [
   {
     id: "extracao-forense-dispositivos",
     nome: "Extrair Dados de Celular",
-    descricao: "Extração forense CELLEBRITE/XRY de dispositivo próprio",
+    descricao: "Extração forense com Avilla Forensics e indexação com IPED",
     icon: Smartphone,
     destaque: true,
     caracteristicas: [
-      "Metodologia CELLEBRITE/XRY",
+      "Extração com Avilla Forensics",
+      "Indexação e análise com IPED",
       "Recuperação de dados deletados",
       "Cadeia de custódia oficial",
       "Validação pericial"
