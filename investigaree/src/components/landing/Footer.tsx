@@ -33,8 +33,7 @@ export default function Footer() {
           <div>
             <h4 className="text-slate-900 dark:text-white font-semibold mb-4">Empresa</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/sobre" className="hover:text-primary-400 transition">Sobre</Link></li>
-              <li><Link href="/quemsomos" className="hover:text-primary-400 transition">Equipe</Link></li>
+              <li><Link href="/quemsomos" className="hover:text-primary-400 transition">Quem Somos</Link></li>
               <li><Link href="/faq" className="hover:text-primary-400 transition">FAQ</Link></li>
               <li>
                 <WhatsAppButton

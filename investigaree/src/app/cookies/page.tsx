@@ -21,7 +21,7 @@ export default function CookiesPage() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Política de Cookies</h1>
-                <p className="text-sm text-slate-600 dark:text-navy-300">Atualizado em 01/12/2025</p>
+                <p className="text-sm text-slate-600 dark:text-navy-300">Atualizado em 20/12/2025</p>
               </div>
             </div>
             {/* Lado direito - Link voltar */}
@@ -97,10 +97,14 @@ export default function CookiesPage() {
               <p className="text-slate-900 dark:text-slate-800 dark:text-white/80 mb-2">
                 <strong>Base Legal:</strong> Consentimento
               </p>
-              <p className="text-slate-900 dark:text-slate-800 dark:text-white/80">
+              <p className="text-slate-900 dark:text-slate-800 dark:text-white/80 mb-3">
                 Estes cookies coletam informações sobre como os visitantes utilizam o site, como quais páginas
                 são mais visitadas. Todas as informações são agregadas e anônimas. Utilizamos essas informações
                 para melhorar o funcionamento do site.
+              </p>
+              <p className="text-slate-900 dark:text-slate-800 dark:text-white/80">
+                <strong>Importante:</strong> Estes cookies <strong>só são ativados após consentimento explícito</strong> do
+                usuário através do banner LGPD. Você pode gerenciar suas preferências a qualquer momento.
               </p>
             </div>
             <table className="w-full text-slate-900 dark:text-slate-800 dark:text-white/80 text-sm border-collapse">
@@ -114,13 +118,18 @@ export default function CookiesPage() {
               <tbody>
                 <tr className="border-b border-slate-300 dark:border-navy-800">
                   <td className="py-2 px-3">_ga</td>
-                  <td className="py-2 px-3">Google Analytics - Identificador único</td>
+                  <td className="py-2 px-3">Google Analytics 4 (GA4) - Identificador único de visitante com IP anonimizado</td>
                   <td className="py-2 px-3">2 anos</td>
                 </tr>
                 <tr className="border-b border-slate-300 dark:border-navy-800">
                   <td className="py-2 px-3">_gid</td>
-                  <td className="py-2 px-3">Google Analytics - Identificador de sessão</td>
+                  <td className="py-2 px-3">Google Analytics 4 (GA4) - Identificador de sessão para análise de tráfego</td>
                   <td className="py-2 px-3">24 horas</td>
+                </tr>
+                <tr className="border-b border-slate-300 dark:border-navy-800">
+                  <td className="py-2 px-3">_ga_*</td>
+                  <td className="py-2 px-3">Google Analytics 4 (GA4) - Estado da sessão e dados de propriedade</td>
+                  <td className="py-2 px-3">2 anos</td>
                 </tr>
               </tbody>
             </table>

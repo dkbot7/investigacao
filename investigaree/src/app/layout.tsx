@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import ClientWidgets from "@/components/ClientWidgets";
 import Providers from "@/components/Providers";
 import { LGPDConsentBanner } from "@/components/lgpd/ConsentBanner";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -106,6 +107,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
+        <GoogleAnalytics />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

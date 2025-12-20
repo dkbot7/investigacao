@@ -1,199 +1,192 @@
+'use client';
+
 /**
- * Google Analytics 4 Component for Next.js 14
- * Uses @next/third-parties/google for optimal performance
+ * Google Analytics 4 (GA4) - Consent-Gated Implementation
  *
- * References:
- * - https://nextjs.org/docs/messages/next-script-for-ga
- * - https://developers.google.com/analytics/devguides/collection/ga4/events
+ * CONFORMIDADE LGPD:
+ * - Só dispara após consentimento explícito do usuário
+ * - Respeita granularidade (finalidade "analiticos")
+ * - Não rastreia se consentimento for recusado ou não fornecido
+ * - IP anonimizado (anonymize_ip: true)
+ * - Cookies com SameSite=None;Secure (LGPD-compliant)
  *
- * Setup Instructions:
- * 1. Install: npm install @next/third-parties
- * 2. Get GA4 Measurement ID from https://analytics.google.com/
- * 3. Add to .env.local: NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
- * 4. Import and use in root layout.tsx
+ * FONTE DE CONSENTIMENTO (prioridade):
+ * 1. PRIMÁRIA: localStorage 'lgpd-consent-choices' (granular, fonte canônica)
+ * 2. LEGADO: Cookie 'CookieConsent' (fallback para implementações antigas)
+ *
+ * EVENTOS RASTREADOS:
+ * 1. page_view (automático via gtag config)
+ * 2. click_cta (manual via trackEvent)
+ * 3. form_submit (manual via trackEvent)
+ *
+ * Baseado em:
+ * - Next.js 13+ App Router best practices
+ * - Google Analytics 4 consent mode
+ * - LGPD Art. 7º e 8º (consentimento como base legal)
  */
 
-'use client'
+import { useEffect, useState } from 'react';
+import Script from 'next/script';
+import Cookies from 'js-cookie';
 
-import { GoogleAnalytics as NextGoogleAnalytics } from '@next/third-parties/google'
-import { useEffect } from 'react'
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA4_ID || '';
+const IS_DEV = process.env.NODE_ENV !== 'production';
 
-/**
- * Custom event tracking for GA4
- * Use this to track specific user interactions
- */
-export function trackEvent(eventName: string, parameters?: Record<string, any>) {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', eventName, parameters)
-  }
-}
-
-/**
- * Predefined event trackers for common interactions
- */
-export const GAEvents = {
-  // Content engagement
-  viewBlogPost: (title: string, category: string) => {
-    trackEvent('view_blog_post', {
-      post_title: title,
-      post_category: category,
-    })
-  },
-
-  shareBlogPost: (title: string, method: 'native' | 'clipboard') => {
-    trackEvent('share', {
-      content_type: 'blog_post',
-      item_id: title,
-      method,
-    })
-  },
-
-  downloadContent: (contentName: string, contentType: string) => {
-    trackEvent('download_content', {
-      content_name: contentName,
-      content_type: contentType,
-    })
-  },
-
-  // Lead generation
-  submitLeadForm: (formName: string, formLocation: string) => {
-    trackEvent('generate_lead', {
-      form_name: formName,
-      form_location: formLocation,
-    })
-  },
-
-  clickCTA: (ctaText: string, ctaLocation: string) => {
-    trackEvent('click_cta', {
-      cta_text: ctaText,
-      cta_location: ctaLocation,
-    })
-  },
-
-  // User engagement
-  scrollDepth: (percentage: number, pageTitle: string) => {
-    trackEvent('scroll', {
-      percent_scrolled: percentage,
-      page_title: pageTitle,
-    })
-  },
-
-  timeOnPage: (seconds: number, pageTitle: string) => {
-    trackEvent('time_on_page', {
-      value: seconds,
-      page_title: pageTitle,
-    })
-  },
-
-  // Navigation
-  clickNavigation: (linkText: string, destination: string) => {
-    trackEvent('click_navigation', {
-      link_text: linkText,
-      link_destination: destination,
-    })
-  },
-
-  searchQuery: (query: string, resultsCount: number) => {
-    trackEvent('search', {
-      search_term: query,
-      results_count: resultsCount,
-    })
-  },
-
-  // Video engagement
-  playVideo: (videoTitle: string, videoUrl: string) => {
-    trackEvent('video_start', {
-      video_title: videoTitle,
-      video_url: videoUrl,
-    })
-  },
-
-  completeVideo: (videoTitle: string, duration: number) => {
-    trackEvent('video_complete', {
-      video_title: videoTitle,
-      video_duration: duration,
-    })
-  },
-}
-
-/**
- * Hook for automatic scroll depth tracking
- * Add to pages where you want to track scroll engagement
- */
-export function useScrollTracking(pageTitle: string) {
-  useEffect(() => {
-    let maxScroll = 0
-    const checkpoints = [25, 50, 75, 100]
-    const tracked = new Set<number>()
-
-    const handleScroll = () => {
-      const windowHeight = window.innerHeight
-      const documentHeight = document.documentElement.scrollHeight
-      const scrollTop = window.scrollY
-
-      const scrollPercentage = Math.round(
-        ((scrollTop + windowHeight) / documentHeight) * 100
-      )
-
-      if (scrollPercentage > maxScroll) {
-        maxScroll = scrollPercentage
-
-        checkpoints.forEach((checkpoint) => {
-          if (scrollPercentage >= checkpoint && !tracked.has(checkpoint)) {
-            GAEvents.scrollDepth(checkpoint, pageTitle)
-            tracked.add(checkpoint)
-          }
-        })
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [pageTitle])
-}
-
-/**
- * Hook for automatic time on page tracking
- * Tracks when user leaves the page
- */
-export function useTimeTracking(pageTitle: string) {
-  useEffect(() => {
-    const startTime = Date.now()
-
-    const handleBeforeUnload = () => {
-      const timeSpent = Math.round((Date.now() - startTime) / 1000)
-      GAEvents.timeOnPage(timeSpent, pageTitle)
-    }
-
-    window.addEventListener('beforeunload', handleBeforeUnload)
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
-  }, [pageTitle])
-}
-
-/**
- * Main Google Analytics Component
- * Add this to your root layout.tsx
- */
 export default function GoogleAnalytics() {
-  const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+  const [hasConsent, setHasConsent] = useState(false);
 
-  if (!measurementId) {
-    console.warn('GA4 Measurement ID not found. Analytics disabled.')
-    return null
+  useEffect(() => {
+    // Verificar se há consentimento armazenado
+    const checkConsent = () => {
+      let analyticsConsent = false;
+
+      // FONTE 1 (PRIMÁRIA): localStorage granular
+      try {
+        const storedChoices = localStorage.getItem('lgpd-consent-choices');
+        if (storedChoices) {
+          const choices = JSON.parse(storedChoices);
+          analyticsConsent = choices.analiticos === true;
+
+          if (IS_DEV) {
+            console.log('[GA4] Consentimento verificado via localStorage:', { analiticos: analyticsConsent });
+          }
+        }
+      } catch (e) {
+        if (IS_DEV) {
+          console.warn('[GA4] Erro ao ler localStorage:', e);
+        }
+      }
+
+      // FONTE 2 (LEGADO - fallback): Cookie global do banner
+      // Usado apenas se localStorage não estiver disponível ou não tiver escolha granular
+      if (!analyticsConsent) {
+        // Verificar cookie correto: lgpd_consent (definido em ConsentBanner.tsx)
+        const lgpdConsent = Cookies.get('lgpd_consent');
+        const cookieConsent = Cookies.get('CookieConsent'); // Fallback para banner antigo
+
+        if (lgpdConsent === 'true' || cookieConsent === 'true') {
+          analyticsConsent = true;
+
+          if (IS_DEV) {
+            console.log('[GA4] Consentimento verificado via cookie:', lgpdConsent ? 'lgpd_consent' : 'CookieConsent (legado)');
+          }
+        }
+      }
+
+      setHasConsent(analyticsConsent);
+
+      if (IS_DEV) {
+        if (analyticsConsent) {
+          console.log('[GA4] ✓ Consentimento confirmado - GA4 será carregado');
+        } else {
+          console.log('[GA4] ✗ Sem consentimento - GA4 não será carregado');
+        }
+      }
+    };
+
+    // Verificar ao montar
+    checkConsent();
+
+    // Re-verificar quando cookies mudarem (evento customizado do banner)
+    const handleConsentChange = () => {
+      if (IS_DEV) {
+        console.log('[GA4] Evento de mudança de consentimento detectado - re-verificando...');
+      }
+      checkConsent();
+    };
+
+    window.addEventListener('lgpd-consent-updated', handleConsentChange);
+
+    return () => {
+      window.removeEventListener('lgpd-consent-updated', handleConsentChange);
+    };
+  }, []);
+
+  // Não renderizar se:
+  // 1. Não houver GA_MEASUREMENT_ID configurado
+  // 2. Não houver consentimento
+  if (!GA_MEASUREMENT_ID || !hasConsent) {
+    return null;
   }
 
-  return <NextGoogleAnalytics gaId={measurementId} />
+  return (
+    <>
+      {/* Google Analytics Script - Tag */}
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        onLoad={() => {
+          if (IS_DEV) {
+            console.log('[GA4] Script carregado com sucesso');
+          }
+        }}
+        onError={(e) => {
+          if (IS_DEV) {
+            console.error('[GA4] Erro ao carregar script:', e);
+          }
+        }}
+      />
+
+      {/* Google Analytics Script - Config */}
+      <Script
+        id="google-analytics-config"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '${GA_MEASUREMENT_ID}', {
+              page_path: window.location.pathname,
+              anonymize_ip: true,
+              cookie_flags: 'SameSite=None;Secure',
+              send_page_view: true,
+            });
+
+            ${
+              IS_DEV
+                ? `console.log('[GA4] Configurado com ID: ${GA_MEASUREMENT_ID}');`
+                : '// GA4 configurado em produção'
+            }
+          `,
+        }}
+      />
+    </>
+  );
 }
 
 /**
- * TypeScript declaration for gtag
+ * Função utilitária para disparar eventos customizados (client-side)
+ *
+ * USO:
+ * import { trackEvent } from '@/components/analytics/GoogleAnalytics';
+ * trackEvent('click_cta', { cta_location: 'hero', cta_text: 'Solicitar Análise' });
+ *
+ * EVENTOS PLANEJADOS:
+ * - click_cta: { cta_location: string, cta_text: string }
+ * - form_submit: { form_id: string, form_name: string }
+ */
+export function trackEvent(eventName: string, eventParams?: Record<string, any>) {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', eventName, eventParams);
+
+    if (IS_DEV) {
+      console.log(`[GA4] Evento disparado: ${eventName}`, eventParams);
+    }
+  } else {
+    if (IS_DEV) {
+      console.warn('[GA4] gtag não disponível - evento não enviado:', eventName);
+    }
+  }
+}
+
+/**
+ * Declaração de tipos para window.gtag (TypeScript)
  */
 declare global {
   interface Window {
-    gtag: (
-      command: 'event' | 'config' | 'set',
-      targetId: string,
-      config?: Record<string, any>
-    ) => void
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
   }
 }

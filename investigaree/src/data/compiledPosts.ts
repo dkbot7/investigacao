@@ -1,5 +1,5 @@
 // Auto-generated - Do not edit manually
-// Generated on: 2025-12-19T17:24:23.569Z
+// Generated on: 2025-12-20T17:38:43.358Z
 
 export const compiledPosts: Record<string, { html: string; frontmatter: any }> = {
   "10-red-flags-cpf-indicam-risco-fraude": {
@@ -540,7 +540,7 @@ export const compiledPosts: Record<string, { html: string; frontmatter: any }> =
     "frontmatter": {
       "title": "Golpes de Fim de Ano em SC: Como Se Proteger da Onda de Fraudes no Verão",
       "excerpt": "Análise baseada em dados históricos revela padrões de fraudes digitais durante dezembro em Santa Catarina. Conheça os 7 esquemas mais comuns e como se proteger.",
-      "coverImage": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&h=675&fit=crop",
+      "coverImage": "/images/blog/generated/fraudes-fim-ano-santa-catarina-2025.png",
       "authorId": "dani-kaloi",
       "contentType": "noticia",
       "topicId": "fraudes-digitais",
@@ -643,7 +643,7 @@ export const compiledPosts: Record<string, { html: string; frontmatter: any }> =
     "frontmatter": {
       "title": "Como Investigar Empresas em SC Usando Apenas Dados Públicos: Guia Completo 2025",
       "excerpt": "Tutorial detalhado de como realizar due diligence completa de empresas catarinenses usando fontes públicas gratuitas. Metodologia validada por perito criminal.",
-      "coverImage": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=675&fit=crop",
+      "coverImage": "/images/blog/generated/investigacao-empresas-dados-publicos-santa-catarina.png",
       "authorId": "dani-kaloi",
       "contentType": "tutorial",
       "topicId": "osint-brasil",
@@ -743,7 +743,7 @@ export const compiledPosts: Record<string, { html: string; frontmatter: any }> =
     "frontmatter": {
       "title": "Vitória Histórica: Senado Aprova PEC que Inclui Polícias Científicas na Constituição Federal",
       "excerpt": "Após 6 anos de tramitação, PEC 76/2019 é aprovada e coloca a perícia criminal brasileira no mesmo patamar constitucional da Polícia Civil e Militar. Entenda o que muda na prática.",
-      "coverImage": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=675&fit=crop",
+      "coverImage": "/images/blog/generated/pec-76-2019-policias-cientificas-constituicao-federal.png",
       "authorId": "dani-kaloi",
       "contentType": "noticia",
       "topicId": "metodologia-forense",

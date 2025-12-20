@@ -36,14 +36,25 @@ export function LGPDConsentBanner() {
    */
   const handleAccept = async () => {
     try {
+      // "Aceitar Todos" = essenciais + analíticos + marketing
+      const allConsent = {
+        essenciais: true,
+        analiticos: true,
+        marketing: true,
+      }
+
+      // Salvar no localStorage para o GoogleAnalytics detectar
+      localStorage.setItem('lgpd-consent-choices', JSON.stringify(allConsent))
+
+      // Disparar evento customizado para o GoogleAnalytics re-verificar
+      window.dispatchEvent(new Event('lgpd-consent-updated'))
+
       await fetch('/api/lgpd/registrar-consentimento', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           consentimento: true,
-          finalidades: Object.entries(consentChoices)
-            .filter(([_, value]) => value)
-            .map(([key]) => key),
+          finalidades: ['essenciais', 'analiticos', 'marketing'],
           timestamp: new Date().toISOString(),
           ip_address: await getClientIP(),
           user_agent: navigator.userAgent,
@@ -60,6 +71,19 @@ export function LGPDConsentBanner() {
    */
   const handleDecline = async () => {
     try {
+      // "Apenas Essenciais" = somente essenciais
+      const essentialOnlyConsent = {
+        essenciais: true,
+        analiticos: false,
+        marketing: false,
+      }
+
+      // Salvar no localStorage
+      localStorage.setItem('lgpd-consent-choices', JSON.stringify(essentialOnlyConsent))
+
+      // Disparar evento customizado
+      window.dispatchEvent(new Event('lgpd-consent-updated'))
+
       await fetch('/api/lgpd/registrar-consentimento', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -81,6 +105,12 @@ export function LGPDConsentBanner() {
    */
   const handleCustomAccept = async () => {
     try {
+      // Salvar no localStorage para o GoogleAnalytics detectar
+      localStorage.setItem('lgpd-consent-choices', JSON.stringify(consentChoices))
+
+      // Disparar evento customizado para o GoogleAnalytics re-verificar
+      window.dispatchEvent(new Event('lgpd-consent-updated'))
+
       await fetch('/api/lgpd/registrar-consentimento', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

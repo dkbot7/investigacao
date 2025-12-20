@@ -1,7 +1,7 @@
 /**
  * Blog Posts Data - Generated from MDX files
  *
- * Generated: 2025-12-19T17:24:16.435Z
+ * Generated: 2025-12-19T19:40:39.575Z
  * Total posts: 37
  *
  * Note: Content is loaded dynamically from MDX files.
@@ -17,7 +17,7 @@ export const MOCK_POSTS: BlogPost[] = [
     title: "Vitória Histórica: Senado Aprova PEC que Inclui Polícias Científicas na Constituição Federal",
     excerpt: "Após 6 anos de tramitação, PEC 76/2019 é aprovada e coloca a perícia criminal brasileira no mesmo patamar constitucional da Polícia Civil e Militar. Entenda o que muda na prática.",
     content: "", // Loaded from MDX
-    coverImage: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=675&fit=crop",
+    coverImage: "/images/blog/generated/pec-76-2019-policias-cientificas-constituicao-federal.png",
     author: BLOG_AUTHORS.find(a => a.id === "dani-kaloi") || BLOG_AUTHORS[0],
     contentType: "noticia",
     topic: BLOG_TOPICS.find(t => t.id === "metodologia-forense") || BLOG_TOPICS[0],
@@ -34,7 +34,7 @@ export const MOCK_POSTS: BlogPost[] = [
     title: "Como Investigar Empresas em SC Usando Apenas Dados Públicos: Guia Completo 2025",
     excerpt: "Tutorial detalhado de como realizar due diligence completa de empresas catarinenses usando fontes públicas gratuitas. Metodologia validada por perito criminal.",
     content: "", // Loaded from MDX
-    coverImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=675&fit=crop",
+    coverImage: "/images/blog/generated/investigacao-empresas-dados-publicos-santa-catarina.png",
     author: BLOG_AUTHORS.find(a => a.id === "dani-kaloi") || BLOG_AUTHORS[0],
     contentType: "tutorial",
     topic: BLOG_TOPICS.find(t => t.id === "osint-brasil") || BLOG_TOPICS[0],
@@ -51,7 +51,7 @@ export const MOCK_POSTS: BlogPost[] = [
     title: "Golpes de Fim de Ano em SC: Como Se Proteger da Onda de Fraudes no Verão",
     excerpt: "Análise baseada em dados históricos revela padrões de fraudes digitais durante dezembro em Santa Catarina. Conheça os 7 esquemas mais comuns e como se proteger.",
     content: "", // Loaded from MDX
-    coverImage: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&h=675&fit=crop",
+    coverImage: "/images/blog/generated/fraudes-fim-ano-santa-catarina-2025.png",
     author: BLOG_AUTHORS.find(a => a.id === "dani-kaloi") || BLOG_AUTHORS[0],
     contentType: "noticia",
     topic: BLOG_TOPICS.find(t => t.id === "fraudes-digitais") || BLOG_TOPICS[0],

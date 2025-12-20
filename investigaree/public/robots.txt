@@ -1,0 +1,24 @@
+# Robots.txt - Investigaree
+# Controle de indexação para Eixo Autoridade Jurídico-Técnica
+
+# Regras gerais para todos os crawlers
+User-agent: *
+
+# Permitir acesso às páginas públicas
+Allow: /
+
+# Bloquear dashboard e ferramentas internas (autenticadas)
+Disallow: /dashboard/
+Disallow: /api/
+
+# Bloquear páginas de teste e admin
+Disallow: /test-admin
+Disallow: /test-admin-panel
+Disallow: /loginadmin
+
+# Bloquear páginas duplicadas (não canônicas)
+Disallow: /sobre
+Disallow: /about
+
+# Sitemap
+Sitemap: https://investigaree.com.br/sitemap.xml

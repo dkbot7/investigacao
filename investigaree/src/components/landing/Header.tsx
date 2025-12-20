@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Globe, Menu, X, ChevronDown, BookOpen, Layers, Wrench, FileText } from "lucide-react";
+import { Globe, Menu, X, ChevronDown, BookOpen, Layers, Wrench, FileText, Scale, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -69,6 +69,8 @@ export default function Header() {
       series: "Séries",
       glossary: "Glossário",
       resources: "Recursos",
+      metodologia: "Metodologias",
+      cases: "Cases",
       contact: "Contato",
       theme: "Tema",
       language: "Idioma",
@@ -84,6 +86,8 @@ export default function Header() {
       series: "Series",
       glossary: "Glossary",
       resources: "Resources",
+      metodologia: "Methodologies",
+      cases: "Cases",
       contact: "Contact",
       theme: "Theme",
       language: "Language",
