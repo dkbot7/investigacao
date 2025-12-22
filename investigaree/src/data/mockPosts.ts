@@ -14,6 +14,7 @@
 
 import { BlogPost, BLOG_TOPICS, BLOG_AUTHORS } from "@/types/blog";
 
+// Force module cache invalidation - v2025122216
 export const MOCK_POSTS: BlogPost[] = [
   {
     id: "0",
