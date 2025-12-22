@@ -16,7 +16,145 @@ export const MOCK_POSTS: BlogPost[] = [
     slug: "operacao-arquivo-oculto-fraudes-licitacao-castanhal-para",
     title: "Operação Arquivo Oculto: Polícia Civil desvenda esquema de fraude em licitações no Pará",
     excerpt: "Polícia Civil deflagra operação contra associação criminosa que desviou R$ 221 mil através de licitações fraudulentas e 'serviços fantasmas' em Castanhal. Entenda o caso e aprenda a identificar red flags em processos licitatórios.",
-    content: "", // Loaded from MDX
+    content: `<p>Na manhã do dia 19 de dezembro de 2025, a Polícia Civil do Estado do Pará deflagrou a <strong>Operação Arquivo Oculto</strong>, cumprindo mandados de busca e apreensão em sete endereços vinculados a quatro investigados no município de Castanhal e em Belém.</p>
+
+<p>A operação, conduzida pela 12ª Seccional Urbana de Castanhal com apoio do Núcleo de Inteligência Policial (NIP) e do Núcleo de Apoio à Investigação (NAI), investiga uma suposta <strong>associação criminosa especializada em fraudes licitatórias</strong> e desvio de recursos públicos no âmbito da Prefeitura de Castanhal.</p>
+
+<div class="callout callout-warning">
+  <h4>⚠️ Prejuízo aos Cofres Públicos</h4>
+  <p>O prejuízo inicial identificado é de aproximadamente <strong>R$ 221.000,00</strong>, resultado de licitações fraudulentas e pagamentos indevidos a empresas fictícias.</p>
+</div>
+
+<h2>O Esquema Criminoso</h2>
+
+<p>A investigação teve início após a <strong>atual gestão municipal identificar indícios de irregularidades</strong> envolvendo uma servidora lotada no setor de licitações. Segundo as apurações, a servidora teria criado um esquema sofisticado de fraudes que incluía:</p>
+
+<h3>Modus Operandi</h3>
+
+<ol>
+  <li><strong>Criação de Licitações Fraudulentas</strong>
+    <ul>
+      <li>Procedimentos licitatórios completamente fictícios</li>
+      <li>Simulação de necessidades inexistentes de serviços</li>
+      <li>Manipulação de documentação oficial</li>
+    </ul>
+  </li>
+  <li><strong>Serviços Fantasmas</strong>
+    <ul>
+      <li>Simulação de serviços inexistentes nas áreas de engenharia, manutenção predial e locação de imóveis</li>
+      <li>Emissão de notas de empenho falsas</li>
+      <li>Pagamentos a empresas de fachada</li>
+    </ul>
+  </li>
+  <li><strong>Empresas Laranjas</strong>
+    <ul>
+      <li>Três empresas identificadas com endereços em Castanhal e Belém</li>
+      <li>Pagamentos indevidos através de documentação falsificada</li>
+      <li>Supostos empresários beneficiados pelo esquema</li>
+    </ul>
+  </li>
+</ol>
+
+<h2>Os Crimes Investigados</h2>
+
+<p>A operação investiga a prática de múltiplos crimes:</p>
+
+<ul>
+  <li><strong>Associação Criminosa</strong> (Art. 288 do Código Penal)</li>
+  <li><strong>Fraude à Licitação</strong> (Art. 90 da Lei 8.666/93)</li>
+  <li><strong>Uso de Documento Falso</strong> (Art. 304 do CP)</li>
+  <li><strong>Inserção de Informações Falsas em Sistemas</strong> (Art. 313-A do CP)</li>
+  <li><strong>Falsificação de Documentos Públicos e Particulares</strong> (Art. 297 e 298 do CP)</li>
+</ul>
+
+<h2>Red Flags em Licitações: Como Identificar</h2>
+
+<p>Este caso evidencia <strong>sinais de alerta</strong> que devem ser observados em processos licitatórios:</p>
+
+<h3>1. Padrões Suspeitos em Fornecedores</h3>
+
+<ul>
+  <li>Empresas recém-criadas vencendo licitações de grande porte</li>
+  <li>Mesmo endereço para múltiplas empresas "concorrentes"</li>
+  <li>Empresas sem histórico de execução de serviços similares</li>
+  <li>Sócios ou representantes sem expertise na área contratada</li>
+</ul>
+
+<h3>2. Irregularidades Documentais</h3>
+
+<ul>
+  <li>Notas fiscais e comprovantes de execução de serviços "genéricos"</li>
+  <li>Ausência de medições e atestados de fiscalização detalhados</li>
+  <li>Documentação técnica padronizada entre diferentes fornecedores</li>
+  <li>Assinaturas digitais concentradas em poucos certificados</li>
+</ul>
+
+<h3>3. Anomalias Financeiras</h3>
+
+<ul>
+  <li>Pagamentos sem comprovação adequada de entrega/execução</li>
+  <li>Valores incompatíveis com preços de mercado</li>
+  <li>Sequência suspeita de empenhos próximos ao limite de dispensa de licitação</li>
+  <li>Fracionamento artificial de despesas para evitar modalidades mais rigorosas</li>
+</ul>
+
+<h2>Due Diligence em Licitações: Ferramentas de Prevenção</h2>
+
+<p>Gestões públicas comprometidas com a transparência podem prevenir fraudes através de:</p>
+
+<h3>Consultas em Bases Públicas</h3>
+
+<ol>
+  <li><strong>Receita Federal</strong> - Verificar situação cadastral de empresas fornecedoras</li>
+  <li><strong>Juntas Comerciais</strong> - Histórico de alterações contratuais</li>
+  <li><strong>TCU e TCE</strong> - Consultar cadastro de inidôneos e inabilitados</li>
+  <li><strong>CNJ - Processos Judiciais</strong> - Litígios trabalhistas e cíveis</li>
+  <li><strong>Portal da Transparência</strong> - Histórico de contratos públicos da empresa</li>
+</ol>
+
+<h3>Controles Internos Essenciais</h3>
+
+<ul>
+  <li><strong>Segregação de funções:</strong> Diferentes servidores responsáveis por elaboração, aprovação e fiscalização</li>
+  <li><strong>Dupla verificação:</strong> Validação cruzada de documentos por setores independentes</li>
+  <li><strong>Auditoria de rotina:</strong> Revisões periódicas aleatórias em processos encerrados</li>
+  <li><strong>Sistema de denúncias:</strong> Canal confidencial para relatos de irregularidades</li>
+  <li><strong>Capacitação contínua:</strong> Treinamento sobre integridade e compliance</li>
+</ul>
+
+<div class="callout callout-success">
+  <h4>✅ Boas Práticas em Gestão Pública</h4>
+  <p>A atual gestão de Castanhal demonstrou <strong>maturidade institucional</strong> ao identificar os indícios, afastar imediatamente a servidora suspeita e acionar as autoridades competentes - um exemplo de como a transparência e controles internos são fundamentais na prevenção e combate à corrupção.</p>
+</div>
+
+<h2>Próximos Passos da Investigação</h2>
+
+<p>A Polícia Civil informou que o inquérito segue em andamento com os seguintes objetivos:</p>
+
+<ol>
+  <li>Análise pericial dos materiais apreendidos</li>
+  <li>Identificação de todos os envolvidos no esquema</li>
+  <li>Esclarecimento da dinâmica completa da associação criminosa</li>
+  <li>Individualização de responsabilidades de cada participante</li>
+  <li>Rastreamento do destino dos recursos desviados</li>
+</ol>
+
+<hr>
+
+<p><strong>Fontes:</strong></p>
+<ul>
+  <li>Polícia Civil do Estado do Pará - Informe sobre Fato Relevante (19/12/2025)</li>
+  <li>12ª Seccional Urbana de Castanhal</li>
+  <li>Núcleo de Inteligência Policial (NIP)</li>
+  <li>Núcleo de Apoio à Investigação (NAI)</li>
+</ul>
+
+<hr>
+
+<p><em>A Investigaree atua há mais de 10 anos prestando serviços de due diligence e compliance para gestões públicas e privadas. Se sua organização precisa implementar controles mais rigorosos em processos licitatórios, entre em contato conosco.</em></p>
+
+<p><strong>Sobre o Autor:</strong><br>
+Dani Kaloi é Perito Criminal oficial especializado em investigação de fraudes corporativas e desvios de recursos públicos, com experiência em operações de combate à corrupção e crimes financeiros.</p>`,
     coverImage: "/images/blog/operacao-arquivo-oculto.jpeg",
     author: BLOG_AUTHORS.find(a => a.id === "dani-kaloi") || BLOG_AUTHORS[0],
     contentType: "noticia",

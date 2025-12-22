@@ -18,7 +18,6 @@ import Footer from "@/components/landing/Footer";
 import { Badge } from "@/components/ui/badge";
 import { useBlogPost, useRelatedPosts } from "@/hooks/useBlog";
 import { CONTENT_TYPES, SKILL_LEVELS } from "@/types/blog";
-import { compiledPosts } from "@/data/compiledPosts";
 
 interface BlogPostClientProps {
   slug: string;
@@ -244,7 +243,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                 transition={{ delay: 0.2 }}
                 className="prose prose-invert prose-gold max-w-none prose-headings:text-slate-900 dark:prose-headings:text-white prose-p:text-slate-600 dark:prose-p:text-navy-300 prose-a:text-blue-500 hover:prose-a:text-blue-400 prose-strong:text-slate-900 dark:prose-strong:text-white prose-code:text-purple-600 dark:prose-code:text-purple-400 prose-code:bg-slate-100 dark:prose-code:bg-navy-900/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-900 dark:prose-pre:bg-navy-950 prose-pre:text-slate-100 prose-blockquote:border-l-blue-500 prose-blockquote:text-slate-600 dark:prose-blockquote:text-navy-300"
                 dangerouslySetInnerHTML={{
-                  __html: compiledPosts[slug]?.html || `<p class="text-lg leading-relaxed">${post.excerpt}</p><div class="my-8 p-6 rounded-xl bg-blue-500/10 border border-blue-500/20"><p class="text-blue-400 font-medium mb-2">Conteúdo completo em breve</p><p class="text-slate-600 dark:text-navy-300 text-sm">Este artigo está sendo preparado por nossa equipe de especialistas.</p></div>`
+                  __html: post.content || `<p class="text-lg leading-relaxed">${post.excerpt}</p><div class="my-8 p-6 rounded-xl bg-blue-500/10 border border-blue-500/20"><p class="text-blue-400 font-medium mb-2">Conteúdo completo em breve</p><p class="text-slate-600 dark:text-navy-300 text-sm">Este artigo está sendo preparado por nossa equipe de especialistas.</p></div>`
                 }}
               />
 

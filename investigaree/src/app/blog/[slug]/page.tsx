@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MOCK_POSTS } from "@/data/mockPosts";
-import { compiledPosts } from "@/data/compiledPosts";
 import BlogPostLayout from "./BlogPostLayout";
 
 // DYNAMIC RENDERING for Cloudflare Workers compatibility
@@ -44,7 +43,7 @@ export async function generateMetadata({
 
 // Página do post (SERVER COMPONENT)
 // IMPORTANTE: Não usar fs.* ou compileMDX em Cloudflare Workers
-// Todo conteúdo MDX já foi pré-compilado para HTML em compiledPosts.ts
+// Todo conteúdo é carregado diretamente do mockPosts.ts
 export default async function BlogPostPage({
   params,
 }: {
@@ -54,13 +53,12 @@ export default async function BlogPostPage({
 
   // Busca o post nos dados pré-compilados
   const post = MOCK_POSTS.find(p => p.slug === slug);
-  const compiledPost = compiledPosts[slug];
 
   // 404 se não encontrado
   if (!post) {
     notFound();
   }
 
-  // Renderiza o layout com o HTML pré-compilado
-  return <BlogPostLayout post={post} compiledHtml={compiledPost?.html} />;
+  // Renderiza o layout com o HTML do post
+  return <BlogPostLayout post={post} compiledHtml={post.content} />;
 }
