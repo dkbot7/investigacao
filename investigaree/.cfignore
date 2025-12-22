@@ -1,3 +1,3 @@
-investigaree/.next/cache
-investigaree/node_modules
-investigaree/.git
+.next/cache
+node_modules
+.git
