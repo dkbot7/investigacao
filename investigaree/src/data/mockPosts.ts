@@ -12,6 +12,23 @@ import { BlogPost, BLOG_TOPICS, BLOG_AUTHORS } from "@/types/blog";
 
 export const MOCK_POSTS: BlogPost[] = [
   {
+    id: "0",
+    slug: "operacao-arquivo-oculto-fraudes-licitacao-castanhal-para",
+    title: "Operação Arquivo Oculto: Polícia Civil desvenda esquema de fraude em licitações no Pará",
+    excerpt: "Polícia Civil deflagra operação contra associação criminosa que desviou R$ 221 mil através de licitações fraudulentas e 'serviços fantasmas' em Castanhal. Entenda o caso e aprenda a identificar red flags em processos licitatórios.",
+    content: "", // Loaded from MDX
+    coverImage: "/images/blog/operacao-arquivo-oculto.jpeg",
+    author: BLOG_AUTHORS.find(a => a.id === "dani-kaloi") || BLOG_AUTHORS[0],
+    contentType: "noticia",
+    topic: BLOG_TOPICS.find(t => t.id === "casos-praticos") || BLOG_TOPICS[0],
+    skillLevel: "intermediario",
+    tags: ["fraude-licitacao","investigacao-policial","desvio-recursos-publicos","due-diligence","compliance-publico","pará","castanhal","operação policial"],
+    publishedAt: "2025-12-22T10:00:00Z",
+    readingTime: 8,
+    featured: true,
+    popular: false
+  },
+  {
     id: "1",
     slug: "pec-76-2019-policias-cientificas-constituicao-federal",
     title: "Vitória Histórica: Senado Aprova PEC que Inclui Polícias Científicas na Constituição Federal",

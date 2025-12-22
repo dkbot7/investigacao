@@ -27,6 +27,7 @@ export const BLOG_POST_SLUGS = [
   "ocultacao-patrimonio-divorcio-identificar-bens-escondidos",
   "empresas-laranjas-descobrir-vinculos-ocultos",
   // Cases Práticos (Reais - Anonimizados)
+  "operacao-arquivo-oculto-fraudes-licitacao-castanhal-para",
   "case-domestica-vazava-informacoes-quadrilha",
   "case-predador-digital-stalker-adolescente",
   "case-operacao-castelo-cartas-pericia-forense",
