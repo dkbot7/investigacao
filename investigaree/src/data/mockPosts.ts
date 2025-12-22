@@ -1,11 +1,15 @@
 /**
- * Blog Posts Data - Generated from MDX files
+ * Blog Posts Data - Primary source of truth for all blog posts
  *
- * Generated: 2025-12-19T19:40:39.575Z
- * Total posts: 37
+ * Updated: 2025-12-22T14:55:00Z
+ * Total posts: 38
  *
- * Note: Content is loaded dynamically from MDX files.
- * This file only contains metadata for listing/filtering.
+ * IMPORTANT: Posts can have content in two ways:
+ * 1. MDX files (compiled to HTML via compile-mdx-to-json.js)
+ * 2. Direct HTML in the 'content' field (for quick publishing without build issues)
+ *
+ * This file is the single source of truth - compiledPosts.ts is optional.
+ * All metadata and content should be maintained here for reliability.
  */
 
 import { BlogPost, BLOG_TOPICS, BLOG_AUTHORS } from "@/types/blog";
