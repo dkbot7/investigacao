@@ -1,7 +1,7 @@
 /**
  * Blog Posts Data - Primary source of truth for all blog posts
  *
- * Updated: 2025-12-22T14:55:00Z
+ * Updated: 2025-12-22T15:45:00Z
  * Total posts: 38
  *
  * IMPORTANT: Posts can have content in two ways:
