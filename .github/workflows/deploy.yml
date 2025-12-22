@@ -70,6 +70,14 @@ jobs:
           workingDirectory: investigaree
           command: pages deploy .open-next --project-name=${{ env.PROJECT_NAME }} --commit-dirty=true
 
+      - name: Deploy Worker to investigaree.com.br
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: investigaree
+          command: deploy
+
       - name: Verify deployment
         run: |
           echo "⏳ Waiting for deployment to propagate..."
