@@ -14,7 +14,9 @@
 
 import { BlogPost, BLOG_TOPICS, BLOG_AUTHORS } from "@/types/blog";
 
-// Force module cache invalidation - v2025122216
+// Debug: verify array construction - v20251222164500
+console.log('[mockPosts] Loading MOCK_POSTS array...');
+
 export const MOCK_POSTS: BlogPost[] = [
   {
     id: "0",
@@ -802,3 +804,5 @@ Dani Kaloi é Perito Criminal oficial especializado em investigação de fraudes
     popular: false
   }
 ];
+
+console.log(`[mockPosts] Array loaded with ${MOCK_POSTS.length} posts. First post: ${MOCK_POSTS[0]?.slug}`);
