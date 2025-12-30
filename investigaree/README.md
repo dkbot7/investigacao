@@ -1,9 +1,9 @@
-# investigaree - Frontend
+# investigaree
 
-**Ultima atualizacao**: 30 de Novembro de 2025
-**Versao**: 0.1.0
+**Última atualização**: 30 de Dezembro de 2025
+**Versão**: 2.0.0
 
-Plataforma SaaS de Due Diligence Digital e Investigacao Forense.
+Plataforma SaaS de Due Diligence Digital e Investigação Forense com foco em compliance, LGPD e inteligência investigativa.
 
 ---
 
@@ -215,13 +215,53 @@ const token = await user.getIdToken();
 
 ```typescript
 // hooks/useTenant.ts
-const { tenant, hasAccess, loading, error } = useTenant();
+const { tenantCode, currentTenant, userRole, hasAccess, loading, error } = useTenant();
 
 if (loading) return <LoadingSpinner />;
 if (!hasAccess) return <NoAccessScreen />;
 
-return <Dashboard tenant={tenant} />;
+return <Dashboard tenant={currentTenant} />;
 ```
+
+---
+
+## Segurança
+
+### Row Level Security (RLS)
+
+Todas as tabelas multi-tenant no D1 database têm RLS habilitado:
+- ✅ `users` - Isolamento por tenant_id
+- ✅ `user_investigacoes` - Isolamento por tenant_id
+- ✅ `sancoes` - Isolamento por tenant_id
+- ✅ `ofac_matches` - Isolamento por tenant_id
+
+**Garantias:**
+- Usuários nunca veem dados de outros tenants
+- Tentativas de acesso cross-tenant retornam 403 Forbidden
+- RLS garante isolamento no nível do banco de dados
+- Admins podem ver todos os tenants (para suporte)
+
+### Validação JWT Firebase
+
+**Processo completo:**
+1. Cliente envia `Authorization: Bearer <token>`
+2. Backend extrai token do header
+3. Backend busca chaves públicas do Google
+4. Backend valida assinatura do JWT usando chave pública
+5. Backend verifica claims obrigatórios (iss, aud, exp, iat)
+6. Backend busca tenant_id e role do usuário no D1
+7. Backend seta contexto RLS
+8. Query executada com RLS aplicado
+
+### LGPD Compliance
+
+- ✅ Consentimentos armazenados em D1 (5 anos)
+- ✅ Hash de IP para privacidade (LGPD Art. 13)
+- ✅ Registro de finalidades e versão do texto
+- ✅ API de solicitação de dados (acesso/exclusão/portabilidade)
+- ✅ Stats de compliance LGPD
+
+**Mais detalhes:** Veja [SECURITY.md](./SECURITY.md)
 
 ---
 
