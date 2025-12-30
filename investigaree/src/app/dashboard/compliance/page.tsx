@@ -53,31 +53,24 @@ export const metadata: Metadata = {
 }
 
 /**
- * Busca estatísticas de compliance no servidor
- * Em produção, isso viria do banco de dados via API
+ * Busca estatísticas de compliance do backend
+ * Chama a API que delega para o backend worker com autenticação
  */
 async function getComplianceStats() {
-  // TODO: Substituir por fetch real quando backend estiver pronto
-  // const response = await fetch(`${process.env.API_BASE_URL}/api/compliance/stats`, {
-  //   cache: 'no-store', // ISR pode usar: { next: { revalidate: 300 } }
-  // })
-  // return response.json()
+  // Nota: Em um server component real, usaríamos cookies() do next/headers para pegar o token
+  // Por enquanto, este endpoint será chamado de um client component com auth
+  const response = await fetch('/api/compliance/stats', {
+    cache: 'no-store', // Sempre buscar dados frescos
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
 
-  // Mock data para demonstração
-  return {
-    totalPEP: 247,
-    totalSancoesCEIS: 89,
-    totalSancoesCNEP: 34,
-    totalSancoesCEAF: 12,
-    totalOFACMatches: 5,
-    nivelRiscoGeral: 'medio' as const,
-    dataUltimaAtualizacao: new Date().toISOString(),
-    comparacaoMesAnterior: {
-      pep: 12,
-      sancoes: -5,
-      ofac: 0,
-    },
+  if (!response.ok) {
+    throw new Error('Falha ao buscar estatísticas de compliance');
   }
+
+  return response.json();
 }
 
 export default async function CompliancePage() {

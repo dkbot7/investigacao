@@ -47,25 +47,22 @@ export const metadata: Metadata = {
 }
 
 /**
- * Busca estatísticas de LGPD no servidor
+ * Busca estatísticas de LGPD do backend
+ * Chama a API que delega para o backend worker com autenticação
  */
 async function getLGPDStats() {
-  // TODO: Substituir por fetch real quando backend estiver pronto
-  // const response = await fetch(`${process.env.API_BASE_URL}/api/lgpd/stats`, {
-  //   cache: 'no-store',
-  // })
-  // return response.json()
+  const response = await fetch('/api/lgpd/stats', {
+    cache: 'no-store', // Sempre buscar dados frescos
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
 
-  // Mock data
-  return {
-    totalConsentimentos: 1247,
-    consentimentosAtivos: 1156,
-    solicitacoesAcesso: 34,
-    solicitacoesExclusao: 12,
-    solicitacoesPortabilidade: 8,
-    incidentes: 0,
-    dataUltimaAtualizacao: new Date().toISOString(),
+  if (!response.ok) {
+    throw new Error('Falha ao buscar estatísticas LGPD');
   }
+
+  return response.json();
 }
 
 export default async function LGPDPage() {
