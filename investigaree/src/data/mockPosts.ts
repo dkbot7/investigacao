@@ -162,7 +162,7 @@ export const MOCK_POSTS: BlogPost[] = [
 
 <p><strong>Sobre o Autor:</strong><br>
 Dani Kaloi é Perito Criminal oficial especializado em investigação de fraudes corporativas e desvios de recursos públicos, com experiência em operações de combate à corrupção e crimes financeiros.</p>`,
-    coverImage: "/images/blog/operacao-arquivo-oculto.jpeg",
+    coverImage: "/images/blog/operacao-arquivo-oculto-perito-criminal.jpg",
     author: BLOG_AUTHORS.find(a => a.id === "dani-kaloi") || BLOG_AUTHORS[0],
     contentType: "noticia",
     topic: BLOG_TOPICS.find(t => t.id === "casos-praticos") || BLOG_TOPICS[0],
