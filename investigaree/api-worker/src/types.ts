@@ -28,3 +28,11 @@ export interface DecodedToken {
   exp: number;
   iat: number;
 }
+
+export interface AuthContext {
+  uid: string;
+  email: string;
+  tenantId: string;
+  role: 'admin' | 'editor' | 'viewer';
+  userId: string; // ID do registro na tabela users
+}

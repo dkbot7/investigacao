@@ -1,28 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-/**
- * Decodifica JWT Firebase (apenas payload, sem validação de assinatura)
- * ATENÇÃO: Isso é INSEGURO! Apenas para desenvolvimento local.
- * TODO: Implementar validação real do token Firebase no backend
- */
-function decodeFirebaseToken(token: string): { email?: string; uid?: string } {
-  try {
-    const parts = token.split('.')
-    if (parts.length !== 3) return {}
-    const payload = parts[1]
-    const decodedPayload = Buffer.from(payload, 'base64').toString('utf-8')
-    return JSON.parse(decodedPayload)
-  } catch (error) {
-    return {}
-  }
-}
+const BACKEND_API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.investigaree.com.br'
 
 /**
  * GET /api/tenants/info
  * Retorna informações do tenant do usuário
  *
- * TODO: Substituir mock por consulta real ao D1 database
- * TODO: Implementar validação JWT com Firebase Admin SDK
+ * Este endpoint agora delega para o backend API worker que tem:
+ * - Validação completa de assinatura JWT
+ * - Acesso ao D1 database
+ * - Auto-provisioning de usuários
  */
 export async function GET(request: NextRequest) {
   try {
@@ -35,39 +22,25 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Extrair e decodificar token
-    const token = authHeader.replace('Bearer ', '')
-    const decoded = decodeFirebaseToken(token)
-    const userEmail = decoded.email || 'unknown@example.com'
+    // Delegar para o backend API worker
+    const response = await fetch(`${BACKEND_API_URL}/api/user/tenant-info`, {
+      method: 'GET',
+      headers: {
+        'Authorization': authHeader,
+        'Content-Type': 'application/json'
+      }
+    })
 
-    // TODO: Buscar tenant do usuário no D1 database
-    // const user = await db.prepare('SELECT tenant_id FROM users WHERE email = ?').bind(userEmail).first()
-    // const tenant = await db.prepare('SELECT * FROM tenants WHERE id = ?').bind(user.tenant_id).first()
-
-    // Mock de dados para desenvolvimento local
-    // Em produção, isso deve vir do banco de dados
-    const tenantInfo = {
-      hasAccess: true, // TODO: Verificar no banco se usuário tem acesso
-      tenant: {
-        id: "default-tenant-id",
-        code: "CLIENTE_01",
-        name: "Cliente Padrão",
-        email: userEmail,
-        status: "active"
-      },
-      tenants: [
-        {
-          id: "default-tenant-id",
-          code: "CLIENTE_01",
-          name: "Cliente Padrão",
-          email: userEmail
-        }
-      ]
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({ error: 'Erro desconhecido' }))
+      return NextResponse.json(errorData, { status: response.status })
     }
+
+    const tenantInfo = await response.json()
 
     return NextResponse.json(tenantInfo)
   } catch (error: any) {
-    console.error('[API /tenants/info] Erro:', error)
+    console.error('[API /tenants/info] Erro ao buscar do backend:', error)
     return NextResponse.json(
       { error: 'Erro ao buscar informações do tenant', message: error.message },
       { status: 500 }

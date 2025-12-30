@@ -37,15 +37,10 @@ export class ApiClient {
   }
 
   /**
-   * Get tenant code from localStorage
-   */
-  private getTenantCode(): string | null {
-    if (typeof window === 'undefined') return null
-    return localStorage.getItem('currentTenant')
-  }
-
-  /**
    * Generic request method with retry logic
+   *
+   * Nota: Tenant é determinado automaticamente pelo backend via JWT token.
+   * Não é mais necessário passar X-Tenant-Code header.
    */
   async request<T>(
     endpoint: string,
@@ -54,7 +49,6 @@ export class ApiClient {
     const { retryOnAuthError = true, tenantCode, ...fetchOptions } = options
 
     const token = await this.getAuthToken()
-    const tenant = tenantCode || this.getTenantCode()
 
     const url = `${this.baseUrl}${endpoint}`
 
@@ -64,9 +58,10 @@ export class ApiClient {
       ...(fetchOptions.headers as Record<string, string> || {}),
     }
 
-    // Add tenant header if available
-    if (tenant) {
-      headers['X-Tenant-Code'] = tenant
+    // Tenant code pode ser passado explicitamente se necessário (raro)
+    // Mas normalmente é extraído do JWT pelo backend
+    if (tenantCode) {
+      headers['X-Tenant-Code'] = tenantCode
     }
 
     const response = await fetch(url, {

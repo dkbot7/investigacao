@@ -89,7 +89,7 @@
  * Scheduled: Cron trigger diário às 9h UTC
  */
 
-import { Env, DecodedToken } from './types';
+import { Env, AuthContext } from './types';
 import { authenticate } from './auth';
 import {
   determineCacheStrategy,
@@ -193,6 +193,11 @@ import {
   handleGetBillingPreferences,
   handleUpdateBillingPreferences
 } from './handlers/billing';
+import {
+  handleGetTenantInfo,
+  handleGetProfile,
+  handleUpdateProfile
+} from './handlers/user';
 import { handleScheduled } from './scheduled';
 
 export default {
@@ -291,7 +296,7 @@ export default {
       }
 
       // Todas as outras rotas requerem autenticação de usuário
-      const authResult = await authenticate(request);
+      const authResult = await authenticate(request, env);
 
       if (authResult instanceof Response) {
         // Auth falhou, retornar erro
@@ -301,7 +306,7 @@ export default {
         });
       }
 
-      const user = authResult as DecodedToken;
+      const user = authResult; // AuthContext com tenantId e role
 
       // Global rate limiting check for all authenticated routes
       const globalRateLimitResult = await checkRateLimit(env, 'global', user.userId);
@@ -650,6 +655,23 @@ export default {
 
       if (url.pathname === '/api/billing/preferences' && request.method === 'PUT') {
         const response = await handleUpdateBillingPreferences(request, env, user);
+        return addCorsHeaders(response, corsHeaders);
+      }
+
+      // === USER ROUTES ===
+
+      if (url.pathname === '/api/user/tenant-info' && request.method === 'GET') {
+        const response = await handleGetTenantInfo(request, env, user);
+        return addCorsHeaders(response, corsHeaders, request, url);
+      }
+
+      if (url.pathname === '/api/user/profile' && request.method === 'GET') {
+        const response = await handleGetProfile(request, env, user);
+        return addCorsHeaders(response, corsHeaders, request, url);
+      }
+
+      if (url.pathname === '/api/user/profile' && request.method === 'PUT') {
+        const response = await handleUpdateProfile(request, env, user);
         return addCorsHeaders(response, corsHeaders);
       }
 

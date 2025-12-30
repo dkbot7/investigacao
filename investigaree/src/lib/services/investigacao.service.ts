@@ -375,7 +375,7 @@ export class InvestigacaoService {
       {
         headers: {
           Authorization: `Bearer ${await this.getAuthToken()}`,
-          'X-Tenant-Code': this.getTenantCode() || '',
+          'Content-Type': 'application/json'
         },
       }
     )
@@ -402,7 +402,7 @@ export class InvestigacaoService {
       {
         headers: {
           Authorization: `Bearer ${await this.getAuthToken()}`,
-          'X-Tenant-Code': this.getTenantCode() || '',
+          'Content-Type': 'application/json'
         },
       }
     )
@@ -499,13 +499,6 @@ export class InvestigacaoService {
     return user.getIdToken()
   }
 
-  /**
-   * Get tenant code from localStorage
-   */
-  private getTenantCode(): string | null {
-    if (typeof window === 'undefined') return null
-    return localStorage.getItem('currentTenant')
-  }
 }
 
 /**
