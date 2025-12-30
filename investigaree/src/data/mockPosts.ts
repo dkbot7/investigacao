@@ -367,7 +367,7 @@ Dani Kaloi é Perito Criminal oficial especializado em investigação de fraudes
     title: "Guia Completo: Como Consultar CPF em Fontes Públicas Legalmente",
     excerpt: "Entenda como funciona a verificação de CPF em fontes públicas oficiais do governo brasileiro, quais informações estão disponíveis e como se proteger contra fraudes de identidade.",
     content: "", // Loaded from MDX
-    coverImage: "/images/blog/consulta-cpf-fontes-publicas.jpg",
+    coverImage: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=675&fit=crop",
     author: BLOG_AUTHORS.find(a => a.id === "dani-kaloi") || BLOG_AUTHORS[0],
     contentType: "tutorial",
     topic: BLOG_TOPICS.find(t => t.id === "osint-brasil") || BLOG_TOPICS[0],
