@@ -1,78 +1,106 @@
-"use client";
+/**
+ * Hook para obter informações do tenant do usuário autenticado
+ */
 
-import { useState, useEffect, useCallback } from "react";
-import { useAuth } from "@/contexts/AuthContext";
-import { getTenantInfo, TenantInfo, TenantInfoResponse } from "@/lib/api";
+import { useState, useEffect } from 'react';
+import { auth } from '@/lib/firebase';
+import { logger } from '@/lib/logger';
 
-// MOCK DATA REMOVIDO POR QUESTÕES DE SEGURANÇA
-// Usuários não devem ter acesso a dados de outros clientes em nenhuma circunstância
-
-interface UseTenantReturn {
-  tenant: TenantInfo | null;
-  tenants: TenantInfo[];
-  hasAccess: boolean;
-  loading: boolean;
-  error: string | null;
-  refetch: () => Promise<void>;
+interface Tenant {
+  id: string;
+  code: string;
+  name: string;
+  status: string;
+  email: string;
 }
 
-export function useTenant(): UseTenantReturn {
-  const { user, loading: authLoading } = useAuth();
-  const [tenant, setTenant] = useState<TenantInfo | null>(null);
-  const [tenants, setTenants] = useState<TenantInfo[]>([]);
-  const [hasAccess, setHasAccess] = useState(false);
+interface TenantInfo {
+  hasAccess: boolean;
+  tenant: Tenant | null;
+  tenants: Tenant[];
+  user?: {
+    uid: string;
+    email: string;
+    role: 'admin' | 'editor' | 'viewer';
+    userId: string;
+  };
+}
+
+export function useTenant() {
+  const [tenantInfo, setTenantInfo] = useState<TenantInfo | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchTenantInfo = useCallback(async () => {
-    if (!user) {
-      setTenant(null);
-      setTenants([]);
-      setHasAccess(false);
-      setLoading(false);
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
-
-    try {
-      const response: TenantInfoResponse = await getTenantInfo();
-
-      setHasAccess(response.hasAccess);
-      setTenant(response.tenant);
-      setTenants(response.tenants || []);
-    } catch (err: any) {
-      console.error("Erro ao buscar tenant:", err);
-
-      // NUNCA dar acesso a dados mockados - questão de segurança crítica
-      // Se API falhar, usuário não tem acesso
-      console.error("[useTenant] Erro ao verificar acesso:", err);
-      setHasAccess(false);
-      setTenant(null);
-      setTenants([]);
-
-      // Apenas mostrar erro se não for erro de autenticação
-      if (err.status !== 401) {
-        setError(err.message || "Erro ao verificar acesso. Entre em contato com o suporte.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  }, [user]);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!authLoading) {
-      fetchTenantInfo();
-    }
-  }, [authLoading, fetchTenantInfo]);
+    let mounted = true;
+
+    const fetchTenantInfo = async () => {
+      try {
+        const user = auth.currentUser;
+
+        if (!user) {
+          setLoading(false);
+          return;
+        }
+
+        const token = await user.getIdToken();
+
+        const response = await fetch('/api/tenants/info', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch tenant info');
+        }
+
+        const data = await response.json();
+
+        if (mounted) {
+          setTenantInfo(data);
+          setError(null);
+        }
+      } catch (err) {
+        logger.error('Erro ao buscar tenant info', err instanceof Error ? err : undefined, {}, 'useTenant');
+
+        if (mounted) {
+          setError(err instanceof Error ? err : new Error('Unknown error'));
+        }
+      } finally {
+        if (mounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    // Fetch on mount
+    fetchTenantInfo();
+
+    // Listen for auth state changes
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        fetchTenantInfo();
+      } else {
+        setTenantInfo(null);
+        setLoading(false);
+      }
+    });
+
+    return () => {
+      mounted = false;
+      unsubscribe();
+    };
+  }, []);
 
   return {
-    tenant,
-    tenants,
-    hasAccess,
-    loading: authLoading || loading,
+    tenantInfo,
+    currentTenant: tenantInfo?.tenant || null,
+    tenantCode: tenantInfo?.tenant?.code || null,
+    loading,
     error,
-    refetch: fetchTenantInfo,
+    hasAccess: tenantInfo?.hasAccess || false,
+    userRole: tenantInfo?.user?.role || 'viewer'
   };
 }

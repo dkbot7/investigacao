@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { useTenant } from "@/hooks/useTenant";
 import {
   Users,
   Search,
@@ -97,8 +98,8 @@ export default function FuncionariosPage() {
   const [page, setPage] = useState(1);
   const limit = 50;
 
-  // TODO: Implementar tenant selection (por enquanto hardcoded)
-  const tenantCode = "CLIENTE_01";
+  // Buscar tenant do usuário autenticado
+  const { tenantCode, loading: tenantLoading } = useTenant();
 
   // Verificar se deve abrir o modal automaticamente
   useEffect(() => {

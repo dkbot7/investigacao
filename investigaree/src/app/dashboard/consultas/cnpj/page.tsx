@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { serproService } from '@/lib/services/serpro.service';
 import { criarFuncionarioDeSerpro } from '@/lib/services/dados.service';
+import { useTenant } from '@/hooks/useTenant';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -39,6 +40,7 @@ type TipoConsulta = 'basica' | 'qsa' | 'completa';
 
 export default function ConsultaCnpjPage() {
   const router = useRouter();
+  const { tenantCode, loading: tenantLoading } = useTenant();
   const [cnpj, setCnpj] = useState('');
   const [tipoConsulta, setTipoConsulta] = useState<TipoConsulta>('basica');
   const [loading, setLoading] = useState(false);
@@ -112,7 +114,9 @@ export default function ConsultaCnpjPage() {
       setResultado(dadosCnpj);
 
       // 2. Auto-criar card no Kanban
-      const tenantCode = 'CLIENTE_01'; // TODO: Pegar do contexto do usuário
+      if (!tenantCode) {
+        throw new Error('Tenant não identificado');
+      }
 
       await criarFuncionarioDeSerpro(tenantCode, {
         cnpj: cnpjNumeros,

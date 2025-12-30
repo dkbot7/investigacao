@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { serproService } from '@/lib/services/serpro.service';
 import { criarFuncionarioDeSerpro } from '@/lib/services/dados.service';
+import { useTenant } from '@/hooks/useTenant';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -24,6 +25,7 @@ import { Loader2, Search, User, Calendar, CheckCircle, AlertCircle, ArrowRight }
 
 export default function ConsultaCpfPage() {
   const router = useRouter();
+  const { tenantCode, loading: tenantLoading } = useTenant();
   const [cpf, setCpf] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -67,7 +69,9 @@ export default function ConsultaCpfPage() {
       setResultado(dadosCpf);
 
       // 2. Auto-criar card no Kanban
-      const tenantCode = 'CLIENTE_01'; // TODO: Pegar do contexto do usuário
+      if (!tenantCode) {
+        throw new Error('Tenant não identificado');
+      }
 
       await criarFuncionarioDeSerpro(tenantCode, {
         cpf: cpfNumeros,
