@@ -13,9 +13,9 @@
 
 ## 🔑 Credenciais
 
-**Consumer Key:** `3q4kLDgTu__vUqPfaXQ07MUMOPIa`
-**Consumer Secret:** `D_G99Fg5wHO10PNGYP49IYo2EaAa`
-**Base64 (Key:Secret):** `M3E0a0xEZ1R1X192VXFQZmFYUTA3TVVNT1BJYTpEX0c5OUZnNXdITzEwUE5HWVA0OUlZbzJFYUFh`
+**Consumer Key:** `sua_consumer_key_aqui` (obtenha em https://loja.serpro.gov.br/)
+**Consumer Secret:** `seu_consumer_secret_aqui` (obtenha em https://loja.serpro.gov.br/)
+**Base64 (Key:Secret):** `base64_de_key_secret` (gerado automaticamente a partir das credenciais acima)
 
 ---
 
@@ -88,9 +88,11 @@ Custo Médio: R$ 0,5014 por consulta
 # ========================================
 
 # Configurações
-CONSUMER_KEY="3q4kLDgTu__vUqPfaXQ07MUMOPIa"
-CONSUMER_SECRET="D_G99Fg5wHO10PNGYP49IYo2EaAa"
-AUTH_BASE64="M3E0a0xEZ1R1X192VXFQZmFYUTA3TVVNT1BJYTpEX0c5OUZnNXdITzEwUE5HWVA0OUlZbzJFYUFh"
+# IMPORTANTE: Substitua pelos seus próprios valores obtidos em https://loja.serpro.gov.br/
+CONSUMER_KEY="sua_consumer_key_aqui"
+CONSUMER_SECRET="seu_consumer_secret_aqui"
+# Gerar AUTH_BASE64 automaticamente a partir das credenciais acima
+AUTH_BASE64=$(echo -n "${CONSUMER_KEY}:${CONSUMER_SECRET}" | base64)
 TOKEN_URL="https://gateway.apiserpro.serpro.gov.br/token"
 API_URL="https://gateway.apiserpro.serpro.gov.br/consulta-cpf-df/v2"
 
@@ -152,9 +154,11 @@ chmod +x consulta_cpf.sh
 # Script de Consulta CPF COM Carimbo de Tempo
 # ========================================
 
-CONSUMER_KEY="3q4kLDgTu__vUqPfaXQ07MUMOPIa"
-CONSUMER_SECRET="D_G99Fg5wHO10PNGYP49IYo2EaAa"
-AUTH_BASE64="M3E0a0xEZ1R1X192VXFQZmFYUTA3TVVNT1BJYTpEX0c5OUZnNXdITzEwUE5HWVA0OUlZbzJFYUFh"
+# IMPORTANTE: Substitua pelos seus próprios valores obtidos em https://loja.serpro.gov.br/
+CONSUMER_KEY="sua_consumer_key_aqui"
+CONSUMER_SECRET="seu_consumer_secret_aqui"
+# Gerar AUTH_BASE64 automaticamente a partir das credenciais acima
+AUTH_BASE64=$(echo -n "${CONSUMER_KEY}:${CONSUMER_SECRET}" | base64)
 TOKEN_URL="https://gateway.apiserpro.serpro.gov.br/token"
 API_URL="https://gateway.apiserpro.serpro.gov.br/consulta-cpf-df/v2"
 
@@ -226,11 +230,19 @@ Script de Consulta CPF SERPRO com Token Automático
 import requests
 import json
 import base64
+import os
 from datetime import datetime
+from dotenv import load_dotenv
 
-# Configurações
-CONSUMER_KEY = "3q4kLDgTu__vUqPfaXQ07MUMOPIa"
-CONSUMER_SECRET = "D_G99Fg5wHO10PNGYP49IYo2EaAa"
+# Carregar variáveis de ambiente do arquivo .env
+load_dotenv()
+
+# Configurações - obter do arquivo .env
+CONSUMER_KEY = os.getenv("SERPRO_CPF_CONSUMER_KEY")
+CONSUMER_SECRET = os.getenv("SERPRO_CPF_CONSUMER_SECRET")
+
+if not CONSUMER_KEY or not CONSUMER_SECRET:
+    raise ValueError("❌ ERRO: SERPRO_CPF_CONSUMER_KEY e SERPRO_CPF_CONSUMER_SECRET devem estar configurados no arquivo .env")
 TOKEN_URL = "https://gateway.apiserpro.serpro.gov.br/token"
 API_URL = "https://gateway.apiserpro.serpro.gov.br/consulta-cpf-df/v2"
 
@@ -378,14 +390,21 @@ python3 consulta_cpf.py 40442820135 --timestamp
  */
 
 const https = require('https');
+require('dotenv').config();
 
-// Configurações
+// Configurações - obter do arquivo .env
 const CONFIG = {
-  consumerKey: '3q4kLDgTu__vUqPfaXQ07MUMOPIa',
-  consumerSecret: 'D_G99Fg5wHO10PNGYP49IYo2EaAa',
+  consumerKey: process.env.SERPRO_CPF_CONSUMER_KEY,
+  consumerSecret: process.env.SERPRO_CPF_CONSUMER_SECRET,
   tokenUrl: 'https://gateway.apiserpro.serpro.gov.br/token',
   apiUrl: 'https://gateway.apiserpro.serpro.gov.br/consulta-cpf-df/v2'
 };
+
+// Validar credenciais
+if (!CONFIG.consumerKey || !CONFIG.consumerSecret) {
+  console.error('❌ ERRO: SERPRO_CPF_CONSUMER_KEY e SERPRO_CPF_CONSUMER_SECRET devem estar configurados no arquivo .env');
+  process.exit(1);
+}
 
 class ConsultaCPF {
   constructor() {

@@ -3,8 +3,9 @@ import { NextRequest, NextResponse } from 'next/server'
 /**
  * Decodifica JWT Firebase (apenas payload, sem validação de assinatura)
  * ATENÇÃO: Isso é INSEGURO! Apenas para desenvolvimento local.
+ * TODO: Implementar validação real do token Firebase no backend
  */
-function decodeFirebaseToken(token: string): { email?: string } {
+function decodeFirebaseToken(token: string): { email?: string; uid?: string } {
   try {
     const parts = token.split('.')
     if (parts.length !== 3) return {}
@@ -19,6 +20,9 @@ function decodeFirebaseToken(token: string): { email?: string } {
 /**
  * GET /api/tenants/info
  * Retorna informações do tenant do usuário
+ *
+ * TODO: Substituir mock por consulta real ao D1 database
+ * TODO: Implementar validação JWT com Firebase Admin SDK
  */
 export async function GET(request: NextRequest) {
   try {
@@ -36,42 +40,29 @@ export async function GET(request: NextRequest) {
     const decoded = decodeFirebaseToken(token)
     const userEmail = decoded.email || 'unknown@example.com'
 
-    // Lista de emails autorizados para o tenant COMURG
-    const COMURG_EMAILS = [
-      'cliente01@investigaree.com.br',
-      'dkbotdani@gmail.com',
-      'ibsenmaciel@gmail.com',
-      'contato@investigaree.com.br',
-      // Adicione outros emails COMURG aqui
-    ]
-
-    // Verificar se usuário é do tenant COMURG
-    const isCOMURG = COMURG_EMAILS.includes(userEmail.toLowerCase())
-
-    // Logging para debug
-    console.log('[API /tenants/info] Email:', userEmail)
-    console.log('[API /tenants/info] isCOMURG:', isCOMURG)
+    // TODO: Buscar tenant do usuário no D1 database
+    // const user = await db.prepare('SELECT tenant_id FROM users WHERE email = ?').bind(userEmail).first()
+    // const tenant = await db.prepare('SELECT * FROM tenants WHERE id = ?').bind(user.tenant_id).first()
 
     // Mock de dados para desenvolvimento local
+    // Em produção, isso deve vir do banco de dados
     const tenantInfo = {
-      hasAccess: isCOMURG,
-      ...(isCOMURG && {
-        tenant: {
-          id: "comurg-tenant-id",
-          code: "COMURG",
-          name: "COMURG - Companhia Urbanizadora da Região do Goiânia",
-          email: "contato@comurg.go.gov.br",
-          status: "active"
-        },
-        tenants: [
-          {
-            id: "comurg-tenant-id",
-            code: "COMURG",
-            name: "COMURG - Companhia Urbanizadora da Região do Goiânia",
-            email: "contato@comurg.go.gov.br"
-          }
-        ]
-      })
+      hasAccess: true, // TODO: Verificar no banco se usuário tem acesso
+      tenant: {
+        id: "default-tenant-id",
+        code: "CLIENTE_01",
+        name: "Cliente Padrão",
+        email: userEmail,
+        status: "active"
+      },
+      tenants: [
+        {
+          id: "default-tenant-id",
+          code: "CLIENTE_01",
+          name: "Cliente Padrão",
+          email: userEmail
+        }
+      ]
     }
 
     return NextResponse.json(tenantInfo)

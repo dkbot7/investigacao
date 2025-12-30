@@ -14,9 +14,9 @@
 
 ## 🔑 Credenciais
 
-**Consumer Key:** `3q4kLDgTu__vUqPfaXQ07MUMOPIa`
-**Consumer Secret:** `D_G99Fg5wHO10PNGYP49IYo2EaAa`
-**Base64 (Key:Secret):** `M3E0a0xEZ1R1X192VXFQZmFYUTA3TVVNT1BJYTpEX0c5OUZnNXdITzEwUE5HWVA0OUlZbzJFYUFh`
+**Consumer Key:** `sua_consumer_key_aqui` (obtenha em https://loja.serpro.gov.br/)
+**Consumer Secret:** `seu_consumer_secret_aqui` (obtenha em https://loja.serpro.gov.br/)
+**Base64 (Key:Secret):** `base64_das_suas_credenciais` (gerado automaticamente)
 
 ---
 
@@ -130,8 +130,9 @@ TOTAL: R$ 37.783,72
 # ========================================
 
 # Configurações
-CONSUMER_KEY="3q4kLDgTu__vUqPfaXQ07MUMOPIa"
-CONSUMER_SECRET="D_G99Fg5wHO10PNGYP49IYo2EaAa"
+# IMPORTANTE: Substitua pelos seus próprios valores obtidos em https://loja.serpro.gov.br/
+CONSUMER_KEY="sua_consumer_key_aqui"
+CONSUMER_SECRET="seu_consumer_secret_aqui"
 AUTH_BASE64="M3E0a0xEZ1R1X192VXFQZmFYUTA3TVVNT1BJYTpEX0c5OUZnNXdITzEwUE5HWVA0OUlZbzJFYUFh"
 TOKEN_URL="https://gateway.apiserpro.serpro.gov.br/token"
 API_URL="https://gateway.apiserpro.serpro.gov.br/consulta-renda/v1"
@@ -205,8 +206,9 @@ done
 # Script de Consulta Renda - Múltiplos Anos
 # ========================================
 
-CONSUMER_KEY="3q4kLDgTu__vUqPfaXQ07MUMOPIa"
-CONSUMER_SECRET="D_G99Fg5wHO10PNGYP49IYo2EaAa"
+# IMPORTANTE: Substitua pelos seus próprios valores obtidos em https://loja.serpro.gov.br/
+CONSUMER_KEY="sua_consumer_key_aqui"
+CONSUMER_SECRET="seu_consumer_secret_aqui"
 AUTH_BASE64="M3E0a0xEZ1R1X192VXFQZmFYUTA3TVVNT1BJYTpEX0c5OUZnNXdITzEwUE5HWVA0OUlZbzJFYUFh"
 TOKEN_URL="https://gateway.apiserpro.serpro.gov.br/token"
 API_URL="https://gateway.apiserpro.serpro.gov.br/consulta-renda/v1"
@@ -296,8 +298,11 @@ import base64
 from datetime import datetime
 
 # Configurações
-CONSUMER_KEY = "3q4kLDgTu__vUqPfaXQ07MUMOPIa"
-CONSUMER_SECRET = "D_G99Fg5wHO10PNGYP49IYo2EaAa"
+CONSUMER_KEY = os.getenv("SERPRO_RENDA_CONSUMER_KEY")
+CONSUMER_SECRET = os.getenv("SERPRO_RENDA_CONSUMER_SECRET")
+
+if not CONSUMER_KEY or not CONSUMER_SECRET:
+    raise ValueError("❌ ERRO: SERPRO_RENDA_CONSUMER_KEY e SERPRO_RENDA_CONSUMER_SECRET devem estar configurados no arquivo .env")
 TOKEN_URL = "https://gateway.apiserpro.serpro.gov.br/token"
 API_URL = "https://gateway.apiserpro.serpro.gov.br/consulta-renda/v1"
 
@@ -533,8 +538,8 @@ const { Buffer } = require('buffer');
 
 // Configurações
 const CONFIG = {
-  consumerKey: '3q4kLDgTu__vUqPfaXQ07MUMOPIa',
-  consumerSecret: 'D_G99Fg5wHO10PNGYP49IYo2EaAa',
+  consumerKey: process.env.SERPRO_RENDA_CONSUMER_KEY,
+  consumerSecret: process.env.SERPRO_RENDA_CONSUMER_SECRET,
   tokenUrl: 'https://gateway.apiserpro.serpro.gov.br/token',
   apiUrl: 'https://gateway.apiserpro.serpro.gov.br/consulta-renda/v1'
 };

@@ -42,7 +42,7 @@ Você precisa adicionar **6 secrets** no Cloudflare Dashboard para que o backend
 2. Preencha:
    - **Variable name:** `SERPRO_CPF_CONSUMER_KEY`
    - **Type:** Selecione **"Encrypt"** (cadeado 🔒)
-   - **Value:** `3q4kLDgTu__vUqPfaXQ07MUMOPIa`
+   - **Value:** `sua_consumer_key_aqui` (obtenha em https://loja.serpro.gov.br/)
 3. Clique em **"Save"**
 
 ---
@@ -53,7 +53,7 @@ Você precisa adicionar **6 secrets** no Cloudflare Dashboard para que o backend
 2. Preencha:
    - **Variable name:** `SERPRO_CPF_CONSUMER_SECRET`
    - **Type:** Selecione **"Encrypt"** (cadeado 🔒)
-   - **Value:** `D_G99Fg5wHO10PNGYP49IYo2EaAa`
+   - **Value:** `seu_consumer_secret_aqui` (obtenha em https://loja.serpro.gov.br/)
 3. Clique em **"Save"**
 
 ---
@@ -248,8 +248,8 @@ curl -X POST https://investigaree-api.chatbotimoveis.workers.dev/api/serpro/cpf/
 
 1. Acesse: https://dash.cloudflare.com/ → Workers & Pages → investigaree-api → Settings
 2. Adicione **6 secrets** (3 APIs × 2 credenciais):
-   - `SERPRO_CPF_CONSUMER_KEY` ← `3q4kLDgTu__vUqPfaXQ07MUMOPIa` ✅
-   - `SERPRO_CPF_CONSUMER_SECRET` ← `D_G99Fg5wHO10PNGYP49IYo2EaAa` ✅
+   - `SERPRO_CPF_CONSUMER_KEY` ← Obtenha em https://loja.serpro.gov.br/
+   - `SERPRO_CPF_CONSUMER_SECRET` ← Obtenha em https://loja.serpro.gov.br/
    - `SERPRO_CNPJ_CONSUMER_KEY` ← ⏳ obter na Loja SERPRO
    - `SERPRO_CNPJ_CONSUMER_SECRET` ← ⏳ obter na Loja SERPRO
    - `SERPRO_DIVIDA_ATIVA_CONSUMER_KEY` ← ⏳ obter na Loja SERPRO

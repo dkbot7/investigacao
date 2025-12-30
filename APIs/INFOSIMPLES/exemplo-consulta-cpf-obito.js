@@ -8,10 +8,21 @@
 
 const XLSX = require('xlsx');
 const path = require('path');
+require('dotenv').config();
 
-// Configuração
-const INFOSIMPLES_TOKEN = '43nV3YhetfYkxAZAUGCRNp8gcWtJazIoIRxu1mMm';
+// Configuração - obter do arquivo .env
+const INFOSIMPLES_TOKEN = process.env.INFOSIMPLES_TOKEN;
 const INFOSIMPLES_URL = 'https://api.infosimples.com/api/v2/consultas/receita-federal/cpf';
+
+// Validar token
+if (!INFOSIMPLES_TOKEN) {
+  console.error('❌ ERRO: INFOSIMPLES_TOKEN não configurado no arquivo .env');
+  console.error('\nPara configurar:');
+  console.error('1. Crie um arquivo .env na raiz do projeto');
+  console.error('2. Adicione a linha: INFOSIMPLES_TOKEN=seu_token_aqui');
+  console.error('3. Obtenha seu token em: https://www.infosimples.com.br/');
+  process.exit(1);
+}
 
 // Delay entre requisições (ms)
 const DELAY_ENTRE_REQUISICOES = 2000;

@@ -15,8 +15,8 @@ As APIs do SERPRO utilizam o protocolo **OAuth2** para autenticação e autoriza
 
 ### Credenciais do Contrato
 
-**Consumer Key:** `3q4kLDgTu__vUqPfaXQ07MUMOPIa`
-**Consumer Secret:** `D_G99Fg5wHO10PNGYP49IYo2EaAa`
+**Consumer Key:** `sua_consumer_key_aqui` (obtenha em https://loja.serpro.gov.br/)
+**Consumer Secret:** `seu_consumer_secret_aqui` (obtenha em https://loja.serpro.gov.br/)
 
 ⚠️ **IMPORTANTE:** O Consumer Key e Consumer Secret identificam seu contrato com o SERPRO. **Mantenha essas informações protegidas!**
 
@@ -27,12 +27,12 @@ As APIs do SERPRO utilizam o protocolo **OAuth2** para autenticação e autoriza
 Concatene Consumer Key e Consumer Secret separados por `:` e converta para Base64:
 
 ```bash
-echo -n "3q4kLDgTu__vUqPfaXQ07MUMOPIa:D_G99Fg5wHO10PNGYP49IYo2EaAa" | base64
+echo -n "sua_consumer_key_aqui:seu_consumer_secret_aqui" | base64
 ```
 
 **Resultado:**
 ```
-M3E0a0xEZ1R1X192VXFQZmFYUTA3TVVNT1BJYTpEX0c5OUZnNXdITzEwUE5HWVA0OUlZbzJFYUFh
+base64_das_suas_credenciais
 ```
 
 #### 2️⃣ Solicite o Token de Acesso (Bearer)
@@ -41,7 +41,7 @@ M3E0a0xEZ1R1X192VXFQZmFYUTA3TVVNT1BJYTpEX0c5OUZnNXdITzEwUE5HWVA0OUlZbzJFYUFh
 
 **Headers:**
 ```
-Authorization: Basic M3E0a0xEZ1R1X192VXFQZmFYUTA3TVVNT1BJYTpEX0c5OUZnNXdITzEwUE5HWVA0OUlZbzJFYUFh
+Authorization: Basic base64_das_suas_credenciais
 Content-Type: application/x-www-form-urlencoded
 ```
 
@@ -52,7 +52,7 @@ grant_type=client_credentials
 
 **Exemplo cURL:**
 ```bash
-curl -k -H "Authorization: Basic M3E0a0xEZ1R1X192VXFQZmFYUTA3TVVNT1BJYTpEX0c5OUZnNXdITzEwUE5HWVA0OUlZbzJFYUFh" -d "grant_type=client_credentials" https://gateway.apiserpro.serpro.gov.br/token
+curl -k -H "Authorization: Basic base64_das_suas_credenciais" -d "grant_type=client_credentials" https://gateway.apiserpro.serpro.gov.br/token
 ```
 
 ⚠️ **Dica:** Se receber erro "415 Unsupported Media Type", certifique-se de incluir o header `Content-Type: application/x-www-form-urlencoded`
@@ -247,7 +247,7 @@ Apesar de ser opcional (porque foi incluído na base depois da criação do cada
 curl -X POST "https://gateway.apiserpro.serpro.gov.br/token" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=client_credentials" \
-  -u "3q4kLDgTu__vUqPfaXQ07MUMOPIa:D_G99Fg5wHO10PNGYP49IYo2EaAa"
+  -u "sua_consumer_key_aqui:seu_consumer_secret_aqui"
 ```
 
 **Resposta:**
