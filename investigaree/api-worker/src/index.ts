@@ -200,6 +200,17 @@ import {
   handleUpdateProfile
 } from './handlers/user';
 import { handleLeadSubscribe } from './handlers/leads';
+import {
+  handleGetComplianceStats,
+  handleGetPEPs,
+  handleGetSancoes
+} from './handlers/compliance';
+import {
+  handleGetLGPDStats,
+  handleRegisterConsent,
+  handleGetLGPDRequests,
+  handleCreateLGPDRequest
+} from './handlers/lgpd';
 import { handleScheduled } from './scheduled';
 
 export default {
@@ -255,6 +266,12 @@ export default {
       // Lead subscribe (public, sem auth)
       if (url.pathname === '/api/leads/subscribe' && request.method === 'POST') {
         const response = await handleLeadSubscribe(request, env);
+        return addCorsHeaders(response, corsHeaders);
+      }
+
+      // LGPD consent (public, sem auth)
+      if (url.pathname === '/api/lgpd/consent' && request.method === 'POST') {
+        const response = await handleRegisterConsent(request, env);
         return addCorsHeaders(response, corsHeaders);
       }
 
@@ -680,6 +697,40 @@ export default {
 
       if (url.pathname === '/api/user/profile' && request.method === 'PUT') {
         const response = await handleUpdateProfile(request, env, user);
+        return addCorsHeaders(response, corsHeaders);
+      }
+
+      // === COMPLIANCE ROUTES ===
+
+      if (url.pathname === '/api/compliance/stats' && request.method === 'GET') {
+        const response = await handleGetComplianceStats(request, env, user);
+        return addCorsHeaders(response, corsHeaders, request, url);
+      }
+
+      if (url.pathname === '/api/compliance/pep' && request.method === 'GET') {
+        const response = await handleGetPEPs(request, env, user);
+        return addCorsHeaders(response, corsHeaders, request, url);
+      }
+
+      if (url.pathname === '/api/compliance/sancoes' && request.method === 'GET') {
+        const response = await handleGetSancoes(request, env, user);
+        return addCorsHeaders(response, corsHeaders, request, url);
+      }
+
+      // === LGPD ROUTES ===
+
+      if (url.pathname === '/api/lgpd/stats' && request.method === 'GET') {
+        const response = await handleGetLGPDStats(request, env, user);
+        return addCorsHeaders(response, corsHeaders, request, url);
+      }
+
+      if (url.pathname === '/api/lgpd/requests' && request.method === 'GET') {
+        const response = await handleGetLGPDRequests(request, env, user);
+        return addCorsHeaders(response, corsHeaders, request, url);
+      }
+
+      if (url.pathname === '/api/lgpd/request' && request.method === 'POST') {
+        const response = await handleCreateLGPDRequest(request, env, user);
         return addCorsHeaders(response, corsHeaders);
       }
 
