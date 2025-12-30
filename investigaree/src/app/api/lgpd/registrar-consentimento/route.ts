@@ -21,8 +21,9 @@ import { logger } from '@/lib/logger';
  * - Recomendado: 5 anos (Art. 16 - termo de tratamento)
  *
  * IMPLEMENTAÇÃO ATUAL:
- * - Console.log estruturado (MVP)
- * - TODO: Persistir em banco de dados (produção)
+ * - Logger estruturado (produção)
+ * - Persistência em D1 via backend API worker (/api/lgpd/consent)
+ * - Hash de IP para privacidade (LGPD Art. 13)
  */
 
 interface ConsentRequest {

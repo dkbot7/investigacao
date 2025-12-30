@@ -67,11 +67,27 @@ export default function LeadCaptureCard({
     setIsSubmitting(true);
 
     try {
-      // TODO: Integrate with email service (Mailchimp, ConvertKit, etc.)
-      // For now, simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Enviar para backend (salva em D1 + envia email via Resend)
+      const response = await fetch('/api/leads/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          name: name || null,
+          source: 'blog_lead_capture',
+          resource: title,
+          resourceType,
+        })
+      });
 
-      // Store lead in localStorage for demo purposes
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Erro ao processar');
+      }
+
+      const result = await response.json();
+
+      // Ainda salvar em localStorage como backup
       const leads = JSON.parse(localStorage.getItem("investigaree_leads") || "[]");
       leads.push({
         email,
@@ -79,12 +95,15 @@ export default function LeadCaptureCard({
         resource: title,
         resourceType,
         timestamp: new Date().toISOString(),
+        leadId: result.leadId,
+        isNew: result.isNew
       });
       localStorage.setItem("investigaree_leads", JSON.stringify(leads));
 
       setIsSuccess(true);
-    } catch {
-      setError("Erro ao processar. Tente novamente.");
+    } catch (err) {
+      console.error('Lead capture error:', err);
+      setError(err instanceof Error ? err.message : "Erro ao processar. Tente novamente.");
     } finally {
       setIsSubmitting(false);
     }

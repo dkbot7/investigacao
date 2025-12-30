@@ -199,6 +199,7 @@ import {
   handleGetProfile,
   handleUpdateProfile
 } from './handlers/user';
+import { handleLeadSubscribe } from './handlers/leads';
 import { handleScheduled } from './scheduled';
 
 export default {
@@ -249,6 +250,12 @@ export default {
       if (url.pathname === '/api/cache/stats' && request.method === 'GET') {
         const response = await handleGetCacheStats(request, env);
         return addCorsHeaders(response, corsHeaders, request, url);
+      }
+
+      // Lead subscribe (public, sem auth)
+      if (url.pathname === '/api/leads/subscribe' && request.method === 'POST') {
+        const response = await handleLeadSubscribe(request, env);
+        return addCorsHeaders(response, corsHeaders);
       }
 
       // === PUBLIC REST API ROUTES (v1) - API Key Authentication ===
