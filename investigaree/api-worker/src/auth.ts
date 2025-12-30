@@ -6,6 +6,7 @@
  */
 
 import { DecodedToken, AuthContext, Env } from './types';
+import { logger } from './logger';
 
 // Cache de chaves públicas do Google (válido por 1 hora)
 let publicKeysCache: { keys: JsonWebKey[]; expiresAt: number } | null = null;
@@ -53,7 +54,7 @@ async function fetchGooglePublicKeys(): Promise<JsonWebKey[]> {
           const jwk = await crypto.subtle.exportKey('jwk', cryptoKey);
           return { ...jwk, kid };
         } catch (error) {
-          console.error('[Auth] Erro ao importar certificado:', error);
+          logger.error('Erro ao importar certificado PEM', error instanceof Error ? error : undefined, {}, 'Auth');
           return null;
         }
       })
@@ -69,7 +70,7 @@ async function fetchGooglePublicKeys(): Promise<JsonWebKey[]> {
 
     return validKeys;
   } catch (error) {
-    console.error('[Auth] Erro ao buscar chaves públicas:', error);
+    logger.error('Erro ao buscar chaves públicas do Google', error instanceof Error ? error : undefined, {}, 'Auth');
     throw error;
   }
 }
@@ -91,7 +92,7 @@ async function verifyJWTSignature(token: string, publicKeys: JsonWebKey[]): Prom
     // Encontrar chave pública correspondente
     const publicKey = publicKeys.find(k => k.kid === kid);
     if (!publicKey) {
-      console.warn('[Auth] Chave pública não encontrada para kid:', kid);
+      logger.warn('Chave pública não encontrada para kid', { kid }, 'Auth');
       return false;
     }
 
@@ -123,7 +124,7 @@ async function verifyJWTSignature(token: string, publicKeys: JsonWebKey[]): Prom
 
     return isValid;
   } catch (error) {
-    console.error('[Auth] Erro ao verificar assinatura:', error);
+    logger.error('Erro ao verificar assinatura JWT', error instanceof Error ? error : undefined, {}, 'Auth');
     return false;
   }
 }
@@ -152,13 +153,13 @@ export async function verifyFirebaseToken(token: string): Promise<DecodedToken |
     // Check expiration
     const now = Math.floor(Date.now() / 1000);
     if (payload.exp < now) {
-      console.warn('[Auth] Token expirado');
+      logger.warn('Token expirado', { exp: payload.exp, now }, 'Auth');
       return null;
     }
 
     // Check issued at (token não pode ser do futuro)
     if (payload.iat && payload.iat > now + 60) {
-      console.warn('[Auth] Token emitido no futuro');
+      logger.warn('Token emitido no futuro', { iat: payload.iat, now }, 'Auth');
       return null;
     }
 
@@ -167,7 +168,7 @@ export async function verifyFirebaseToken(token: string): Promise<DecodedToken |
     const isValidSignature = await verifyJWTSignature(token, publicKeys);
 
     if (!isValidSignature) {
-      console.warn('[Auth] Assinatura inválida');
+      logger.warn('Assinatura JWT inválida', {}, 'Auth');
       return null;
     }
 
@@ -177,7 +178,7 @@ export async function verifyFirebaseToken(token: string): Promise<DecodedToken |
 
     return payload as DecodedToken;
   } catch (error) {
-    console.error('[Auth] Erro ao verificar token:', error);
+    logger.error('Erro ao verificar token Firebase', error instanceof Error ? error : undefined, {}, 'Auth');
     return null;
   }
 }
@@ -209,7 +210,7 @@ async function getUserFromDatabase(env: Env, firebaseUid: string, email: string)
     if (!userResult) {
       // Usuário não existe no banco - pode ser primeiro login
       // Criar usuário automaticamente (provisioning)
-      console.log('[Auth] Usuário não encontrado, criando registro:', email);
+      logger.info('Auto-provisioning: criando usuário', { email, firebaseUid }, 'Auth');
 
       const newUserId = crypto.randomUUID();
       const defaultTenantId = 'default-tenant'; // TODO: Melhorar lógica de tenant assignment
@@ -236,7 +237,7 @@ async function getUserFromDatabase(env: Env, firebaseUid: string, email: string)
       userId: userResult.id as string
     };
   } catch (error) {
-    console.error('[Auth] Erro ao buscar usuário no banco:', error);
+    logger.error('Erro ao buscar usuário no banco', error instanceof Error ? error : undefined, { firebaseUid }, 'Auth');
     return null;
   }
 }
@@ -257,7 +258,7 @@ export async function setTenantContext(env: Env, tenantId: string, userId: strin
 
     // Por enquanto, o tenant_id será passado como parâmetro em cada query
   } catch (error) {
-    console.error('[Auth] Erro ao definir contexto de tenant:', error);
+    logger.error('Erro ao definir contexto de tenant', error instanceof Error ? error : undefined, { tenantId, userId, role }, 'Auth');
   }
 }
 

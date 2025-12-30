@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { logger } from '@/lib/logger';
 
 /**
  * API Endpoint - Registro de Consentimento LGPD
@@ -87,24 +88,32 @@ export async function POST(request: NextRequest) {
       source: 'consent_banner',
     };
 
-    // Log em console (MVP - substituir por banco em produção)
-    console.log('[LGPD Consent Registered]', JSON.stringify(consentLog, null, 2));
-
-    // TODO (PRODUÇÃO): Persistir em banco de dados
-    // Exemplo de estrutura SQL:
-    /*
-    INSERT INTO lgpd_consent_logs (
-      timestamp,
+    // Log estruturado
+    logger.info('Consentimento LGPD registrado', {
       consentimento,
-      finalidades,
-      ip_hash,
-      user_agent,
-      granular,
+      finalidades: finalidades.join(', '),
       versao_texto
-    ) VALUES (
-      $1, $2, $3, $4, $5, $6, $7
-    );
-    */
+    }, 'LGPD');
+
+    // Persistir em D1 via backend API worker
+    try {
+      const backendResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/lgpd/consent`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(consentLog)
+        }
+      );
+
+      if (!backendResponse.ok) {
+        logger.error('Falha ao persistir consentimento no backend', undefined, {
+          status: backendResponse.status
+        }, 'LGPD');
+      }
+    } catch (backendError) {
+      logger.error('Erro ao comunicar com backend LGPD', backendError instanceof Error ? backendError : undefined, {}, 'LGPD');
+    }
 
     // Resposta de sucesso
     return NextResponse.json(
@@ -120,7 +129,7 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    console.error('[LGPD Consent Error]', error);
+    logger.error('Erro ao processar consentimento LGPD', error instanceof Error ? error : undefined, {}, 'LGPD');
 
     return NextResponse.json(
       {

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { logger } from '@/lib/logger'
 
 const BACKEND_API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.investigaree.com.br'
 
@@ -40,7 +41,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(tenantInfo)
   } catch (error: any) {
-    console.error('[API /tenants/info] Erro ao buscar do backend:', error)
+    logger.error('Erro ao buscar tenant info do backend', error instanceof Error ? error : undefined, {}, 'API /tenants/info')
     return NextResponse.json(
       { error: 'Erro ao buscar informações do tenant', message: error.message },
       { status: 500 }

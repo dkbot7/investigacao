@@ -5,6 +5,7 @@
  */
 
 import { Env, AuthContext } from '../types';
+import { logger } from '../logger';
 
 /**
  * GET /api/user/tenant-info
@@ -70,7 +71,7 @@ export async function handleGetTenantInfo(
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
-    console.error('[User] Erro ao buscar tenant info:', error);
+    logger.error('Erro ao buscar tenant info', error instanceof Error ? error : undefined, { tenantId: authContext.tenantId }, 'User');
 
     return new Response(JSON.stringify({
       error: 'Internal server error',
@@ -113,7 +114,7 @@ export async function handleGetProfile(
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
-    console.error('[User] Erro ao buscar profile:', error);
+    logger.error('Erro ao buscar profile', error instanceof Error ? error : undefined, { userId: authContext.userId }, 'User');
 
     return new Response(JSON.stringify({
       error: 'Internal server error',
@@ -183,7 +184,7 @@ export async function handleUpdateProfile(
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
-    console.error('[User] Erro ao atualizar profile:', error);
+    logger.error('Erro ao atualizar profile', error instanceof Error ? error : undefined, { userId: authContext.userId }, 'User');
 
     return new Response(JSON.stringify({
       error: 'Internal server error',

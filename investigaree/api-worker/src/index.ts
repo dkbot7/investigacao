@@ -91,6 +91,7 @@
 
 import { Env, AuthContext } from './types';
 import { authenticate } from './auth';
+import { logger } from './logger';
 import {
   determineCacheStrategy,
   getFromCache,
@@ -687,7 +688,7 @@ export default {
       });
 
     } catch (error) {
-      console.error('[Worker] Erro:', error);
+      logger.error('Worker error', error instanceof Error ? error : undefined, { path: url.pathname, method: request.method }, 'Worker');
 
       return new Response(JSON.stringify({
         error: 'Internal server error',
