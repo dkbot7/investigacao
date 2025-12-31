@@ -101,7 +101,7 @@ interface UseDashboardDataReturn {
  */
 export function useDashboardData(): UseDashboardDataReturn {
   const { user } = useAuth();
-  const { tenant, hasAccess } = useTenant();
+  const { currentTenant, hasAccess } = useTenant();
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

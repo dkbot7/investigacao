@@ -55,7 +55,7 @@ const ADMIN_EMAILS = ['dkbotdani@gmail.com'];
 
 export default function SerproCredentialsPage() {
   const { user } = useAuth();
-  const { tenant } = useTenant();
+  const { currentTenant } = useTenant();
   const router = useRouter();
 
   // State
@@ -92,17 +92,17 @@ export default function SerproCredentialsPage() {
 
   // Load credentials
   useEffect(() => {
-    if (tenant && isAdmin) {
+    if (currentTenant && isAdmin) {
       loadCredentials();
     }
-  }, [tenant, isAdmin]);
+  }, [currentTenant, isAdmin]);
 
   const loadCredentials = async () => {
-    if (!tenant) return;
+    if (!currentTenant) return;
 
     setLoading(true);
     try {
-      const response = await serproCredentialsService.listCredentials(tenant.id);
+      const response = await serproCredentialsService.listCredentials(currentTenant.id);
       setMode(response.mode);
       setNotes(response.notes);
       setCredentials(response.credentials);
@@ -118,7 +118,7 @@ export default function SerproCredentialsPage() {
   };
 
   const handleModeToggle = async () => {
-    if (!tenant) return;
+    if (!currentTenant) return;
 
     const newMode: SerproMode = mode === 'managed' ? 'byo' : 'managed';
 
@@ -146,7 +146,7 @@ export default function SerproCredentialsPage() {
 
     setSaving(true);
     try {
-      await serproCredentialsService.updateMode(tenant.id, newMode);
+      await serproCredentialsService.updateMode(currentTenant.id, newMode);
       setMode(newMode);
       toast.success('Modo alterado com sucesso', {
         description: `Modo alterado para: ${newMode === 'managed' ? 'Gerenciado' : 'BYO (Suas Credenciais)'}`,
@@ -184,7 +184,7 @@ export default function SerproCredentialsPage() {
   };
 
   const handleSaveCredential = async () => {
-    if (!tenant || !editingApi) return;
+    if (!currentTenant || !editingApi) return;
 
     if (!formData.consumer_key || !formData.consumer_secret) {
       toast.error('Campos obrigatórios', {
@@ -195,7 +195,7 @@ export default function SerproCredentialsPage() {
 
     setSaving(true);
     try {
-      await serproCredentialsService.saveCredential(tenant.id, {
+      await serproCredentialsService.saveCredential(currentTenant.id, {
         api_name: editingApi,
         consumer_key: formData.consumer_key,
         consumer_secret: formData.consumer_secret,
@@ -221,11 +221,11 @@ export default function SerproCredentialsPage() {
   };
 
   const handleValidateCredential = async (apiName: SerproApiName) => {
-    if (!tenant) return;
+    if (!currentTenant) return;
 
     setValidating(apiName);
     try {
-      const response = await serproCredentialsService.validateCredential(tenant.id, apiName);
+      const response = await serproCredentialsService.validateCredential(currentTenant.id, apiName);
 
       if (response.success) {
         toast.success('Credenciais válidas!', {
@@ -249,7 +249,7 @@ export default function SerproCredentialsPage() {
   };
 
   const handleDeleteCredential = async (apiName: SerproApiName) => {
-    if (!tenant) return;
+    if (!currentTenant) return;
 
     if (!window.confirm(`Tem certeza que deseja remover as credenciais da API ${SERPRO_API_LABELS[apiName]}?`)) {
       return;
@@ -257,7 +257,7 @@ export default function SerproCredentialsPage() {
 
     setDeleting(apiName);
     try {
-      await serproCredentialsService.deleteCredential(tenant.id, apiName);
+      await serproCredentialsService.deleteCredential(currentTenant.id, apiName);
       toast.success('Credencial removida', {
         description: `API: ${SERPRO_API_LABELS[apiName]}`,
       });
@@ -294,7 +294,7 @@ export default function SerproCredentialsPage() {
           Credenciais SERPRO
         </h1>
         <p className="text-slate-600 dark:text-slate-400">
-          Configure as credenciais SERPRO para o tenant: <strong>{tenant?.name}</strong>
+          Configure as credenciais SERPRO para o tenant: <strong>{currentTenant?.name}</strong>
         </p>
       </div>
 

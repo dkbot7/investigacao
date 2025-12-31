@@ -426,11 +426,13 @@ export default function FuncionariosPage() {
               </Button>
 
               {/* Botão Upload CSV (TAREFA 3.12) */}
-              <UploadCsvButton
-                tenantCode={tenantCode}
-                onSuccess={handleUploadSuccess}
-                onError={handleUploadError}
-              />
+              {tenantCode && (
+                <UploadCsvButton
+                  tenantCode={tenantCode}
+                  onSuccess={handleUploadSuccess}
+                  onError={handleUploadError}
+                />
+              )}
             </div>
           </div>
         </div>
