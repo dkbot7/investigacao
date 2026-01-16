@@ -1,21 +1,21 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
-  "name": "investigacao-api",
+  "name": "investigacao-web",
   "compatibility_date": "2025-12-19",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "keep_names": false,
-  "workers_dev": false,
-  "routes": [
-    {
-      "pattern": "investigacao.com.br/*",
-      "zone_name": "investigacao.com.br"
-    },
-    {
-      "pattern": "www.investigacao.com.br/*",
-      "zone_name": "investigacao.com.br"
-    }
-  ],
+  "workers_dev": true,
+  // "routes": [
+  //   {
+  //     "pattern": "investigacao.com.br/*",
+  //     "zone_name": "investigacao.com.br"
+  //   },
+  //   {
+  //     "pattern": "www.investigacao.com.br/*",
+  //     "zone_name": "investigacao.com.br"
+  //   }
+  // ],
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
