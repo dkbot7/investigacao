@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import Link from "next/link";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 import {
   Shield, Award, BookOpen, Users, Target, CheckCircle,
   Database, Cpu, Lock, Globe
@@ -197,7 +197,7 @@ export default function QuemSomosPage() {
           </div>
         </section>
 
-        <WhatsAppButton />
+        <WhatsAppWidget />
       </main>
       <Footer />
     </>
