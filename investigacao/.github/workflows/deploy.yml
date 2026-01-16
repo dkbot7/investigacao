@@ -20,19 +20,19 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
-          cache-dependency-path: investigaree/package-lock.json
+          cache-dependency-path: investigacao/package-lock.json
 
       - name: Install dependencies
-        working-directory: ./investigaree
+        working-directory: ./investigacao
         run: npm ci
 
       - name: Build with OpenNext
-        working-directory: ./investigaree
+        working-directory: ./investigacao
         run: npx @opennextjs/cloudflare build
 
       - name: Deploy to Cloudflare Workers
-        working-directory: ./investigaree
-        run: npx wrangler deploy --route "investigaree.com.br/*" --route "www.investigaree.com.br/*"
+        working-directory: ./investigacao
+        run: npx wrangler deploy --route "investigacao.com.br/*" --route "www.investigacao.com.br/*"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
