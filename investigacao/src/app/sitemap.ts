@@ -18,7 +18,7 @@ import { MetadataRoute } from 'next';
  */
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://investigaree.com.br';
+  const baseUrl = 'https://investigacao.com.br';
   const currentDate = new Date();
 
   // Prioridades baseadas em Eixo Autoridade:
@@ -78,20 +78,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.7,
-    },
-
-    // Equipe
-    {
-      url: `${baseUrl}/quemsomos/dani-kaloi`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/quemsomos/ibsen-maciel`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly',
-      priority: 0.6,
     },
 
     // Recursos e Séries (secundário)

@@ -1,10 +1,8 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Shield, Award, CheckCircle2, ArrowRight, Cpu, Database, UserCheck } from "lucide-react";
-import Link from "next/link";
+import { Shield, Database, UserCheck } from "lucide-react";
 
 export default function AdvisoryBoard() {
   return (
@@ -24,189 +22,77 @@ export default function AdvisoryBoard() {
             Nosso Time
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold">
-            Automacao Avancada + Pericia Forense
+            Expertise em Investigação Digital
           </h2>
           <p className="text-xl text-slate-800 dark:text-navy-100 max-w-3xl mx-auto">
-            Combinacao unica no Brasil: <span className="text-blue-400">Arquiteta de Sistemas</span> especialista em automacao + <span className="text-blue-400">Perito Criminal Oficial</span> (1o lugar PCE-PA)
+            Equipe especializada em <span className="text-blue-400">automação de dados</span> e <span className="text-blue-400">investigação digital</span>
           </p>
         </div>
 
-        {/* Two Cards Grid */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {/* Dani Kaloi Card */}
+        {/* Expertise Cards Grid */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {/* Card 1: Automação */}
           <Card className="bg-white/5 backdrop-blur-lg border-2 border-blue-500/30 shadow-2xl">
             <CardContent className="p-6 md:p-8">
-              <div className="space-y-5">
-                {/* Photo + Badge */}
-                <div className="flex items-center gap-4">
-                  <div className="relative">
-                    <div className="w-20 h-20 bg-gradient-to-br from-blue-500/20 to-blue-500/10 rounded-full overflow-hidden border-2 border-blue-500/50">
-                      <img
-                        src="/dani-kaloi.png"
-                        alt="Dani Kaloi"
-                        className="w-full h-full object-cover object-center"
-                      />
-                    </div>
-                    <div className="absolute -bottom-1 -right-1">
-                      <Badge className="bg-blue-500 text-navy-950 text-xs px-2 py-0.5">
-                        Analista
-                      </Badge>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                      Dani Kaloi
-                    </h3>
-                    <p className="text-blue-400 font-semibold">
-                      Analista de Dados
-                    </p>
-                  </div>
-                </div>
-
-                {/* Description */}
+              <div className="space-y-5 text-center">
+                <Database className="w-16 h-16 mx-auto text-blue-400" />
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                  Automação
+                </h3>
                 <p className="text-slate-700 dark:text-navy-200 text-sm">
-                  Desenvolvedora Full Stack e Arquiteta de sistemas que processam <span className="text-blue-400 font-semibold">+100 mil registros simultaneamente</span>, cruzando multiplas bases de dados publicas.
+                  Processamento automatizado de <span className="text-blue-400 font-semibold">100k+ registros</span> simultâneos em múltiplas bases de dados públicas.
                 </p>
-
-                {/* Tecnologias */}
-                <div className="space-y-2">
-                  <h4 className="text-xs font-semibold text-blue-400 uppercase tracking-wider">
-                    Tecnologias
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {["Automacao", "OSINT", "Web Scraping", "APIs Publicas"].map((tech, i) => (
-                      <Badge key={i} className="bg-slate-100 dark:bg-navy-800 text-slate-900 dark:text-white text-xs">
-                        <Database className="w-3 h-3 mr-1" />
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-4 py-4 border-y border-slate-400 dark:border-navy-700">
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-blue-400">100k+</p>
-                    <p className="text-xs text-slate-600 dark:text-navy-300">Registros/Investigação</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-blue-400">Multiplas</p>
-                    <p className="text-xs text-slate-600 dark:text-navy-300">Bases de Dados</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-blue-400">13+</p>
-                    <p className="text-xs text-slate-600 dark:text-navy-300">Certificações</p>
-                  </div>
-                </div>
-
-                {/* Expertise */}
-                <div className="flex flex-wrap gap-2">
-                  {["Due Diligence", "Empresas", "Divorcios", "Automacao"].map((area, i) => (
-                    <Badge key={i} variant="outline" className="bg-white/5 border-slate-400 dark:border-navy-700 text-slate-800 dark:text-navy-100 text-xs">
-                      {area}
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {["APIs Públicas", "Web Scraping", "OSINT"].map((tech, i) => (
+                    <Badge key={i} className="bg-slate-100 dark:bg-navy-800 text-slate-900 dark:text-white text-xs">
+                      {tech}
                     </Badge>
                   ))}
                 </div>
-
-                {/* CTA */}
-                <Link href="/quemsomos/dani-kaloi">
-                  <Button
-                    variant="outline"
-                    className="w-full border-2 border-blue-500 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 hover:text-blue-300 font-semibold"
-                  >
-                    Ver perfil completo
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
               </div>
             </CardContent>
           </Card>
 
-          {/* Ibsen Maciel Card */}
+          {/* Card 2: Análise */}
           <Card className="bg-white/5 backdrop-blur-lg border-2 border-blue-500/30 shadow-2xl">
             <CardContent className="p-6 md:p-8">
-              <div className="space-y-5">
-                {/* Photo + Badge */}
-                <div className="flex items-center gap-4">
-                  <div className="relative">
-                    <div className="w-20 h-20 bg-gradient-to-br from-navy-800 to-navy-900 rounded-full overflow-hidden border-2 border-blue-500/50">
-                      <img
-                        src="/images/ibsen-maciel.jpg"
-                        alt="Ibsen Rodrigues Maciel"
-                        className="w-full h-full object-cover object-top"
-                      />
-                    </div>
-                    <div className="absolute -bottom-1 -right-1">
-                      <Badge className="bg-blue-500 text-navy-950 text-xs px-2 py-0.5">
-                        Advisory
-                      </Badge>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                      Ibsen Maciel
-                    </h3>
-                    <p className="text-blue-400 font-semibold">
-                      Perito Criminal Oficial
-                    </p>
-                  </div>
-                </div>
-
-                {/* Description */}
+              <div className="space-y-5 text-center">
+                <UserCheck className="w-16 h-16 mx-auto text-blue-400" />
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                  Análise de Dados
+                </h3>
                 <p className="text-slate-700 dark:text-navy-200 text-sm">
-                  Referência nacional em Perícia Forense Computacional. <span className="text-blue-400 font-semibold">1º lugar PCE-PA 2019</span>. Diretor Nacional de Perícias ANPAJ (6.000+ associados).
+                  Cruzamento inteligente de dados de <span className="text-blue-400 font-semibold">múltiplas fontes públicas</span> para investigações completas.
                 </p>
-
-                {/* Certificações */}
-                <div className="space-y-2">
-                  <h4 className="text-xs font-semibold text-blue-400 uppercase tracking-wider">
-                    Certificações Internacionais
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {["CELLEBRITE UFED", "XRY (MSAB)", "Magnet AXIOM"].map((cert, i) => (
-                      <Badge key={i} className="bg-slate-100 dark:bg-navy-800 text-slate-900 dark:text-white text-xs">
-                        <CheckCircle2 className="w-3 h-3 mr-1" />
-                        {cert}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-4 py-4 border-y border-slate-400 dark:border-navy-700">
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-blue-400">1º</p>
-                    <p className="text-xs text-slate-600 dark:text-navy-300">Lugar PCE-PA</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-blue-400">6k+</p>
-                    <p className="text-xs text-slate-600 dark:text-navy-300">Associados ANPAJ</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-blue-400">LABCEDF</p>
-                    <p className="text-xs text-slate-600 dark:text-navy-300">PC-PA</p>
-                  </div>
-                </div>
-
-                {/* Expertise */}
-                <div className="flex flex-wrap gap-2">
-                  {["Perícia Forense", "Cibersegurança", "OSINT", "Cadeia de Custódia"].map((area, i) => (
-                    <Badge key={i} variant="outline" className="bg-white/5 border-slate-400 dark:border-navy-700 text-slate-800 dark:text-navy-100 text-xs">
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {["Due Diligence", "Compliance", "LGPD"].map((area, i) => (
+                    <Badge key={i} className="bg-slate-100 dark:bg-navy-800 text-slate-900 dark:text-white text-xs">
                       {area}
                     </Badge>
                   ))}
                 </div>
+              </div>
+            </CardContent>
+          </Card>
 
-                {/* CTA */}
-                <Link href="/quemsomos/ibsen-maciel">
-                  <Button
-                    variant="outline"
-                    className="w-full border-2 border-blue-500 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 hover:text-blue-300 font-semibold"
-                  >
-                    Ver perfil completo
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
+          {/* Card 3: Tecnologia */}
+          <Card className="bg-white/5 backdrop-blur-lg border-2 border-blue-500/30 shadow-2xl">
+            <CardContent className="p-6 md:p-8">
+              <div className="space-y-5 text-center">
+                <Shield className="w-16 h-16 mx-auto text-blue-400" />
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                  Segurança
+                </h3>
+                <p className="text-slate-700 dark:text-navy-200 text-sm">
+                  Proteção de dados e <span className="text-blue-400 font-semibold">conformidade LGPD</span> em todas as etapas da investigação.
+                </p>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {["Criptografia", "Auditoria", "Privacidade"].map((feat, i) => (
+                    <Badge key={i} className="bg-slate-100 dark:bg-navy-800 text-slate-900 dark:text-white text-xs">
+                      {feat}
+                    </Badge>
+                  ))}
+                </div>
               </div>
             </CardContent>
           </Card>
