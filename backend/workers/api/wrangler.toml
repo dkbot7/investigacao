@@ -1,4 +1,4 @@
-name = "investigaree-api"
+name = "investigacao-api"
 main = "src/index.ts"
 compatibility_date = "2024-01-01"
 compatibility_flags = ["nodejs_compat"]
@@ -8,14 +8,14 @@ workers_dev = false
 
 # Routes - Custom subdomain for API
 routes = [
-  { pattern = "api.investigaree.com.br/*", zone_name = "investigaree.com.br" }
+  { pattern = "api.investigacao.com.br/*", zone_name = "investigacao.com.br" }
 ]
 
 # D1 Database binding
 [[d1_databases]]
 binding = "DB"
-database_name = "investigaree-db"
-database_id = "4b9ddf13-d347-4337-8500-8ba37fd08f55"
+database_name = "investigacao-db"
+database_id = "55450973-0441-4aa6-964c-c4519902092c"
 
 # KV namespace for caching (será criado depois)
 # [[kv_namespaces]]

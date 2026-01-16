@@ -1,5 +1,5 @@
 {
-  "name": "investigaree-api",
+  "name": "investigacao-api",
   "version": "1.0.0",
   "description": "Investigaree Backend API - Cloudflare Workers + SERPRO APIs Integration",
   "main": "src/index.ts",
@@ -8,10 +8,10 @@
     "deploy": "wrangler deploy",
     "tail": "wrangler tail",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:create": "wrangler d1 create investigaree-db",
-    "db:migrate": "wrangler d1 execute investigaree-db --file=../database/schema.sql",
-    "db:migrate:local": "wrangler d1 execute investigaree-db --file=../database/schema.sql --local",
-    "db:query": "wrangler d1 execute investigaree-db --command"
+    "db:create": "wrangler d1 create investigacao-db",
+    "db:migrate": "wrangler d1 execute investigacao-db --file=../database/schema.sql",
+    "db:migrate:local": "wrangler d1 execute investigacao-db --file=../database/schema.sql --local",
+    "db:query": "wrangler d1 execute investigacao-db --command"
   },
   "keywords": ["cloudflare", "workers", "serpro", "api", "backend"],
   "author": "Investigaree",

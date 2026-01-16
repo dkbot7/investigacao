@@ -1,7 +1,7 @@
 ﻿# Cloudflare Workers Configuration
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/
 
-name = "investigaree-api"
+name = "investigacao-api"
 main = "workers/index.ts"
 compatibility_date = "2025-04-01"
 compatibility_flags = ["nodejs_compat"]
@@ -18,15 +18,15 @@ workers_dev = true
 # KV Namespaces (para cache)
 [[kv_namespaces]]
 binding = "KV"
-id = "afa4a891f4994709977bcd583fb3f285" # investigaree-rate-limits
+id = "a04f4f78d7724b47a1a9a9717dbaa880" # investigacao-rate-limits
 preview_id = "" # wrangler kv:namespace create "KV" --preview
 
 # Routes (produção) - API subdomain only
 [[routes]]
-pattern = "api.investigaree.com.br/*"
-zone_name = "investigaree.com.br"
+pattern = "api.investigacao.com.br/*"
+zone_name = "investigacao.com.br"
 
-# IMPORTANTE: O domínio principal investigaree.com.br deve ser configurado
+# IMPORTANTE: O domínio principal investigacao.com.br deve ser configurado
 # no Cloudflare Pages Dashboard → Custom Domains
 # Não adicionar rota de Worker para o domínio principal!
 
@@ -41,13 +41,13 @@ binding = "BROWSER"
 # R2 Storage (habilitado e bucket criado)
 [[r2_buckets]]
 binding = "R2"
-bucket_name = "r2storage"
+bucket_name = "investigacao-storage"
 
 # D1 Database (SQLite nativo do Cloudflare)
 [[d1_databases]]
 binding = "DB"
-database_name = "investigaree-db"
-database_id = "4b9ddf13-d347-4337-8500-8ba37fd08f55"
+database_name = "investigacao-db"
+database_id = "55450973-0441-4aa6-964c-c4519902092c"
 
 # Environment variables (não-sensíveis)
 [vars]
@@ -58,21 +58,21 @@ APP_VERSION = "1.0.0"
 # PRODUCTION ENVIRONMENT
 # ============================================
 [env.production]
-name = "investigaree-prod"
+name = "investigacao-prod"
 vars = { ENVIRONMENT = "production" }
 
 # ============================================
 # STAGING ENVIRONMENT
 # ============================================
 [env.staging]
-name = "investigaree-staging"
+name = "investigacao-staging"
 vars = { ENVIRONMENT = "staging" }
 
 # ============================================
 # DEVELOPMENT
 # ============================================
 [env.development]
-name = "investigaree-dev"
+name = "investigacao-dev"
 vars = { ENVIRONMENT = "development" }
 
 # ============================================

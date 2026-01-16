@@ -1,4 +1,4 @@
-# investigaree
+# investigacao
 
 **Última atualização**: 30 de Dezembro de 2025
 **Versão**: 2.0.0
@@ -125,7 +125,7 @@ npm run typecheck
 
 ## Variaveis de Ambiente
 
-Crie um arquivo `.env.local` na pasta `investigaree/`:
+Crie um arquivo `.env.local` na pasta `investigacao/`:
 
 ```env
 # Firebase Auth
@@ -134,7 +134,7 @@ NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=seu_projeto.firebaseapp.com
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=seu_projeto
 
 # API Backend
-NEXT_PUBLIC_API_URL=https://api.investigaree.com.br
+NEXT_PUBLIC_API_URL=https://api.investigacao.com.br
 
 # Desenvolvimento local
 # NEXT_PUBLIC_API_URL=http://localhost:8787
@@ -324,4 +324,4 @@ POST /api/admin/grant-access
 
 ---
 
-**Mantido por**: Equipe investigaree
+**Mantido por**: Equipe investigacao
