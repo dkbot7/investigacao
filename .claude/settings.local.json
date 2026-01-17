@@ -36,7 +36,8 @@
       "Bash(move \"diarios-oficiais-dou-djen.mdx.skip\" \"diarios-oficiais-dou-djen.mdx\")",
       "WebFetch(domain:github.com)",
       "Bash(Select-String -Pattern \"(✓|error|Error|SUCCESS|failed|Failed|Build complete)\" -Context 0,2)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(findstr:*)"
     ],
     "deny": [],
     "ask": []
