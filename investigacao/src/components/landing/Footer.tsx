@@ -8,34 +8,63 @@ export default function Footer() {
   return (
     <footer className="bg-slate-100 dark:bg-neutral-950 text-slate-600 dark:text-neutral-400 py-12 border-t border-slate-200 dark:border-neutral-800">
       <div className="container max-w-7xl px-4">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-8">
           {/* Brand */}
-          <div className="col-span-1">
+          <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <Shield className="w-8 h-8 text-primary-400" />
+              <Shield className="w-8 h-8 text-green-500" />
               <span className="text-2xl font-bold text-slate-900 dark:text-white">investigação digital</span>
             </div>
             <p className="text-sm">
-              Investigação Digital com Inteligência
+              Investigação Digital com Metodologia Forense Validada
             </p>
           </div>
 
-          {/* Links */}
+          {/* Soluções Empresas */}
           <div>
-            <h4 className="text-slate-900 dark:text-white font-semibold mb-4">Serviços</h4>
+            <h4 className="text-slate-900 dark:text-white font-semibold mb-4">Soluções Empresas</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/servicos" className="hover:text-primary-400 transition">Red Flag Express</Link></li>
-              <li><Link href="/servicos" className="hover:text-primary-400 transition">Due Diligence Corporativo</Link></li>
-              <li><Link href="/servicos" className="hover:text-primary-400 transition">Startup & Founders</Link></li>
+              <li><Link href="/solucoes/rh-compliance" className="hover:text-green-500 transition">RH & Compliance</Link></li>
+              <li><Link href="/solucoes/due-diligence" className="hover:text-green-500 transition">Due Diligence M&A</Link></li>
+              <li><Link href="/solucoes/coleta-provas-digitais" className="hover:text-green-500 transition">Provas Digitais</Link></li>
             </ul>
           </div>
 
+          {/* Soluções Pessoas */}
+          <div>
+            <h4 className="text-slate-900 dark:text-white font-semibold mb-4">Soluções Pessoas</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/solucoes/protecao-remocao" className="hover:text-green-500 transition">Proteção Digital</Link></li>
+              <li><Link href="/solucoes/due-diligence-divorcios" className="hover:text-green-500 transition">Divórcio</Link></li>
+            </ul>
+            <h4 className="text-slate-900 dark:text-white font-semibold mb-2 mt-4">Governo</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/solucoes/auditoria-licitacoes" className="hover:text-green-500 transition">Auditoria Licitações</Link></li>
+            </ul>
+          </div>
+
+          {/* Empresa */}
           <div>
             <h4 className="text-slate-900 dark:text-white font-semibold mb-4">Empresa</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/quemsomos" className="hover:text-primary-400 transition">Quem Somos</Link></li>
-              <li><Link href="/faq" className="hover:text-primary-400 transition">FAQ</Link></li>
-              <li>
+              <li><Link href="/quemsomos" className="hover:text-green-500 transition">Quem Somos</Link></li>
+              <li><Link href="/metodologia" className="hover:text-green-500 transition">Metodologia</Link></li>
+              <li><Link href="/cases" className="hover:text-green-500 transition">Cases</Link></li>
+              <li><Link href="/faq" className="hover:text-green-500 transition">FAQ</Link></li>
+              <li><Link href="/contato" className="hover:text-green-500 transition">Contato</Link></li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="text-slate-900 dark:text-white font-semibold mb-4">Legal</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/privacidade" className="hover:text-green-500 transition">Privacidade</Link></li>
+              <li><Link href="/termos" className="hover:text-green-500 transition">Termos</Link></li>
+              <li><Link href="/lgpd" className="hover:text-green-500 transition">LGPD</Link></li>
+              <li><Link href="/cookies" className="hover:text-green-500 transition">Cookies</Link></li>
+              <li><Link href="/disclaimer" className="hover:text-green-500 transition">Disclaimer</Link></li>
+              <li className="pt-2">
                 <WhatsAppButton
                   message="Olá! Gostaria de saber mais sobre os serviços de investigação digital."
                   source="footer"
@@ -47,21 +76,6 @@ export default function Footer() {
                   </svg>
                   WhatsApp
                 </WhatsAppButton>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-slate-900 dark:text-white font-semibold mb-4">Legal</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/termos" className="hover:text-primary-400 transition">Termos de Uso</Link></li>
-              <li><Link href="/privacidade" className="hover:text-primary-400 transition">Política de Privacidade</Link></li>
-              <li><Link href="/cookies" className="hover:text-primary-400 transition">Política de Cookies</Link></li>
-              <li><Link href="/disclaimer" className="hover:text-primary-400 transition">Disclaimer</Link></li>
-              <li className="pt-2">
-                <a href="mailto:contato@investigaree.com.br" className="hover:text-primary-400 transition">
-                  contato@investigaree.com.br
-                </a>
               </li>
             </ul>
           </div>

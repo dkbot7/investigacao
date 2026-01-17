@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Globe, Menu, X, ChevronDown, BookOpen, Layers, Wrench, FileText, Scale, Briefcase, Shield } from "lucide-react";
+import { Globe, Menu, X, ChevronDown, BookOpen, Layers, Wrench, FileText, Scale, Briefcase, Shield, Users, TrendingUp, Heart, Building2, ShieldAlert, FileSearch } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -17,13 +17,18 @@ export default function Header() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isConteudoOpen, setIsConteudoOpen] = useState(false);
+  const [isSolucoesOpen, setIsSolucoesOpen] = useState(false);
   const conteudoRef = useRef<HTMLDivElement>(null);
+  const solucoesRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (conteudoRef.current && !conteudoRef.current.contains(event.target as Node)) {
         setIsConteudoOpen(false);
+      }
+      if (solucoesRef.current && !solucoesRef.current.contains(event.target as Node)) {
+        setIsSolucoesOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -62,13 +67,14 @@ export default function Header() {
   const menuItems = {
     pt: {
       home: "Home",
+      solutions: "Soluções",
       services: "Serviços",
       about: "Quem Somos",
       content: "Conteúdo",
+      resources: "Recursos",
       blog: "Blog",
       series: "Séries",
       glossary: "Glossário",
-      resources: "Recursos",
       metodologia: "Metodologias",
       cases: "Cases",
       contact: "Contato",
@@ -79,13 +85,14 @@ export default function Header() {
     },
     en: {
       home: "Home",
+      solutions: "Solutions",
       services: "Services",
       about: "About",
       content: "Content",
+      resources: "Resources",
       blog: "Blog",
       series: "Series",
       glossary: "Glossary",
-      resources: "Resources",
       metodologia: "Methodologies",
       cases: "Cases",
       contact: "Contact",
@@ -97,6 +104,52 @@ export default function Header() {
   };
 
   const t = menuItems[language];
+
+  // Submenu items for Soluções dropdown (mega menu with 3 columns)
+  const solucoesItems = {
+    empresas: [
+      {
+        label: language === "pt" ? "RH & Compliance" : "HR & Compliance",
+        href: "/solucoes/rh-compliance",
+        icon: Users,
+        description: language === "pt" ? "Background check profissional" : "Professional background check"
+      },
+      {
+        label: language === "pt" ? "Due Diligence" : "Due Diligence",
+        href: "/solucoes/due-diligence",
+        icon: TrendingUp,
+        description: language === "pt" ? "M&A e investimentos" : "M&A and investments"
+      },
+      {
+        label: language === "pt" ? "Advogados" : "Lawyers",
+        href: "/solucoes/coleta-provas-digitais",
+        icon: Scale,
+        description: language === "pt" ? "Provas digitais forenses" : "Forensic digital evidence"
+      },
+    ],
+    pessoas: [
+      {
+        label: language === "pt" ? "Proteção & Remoção" : "Protection & Removal",
+        href: "/solucoes/protecao-remocao",
+        icon: ShieldAlert,
+        description: language === "pt" ? "Privacidade LGPD" : "LGPD Privacy"
+      },
+      {
+        label: language === "pt" ? "Divórcio & Família" : "Divorce & Family",
+        href: "/solucoes/due-diligence-divorcios",
+        icon: Heart,
+        description: language === "pt" ? "Patrimônio oculto" : "Hidden assets"
+      },
+    ],
+    governo: [
+      {
+        label: language === "pt" ? "Auditoria Licitações" : "Tender Auditing",
+        href: "/solucoes/auditoria-licitacoes",
+        icon: Building2,
+        description: language === "pt" ? "Compliance governamental" : "Government compliance"
+      },
+    ]
+  };
 
   // Submenu items for Conteúdo dropdown
   const conteudoItems = [
@@ -161,8 +214,158 @@ export default function Header() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.5 }}
           >
+            {/* Home */}
+            <motion.div>
+              <Link
+                href="/"
+                className="relative text-slate-900 dark:text-white/90 hover:text-green-600 dark:hover:text-white font-medium text-[15px] transition-all duration-200 group inline-block"
+              >
+                <motion.span
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.4 }}
+                  whileHover={{ y: -2 }}
+                  className="relative block"
+                >
+                  {t.home}
+                  <motion.span
+                    className="absolute bottom-0 left-0 h-[2px] bg-green-500"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: "100%" }}
+                    transition={{ duration: 0.2 }}
+                  />
+                </motion.span>
+              </Link>
+            </motion.div>
+
+            {/* Soluções Dropdown (Mega Menu) */}
+            <div ref={solucoesRef} className="relative">
+              <motion.button
+                onClick={() => setIsSolucoesOpen(!isSolucoesOpen)}
+                className="relative text-slate-900 dark:text-white/90 hover:text-green-600 dark:hover:text-white font-medium text-[15px] transition-all duration-200 group inline-flex items-center gap-1"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.4 }}
+              >
+                <span>{t.solutions}</span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isSolucoesOpen ? "rotate-180" : ""}`} />
+              </motion.button>
+
+              <AnimatePresence>
+                {isSolucoesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[700px] bg-white dark:bg-navy-900/95 backdrop-blur-lg border border-green-500/20 rounded-xl shadow-xl overflow-hidden"
+                  >
+                    <div className="p-6">
+                      {/* 3-Column Mega Menu */}
+                      <div className="grid grid-cols-3 gap-4">
+                        {/* Column 1: EMPRESAS */}
+                        <div>
+                          <h3 className="text-green-500 text-xs font-bold uppercase tracking-wider mb-3">
+                            {language === "pt" ? "EMPRESAS" : "BUSINESS"}
+                          </h3>
+                          <div className="space-y-1">
+                            {solucoesItems.empresas.map((item) => {
+                              const Icon = item.icon;
+                              return (
+                                <Link
+                                  key={item.href}
+                                  href={item.href}
+                                  onClick={() => setIsSolucoesOpen(false)}
+                                  className="flex items-start gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-colors group"
+                                >
+                                  <div className="p-2 rounded-lg bg-green-500/10 text-green-500 group-hover:bg-green-500/20 transition-colors flex-shrink-0">
+                                    <Icon className="w-4 h-4" />
+                                  </div>
+                                  <div>
+                                    <div className="text-slate-900 dark:text-white font-medium text-sm">{item.label}</div>
+                                    <div className="text-slate-500 dark:text-navy-300 text-xs">{item.description}</div>
+                                  </div>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* Column 2: PESSOAS FÍSICAS */}
+                        <div>
+                          <h3 className="text-green-500 text-xs font-bold uppercase tracking-wider mb-3">
+                            {language === "pt" ? "PESSOAS FÍSICAS" : "INDIVIDUALS"}
+                          </h3>
+                          <div className="space-y-1">
+                            {solucoesItems.pessoas.map((item) => {
+                              const Icon = item.icon;
+                              return (
+                                <Link
+                                  key={item.href}
+                                  href={item.href}
+                                  onClick={() => setIsSolucoesOpen(false)}
+                                  className="flex items-start gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-colors group"
+                                >
+                                  <div className="p-2 rounded-lg bg-green-500/10 text-green-500 group-hover:bg-green-500/20 transition-colors flex-shrink-0">
+                                    <Icon className="w-4 h-4" />
+                                  </div>
+                                  <div>
+                                    <div className="text-slate-900 dark:text-white font-medium text-sm">{item.label}</div>
+                                    <div className="text-slate-500 dark:text-navy-300 text-xs">{item.description}</div>
+                                  </div>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* Column 3: GOVERNO */}
+                        <div>
+                          <h3 className="text-green-500 text-xs font-bold uppercase tracking-wider mb-3">
+                            {language === "pt" ? "GOVERNO" : "GOVERNMENT"}
+                          </h3>
+                          <div className="space-y-1">
+                            {solucoesItems.governo.map((item) => {
+                              const Icon = item.icon;
+                              return (
+                                <Link
+                                  key={item.href}
+                                  href={item.href}
+                                  onClick={() => setIsSolucoesOpen(false)}
+                                  className="flex items-start gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-colors group"
+                                >
+                                  <div className="p-2 rounded-lg bg-green-500/10 text-green-500 group-hover:bg-green-500/20 transition-colors flex-shrink-0">
+                                    <Icon className="w-4 h-4" />
+                                  </div>
+                                  <div>
+                                    <div className="text-slate-900 dark:text-white font-medium text-sm">{item.label}</div>
+                                    <div className="text-slate-500 dark:text-navy-300 text-xs">{item.description}</div>
+                                  </div>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Footer Link - Ver Todas */}
+                      <div className="mt-4 pt-4 border-t border-green-500/20">
+                        <Link
+                          href="/solucoes"
+                          onClick={() => setIsSolucoesOpen(false)}
+                          className="block text-center text-green-600 dark:text-green-400 font-medium text-sm hover:text-green-700 dark:hover:text-green-300 transition-colors"
+                        >
+                          {language === "pt" ? "Ver Todas as Soluções →" : "View All Solutions →"}
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Services & About */}
             {[
-              { label: t.home, href: "/" },
               { label: t.services, href: "/servicos" },
               { label: t.about, href: "/quemsomos" },
             ].map((item, index) => (
@@ -174,7 +377,7 @@ export default function Header() {
                   <motion.span
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 + index * 0.1, duration: 0.4 }}
+                    transition={{ delay: 0.7 + index * 0.1, duration: 0.4 }}
                     whileHover={{ y: -2 }}
                     className="relative block"
                   >
@@ -190,16 +393,16 @@ export default function Header() {
               </motion.div>
             ))}
 
-            {/* Conteúdo Dropdown */}
+            {/* Recursos Dropdown */}
             <div ref={conteudoRef} className="relative">
               <motion.button
                 onClick={() => setIsConteudoOpen(!isConteudoOpen)}
                 className="relative text-slate-900 dark:text-white/90 hover:text-green-600 dark:hover:text-white font-medium text-[15px] transition-all duration-200 group inline-flex items-center gap-1"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.4 }}
+                transition={{ delay: 0.9, duration: 0.4 }}
               >
-                <span>{t.content}</span>
+                <span>{t.resources}</span>
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isConteudoOpen ? "rotate-180" : ""}`} />
               </motion.button>
 
@@ -247,7 +450,7 @@ export default function Header() {
                 <motion.span
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.9, duration: 0.4 }}
+                  transition={{ delay: 1.0, duration: 0.4 }}
                   whileHover={{ y: -2 }}
                   className="relative block"
                 >
@@ -385,28 +588,132 @@ export default function Header() {
               <div className="container mx-auto px-4 py-8">
                 {/* Navigation Links */}
                 <nav className="space-y-2 mb-8">
-                  {[
-                    { label: t.home, href: "/" },
-                    { label: t.services, href: "/servicos" },
-                    { label: t.about, href: "/quemsomos" },
-                  ].map((item, index) => (
-                    <motion.div
-                      key={item.href}
-                      initial={{ x: 50, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: index * 0.1, duration: 0.3 }}
+                  {/* Home */}
+                  <motion.div
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0, duration: 0.3 }}
+                  >
+                    <Link
+                      href="/"
+                      onClick={closeMobileMenu}
+                      className="block text-slate-900 dark:text-white text-2xl font-semibold py-4 px-6 rounded-lg hover:bg-white/5 transition-all border-b border-green-500/10"
                     >
-                      <Link
-                        href={item.href}
-                        onClick={closeMobileMenu}
-                        className="block text-slate-900 dark:text-white text-2xl font-semibold py-4 px-6 rounded-lg hover:bg-white/5 transition-all border-b border-green-500/10"
-                      >
-                        {item.label}
-                      </Link>
-                    </motion.div>
-                  ))}
+                      {t.home}
+                    </Link>
+                  </motion.div>
 
-                  {/* Conteúdo Section - Mobile */}
+                  {/* Soluções Section - Mobile */}
+                  <motion.div
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.1, duration: 0.3 }}
+                    className="pt-2"
+                  >
+                    <div className="text-green-500 text-sm font-medium uppercase tracking-wider px-6 py-2">
+                      {t.solutions}
+                    </div>
+
+                    {/* Empresas */}
+                    <div className="px-4 mb-2">
+                      <div className="text-xs text-green-600 dark:text-green-400 font-semibold uppercase px-2 py-1">
+                        {language === "pt" ? "Empresas" : "Business"}
+                      </div>
+                      <div className="space-y-1">
+                        {solucoesItems.empresas.map((item) => {
+                          const Icon = item.icon;
+                          return (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              onClick={closeMobileMenu}
+                              className="flex items-center gap-3 text-slate-900 dark:text-white text-lg font-medium py-2 px-2 rounded-lg hover:bg-white/5 transition-all"
+                            >
+                              <Icon className="w-5 h-5 text-green-500" />
+                              {item.label}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Pessoas */}
+                    <div className="px-4 mb-2">
+                      <div className="text-xs text-green-600 dark:text-green-400 font-semibold uppercase px-2 py-1">
+                        {language === "pt" ? "Pessoas Físicas" : "Individuals"}
+                      </div>
+                      <div className="space-y-1">
+                        {solucoesItems.pessoas.map((item) => {
+                          const Icon = item.icon;
+                          return (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              onClick={closeMobileMenu}
+                              className="flex items-center gap-3 text-slate-900 dark:text-white text-lg font-medium py-2 px-2 rounded-lg hover:bg-white/5 transition-all"
+                            >
+                              <Icon className="w-5 h-5 text-green-500" />
+                              {item.label}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Governo */}
+                    <div className="px-4">
+                      <div className="text-xs text-green-600 dark:text-green-400 font-semibold uppercase px-2 py-1">
+                        {language === "pt" ? "Governo" : "Government"}
+                      </div>
+                      <div className="space-y-1">
+                        {solucoesItems.governo.map((item) => {
+                          const Icon = item.icon;
+                          return (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              onClick={closeMobileMenu}
+                              className="flex items-center gap-3 text-slate-900 dark:text-white text-lg font-medium py-2 px-2 rounded-lg hover:bg-white/5 transition-all"
+                            >
+                              <Icon className="w-5 h-5 text-green-500" />
+                              {item.label}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Services & About */}
+                  <motion.div
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.3 }}
+                  >
+                    <Link
+                      href="/servicos"
+                      onClick={closeMobileMenu}
+                      className="block text-slate-900 dark:text-white text-2xl font-semibold py-4 px-6 rounded-lg hover:bg-white/5 transition-all border-b border-green-500/10"
+                    >
+                      {t.services}
+                    </Link>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.25, duration: 0.3 }}
+                  >
+                    <Link
+                      href="/quemsomos"
+                      onClick={closeMobileMenu}
+                      className="block text-slate-900 dark:text-white text-2xl font-semibold py-4 px-6 rounded-lg hover:bg-white/5 transition-all border-b border-green-500/10"
+                    >
+                      {t.about}
+                    </Link>
+                  </motion.div>
+
+                  {/* Recursos Section - Mobile */}
                   <motion.div
                     initial={{ x: 50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -414,10 +721,10 @@ export default function Header() {
                     className="pt-2"
                   >
                     <div className="text-green-500 text-sm font-medium uppercase tracking-wider px-6 py-2">
-                      {t.content}
+                      {t.resources}
                     </div>
                     <div className="space-y-1">
-                      {conteudoItems.map((item, index) => {
+                      {conteudoItems.map((item) => {
                         const Icon = item.icon;
                         return (
                           <Link
@@ -438,7 +745,7 @@ export default function Header() {
                   <motion.div
                     initial={{ x: 50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 0.3 }}
+                    transition={{ delay: 0.4, duration: 0.3 }}
                     className="pt-2"
                   >
                     <Link
@@ -456,7 +763,7 @@ export default function Header() {
                   className="flex flex-col gap-3 px-6 mb-6"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.35, duration: 0.3 }}
+                  transition={{ delay: 0.5, duration: 0.3 }}
                 >
                   <Button
                     variant="outline"
@@ -484,7 +791,7 @@ export default function Header() {
                   className="space-y-4 px-6"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.4, duration: 0.3 }}
+                  transition={{ delay: 0.6, duration: 0.3 }}
                 >
                   {/* Theme Toggle */}
                   <div className="flex items-center justify-between py-4 border-b border-green-500/10">

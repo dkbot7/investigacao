@@ -118,16 +118,16 @@ const SERVICOS_B2C: Servico[] = [
     badgeColor: "purple",
     categoria: "protecao"
   },
-  // PERÍCIA FORENSE
+  // INVESTIGAÇÃO FORENSE
   {
-    id: "pericia-forense-validada",
-    nome: "Investigação Forense Validada",
-    descricao: "Relatório forense validado por Perito Criminal Oficial",
+    id: "investigacao-forense-profissional",
+    nome: "Investigação Forense Profissional",
+    descricao: "Relatório forense com metodologia profissional validada",
     icon: ShieldCheck,
     destaque: true,
     caracteristicas: [
-      "Metodologia forense certificada",
-      "Assinado por Perito Criminal Oficial",
+      "Metodologia forense profissional",
+      "Relatório técnico especializado",
       "Cadeia de custódia garantida",
       "Fontes públicas (OSINT)",
       "Validade judicial",
@@ -136,7 +136,7 @@ const SERVICOS_B2C: Servico[] = [
     preco: "Sob consulta",
     prazo: "10-15 dias",
     idealPara: "Processos judiciais e defesas",
-    badge: "PERITO OFICIAL",
+    badge: "FORENSE PROFISSIONAL",
     badgeColor: "gold",
     categoria: "pericia"
   },
@@ -150,7 +150,7 @@ const SERVICOS_B2C: Servico[] = [
       "Indexação e análise com IPED",
       "Recuperação de dados deletados",
       "Cadeia de custódia oficial",
-      "Validação por Perito Oficial",
+      "Validação técnica profissional",
       "Relatório técnico completo"
     ],
     preco: "Sob consulta",
@@ -168,7 +168,7 @@ const SERVICOS_B2C: Servico[] = [
     caracteristicas: [
       "Coleta profissional de evidências",
       "Preservação com integridade",
-      "Validação por Perito Criminal",
+      "Validação técnica especializada",
       "Documentação completa",
       "Validade judicial garantida"
     ],
@@ -200,8 +200,176 @@ const SERVICOS_B2C: Servico[] = [
   },
 ];
 
-// Alias para compatibilidade
-const TODOS_SERVICOS = SERVICOS_B2C;
+// B2B - PARA EMPRESAS (Background Check & Due Diligence)
+const SERVICOS_B2B: Servico[] = [
+  {
+    id: "background-check-pessoas",
+    nome: "Background Check de Pessoas",
+    descricao: "Verificação completa de CPF, antecedentes e sanções em fontes oficiais",
+    icon: UserCheck,
+    destaque: true,
+    caracteristicas: [
+      "Validação de CPF e dados pessoais",
+      "Antecedentes criminais em 27 tribunais",
+      "Sanções CEIS, CNEP e OFAC",
+      "Processos trabalhistas e cíveis",
+      "Vínculos empregatícios (CNIS/INSS)",
+      "Relatório com validade judicial"
+    ],
+    preco: "A partir de R$ 500",
+    prazo: "24-48h",
+    idealPara: "RH e Compliance",
+    badge: "MAIS CONTRATADO",
+    badgeColor: "blue",
+    categoria: "personalizado"
+  },
+  {
+    id: "background-check-empresas",
+    nome: "Background Check de Empresas",
+    descricao: "Due diligence completa de CNPJ, sócios e situação fiscal",
+    icon: Building,
+    caracteristicas: [
+      "Situação cadastral CNPJ",
+      "Quadro societário completo",
+      "Sanções CEIS e CNEP",
+      "Processos judiciais da empresa",
+      "Débitos fiscais e trabalhistas",
+      "Certidões negativas"
+    ],
+    preco: "A partir de R$ 1.500",
+    prazo: "48-72h",
+    idealPara: "Investidores e compradores",
+    badge: "EMPRESAS",
+    badgeColor: "green",
+    categoria: "personalizado"
+  },
+  {
+    id: "due-diligence-completa",
+    nome: "Due Diligence M&A Completa",
+    descricao: "Análise profunda em 12 camadas para fusões e aquisições",
+    icon: TrendingUp,
+    destaque: true,
+    caracteristicas: [
+      "Análise CNPJ em 12 camadas",
+      "Background de todos os sócios",
+      "Passivos trabalhistas ocultos",
+      "Processos judiciais pendentes",
+      "Red flags e risco empresarial",
+      "Análise de competitividade",
+      "Relatório executivo completo"
+    ],
+    preco: "Sob consulta",
+    prazo: "7-15 dias",
+    idealPara: "M&A e investimentos",
+    badge: "PREMIUM",
+    badgeColor: "purple",
+    categoria: "personalizado"
+  },
+  {
+    id: "auditoria-licitacoes",
+    nome: "Auditoria de Licitações",
+    descricao: "Compliance TCU/CGU para licitações governamentais",
+    icon: ClipboardCheck,
+    caracteristicas: [
+      "Auditoria em 12 camadas",
+      "Verificação CEIS/CNEP",
+      "Detecção de cartel",
+      "Análise de superfaturamento",
+      "Verificação técnica",
+      "Relatório TCU/CGU"
+    ],
+    preco: "A partir de R$ 3.000",
+    prazo: "3-5 dias",
+    idealPara: "Auditores e governo",
+    badge: "GOVERNO",
+    badgeColor: "orange",
+    categoria: "personalizado"
+  }
+];
+
+// LEGAL - PARA ADVOGADOS (Perícia Forense)
+const SERVICOS_LEGAL: Servico[] = [
+  {
+    id: "investigacao-forense-profissional-legal",
+    nome: "Investigação Forense Profissional",
+    descricao: "Relatório forense com metodologia profissional validada",
+    icon: ShieldCheck,
+    destaque: true,
+    caracteristicas: [
+      "Metodologia forense profissional",
+      "Relatório técnico especializado",
+      "Cadeia de custódia garantida",
+      "Fontes públicas (OSINT)",
+      "Validade judicial",
+      "Conformidade total com LGPD"
+    ],
+    preco: "Sob consulta",
+    prazo: "10-15 dias",
+    idealPara: "Processos judiciais e defesas",
+    badge: "FORENSE PROFISSIONAL",
+    badgeColor: "gold",
+    categoria: "pericia"
+  },
+  {
+    id: "extracao-forense-dispositivos-legal",
+    nome: "Extração Forense de Celular",
+    descricao: "Extração forense com Avilla Forensics e indexação com IPED",
+    icon: Smartphone,
+    caracteristicas: [
+      "Extração com Avilla Forensics",
+      "Indexação e análise com IPED",
+      "Recuperação de dados deletados",
+      "Cadeia de custódia oficial",
+      "Validação técnica profissional",
+      "Relatório técnico completo"
+    ],
+    preco: "Sob consulta",
+    prazo: "7-10 dias",
+    idealPara: "Provas de fraude e processos",
+    badge: "FORENSE",
+    badgeColor: "gold",
+    categoria: "pericia"
+  },
+  {
+    id: "coleta-provas-digitais",
+    nome: "Coleta e Preservação de Provas",
+    descricao: "Preservação legal de evidências com cadeia de custódia certificada",
+    icon: Lock,
+    caracteristicas: [
+      "Coleta profissional de evidências",
+      "Preservação com integridade",
+      "Validação técnica especializada",
+      "Documentação completa",
+      "Validade judicial garantida"
+    ],
+    preco: "Sob consulta",
+    prazo: "5-7 dias",
+    idealPara: "Provas críticas para processos",
+    categoria: "pericia"
+  },
+  {
+    id: "investigacao-patrimonial-legal",
+    nome: "Investigação Patrimonial",
+    descricao: "Rastreamento de patrimônio para divórcios e execuções",
+    icon: Home,
+    caracteristicas: [
+      "Levantamento de imóveis",
+      "Veículos registrados",
+      "Participações societárias",
+      "Análise de incompatibilidade",
+      "Rastreamento de criptomoedas"
+    ],
+    preco: "A partir de R$ 2.500",
+    prazo: "7-10 dias",
+    idealPara: "Divórcios e execuções judiciais",
+    badge: "PATRIMÔNIO",
+    badgeColor: "pink",
+    categoria: "pericia"
+  }
+];
+
+// Todos os serviços combinados
+const TODOS_SERVICOS = [...SERVICOS_B2B, ...SERVICOS_B2C, ...SERVICOS_LEGAL];
 
 // Componente do Modal (mesmo código anterior)
 function ServiceModal({ service, isOpen, onClose }: { service: Servico | null; isOpen: boolean; onClose: () => void }) {
@@ -376,40 +544,52 @@ function ServicosContent() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4 text-center leading-tight">
-            Prove a <span className="text-green-500">Verdade</span> Antes Que<br />
-            <span className="text-orange-500">Seja Tarde Demais</span>
+            Serviços de Investigação Digital com<br />
+            <span className="text-green-500">Metodologia Forense</span>
           </h1>
 
           <p className="text-lg md:text-xl text-slate-600 dark:text-navy-300 max-w-3xl mx-auto mb-8 text-center">
-            Combinamos <strong className="text-green-500">tecnologia de ponta</strong> com
-            <strong className="text-slate-900 dark:text-white"> metodologia forense validada</strong>
+            Escolha o serviço ideal para sua necessidade. <strong className="text-green-500">Background check</strong>,
+            <strong className="text-slate-900 dark:text-white"> proteção de privacidade</strong> ou
+            <strong className="text-purple-600"> perícia forense</strong>.
           </p>
+
+          {/* Category Pills */}
+          <div className="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto">
+            <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 text-sm px-4 py-2">
+              📊 Background Check & Due Diligence
+            </Badge>
+            <Badge className="bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-400 text-sm px-4 py-2">
+              🔐 Proteção & Privacidade
+            </Badge>
+            <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400 text-sm px-4 py-2">
+              ⚖️ Perícia Forense
+            </Badge>
+          </div>
         </div>
       </section>
 
-      {/* SERVIÇOS SUGERIDOS - SEÇÃO PRINCIPAL COM TODOS OS CARDS */}
+      {/* BACKGROUND CHECK & DUE DILIGENCE - B2B */}
       <section className="py-16 bg-white dark:bg-navy-950">
         <div className="container max-w-7xl px-4">
           <div className="text-center mb-12">
-            <Badge className="bg-gradient-to-r from-green-500 to-purple-500 text-white border-0 mb-4 px-6 py-2 text-base font-bold">
-              <Sparkles className="w-4 h-4 mr-2 inline" />
-              SERVIÇOS SUGERIDOS
+            <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 border-blue-500/30 mb-4 px-6 py-2 text-base font-bold">
+              📊 BACKGROUND CHECK & DUE DILIGENCE
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              Todos os Nossos Serviços
+              Para Empresas, RH e Investidores
             </h2>
             <p className="text-lg text-slate-600 dark:text-navy-300 max-w-3xl mx-auto">
-              Clique em qualquer serviço para ver detalhes completos e falar com um especialista
+              Verificação profissional antes de contratar, investir ou fazer negócio
             </p>
           </div>
 
-          {/* Grid de TODOS os Serviços */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-            {TODOS_SERVICOS.map((servico) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-16">
+            {SERVICOS_B2B.map((servico) => (
               <Card
                 key={servico.id}
                 onClick={() => handleServiceClick(servico)}
-                className="group cursor-pointer hover:shadow-xl hover:scale-105 transition-all duration-300 bg-white dark:bg-navy-900 border-2 border-slate-200 dark:border-navy-800 hover:border-green-500 dark:hover:border-green-500 relative overflow-hidden"
+                className="group cursor-pointer hover:shadow-xl hover:scale-105 transition-all duration-300 bg-white dark:bg-navy-900 border-2 border-slate-200 dark:border-navy-800 hover:border-blue-500 dark:hover:border-blue-500 relative overflow-hidden"
               >
                 {servico.badge && (
                   <div className="absolute top-2 right-2 z-10">
@@ -421,16 +601,8 @@ function ServicosContent() {
 
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center space-y-4">
-                    <div className={`p-4 rounded-xl transition-all group-hover:scale-110 ${
-                      servico.categoria === 'pericia' ? 'bg-amber-50 dark:bg-amber-900/20' :
-                      servico.categoria === 'personalizado' ? 'bg-cyan-50 dark:bg-cyan-900/20' :
-                      'bg-green-50 dark:bg-green-900/20'
-                    }`}>
-                      <servico.icon className={`w-8 h-8 ${
-                        servico.categoria === 'pericia' ? 'text-amber-600 dark:text-amber-400' :
-                        servico.categoria === 'personalizado' ? 'text-cyan-600 dark:text-cyan-400' :
-                        'text-green-600 dark:text-green-400'
-                      }`} />
+                    <div className="p-4 rounded-xl transition-all group-hover:scale-110 bg-cyan-50 dark:bg-cyan-900/20">
+                      <servico.icon className="w-8 h-8 text-cyan-600 dark:text-cyan-400" />
                     </div>
 
                     <div>
@@ -451,7 +623,133 @@ function ServicosContent() {
 
                     <Button
                       size="sm"
-                      className="w-full bg-green-600 hover:bg-green-700 text-white group-hover:bg-green-600 group-hover:shadow-lg transition-all"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white group-hover:shadow-lg transition-all"
+                    >
+                      <MessageCircle className="w-4 h-4 mr-2" />
+                      Ver Detalhes
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* PROTEÇÃO & PRIVACIDADE - B2C */}
+          <div className="text-center mb-12 pt-8 border-t-2 border-slate-200 dark:border-navy-800">
+            <Badge className="bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-400 border-red-500/30 mb-4 px-6 py-2 text-base font-bold">
+              🔐 PROTEÇÃO & PRIVACIDADE
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              Para Você e Sua Família
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-navy-300 max-w-3xl mx-auto">
+              Remoção de conteúdo, proteção reputacional e segurança digital
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6 mb-16">
+            {SERVICOS_B2C.map((servico) => (
+              <Card
+                key={servico.id}
+                onClick={() => handleServiceClick(servico)}
+                className="group cursor-pointer hover:shadow-xl hover:scale-105 transition-all duration-300 bg-white dark:bg-navy-900 border-2 border-slate-200 dark:border-navy-800 hover:border-red-500 dark:hover:border-red-500 relative overflow-hidden"
+              >
+                {servico.badge && (
+                  <div className="absolute top-2 right-2 z-10">
+                    <Badge className={`${getBadgeColor(servico.badgeColor)} text-xs font-bold px-2 py-1`}>
+                      {servico.badge}
+                    </Badge>
+                  </div>
+                )}
+
+                <CardContent className="p-6">
+                  <div className="flex flex-col items-center text-center space-y-4">
+                    <div className="p-4 rounded-xl transition-all group-hover:scale-110 bg-green-50 dark:bg-green-900/20">
+                      <servico.icon className="w-8 h-8 text-green-600 dark:text-green-400" />
+                    </div>
+
+                    <div>
+                      <h3 className="font-bold text-base text-slate-900 dark:text-white mb-2 line-clamp-2">
+                        {servico.nome}
+                      </h3>
+                      <p className="text-xs text-slate-600 dark:text-navy-300 line-clamp-2">
+                        {servico.descricao}
+                      </p>
+                    </div>
+
+                    {servico.prazo && (
+                      <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-navy-400">
+                        <Clock className="w-4 h-4" />
+                        <span>{servico.prazo}</span>
+                      </div>
+                    )}
+
+                    <Button
+                      size="sm"
+                      className="w-full bg-green-600 hover:bg-green-700 text-white group-hover:shadow-lg transition-all"
+                    >
+                      <MessageCircle className="w-4 h-4 mr-2" />
+                      Ver Detalhes
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* PERÍCIA FORENSE - LEGAL */}
+          <div className="text-center mb-12 pt-8 border-t-2 border-slate-200 dark:border-navy-800">
+            <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400 border-purple-500/30 mb-4 px-6 py-2 text-base font-bold">
+              ⚖️ PERÍCIA FORENSE
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              Para Advogados e Processos Judiciais
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-navy-300 max-w-3xl mx-auto">
+              Provas digitais com cadeia de custódia e validade judicial
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12">
+            {SERVICOS_LEGAL.map((servico) => (
+              <Card
+                key={servico.id}
+                onClick={() => handleServiceClick(servico)}
+                className="group cursor-pointer hover:shadow-xl hover:scale-105 transition-all duration-300 bg-white dark:bg-navy-900 border-2 border-slate-200 dark:border-navy-800 hover:border-purple-500 dark:hover:border-purple-500 relative overflow-hidden"
+              >
+                {servico.badge && (
+                  <div className="absolute top-2 right-2 z-10">
+                    <Badge className={`${getBadgeColor(servico.badgeColor)} text-xs font-bold px-2 py-1`}>
+                      {servico.badge}
+                    </Badge>
+                  </div>
+                )}
+
+                <CardContent className="p-6">
+                  <div className="flex flex-col items-center text-center space-y-4">
+                    <div className="p-4 rounded-xl transition-all group-hover:scale-110 bg-amber-50 dark:bg-amber-900/20">
+                      <servico.icon className="w-8 h-8 text-amber-600 dark:text-amber-400" />
+                    </div>
+
+                    <div>
+                      <h3 className="font-bold text-base text-slate-900 dark:text-white mb-2 line-clamp-2">
+                        {servico.nome}
+                      </h3>
+                      <p className="text-xs text-slate-600 dark:text-navy-300 line-clamp-2">
+                        {servico.descricao}
+                      </p>
+                    </div>
+
+                    {servico.prazo && (
+                      <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-navy-400">
+                        <Clock className="w-4 h-4" />
+                        <span>{servico.prazo}</span>
+                      </div>
+                    )}
+
+                    <Button
+                      size="sm"
+                      className="w-full bg-purple-600 hover:bg-purple-700 text-white group-hover:shadow-lg transition-all"
                     >
                       <MessageCircle className="w-4 h-4 mr-2" />
                       Ver Detalhes
@@ -485,7 +783,7 @@ function ServicosContent() {
               🔥 Resposta em 24h
             </Badge>
             <Badge className="bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30 font-semibold px-4 md:px-6 py-2 md:py-3 text-sm md:text-base">
-              ✅ Perito Criminal Oficial
+              ✅ Metodologia Profissional
             </Badge>
             <Badge className="bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30 font-semibold px-4 md:px-6 py-2 md:py-3 text-sm md:text-base">
               🚀 5.950 auditados

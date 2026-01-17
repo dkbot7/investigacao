@@ -37,7 +37,15 @@
       "WebFetch(domain:github.com)",
       "Bash(Select-String -Pattern \"(✓|error|Error|SUCCESS|failed|Failed|Build complete)\" -Context 0,2)",
       "Bash(python:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(ls:*)",
+      "Bash(while read dir)",
+      "Bash(do if [ ! -f \"$dir/page.tsx\" ])",
+      "Bash([ -n \"$dir\" ])",
+      "Bash([ \"$dir\" != \".\" ])",
+      "Bash(then echo \"$dir\")",
+      "Bash(fi)",
+      "Bash(done)"
     ],
     "deny": [],
     "ask": []
