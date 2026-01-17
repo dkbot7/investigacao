@@ -222,8 +222,8 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
               {/* Header */}
               <div className="sticky top-0 bg-white dark:bg-navy-900 border-b border-slate-400 dark:border-navy-700 px-6 py-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                    <Upload className="w-5 h-5 text-blue-400" />
+                  <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+                    <Upload className="w-5 h-5 text-green-400" />
                   </div>
                   <div>
                     <h2 className="text-xl font-bold text-slate-900 dark:text-white">Análise em Lote - Grupos</h2>
@@ -287,13 +287,13 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
                       htmlFor="file-upload"
                       className={`flex items-center justify-center gap-3 w-full px-4 py-8 border-2 border-dashed rounded-lg transition-all cursor-pointer ${
                         file
-                          ? "border-blue-500/50 bg-blue-500/10"
+                          ? "border-green-500/50 bg-green-500/10"
                           : "border-navy-600 hover:border-navy-500 bg-slate-100 dark:bg-navy-800/50"
                       } ${isProcessing || success ? "opacity-50 cursor-not-allowed" : ""}`}
                     >
                       {file ? (
                         <>
-                          <FileSpreadsheet className="w-8 h-8 text-blue-400" />
+                          <FileSpreadsheet className="w-8 h-8 text-green-400" />
                           <div className="text-left">
                             <p className="text-slate-900 dark:text-white font-medium">{file.name}</p>
                             <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-sm">
@@ -325,7 +325,7 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
                     value={grupoName}
                     onChange={(e) => setGrupoName(e.target.value)}
                     placeholder="Ex: Funcionários RH, Fornecedores 2024..."
-                    className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                    className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                     disabled={isProcessing || success}
                     required
                   />
@@ -344,7 +344,7 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
                       id="columnName"
                       value={columnName}
                       onChange={(e) => setColumnName(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                       disabled={isProcessing || success}
                       required
                     >
@@ -370,7 +370,7 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
                       value={columnName}
                       onChange={(e) => setColumnName(e.target.value)}
                       placeholder="Primeiro faça upload do arquivo..."
-                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                       disabled={true}
                       required
                     />
@@ -384,7 +384,7 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
                 {rowCount !== null && (
                   <div className="bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg p-4">
                     <p className="text-slate-900 dark:text-slate-900 dark:text-white/90">
-                      <span className="font-semibold text-blue-400">{rowCount}</span> registro(s) detectado(s)
+                      <span className="font-semibold text-green-400">{rowCount}</span> registro(s) detectado(s)
                     </p>
                     <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-sm mt-1">
                       (Excluindo linha de cabeçalho)
@@ -393,8 +393,8 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
                 )}
 
                 {/* Info Box */}
-                <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
-                  <p className="text-blue-400 text-sm">
+                <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4">
+                  <p className="text-green-400 text-sm">
                     <strong>Como funciona:</strong> O sistema lerá o arquivo, extrairá os CPFs/CNPJs da coluna
                     especificada e executará uma análise completa de cada documento em segundo plano.
                     Você receberá notificações conforme as análises forem concluídas.
@@ -415,7 +415,7 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
                   <Button
                     type="submit"
                     disabled={!file || !columnName.trim() || !grupoName.trim() || isProcessing || success}
-                    className="flex-1 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 bg-green-500 hover:bg-green-600 text-navy-950 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isProcessing ? (
                       <>
@@ -438,3 +438,4 @@ export function GruposModal({ isOpen, onClose, onSuccess }: GruposModalProps) {
     </AnimatePresence>
   );
 }
+

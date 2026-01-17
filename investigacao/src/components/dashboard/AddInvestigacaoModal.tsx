@@ -531,8 +531,8 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-400 dark:border-navy-700">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-blue-500/20">
-                  <UserPlus className="w-5 h-5 text-blue-400" />
+                <div className="p-2 rounded-lg bg-green-500/20">
+                  <UserPlus className="w-5 h-5 text-green-400" />
                 </div>
                 <div>
                   <h2 className="text-xl font-bold text-slate-900 dark:text-white">Adicionar</h2>
@@ -552,14 +552,14 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
               {/* Pessoa Física */}
               <button
                 onClick={() => { setMode("pessoa_fisica"); setTipoPessoa("fisica"); }}
-                className="w-full p-4 rounded-xl border border-navy-600 hover:border-blue-500/50 bg-navy-700/50 hover:bg-navy-700 transition-all group text-left"
+                className="w-full p-4 rounded-xl border border-navy-600 hover:border-green-500/50 bg-navy-700/50 hover:bg-navy-700 transition-all group text-left"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-lg bg-blue-500/20 group-hover:bg-blue-500/30 transition-colors">
-                    <User className="w-6 h-6 text-blue-400" />
+                  <div className="p-3 rounded-lg bg-green-500/20 group-hover:bg-green-500/30 transition-colors">
+                    <User className="w-6 h-6 text-green-400" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white group-hover:text-blue-400 transition-colors">Pessoa Física</h3>
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white group-hover:text-green-400 transition-colors">Pessoa Física</h3>
                     <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Cadastrar uma pessoa individual (CPF)</p>
                   </div>
                 </div>
@@ -568,14 +568,14 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
               {/* Pessoa Jurídica */}
               <button
                 onClick={() => { setMode("pessoa_juridica"); setTipoPessoa("juridica"); }}
-                className="w-full p-4 rounded-xl border border-navy-600 hover:border-blue-500/50 bg-navy-700/50 hover:bg-navy-700 transition-all group text-left"
+                className="w-full p-4 rounded-xl border border-navy-600 hover:border-green-500/50 bg-navy-700/50 hover:bg-navy-700 transition-all group text-left"
               >
                 <div className="flex items-center gap-4">
                   <div className="p-3 rounded-lg bg-purple-500/20 group-hover:bg-purple-500/30 transition-colors">
                     <Building2 className="w-6 h-6 text-purple-400" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white group-hover:text-blue-400 transition-colors">Pessoa Jurídica</h3>
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white group-hover:text-green-400 transition-colors">Pessoa Jurídica</h3>
                     <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Cadastrar uma empresa (CNPJ)</p>
                   </div>
                 </div>
@@ -584,14 +584,14 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
               {/* Enviar Arquivo */}
               <button
                 onClick={() => setMode("arquivo")}
-                className="w-full p-4 rounded-xl border border-navy-600 hover:border-blue-500/50 bg-navy-700/50 hover:bg-navy-700 transition-all group text-left"
+                className="w-full p-4 rounded-xl border border-navy-600 hover:border-green-500/50 bg-navy-700/50 hover:bg-navy-700 transition-all group text-left"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-lg bg-blue-500/20 group-hover:bg-blue-500/30 transition-colors">
-                    <Upload className="w-6 h-6 text-blue-400" />
+                  <div className="p-3 rounded-lg bg-green-500/20 group-hover:bg-green-500/30 transition-colors">
+                    <Upload className="w-6 h-6 text-green-400" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white group-hover:text-blue-400 transition-colors">Enviar Arquivo</h3>
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white group-hover:text-green-400 transition-colors">Enviar Arquivo</h3>
                     <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Importar lista de CPFs/CNPJs via Excel ou CSV</p>
                   </div>
                 </div>
@@ -623,8 +623,8 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                 >
                   <ArrowLeft className="w-5 h-5" />
                 </button>
-                <div className="p-2 rounded-lg bg-blue-500/20">
-                  <Upload className="w-5 h-5 text-blue-400" />
+                <div className="p-2 rounded-lg bg-green-500/20">
+                  <Upload className="w-5 h-5 text-green-400" />
                 </div>
                 <div>
                   <h2 className="text-xl font-bold text-slate-900 dark:text-white">Enviar Arquivo</h2>
@@ -663,12 +663,12 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                 <label
                   htmlFor="file-upload"
                   className={`flex items-center justify-center gap-3 w-full px-4 py-8 border-2 border-dashed rounded-lg transition-all cursor-pointer ${
-                    file ? "border-blue-500/50 bg-blue-500/10" : "border-navy-600 hover:border-navy-500 bg-navy-700/50"
+                    file ? "border-green-500/50 bg-green-500/10" : "border-navy-600 hover:border-navy-500 bg-navy-700/50"
                   } ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   {file ? (
                     <>
-                      <FileSpreadsheet className="w-8 h-8 text-blue-400" />
+                      <FileSpreadsheet className="w-8 h-8 text-green-400" />
                       <div className="text-left">
                         <p className="text-slate-900 dark:text-white font-medium">{file.name}</p>
                         <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-sm">{(file.size / 1024).toFixed(2)} KB</p>
@@ -697,7 +697,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                   value={grupoName}
                   onChange={(e) => setGrupoName(e.target.value)}
                   placeholder="Ex: Fornecedores 2024, Funcionários RH..."
-                  className="w-full px-4 py-2.5 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                  className="w-full px-4 py-2.5 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                   disabled={loading}
                   required
                 />
@@ -713,7 +713,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                     id="columnName"
                     value={columnName}
                     onChange={(e) => setColumnName(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                    className="w-full px-4 py-2.5 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                     disabled={loading}
                     required
                   >
@@ -741,7 +741,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
               {rowCount !== null && (
                 <div className="bg-navy-700 border border-navy-600 rounded-lg p-4">
                   <p className="text-slate-900 dark:text-slate-900 dark:text-white/90">
-                    <span className="font-semibold text-blue-400">{rowCount}</span> registro(s) detectado(s)
+                    <span className="font-semibold text-green-400">{rowCount}</span> registro(s) detectado(s)
                   </p>
                 </div>
               )}
@@ -760,7 +760,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                 <Button
                   type="submit"
                   disabled={!file || !columnName.trim() || !grupoName.trim() || loading}
-                  className="flex-1 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold disabled:opacity-50"
+                  className="flex-1 bg-green-500 hover:bg-green-600 text-navy-950 font-semibold disabled:opacity-50"
                 >
                   {loading ? (
                     <>
@@ -801,8 +801,8 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
               >
                 <ArrowLeft className="w-5 h-5" />
               </button>
-              <div className="p-2 rounded-lg bg-blue-500/20">
-                {tipoPessoa === "fisica" ? <User className="w-5 h-5 text-blue-400" /> : <Building2 className="w-5 h-5 text-blue-400" />}
+              <div className="p-2 rounded-lg bg-green-500/20">
+                {tipoPessoa === "fisica" ? <User className="w-5 h-5 text-green-400" /> : <Building2 className="w-5 h-5 text-green-400" />}
               </div>
               <div>
                 <h2 className="text-xl font-bold text-slate-900 dark:text-white">{tipoPessoa === "fisica" ? "Pessoa Física" : "Pessoa Jurídica"}</h2>
@@ -826,7 +826,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
           <div className="px-6 pt-4">
             <div className="w-full h-2 bg-white dark:bg-navy-900 rounded-full overflow-hidden">
               <motion.div
-                className="h-full bg-blue-500"
+                className="h-full bg-green-500"
                 initial={{ width: 0 }}
                 animate={{ width: `${getStepProgress()}%` }}
                 transition={{ duration: 0.3 }}
@@ -855,7 +855,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                   onClick={() => setCadastroMode("rapido")}
                   className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2 ${
                     cadastroMode === "rapido"
-                      ? "bg-blue-500 text-navy-950"
+                      ? "bg-green-500 text-navy-950"
                       : "text-slate-600 dark:text-white/60 hover:text-white"
                   }`}
                 >
@@ -867,7 +867,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                   onClick={() => setCadastroMode("completo")}
                   className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2 ${
                     cadastroMode === "completo"
-                      ? "bg-blue-500 text-navy-950"
+                      ? "bg-green-500 text-navy-950"
                       : "text-slate-600 dark:text-white/60 hover:text-white"
                   }`}
                 >
@@ -894,7 +894,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                       onClick={() => setTipoPessoa("fisica")}
                       className={`flex items-center justify-center gap-2 px-4 py-3 rounded-lg border transition-all ${
                         tipoPessoa === "fisica"
-                          ? "bg-blue-500/20 border-blue-500/50 text-blue-400"
+                          ? "bg-green-500/20 border-green-500/50 text-green-400"
                           : "bg-navy-700 border-navy-600 text-slate-600 dark:text-white/60 hover:border-navy-500"
                       }`}
                     >
@@ -906,7 +906,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                       onClick={() => setTipoPessoa("juridica")}
                       className={`flex items-center justify-center gap-2 px-4 py-3 rounded-lg border transition-all ${
                         tipoPessoa === "juridica"
-                          ? "bg-blue-500/20 border-blue-500/50 text-blue-400"
+                          ? "bg-green-500/20 border-green-500/50 text-green-400"
                           : "bg-navy-700 border-navy-600 text-slate-600 dark:text-white/60 hover:border-navy-500"
                       }`}
                     >
@@ -927,7 +927,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                         setFormData(prev => ({ ...prev, nome: e.target.value }));
                         validateField("nome", e.target.value);
                       }}
-                      className={`w-full px-3 py-2 bg-navy-700 border rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 ${
+                      className={`w-full px-3 py-2 bg-navy-700 border rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 ${
                         fieldErrors.nome ? "border-red-500" : "border-navy-600"
                       }`}
                       placeholder={tipoPessoa === "fisica" ? "João da Silva" : "Empresa LTDA"}
@@ -947,7 +947,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                         setFormData(prev => ({ ...prev, cpf_cnpj: formatted }));
                         validateField("cpf_cnpj", formatted);
                       }}
-                      className={`w-full px-3 py-2 bg-navy-700 border rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 font-mono ${
+                      className={`w-full px-3 py-2 bg-navy-700 border rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 font-mono ${
                         fieldErrors.cpf_cnpj ? "border-red-500" : "border-navy-600"
                       }`}
                       placeholder={tipoPessoa === "fisica" ? "000.000.000-00" : "00.000.000/0000-00"}
@@ -977,7 +977,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                             ...prev,
                             categorias: { ...prev.categorias, [key]: e.target.checked }
                           }))}
-                          className="w-4 h-4 text-blue-500 bg-navy-600 border-navy-500 rounded focus:ring-blue-500"
+                          className="w-4 h-4 text-green-500 bg-navy-600 border-navy-500 rounded focus:ring-green-500"
                         />
                         <span className="text-sm text-slate-900 dark:text-white">{label}</span>
                       </label>
@@ -992,7 +992,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                     type="text"
                     value={formData.grupo}
                     onChange={(e) => setFormData(prev => ({ ...prev, grupo: e.target.value }))}
-                    className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                    className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                     placeholder="Ex: Fornecedores 2024, Equipe RH..."
                   />
                   <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Agrupe múltiplas investigações para organizar melhor</p>
@@ -1013,7 +1013,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                               type="text"
                               value={formData.rg}
                               onChange={(e) => setFormData(prev => ({ ...prev, rg: e.target.value }))}
-                              className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                              className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                               placeholder="00.000.000-0"
                             />
                           </div>
@@ -1024,7 +1024,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                               type="date"
                               value={formData.data_nascimento}
                               onChange={(e) => setFormData(prev => ({ ...prev, data_nascimento: e.target.value }))}
-                              className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                              className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                             />
                           </div>
                         </div>
@@ -1035,7 +1035,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                             <select
                               value={formData.estado_civil}
                               onChange={(e) => setFormData(prev => ({ ...prev, estado_civil: e.target.value }))}
-                              className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                              className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                             >
                               <option value="">Selecione...</option>
                               <option value="solteiro">Solteiro(a)</option>
@@ -1052,7 +1052,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                               type="text"
                               value={formData.profissao}
                               onChange={(e) => setFormData(prev => ({ ...prev, profissao: e.target.value }))}
-                              className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                              className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                               placeholder="Ex: Engenheiro, Médico..."
                             />
                           </div>
@@ -1080,7 +1080,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                     <button
                       type="button"
                       onClick={handleAddTelefone}
-                      className="text-xs text-blue-400 hover:text-blue-300"
+                      className="text-xs text-green-400 hover:text-green-300"
                     >
                       + Adicionar telefone
                     </button>
@@ -1091,7 +1091,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                         type="tel"
                         value={tel}
                         onChange={(e) => handleTelefoneChange(index, e.target.value)}
-                        className="flex-1 px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                        className="flex-1 px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                         placeholder="(00) 00000-0000"
                       />
                       {formData.telefones.length > 1 && (
@@ -1117,7 +1117,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                         setFormData(prev => ({ ...prev, email: e.target.value }));
                         validateField("email", e.target.value);
                       }}
-                      className={`w-full px-3 py-2 bg-navy-700 border rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 ${
+                      className={`w-full px-3 py-2 bg-navy-700 border rounded-lg text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 ${
                         fieldErrors.email ? "border-red-500" : "border-navy-600"
                       }`}
                       placeholder="email@exemplo.com"
@@ -1133,7 +1133,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                       type="text"
                       value={formData.endereco}
                       onChange={(e) => setFormData(prev => ({ ...prev, endereco: e.target.value }))}
-                      className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                      className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                       placeholder="Rua, número, bairro, cidade - UF"
                     />
                   </div>
@@ -1153,7 +1153,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                             type="text"
                             value={formData.redes_sociais.instagram}
                             onChange={(e) => setFormData(prev => ({ ...prev, redes_sociais: { ...prev.redes_sociais, instagram: e.target.value }}))}
-                            className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                            className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                             placeholder="@usuario"
                           />
                         </div>
@@ -1164,7 +1164,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                             type="text"
                             value={formData.redes_sociais.facebook}
                             onChange={(e) => setFormData(prev => ({ ...prev, redes_sociais: { ...prev.redes_sociais, facebook: e.target.value }}))}
-                            className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                            className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                             placeholder="facebook.com/usuario"
                           />
                         </div>
@@ -1175,7 +1175,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                             type="text"
                             value={formData.redes_sociais.linkedin}
                             onChange={(e) => setFormData(prev => ({ ...prev, redes_sociais: { ...prev.redes_sociais, linkedin: e.target.value }}))}
-                            className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                            className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                             placeholder="linkedin.com/in/usuario"
                           />
                         </div>
@@ -1198,7 +1198,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                             type="text"
                             value={formData.placa_veiculo}
                             onChange={(e) => setFormData(prev => ({ ...prev, placa_veiculo: e.target.value.toUpperCase() }))}
-                            className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 uppercase"
+                            className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 uppercase"
                             placeholder="ABC-1234"
                           />
                         </div>
@@ -1209,7 +1209,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                             type="text"
                             value={formData.local_trabalho}
                             onChange={(e) => setFormData(prev => ({ ...prev, local_trabalho: e.target.value }))}
-                            className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                            className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                             placeholder="Empresa onde trabalha..."
                           />
                         </div>
@@ -1236,7 +1236,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                     value={formData.motivo_investigacao}
                     onChange={(e) => setFormData(prev => ({ ...prev, motivo_investigacao: e.target.value }))}
                     rows={3}
-                    className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                    className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                     placeholder="Descreva o motivo e contexto da investigação..."
                   />
                 </div>
@@ -1246,7 +1246,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                   <select
                     value={formData.nivel_urgencia}
                     onChange={(e) => setFormData(prev => ({ ...prev, nivel_urgencia: e.target.value as any }))}
-                    className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                    className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                   >
                     <option value="baixa">Baixa</option>
                     <option value="media">Média</option>
@@ -1279,7 +1279,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                                 ...prev,
                                 escopo_investigacao: { ...prev.escopo_investigacao, [key]: e.target.checked }
                               }))}
-                              className="w-4 h-4 text-blue-500 bg-navy-600 border-navy-500 rounded focus:ring-blue-500"
+                              className="w-4 h-4 text-green-500 bg-navy-600 border-navy-500 rounded focus:ring-green-500"
                             />
                             <span className="text-sm text-slate-900 dark:text-white">{label}</span>
                           </label>
@@ -1296,7 +1296,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                       type="date"
                       value={formData.prazo_desejado}
                       onChange={(e) => setFormData(prev => ({ ...prev, prazo_desejado: e.target.value }))}
-                      className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                      className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                     />
                   </div>
 
@@ -1307,7 +1307,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                       step="0.01"
                       value={formData.orcamento_maximo}
                       onChange={(e) => setFormData(prev => ({ ...prev, orcamento_maximo: e.target.value }))}
-                      className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                      className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                       placeholder="0,00"
                     />
                   </div>
@@ -1319,7 +1319,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                     value={formData.observacoes}
                     onChange={(e) => setFormData(prev => ({ ...prev, observacoes: e.target.value }))}
                     rows={3}
-                    className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                    className="w-full px-3 py-2 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                     placeholder="Informações adicionais relevantes..."
                   />
                 </div>
@@ -1335,7 +1335,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                 className="space-y-6"
               >
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white border-b border-slate-400 dark:border-navy-700 pb-2 flex items-center gap-2">
-                  <Check className="w-5 h-5 text-blue-400" />
+                  <Check className="w-5 h-5 text-green-400" />
                   Revisar e Confirmar
                 </h3>
 
@@ -1425,8 +1425,8 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                   )}
                 </div>
 
-                <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
-                  <p className="text-sm text-blue-400">
+                <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4">
+                  <p className="text-sm text-green-400">
                     <strong>Atenção:</strong> Após a confirmação, o admin será notificado para iniciar a investigação.
                   </p>
                 </div>
@@ -1452,7 +1452,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                   type="button"
                   onClick={handleNext}
                   disabled={loading}
-                  className="flex-1 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold"
+                  className="flex-1 bg-green-500 hover:bg-green-600 text-navy-950 font-semibold"
                 >
                   {cadastroMode === "rapido" && wizardStep === 1 ? "Revisar" : "Próximo"}
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -1461,7 +1461,7 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold"
+                  className="flex-1 bg-green-500 hover:bg-green-600 text-navy-950 font-semibold"
                 >
                   {loading ? (
                     <>
@@ -1483,3 +1483,4 @@ export function AddInvestigacaoModal({ isOpen, onClose, onSuccess }: AddInvestig
     </AnimatePresence>
   );
 }
+

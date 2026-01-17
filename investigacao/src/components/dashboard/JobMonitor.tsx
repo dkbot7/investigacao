@@ -89,7 +89,7 @@ export function JobMonitor({
         );
       case "processing":
         return (
-          <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30">
+          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
             <Loader2 className="w-3 h-3 mr-1 animate-spin" />
             Processando
           </Badge>
@@ -141,7 +141,7 @@ export function JobMonitor({
     return (
       <div className="bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 rounded-xl p-6">
         <div className="flex items-center justify-center">
-          <Loader2 className="w-6 h-6 animate-spin text-blue-400" />
+          <Loader2 className="w-6 h-6 animate-spin text-green-400" />
           <span className="ml-2 text-slate-600 dark:text-navy-400">
             Carregando jobs...
           </span>
@@ -195,7 +195,7 @@ export function JobMonitor({
           <h3 className="font-semibold text-slate-900 dark:text-white">
             Jobs em Processamento
           </h3>
-          <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30">
+          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
             {jobs.length}
           </Badge>
         </div>
@@ -206,7 +206,7 @@ export function JobMonitor({
             variant="ghost"
             className={
               isPolling
-                ? "text-blue-400 hover:text-blue-300"
+                ? "text-green-400 hover:text-green-300"
                 : "text-slate-400 hover:text-slate-600 dark:text-navy-400 dark:hover:text-white"
             }
             title={isPolling ? "Auto-refresh ativado" : "Auto-refresh desativado"}
@@ -248,7 +248,7 @@ export function JobMonitor({
                   <span className="text-slate-600 dark:text-navy-400">
                     Progresso: {job.items_processed}/{job.items_total}
                   </span>
-                  <span className="text-blue-400 font-medium">
+                  <span className="text-green-400 font-medium">
                     {job.progress}%
                   </span>
                 </div>
@@ -257,7 +257,7 @@ export function JobMonitor({
                     className={`h-full rounded-full transition-all duration-500 ${
                       job.status === "completed"
                         ? "bg-emerald-500"
-                        : "bg-blue-500"
+                        : "bg-green-500"
                     }`}
                     style={{ width: `${job.progress}%` }}
                   />
@@ -289,3 +289,4 @@ export function JobMonitor({
     </div>
   );
 }
+

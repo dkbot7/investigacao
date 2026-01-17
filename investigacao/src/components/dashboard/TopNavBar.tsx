@@ -116,7 +116,7 @@ export function TopNavBar() {
                         key={notification.id}
                         className={`w-full p-4 text-left border-b border-slate-300 dark:border-navy-700 last:border-0 transition-colors ${
                           notification.unread
-                            ? "bg-blue-500/5 hover:bg-blue-500/10"
+                            ? "bg-green-500/5 hover:bg-green-500/10"
                             : "hover:bg-navy-700"
                         }`}
                       >
@@ -128,7 +128,7 @@ export function TopNavBar() {
                     ))}
                   </div>
                   <div className="p-3 border-t border-slate-300 dark:border-navy-700">
-                    <button className="w-full text-xs text-center text-blue-400 hover:text-blue-300 font-medium">
+                    <button className="w-full text-xs text-center text-green-400 hover:text-green-300 font-medium">
                       Ver todas
                     </button>
                   </div>
@@ -254,3 +254,4 @@ export function TopNavBar() {
     </div>
   );
 }
+

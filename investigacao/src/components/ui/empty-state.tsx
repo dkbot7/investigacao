@@ -33,7 +33,7 @@ export function EmptyState({
         <p className="mb-6 max-w-sm text-sm text-white/60">{description}</p>
       )}
       {action && (
-        <Button onClick={action.onClick} className="bg-blue-500 hover:bg-blue-600 text-white">
+        <Button onClick={action.onClick} className="bg-green-500 hover:bg-green-600 text-white">
           {action.label}
         </Button>
       )}
@@ -177,3 +177,4 @@ export function MinimalEmptyState({ text }: { text: string }) {
     </div>
   )
 }
+

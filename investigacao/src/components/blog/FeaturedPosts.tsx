@@ -13,7 +13,7 @@ export default function FeaturedPosts({ posts }: FeaturedPostsProps) {
   if (!posts.length) return null;
 
   return (
-    <section className="py-16 border-b border-blue-500/10 bg-slate-50 dark:bg-navy-950/50">
+    <section className="py-16 border-b border-green-500/10 bg-slate-50 dark:bg-navy-950/50">
       <div className="container mx-auto px-4 sm:px-8 lg:px-12">
         {/* Título da seção */}
         <motion.div
@@ -23,8 +23,8 @@ export default function FeaturedPosts({ posts }: FeaturedPostsProps) {
           className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-10"
         >
           <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-600/10 border border-blue-500/20">
-              <Flame className="w-6 h-6 text-blue-500" />
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/20">
+              <Flame className="w-6 h-6 text-green-500" />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Inovações em Destaque</h2>
@@ -71,3 +71,4 @@ export default function FeaturedPosts({ posts }: FeaturedPostsProps) {
     </section>
   );
 }
+

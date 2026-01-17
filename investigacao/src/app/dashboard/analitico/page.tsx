@@ -100,7 +100,7 @@ export default function RelatoriosPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500" />
       </div>
     );
   }
@@ -119,11 +119,11 @@ export default function RelatoriosPage() {
           <div>
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2 sm:gap-3">
-                <FileText className="w-6 h-6 sm:w-7 sm:h-7 text-blue-400" />
+                <FileText className="w-6 h-6 sm:w-7 sm:h-7 text-green-400" />
                 Relatórios
               </h1>
               {isAdmin && (
-                <span className="px-2 sm:px-3 py-0.5 sm:py-1 bg-blue-500/20 border border-blue-500/30 rounded-full text-[10px] sm:text-xs font-semibold text-blue-400 flex items-center gap-1 sm:gap-1.5">
+                <span className="px-2 sm:px-3 py-0.5 sm:py-1 bg-green-500/20 border border-green-500/30 rounded-full text-[10px] sm:text-xs font-semibold text-green-400 flex items-center gap-1 sm:gap-1.5">
                   <Shield className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   <span className="hidden sm:inline">Visão Global (Admin)</span>
                   <span className="sm:hidden">Admin</span>
@@ -156,14 +156,14 @@ export default function RelatoriosPage() {
 
               {/* Instruções */}
               <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4 sm:p-6 text-left mb-6 sm:mb-8">
-                <h3 className="text-base sm:text-lg font-semibold text-blue-400 mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg font-semibold text-green-400 mb-3 sm:mb-4">
                   Como iniciar uma investigação
                 </h3>
 
                 <div className="space-y-3 sm:space-y-4">
                   <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-blue-400 font-bold text-xs sm:text-sm">1</span>
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-green-400 font-bold text-xs sm:text-sm">1</span>
                     </div>
                     <div>
                       <p className="text-sm sm:text-base text-slate-900 dark:text-white font-medium">Acesse "Investigações"</p>
@@ -174,8 +174,8 @@ export default function RelatoriosPage() {
                   </div>
 
                   <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-blue-400 font-bold text-xs sm:text-sm">2</span>
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-green-400 font-bold text-xs sm:text-sm">2</span>
                     </div>
                     <div>
                       <p className="text-sm sm:text-base text-slate-900 dark:text-white font-medium">Clique em "Adicionar"</p>
@@ -187,8 +187,8 @@ export default function RelatoriosPage() {
                   </div>
 
                   <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-blue-400 font-bold text-xs sm:text-sm">3</span>
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-green-400 font-bold text-xs sm:text-sm">3</span>
                     </div>
                     <div>
                       <p className="text-sm sm:text-base text-slate-900 dark:text-white font-medium">Preencha as informações</p>
@@ -200,8 +200,8 @@ export default function RelatoriosPage() {
                   </div>
 
                   <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-blue-400 font-bold text-xs sm:text-sm">4</span>
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-green-400 font-bold text-xs sm:text-sm">4</span>
                     </div>
                     <div>
                       <p className="text-sm sm:text-base text-slate-900 dark:text-white font-medium">Aguarde o relatório</p>
@@ -216,7 +216,7 @@ export default function RelatoriosPage() {
 
               {/* CTA */}
               <Link href="/dashboard/investigacoes?novo=true">
-                <Button className="bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg w-full sm:w-auto">
+                <Button className="bg-green-500 hover:bg-green-600 text-navy-950 font-semibold px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg w-full sm:w-auto">
                   <Plus className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   Iniciar Nova Investigação
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
@@ -242,7 +242,7 @@ export default function RelatoriosPage() {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 sm:gap-4">
           <div>
             <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2 sm:gap-3">
-              <FileText className="w-6 h-6 sm:w-7 sm:h-7 text-blue-400" />
+              <FileText className="w-6 h-6 sm:w-7 sm:h-7 text-green-400" />
               Relatórios
             </h1>
             <p className="text-sm sm:text-base text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
@@ -258,7 +258,7 @@ export default function RelatoriosPage() {
               placeholder="Buscar relatórios..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+              className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
             />
           </div>
         </div>
@@ -270,23 +270,23 @@ export default function RelatoriosPage() {
               key={relatorio.id}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-3 sm:p-4 hover:border-blue-500/50 transition-all cursor-pointer"
+              className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-3 sm:p-4 hover:border-green-500/50 transition-all cursor-pointer"
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-start sm:items-center gap-3 sm:gap-4 flex-1 min-w-0">
                   <div className={`p-2 sm:p-3 rounded-lg flex-shrink-0 ${
                     relatorio.tipo === 'grupo'
-                      ? 'bg-blue-500/20'
+                      ? 'bg-green-500/20'
                       : relatorio.tipo === 'pessoa_juridica'
                       ? 'bg-purple-500/20'
-                      : 'bg-blue-500/20'
+                      : 'bg-green-500/20'
                   }`}>
                     {relatorio.tipo === 'grupo' ? (
-                      <FolderOpen className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
+                      <FolderOpen className="w-5 h-5 sm:w-6 sm:h-6 text-green-400" />
                     ) : relatorio.tipo === 'pessoa_juridica' ? (
                       <Users className="w-5 h-5 sm:w-6 sm:h-6 text-purple-400" />
                     ) : (
-                      <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
+                      <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-green-400" />
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -301,7 +301,7 @@ export default function RelatoriosPage() {
                     relatorio.status === 'concluido'
                       ? 'bg-emerald-500/20 text-emerald-400'
                       : relatorio.status === 'em_analise'
-                      ? 'bg-blue-500/20 text-blue-400'
+                      ? 'bg-green-500/20 text-green-400'
                       : 'bg-amber-500/20 text-amber-400'
                   }`}>
                     {relatorio.status === 'concluido' ? (
@@ -347,3 +347,4 @@ export default function RelatoriosPage() {
     </div>
   );
 }
+

@@ -82,7 +82,7 @@ export class ComplianceErrorBoundary extends Component<Props, State> {
 
             <Button
               onClick={this.handleReset}
-              className="w-full bg-blue-600 hover:bg-blue-700"
+              className="w-full bg-green-600 hover:bg-green-700"
             >
               <RefreshCw className="w-4 h-4 mr-2" />
               Tentar Novamente
@@ -104,3 +104,4 @@ export class ComplianceErrorBoundary extends Component<Props, State> {
     return this.props.children
   }
 }
+

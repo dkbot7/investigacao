@@ -18,7 +18,7 @@ interface FileLocationProps {
 }
 
 const platformConfig: Record<Platform, { icon: typeof Monitor; label: string; color: string }> = {
-  windows: { icon: Monitor, label: "Windows", color: "text-blue-400" },
+  windows: { icon: Monitor, label: "Windows", color: "text-green-400" },
   macos: { icon: Apple, label: "macOS", color: "text-slate-500 dark:text-gray-400" },
   linux: { icon: Monitor, label: "Linux", color: "text-orange-400" },
   ios: { icon: Smartphone, label: "iOS", color: "text-slate-500 dark:text-gray-400" },
@@ -36,15 +36,15 @@ export default function FileLocation({ title, paths, forensicValue }: FileLocati
   };
 
   return (
-    <div className="my-6 rounded-xl border border-blue-500/10 bg-white dark:bg-white/50 dark:bg-navy-900/50 overflow-hidden">
+    <div className="my-6 rounded-xl border border-green-500/10 bg-white dark:bg-white/50 dark:bg-navy-900/50 overflow-hidden">
       {/* Header */}
-      <div className="flex items-center gap-2 px-4 py-3 bg-white dark:bg-navy-900 border-b border-blue-500/10">
-        <Folder className="w-5 h-5 text-blue-500" />
+      <div className="flex items-center gap-2 px-4 py-3 bg-white dark:bg-navy-900 border-b border-green-500/10">
+        <Folder className="w-5 h-5 text-green-500" />
         <h4 className="font-medium text-slate-900 dark:text-white">{title}</h4>
       </div>
 
       {/* Paths */}
-      <div className="divide-y divide-blue-500/5">
+      <div className="divide-y divide-green-500/5">
         {paths.map((item, index) => {
           const config = platformConfig[item.platform] || platformConfig.web;
           const Icon = config.icon;
@@ -62,7 +62,7 @@ export default function FileLocation({ title, paths, forensicValue }: FileLocati
                         {config.label}
                       </span>
                     </div>
-                    <code className="block text-sm text-blue-400 font-mono break-all bg-white dark:bg-white/50 dark:bg-navy-900/50 px-2 py-1 rounded select-all cursor-text pointer-events-auto [&_a]:pointer-events-none [&_a]:no-underline [&_a]:text-blue-400">
+                    <code className="block text-sm text-green-400 font-mono break-all bg-white dark:bg-white/50 dark:bg-navy-900/50 px-2 py-1 rounded select-all cursor-text pointer-events-auto [&_a]:pointer-events-none [&_a]:no-underline [&_a]:text-green-400">
                       <span className="select-all">{item.path}</span>
                     </code>
                     {item.description && (
@@ -89,8 +89,8 @@ export default function FileLocation({ title, paths, forensicValue }: FileLocati
 
       {/* Forensic Value */}
       {forensicValue && (
-        <div className="px-4 py-3 bg-blue-500/5 border-t border-blue-500/10">
-          <p className="text-sm text-blue-400">
+        <div className="px-4 py-3 bg-green-500/5 border-t border-green-500/10">
+          <p className="text-sm text-green-400">
             <strong>Valor Forense:</strong>{" "}
             <span className="text-slate-600 dark:text-navy-300">{forensicValue}</span>
           </p>
@@ -99,3 +99,4 @@ export default function FileLocation({ title, paths, forensicValue }: FileLocati
     </div>
   );
 }
+

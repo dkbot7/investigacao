@@ -101,7 +101,7 @@ export default function Pricing() {
                   plan.popular
                     ? "bg-amber-500 text-black font-bold px-4 py-1"
                     : plan.badge === "M&A"
-                    ? "bg-blue-600 text-white font-bold px-4 py-1"
+                    ? "bg-green-600 text-white font-bold px-4 py-1"
                     : "bg-gray-600 text-white font-bold px-4 py-1"
                 }`}>
                   {plan.badge}
@@ -195,3 +195,4 @@ export default function Pricing() {
     </section>
   );
 }
+

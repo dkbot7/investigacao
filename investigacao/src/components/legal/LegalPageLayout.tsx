@@ -30,7 +30,7 @@ export default function LegalPageLayout({
           >
             <Link
               href="/"
-              className="inline-flex items-center gap-1 text-sm text-slate-500 dark:text-navy-400 hover:text-blue-400 transition-colors"
+              className="inline-flex items-center gap-1 text-sm text-slate-500 dark:text-navy-400 hover:text-green-400 transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
               Voltar ao início
@@ -42,13 +42,13 @@ export default function LegalPageLayout({
             <motion.header
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-12 pb-8 border-b border-blue-500/10"
+              className="mb-12 pb-8 border-b border-green-500/10"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-2.5 rounded-xl bg-blue-500/10">
-                  <FileText className="w-6 h-6 text-blue-500" />
+                <div className="p-2.5 rounded-xl bg-green-500/10">
+                  <FileText className="w-6 h-6 text-green-500" />
                 </div>
-                <span className="text-sm text-blue-500 font-medium">Documento Legal</span>
+                <span className="text-sm text-green-500 font-medium">Documento Legal</span>
               </div>
 
               <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
@@ -166,7 +166,7 @@ export default function LegalPageLayout({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="mt-16 pt-8 border-t border-blue-500/10"
+              className="mt-16 pt-8 border-t border-green-500/10"
             >
               <h3 className="text-sm font-medium text-slate-500 dark:text-navy-400 mb-4">
                 Outros documentos legais
@@ -174,19 +174,19 @@ export default function LegalPageLayout({
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/privacidade"
-                  className="px-4 py-2 rounded-lg bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/10 text-slate-600 dark:text-navy-300 hover:text-blue-400 hover:border-blue-500/30 transition-colors text-sm"
+                  className="px-4 py-2 rounded-lg bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-green-500/10 text-slate-600 dark:text-navy-300 hover:text-green-400 hover:border-green-500/30 transition-colors text-sm"
                 >
                   Política de Privacidade
                 </Link>
                 <Link
                   href="/termos"
-                  className="px-4 py-2 rounded-lg bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/10 text-slate-600 dark:text-navy-300 hover:text-blue-400 hover:border-blue-500/30 transition-colors text-sm"
+                  className="px-4 py-2 rounded-lg bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-green-500/10 text-slate-600 dark:text-navy-300 hover:text-green-400 hover:border-green-500/30 transition-colors text-sm"
                 >
                   Termos de Uso
                 </Link>
                 <Link
                   href="/cookies"
-                  className="px-4 py-2 rounded-lg bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/10 text-slate-600 dark:text-navy-300 hover:text-blue-400 hover:border-blue-500/30 transition-colors text-sm"
+                  className="px-4 py-2 rounded-lg bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-green-500/10 text-slate-600 dark:text-navy-300 hover:text-green-400 hover:border-green-500/30 transition-colors text-sm"
                 >
                   Política de Cookies
                 </Link>
@@ -199,3 +199,4 @@ export default function LegalPageLayout({
     </>
   );
 }
+

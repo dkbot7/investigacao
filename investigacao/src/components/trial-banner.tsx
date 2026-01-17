@@ -38,10 +38,10 @@ export function TrialBanner() {
   // Color schemes based on urgency
   const colorSchemes = {
     low: {
-      bg: 'bg-blue-50 border-blue-200',
-      text: 'text-blue-900',
-      icon: 'text-blue-600',
-      button: 'bg-blue-600 hover:bg-blue-700',
+      bg: 'bg-green-50 border-green-200',
+      text: 'text-green-900',
+      icon: 'text-green-600',
+      button: 'bg-green-600 hover:bg-green-700',
     },
     medium: {
       bg: 'bg-yellow-50 border-yellow-200',
@@ -128,3 +128,4 @@ export function TrialBanner() {
     </div>
   );
 }
+

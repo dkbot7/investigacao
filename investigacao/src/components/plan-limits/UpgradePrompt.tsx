@@ -57,16 +57,16 @@ export function UpgradePrompt({
   }
 
   return (
-    <div className={`bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 ${className}`}>
+    <div className={`bg-gradient-to-br from-green-50 to-purple-50 dark:from-green-900/20 dark:to-purple-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6 ${className}`}>
       <div className="flex items-start gap-4">
-        <ArrowUpCircle className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" />
+        <ArrowUpCircle className="w-6 h-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-1" />
         <div className="flex-1">
-          <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-200 mb-2">
+          <h3 className="text-lg font-semibold text-green-900 dark:text-green-200 mb-2">
             Faça Upgrade e Desbloqueie Mais Recursos
           </h3>
 
           {reason && (
-            <p className="text-blue-800 dark:text-blue-300 mb-4">{reason}</p>
+            <p className="text-green-800 dark:text-green-300 mb-4">{reason}</p>
           )}
 
           <div className="bg-white dark:bg-navy-800 rounded-lg p-4 mb-4">
@@ -74,7 +74,7 @@ export function UpgradePrompt({
               <h4 className="font-medium text-slate-900 dark:text-white">
                 Plano {nextPlan.plan_name.charAt(0).toUpperCase() + nextPlan.plan_name.slice(1)}
               </h4>
-              <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <span className="text-2xl font-bold text-green-600 dark:text-green-400">
                 {nextPlan.plan_name === 'basic' && 'R$ 99/mês'}
                 {nextPlan.plan_name === 'pro' && 'R$ 299/mês'}
                 {nextPlan.plan_name === 'enterprise' && 'Personalizado'}
@@ -106,7 +106,7 @@ export function UpgradePrompt({
             </div>
           </div>
 
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+          <Button className="bg-green-600 hover:bg-green-700 text-white">
             Fazer Upgrade Agora
           </Button>
         </div>
@@ -129,3 +129,4 @@ function FeatureHighlight({
     </div>
   )
 }
+

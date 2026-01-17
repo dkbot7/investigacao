@@ -11,13 +11,13 @@ export function Logo({ className = "", width = 32, height = 32 }: LogoProps) {
     <div className={`flex items-center gap-2 ${className}`}>
       <Image
         src="/favicon.svg"
-        alt="investigaree logo"
+        alt="investigação digital logo"
         width={width}
         height={height}
         className="w-auto h-auto"
         priority
       />
-      <span className="text-2xl font-bold gradient-text">investigaree</span>
+      <span className="text-2xl font-bold gradient-text">investigação digital</span>
     </div>
   );
 }

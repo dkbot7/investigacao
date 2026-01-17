@@ -305,10 +305,10 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                 <TableOfContents items={articleContent.toc} />
 
                 {/* Tags */}
-                <div className="bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-blue-500/10 rounded-xl p-5">
-                  <div className="flex items-center gap-2 mb-4 pb-3 border-b border-blue-500/10">
-                    <div className="p-1.5 rounded-lg bg-blue-500/10">
-                      <Hash className="w-4 h-4 text-blue-500" />
+                <div className="bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-green-500/10 rounded-xl p-5">
+                  <div className="flex items-center gap-2 mb-4 pb-3 border-b border-green-500/10">
+                    <div className="p-1.5 rounded-lg bg-green-500/10">
+                      <Hash className="w-4 h-4 text-green-500" />
                     </div>
                     <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Tags</h3>
                   </div>
@@ -334,7 +334,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
               </ArticleContent>
 
               {/* Card do autor */}
-              <div className="mt-12 pt-8 border-t border-blue-500/10">
+              <div className="mt-12 pt-8 border-t border-green-500/10">
                 <AuthorCard author={post.author} />
               </div>
             </div>
@@ -349,3 +349,4 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
     </>
   );
 }
+

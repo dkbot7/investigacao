@@ -124,13 +124,13 @@ export default function SeriesPage() {
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                 {/* Lado esquerdo - Título e badge */}
                 <div className="flex items-center gap-4">
-                  <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
-                    <Layers className="w-6 h-6 text-blue-500" />
+                  <div className="p-2.5 rounded-xl bg-green-500/10 border border-green-500/20">
+                    <Layers className="w-6 h-6 text-green-500" />
                   </div>
                   <div>
                     <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
                       Séries de{" "}
-                      <span className="text-blue-500">Conteúdo</span>
+                      <span className="text-green-500">Conteúdo</span>
                     </h1>
                     <p className="text-sm text-slate-500 dark:text-navy-400">
                       Aprendizado progressivo do básico ao avançado
@@ -167,7 +167,7 @@ export default function SeriesPage() {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
                     className={`bg-white dark:bg-navy-900/50 border rounded-2xl overflow-hidden transition-all ${
-                      isExpanded ? "border-blue-500/50 lg:col-span-2" : "border-blue-500/10 hover:border-blue-500/30"
+                      isExpanded ? "border-green-500/50 lg:col-span-2" : "border-green-500/10 hover:border-green-500/30"
                     }`}
                   >
                     {/* Header da série */}
@@ -216,7 +216,7 @@ export default function SeriesPage() {
                               <span className="text-slate-500 dark:text-navy-400">
                                 {publishedCount} de {series.totalParts} partes publicadas
                               </span>
-                              <span className="text-blue-500 font-medium">{progress}%</span>
+                              <span className="text-green-500 font-medium">{progress}%</span>
                             </div>
                             <div className="h-2 bg-navy-100 dark:bg-navy-800 rounded-full overflow-hidden">
                               <motion.div
@@ -224,7 +224,7 @@ export default function SeriesPage() {
                                 whileInView={{ width: `${progress}%` }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 0.2 }}
-                                className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"
+                                className="h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full"
                               />
                             </div>
                           </div>
@@ -241,7 +241,7 @@ export default function SeriesPage() {
                             {publishedCount > 0 && (
                               <Link
                                 href={`/blog/${series.posts.find(p => p.status === "published")?.slug}`}
-                                className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-navy-950 rounded-lg text-sm font-medium transition-colors"
+                                className="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-navy-950 rounded-lg text-sm font-medium transition-colors"
                               >
                                 <Play className="w-4 h-4" />
                                 Começar série
@@ -257,7 +257,7 @@ export default function SeriesPage() {
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
-                        className="border-t border-blue-500/10"
+                        className="border-t border-green-500/10"
                       >
                         <div className="p-6">
                           <h4 className="text-sm font-medium text-slate-500 dark:text-navy-400 mb-4">
@@ -284,7 +284,7 @@ export default function SeriesPage() {
                                     {post.status === "published" ? (
                                       <Link
                                         href={`/blog/${post.slug}`}
-                                        className="text-slate-900 dark:text-white hover:text-blue-400 font-medium text-sm line-clamp-1 transition-colors"
+                                        className="text-slate-900 dark:text-white hover:text-green-400 font-medium text-sm line-clamp-1 transition-colors"
                                       >
                                         {post.title}
                                       </Link>
@@ -310,7 +310,7 @@ export default function SeriesPage() {
         </section>
 
         {/* CTA Newsletter */}
-        <section className="py-16 border-t border-blue-500/10">
+        <section className="py-16 border-t border-green-500/10">
           <div className="container mx-auto px-4 sm:px-8 lg:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -329,11 +329,11 @@ export default function SeriesPage() {
                 <input
                   type="email"
                   placeholder="Seu email profissional"
-                  className="flex-1 px-5 py-3 rounded-xl bg-navy-100 dark:bg-navy-800/50 border border-blue-500/20 text-slate-900 dark:text-white placeholder:text-navy-600 dark:placeholder:text-navy-400 focus:outline-none focus:border-blue-500/50 transition-colors"
+                  className="flex-1 px-5 py-3 rounded-xl bg-navy-100 dark:bg-navy-800/50 border border-green-500/20 text-slate-900 dark:text-white placeholder:text-navy-600 dark:placeholder:text-navy-400 focus:outline-none focus:border-green-500/50 transition-colors"
                 />
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
+                  className="px-6 py-3 bg-green-500 hover:bg-green-600 text-navy-950 font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
                 >
                   Inscrever-se
                   <ArrowRight className="w-4 h-4" />
@@ -348,3 +348,4 @@ export default function SeriesPage() {
     </>
   );
 }
+

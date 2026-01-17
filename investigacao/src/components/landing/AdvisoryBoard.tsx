@@ -16,7 +16,7 @@ export default function AdvisoryBoard() {
         <div className="text-center mb-12 space-y-4">
           <Badge
             variant="outline"
-            className="mb-4 bg-blue-500/20 border-blue-500/50 text-blue-400 px-6 py-2 text-sm font-semibold"
+            className="mb-4 bg-green-500/20 border-green-500/50 text-green-400 px-6 py-2 text-sm font-semibold"
           >
             <Shield className="w-4 h-4 mr-2 inline" />
             Nosso Time
@@ -25,22 +25,22 @@ export default function AdvisoryBoard() {
             Expertise em Investigação Digital
           </h2>
           <p className="text-xl text-slate-800 dark:text-navy-100 max-w-3xl mx-auto">
-            Equipe especializada em <span className="text-blue-400">automação de dados</span> e <span className="text-blue-400">investigação digital</span>
+            Equipe especializada em <span className="text-green-400">automação de dados</span> e <span className="text-green-400">investigação digital</span>
           </p>
         </div>
 
         {/* Expertise Cards Grid */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Card 1: Automação */}
-          <Card className="bg-white/5 backdrop-blur-lg border-2 border-blue-500/30 shadow-2xl">
+          <Card className="bg-white/5 backdrop-blur-lg border-2 border-green-500/30 shadow-2xl">
             <CardContent className="p-6 md:p-8">
               <div className="space-y-5 text-center">
-                <Database className="w-16 h-16 mx-auto text-blue-400" />
+                <Database className="w-16 h-16 mx-auto text-green-400" />
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
                   Automação
                 </h3>
                 <p className="text-slate-700 dark:text-navy-200 text-sm">
-                  Processamento automatizado de <span className="text-blue-400 font-semibold">100k+ registros</span> simultâneos em múltiplas bases de dados públicas.
+                  Processamento automatizado de <span className="text-green-400 font-semibold">100k+ registros</span> simultâneos em múltiplas bases de dados públicas.
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center">
                   {["APIs Públicas", "Web Scraping", "OSINT"].map((tech, i) => (
@@ -54,15 +54,15 @@ export default function AdvisoryBoard() {
           </Card>
 
           {/* Card 2: Análise */}
-          <Card className="bg-white/5 backdrop-blur-lg border-2 border-blue-500/30 shadow-2xl">
+          <Card className="bg-white/5 backdrop-blur-lg border-2 border-green-500/30 shadow-2xl">
             <CardContent className="p-6 md:p-8">
               <div className="space-y-5 text-center">
-                <UserCheck className="w-16 h-16 mx-auto text-blue-400" />
+                <UserCheck className="w-16 h-16 mx-auto text-green-400" />
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
                   Análise de Dados
                 </h3>
                 <p className="text-slate-700 dark:text-navy-200 text-sm">
-                  Cruzamento inteligente de dados de <span className="text-blue-400 font-semibold">múltiplas fontes públicas</span> para investigações completas.
+                  Cruzamento inteligente de dados de <span className="text-green-400 font-semibold">múltiplas fontes públicas</span> para investigações completas.
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center">
                   {["Due Diligence", "Compliance", "LGPD"].map((area, i) => (
@@ -76,15 +76,15 @@ export default function AdvisoryBoard() {
           </Card>
 
           {/* Card 3: Tecnologia */}
-          <Card className="bg-white/5 backdrop-blur-lg border-2 border-blue-500/30 shadow-2xl">
+          <Card className="bg-white/5 backdrop-blur-lg border-2 border-green-500/30 shadow-2xl">
             <CardContent className="p-6 md:p-8">
               <div className="space-y-5 text-center">
-                <Shield className="w-16 h-16 mx-auto text-blue-400" />
+                <Shield className="w-16 h-16 mx-auto text-green-400" />
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
                   Segurança
                 </h3>
                 <p className="text-slate-700 dark:text-navy-200 text-sm">
-                  Proteção de dados e <span className="text-blue-400 font-semibold">conformidade LGPD</span> em todas as etapas da investigação.
+                  Proteção de dados e <span className="text-green-400 font-semibold">conformidade LGPD</span> em todas as etapas da investigação.
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center">
                   {["Criptografia", "Auditoria", "Privacidade"].map((feat, i) => (
@@ -102,3 +102,4 @@ export default function AdvisoryBoard() {
     </section>
   );
 }
+

@@ -23,7 +23,7 @@ function StaticAboutSection() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Sobre a <span className="text-blue-500">Investigaree</span>
+              Sobre a <span className="text-green-500">Investigaree</span>
             </h1>
             <p className="text-xl text-gray-600">
               Transformando a forma como investigações digitais são conduzidas no Brasil
@@ -32,7 +32,7 @@ function StaticAboutSection() {
 
           <div className="grid md:grid-cols-2 gap-8 mb-16">
             <div className="p-6 border rounded-lg">
-              <Shield className="h-12 w-12 text-blue-500 mb-4" />
+              <Shield className="h-12 w-12 text-green-500 mb-4" />
               <h3 className="text-xl font-bold mb-2">Nossa Missão</h3>
               <p className="text-gray-600">
                 Democratizar o acesso à inteligência de investigação digital, fornecendo
@@ -41,7 +41,7 @@ function StaticAboutSection() {
             </div>
 
             <div className="p-6 border rounded-lg">
-              <Target className="h-12 w-12 text-blue-500 mb-4" />
+              <Target className="h-12 w-12 text-green-500 mb-4" />
               <h3 className="text-xl font-bold mb-2">Nossa Visão</h3>
               <p className="text-gray-600">
                 Ser a plataforma líder em investigação digital no Brasil, reconhecida pela
@@ -50,7 +50,7 @@ function StaticAboutSection() {
             </div>
 
             <div className="p-6 border rounded-lg">
-              <Users className="h-12 w-12 text-blue-500 mb-4" />
+              <Users className="h-12 w-12 text-green-500 mb-4" />
               <h3 className="text-xl font-bold mb-2">Nossos Valores</h3>
               <p className="text-gray-600">
                 Transparência, ética, privacidade, inovação e compromisso com a conformidade
@@ -59,7 +59,7 @@ function StaticAboutSection() {
             </div>
 
             <div className="p-6 border rounded-lg">
-              <Award className="h-12 w-12 text-blue-500 mb-4" />
+              <Award className="h-12 w-12 text-green-500 mb-4" />
               <h3 className="text-xl font-bold mb-2">Nossa Expertise</h3>
               <p className="text-gray-600">
                 Combinamos forense digital, análise de dados e compliance para entregar
@@ -122,7 +122,7 @@ async function DynamicStatsSection() {
               const Icon = stat.icon;
               return (
                 <div key={index} className="text-center p-6 bg-white rounded-lg shadow-sm">
-                  <Icon className="h-8 w-8 text-blue-500 mx-auto mb-3" />
+                  <Icon className="h-8 w-8 text-green-500 mx-auto mb-3" />
                   <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
                   <div className="text-sm font-medium text-gray-600 mb-2">{stat.label}</div>
                   <div className="text-xs text-green-600">{stat.trend}</div>
@@ -197,3 +197,4 @@ export default function AboutPage() {
     </>
   );
 }
+

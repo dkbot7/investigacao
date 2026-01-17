@@ -20,12 +20,12 @@ export default function Timeline({ items, title }: TimelineProps) {
     <div className="my-6">
       {title && (
         <div className="flex items-center gap-2 mb-4">
-          <Clock className="w-5 h-5 text-blue-500" />
+          <Clock className="w-5 h-5 text-green-500" />
           <h4 className="font-medium text-slate-900 dark:text-white">{title}</h4>
         </div>
       )}
 
-      <div className="relative pl-8 border-l-2 border-blue-500/20 space-y-6">
+      <div className="relative pl-8 border-l-2 border-green-500/20 space-y-6">
         {items.map((item, index) => (
           <div key={index} className="relative">
             {/* Dot */}
@@ -33,13 +33,13 @@ export default function Timeline({ items, title }: TimelineProps) {
               {item.completed ? (
                 <CheckCircle className="w-4 h-4 text-green-400" />
               ) : (
-                <Circle className="w-4 h-4 text-blue-500" />
+                <Circle className="w-4 h-4 text-green-500" />
               )}
             </div>
 
             {/* Content */}
             <div className="pb-2">
-              <div className="text-xs text-blue-400 font-medium mb-1">
+              <div className="text-xs text-green-400 font-medium mb-1">
                 {item.date}
               </div>
               <div className="font-medium text-slate-900 dark:text-white">{item.title}</div>
@@ -53,3 +53,4 @@ export default function Timeline({ items, title }: TimelineProps) {
     </div>
   );
 }
+

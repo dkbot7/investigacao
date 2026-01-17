@@ -157,7 +157,7 @@ export default function GerarRelatorioPage() {
             {/* Informações da Investigação */}
             <div className="bg-white dark:bg-navy-900 border border-navy-700 rounded-xl p-4 sm:p-6">
               <h2 className="text-base sm:text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <FileSignature className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
+                <FileSignature className="w-5 h-5 sm:w-6 sm:h-6 text-green-400" />
                 Informações da Investigação
               </h2>
 
@@ -250,7 +250,7 @@ export default function GerarRelatorioPage() {
             {/* Dados da Pessoa */}
             <div className="bg-white dark:bg-navy-900 border border-navy-700 rounded-xl p-4 sm:p-6">
               <h2 className="text-base sm:text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <User className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
+                <User className="w-5 h-5 sm:w-6 sm:h-6 text-green-400" />
                 Dados da Pessoa
               </h2>
 
@@ -391,7 +391,7 @@ export default function GerarRelatorioPage() {
               <Button
                 onClick={handleDownload}
                 disabled={loading || !validateForm()}
-                className="flex-1 bg-blue-500 hover:bg-blue-600 text-navy-950"
+                className="flex-1 bg-green-500 hover:bg-green-600 text-navy-950"
               >
                 {loading ? (
                   <>
@@ -408,11 +408,11 @@ export default function GerarRelatorioPage() {
             </div>
 
             {/* Informações */}
-            <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+            <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4">
               <div className="flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                <AlertCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                 <div className="text-sm text-white/70">
-                  <p className="font-medium text-blue-400 mb-1">Campos obrigatórios</p>
+                  <p className="font-medium text-green-400 mb-1">Campos obrigatórios</p>
                   <ul className="list-disc list-inside space-y-1">
                     <li>ID da Investigação</li>
                     <li>Responsável</li>
@@ -432,7 +432,7 @@ export default function GerarRelatorioPage() {
           >
             <div className="bg-white dark:bg-navy-900 border border-navy-700 rounded-xl p-4 sm:p-6">
               <h2 className="text-base sm:text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
+                <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-green-400" />
                 Preview do Relatório
               </h2>
 
@@ -464,3 +464,4 @@ export default function GerarRelatorioPage() {
     </div>
   );
 }
+

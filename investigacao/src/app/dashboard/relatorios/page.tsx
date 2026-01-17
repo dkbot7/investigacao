@@ -190,7 +190,7 @@ export default function RelatoriosPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500" />
       </div>
     );
   }
@@ -239,7 +239,7 @@ export default function RelatoriosPage() {
               onClick={() => setActiveTab("dashboard")}
               className={`px-4 sm:px-6 py-3 sm:py-4 font-medium transition-all relative whitespace-nowrap text-sm sm:text-base ${
                 activeTab === "dashboard"
-                  ? "text-blue-400"
+                  ? "text-green-400"
                   : "text-slate-600 dark:text-white/60 hover:text-white"
               }`}
             >
@@ -248,7 +248,7 @@ export default function RelatoriosPage() {
               {activeTab === "dashboard" && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500"
                 />
               )}
             </button>
@@ -256,7 +256,7 @@ export default function RelatoriosPage() {
               onClick={() => setActiveTab("relatorios")}
               className={`px-4 sm:px-6 py-3 sm:py-4 font-medium transition-all relative whitespace-nowrap text-sm sm:text-base ${
                 activeTab === "relatorios"
-                  ? "text-blue-400"
+                  ? "text-green-400"
                   : "text-slate-600 dark:text-white/60 hover:text-white"
               }`}
             >
@@ -265,7 +265,7 @@ export default function RelatoriosPage() {
               {activeTab === "relatorios" && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500"
                 />
               )}
             </button>
@@ -422,10 +422,10 @@ function DashboardContent({
             className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-6"
           >
             <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-              <Building2 className="w-5 h-5 text-blue-400" />
+              <Building2 className="w-5 h-5 text-green-400" />
               {grupo.nome.replace(/_/g, " ")}
             </h3>
-            <div className="text-3xl font-bold text-blue-400 mb-4">
+            <div className="text-3xl font-bold text-green-400 mb-4">
               {grupo.registros.toLocaleString()}
               <span className="text-sm font-normal text-slate-900 dark:text-slate-600 dark:text-white/60 ml-2">registros</span>
             </div>
@@ -628,7 +628,7 @@ function DetailModal({
     red: "text-red-400 bg-red-500/10 border-red-500/30",
     amber: "text-amber-400 bg-amber-500/10 border-amber-500/30",
     orange: "text-orange-400 bg-orange-500/10 border-orange-500/30",
-    cyan: "text-blue-400 bg-blue-500/10 border-blue-500/30",
+    cyan: "text-green-400 bg-green-500/10 border-green-500/30",
   };
 
   return (
@@ -932,11 +932,11 @@ function OFACDetail({ ofacMatches, totalMatches }: { ofacMatches: typeof CLIENTE
 function ObitoDetail({ verificacao }: { verificacao: typeof CLIENTE_01_DATA.verificacaoObito }) {
   return (
     <div className="space-y-4">
-      <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 mb-6">
+      <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4 mb-6">
         <div className="flex items-start gap-3">
-          <HeartPulse className="w-5 h-5 text-blue-400 mt-0.5" />
+          <HeartPulse className="w-5 h-5 text-green-400 mt-0.5" />
           <div>
-            <p className="text-blue-400 font-medium">Sobre esta verificacao</p>
+            <p className="text-green-400 font-medium">Sobre esta verificacao</p>
             <p className="text-sm text-slate-900 dark:text-slate-700 dark:text-navy-300 mt-1">
               Consulta realizada na Receita Federal para verificar a situacao cadastral dos CPFs.
               Identifica se a pessoa esta viva, falecida ou com pendencias de regularizacao.
@@ -948,7 +948,7 @@ function ObitoDetail({ verificacao }: { verificacao: typeof CLIENTE_01_DATA.veri
       <div className="bg-slate-100 dark:bg-navy-800/50 rounded-lg p-4 mb-4">
         <div className="grid grid-cols-4 gap-4 text-center">
           <div>
-            <p className="text-2xl font-bold text-blue-400">{verificacao.totalVerificados.toLocaleString()}</p>
+            <p className="text-2xl font-bold text-green-400">{verificacao.totalVerificados.toLocaleString()}</p>
             <p className="text-xs text-slate-900 dark:text-slate-500 dark:text-white/50">Total Verificados</p>
           </div>
           <div>
@@ -1069,12 +1069,12 @@ function RelatoriosContent({ data }: { data: typeof CLIENTE_01_DATA }) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
-            className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-6 hover:border-blue-500/50 transition-all"
+            className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-6 hover:border-green-500/50 transition-all"
           >
             <div className="flex flex-col sm:flex-row justify-between gap-4">
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                  <FileText className="w-6 h-6 text-blue-400" />
+                <div className="flex-shrink-0 w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center">
+                  <FileText className="w-6 h-6 text-green-400" />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{relatorio.nome}</h3>
@@ -1101,7 +1101,7 @@ function RelatoriosContent({ data }: { data: typeof CLIENTE_01_DATA }) {
                 <a
                   href={relatorio.arquivo}
                   download
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-navy-950 font-medium rounded-lg transition-colors text-sm"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-navy-950 font-medium rounded-lg transition-colors text-sm"
                 >
                   <Download className="w-4 h-4" />
                   Baixar PDF
@@ -1115,7 +1115,7 @@ function RelatoriosContent({ data }: { data: typeof CLIENTE_01_DATA }) {
       {/* Info about reports */}
       <div className="bg-slate-100 dark:bg-navy-800/50 border border-slate-400 dark:border-navy-700 rounded-xl p-6 mt-8">
         <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
-          <Shield className="w-5 h-5 text-blue-400" />
+          <Shield className="w-5 h-5 text-green-400" />
           Sobre os Relatorios
         </h3>
         <ul className="space-y-2 text-sm text-slate-900 dark:text-slate-700 dark:text-navy-300">
@@ -1147,13 +1147,13 @@ function KPICard({
   clickable?: boolean;
 }) {
   const colorClasses = {
-    blue: "bg-blue-500/10 text-blue-400 border-blue-500/30",
+    blue: "bg-green-500/10 text-green-400 border-green-500/30",
     purple: "bg-purple-500/10 text-purple-400 border-purple-500/30 hover:border-purple-500/60",
     emerald: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30 hover:border-emerald-500/60",
     red: "bg-red-500/10 text-red-400 border-red-500/30 hover:border-red-500/60",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/30 hover:border-amber-500/60",
     orange: "bg-orange-500/10 text-orange-400 border-orange-500/30 hover:border-orange-500/60",
-    cyan: "bg-blue-500/10 text-blue-400 border-blue-500/30 hover:border-blue-500/60",
+    cyan: "bg-green-500/10 text-green-400 border-green-500/30 hover:border-green-500/60",
   };
 
   return (
@@ -1230,3 +1230,4 @@ function ProgressBarClickable({
     </div>
   );
 }
+

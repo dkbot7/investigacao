@@ -23,7 +23,7 @@ export async function generateMetadata({
 
   if (post) {
     return {
-      title: `${post.title} - Investigaree Blog`,
+      title: `${post.title} - Blog`,
       description: post.excerpt,
       openGraph: {
         title: post.title,
@@ -36,7 +36,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `Blog - Investigaree`,
+    title: `Blog`,
     description: `Artigo sobre investigação digital - ${slug}`,
   };
 }

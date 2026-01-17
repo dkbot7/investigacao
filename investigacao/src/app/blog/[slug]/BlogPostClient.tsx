@@ -84,7 +84,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
               </p>
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold rounded-xl transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-600 text-navy-950 font-semibold rounded-xl transition-colors"
               >
                 <ChevronLeft className="w-4 h-4" />
                 Voltar ao Blog
@@ -176,7 +176,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
               </p>
 
               {/* Meta info */}
-              <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-navy-400 pb-6 border-b border-blue-500/10">
+              <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-navy-400 pb-6 border-b border-green-500/10">
                 {/* Autor */}
                 <div className="flex items-center gap-3">
                   {post.author.avatar ? (
@@ -188,8 +188,8 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                       className="rounded-full"
                     />
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
-                      <User className="w-5 h-5 text-blue-500" />
+                    <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                      <User className="w-5 h-5 text-green-500" />
                     </div>
                   )}
                   <div>
@@ -241,9 +241,9 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="prose prose-invert prose-gold max-w-none prose-headings:text-slate-900 dark:prose-headings:text-white prose-p:text-slate-600 dark:prose-p:text-navy-300 prose-a:text-blue-500 hover:prose-a:text-blue-400 prose-strong:text-slate-900 dark:prose-strong:text-white prose-code:text-purple-600 dark:prose-code:text-purple-400 prose-code:bg-slate-100 dark:prose-code:bg-navy-900/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-900 dark:prose-pre:bg-navy-950 prose-pre:text-slate-100 prose-blockquote:border-l-blue-500 prose-blockquote:text-slate-600 dark:prose-blockquote:text-navy-300"
+                className="prose prose-invert prose-gold max-w-none prose-headings:text-slate-900 dark:prose-headings:text-white prose-p:text-slate-600 dark:prose-p:text-navy-300 prose-a:text-green-500 hover:prose-a:text-green-400 prose-strong:text-slate-900 dark:prose-strong:text-white prose-code:text-purple-600 dark:prose-code:text-purple-400 prose-code:bg-slate-100 dark:prose-code:bg-navy-900/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-900 dark:prose-pre:bg-navy-950 prose-pre:text-slate-100 prose-blockquote:border-l-green-500 prose-blockquote:text-slate-600 dark:prose-blockquote:text-navy-300"
                 dangerouslySetInnerHTML={{
-                  __html: post.content || `<p class="text-lg leading-relaxed">${post.excerpt}</p><div class="my-8 p-6 rounded-xl bg-blue-500/10 border border-blue-500/20"><p class="text-blue-400 font-medium mb-2">Conteúdo completo em breve</p><p class="text-slate-600 dark:text-navy-300 text-sm">Este artigo está sendo preparado por nossa equipe de especialistas.</p></div>`
+                  __html: post.content || `<p class="text-lg leading-relaxed">${post.excerpt}</p><div class="my-8 p-6 rounded-xl bg-green-500/10 border border-green-500/20"><p class="text-green-400 font-medium mb-2">Conteúdo completo em breve</p><p class="text-slate-600 dark:text-navy-300 text-sm">Este artigo está sendo preparado por nossa equipe de especialistas.</p></div>`
                 }}
               />
 
@@ -253,7 +253,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="mt-8 pt-8 border-t border-blue-500/10"
+                  className="mt-8 pt-8 border-t border-green-500/10"
                 >
                   <div className="flex items-center gap-2 mb-3">
                     <Tag className="w-4 h-4 text-slate-900 dark:text-navy-500" />
@@ -278,7 +278,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="mt-8 p-6 rounded-xl bg-white dark:bg-navy-900/50 border border-blue-500/10"
+                className="mt-8 p-6 rounded-xl bg-white dark:bg-navy-900/50 border border-green-500/10"
               >
                 <div className="flex items-start gap-4">
                   {post.author.avatar ? (
@@ -290,14 +290,14 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                       className="rounded-full"
                     />
                   ) : (
-                    <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-2xl font-bold text-blue-500">
+                    <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center text-2xl font-bold text-green-500">
                       {post.author.name[0]}
                     </div>
                   )}
                   <div>
                     <p className="font-semibold text-slate-900 dark:text-white text-lg">{post.author.name}</p>
                     {post.author.role && (
-                      <p className="text-blue-500 text-sm mb-2">{post.author.role}</p>
+                      <p className="text-green-500 text-sm mb-2">{post.author.role}</p>
                     )}
                     {post.author.bio && (
                       <p className="text-slate-500 dark:text-navy-400 text-sm">{post.author.bio}</p>
@@ -311,7 +311,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
 
         {/* Artigos relacionados */}
         {relatedPosts.length > 0 && (
-          <section className="py-12 border-t border-blue-500/10">
+          <section className="py-12 border-t border-green-500/10">
             <div className="container mx-auto px-4 sm:px-8 lg:px-12">
               <div className="max-w-5xl mx-auto">
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
@@ -347,7 +347,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                         >
                           {relatedPost.topic.name}
                         </Badge>
-                        <h3 className="font-semibold text-slate-900 dark:text-white group-hover:text-blue-400 transition-colors line-clamp-2">
+                        <h3 className="font-semibold text-slate-900 dark:text-white group-hover:text-green-400 transition-colors line-clamp-2">
                           {relatedPost.title}
                         </h3>
                         <p className="text-sm text-slate-500 dark:text-navy-400 mt-2 flex items-center gap-1">
@@ -362,7 +362,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                 <div className="mt-8 text-center">
                   <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 text-blue-500 hover:text-blue-400 font-medium"
+                    className="inline-flex items-center gap-2 text-green-500 hover:text-green-400 font-medium"
                   >
                     Ver todos os artigos
                     <ArrowRight className="w-4 h-4" />

@@ -72,7 +72,7 @@ export function ComplianceSearchLoading() {
       {/* Search Input Skeleton */}
       <div className="flex gap-3">
         <div className="flex-1 h-12 bg-slate-100 dark:bg-navy-800 rounded-lg" />
-        <div className="h-12 w-28 bg-blue-500/20 rounded-lg" />
+        <div className="h-12 w-28 bg-green-500/20 rounded-lg" />
       </div>
     </div>
   )
@@ -122,3 +122,4 @@ export function ComplianceListLoading({ count = 5 }: { count?: number }) {
     </div>
   )
 }
+

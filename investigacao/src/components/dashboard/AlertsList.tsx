@@ -132,7 +132,7 @@ function AlertCard({ alert, onMarkRead }: { alert: Alert; onMarkRead: () => void
     <Card
       className={`p-4 transition-all ${
         isUnread
-          ? 'border-l-4 border-l-blue-500 bg-blue-50/50 dark:bg-blue-950/10'
+          ? 'border-l-4 border-l-green-500 bg-green-50/50 dark:bg-green-950/10'
           : 'opacity-75'
       }`}
     >
@@ -191,3 +191,5 @@ function AlertCard({ alert, onMarkRead }: { alert: Alert; onMarkRead: () => void
     </Card>
   );
 }
+
+

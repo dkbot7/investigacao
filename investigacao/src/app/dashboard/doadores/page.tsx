@@ -185,8 +185,8 @@ export default function DoadoresPage() {
 
           <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-500/10 rounded-lg">
-                <DollarSign className="w-5 h-5 text-blue-400" />
+              <div className="p-2 bg-green-500/10 rounded-lg">
+                <DollarSign className="w-5 h-5 text-green-400" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-slate-900 dark:text-white">
@@ -199,8 +199,8 @@ export default function DoadoresPage() {
 
           <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-500/10 rounded-lg">
-                <TrendingUp className="w-5 h-5 text-blue-400" />
+              <div className="p-2 bg-green-500/10 rounded-lg">
+                <TrendingUp className="w-5 h-5 text-green-400" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-slate-900 dark:text-white">
@@ -346,3 +346,4 @@ export default function DoadoresPage() {
     </div>
   );
 }
+

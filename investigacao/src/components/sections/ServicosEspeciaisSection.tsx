@@ -24,10 +24,10 @@ export function ServicosEspeciaisSection({ className }: ServicosEspeciaisSection
   const getCorClasses = (cor: string) => {
     const classes = {
       blue: {
-        bg: 'bg-blue-50 dark:bg-blue-500/10',
-        text: 'text-blue-700 dark:text-blue-400',
-        border: 'border-blue-200 dark:border-blue-500/20',
-        badge: 'bg-blue-500'
+        bg: 'bg-green-50 dark:bg-green-500/10',
+        text: 'text-green-700 dark:text-green-400',
+        border: 'border-green-200 dark:border-green-500/20',
+        badge: 'bg-green-500'
       },
       purple: {
         bg: 'bg-purple-50 dark:bg-purple-500/10',
@@ -203,3 +203,4 @@ export function ServicosEspeciaisSection({ className }: ServicosEspeciaisSection
     </section>
   );
 }
+

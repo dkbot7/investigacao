@@ -23,7 +23,7 @@ interface ArtifactLocationProps {
 const platformConfig: Record<Platform, { icon: typeof Monitor; label: string; color: string }> = {
   ios: { icon: Apple, label: "iOS", color: "text-slate-500 dark:text-gray-400" },
   android: { icon: Smartphone, label: "Android", color: "text-green-500" },
-  windows: { icon: Monitor, label: "Windows", color: "text-blue-500" },
+  windows: { icon: Monitor, label: "Windows", color: "text-green-500" },
   macos: { icon: Apple, label: "macOS", color: "text-slate-500 dark:text-gray-400" },
   linux: { icon: Monitor, label: "Linux", color: "text-orange-500" }
 };
@@ -121,7 +121,7 @@ export default function ArtifactLocation({
                       transition={{ delay: index * 0.05 }}
                       className="group relative"
                     >
-                      <div className="p-4 rounded-lg bg-white dark:bg-white/70 dark:bg-navy-900/70 border border-blue-500/10 hover:border-purple-500/30 transition-colors">
+                      <div className="p-4 rounded-lg bg-white dark:bg-white/70 dark:bg-navy-900/70 border border-green-500/10 hover:border-purple-500/30 transition-colors">
                         {/* Nome do artefato */}
                         <p className="text-sm font-medium text-slate-900 dark:text-white mb-2">
                           {artifact.name}
@@ -163,3 +163,4 @@ export default function ArtifactLocation({
     </motion.section>
   );
 }
+

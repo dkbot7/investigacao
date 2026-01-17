@@ -15,7 +15,7 @@ export default function FinalCTA() {
         {/* Urgency Badge */}
         <Badge
           variant="outline"
-          className="mb-8 bg-blue-500/20 border-blue-500/50 text-blue-400 px-6 py-2 text-sm font-semibold animate-pulse"
+          className="mb-8 bg-green-500/20 border-green-500/50 text-green-400 px-6 py-2 text-sm font-semibold animate-pulse"
         >
           <Clock className="w-4 h-4 mr-2 inline" />
           Capacidade limitada - Análises forenses em 48h
@@ -29,14 +29,14 @@ export default function FinalCTA() {
         <p className="text-xl md:text-2xl text-slate-800 dark:text-navy-100 mb-12 max-w-3xl mx-auto">
           Não espere descobrir uma fraude depois de assinar o contrato.
           <br />
-          <strong className="text-blue-400">Validação forense por Perito Criminal Oficial.</strong>
+          <strong className="text-green-400">Metodologia forense profissional.</strong>
         </p>
 
         {/* CTA Button */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
           <Button
             size="lg"
-            className="group gradient-premium hover:opacity-90 text-navy-950 px-12 py-8 text-xl font-bold rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105"
+            className="group gradient-premium hover:opacity-90 text-navy-950 px-12 py-8 text-xl font-bold rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-105"
           >
             AGENDAR ANÁLISE FORENSE
             <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
@@ -45,21 +45,21 @@ export default function FinalCTA() {
           <Button
             size="lg"
             variant="outline"
-            className="border-2 border-blue-500/50 bg-white/5 hover:bg-white/10 text-slate-900 dark:text-white px-8 py-8 text-lg font-semibold rounded-full backdrop-blur-sm"
+            className="border-2 border-green-500/50 bg-white/5 hover:bg-white/10 text-slate-900 dark:text-white px-8 py-8 text-lg font-semibold rounded-full backdrop-blur-sm"
           >
             Falar com Especialista
           </Button>
         </div>
 
         <p className="text-slate-700 dark:text-navy-200 text-base mb-8">
-          Investimento <span className="text-blue-400 font-bold text-xl">sob consulta</span>
+          Investimento <span className="text-green-400 font-bold text-xl">sob consulta</span>
           {" "}— Fale conosco para um orçamento personalizado
         </p>
 
         {/* Trust Elements */}
         <div className="flex flex-wrap justify-center gap-8 text-slate-900 dark:text-white text-sm">
           <span className="flex items-center gap-2">
-            <Shield className="w-5 h-5 text-blue-500" />
+            <Shield className="w-5 h-5 text-green-500" />
             Metodologia ANPAJ
           </span>
           <span className="flex items-center gap-2">
@@ -87,10 +87,11 @@ export default function FinalCTA() {
             ))}
           </div>
           <p className="text-slate-800 dark:text-navy-100 text-lg">
-            Validado por <strong className="text-blue-400">Ibsen Maciel</strong> - Perito Criminal Oficial • Diretor Nacional ANPAJ
+            <strong className="text-green-400">Metodologia Profissional</strong> • Resultados Confiáveis
           </p>
         </div>
       </div>
     </section>
   );
 }
+

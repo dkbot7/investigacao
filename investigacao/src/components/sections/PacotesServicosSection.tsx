@@ -47,11 +47,11 @@ export function PacotesServicosSection({ className }: PacotesServicosSectionProp
   const getCorClasses = (cor: string) => {
     const classes = {
       blue: {
-        border: 'border-blue-500',
-        borderOutline: 'border-blue-500/50',
-        bg: 'bg-blue-50 dark:bg-blue-500/10',
-        text: 'text-blue-700 dark:text-blue-400',
-        button: 'bg-blue-500 hover:bg-blue-600 text-white'
+        border: 'border-green-500',
+        borderOutline: 'border-green-500/50',
+        bg: 'bg-green-50 dark:bg-green-500/10',
+        text: 'text-green-700 dark:text-green-400',
+        button: 'bg-green-500 hover:bg-green-600 text-white'
       },
       purple: {
         border: 'border-purple-500',
@@ -84,7 +84,7 @@ export function PacotesServicosSection({ className }: PacotesServicosSectionProp
         <div className="container max-w-7xl px-4">
           {/* Header */}
           <div className="text-center mb-12">
-            <Badge className="bg-blue-500/20 text-blue-500 border-blue-500/30 mb-4">
+            <Badge className="bg-green-500/20 text-green-500 border-green-500/30 mb-4">
               Pacotes de Serviços
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
@@ -215,7 +215,7 @@ export function PacotesServicosSection({ className }: PacotesServicosSectionProp
                 </div>
 
                 {/* Ideal Para */}
-                <div className="p-4 bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 rounded-lg">
+                <div className="p-4 bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 rounded-lg">
                   <h4 className="font-semibold text-slate-900 dark:text-white mb-1">
                     ✅ Ideal para:
                   </h4>
@@ -224,11 +224,11 @@ export function PacotesServicosSection({ className }: PacotesServicosSectionProp
 
                 {/* Detalhes */}
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div className="p-4 bg-blue-50 dark:bg-navy-800 rounded-lg">
+                  <div className="p-4 bg-green-50 dark:bg-navy-800 rounded-lg">
                     <p className="text-xs text-slate-500 dark:text-navy-400 mb-1">Investimento</p>
-                    <p className="text-xl font-bold text-blue-500">{selectedPacote.precoBase}</p>
+                    <p className="text-xl font-bold text-green-500">{selectedPacote.precoBase}</p>
                   </div>
-                  <div className="p-4 bg-blue-50 dark:bg-navy-800 rounded-lg">
+                  <div className="p-4 bg-green-50 dark:bg-navy-800 rounded-lg">
                     <p className="text-xs text-slate-500 dark:text-navy-400 mb-1">Prazo</p>
                     <p className="text-xl font-bold text-slate-900 dark:text-white">{selectedPacote.prazo}</p>
                   </div>
@@ -262,3 +262,4 @@ export function PacotesServicosSection({ className }: PacotesServicosSectionProp
     </>
   );
 }
+

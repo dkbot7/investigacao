@@ -43,8 +43,8 @@ export default function SobrePage() {
             <div className="grid md:grid-cols-3 gap-8">
               {/* Missão */}
               <div className="bg-white dark:bg-navy-900 rounded-2xl border border-slate-300 dark:border-navy-800 p-8">
-                <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-4">
-                  <Target className="w-6 h-6 text-blue-400" />
+                <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4">
+                  <Target className="w-6 h-6 text-green-400" />
                 </div>
                 <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Missão</h2>
                 <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 leading-relaxed">
@@ -56,8 +56,8 @@ export default function SobrePage() {
 
               {/* Visão */}
               <div className="bg-white dark:bg-navy-900 rounded-2xl border border-slate-300 dark:border-navy-800 p-8">
-                <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-4">
-                  <Eye className="w-6 h-6 text-blue-400" />
+                <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4">
+                  <Eye className="w-6 h-6 text-green-400" />
                 </div>
                 <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Visão</h2>
                 <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 leading-relaxed">
@@ -69,25 +69,25 @@ export default function SobrePage() {
 
               {/* Valores */}
               <div className="bg-white dark:bg-navy-900 rounded-2xl border border-slate-300 dark:border-navy-800 p-8">
-                <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-4">
-                  <Award className="w-6 h-6 text-blue-400" />
+                <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4">
+                  <Award className="w-6 h-6 text-green-400" />
                 </div>
                 <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Valores</h2>
                 <ul className="text-slate-900 dark:text-slate-700 dark:text-white/70 space-y-2">
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-blue-400" />
+                    <CheckCircle className="w-4 h-4 text-green-400" />
                     Ética e legalidade
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-blue-400" />
+                    <CheckCircle className="w-4 h-4 text-green-400" />
                     Sigilo absoluto
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-blue-400" />
+                    <CheckCircle className="w-4 h-4 text-green-400" />
                     Rigor técnico
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-blue-400" />
+                    <CheckCircle className="w-4 h-4 text-green-400" />
                     Agilidade na entrega
                   </li>
                 </ul>
@@ -148,19 +148,19 @@ export default function SobrePage() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
-                <p className="text-4xl font-bold text-blue-400">48h</p>
+                <p className="text-4xl font-bold text-green-400">48h</p>
                 <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-sm mt-1">Entrega Express</p>
               </div>
               <div className="text-center">
-                <p className="text-4xl font-bold text-blue-400">100%</p>
+                <p className="text-4xl font-bold text-green-400">100%</p>
                 <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-sm mt-1">LGPD Compliant</p>
               </div>
               <div className="text-center">
-                <p className="text-4xl font-bold text-blue-400">100%</p>
+                <p className="text-4xl font-bold text-green-400">100%</p>
                 <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-sm mt-1">Sigilo garantido</p>
               </div>
               <div className="text-center">
-                <p className="text-4xl font-bold text-blue-400">ANPAJ</p>
+                <p className="text-4xl font-bold text-green-400">ANPAJ</p>
                 <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 text-sm mt-1">Advisory Board</p>
               </div>
             </div>
@@ -215,3 +215,4 @@ export default function SobrePage() {
     </>
   );
 }
+

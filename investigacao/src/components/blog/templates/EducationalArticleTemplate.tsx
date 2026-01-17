@@ -144,7 +144,7 @@ export default function EducationalArticleTemplate({
               )}
 
               {/* Conteúdo do artigo */}
-              <div className="prose prose-invert prose-gold max-w-none prose-headings:scroll-mt-24 prose-h2:text-2xl prose-h2:font-bold prose-h2:text-slate-900 dark:text-white prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-xl prose-h3:font-semibold prose-h3:text-white prose-h3:mt-8 prose-h3:mb-3 prose-h4:text-lg prose-h4:font-medium prose-h4:text-blue-400 prose-h4:mt-6 prose-h4:mb-2 prose-p:text-slate-600 dark:text-navy-300 prose-p:leading-relaxed prose-p:mb-4 prose-li:text-slate-600 dark:text-navy-300 prose-strong:text-white prose-a:text-blue-400 prose-a:no-underline hover:prose-a:text-blue-300 prose-blockquote:border-l-blue-500 prose-blockquote:bg-blue-500/5 prose-blockquote:px-4 prose-blockquote:py-2 prose-blockquote:rounded-r-lg prose-blockquote:text-slate-700 dark:text-navy-200 prose-blockquote:not-italic prose-code:text-purple-400 prose-code:bg-white dark:bg-white/50 dark:bg-navy-900/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-white dark:bg-white/70 dark:bg-navy-900/70 prose-pre:border prose-pre:border-blue-500/10 prose-img:rounded-xl prose-img:border prose-img:border-blue-500/10">
+              <div className="prose prose-invert prose-gold max-w-none prose-headings:scroll-mt-24 prose-h2:text-2xl prose-h2:font-bold prose-h2:text-slate-900 dark:text-white prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-xl prose-h3:font-semibold prose-h3:text-white prose-h3:mt-8 prose-h3:mb-3 prose-h4:text-lg prose-h4:font-medium prose-h4:text-green-400 prose-h4:mt-6 prose-h4:mb-2 prose-p:text-slate-600 dark:text-navy-300 prose-p:leading-relaxed prose-p:mb-4 prose-li:text-slate-600 dark:text-navy-300 prose-strong:text-white prose-a:text-green-400 prose-a:no-underline hover:prose-a:text-green-300 prose-blockquote:border-l-green-500 prose-blockquote:bg-green-500/5 prose-blockquote:px-4 prose-blockquote:py-2 prose-blockquote:rounded-r-lg prose-blockquote:text-slate-700 dark:text-navy-200 prose-blockquote:not-italic prose-code:text-purple-400 prose-code:bg-white dark:bg-white/50 dark:bg-navy-900/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-white dark:bg-white/70 dark:bg-navy-900/70 prose-pre:border prose-pre:border-green-500/10 prose-img:rounded-xl prose-img:border prose-img:border-green-500/10">
                 {children}
               </div>
 
@@ -183,7 +183,7 @@ export default function EducationalArticleTemplate({
 
               {/* Tags */}
               {post.tags.length > 0 && (
-                <div className="mt-8 pt-8 border-t border-blue-500/10">
+                <div className="mt-8 pt-8 border-t border-green-500/10">
                   <p className="text-sm text-slate-900 dark:text-navy-500 mb-3">Tags:</p>
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
@@ -203,7 +203,7 @@ export default function EducationalArticleTemplate({
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="mt-8 p-6 rounded-xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/10"
+                className="mt-8 p-6 rounded-xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-green-500/10"
               >
                 <div className="flex items-start gap-4">
                   {post.author.avatar ? (
@@ -215,14 +215,14 @@ export default function EducationalArticleTemplate({
                       className="rounded-full"
                     />
                   ) : (
-                    <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-2xl font-bold text-blue-500">
+                    <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center text-2xl font-bold text-green-500">
                       {post.author.name[0]}
                     </div>
                   )}
                   <div>
                     <p className="font-semibold text-slate-900 dark:text-white text-lg">{post.author.name}</p>
                     {post.author.role && (
-                      <p className="text-blue-500 text-sm mb-2">{post.author.role}</p>
+                      <p className="text-green-500 text-sm mb-2">{post.author.role}</p>
                     )}
                     {post.author.bio && (
                       <p className="text-slate-500 dark:text-navy-400 text-sm">{post.author.bio}</p>
@@ -238,7 +238,7 @@ export default function EducationalArticleTemplate({
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Placeholder para artigos relacionados */}
-                  <div className="p-4 rounded-xl bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-blue-500/10 hover:border-blue-500/30 transition-colors">
+                  <div className="p-4 rounded-xl bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-green-500/10 hover:border-green-500/30 transition-colors">
                     <p className="text-sm text-slate-900 dark:text-navy-500 mb-1">Em breve</p>
                     <p className="text-slate-900 dark:text-white font-medium">Artigos relacionados serão exibidos aqui</p>
                   </div>
@@ -253,3 +253,4 @@ export default function EducationalArticleTemplate({
     </>
   );
 }
+

@@ -116,7 +116,7 @@ export default function NewsReleaseTemplate({
         {isSponsored && (
           <div className="container mx-auto px-4 sm:px-8 lg:px-12">
             <div className="max-w-3xl mx-auto -mt-4 mb-8">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-lg text-xs text-blue-400">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-500/10 border border-green-500/20 rounded-lg text-xs text-green-400">
                 <Building2 className="w-3 h-3" />
                 Conteúdo patrocinado por {vendor?.name || post.author.name}
               </span>
@@ -150,7 +150,7 @@ export default function NewsReleaseTemplate({
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="mt-10 p-6 rounded-xl bg-gradient-to-br from-blue-500/10 to-transparent border border-blue-500/20"
+                className="mt-10 p-6 rounded-xl bg-gradient-to-br from-green-500/10 to-transparent border border-green-500/20"
               >
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
                   Experimente agora
@@ -163,10 +163,10 @@ export default function NewsReleaseTemplate({
                       variant={cta.variant === "primary" ? "default" : "outline"}
                       className={
                         cta.variant === "primary"
-                          ? "bg-blue-500 hover:bg-blue-600 text-navy-950"
+                          ? "bg-green-500 hover:bg-green-600 text-navy-950"
                           : cta.variant === "download"
                           ? "border-green-500/50 text-green-400 hover:bg-green-500/10"
-                          : "border-blue-500/30 text-blue-400 hover:bg-blue-500/10"
+                          : "border-green-500/30 text-green-400 hover:bg-green-500/10"
                       }
                     >
                       <a href={cta.href} target="_blank" rel="noopener noreferrer">
@@ -185,7 +185,7 @@ export default function NewsReleaseTemplate({
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="mt-12 p-6 rounded-xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/10"
+                className="mt-12 p-6 rounded-xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-green-500/10"
               >
                 <div className="flex items-start gap-4">
                   {vendor.logo ? (
@@ -195,8 +195,8 @@ export default function NewsReleaseTemplate({
                       className="w-16 h-16 rounded-lg object-contain bg-white p-2"
                     />
                   ) : (
-                    <div className="w-16 h-16 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                      <Building2 className="w-8 h-8 text-blue-500" />
+                    <div className="w-16 h-16 rounded-lg bg-green-500/20 flex items-center justify-center">
+                      <Building2 className="w-8 h-8 text-green-500" />
                     </div>
                   )}
                   <div className="flex-1">
@@ -211,7 +211,7 @@ export default function NewsReleaseTemplate({
                         href={vendor.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-blue-500 hover:text-blue-400 text-sm font-medium"
+                        className="inline-flex items-center gap-2 text-green-500 hover:text-green-400 text-sm font-medium"
                       >
                         Visitar site
                         <ExternalLink className="w-3 h-3" />
@@ -224,7 +224,7 @@ export default function NewsReleaseTemplate({
 
             {/* Tags */}
             {post.tags.length > 0 && (
-              <div className="mt-8 pt-8 border-t border-blue-500/10">
+              <div className="mt-8 pt-8 border-t border-green-500/10">
                 <p className="text-sm text-slate-900 dark:text-navy-500 mb-3">Tags:</p>
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
@@ -246,3 +246,4 @@ export default function NewsReleaseTemplate({
     </>
   );
 }
+

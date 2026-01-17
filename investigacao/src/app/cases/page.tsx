@@ -18,13 +18,13 @@ export const metadata: Metadata = {
 };
 
 const corClasses = {
-  blue: 'border-blue-200 dark:border-blue-900/30 bg-blue-50/50 dark:bg-blue-950/10',
+  blue: 'border-green-200 dark:border-green-900/30 bg-green-50/50 dark:bg-green-950/10',
   purple: 'border-purple-200 dark:border-purple-900/30 bg-purple-50/50 dark:bg-purple-950/10',
   green: 'border-green-200 dark:border-green-900/30 bg-green-50/50 dark:bg-green-950/10',
 };
 
 const badgeCorClasses = {
-  blue: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+  blue: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300',
   purple: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
   green: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300',
 };
@@ -49,10 +49,10 @@ export default function CasesIndexPage() {
         {/* Confidencialidade Notice */}
         <section className="px-4 md:px-6 pb-8 md:pb-12">
           <div className="max-w-4xl mx-auto">
-            <Card className="border-blue-200 dark:border-blue-900/30 bg-blue-50 dark:bg-blue-950/20">
+            <Card className="border-green-200 dark:border-green-900/30 bg-green-50 dark:bg-green-950/20">
               <CardContent className="p-6">
                 <div className="flex items-start gap-3">
-                  <AlertCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                  <AlertCircle className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
                   <div className="text-sm text-slate-700 dark:text-navy-200">
                     <p className="font-semibold mb-1">Confidencialidade e Anonimização</p>
                     <p>
@@ -127,7 +127,7 @@ export default function CasesIndexPage() {
 
                       <Link
                         href={`/cases/${caso.id}`}
-                        className="text-sm text-slate-600 dark:text-navy-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors inline-flex items-center gap-2"
+                        className="text-sm text-slate-600 dark:text-navy-300 hover:text-green-600 dark:hover:text-green-400 transition-colors inline-flex items-center gap-2"
                       >
                         Ver case completo
                         <ArrowRight className="w-4 h-4" />
@@ -155,3 +155,5 @@ export default function CasesIndexPage() {
     </>
   );
 }
+
+

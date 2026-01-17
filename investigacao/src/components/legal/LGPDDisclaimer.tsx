@@ -130,7 +130,7 @@ export function LGPDDisclaimer({ variant = 'rh' }: LGPDDisclaimerProps) {
         <div className="max-w-5xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold mb-4">
               <Shield className="w-4 h-4" />
               <span>100% Legal • LGPD Compliant</span>
             </div>
@@ -215,9 +215,9 @@ export function LGPDDisclaimer({ variant = 'rh' }: LGPDDisclaimerProps) {
           </div>
 
           {/* Base Legal */}
-          <div className="mt-8 p-6 bg-blue-50 border-l-4 border-blue-600 rounded-r-xl">
-            <h4 className="font-bold text-blue-900 mb-2">Base Legal:</h4>
-            <p className="text-sm text-blue-800">
+          <div className="mt-8 p-6 bg-green-50 border-l-4 border-green-600 rounded-r-xl">
+            <h4 className="font-bold text-green-900 mb-2">Base Legal:</h4>
+            <p className="text-sm text-green-800">
               <strong>Lei nº 13.709/2018 (LGPD)</strong> - Artigos 7º (bases legais), 11 (dados sensíveis), §4º (dados manifestamente públicos).
               <br />
               <strong>Lei nº 12.527/2011</strong> - Lei de Acesso à Informação (LAI).
@@ -251,3 +251,4 @@ export function LGPDDisclaimer({ variant = 'rh' }: LGPDDisclaimerProps) {
     </section>
   )
 }
+

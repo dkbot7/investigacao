@@ -23,10 +23,10 @@ interface CalloutProps {
 const calloutConfig = {
   info: {
     icon: Info,
-    bgColor: "bg-blue-50 dark:bg-navy-800",
-    borderColor: "border-blue-200 dark:border-blue-500/30",
-    iconColor: "text-blue-600 dark:text-blue-400",
-    titleColor: "text-blue-700 dark:text-blue-400",
+    bgColor: "bg-green-50 dark:bg-navy-800",
+    borderColor: "border-green-200 dark:border-green-500/30",
+    iconColor: "text-green-600 dark:text-green-400",
+    titleColor: "text-green-700 dark:text-green-400",
   },
   warning: {
     icon: AlertTriangle,
@@ -51,10 +51,10 @@ const calloutConfig = {
   },
   tip: {
     icon: Lightbulb,
-    bgColor: "bg-blue-50 dark:bg-navy-800",
-    borderColor: "border-blue-200 dark:border-blue-500/30",
-    iconColor: "text-blue-600 dark:text-blue-400",
-    titleColor: "text-blue-700 dark:text-blue-400",
+    bgColor: "bg-green-50 dark:bg-navy-800",
+    borderColor: "border-green-200 dark:border-green-500/30",
+    iconColor: "text-green-600 dark:text-green-400",
+    titleColor: "text-green-700 dark:text-green-400",
   },
   legal: {
     icon: Scale,
@@ -65,10 +65,10 @@ const calloutConfig = {
   },
   security: {
     icon: Shield,
-    bgColor: "bg-blue-50 dark:bg-navy-800",
-    borderColor: "border-blue-200 dark:border-blue-500/30",
-    iconColor: "text-blue-600 dark:text-blue-400",
-    titleColor: "text-blue-700 dark:text-blue-400",
+    bgColor: "bg-green-50 dark:bg-navy-800",
+    borderColor: "border-green-200 dark:border-green-500/30",
+    iconColor: "text-green-600 dark:text-green-400",
+    titleColor: "text-green-700 dark:text-green-400",
   },
   evidence: {
     icon: FileWarning,
@@ -113,3 +113,4 @@ export default function Callout({ type = "info", title, children }: CalloutProps
     </div>
   );
 }
+

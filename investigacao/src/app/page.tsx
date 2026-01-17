@@ -19,7 +19,7 @@ export default function Home() {
       <Header />
       <main className="min-h-screen">
         {/* HERO SECTION */}
-        <section className="relative pt-32 pb-20 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-900 dark:via-blue-900 dark:to-slate-900 overflow-hidden">
+        <section className="relative pt-32 pb-20 bg-gradient-to-br from-slate-50 via-green-50 to-slate-100 dark:from-slate-900 dark:via-green-900 dark:to-slate-900 overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10 dark:opacity-10">
             <div className="absolute inset-0 bg-[url('/patterns/grid.svg')] bg-center"></div>
@@ -34,32 +34,32 @@ export default function Home() {
                     🔥 DECISÃO STF 2025 - NOVA ERA DIGITAL
                   </Badge>
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-slate-900 dark:text-white">
-                    Prove a <span className="text-blue-600 dark:text-blue-400">Verdade</span><br />
+                    Prove a <span className="text-green-600 dark:text-green-400">Verdade</span><br />
                     Antes Que Seja<br />
                     <span className="text-amber-600 dark:text-amber-400">Tarde Demais</span>
                   </h1>
                   <p className="text-xl text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
-                    Combinamos <strong className="text-blue-600 dark:text-blue-400">tecnologia de ponta</strong> com <strong className="text-slate-900 dark:text-white">metodologia forense validada</strong> por Perito Criminal Oficial para entregar resultados que você pode <strong className="text-amber-600 dark:text-amber-400">provar na justiça</strong>.
+                    Combinamos <strong className="text-green-600 dark:text-green-400">tecnologia de ponta</strong> com <strong className="text-slate-900 dark:text-white">metodologia forense profissional validada</strong> para entregar resultados que você pode <strong className="text-amber-600 dark:text-amber-400">provar na justiça</strong>.
                   </p>
                 </div>
 
                 {/* Badges de Credibilidade */}
                 <div className="flex flex-wrap gap-3">
                   <Badge className="bg-green-100 text-green-700 border border-green-300 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30 px-4 py-2">
-                    ✅ Perito Criminal Oficial
-                  </Badge>
-                  <Badge className="bg-blue-100 text-blue-700 border border-blue-300 dark:bg-blue-500/20 dark:text-blue-400 dark:border-blue-500/30 px-4 py-2">
                     🚀 5.950 auditados
                   </Badge>
                   <Badge className="bg-purple-100 text-purple-700 border border-purple-300 dark:bg-purple-500/20 dark:text-purple-400 dark:border-purple-500/30 px-4 py-2">
                     ⭐ 4.9/5 estrelas
+                  </Badge>
+                  <Badge className="bg-green-100 text-green-700 border border-green-300 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30 px-4 py-2">
+                    ✅ Metodologia Validada
                   </Badge>
                 </div>
 
                 {/* CTAs */}
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link href="/servicos" className="flex-1">
-                    <Button size="lg" className="w-full bg-blue-500 hover:bg-blue-600 text-white h-14 font-bold text-lg shadow-2xl shadow-blue-500/50">
+                    <Button size="lg" className="w-full bg-green-500 hover:bg-green-600 text-white h-14 font-bold text-lg shadow-2xl shadow-green-500/50">
                       Ver Todos os Serviços
                       <ArrowRight className="w-5 h-5 ml-2" />
                     </Button>
@@ -87,11 +87,11 @@ export default function Home() {
                       <CheckCircle2 className="w-6 h-6 text-green-600 dark:text-green-400 flex-shrink-0" />
                       <div>
                         <p className="font-semibold text-slate-900 dark:text-white">Validação Forense</p>
-                        <p className="text-sm text-slate-700 dark:text-slate-300">Por Perito Criminal Oficial</p>
+                        <p className="text-sm text-slate-700 dark:text-slate-300">Metodologia Profissional</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3 p-4 bg-blue-100 border border-blue-300 dark:bg-blue-500/10 dark:border-blue-500/20 rounded-lg">
-                      <ShieldCheck className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                    <div className="flex items-center gap-3 p-4 bg-green-100 border border-green-300 dark:bg-green-500/10 dark:border-green-500/20 rounded-lg">
+                      <ShieldCheck className="w-6 h-6 text-green-600 dark:text-green-400 flex-shrink-0" />
                       <div>
                         <p className="font-semibold text-slate-900 dark:text-white">Conformidade LGPD</p>
                         <p className="text-sm text-slate-700 dark:text-slate-300">100% Legal e Documentado</p>
@@ -137,8 +137,8 @@ export default function Home() {
                         <div className="text-2xl font-bold text-green-600">85%</div>
                         <div className="text-xs text-slate-600 dark:text-slate-400">Taxa sucesso</div>
                       </div>
-                      <div className="text-center p-3 bg-blue-50 dark:bg-blue-900/10 rounded-lg border border-blue-200 dark:border-blue-800">
-                        <div className="text-2xl font-bold text-blue-600">24-48h</div>
+                      <div className="text-center p-3 bg-green-50 dark:bg-green-900/10 rounded-lg border border-green-200 dark:border-green-800">
+                        <div className="text-2xl font-bold text-green-600">24-48h</div>
                         <div className="text-xs text-slate-600 dark:text-slate-400">Urgentes</div>
                       </div>
                       <div className="text-center p-3 bg-purple-50 dark:bg-purple-900/10 rounded-lg border border-purple-200 dark:border-purple-800">
@@ -230,8 +230,8 @@ export default function Home() {
               <Card className="hover:shadow-2xl transition-all border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
                 <CardContent className="p-6 space-y-4">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-blue-50 dark:bg-blue-900/10 rounded-lg">
-                      <Database className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                    <div className="p-3 bg-green-50 dark:bg-green-900/10 rounded-lg">
+                      <Database className="w-6 h-6 text-green-600 dark:text-green-400" />
                     </div>
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                       Coleta de Dados Automatizada
@@ -241,7 +241,7 @@ export default function Home() {
                     Automação de coleta em portais públicos e privados. Redução de 8h/dia para 5min automatizados.
                   </p>
                   <div className="pt-2">
-                    <Badge className="bg-blue-600 text-white text-xs font-semibold">AUTOMAÇÃO EMPRESARIAL</Badge>
+                    <Badge className="bg-green-600 text-white text-xs font-semibold">AUTOMAÇÃO EMPRESARIAL</Badge>
                   </div>
                   <Link href="/servicos">
                     <Button variant="outline" className="w-full mt-4 border-slate-300 hover:bg-slate-50 text-slate-900 dark:border-slate-700 dark:hover:bg-slate-800 dark:text-white">
@@ -331,10 +331,10 @@ export default function Home() {
                 { name: 'Ver Todos', subtitle: 'Serviços', icon: ArrowRight, link: '/servicos' },
               ].map((solution, idx) => (
                 <Link key={idx} href={solution.link}>
-                  <Card className="hover:shadow-xl hover:border-blue-300 transition-all h-full border border-slate-200 dark:border-slate-800 cursor-pointer group bg-white dark:bg-slate-900">
+                  <Card className="hover:shadow-xl hover:border-green-300 transition-all h-full border border-slate-200 dark:border-slate-800 cursor-pointer group bg-white dark:bg-slate-900">
                     <CardContent className="p-6 flex flex-col items-center text-center h-full justify-center">
-                      <div className="p-3 bg-blue-50 dark:bg-blue-900/10 rounded-lg mb-3 group-hover:scale-110 transition-transform">
-                        <solution.icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                      <div className="p-3 bg-green-50 dark:bg-green-900/10 rounded-lg mb-3 group-hover:scale-110 transition-transform">
+                        <solution.icon className="w-6 h-6 text-green-600 dark:text-green-400" />
                       </div>
                       <h3 className="font-bold text-slate-900 dark:text-white mb-1">
                         {solution.name}
@@ -351,7 +351,7 @@ export default function Home() {
         </section>
 
         {/* DIFERENCIAL: DANI + IBSEN */}
-        <section className="py-20 bg-gradient-to-br from-blue-50 via-slate-50 to-purple-50 dark:from-blue-900 dark:via-slate-900 dark:to-purple-900">
+        <section className="py-20 bg-gradient-to-br from-green-50 via-slate-50 to-purple-50 dark:from-green-900 dark:via-slate-900 dark:to-purple-900">
           <div className="container max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
               <Badge className="bg-amber-500 text-slate-900 font-bold mb-4 px-4 py-2">
@@ -365,42 +365,28 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Danielle Kaloi */}
-              <Card className="bg-white/80 backdrop-blur-xl border border-slate-200 hover:bg-white dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10 transition-all">
+            <div className="max-w-3xl mx-auto">
+              <Card className="bg-white/80 backdrop-blur-xl border border-slate-200 dark:bg-white/5 dark:border-white/10 transition-all">
                 <CardContent className="p-8 text-center">
-                  <div className="w-24 h-24 bg-blue-100 dark:bg-blue-500/20 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <Users className="w-12 h-12 text-blue-600 dark:text-blue-400" />
+                  <div className="w-24 h-24 bg-primary/10 rounded-full mx-auto mb-6 flex items-center justify-center">
+                    <Users className="w-12 h-12 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">Danielle Kaloi</h3>
-                  <p className="text-blue-600 dark:text-blue-400 mb-4">Fundadora & CEO</p>
-                  <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
-                    Especialista em OSINT e investigação digital. Responsável pela tecnologia e metodologia de investigação da Investigaree.
+                  <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">Equipe Multidisciplinar</h3>
+                  <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed mb-6">
+                    Profissionais especializados em investigação digital, análise forense e due diligence.
+                    Nossa equipe combina expertise técnica com metodologia profissional validada para
+                    entregar resultados precisos e confiáveis.
                   </p>
-                  <Link href="/quemsomos/dani-kaloi">
-                    <Button variant="outline" className="mt-6 border-slate-300 text-slate-900 hover:bg-slate-50 dark:border-white/20 dark:text-white dark:hover:bg-white/10">
-                      Ver Perfil Completo
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-
-              {/* Ibsen Maciel */}
-              <Card className="bg-white/80 backdrop-blur-xl border border-slate-200 hover:bg-white dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10 transition-all">
-                <CardContent className="p-8 text-center">
-                  <div className="w-24 h-24 bg-purple-100 dark:bg-purple-500/20 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <ShieldCheck className="w-12 h-12 text-purple-600 dark:text-purple-400" />
+                  <div className="grid grid-cols-2 gap-4 mt-6 text-sm">
+                    <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+                      <ShieldCheck className="w-6 h-6 text-primary mx-auto mb-2" />
+                      <p className="font-semibold text-slate-900 dark:text-white">Metodologia Validada</p>
+                    </div>
+                    <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+                      <Users className="w-6 h-6 text-primary mx-auto mb-2" />
+                      <p className="font-semibold text-slate-900 dark:text-white">Equipe Especializada</p>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">Ibsen Maciel</h3>
-                  <p className="text-purple-600 dark:text-purple-400 mb-4">Perito Criminal Oficial</p>
-                  <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
-                    Perito Criminal da Polícia Civil. Valida todas as investigações com metodologia forense aceita judicialmente.
-                  </p>
-                  <Link href="/quemsomos/ibsen-maciel">
-                    <Button variant="outline" className="mt-6 border-slate-300 text-slate-900 hover:bg-slate-50 dark:border-white/20 dark:text-white dark:hover:bg-white/10">
-                      Ver Perfil Completo
-                    </Button>
-                  </Link>
                 </CardContent>
               </Card>
             </div>
@@ -427,10 +413,10 @@ export default function Home() {
                 { number: '4.9/5', label: 'Avaliação Clientes', icon: Star },
               ].map((stat, idx) => (
                 <div key={idx} className="text-center">
-                  <div className="w-16 h-16 bg-blue-50 dark:bg-blue-900/10 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <stat.icon className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                  <div className="w-16 h-16 bg-green-50 dark:bg-green-900/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <stat.icon className="w-8 h-8 text-green-600 dark:text-green-400" />
                   </div>
-                  <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">{stat.number}</div>
+                  <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">{stat.number}</div>
                   <div className="text-sm text-slate-700 dark:text-slate-400 font-medium">{stat.label}</div>
                 </div>
               ))}
@@ -439,17 +425,17 @@ export default function Home() {
         </section>
 
         {/* CTA FINAL */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <section className="py-20 bg-gradient-to-r from-green-600 to-purple-600 text-white">
           <div className="container max-w-4xl mx-auto px-4 text-center space-y-8">
             <h2 className="text-3xl md:text-4xl font-bold">
               Pronto Para Provar a Verdade?
             </h2>
-            <p className="text-xl text-blue-100">
+            <p className="text-xl text-green-100">
               Fale com nossa equipe agora e descubra como podemos ajudar seu caso
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contato">
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 font-bold h-16 px-10 text-lg">
+                <Button size="lg" className="bg-white text-green-600 hover:bg-green-50 font-bold h-16 px-10 text-lg">
                   <MessageCircle className="w-6 h-6 mr-2" />
                   Iniciar Consulta Gratuita
                 </Button>
@@ -461,7 +447,7 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
-            <p className="text-sm text-blue-200">
+            <p className="text-sm text-green-200">
               ✅ Resposta em 24h • 🔒 100% Confidencial • ⚖️ Conforme LGPD
             </p>
           </div>
@@ -471,3 +457,4 @@ export default function Home() {
     </>
   );
 }
+

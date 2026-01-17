@@ -181,8 +181,8 @@ export function LGPDConsentBanner() {
     >
       <div className="flex items-start gap-4 flex-1">
         {/* Icon */}
-        <div className="flex-shrink-0 p-2 bg-blue-500/10 rounded-lg">
-          <Shield className="w-6 h-6 text-blue-400" />
+        <div className="flex-shrink-0 p-2 bg-green-500/10 rounded-lg">
+          <Shield className="w-6 h-6 text-green-400" />
         </div>
 
         {/* Content */}
@@ -198,7 +198,7 @@ export function LGPDConsentBanner() {
           {/* Toggle Details */}
           <button
             onClick={() => setShowDetails(!showDetails)}
-            className="flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors mb-3"
+            className="flex items-center gap-2 text-sm text-green-400 hover:text-green-300 transition-colors mb-3"
           >
             {showDetails ? (
               <>
@@ -222,7 +222,7 @@ export function LGPDConsentBanner() {
                   type="checkbox"
                   checked={consentChoices.essenciais}
                   disabled
-                  className="mt-1 w-4 h-4 rounded border-slate-600 text-blue-500 focus:ring-blue-500 focus:ring-offset-0 disabled:opacity-50"
+                  className="mt-1 w-4 h-4 rounded border-slate-600 text-green-500 focus:ring-green-500 focus:ring-offset-0 disabled:opacity-50"
                 />
                 <div className="flex-1">
                   <h4 className="text-white font-semibold text-sm mb-1">
@@ -246,7 +246,7 @@ export function LGPDConsentBanner() {
                   onChange={(e) =>
                     setConsentChoices({ ...consentChoices, analiticos: e.target.checked })
                   }
-                  className="mt-1 w-4 h-4 rounded border-slate-600 text-blue-500 focus:ring-blue-500 focus:ring-offset-0"
+                  className="mt-1 w-4 h-4 rounded border-slate-600 text-green-500 focus:ring-green-500 focus:ring-offset-0"
                 />
                 <div className="flex-1">
                   <h4 className="text-white font-semibold text-sm mb-1">
@@ -270,7 +270,7 @@ export function LGPDConsentBanner() {
                   onChange={(e) =>
                     setConsentChoices({ ...consentChoices, marketing: e.target.checked })
                   }
-                  className="mt-1 w-4 h-4 rounded border-slate-600 text-blue-500 focus:ring-blue-500 focus:ring-offset-0"
+                  className="mt-1 w-4 h-4 rounded border-slate-600 text-green-500 focus:ring-green-500 focus:ring-offset-0"
                 />
                 <div className="flex-1">
                   <h4 className="text-white font-semibold text-sm mb-1">
@@ -309,7 +309,7 @@ export function LGPDConsentBanner() {
                 </ul>
                 <a
                   href="/dashboard/lgpd"
-                  className="inline-block mt-2 text-xs text-blue-400 hover:text-blue-300 underline"
+                  className="inline-block mt-2 text-xs text-green-400 hover:text-green-300 underline"
                 >
                   Gerenciar meus dados (LGPD) →
                 </a>
@@ -324,7 +324,7 @@ export function LGPDConsentBanner() {
                     const acceptBtn = document.querySelector('[id="rcc-confirm-button"]') as HTMLElement
                     acceptBtn?.click()
                   }}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm py-2 px-4 rounded-lg transition-colors"
+                  className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold text-sm py-2 px-4 rounded-lg transition-colors"
                 >
                   Salvar Minhas Preferências
                 </button>
@@ -371,3 +371,4 @@ async function getClientIP(): Promise<string> {
     return 'unknown'
   }
 }
+

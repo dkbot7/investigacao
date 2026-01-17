@@ -16,13 +16,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://investigaree.com.br'),
-  title: "investigaree - Due Diligence Digital com Rigor Forense",
-  description: "Investigação particular e due diligence digital com metodologia validada por Perito Criminal Oficial. Proteja seu patrimônio com análise completa de startups, founders e parceiros. Entrega em 48h.",
+  metadataBase: new URL('https://investigacaodigital.com.br'),
+  title: "investigação digital - Due Diligence Digital com Rigor Forense",
+  description: "Investigação particular e due diligence digital com metodologia profissional validada. Proteja seu patrimônio com análise completa de startups, founders e parceiros. Entrega em 48h.",
   keywords: ["due diligence", "investigação particular", "investigação digital", "background check", "perícia forense", "OSINT", "proteção patrimonial", "verificação de antecedentes"],
-  authors: [{ name: "investigaree" }],
-  creator: "investigaree",
-  publisher: "investigaree",
+  authors: [{ name: "investigação digital" }],
+  creator: "investigação digital",
+  publisher: "investigação digital",
 
   // Favicons e ícones
   icons: {
@@ -42,22 +42,22 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://investigaree.com.br",
-    siteName: "investigaree",
-    title: "investigaree - Due Diligence Digital com Rigor Forense",
-    description: "Investigação particular com metodologia validada por Perito Criminal Oficial. Advisory Board com Diretor Nacional da ANPAJ. Entrega em 48h.",
+    url: "https://investigacaodigital.com.br",
+    siteName: "investigação digital",
+    title: "investigação digital - Due Diligence Digital com Rigor Forense",
+    description: "Investigação particular com metodologia profissional validada. Resultados confiáveis em 48h.",
     images: [
       {
         url: "/web-app-manifest-512x512.png",
         width: 512,
         height: 512,
-        alt: "investigaree - Due Diligence Forense",
+        alt: "investigação digital - Due Diligence Forense",
       },
       {
         url: "/web-app-manifest-192x192.png",
         width: 192,
         height: 192,
-        alt: "investigaree Logo",
+        alt: "investigação digital Logo",
       },
     ],
   },
@@ -65,10 +65,10 @@ export const metadata: Metadata = {
   // Twitter Card
   twitter: {
     card: "summary_large_image",
-    site: "@investigaree",
-    creator: "@investigaree",
-    title: "investigaree - Due Diligence Forense",
-    description: "Proteja seu patrimônio com investigação profissional em 48h. Metodologia validada por Perito Criminal Oficial - ANPAJ",
+    site: "@investigação digital",
+    creator: "@investigação digital",
+    title: "investigação digital - Due Diligence Forense",
+    description: "Proteja seu patrimônio com investigação profissional em 48h. Metodologia validada e confiável",
     images: ["/web-app-manifest-512x512.png"],
   },
 
@@ -87,10 +87,10 @@ export const metadata: Metadata = {
 
   // Dados estruturados (Schema.org)
   other: {
-    "application-name": "investigaree",
+    "application-name": "investigação digital",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
-    "apple-mobile-web-app-title": "investigaree",
+    "apple-mobile-web-app-title": "investigação digital",
     "format-detection": "telephone=no",
     "mobile-web-app-capable": "yes",
     "msapplication-TileColor": "#0A1628",

@@ -7,102 +7,102 @@
 
 @layer base {
   :root {
-    /* Investigaree Forense - Navy + Blue (Logo) */
-    --primary: 214 52% 25%; /* Navy 800 #1E3A5F */
+    /* Colorblind-Friendly Palette (Okabe-Ito) */
+    --primary: 204 100% 35%; /* Azul #0072B2 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 60% 10%; /* Navy 950 #0A1628 */
+    --secondary: 197 100% 28%; /* Azul escuro #005A8F */
     --secondary-foreground: 0 0% 100%;
 
     /* Light Theme - ALTO CONTRASTE */
-    --background: 222 47% 98%; /* Quase branco (slate-50) #F8FAFC */
-    --foreground: 222 47% 11%; /* MUITO escuro (slate-900) #0F172A */
+    --background: 0 0% 98%; /* Quase branco #FAFAFA */
+    --foreground: 0 0% 13%; /* Muito escuro #222222 */
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 0 0% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 0 0% 13%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%; /* slate-600 */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 217 91% 35%; /* Blue 800 #1E40AF - ALTO CONTRASTE */
-    --accent-foreground: 0 0% 100%;
+    --accent: 38 100% 47%; /* Laranja #E69F00 - Colorblind safe */
+    --accent-foreground: 0 0% 13%;
 
-    --destructive: 0 72% 51%; /* Mais escuro #DC2626 */
+    --destructive: 24 100% 42%; /* Vermelho-laranja #D55E00 */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%; /* slate-200 */
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 38 100% 47%;
 
-    /* Chart colors - Navy + Blue (logo) */
-    --chart-1: 214 52% 25%; /* Navy 800 */
-    --chart-2: 217 91% 60%; /* Blue 500 (da logo) */
-    --chart-3: 155 59% 44%; /* Success #27C685 */
-    --chart-4: 45 88% 63%; /* Warning #F2C94C */
-    --chart-5: 0 72% 51%; /* Destructive */
+    /* Chart colors - Colorblind Friendly (Okabe-Ito) */
+    --chart-1: 204 100% 35%; /* Azul #0072B2 */
+    --chart-2: 38 100% 47%; /* Laranja #E69F00 */
+    --chart-3: 164 100% 31%; /* Verde-azulado #009E73 */
+    --chart-4: 56 95% 60%; /* Amarelo #F0E442 */
+    --chart-5: 328 65% 63%; /* Roxo #CC79A7 */
 
     /* Sidebar - Light */
     --sidebar: 0 0% 100%;
-    --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 214 52% 25%;
+    --sidebar-foreground: 0 0% 13%;
+    --sidebar-primary: 204 100% 35%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 217 91% 35%; /* Blue 800 */
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 214 32% 91%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-accent: 38 100% 47%;
+    --sidebar-accent-foreground: 0 0% 13%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 38 100% 47%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    /* Dark Theme - Navy Profissional */
-    --primary: 214 52% 35%; /* Navy 700 lighter */
+    /* Dark Theme - Colorblind Friendly */
+    --primary: 204 100% 50%; /* Azul mais claro #0095E6 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 60% 15%; /* Navy 900 */
+    --secondary: 204 100% 35%; /* Azul #0072B2 */
     --secondary-foreground: 0 0% 100%;
 
-    --background: 210 60% 10%; /* Navy 950 */
-    --foreground: 210 40% 98%;
+    --background: 0 0% 10%; /* Muito escuro #1A1A1A */
+    --foreground: 0 0% 95%;
 
-    --card: 210 60% 12%; /* Slightly lighter than bg */
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 13%; /* Levemente mais claro que bg */
+    --card-foreground: 0 0% 95%;
 
-    --popover: 210 60% 12%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 13%;
+    --popover-foreground: 0 0% 95%;
 
-    --muted: 214 30% 20%;
-    --muted-foreground: 210 40% 70%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 217 91% 60%; /* Blue 500 (COR DA LOGO) #3B82F6 */
-    --accent-foreground: 210 60% 10%;
+    --accent: 38 100% 55%; /* Laranja mais claro #FFB020 */
+    --accent-foreground: 0 0% 10%;
 
-    --destructive: 0 72% 62%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 24 100% 50%; /* Vermelho-laranja mais claro #FF7A00 */
+    --destructive-foreground: 0 0% 95%;
 
-    --border: 214 30% 20%;
-    --input: 214 30% 20%;
-    --ring: 214 52% 35%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 38 100% 55%;
 
-    /* Chart colors - Navy + Blue Dark */
-    --chart-1: 214 52% 35%; /* Navy lighter */
-    --chart-2: 217 85% 65%; /* Blue 400 (da logo) #60A5FA */
-    --chart-3: 155 59% 54%; /* Success */
-    --chart-4: 45 88% 63%; /* Warning */
-    --chart-5: 0 72% 62%; /* Destructive */
+    /* Chart colors - Colorblind Friendly Dark */
+    --chart-1: 204 100% 50%; /* Azul claro */
+    --chart-2: 38 100% 55%; /* Laranja claro */
+    --chart-3: 164 100% 40%; /* Verde-azulado claro */
+    --chart-4: 56 95% 65%; /* Amarelo claro */
+    --chart-5: 328 65% 70%; /* Roxo claro */
 
     /* Sidebar Dark */
-    --sidebar: 210 60% 12%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 214 52% 35%;
+    --sidebar: 0 0% 13%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 204 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 217 91% 60%; /* Blue 500 */
-    --sidebar-accent-foreground: 210 60% 10%;
-    --sidebar-border: 214 30% 20%;
-    --sidebar-ring: 214 52% 35%;
+    --sidebar-accent: 38 100% 55%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 38 100% 55%;
   }
 }
 
@@ -152,17 +152,17 @@
     @apply bg-muted-foreground/50;
   }
 
-  /* Gradient text - Navy → Cyan */
+  /* Gradient text - Blue → Orange (Colorblind-safe) */
   .gradient-text {
-    @apply bg-gradient-to-r from-navy-800 to-blue-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-navy-700 to-green-600 bg-clip-text text-transparent;
   }
 
-  /* Gradient premium - Cyan highlight */
+  /* Gradient premium - Orange highlight (Colorblind-safe) */
   .gradient-premium {
-    @apply bg-gradient-to-r from-blue-500 to-blue-600;
+    @apply bg-gradient-to-r from-green-600 to-green-700;
   }
 
-  /* Gradient hero - Navy professional */
+  /* Gradient hero - Blue professional */
   .gradient-hero {
     @apply bg-gradient-to-br from-navy-950 to-navy-800;
   }
@@ -183,30 +183,58 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* Navy Scale */
-  --color-navy-50: #F0F4F8;
-  --color-navy-100: #D9E2EC;
-  --color-navy-200: #BCCCDC;
-  --color-navy-300: #9FB3C8;
-  --color-navy-400: #829AB1;
-  --color-navy-500: #627D98;
-  --color-navy-600: #486581;
-  --color-navy-700: #334E68;
-  --color-navy-800: #1E3A5F;
-  --color-navy-900: #0F1F3A;
-  --color-navy-950: #0A1628;
+  /*
+   * COLORBLIND-FRIENDLY PALETTE (Okabe-Ito)
+   *
+   * IMPORTANTE: As variáveis mantêm nomes antigos por compatibilidade,
+   * mas as cores foram substituídas por paleta segura para daltônicos:
+   *
+   * - "navy-*" → AZUL (#0072B2) - Principal
+   * - "green-*" → LARANJA (#E69F00) - Destaque/Ação
+   *
+   * Cores adicionais para gráficos/estados:
+   * - Success: Verde-azulado #009E73
+   * - Warning: Amarelo #F0E442
+   * - Destructive: Vermelho-laranja #D55E00
+   * - Chart-5: Roxo #CC79A7
+   */
 
-  /* Blue Scale (cores da logo) */
-  --color-blue-50: #EFF6FF;
-  --color-blue-100: #DBEAFE;
-  --color-blue-200: #BFDBFE;
-  --color-blue-300: #93C5FD;
-  --color-blue-400: #60A5FA;
-  --color-blue-500: #3B82F6;
-  --color-blue-600: #2563EB;
-  --color-blue-700: #1D4ED8;
-  --color-blue-800: #1E40AF;
-  --color-blue-900: #1E3A8A;
+  /* Navy Scale → Blue Colorblind-Safe Scale (Okabe-Ito Blue) */
+  --color-navy-50: #E6F4FF;
+  --color-navy-100: #CCE9FF;
+  --color-navy-200: #99D3FF;
+  --color-navy-300: #66BDFF;
+  --color-navy-400: #33A7FF;
+  --color-navy-500: #0095E6;
+  --color-navy-600: #0072B2;
+  --color-navy-700: #005A8F;
+  --color-navy-800: #00426B;
+  --color-navy-900: #002A47;
+  --color-navy-950: #001624;
+
+  /* Green Scale → Orange Colorblind-Safe Scale (Okabe-Ito Orange) */
+  --color-green-50: #FFF8E6;
+  --color-green-100: #FFF1CC;
+  --color-green-200: #FFE499;
+  --color-green-300: #FFD666;
+  --color-green-400: #FFC933;
+  --color-green-500: #FFB020;
+  --color-green-600: #E69F00;
+  --color-green-700: #B37D00;
+  --color-green-800: #805B00;
+  --color-green-900: #4D3900;
+
+  /* Success Scale → Teal Colorblind-Safe (Okabe-Ito Bluish Green) */
+  --color-success-50: #E6FFF8;
+  --color-success-100: #CCFFF1;
+  --color-success-200: #99FFE3;
+  --color-success-300: #66FFD4;
+  --color-success-400: #33FFC6;
+  --color-success-500: #00D9A1;
+  --color-success-600: #009E73;
+  --color-success-700: #007D5C;
+  --color-success-800: #005C44;
+  --color-success-900: #003B2D;
 
   /* Base colors */
   --color-background: hsl(var(--background));

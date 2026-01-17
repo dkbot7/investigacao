@@ -222,8 +222,8 @@ function ServiceModal({ service, isOpen, onClose }: { service: Servico | null; i
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-white dark:bg-navy-900">
         <DialogHeader>
           <div className="flex items-start gap-4">
-            <div className="p-3 bg-blue-100 dark:bg-blue-500/10 rounded-xl">
-              <service.icon className="w-8 h-8 text-blue-500" />
+            <div className="p-3 bg-green-100 dark:bg-green-500/10 rounded-xl">
+              <service.icon className="w-8 h-8 text-green-500" />
             </div>
             <div className="flex-1">
               <DialogTitle className="text-2xl text-slate-900 dark:text-white">{service.nome}</DialogTitle>
@@ -248,7 +248,7 @@ function ServiceModal({ service, isOpen, onClose }: { service: Servico | null; i
 
           {/* Caso de Uso */}
           {service.casoDeUso && (
-            <div className="p-4 bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 rounded-xl">
+            <div className="p-4 bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 rounded-xl">
               <div className="flex items-start gap-3">
                 <Star className="w-6 h-6 text-amber-500 mt-0.5 flex-shrink-0" />
                 <div>
@@ -288,19 +288,19 @@ function ServiceModal({ service, isOpen, onClose }: { service: Servico | null; i
           {/* Detalhes */}
           <div className="grid md:grid-cols-3 gap-4">
             {service.preco && (
-              <div className="p-4 bg-blue-50 dark:bg-navy-800 rounded-lg">
+              <div className="p-4 bg-green-50 dark:bg-navy-800 rounded-lg">
                 <p className="text-xs text-slate-500 dark:text-navy-400 mb-1">Investimento</p>
-                <p className="text-xl font-bold text-blue-500">{service.preco}</p>
+                <p className="text-xl font-bold text-green-500">{service.preco}</p>
               </div>
             )}
             {service.prazo && (
-              <div className="p-4 bg-blue-50 dark:bg-navy-800 rounded-lg">
+              <div className="p-4 bg-green-50 dark:bg-navy-800 rounded-lg">
                 <p className="text-xs text-slate-500 dark:text-navy-400 mb-1">Prazo</p>
                 <p className="text-xl font-bold text-slate-900 dark:text-white">{service.prazo}</p>
               </div>
             )}
             {service.idealPara && (
-              <div className="p-4 bg-blue-50 dark:bg-navy-800 rounded-lg">
+              <div className="p-4 bg-green-50 dark:bg-navy-800 rounded-lg">
                 <p className="text-xs text-slate-500 dark:text-navy-400 mb-1">Ideal para</p>
                 <p className="text-sm font-semibold text-slate-900 dark:text-white">{service.idealPara}</p>
               </div>
@@ -350,7 +350,7 @@ function ServicosContent() {
 
   const getBadgeColor = (color?: string) => {
     const colors = {
-      blue: "bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30",
+      blue: "bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30",
       red: "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30",
       purple: "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
       gold: "bg-amber-500/20 text-amber-600 dark:text-amber-400 border-amber-500/30",
@@ -363,25 +363,25 @@ function ServicosContent() {
   return (
     <main className="min-h-screen bg-white dark:bg-navy-950 pt-20">
       {/* Hero Section */}
-      <section className="relative pt-16 pb-12 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 dark:from-navy-900 dark:via-navy-900 dark:to-navy-950 overflow-hidden">
+      <section className="relative pt-16 pb-12 bg-gradient-to-br from-slate-50 via-green-50/30 to-slate-100 dark:from-navy-900 dark:via-navy-900 dark:to-navy-950 overflow-hidden">
         <div className="absolute inset-0 opacity-5 dark:opacity-10" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
         }} />
 
         <div className="container max-w-6xl px-4 relative z-10">
-          <div className="max-w-4xl mx-auto mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+          <div className="max-w-4xl mx-auto mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
             <p className="text-sm text-slate-700 dark:text-navy-200 text-center">
-              <strong className="text-blue-600 dark:text-blue-400">✅ Conformidade LGPD:</strong> Investigações com fontes públicas (OSINT) ou dados consensualmente fornecidos. Base legal: interesse legítimo, exercício de direito ou cumprimento de obrigação legal.
+              <strong className="text-green-600 dark:text-green-400">✅ Conformidade LGPD:</strong> Investigações com fontes públicas (OSINT) ou dados consensualmente fornecidos. Base legal: interesse legítimo, exercício de direito ou cumprimento de obrigação legal.
             </p>
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4 text-center leading-tight">
-            Prove a <span className="text-blue-500">Verdade</span> Antes Que<br />
+            Prove a <span className="text-green-500">Verdade</span> Antes Que<br />
             <span className="text-orange-500">Seja Tarde Demais</span>
           </h1>
 
           <p className="text-lg md:text-xl text-slate-600 dark:text-navy-300 max-w-3xl mx-auto mb-8 text-center">
-            Combinamos <strong className="text-blue-500">tecnologia de ponta</strong> com
+            Combinamos <strong className="text-green-500">tecnologia de ponta</strong> com
             <strong className="text-slate-900 dark:text-white"> metodologia forense validada</strong>
           </p>
         </div>
@@ -391,7 +391,7 @@ function ServicosContent() {
       <section className="py-16 bg-white dark:bg-navy-950">
         <div className="container max-w-7xl px-4">
           <div className="text-center mb-12">
-            <Badge className="bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0 mb-4 px-6 py-2 text-base font-bold">
+            <Badge className="bg-gradient-to-r from-green-500 to-purple-500 text-white border-0 mb-4 px-6 py-2 text-base font-bold">
               <Sparkles className="w-4 h-4 mr-2 inline" />
               SERVIÇOS SUGERIDOS
             </Badge>
@@ -409,7 +409,7 @@ function ServicosContent() {
               <Card
                 key={servico.id}
                 onClick={() => handleServiceClick(servico)}
-                className="group cursor-pointer hover:shadow-xl hover:scale-105 transition-all duration-300 bg-white dark:bg-navy-900 border-2 border-slate-200 dark:border-navy-800 hover:border-blue-500 dark:hover:border-blue-500 relative overflow-hidden"
+                className="group cursor-pointer hover:shadow-xl hover:scale-105 transition-all duration-300 bg-white dark:bg-navy-900 border-2 border-slate-200 dark:border-navy-800 hover:border-green-500 dark:hover:border-green-500 relative overflow-hidden"
               >
                 {servico.badge && (
                   <div className="absolute top-2 right-2 z-10">
@@ -424,12 +424,12 @@ function ServicosContent() {
                     <div className={`p-4 rounded-xl transition-all group-hover:scale-110 ${
                       servico.categoria === 'pericia' ? 'bg-amber-50 dark:bg-amber-900/20' :
                       servico.categoria === 'personalizado' ? 'bg-cyan-50 dark:bg-cyan-900/20' :
-                      'bg-blue-50 dark:bg-blue-900/20'
+                      'bg-green-50 dark:bg-green-900/20'
                     }`}>
                       <servico.icon className={`w-8 h-8 ${
                         servico.categoria === 'pericia' ? 'text-amber-600 dark:text-amber-400' :
                         servico.categoria === 'personalizado' ? 'text-cyan-600 dark:text-cyan-400' :
-                        'text-blue-600 dark:text-blue-400'
+                        'text-green-600 dark:text-green-400'
                       }`} />
                     </div>
 
@@ -451,7 +451,7 @@ function ServicosContent() {
 
                     <Button
                       size="sm"
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white group-hover:bg-green-600 group-hover:shadow-lg transition-all"
+                      className="w-full bg-green-600 hover:bg-green-700 text-white group-hover:bg-green-600 group-hover:shadow-lg transition-all"
                     >
                       <MessageCircle className="w-4 h-4 mr-2" />
                       Ver Detalhes
@@ -484,7 +484,7 @@ function ServicosContent() {
             <Badge className="bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30 font-semibold px-4 md:px-6 py-2 md:py-3 text-sm md:text-base">
               🔥 Resposta em 24h
             </Badge>
-            <Badge className="bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30 font-semibold px-4 md:px-6 py-2 md:py-3 text-sm md:text-base">
+            <Badge className="bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30 font-semibold px-4 md:px-6 py-2 md:py-3 text-sm md:text-base">
               ✅ Perito Criminal Oficial
             </Badge>
             <Badge className="bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30 font-semibold px-4 md:px-6 py-2 md:py-3 text-sm md:text-base">
@@ -519,8 +519,8 @@ function ServicosContent() {
                       <div className="text-2xl font-bold text-green-600">85%</div>
                       <div className="text-xs text-slate-600">Sucesso</div>
                     </div>
-                    <div className="text-center p-3 bg-blue-50 dark:bg-blue-900/10 rounded-lg border border-blue-200">
-                      <div className="text-2xl font-bold text-blue-600">24-48h</div>
+                    <div className="text-center p-3 bg-green-50 dark:bg-green-900/10 rounded-lg border border-green-200">
+                      <div className="text-2xl font-bold text-green-600">24-48h</div>
                       <div className="text-xs text-slate-600">Urgente</div>
                     </div>
                     <div className="text-center p-3 bg-purple-50 dark:bg-purple-900/10 rounded-lg border border-purple-200">
@@ -569,7 +569,7 @@ function ServicosContent() {
             🚀 Comece Sua Investigação Hoje
           </h2>
           <p className="text-lg text-slate-700 dark:text-navy-200">
-            <strong className="text-blue-500">5.950 investigações realizadas</strong> • Resposta em 24h<br />
+            <strong className="text-green-500">5.950 investigações realizadas</strong> • Resposta em 24h<br />
             Empresas, Famílias, Advogados e Investidores confiam em nós
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -620,7 +620,7 @@ export default function ServicosPage() {
       <Header />
       <Suspense fallback={
         <main className="min-h-screen bg-white dark:bg-navy-950 flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500" />
         </main>
       }>
         <ServicosContent />
@@ -629,3 +629,4 @@ export default function ServicosPage() {
     </>
   );
 }
+

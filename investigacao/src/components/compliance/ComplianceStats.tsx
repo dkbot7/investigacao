@@ -190,9 +190,9 @@ function StatCard({ title, value, icon: Icon, color, description, trend, breakdo
       border: 'border-orange-500/20',
     },
     blue: {
-      bg: 'bg-blue-500/10',
-      text: 'text-blue-400',
-      border: 'border-blue-500/20',
+      bg: 'bg-green-500/10',
+      text: 'text-green-400',
+      border: 'border-green-500/20',
     },
     red: {
       bg: 'bg-red-500/10',
@@ -247,3 +247,4 @@ function StatCard({ title, value, icon: Icon, color, description, trend, breakdo
     </div>
   )
 }
+

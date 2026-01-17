@@ -21,14 +21,14 @@ export default function QuemSomosPage() {
         <section className="pt-24 pb-12 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-900 dark:to-navy-950">
           <div className="container max-w-6xl px-4">
             <div className="text-center space-y-6">
-              <Badge variant="outline" className="text-blue-400 border-blue-500/30 bg-blue-500/10">
+              <Badge variant="outline" className="text-green-400 border-green-500/30 bg-green-500/10">
                 Quem Somos
               </Badge>
               <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white">
-                Investigação Digital <span className="text-blue-400">em Escala</span>
+                Investigação Digital <span className="text-green-400">em Escala</span>
               </h1>
               <p className="text-xl text-slate-700 dark:text-navy-200 max-w-3xl mx-auto">
-                Plataforma especializada em <strong className="text-blue-400">automação de investigações</strong> com processamento de <strong className="text-blue-400">+100 mil registros</strong> por análise.
+                Plataforma especializada em <strong className="text-green-400">automação de investigações</strong> com processamento de <strong className="text-green-400">+100 mil registros</strong> por análise.
               </p>
             </div>
           </div>
@@ -42,9 +42,9 @@ export default function QuemSomosPage() {
             </h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card className="border-blue-500/30 bg-gradient-to-br from-white to-slate-50 dark:from-navy-900 dark:to-navy-800">
+              <Card className="border-green-500/30 bg-gradient-to-br from-white to-slate-50 dark:from-navy-900 dark:to-navy-800">
                 <CardHeader>
-                  <Database className="w-12 h-12 text-blue-400 mb-4" />
+                  <Database className="w-12 h-12 text-green-400 mb-4" />
                   <CardTitle className="text-slate-900 dark:text-white">Automação</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -54,9 +54,9 @@ export default function QuemSomosPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-blue-500/30 bg-gradient-to-br from-white to-slate-50 dark:from-navy-900 dark:to-navy-800">
+              <Card className="border-green-500/30 bg-gradient-to-br from-white to-slate-50 dark:from-navy-900 dark:to-navy-800">
                 <CardHeader>
-                  <Shield className="w-12 h-12 text-blue-400 mb-4" />
+                  <Shield className="w-12 h-12 text-green-400 mb-4" />
                   <CardTitle className="text-slate-900 dark:text-white">Due Diligence</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -66,9 +66,9 @@ export default function QuemSomosPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-blue-500/30 bg-gradient-to-br from-white to-slate-50 dark:from-navy-900 dark:to-navy-800">
+              <Card className="border-green-500/30 bg-gradient-to-br from-white to-slate-50 dark:from-navy-900 dark:to-navy-800">
                 <CardHeader>
-                  <Lock className="w-12 h-12 text-blue-400 mb-4" />
+                  <Lock className="w-12 h-12 text-green-400 mb-4" />
                   <CardTitle className="text-slate-900 dark:text-white">Compliance</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -78,9 +78,9 @@ export default function QuemSomosPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-blue-500/30 bg-gradient-to-br from-white to-slate-50 dark:from-navy-900 dark:to-navy-800">
+              <Card className="border-green-500/30 bg-gradient-to-br from-white to-slate-50 dark:from-navy-900 dark:to-navy-800">
                 <CardHeader>
-                  <Globe className="w-12 h-12 text-blue-400 mb-4" />
+                  <Globe className="w-12 h-12 text-green-400 mb-4" />
                   <CardTitle className="text-slate-900 dark:text-white">OSINT</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -101,69 +101,69 @@ export default function QuemSomosPage() {
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <Card className="border-blue-500/30">
+              <Card className="border-green-500/30">
                 <CardHeader>
-                  <Cpu className="w-12 h-12 text-blue-400 mb-4" />
+                  <Cpu className="w-12 h-12 text-green-400 mb-4" />
                   <CardTitle className="text-slate-900 dark:text-white">Tecnologia Avançada</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-700 dark:text-navy-200 text-sm">Processamento de +100k registros simultâneos</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-700 dark:text-navy-200 text-sm">Integração com múltiplas bases de dados</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-700 dark:text-navy-200 text-sm">Automação inteligente de análises</span>
                     </li>
                   </ul>
                 </CardContent>
               </Card>
 
-              <Card className="border-blue-500/30">
+              <Card className="border-green-500/30">
                 <CardHeader>
-                  <Shield className="w-12 h-12 text-blue-400 mb-4" />
+                  <Shield className="w-12 h-12 text-green-400 mb-4" />
                   <CardTitle className="text-slate-900 dark:text-white">Segurança e Compliance</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-700 dark:text-navy-200 text-sm">Conformidade total com LGPD</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-700 dark:text-navy-200 text-sm">Criptografia de dados sensíveis</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-700 dark:text-navy-200 text-sm">Auditoria completa de processos</span>
                     </li>
                   </ul>
                 </CardContent>
               </Card>
 
-              <Card className="border-blue-500/30">
+              <Card className="border-green-500/30">
                 <CardHeader>
-                  <Target className="w-12 h-12 text-blue-400 mb-4" />
+                  <Target className="w-12 h-12 text-green-400 mb-4" />
                   <CardTitle className="text-slate-900 dark:text-white">Resultados Precisos</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-700 dark:text-navy-200 text-sm">Relatórios detalhados e acionáveis</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-700 dark:text-navy-200 text-sm">Análise de múltiplas fontes públicas</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-700 dark:text-navy-200 text-sm">Entrega rápida e eficiente</span>
                     </li>
                   </ul>
@@ -184,12 +184,12 @@ export default function QuemSomosPage() {
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/contato">
-                <Button size="lg" className="bg-blue-500 hover:bg-blue-600 text-white">
+                <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white">
                   Falar com especialista
                 </Button>
               </Link>
               <Link href="/servicos">
-                <Button size="lg" variant="outline" className="border-blue-500 text-blue-500 hover:bg-blue-500/10">
+                <Button size="lg" variant="outline" className="border-green-500 text-green-500 hover:bg-green-500/10">
                   Ver serviços
                 </Button>
               </Link>
@@ -203,3 +203,4 @@ export default function QuemSomosPage() {
     </>
   );
 }
+

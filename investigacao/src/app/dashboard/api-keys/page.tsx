@@ -97,12 +97,12 @@ export default function APIKeysPage() {
       </div>
 
       {/* Info Card */}
-      <Card className="mb-8 border-blue-200 bg-blue-50">
+      <Card className="mb-8 border-green-200 bg-green-50">
         <CardContent className="pt-6">
           <div className="flex items-start gap-3">
-            <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5" />
+            <AlertCircle className="h-5 w-5 text-green-600 mt-0.5" />
             <div>
-              <p className="text-sm text-blue-900">
+              <p className="text-sm text-green-900">
                 <strong>Importante:</strong> As API keys são exibidas apenas uma vez durante a criação.
                 Guarde-as em local seguro. Para segurança, comece sempre com ambiente de teste.
               </p>
@@ -333,3 +333,4 @@ export default function APIKeysPage() {
     </div>
   );
 }
+

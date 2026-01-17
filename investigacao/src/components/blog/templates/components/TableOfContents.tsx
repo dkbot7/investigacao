@@ -114,10 +114,10 @@ export default function TableOfContents({
       animate={{ opacity: 1, x: 0 }}
       className={`${sticky ? "lg:sticky lg:top-24" : ""} ${className}`}
     >
-      <div className="p-5 rounded-xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/10">
+      <div className="p-5 rounded-xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-green-500/10">
         {/* Cabeçalho */}
-        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-blue-500/10">
-          <List className="w-4 h-4 text-blue-500" />
+        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-green-500/10">
+          <List className="w-4 h-4 text-green-500" />
           <span className="text-sm font-medium text-slate-900 dark:text-white">Neste artigo</span>
         </div>
 
@@ -134,7 +134,7 @@ export default function TableOfContents({
                 onClick={() => handleClick(item.id)}
                 className={`w-full text-left flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all ${
                   activeId === item.id
-                    ? "bg-blue-500/10 text-blue-400 font-medium"
+                    ? "bg-green-500/10 text-green-400 font-medium"
                     : "text-slate-500 dark:text-navy-400 hover:text-white hover:bg-slate-100 dark:bg-navy-800/50"
                 }`}
                 style={{
@@ -143,7 +143,7 @@ export default function TableOfContents({
               >
                 <ChevronRight
                   className={`w-3 h-3 flex-shrink-0 transition-transform ${
-                    activeId === item.id ? "text-blue-500" : ""
+                    activeId === item.id ? "text-green-500" : ""
                   }`}
                 />
                 <span className="line-clamp-2">{item.title}</span>
@@ -155,3 +155,4 @@ export default function TableOfContents({
     </motion.nav>
   );
 }
+

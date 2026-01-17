@@ -58,7 +58,7 @@ export default function BlogPagination({ pagination, onPageChange }: BlogPaginat
       animate={{ opacity: 1, y: 0 }}
       className={cn(
         "flex flex-col sm:flex-row items-center justify-between gap-4 py-6",
-        "lg:sticky lg:bottom-0 lg:bg-slate-50/95 lg:backdrop-blur-sm lg:border-t lg:border-blue-500/10 lg:z-10",
+        "lg:sticky lg:bottom-0 lg:bg-slate-50/95 lg:backdrop-blur-sm lg:border-t lg:border-green-500/10 lg:z-10",
         "dark:lg:bg-navy-950/95"
       )}
     >
@@ -105,7 +105,7 @@ export default function BlogPagination({ pagination, onPageChange }: BlogPaginat
                 whileTap={{ scale: 0.95 }}
                 className={`w-8 h-8 rounded-lg text-sm font-medium transition-all ${
                   page === pageNum
-                    ? "bg-blue-500 text-navy-950"
+                    ? "bg-green-500 text-navy-950"
                     : "text-slate-600 dark:text-navy-300 hover:bg-slate-100 dark:bg-navy-800 hover:text-white"
                 }`}
               >
@@ -130,3 +130,4 @@ export default function BlogPagination({ pagination, onPageChange }: BlogPaginat
     </motion.div>
   );
 }
+

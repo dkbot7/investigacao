@@ -17,7 +17,7 @@ export default function RHCompliancePage() {
   return (
     <div className="min-h-screen">
       {/* HERO SECTION - One Hero, One Hook Layout (2025 Trend) */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white overflow-hidden">
+      <section className="relative bg-gradient-to-br from-slate-900 via-green-900 to-slate-900 text-white overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[url('/patterns/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
@@ -28,14 +28,14 @@ export default function RHCompliancePage() {
             {/* Left Column: Copy */}
             <div className="space-y-8">
               {/* Eyebrow (Trust Badge) */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-400/30 rounded-full text-sm font-medium">
-                <Shield className="w-4 h-4 text-blue-400" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-400/30 rounded-full text-sm font-medium">
+                <Shield className="w-4 h-4 text-green-400" />
                 <span>Conformidade 100% LGPD</span>
               </div>
 
               {/* Hero Headline (Bold, Large) */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                Contrate com <span className="text-blue-400">Segurança</span>.
+                Contrate com <span className="text-green-400">Segurança</span>.
                 <br />
                 Evite Fraudes no RH.
               </h1>
@@ -61,7 +61,7 @@ export default function RHCompliancePage() {
 
               {/* Primary CTA (Above the Fold) */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-6 shadow-lg shadow-blue-500/30">
+                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white text-lg px-8 py-6 shadow-lg shadow-green-500/30">
                   <Users className="w-5 h-5 mr-2" />
                   Solicitar Demonstração
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -95,7 +95,7 @@ export default function RHCompliancePage() {
               <div className="relative aspect-[4/3] bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-slate-700">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center space-y-4">
-                    <div className="w-20 h-20 mx-auto bg-blue-600 rounded-full flex items-center justify-center">
+                    <div className="w-20 h-20 mx-auto bg-green-600 rounded-full flex items-center justify-center">
                       <Play className="w-10 h-10 text-white ml-1" />
                     </div>
                     <p className="text-slate-300 text-sm">Veja como funciona (2 min)</p>
@@ -192,7 +192,7 @@ export default function RHCompliancePage() {
                   { icon: Users, title: 'INSS/CNIS', desc: 'Vínculos empregatícios reais' },
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3 p-4 bg-slate-50 rounded-lg border border-slate-200">
-                    <item.icon className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                    <item.icon className="w-5 h-5 text-green-600 flex-shrink-0 mt-1" />
                     <div>
                       <div className="font-semibold text-slate-900">{item.title}</div>
                       <div className="text-sm text-slate-600">{item.desc}</div>
@@ -236,19 +236,19 @@ export default function RHCompliancePage() {
                   <div className="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-slate-300"></div>
                 )}
                 <div className="relative bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow">
-                  <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">
+                  <div className="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">
                     {item.step}
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
                   <p className="text-sm text-slate-600 mb-3">{item.desc}</p>
-                  <div className="text-xs text-blue-600 font-semibold">⏱️ {item.time}</div>
+                  <div className="text-xs text-green-600 font-semibold">⏱️ {item.time}</div>
                 </div>
               </div>
             ))}
           </div>
 
           <div className="text-center mt-12">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white">
               Solicitar Background Check Agora
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
@@ -298,8 +298,8 @@ export default function RHCompliancePage() {
                 desc: 'Background check completo entregue em 24-48h úteis. Casos urgentes: express em 12h (mediante consulta).',
               },
             ].map((feature, idx) => (
-              <div key={idx} className="p-6 border border-slate-200 rounded-xl hover:border-blue-400 hover:shadow-lg transition-all">
-                <feature.icon className="w-12 h-12 text-blue-600 mb-4" />
+              <div key={idx} className="p-6 border border-slate-200 rounded-xl hover:border-green-400 hover:shadow-lg transition-all">
+                <feature.icon className="w-12 h-12 text-green-600 mb-4" />
                 <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
                 <p className="text-slate-600">{feature.desc}</p>
               </div>
@@ -309,7 +309,7 @@ export default function RHCompliancePage() {
       </section>
 
       {/* PRICING / CTA SECTION */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 to-slate-900 text-white">
+      <section className="py-20 bg-gradient-to-br from-green-900 to-slate-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
             Evite Contratações de Risco. Proteja Sua Empresa.
@@ -319,7 +319,7 @@ export default function RHCompliancePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-blue-900 hover:bg-slate-100 text-lg px-8 py-6">
+            <Button size="lg" className="bg-white text-green-900 hover:bg-slate-100 text-lg px-8 py-6">
               <Users className="w-5 h-5 mr-2" />
               Solicitar Demonstração Gratuita
             </Button>
@@ -361,10 +361,10 @@ export default function RHCompliancePage() {
                 a: 'Você recebe relatório detalhado com todos os red flags identificados, gravidade de cada um e parecer final (aprovar com ressalvas, reprovar ou solicitar esclarecimentos). A decisão final é sempre sua.',
               },
             ].map((faq, idx) => (
-              <details key={idx} className="group border border-slate-200 rounded-lg p-6 hover:border-blue-400 transition-colors">
+              <details key={idx} className="group border border-slate-200 rounded-lg p-6 hover:border-green-400 transition-colors">
                 <summary className="cursor-pointer font-semibold text-slate-900 flex justify-between items-center">
                   {faq.q}
-                  <span className="text-blue-600 group-open:rotate-180 transition-transform">▼</span>
+                  <span className="text-green-600 group-open:rotate-180 transition-transform">▼</span>
                 </summary>
                 <p className="mt-4 text-slate-600">{faq.a}</p>
               </details>
@@ -375,3 +375,4 @@ export default function RHCompliancePage() {
     </div>
   )
 }
+

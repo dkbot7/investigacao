@@ -98,7 +98,7 @@ export default function BatchPage() {
       case 'failed':
         return <XCircle className="w-5 h-5 text-red-500" />;
       case 'processing':
-        return <Loader2 className="w-5 h-5 text-blue-500 animate-spin" />;
+        return <Loader2 className="w-5 h-5 text-green-500 animate-spin" />;
       case 'pending':
         return <Clock className="w-5 h-5 text-yellow-500" />;
       case 'cancelled':
@@ -129,12 +129,12 @@ export default function BatchPage() {
         <CardContent>
           <div className="flex flex-col gap-4">
             {/* Instructions */}
-            <div className="p-4 bg-blue-50 dark:bg-navy-800 rounded-lg border border-blue-200 dark:border-navy-700">
-              <h4 className="font-medium text-blue-900 dark:text-blue-300 mb-2 flex items-center gap-2">
+            <div className="p-4 bg-green-50 dark:bg-navy-800 rounded-lg border border-green-200 dark:border-navy-700">
+              <h4 className="font-medium text-green-900 dark:text-green-300 mb-2 flex items-center gap-2">
                 <AlertCircle className="w-4 h-4" />
                 Como preparar seu CSV
               </h4>
-              <ul className="text-sm text-blue-800 dark:text-blue-400 space-y-1 ml-6 list-disc">
+              <ul className="text-sm text-green-800 dark:text-green-400 space-y-1 ml-6 list-disc">
                 <li>Uma coluna com CPF ou CNPJ (com ou sem formatação)</li>
                 <li>Primeira linha pode ser cabeçalho (será ignorada se detectada)</li>
                 <li>Máximo de 1000 documentos por arquivo</li>
@@ -168,15 +168,15 @@ export default function BatchPage() {
                         file:mr-4 file:py-2 file:px-4
                         file:rounded-full file:border-0
                         file:text-sm file:font-semibold
-                        file:bg-blue-50 file:text-blue-700
-                        hover:file:bg-blue-100"
+                        file:bg-green-50 file:text-green-700
+                        hover:file:bg-green-100"
                     />
                   </div>
 
                   {selectedFile && (
                     <div className="p-4 bg-slate-50 dark:bg-navy-800 rounded-lg">
                       <div className="flex items-center gap-2">
-                        <FileText className="w-5 h-5 text-blue-500" />
+                        <FileText className="w-5 h-5 text-green-500" />
                         <div className="flex-1">
                           <p className="font-medium">{selectedFile.name}</p>
                           <p className="text-sm text-slate-500">
@@ -229,7 +229,7 @@ export default function BatchPage() {
 
         {loading && (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
+            <Loader2 className="w-8 h-8 animate-spin text-green-500" />
           </div>
         )}
 
@@ -348,3 +348,4 @@ export default function BatchPage() {
     </div>
   );
 }
+

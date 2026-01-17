@@ -47,7 +47,7 @@ export default function ImageGallery({ images, columns = 3 }: ImageGalleryProps)
         {images.map((image, index) => (
           <div
             key={index}
-            className="group relative aspect-video rounded-xl overflow-hidden border border-blue-500/10 cursor-pointer"
+            className="group relative aspect-video rounded-xl overflow-hidden border border-green-500/10 cursor-pointer"
             onClick={() => openLightbox(index)}
           >
             <Image
@@ -138,3 +138,4 @@ export default function ImageGallery({ images, columns = 3 }: ImageGalleryProps)
     </>
   );
 }
+

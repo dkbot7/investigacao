@@ -16,7 +16,7 @@ export default function AuthorCard({ author }: AuthorCardProps) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-blue-500/10 rounded-xl p-6"
+      className="bg-white dark:bg-white/30 dark:bg-navy-900/30 border border-green-500/10 rounded-xl p-6"
     >
       <div className="flex flex-col sm:flex-row gap-4">
         {/* Avatar */}
@@ -27,18 +27,18 @@ export default function AuthorCard({ author }: AuthorCardProps) {
               alt={author.name}
               width={80}
               height={80}
-              className="rounded-full border-2 border-blue-500/20"
+              className="rounded-full border-2 border-green-500/20"
             />
           ) : (
-            <div className="w-20 h-20 rounded-full bg-blue-500/20 flex items-center justify-center border-2 border-blue-500/20">
-              <User className="w-8 h-8 text-blue-500" />
+            <div className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center border-2 border-green-500/20">
+              <User className="w-8 h-8 text-green-500" />
             </div>
           )}
         </div>
 
         {/* Info */}
         <div className="flex-1">
-          <p className="text-xs text-blue-500 font-medium mb-1">Escrito por</p>
+          <p className="text-xs text-green-500 font-medium mb-1">Escrito por</p>
           <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{author.name}</h4>
           <p className="text-sm text-slate-500 dark:text-navy-400 mb-3">{author.role}</p>
 
@@ -72,7 +72,7 @@ export default function AuthorCard({ author }: AuthorCardProps) {
             {/* Ver mais artigos */}
             <Link
               href={`/blog?author=${author.id}`}
-              className="flex items-center gap-1 text-sm text-blue-500 hover:text-blue-400 transition-colors ml-auto"
+              className="flex items-center gap-1 text-sm text-green-500 hover:text-green-400 transition-colors ml-auto"
             >
               Ver mais artigos
               <ArrowRight className="w-4 h-4" />
@@ -83,3 +83,4 @@ export default function AuthorCard({ author }: AuthorCardProps) {
     </motion.div>
   );
 }
+

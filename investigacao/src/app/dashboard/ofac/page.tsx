@@ -198,8 +198,8 @@ export default function OFACPage() {
 
           <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-500/10 rounded-lg">
-                <Globe className="w-5 h-5 text-blue-400" />
+              <div className="p-2 bg-green-500/10 rounded-lg">
+                <Globe className="w-5 h-5 text-green-400" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-slate-900 dark:text-white">18.411</p>
@@ -337,7 +337,7 @@ export default function OFACPage() {
         <div className="grid md:grid-cols-2 gap-4">
           <div className="bg-white dark:bg-navy-900/50 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
             <div className="flex items-start gap-3">
-              <Info className="w-5 h-5 text-blue-400 mt-0.5" />
+              <Info className="w-5 h-5 text-green-400 mt-0.5" />
               <div>
                 <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">O que e a Lista OFAC SDN?</h4>
                 <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">
@@ -379,3 +379,4 @@ export default function OFACPage() {
     </div>
   );
 }
+

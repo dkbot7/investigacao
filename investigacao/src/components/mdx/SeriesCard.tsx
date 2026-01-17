@@ -35,7 +35,7 @@ export default function SeriesCard({
     <Link href={`/series/${slug}`}>
       <motion.article
         whileHover={{ y: -4 }}
-        className="group relative rounded-2xl overflow-hidden border border-blue-500/10 bg-white dark:bg-navy-900 hover:border-blue-500/30 transition-colors h-full"
+        className="group relative rounded-2xl overflow-hidden border border-green-500/10 bg-white dark:bg-navy-900 hover:border-green-500/30 transition-colors h-full"
       >
         {/* Cover image */}
         <div className="relative h-40 overflow-hidden">
@@ -64,7 +64,7 @@ export default function SeriesCard({
                 Completa
               </span>
             ) : (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-medium">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-medium">
                 <Clock className="w-3 h-3" />
                 Em andamento
               </span>
@@ -84,7 +84,7 @@ export default function SeriesCard({
 
         {/* Content */}
         <div className="p-5">
-          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-blue-400 transition-colors line-clamp-2">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-green-400 transition-colors line-clamp-2">
             {name}
           </h3>
 
@@ -116,7 +116,7 @@ export default function SeriesCard({
                 ~{estimatedTime} min de leitura total
               </span>
             )}
-            <span className="inline-flex items-center gap-1 text-sm text-blue-400 group-hover:text-blue-300 transition-colors ml-auto">
+            <span className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors ml-auto">
               Ver série
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </span>
@@ -126,3 +126,4 @@ export default function SeriesCard({
     </Link>
   );
 }
+

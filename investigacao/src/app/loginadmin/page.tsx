@@ -71,7 +71,7 @@ export default function LoginAdminPage() {
   if (authLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 text-blue-500 animate-spin" />
+        <Loader2 className="w-8 h-8 text-green-500 animate-spin" />
       </div>
     );
   }
@@ -95,7 +95,7 @@ export default function LoginAdminPage() {
         <div className="bg-white dark:bg-navy-900/80 backdrop-blur-xl border border-slate-400 dark:border-navy-700/50 rounded-2xl shadow-2xl p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-green-600 mb-4">
               <Shield className="w-8 h-8 text-navy-950" />
             </div>
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
@@ -133,7 +133,7 @@ export default function LoginAdminPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="admin@investigaree.com.br"
-                  className="pl-10 bg-slate-100 dark:bg-navy-800/50 border-slate-400 dark:border-navy-700 text-slate-900 dark:text-white placeholder:text-white/30 focus:border-blue-500 focus:ring-blue-500/20"
+                  className="pl-10 bg-slate-100 dark:bg-navy-800/50 border-slate-400 dark:border-navy-700 text-slate-900 dark:text-white placeholder:text-white/30 focus:border-green-500 focus:ring-green-500/20"
                   required
                   disabled={loading}
                 />
@@ -153,7 +153,7 @@ export default function LoginAdminPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Digite sua senha"
-                  className="pl-10 pr-10 bg-slate-100 dark:bg-navy-800/50 border-slate-400 dark:border-navy-700 text-slate-900 dark:text-white placeholder:text-white/30 focus:border-blue-500 focus:ring-blue-500/20"
+                  className="pl-10 pr-10 bg-slate-100 dark:bg-navy-800/50 border-slate-400 dark:border-navy-700 text-slate-900 dark:text-white placeholder:text-white/30 focus:border-green-500 focus:ring-green-500/20"
                   required
                   disabled={loading}
                 />
@@ -175,7 +175,7 @@ export default function LoginAdminPage() {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-navy-950 font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-blue-500/25"
+              className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-navy-950 font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-green-500/25"
             >
               {loading ? (
                 <>
@@ -210,3 +210,4 @@ export default function LoginAdminPage() {
     </div>
   );
 }
+

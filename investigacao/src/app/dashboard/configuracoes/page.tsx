@@ -118,7 +118,7 @@ export default function ConfiguracoesPage() {
         {/* Header */}
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-            <Settings className="w-6 h-6 sm:w-7 sm:h-7 text-blue-400" />
+            <Settings className="w-6 h-6 sm:w-7 sm:h-7 text-green-400" />
             Configurações
           </h1>
           <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
@@ -140,7 +140,7 @@ export default function ConfiguracoesPage() {
                     onClick={() => setActiveTab(tab.id)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                       isActive
-                        ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                        ? "bg-green-500/20 text-green-400 border border-green-500/30"
                         : "text-slate-700 dark:text-navy-300 hover:text-white hover:bg-slate-100 dark:bg-navy-800"
                     }`}
                   >
@@ -177,7 +177,7 @@ export default function ConfiguracoesPage() {
                           {profile.nome?.charAt(0).toUpperCase() || user?.email?.charAt(0).toUpperCase()}
                         </span>
                       </div>
-                      <button className="absolute bottom-0 right-0 p-1.5 bg-blue-500 rounded-full text-navy-950 hover:bg-blue-600 transition-colors">
+                      <button className="absolute bottom-0 right-0 p-1.5 bg-green-500 rounded-full text-navy-950 hover:bg-green-600 transition-colors">
                         <Camera className="w-4 h-4" />
                       </button>
                     </div>
@@ -197,7 +197,7 @@ export default function ConfiguracoesPage() {
                           type="text"
                           value={profile.nome}
                           onChange={(e) => setProfile({ ...profile, nome: e.target.value })}
-                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           placeholder="Seu nome"
                         />
                       </div>
@@ -211,7 +211,7 @@ export default function ConfiguracoesPage() {
                           type="email"
                           value={profile.email}
                           onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           placeholder="seu@email.com"
                           disabled
                         />
@@ -227,7 +227,7 @@ export default function ConfiguracoesPage() {
                           type="tel"
                           value={profile.telefone}
                           onChange={(e) => setProfile({ ...profile, telefone: e.target.value })}
-                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           placeholder="(00) 00000-0000"
                         />
                       </div>
@@ -241,7 +241,7 @@ export default function ConfiguracoesPage() {
                           type="text"
                           value={profile.empresa}
                           onChange={(e) => setProfile({ ...profile, empresa: e.target.value })}
-                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           placeholder="Nome da empresa"
                         />
                       </div>
@@ -255,7 +255,7 @@ export default function ConfiguracoesPage() {
                           type="text"
                           value={profile.endereco}
                           onChange={(e) => setProfile({ ...profile, endereco: e.target.value })}
-                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           placeholder="Rua, número, cidade - UF"
                         />
                       </div>
@@ -266,7 +266,7 @@ export default function ConfiguracoesPage() {
                     <Button
                       onClick={handleSave}
                       disabled={saving}
-                      className="bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold"
+                      className="bg-green-500 hover:bg-green-600 text-navy-950 font-semibold"
                     >
                       {saving ? (
                         <>
@@ -313,7 +313,7 @@ export default function ConfiguracoesPage() {
                         type="checkbox"
                         checked={notifications.email_novos_relatorios}
                         onChange={(e) => setNotifications({ ...notifications, email_novos_relatorios: e.target.checked })}
-                        className="w-5 h-5 rounded bg-navy-700 border-navy-600 text-blue-500 focus:ring-blue-500"
+                        className="w-5 h-5 rounded bg-navy-700 border-navy-600 text-green-500 focus:ring-green-500"
                       />
                     </label>
 
@@ -326,7 +326,7 @@ export default function ConfiguracoesPage() {
                         type="checkbox"
                         checked={notifications.email_atualizacoes}
                         onChange={(e) => setNotifications({ ...notifications, email_atualizacoes: e.target.checked })}
-                        className="w-5 h-5 rounded bg-navy-700 border-navy-600 text-blue-500 focus:ring-blue-500"
+                        className="w-5 h-5 rounded bg-navy-700 border-navy-600 text-green-500 focus:ring-green-500"
                       />
                     </label>
 
@@ -339,7 +339,7 @@ export default function ConfiguracoesPage() {
                         type="checkbox"
                         checked={notifications.email_marketing}
                         onChange={(e) => setNotifications({ ...notifications, email_marketing: e.target.checked })}
-                        className="w-5 h-5 rounded bg-navy-700 border-navy-600 text-blue-500 focus:ring-blue-500"
+                        className="w-5 h-5 rounded bg-navy-700 border-navy-600 text-green-500 focus:ring-green-500"
                       />
                     </label>
                   </div>
@@ -356,7 +356,7 @@ export default function ConfiguracoesPage() {
                         type="checkbox"
                         checked={notifications.push_investigacoes}
                         onChange={(e) => setNotifications({ ...notifications, push_investigacoes: e.target.checked })}
-                        className="w-5 h-5 rounded bg-navy-700 border-navy-600 text-blue-500 focus:ring-blue-500"
+                        className="w-5 h-5 rounded bg-navy-700 border-navy-600 text-green-500 focus:ring-green-500"
                       />
                     </label>
 
@@ -369,7 +369,7 @@ export default function ConfiguracoesPage() {
                         type="checkbox"
                         checked={notifications.push_relatorios}
                         onChange={(e) => setNotifications({ ...notifications, push_relatorios: e.target.checked })}
-                        className="w-5 h-5 rounded bg-navy-700 border-navy-600 text-blue-500 focus:ring-blue-500"
+                        className="w-5 h-5 rounded bg-navy-700 border-navy-600 text-green-500 focus:ring-green-500"
                       />
                     </label>
                   </div>
@@ -378,7 +378,7 @@ export default function ConfiguracoesPage() {
                     <Button
                       onClick={handleSave}
                       disabled={saving}
-                      className="bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold"
+                      className="bg-green-500 hover:bg-green-600 text-navy-950 font-semibold"
                     >
                       {saving ? (
                         <>
@@ -424,7 +424,7 @@ export default function ConfiguracoesPage() {
                           type={showPasswords.atual ? "text" : "password"}
                           value={security.senha_atual}
                           onChange={(e) => setSecurity({ ...security, senha_atual: e.target.value })}
-                          className="w-full pl-9 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           placeholder="••••••••"
                         />
                         <button
@@ -445,7 +445,7 @@ export default function ConfiguracoesPage() {
                           type={showPasswords.nova ? "text" : "password"}
                           value={security.nova_senha}
                           onChange={(e) => setSecurity({ ...security, nova_senha: e.target.value })}
-                          className="w-full pl-9 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           placeholder="••••••••"
                         />
                         <button
@@ -467,7 +467,7 @@ export default function ConfiguracoesPage() {
                           type={showPasswords.confirmar ? "text" : "password"}
                           value={security.confirmar_senha}
                           onChange={(e) => setSecurity({ ...security, confirmar_senha: e.target.value })}
-                          className="w-full pl-9 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                          className="w-full pl-9 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-2.5 bg-slate-100 dark:bg-navy-800 border border-navy-600 rounded-lg text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           placeholder="••••••••"
                         />
                         <button
@@ -485,7 +485,7 @@ export default function ConfiguracoesPage() {
                     <Button
                       onClick={handleSave}
                       disabled={saving || !security.senha_atual || !security.nova_senha || security.nova_senha !== security.confirmar_senha}
-                      className="bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold disabled:opacity-50"
+                      className="bg-green-500 hover:bg-green-600 text-navy-950 font-semibold disabled:opacity-50"
                     >
                       {saving ? (
                         <>
@@ -516,11 +516,11 @@ export default function ConfiguracoesPage() {
                   </div>
 
                   {/* Current Plan */}
-                  <div className="bg-gradient-to-r from-blue-500/10 to-blue-600/5 border border-blue-500/30 rounded-xl p-6">
+                  <div className="bg-gradient-to-r from-green-500/10 to-green-600/5 border border-green-500/30 rounded-xl p-6">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Plano Atual</p>
-                        <h3 className="text-2xl font-bold text-blue-400">Profissional</h3>
+                        <h3 className="text-2xl font-bold text-green-400">Profissional</h3>
                       </div>
                       <div className="text-right">
                         <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm font-medium">
@@ -574,3 +574,4 @@ export default function ConfiguracoesPage() {
     </div>
   );
 }
+

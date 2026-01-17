@@ -46,7 +46,7 @@ export function SearchBar({
   return (
     <div className={`relative ${className}`}>
       {isLoading ? (
-        <Loader2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-400 animate-spin" />
+        <Loader2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-400 animate-spin" />
       ) : (
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
       )}
@@ -55,7 +55,7 @@ export function SearchBar({
         value={internalValue}
         onChange={(e) => setInternalValue(e.target.value)}
         placeholder={placeholder}
-        className="w-full pl-10 pr-10 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+        className="w-full pl-10 pr-10 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-600 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
       />
       {internalValue && (
         <button
@@ -69,3 +69,4 @@ export function SearchBar({
     </div>
   );
 }
+

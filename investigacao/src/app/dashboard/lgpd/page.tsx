@@ -217,7 +217,7 @@ export default async function LGPDPage() {
                 href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
+                className="text-green-500 hover:underline"
               >
                 Texto Integral da Lei
               </a>
@@ -228,7 +228,7 @@ export default async function LGPDPage() {
                 href="https://www.gov.br/anpd/pt-br"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
+                className="text-green-500 hover:underline"
               >
                 Autoridade Nacional de Proteção de Dados
               </a>
@@ -239,7 +239,7 @@ export default async function LGPDPage() {
                 href="https://www.gov.br/anpd/pt-br/assuntos/noticias/anpd-publica-guia-orientativo-para-pequenos-negocios"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
+                className="text-green-500 hover:underline"
               >
                 ANPD - Pequenos Negócios
               </a>
@@ -271,9 +271,9 @@ function StatCard({ title, value, total, icon: Icon, color, badge }: StatCardPro
       border: 'border-green-500/20',
     },
     blue: {
-      bg: 'bg-blue-500/10',
-      text: 'text-blue-400',
-      border: 'border-blue-500/20',
+      bg: 'bg-green-500/10',
+      text: 'text-green-400',
+      border: 'border-green-500/20',
     },
     orange: {
       bg: 'bg-orange-500/10',
@@ -327,7 +327,7 @@ function DireitoCard({ numero, titulo, descricao }: DireitoCardProps) {
   return (
     <div className="p-3 rounded-lg bg-slate-50 dark:bg-navy-800 border border-slate-200 dark:border-navy-700">
       <div className="flex items-start gap-2">
-        <span className="text-xs font-bold text-blue-500 bg-blue-500/10 px-2 py-0.5 rounded">
+        <span className="text-xs font-bold text-green-500 bg-green-500/10 px-2 py-0.5 rounded">
           {numero}
         </span>
         <div>
@@ -358,3 +358,4 @@ function BaseLegalItem({ titulo, descricao }: BaseLegalItemProps) {
     </div>
   )
 }
+

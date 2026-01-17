@@ -322,11 +322,11 @@ export default function ProtecaoRemocaoPage() {
             </Card>
 
             {/* Escavador */}
-            <Card className="border-2 border-blue-500/20 hover:border-blue-500/40 transition-all">
+            <Card className="border-2 border-green-500/20 hover:border-green-500/40 transition-all">
               <CardHeader>
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-blue-500/10 rounded-xl">
-                    <Search className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                  <div className="p-3 bg-green-500/10 rounded-xl">
+                    <Search className="w-8 h-8 text-green-600 dark:text-green-400" />
                   </div>
                   <div>
                     <CardTitle className="text-2xl">Escavador</CardTitle>
@@ -353,7 +353,7 @@ export default function ProtecaoRemocaoPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Badge variant="outline" className="text-blue-600 border-blue-600">
+                  <Badge variant="outline" className="text-green-600 border-green-600">
                     Prazo: 2-5 dias
                   </Badge>
                   <Badge className="bg-green-600 text-white text-xs">
@@ -541,3 +541,4 @@ export default function ProtecaoRemocaoPage() {
     </div>
   )
 }
+

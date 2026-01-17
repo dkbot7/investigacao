@@ -166,7 +166,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
                     setShowForgotPassword(false);
                   }}
                   variant="outline"
-                  className="border-blue-500/50 text-slate-900 dark:text-white hover:bg-blue-500/10"
+                  className="border-green-500/50 text-slate-900 dark:text-white hover:bg-green-500/10"
                 >
                   Voltar ao login
                 </Button>
@@ -258,7 +258,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
                   <button
                     type="button"
                     onClick={() => setShowForgotPassword(true)}
-                    className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
+                    className="text-sm text-green-400 hover:text-green-300 transition-colors"
                   >
                     Esqueceu a senha?
                   </button>
@@ -297,7 +297,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
                       handleClose();
                       onSwitchToRegister();
                     }}
-                    className="text-blue-400 hover:text-blue-300 font-medium transition-colors"
+                    className="text-green-400 hover:text-green-300 font-medium transition-colors"
                   >
                     Criar conta
                   </button>
@@ -310,3 +310,4 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
     </AnimatePresence>
   );
 }
+

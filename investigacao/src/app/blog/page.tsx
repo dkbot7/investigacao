@@ -15,7 +15,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const params = await searchParams;
 
-  let title = "Blog - Investigação Digital e Due Diligence | Investigaree";
+  let title = "Blog - Investigação Digital e Due Diligence";
   let description = "Artigos, tutoriais e cases sobre OSINT, perícia forense digital, compliance e investigação no Brasil";
 
   const parts: string[] = [];
@@ -47,7 +47,7 @@ export async function generateMetadata({
   }
 
   if (parts.length > 0) {
-    title = `${parts.join(' • ')} - Blog Investigaree`;
+    title = `${parts.join(' • ')} - Blog`;
   }
 
   return {

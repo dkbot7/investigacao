@@ -106,7 +106,7 @@ export default function ArticleHeader({
           </p>
 
           {/* Meta info */}
-          <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-navy-400 pb-6 border-b border-blue-500/10">
+          <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-navy-400 pb-6 border-b border-green-500/10">
             {/* Autor */}
             <div className="flex items-center gap-3">
               {post.author.avatar ? (
@@ -118,8 +118,8 @@ export default function ArticleHeader({
                   className="rounded-full"
                 />
               ) : (
-                <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
-                  <User className="w-5 h-5 text-blue-500" />
+                <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                  <User className="w-5 h-5 text-green-500" />
                 </div>
               )}
               <div>
@@ -173,3 +173,4 @@ export default function ArticleHeader({
     </header>
   );
 }
+

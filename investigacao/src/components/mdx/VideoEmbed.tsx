@@ -61,7 +61,7 @@ export default function VideoEmbed({
   return (
     <div className="my-6">
       <div
-        className={`relative ${aspectRatioClass[aspectRatio]} rounded-xl overflow-hidden border border-blue-500/10 bg-white dark:bg-navy-900`}
+        className={`relative ${aspectRatioClass[aspectRatio]} rounded-xl overflow-hidden border border-green-500/10 bg-white dark:bg-navy-900`}
       >
         {isLoaded ? (
           <iframe
@@ -84,7 +84,7 @@ export default function VideoEmbed({
               />
             )}
             <div className="absolute inset-0 bg-slate-50 dark:bg-navy-950/40 group-hover:bg-slate-50 dark:bg-navy-950/50 transition-colors" />
-            <div className="relative z-10 w-20 h-20 rounded-full bg-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+            <div className="relative z-10 w-20 h-20 rounded-full bg-green-500 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
               <Play className="w-8 h-8 text-navy-950 ml-1" fill="currentColor" />
             </div>
           </button>
@@ -96,7 +96,7 @@ export default function VideoEmbed({
           href={src}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1 text-xs text-blue-500 hover:text-blue-400 transition-colors"
+          className="flex items-center gap-1 text-xs text-green-500 hover:text-green-400 transition-colors"
         >
           <span>Abrir no {platform === "youtube" ? "YouTube" : platform === "vimeo" ? "Vimeo" : "site"}</span>
           <ExternalLink className="w-3 h-3" />
@@ -105,3 +105,4 @@ export default function VideoEmbed({
     </div>
   );
 }
+

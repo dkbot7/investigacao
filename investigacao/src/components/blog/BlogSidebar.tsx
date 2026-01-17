@@ -73,10 +73,10 @@ export default function BlogSidebar({
       <PopularPosts posts={popularPosts} />
 
       {/* Tópicos */}
-      <div className="bg-white dark:bg-navy-900/30 border border-blue-500/10 rounded-xl p-5">
-        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-blue-500/10">
-          <div className="p-1.5 rounded-lg bg-blue-500/10">
-            <Folder className="w-4 h-4 text-blue-500" />
+      <div className="bg-white dark:bg-navy-900/30 border border-green-500/10 rounded-xl p-5">
+        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-green-500/10">
+          <div className="p-1.5 rounded-lg bg-green-500/10">
+            <Folder className="w-4 h-4 text-green-500" />
           </div>
           <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Tópicos</h3>
         </div>
@@ -114,10 +114,10 @@ export default function BlogSidebar({
       </div>
 
       {/* Tags Populares */}
-      <div className="bg-white dark:bg-navy-900/30 border border-blue-500/10 rounded-xl p-5">
-        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-blue-500/10">
-          <div className="p-1.5 rounded-lg bg-blue-500/10">
-            <Hash className="w-4 h-4 text-blue-500" />
+      <div className="bg-white dark:bg-navy-900/30 border border-green-500/10 rounded-xl p-5">
+        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-green-500/10">
+          <div className="p-1.5 rounded-lg bg-green-500/10">
+            <Hash className="w-4 h-4 text-green-500" />
           </div>
           <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Tags Populares</h3>
         </div>
@@ -134,7 +134,7 @@ export default function BlogSidebar({
                 whileTap={{ scale: 0.95 }}
                 className={`px-2.5 py-1 rounded-full text-xs transition-all ${
                   isActive
-                    ? "bg-blue-500 text-navy-950 font-medium"
+                    ? "bg-green-500 text-navy-950 font-medium"
                     : "bg-navy-100 dark:bg-navy-800/50 text-slate-500 dark:text-navy-400 hover:bg-navy-200 dark:hover:bg-navy-800 hover:text-white"
                 }`}
               >
@@ -146,10 +146,10 @@ export default function BlogSidebar({
       </div>
 
       {/* Filtro por Data */}
-      <div className="bg-white dark:bg-navy-900/50 border border-blue-500/10 rounded-xl p-5">
-        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-blue-500/10">
-          <div className="p-1.5 rounded-lg bg-blue-500/10">
-            <Calendar className="w-4 h-4 text-blue-500" />
+      <div className="bg-white dark:bg-navy-900/50 border border-green-500/10 rounded-xl p-5">
+        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-green-500/10">
+          <div className="p-1.5 rounded-lg bg-green-500/10">
+            <Calendar className="w-4 h-4 text-green-500" />
           </div>
           <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Filtrar por Data</h3>
         </div>
@@ -163,7 +163,7 @@ export default function BlogSidebar({
               type="date"
               value={filters.dateFrom || ''}
               onChange={(e) => onFiltersChange({ ...filters, dateFrom: e.target.value })}
-              className="w-full px-3 py-2 text-sm bg-slate-50 dark:bg-navy-800 border border-blue-500/20 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:border-blue-500/50"
+              className="w-full px-3 py-2 text-sm bg-slate-50 dark:bg-navy-800 border border-green-500/20 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:border-green-500/50"
             />
           </div>
 
@@ -175,12 +175,12 @@ export default function BlogSidebar({
               type="date"
               value={filters.dateTo || ''}
               onChange={(e) => onFiltersChange({ ...filters, dateTo: e.target.value })}
-              className="w-full px-3 py-2 text-sm bg-slate-50 dark:bg-navy-800 border border-blue-500/20 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:border-blue-500/50"
+              className="w-full px-3 py-2 text-sm bg-slate-50 dark:bg-navy-800 border border-green-500/20 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:border-green-500/50"
             />
           </div>
 
           {/* Quick presets */}
-          <div className="pt-2 border-t border-blue-500/10">
+          <div className="pt-2 border-t border-green-500/10">
             <p className="text-xs text-slate-600 dark:text-navy-300 mb-2">Atalhos:</p>
             <div className="flex flex-wrap gap-2">
               <button
@@ -267,3 +267,4 @@ export default function BlogSidebar({
     </aside>
   );
 }
+

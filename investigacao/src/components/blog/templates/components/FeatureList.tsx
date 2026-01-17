@@ -74,8 +74,8 @@ export default function FeatureList({
           >
             {/* Nome da categoria */}
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-1 h-6 bg-blue-500 rounded-full" />
-              <h3 className="text-lg font-semibold text-blue-400">
+              <div className="w-1 h-6 bg-green-500 rounded-full" />
+              <h3 className="text-lg font-semibold text-green-400">
                 {category.name}
               </h3>
             </div>
@@ -93,12 +93,12 @@ export default function FeatureList({
                 >
                   <div className={`flex items-start gap-3 p-3 rounded-lg transition-colors ${
                     feature.isHighlight
-                      ? "bg-blue-500/10 border border-blue-500/20"
+                      ? "bg-green-500/10 border border-green-500/20"
                       : "hover:bg-white dark:bg-white/50 dark:bg-navy-900/50"
                   }`}>
                     {/* Ícone */}
                     <div className={`flex-shrink-0 mt-0.5 ${
-                      feature.isHighlight ? "text-blue-500" : "text-green-500"
+                      feature.isHighlight ? "text-green-500" : "text-green-500"
                     }`}>
                       {feature.isHighlight ? (
                         <Star className="w-4 h-4 fill-current" />
@@ -111,7 +111,7 @@ export default function FeatureList({
                     <div className="flex-1">
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className={`font-medium ${
-                          feature.isHighlight ? "text-blue-400" : "text-white"
+                          feature.isHighlight ? "text-green-400" : "text-white"
                         }`}>
                           {feature.title}
                         </span>
@@ -141,3 +141,4 @@ export default function FeatureList({
     </motion.section>
   );
 }
+

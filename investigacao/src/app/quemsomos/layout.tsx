@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Quem Somos | investigaree",
-  description: "Conheça a equipe da investigaree. Expertise em investigação particular e due diligence digital com metodologia validada por Perito Criminal Oficial.",
+  title: "Quem Somos | investigação digital",
+  description: "Conheça a equipe da investigação digital. Expertise em investigação particular e due diligence digital com metodologia profissional validada.",
   openGraph: {
-    title: "Quem Somos | investigaree",
-    description: "Equipe especializada em investigação particular e due diligence digital. Advisory Board com Perito Criminal Oficial da ANPAJ.",
+    title: "Quem Somos | investigação digital",
+    description: "Equipe especializada em investigação particular e due diligence digital. Metodologia profissional validada.",
   },
 };
 

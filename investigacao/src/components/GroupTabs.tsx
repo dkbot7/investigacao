@@ -34,7 +34,7 @@ export function GroupTabs({ activeTab, onTabChange, counts }: GroupTabsProps) {
             onClick={() => onTabChange(tab.id)}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium transition-all ${
               isActive
-                ? "bg-blue-500 text-white shadow-md"
+                ? "bg-green-500 text-white shadow-md"
                 : "bg-navy-800 border border-navy-700 text-white/70 hover:bg-navy-700 hover:text-white"
             }`}
           >
@@ -114,3 +114,4 @@ export function getGroupCounts<T extends { grupo?: string }>(data: T[]): {
     cedidos,
   };
 }
+

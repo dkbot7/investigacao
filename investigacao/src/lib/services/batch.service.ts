@@ -163,7 +163,7 @@ export class BatchService {
   getStatusColor(status: BatchJob['status']): string {
     const colors = {
       pending: 'text-yellow-500',
-      processing: 'text-blue-500',
+      processing: 'text-green-500',
       completed: 'text-green-500',
       failed: 'text-red-500',
       cancelled: 'text-gray-500',
@@ -199,3 +199,4 @@ export class BatchService {
 }
 
 export const batchService = new BatchService();
+

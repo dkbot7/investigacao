@@ -22,11 +22,11 @@ interface CodeBlockProps {
 
 export function CodeBlock({ language = "bash", filename, children }: CodeBlockProps) {
   return (
-    <div className="my-6 rounded-xl overflow-hidden border border-blue-500/10">
+    <div className="my-6 rounded-xl overflow-hidden border border-green-500/10">
       {/* Header do código */}
-      <div className="flex items-center justify-between px-4 py-2 bg-slate-100 dark:bg-navy-800 border-b border-blue-500/10">
+      <div className="flex items-center justify-between px-4 py-2 bg-slate-100 dark:bg-navy-800 border-b border-green-500/10">
         <div className="flex items-center gap-2">
-          <Terminal className="w-4 h-4 text-blue-500" />
+          <Terminal className="w-4 h-4 text-green-500" />
           {filename ? (
             <span className="text-xs text-slate-600 dark:text-navy-300 font-mono">{filename}</span>
           ) : (
@@ -35,7 +35,7 @@ export function CodeBlock({ language = "bash", filename, children }: CodeBlockPr
         </div>
         <button
           onClick={() => navigator.clipboard.writeText(children)}
-          className="text-xs text-slate-500 dark:text-navy-400 hover:text-blue-400 transition-colors"
+          className="text-xs text-slate-500 dark:text-navy-400 hover:text-green-400 transition-colors"
         >
           Copiar
         </button>
@@ -59,10 +59,10 @@ export function Callout({ type, title, children }: CalloutProps) {
   const styles = {
     info: {
       icon: Info,
-      bg: "bg-blue-500/10",
-      border: "border-blue-500/30",
-      iconColor: "text-blue-400",
-      titleColor: "text-blue-300"
+      bg: "bg-green-500/10",
+      border: "border-green-500/30",
+      iconColor: "text-green-400",
+      titleColor: "text-green-300"
     },
     warning: {
       icon: AlertTriangle,
@@ -80,10 +80,10 @@ export function Callout({ type, title, children }: CalloutProps) {
     },
     tip: {
       icon: Lightbulb,
-      bg: "bg-blue-500/10",
-      border: "border-blue-500/30",
-      iconColor: "text-blue-400",
-      titleColor: "text-blue-300"
+      bg: "bg-green-500/10",
+      border: "border-green-500/30",
+      iconColor: "text-green-400",
+      titleColor: "text-green-300"
     }
   };
 
@@ -114,11 +114,11 @@ interface KeyStatProps {
 
 export function KeyStat({ value, description, source }: KeyStatProps) {
   return (
-    <div className="my-8 p-6 bg-gradient-to-r from-blue-500/10 to-navy-900/50 rounded-xl border border-blue-500/20">
+    <div className="my-8 p-6 bg-gradient-to-r from-green-500/10 to-navy-900/50 rounded-xl border border-green-500/20">
       <div className="flex items-start gap-4">
-        <Quote className="w-8 h-8 text-blue-500/50 flex-shrink-0" />
+        <Quote className="w-8 h-8 text-green-500/50 flex-shrink-0" />
         <div>
-          <p className="text-3xl font-bold text-blue-400 mb-2">{value}</p>
+          <p className="text-3xl font-bold text-green-400 mb-2">{value}</p>
           <p className="text-slate-700 dark:text-navy-200">{description}</p>
           {source && (
             <p className="text-xs text-slate-900 dark:text-navy-500 mt-2">Fonte: {source}</p>
@@ -141,7 +141,7 @@ interface ArticleImageProps {
 export function ArticleImage({ src, alt, caption, width = 800, height = 450 }: ArticleImageProps) {
   return (
     <figure className="my-8">
-      <div className="rounded-xl overflow-hidden border border-blue-500/10">
+      <div className="rounded-xl overflow-hidden border border-green-500/10">
         <Image
           src={src}
           alt={alt}
@@ -171,14 +171,14 @@ interface ArtifactListProps {
 
 export function ArtifactList({ title, items }: ArtifactListProps) {
   return (
-    <div className="my-6 bg-white dark:bg-white/50 dark:bg-navy-900/50 rounded-xl border border-blue-500/10 overflow-hidden">
-      <div className="px-4 py-3 bg-slate-100 dark:bg-navy-800 border-b border-blue-500/10">
+    <div className="my-6 bg-white dark:bg-white/50 dark:bg-navy-900/50 rounded-xl border border-green-500/10 overflow-hidden">
+      <div className="px-4 py-3 bg-slate-100 dark:bg-navy-800 border-b border-green-500/10">
         <div className="flex items-center gap-2">
-          <FileCode className="w-4 h-4 text-blue-500" />
+          <FileCode className="w-4 h-4 text-green-500" />
           <h4 className="font-semibold text-slate-900 dark:text-white">{title}</h4>
         </div>
       </div>
-      <div className="divide-y divide-blue-500/5">
+      <div className="divide-y divide-green-500/5">
         {items.map((item, index) => (
           <div key={index} className="px-4 py-3">
             <div className="flex items-start justify-between gap-4">
@@ -187,7 +187,7 @@ export function ArtifactList({ title, items }: ArtifactListProps) {
                 <p className="text-sm text-slate-500 dark:text-navy-400 mt-0.5">{item.description}</p>
               </div>
               {item.path && (
-                <code className="text-xs bg-slate-100 dark:bg-navy-800 px-2 py-1 rounded text-blue-400 font-mono flex-shrink-0">
+                <code className="text-xs bg-slate-100 dark:bg-navy-800 px-2 py-1 rounded text-green-400 font-mono flex-shrink-0">
                   {item.path}
                 </code>
               )}
@@ -321,3 +321,4 @@ export default function ArticleContent({ children }: ArticleContentProps) {
     </motion.article>
   );
 }
+

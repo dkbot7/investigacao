@@ -70,13 +70,13 @@ export default function GlossarioPage() {
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                 {/* Lado esquerdo - Título e badge */}
                 <div className="flex items-center gap-4">
-                  <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
-                    <BookOpen className="w-6 h-6 text-blue-500" />
+                  <div className="p-2.5 rounded-xl bg-green-500/10 border border-green-500/20">
+                    <BookOpen className="w-6 h-6 text-green-500" />
                   </div>
                   <div>
                     <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
                       Glossário{" "}
-                      <span className="text-blue-500">DFIR</span>
+                      <span className="text-green-500">DFIR</span>
                     </h1>
                     <p className="text-sm text-slate-500 dark:text-navy-400">
                       Termos técnicos validados por Perito Criminal
@@ -93,7 +93,7 @@ export default function GlossarioPage() {
                       placeholder="Buscar termo..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 pr-4 bg-slate-100 dark:bg-navy-800/50 border-blue-500/20 text-slate-900 dark:text-white placeholder:text-slate-500 dark:text-navy-400 focus:border-blue-500/50"
+                      className="pl-10 pr-4 bg-slate-100 dark:bg-navy-800/50 border-green-500/20 text-slate-900 dark:text-white placeholder:text-slate-500 dark:text-navy-400 focus:border-green-500/50"
                     />
                   </div>
                 </div>
@@ -103,14 +103,14 @@ export default function GlossarioPage() {
         </section>
 
         {/* Filtros por categoria */}
-        <section className="py-8 border-y border-blue-500/10 bg-white dark:bg-navy-900/30">
+        <section className="py-8 border-y border-green-500/10 bg-white dark:bg-navy-900/30">
           <div className="container mx-auto px-4 sm:px-8 lg:px-12">
             <div className="flex flex-wrap items-center justify-center gap-3">
               <button
                 onClick={() => setSelectedCategory(null)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   selectedCategory === null
-                    ? "bg-blue-500 text-navy-950 shadow-lg"
+                    ? "bg-green-500 text-navy-950 shadow-lg"
                     : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-navy-300 hover:text-white hover:bg-navy-700 hover:scale-105 hover:shadow-md"
                 }`}
               >
@@ -142,14 +142,14 @@ export default function GlossarioPage() {
         </section>
 
         {/* Índice alfabético */}
-        <section className="py-4 border-b border-blue-500/10 bg-white dark:bg-navy-900/20 sticky top-16 z-40">
+        <section className="py-4 border-b border-green-500/10 bg-white dark:bg-navy-900/20 sticky top-16 z-40">
           <div className="container mx-auto px-4 sm:px-8 lg:px-12">
             <div className="flex flex-wrap items-center justify-center gap-2">
               {letters.map(letter => (
                 <a
                   key={letter}
                   href={`#letter-${letter}`}
-                  className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-navy-800 text-slate-900 dark:text-white hover:bg-blue-500 hover:text-navy-950 hover:scale-110 hover:shadow-lg transition-all duration-200 font-medium text-sm"
+                  className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-navy-800 text-slate-900 dark:text-white hover:bg-green-500 hover:text-navy-950 hover:scale-110 hover:shadow-lg transition-all duration-200 font-medium text-sm"
                 >
                   {letter}
                 </a>
@@ -181,7 +181,7 @@ export default function GlossarioPage() {
                   <div key={letter} id={`letter-${letter}`} className="mb-12">
                     {/* Letra */}
                     <div className="sticky top-32 z-30 mb-4">
-                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-500 text-navy-950 font-bold text-xl">
+                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-green-500 text-navy-950 font-bold text-xl">
                         {letter}
                       </div>
                     </div>
@@ -200,7 +200,7 @@ export default function GlossarioPage() {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.05 }}
                             className={`bg-white dark:bg-navy-900/50 border rounded-xl overflow-hidden transition-all ${
-                              isExpanded ? "border-blue-500/50" : "border-blue-500/10 hover:border-blue-500/30"
+                              isExpanded ? "border-green-500/50" : "border-green-500/10 hover:border-green-500/30"
                             }`}
                           >
                             <button
@@ -208,7 +208,7 @@ export default function GlossarioPage() {
                               className="w-full p-5 flex items-start gap-4 text-left hover:bg-slate-50 dark:hover:bg-navy-800/50 transition-colors duration-200"
                             >
                               <ChevronRight
-                                className={`w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0 transition-transform ${
+                                className={`w-5 h-5 text-green-500 mt-0.5 flex-shrink-0 transition-transform ${
                                   isExpanded ? "rotate-90" : ""
                                 }`}
                               />
@@ -240,7 +240,7 @@ export default function GlossarioPage() {
                               <motion.div
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: "auto" }}
-                                className="px-5 pb-5 border-t border-blue-500/10"
+                                className="px-5 pb-5 border-t border-green-500/10"
                               >
                                 <div className="pt-4">
                                   {term.relatedTerms && term.relatedTerms.length > 0 && (
@@ -259,7 +259,7 @@ export default function GlossarioPage() {
                                                 setExpandedTerm(related);
                                                 document.getElementById(`letter-${relatedTerm.term[0].toUpperCase()}`)?.scrollIntoView({ behavior: 'smooth' });
                                               }}
-                                              className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-navy-800 text-blue-400 text-sm hover:bg-navy-700 hover:scale-105 hover:shadow-md transition-all duration-200"
+                                              className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-navy-800 text-green-400 text-sm hover:bg-navy-700 hover:scale-105 hover:shadow-md transition-all duration-200"
                                             >
                                               {relatedTerm.term}
                                             </button>
@@ -278,7 +278,7 @@ export default function GlossarioPage() {
 
                                   <Link
                                     href={`/blog?search=${encodeURIComponent(term.term)}`}
-                                    className="inline-flex items-center gap-2 text-blue-500 hover:text-blue-400 hover:translate-x-1 text-sm font-medium transition-all duration-200"
+                                    className="inline-flex items-center gap-2 text-green-500 hover:text-green-400 hover:translate-x-1 text-sm font-medium transition-all duration-200"
                                   >
                                     Ver artigos sobre {term.term}
                                     <ExternalLink className="w-4 h-4" />
@@ -298,7 +298,7 @@ export default function GlossarioPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-16 border-t border-blue-500/10">
+        <section className="py-16 border-t border-green-500/10">
           <div className="container mx-auto px-4 sm:px-8 lg:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -315,7 +315,7 @@ export default function GlossarioPage() {
               </p>
               <Link
                 href="/contato"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 hover:scale-105 hover:shadow-lg text-navy-950 font-semibold rounded-xl transition-all duration-200"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-600 hover:scale-105 hover:shadow-lg text-navy-950 font-semibold rounded-xl transition-all duration-200"
               >
                 Sugerir termo
                 <ChevronRight className="w-4 h-4" />
@@ -329,3 +329,4 @@ export default function GlossarioPage() {
     </>
   );
 }
+

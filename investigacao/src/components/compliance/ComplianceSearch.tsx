@@ -128,7 +128,7 @@ export function ComplianceSearch({ defaultSearchType = 'cpf', className }: Compl
             className={cn(
               'px-4 py-2 rounded-lg text-sm font-medium transition-all',
               searchType === 'cpf'
-                ? 'bg-blue-500 text-white'
+                ? 'bg-green-500 text-white'
                 : 'bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:bg-slate-200 dark:hover:bg-navy-700'
             )}
           >
@@ -139,7 +139,7 @@ export function ComplianceSearch({ defaultSearchType = 'cpf', className }: Compl
             className={cn(
               'px-4 py-2 rounded-lg text-sm font-medium transition-all',
               searchType === 'cnpj'
-                ? 'bg-blue-500 text-white'
+                ? 'bg-green-500 text-white'
                 : 'bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:bg-slate-200 dark:hover:bg-navy-700'
             )}
           >
@@ -150,7 +150,7 @@ export function ComplianceSearch({ defaultSearchType = 'cpf', className }: Compl
             className={cn(
               'px-4 py-2 rounded-lg text-sm font-medium transition-all',
               searchType === 'nome'
-                ? 'bg-blue-500 text-white'
+                ? 'bg-green-500 text-white'
                 : 'bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:bg-slate-200 dark:hover:bg-navy-700'
             )}
           >
@@ -175,7 +175,7 @@ export function ComplianceSearch({ defaultSearchType = 'cpf', className }: Compl
                   : 'Digite o nome...'
               }
               disabled={isPending}
-              className="w-full pl-10 pr-10 py-3 bg-slate-100 dark:bg-navy-800 border border-slate-300 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 disabled:opacity-50"
+              className="w-full pl-10 pr-10 py-3 bg-slate-100 dark:bg-navy-800 border border-slate-300 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 disabled:opacity-50"
             />
             {searchValue && !isPending && (
               <button
@@ -186,14 +186,14 @@ export function ComplianceSearch({ defaultSearchType = 'cpf', className }: Compl
               </button>
             )}
             {isPending && (
-              <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-500 animate-spin" />
+              <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500 animate-spin" />
             )}
           </div>
 
           <Button
             onClick={handleSearch}
             disabled={isPending || !searchValue.trim()}
-            className="px-6 bg-blue-600 hover:bg-blue-700 disabled:opacity-50"
+            className="px-6 bg-green-600 hover:bg-green-700 disabled:opacity-50"
           >
             {isPending ? 'Verificando...' : 'Verificar'}
           </Button>
@@ -337,3 +337,4 @@ export function ComplianceSearch({ defaultSearchType = 'cpf', className }: Compl
     </div>
   )
 }
+

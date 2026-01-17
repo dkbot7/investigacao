@@ -134,8 +134,8 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-slate-400 dark:border-navy-700">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
-                    <UserPlus className="w-5 h-5 text-blue-400" />
+                  <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center">
+                    <UserPlus className="w-5 h-5 text-green-400" />
                   </div>
                   <div>
                     <h2 className="text-xl font-bold text-slate-900 dark:text-white">Adicionar Funcionário</h2>
@@ -169,7 +169,7 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
                       value={formData.nome}
                       onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
                       placeholder="Ex: João Silva Santos"
-                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                       required
                     />
                   </div>
@@ -185,7 +185,7 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
                       onChange={handleCPFChange}
                       placeholder="000.000.000-00"
                       maxLength={14}
-                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 font-mono"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 font-mono"
                       required
                     />
                   </div>
@@ -200,7 +200,7 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
                       value={formData.cadastro}
                       onChange={(e) => setFormData({ ...formData, cadastro: e.target.value })}
                       placeholder="Ex: 12345"
-                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                     />
                   </div>
 
@@ -214,7 +214,7 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
                       value={formData.grupo}
                       onChange={(e) => setFormData({ ...formData, grupo: e.target.value })}
                       placeholder="Ex: Administrativo, Operacional"
-                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                       required
                     />
                   </div>
@@ -229,7 +229,7 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
                       value={formData.cargo}
                       onChange={(e) => setFormData({ ...formData, cargo: e.target.value })}
                       placeholder="Ex: Analista, Gerente"
-                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                      className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                     />
                   </div>
 
@@ -246,15 +246,15 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
                         value={formData.salario}
                         onChange={(e) => setFormData({ ...formData, salario: e.target.value })}
                         placeholder="0,00"
-                        className="w-full pl-12 pr-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+                        className="w-full pl-12 pr-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500"
                       />
                     </div>
                   </div>
                 </div>
 
                 {/* Info */}
-                <div className="p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
-                  <p className="text-sm text-blue-400">
+                <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
+                  <p className="text-sm text-green-400">
                     <strong>Atenção:</strong> Após o cadastro, o funcionário será enviado para investigação automática em todas as bases de dados disponíveis.
                   </p>
                 </div>
@@ -273,7 +273,7 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
                   <Button
                     type="submit"
                     disabled={loading}
-                    className="bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold"
+                    className="bg-green-500 hover:bg-green-600 text-navy-950 font-semibold"
                   >
                     {loading ? (
                       <>
@@ -296,3 +296,4 @@ export function AddFuncionarioModal({ isOpen, onClose, onSuccess }: AddFuncionar
     </AnimatePresence>
   );
 }
+

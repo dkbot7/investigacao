@@ -60,11 +60,11 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
   const percentage = Math.round((correctCount / questions.length) * 100);
 
   return (
-    <div className="my-6 rounded-xl border border-blue-500/10 bg-white dark:bg-navy-900 overflow-hidden">
+    <div className="my-6 rounded-xl border border-green-500/10 bg-white dark:bg-navy-900 overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-white dark:bg-navy-900 border-b border-blue-500/10">
+      <div className="flex items-center justify-between px-4 py-3 bg-white dark:bg-navy-900 border-b border-green-500/10">
         <div className="flex items-center gap-2">
-          <HelpCircle className="w-5 h-5 text-blue-500" />
+          <HelpCircle className="w-5 h-5 text-green-500" />
           <h4 className="font-medium text-slate-900 dark:text-white">{title}</h4>
         </div>
         <span className="text-sm text-slate-500 dark:text-navy-400">
@@ -91,14 +91,14 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
                 const isCorrectOption = index === current.correctIndex;
                 const showStatus = selectedAnswer !== null;
 
-                let statusClass = "border-blue-500/10 hover:border-blue-500/30";
+                let statusClass = "border-green-500/10 hover:border-green-500/30";
                 if (showStatus) {
                   if (isCorrectOption) {
                     statusClass = "border-green-500/50 bg-green-500/10";
                   } else if (isSelected && !isCorrectOption) {
                     statusClass = "border-red-500/50 bg-red-500/10";
                   } else {
-                    statusClass = "border-blue-500/10 opacity-50";
+                    statusClass = "border-green-500/10 opacity-50";
                   }
                 }
 
@@ -133,7 +133,7 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="mt-4 p-4 rounded-lg bg-slate-50 dark:bg-navy-800 border border-blue-500/10"
+                  className="mt-4 p-4 rounded-lg bg-slate-50 dark:bg-navy-800 border border-green-500/10"
                 >
                   <p className="text-sm text-slate-600 dark:text-navy-300">
                     <strong className={isCorrect ? "text-green-400" : "text-red-400"}>
@@ -151,7 +151,7 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 onClick={handleNext}
-                className="mt-6 w-full py-3 rounded-lg bg-blue-500 hover:bg-blue-400 text-navy-950 font-medium transition-colors"
+                className="mt-6 w-full py-3 rounded-lg bg-green-500 hover:bg-green-400 text-navy-950 font-medium transition-colors"
               >
                 {currentQuestion < questions.length - 1 ? "Próxima Pergunta" : "Ver Resultado"}
               </motion.button>
@@ -197,7 +197,7 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
             {/* Reset Button */}
             <button
               onClick={handleReset}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-blue-500/20 hover:border-blue-500/40 text-blue-400 hover:text-blue-300 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-green-500/20 hover:border-green-500/40 text-green-400 hover:text-green-300 transition-colors"
             >
               <RotateCcw className="w-4 h-4" />
               Tentar Novamente
@@ -209,10 +209,11 @@ export default function Quiz({ title = "Quiz", questions, showResults = true }: 
       {/* Progress Bar */}
       <div className="h-1 bg-slate-100 dark:bg-navy-800">
         <div
-          className="h-full bg-blue-500 transition-all duration-300"
+          className="h-full bg-green-500 transition-all duration-300"
           style={{ width: `${((currentQuestion + (isComplete ? 1 : 0)) / questions.length) * 100}%` }}
         />
       </div>
     </div>
   );
 }
+

@@ -22,8 +22,8 @@ export default function SocialProof() {
               const Icon = client.icon;
               return (
                 <div key={i} className="flex flex-col items-center gap-2 text-slate-900 dark:text-navy-500 dark:text-slate-500 dark:text-navy-400">
-                  <div className="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-blue-500" />
+                  <div className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center">
+                    <Icon className="w-6 h-6 text-green-500" />
                   </div>
                   <span className="font-medium text-navy-700 dark:text-slate-700 dark:text-navy-200">{client.name}</span>
                   <span className="text-xs text-slate-500 dark:text-navy-400 dark:text-slate-900 dark:text-navy-500">{client.desc}</span>
@@ -36,3 +36,4 @@ export default function SocialProof() {
     </section>
   );
 }
+

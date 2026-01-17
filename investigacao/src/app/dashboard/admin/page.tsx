@@ -503,7 +503,7 @@ export default function AdminPage() {
 
   function getAlertIcon(type: string) {
     switch (type) {
-      case 'new_user': return <User className="w-5 h-5 text-blue-400" />;
+      case 'new_user': return <User className="w-5 h-5 text-green-400" />;
       case 'new_lead': return <MessageSquare className="w-5 h-5 text-green-400" />;
       case 'error': return <AlertTriangle className="w-5 h-5 text-red-400" />;
       default: return <Info className="w-5 h-5 text-slate-500 dark:text-gray-400" />;
@@ -515,7 +515,7 @@ export default function AdminPage() {
       case 'error': return 'border-red-500/30 bg-red-500/10';
       case 'warning': return 'border-amber-500/30 bg-amber-500/10';
       case 'success': return 'border-green-500/30 bg-green-500/10';
-      default: return 'border-blue-500/30 bg-blue-500/10';
+      default: return 'border-green-500/30 bg-green-500/10';
     }
   }
 
@@ -544,7 +544,7 @@ export default function AdminPage() {
     const styles: Record<string, { color: string; bg: string; label: string }> = {
       grant_access: { color: 'text-emerald-400', bg: 'bg-emerald-500/20', label: 'Acesso Concedido' },
       revoke_access: { color: 'text-red-400', bg: 'bg-red-500/20', label: 'Acesso Revogado' },
-      create_tenant: { color: 'text-blue-400', bg: 'bg-blue-500/20', label: 'Tenant Criado' },
+      create_tenant: { color: 'text-green-400', bg: 'bg-green-500/20', label: 'Tenant Criado' },
       update_tenant: { color: 'text-amber-400', bg: 'bg-amber-500/20', label: 'Tenant Atualizado' },
       deactivate_tenant: { color: 'text-orange-400', bg: 'bg-orange-500/20', label: 'Tenant Desativado' },
       activate_tenant: { color: 'text-emerald-400', bg: 'bg-emerald-500/20', label: 'Tenant Ativado' },
@@ -964,7 +964,7 @@ export default function AdminPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500" />
       </div>
     );
   }
@@ -980,7 +980,7 @@ export default function AdminPage() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2 sm:gap-3">
-              <Shield className="w-6 h-6 sm:w-7 sm:h-7 text-blue-400" />
+              <Shield className="w-6 h-6 sm:w-7 sm:h-7 text-green-400" />
               Administracao
             </h1>
             <p className="text-sm sm:text-base text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
@@ -1099,7 +1099,7 @@ export default function AdminPage() {
             onClick={() => setActiveTab('overview')}
             className={`px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap ${
               activeTab === 'overview'
-                ? 'text-blue-400 border-b-2 border-blue-400'
+                ? 'text-green-400 border-b-2 border-green-400'
                 : 'text-slate-600 dark:text-white/60 hover:text-white'
             }`}
           >
@@ -1109,7 +1109,7 @@ export default function AdminPage() {
             onClick={() => setActiveTab('alerts')}
             className={`px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors flex items-center gap-1 sm:gap-2 whitespace-nowrap ${
               activeTab === 'alerts'
-                ? 'text-blue-400 border-b-2 border-blue-400'
+                ? 'text-green-400 border-b-2 border-green-400'
                 : 'text-slate-600 dark:text-white/60 hover:text-white'
             }`}
           >
@@ -1124,7 +1124,7 @@ export default function AdminPage() {
             onClick={() => setActiveTab('users')}
             className={`px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
               activeTab === 'users'
-                ? 'text-blue-400 border-b-2 border-blue-400'
+                ? 'text-green-400 border-b-2 border-green-400'
                 : 'text-slate-600 dark:text-white/60 hover:text-white'
             }`}
           >
@@ -1134,7 +1134,7 @@ export default function AdminPage() {
             onClick={() => setActiveTab('investigations')}
             className={`px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap ${
               activeTab === 'investigations'
-                ? 'text-blue-400 border-b-2 border-blue-400'
+                ? 'text-green-400 border-b-2 border-green-400'
                 : 'text-slate-600 dark:text-white/60 hover:text-white'
             }`}
           >
@@ -1147,7 +1147,7 @@ export default function AdminPage() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-                <Bell className="w-5 h-5 text-blue-400" />
+                <Bell className="w-5 h-5 text-green-400" />
                 Alertas do Sistema
               </h3>
               {unreadCount > 0 && (
@@ -1228,7 +1228,7 @@ export default function AdminPage() {
                           <div className="mt-3 flex gap-2">
                             <Button
                               size="sm"
-                              className="bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 border border-blue-500/30"
+                              className="bg-green-500/20 text-green-400 hover:bg-green-500/30 border border-green-500/30"
                               onClick={() => {
                                 // Copiar email para clipboard
                                 navigator.clipboard.writeText(alert.data?.email || '');
@@ -1429,7 +1429,7 @@ export default function AdminPage() {
                         placeholder="Buscar por nome, documento ou usuário..."
                         value={invSearchQuery}
                         onChange={(e) => setInvSearchQuery(e.target.value)}
-                        className="w-full pl-10 pr-10 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 text-sm sm:text-base"
+                        className="w-full pl-10 pr-10 py-2.5 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg text-slate-900 dark:text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 text-sm sm:text-base"
                       />
                       {invSearchQuery && (
                         <button
@@ -1447,7 +1447,7 @@ export default function AdminPage() {
                         onClick={() => setInvViewMode("list")}
                         className={`flex-1 sm:flex-none px-3 py-2 rounded transition-all ${
                           invViewMode === "list"
-                            ? "bg-blue-500 text-navy-950"
+                            ? "bg-green-500 text-navy-950"
                             : "text-slate-600 dark:text-white/60 hover:text-white"
                         }`}
                         title="Visualização em Lista"
@@ -1458,7 +1458,7 @@ export default function AdminPage() {
                         onClick={() => setInvViewMode("kanban")}
                         className={`flex-1 sm:flex-none px-3 py-2 rounded transition-all ${
                           invViewMode === "kanban"
-                            ? "bg-blue-500 text-navy-950"
+                            ? "bg-green-500 text-navy-950"
                             : "text-slate-600 dark:text-white/60 hover:text-white"
                         }`}
                         title="Visualização Kanban"
@@ -1492,7 +1492,7 @@ export default function AdminPage() {
                           onClick={() => setInvFilterCategory(category)}
                           className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                             invFilterCategory === category
-                              ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                              ? "bg-green-500/20 text-green-400 border border-green-500/30"
                               : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
                           }`}
                         >
@@ -1559,7 +1559,7 @@ export default function AdminPage() {
                                   <div className="flex items-center justify-center gap-2">
                                     <button
                                       onClick={() => setSelectedInvestigation(inv)}
-                                      className="p-1.5 rounded hover:bg-blue-500/20 text-blue-400 hover:text-blue-300 transition-colors"
+                                      className="p-1.5 rounded hover:bg-green-500/20 text-green-400 hover:text-green-300 transition-colors"
                                       title="Visualizar"
                                     >
                                       <Eye className="w-4 h-4" />
@@ -1705,8 +1705,8 @@ export default function AdminPage() {
 
         {/* Usuarios Sem Acesso */}
         {filteredUsersWithoutAccess.length > 0 && (
-          <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6">
-            <h3 className="text-lg font-semibold text-blue-400 mb-4 flex items-center gap-2">
+          <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-6">
+            <h3 className="text-lg font-semibold text-green-400 mb-4 flex items-center gap-2">
               <User className="w-5 h-5" />
               Usuarios Sem Acesso ({filteredUsersWithoutAccess.length})
             </h3>
@@ -1730,7 +1730,7 @@ export default function AdminPage() {
                     </p>
                   </div>
                   <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 flex-shrink-0">
-                    <span className="px-2 py-1 bg-blue-500/20 text-blue-400 text-xs rounded-full text-center sm:text-left">
+                    <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full text-center sm:text-left">
                       Sem Acesso
                     </span>
                     <Button
@@ -1763,7 +1763,7 @@ export default function AdminPage() {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h3 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-                <Users className="w-5 h-5 text-blue-400" />
+                <Users className="w-5 h-5 text-green-400" />
                 Usuarios com Acesso ({paginationData.totalItems})
               </h3>
               <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
@@ -1790,7 +1790,7 @@ export default function AdminPage() {
                     setPageSize(Number(e.target.value));
                     setCurrentPage(1);
                   }}
-                  className="bg-slate-100 dark:bg-navy-800 border border-navy-600 text-slate-900 dark:text-white text-sm rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="bg-slate-100 dark:bg-navy-800 border border-navy-600 text-slate-900 dark:text-white text-sm rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500"
                 >
                   <option value={5}>5</option>
                   <option value={10}>10</option>
@@ -1837,7 +1837,7 @@ export default function AdminPage() {
                                   ? "bg-red-500/20 text-red-400"
                                   : t.role === "editor"
                                   ? "bg-amber-500/20 text-amber-400"
-                                  : "bg-blue-500/20 text-blue-400"
+                                  : "bg-green-500/20 text-green-400"
                               }`}
                             >
                               {t.code} ({t.role})
@@ -1853,7 +1853,7 @@ export default function AdminPage() {
                               : new Date().getTime() - new Date(u.last_access).getTime() < 3600000 // < 1 hora
                               ? 'text-emerald-400'
                               : new Date().getTime() - new Date(u.last_access).getTime() < 86400000 // < 1 dia
-                              ? 'text-blue-400'
+                              ? 'text-green-400'
                               : new Date().getTime() - new Date(u.last_access).getTime() < 604800000 // < 7 dias
                               ? 'text-amber-400'
                               : 'text-slate-500 dark:text-white/50'
@@ -1868,7 +1868,7 @@ export default function AdminPage() {
                           <Button
                             size="sm"
                             variant="ghost"
-                            className="text-blue-400 hover:text-blue-300 hover:bg-blue-500/10"
+                            className="text-green-400 hover:text-green-300 hover:bg-green-500/10"
                             onClick={() => handleEditUser(u)}
                             title="Editar usuário"
                           >
@@ -1928,7 +1928,7 @@ export default function AdminPage() {
                             : new Date().getTime() - new Date(u.last_access).getTime() < 3600000
                             ? 'bg-emerald-500/20 text-emerald-400'
                             : new Date().getTime() - new Date(u.last_access).getTime() < 86400000
-                            ? 'bg-blue-500/20 text-blue-400'
+                            ? 'bg-green-500/20 text-green-400'
                             : new Date().getTime() - new Date(u.last_access).getTime() < 604800000
                             ? 'bg-amber-500/20 text-amber-400'
                             : 'bg-white/10 text-slate-500 dark:text-white/50'
@@ -1959,7 +1959,7 @@ export default function AdminPage() {
                               ? "bg-red-500/20 text-red-400"
                               : t.role === "editor"
                               ? "bg-amber-500/20 text-amber-400"
-                              : "bg-blue-500/20 text-blue-400"
+                              : "bg-green-500/20 text-green-400"
                           }`}
                         >
                           {t.code} ({t.role})
@@ -1975,7 +1975,7 @@ export default function AdminPage() {
                       <Button
                         size="sm"
                         variant="outline"
-                        className="text-blue-400 border-blue-500/30 hover:bg-blue-500/10 hover:border-blue-500/50 text-xs"
+                        className="text-green-400 border-green-500/30 hover:bg-green-500/10 hover:border-green-500/50 text-xs"
                         onClick={() => handleEditUser(u)}
                       >
                         <Edit className="w-3 h-3 mr-1" />
@@ -2062,10 +2062,10 @@ export default function AdminPage() {
                   setSelectedTenant(t);
                   setShowTenantDetailsModal(true);
                 }}
-                className="bg-slate-100 dark:bg-navy-800/50 rounded-lg p-4 border border-slate-400 dark:border-navy-700 cursor-pointer hover:border-blue-500/50 transition-all"
+                className="bg-slate-100 dark:bg-navy-800/50 rounded-lg p-4 border border-slate-400 dark:border-navy-700 cursor-pointer hover:border-green-500/50 transition-all"
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-bold text-blue-400">{t.code}</span>
+                  <span className="text-sm font-bold text-green-400">{t.code}</span>
                   <span className={`px-2 py-0.5 rounded text-xs ${
                     t.status === "active"
                       ? "bg-emerald-500/20 text-emerald-400"
@@ -2177,7 +2177,7 @@ export default function AdminPage() {
                               {style.label}
                             </span>
                             {log.tenant_code && (
-                              <span className="px-2 py-0.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400">
+                              <span className="px-2 py-0.5 rounded text-xs font-medium bg-green-500/20 text-green-400">
                                 {log.tenant_code}
                               </span>
                             )}
@@ -2185,7 +2185,7 @@ export default function AdminPage() {
                               <span className={`px-2 py-0.5 rounded text-xs font-medium ${
                                 log.role === 'admin' ? 'bg-red-500/20 text-red-400' :
                                 log.role === 'editor' ? 'bg-amber-500/20 text-amber-400' :
-                                'bg-blue-500/20 text-blue-400'
+                                'bg-green-500/20 text-green-400'
                               }`}>
                                 {log.role}
                               </span>
@@ -2243,7 +2243,7 @@ export default function AdminPage() {
         <div className="bg-white dark:bg-navy-900 border border-slate-400 dark:border-navy-700 rounded-xl p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-              <Activity className="w-5 h-5 text-blue-400" />
+              <Activity className="w-5 h-5 text-green-400" />
               Métricas de Uso
             </h3>
             <span className="text-xs text-slate-900 dark:text-white/40">Atualizado agora</span>
@@ -2254,11 +2254,11 @@ export default function AdminPage() {
             {/* Usuários Ativos - Última Hora */}
             <motion.div
               whileHover={{ scale: 1.02, y: -2 }}
-              className="bg-gradient-to-br from-blue-500/10 to-blue-500/10 border border-blue-500/30 rounded-lg p-4"
+              className="bg-gradient-to-br from-green-500/10 to-green-500/10 border border-green-500/30 rounded-lg p-4"
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs text-blue-400 font-medium">Última Hora</span>
-                <Clock className="w-4 h-4 text-blue-400" />
+                <span className="text-xs text-green-400 font-medium">Última Hora</span>
+                <Clock className="w-4 h-4 text-green-400" />
               </div>
               <p className="text-2xl font-bold text-slate-900 dark:text-white mb-1">{usageMetrics.activeLastHour}</p>
               <p className="text-xs text-slate-900 dark:text-slate-600 dark:text-white/60">usuários ativos</p>
@@ -2357,11 +2357,11 @@ export default function AdminPage() {
                 <div>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs text-slate-900 dark:text-slate-600 dark:text-white/60">Viewer</span>
-                    <span className="text-xs text-blue-400 font-medium">{usageMetrics.roleDistribution.viewer}</span>
+                    <span className="text-xs text-green-400 font-medium">{usageMetrics.roleDistribution.viewer}</span>
                   </div>
                   <div className="w-full bg-white dark:bg-navy-900 rounded-full h-2 overflow-hidden">
                     <div
-                      className="bg-gradient-to-r from-blue-500 to-blue-400 h-full rounded-full transition-all duration-500"
+                      className="bg-gradient-to-r from-green-500 to-green-400 h-full rounded-full transition-all duration-500"
                       style={{ width: `${(usageMetrics.roleDistribution.viewer / Math.max(1, usersWithAccess.length)) * 100}%` }}
                     />
                   </div>
@@ -2375,12 +2375,12 @@ export default function AdminPage() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
-                      <Shield className="w-4 h-4 text-blue-400" />
+                    <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+                      <Shield className="w-4 h-4 text-green-400" />
                     </div>
                     <span className="text-sm text-slate-900 dark:text-slate-700 dark:text-navy-300">Taxa de Ativação</span>
                   </div>
-                  <span className="text-lg font-bold text-blue-400">{usageMetrics.activationRate}%</span>
+                  <span className="text-lg font-bold text-green-400">{usageMetrics.activationRate}%</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -2393,12 +2393,12 @@ export default function AdminPage() {
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
-                      <Activity className="w-4 h-4 text-blue-400" />
+                    <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+                      <Activity className="w-4 h-4 text-green-400" />
                     </div>
                     <span className="text-sm text-slate-900 dark:text-slate-700 dark:text-navy-300">Ações (24h)</span>
                   </div>
-                  <span className="text-lg font-bold text-blue-400">{usageMetrics.actionsLastDay}</span>
+                  <span className="text-lg font-bold text-green-400">{usageMetrics.actionsLastDay}</span>
                 </div>
               </div>
             </div>
@@ -2492,7 +2492,7 @@ export default function AdminPage() {
             className="bg-white dark:bg-navy-900 rounded-xl border border-slate-400 dark:border-navy-700 p-4 sm:p-6 w-full max-w-full sm:max-w-md"
           >
             <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-              <Edit className="w-5 h-5 text-blue-400" />
+              <Edit className="w-5 h-5 text-green-400" />
               Editar Usuário
             </h3>
             <div className="space-y-4">
@@ -2562,7 +2562,7 @@ export default function AdminPage() {
                 Cancelar
               </Button>
               <Button
-                className="flex-1 bg-blue-500 hover:bg-blue-600 text-slate-900 dark:text-white"
+                className="flex-1 bg-green-500 hover:bg-green-600 text-slate-900 dark:text-white"
                 onClick={confirmEditUser}
                 disabled={updatingUser}
               >
@@ -2733,8 +2733,8 @@ export default function AdminPage() {
                 )}
               </div>
 
-              <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3">
-                <p className="text-blue-400 text-sm font-medium mb-1">ℹ️ Informação</p>
+              <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-3">
+                <p className="text-green-400 text-sm font-medium mb-1">ℹ️ Informação</p>
                 <p className="text-slate-900 dark:text-slate-700 dark:text-navy-300 text-xs">
                   O tenant será criado com status ativo. Você poderá adicionar usuários após a criação.
                 </p>
@@ -2850,8 +2850,8 @@ export default function AdminPage() {
             {/* Header */}
             <div className="sticky top-0 bg-white dark:bg-navy-900 border-b border-slate-400 dark:border-navy-700 p-4 sm:p-6 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
-                  <Building2 className="w-6 h-6 text-blue-400" />
+                <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
+                  <Building2 className="w-6 h-6 text-green-400" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white">{selectedTenant.code}</h3>
@@ -2882,7 +2882,7 @@ export default function AdminPage() {
                     <Button
                       size="sm"
                       variant="ghost"
-                      className="text-blue-400 hover:text-blue-300 hover:bg-blue-500/10"
+                      className="text-green-400 hover:text-green-300 hover:bg-green-500/10"
                       onClick={startEditingTenant}
                       disabled={updatingTenant}
                     >
@@ -2921,7 +2921,7 @@ export default function AdminPage() {
                 <div className="bg-slate-100 dark:bg-navy-800/50 rounded-lg p-4 space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Código</span>
-                    <span className="text-sm font-medium text-blue-400">{selectedTenant.code}</span>
+                    <span className="text-sm font-medium text-green-400">{selectedTenant.code}</span>
                   </div>
                   {!isEditingTenant ? (
                     <>
@@ -2978,7 +2978,7 @@ export default function AdminPage() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">Total de Usuários</span>
-                    <span className="text-sm font-medium text-blue-400">{selectedTenant.user_count}</span>
+                    <span className="text-sm font-medium text-green-400">{selectedTenant.user_count}</span>
                   </div>
                 </div>
               </div>
@@ -3011,7 +3011,7 @@ export default function AdminPage() {
                                 ? "bg-red-500/20 text-red-400"
                                 : tenantRole === "editor"
                                 ? "bg-amber-500/20 text-amber-400"
-                                : "bg-blue-500/20 text-blue-400"
+                                : "bg-green-500/20 text-green-400"
                             }`}>
                               {tenantRole}
                             </span>
@@ -3042,7 +3042,7 @@ export default function AdminPage() {
               <div className="space-y-3 pt-4 border-t border-slate-400 dark:border-navy-700">
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button
-                    className="flex-1 bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 border border-blue-500/30"
+                    className="flex-1 bg-green-500/20 text-green-400 hover:bg-green-500/30 border border-green-500/30"
                     onClick={() => {
                       setShowTenantDetailsModal(false);
                       // Scroll para seção de usuários pendentes
@@ -3095,3 +3095,4 @@ export default function AdminPage() {
     </div>
   );
 }
+

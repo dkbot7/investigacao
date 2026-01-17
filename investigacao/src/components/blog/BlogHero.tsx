@@ -23,13 +23,12 @@ export default function BlogHero({ searchValue = "", onSearchChange, onSearch }:
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             {/* Lado esquerdo - Título e badge (onde o olho foca primeiro) */}
             <div className="flex items-center gap-4">
-              <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
-                <Zap className="w-6 h-6 text-blue-500" />
+              <div className="p-2.5 rounded-xl bg-green-500/10 border border-green-500/20">
+                <Zap className="w-6 h-6 text-green-500" />
               </div>
               <div>
                 <h1 className="text-2xl sm:text-3xl font-bold text-navy-900 dark:text-white">
-                  Blog{" "}
-                  <span className="text-blue-500">Investigaree</span>
+                  Blog
                 </h1>
                 <p className="text-sm text-navy-600 dark:text-navy-400">
                   Cases reais, OSINT e forense digital
@@ -46,7 +45,7 @@ export default function BlogHero({ searchValue = "", onSearchChange, onSearch }:
                   placeholder="Buscar artigos..."
                   value={searchValue}
                   onChange={(e) => onSearchChange?.(e.target.value)}
-                  className="pl-10 pr-4 bg-navy-100 dark:bg-navy-800/50 border-blue-500/20 text-navy-900 dark:text-white placeholder:text-navy-600 dark:placeholder:text-navy-400 focus:border-blue-500/50"
+                  className="pl-10 pr-4 bg-navy-100 dark:bg-navy-800/50 border-green-500/20 text-navy-900 dark:text-white placeholder:text-navy-600 dark:placeholder:text-navy-400 focus:border-green-500/50"
                 />
               </div>
             </form>
@@ -102,12 +101,12 @@ export default function BlogHero({ searchValue = "", onSearchChange, onSearch }:
               <span className="text-xs">5.950 investigações realizadas</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-blue-500" />
+              <Clock className="w-3.5 h-3.5 text-green-500" />
               <span className="text-xs">Resposta em 24h</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-blue-500" />
-              <span className="text-xs">Perito Criminal Oficial</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-green-500" />
+              <span className="text-xs">Metodologia Profissional</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Star className="w-3.5 h-3.5 text-yellow-500" />
@@ -119,3 +118,4 @@ export default function BlogHero({ searchValue = "", onSearchChange, onSearch }:
     </section>
   );
 }
+

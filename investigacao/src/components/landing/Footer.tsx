@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <Shield className="w-8 h-8 text-primary-400" />
-              <span className="text-2xl font-bold text-slate-900 dark:text-white">investigaree</span>
+              <span className="text-2xl font-bold text-slate-900 dark:text-white">investigação digital</span>
             </div>
             <p className="text-sm">
               Investigação Digital com Inteligência
@@ -37,7 +37,7 @@ export default function Footer() {
               <li><Link href="/faq" className="hover:text-primary-400 transition">FAQ</Link></li>
               <li>
                 <WhatsAppButton
-                  message="Olá! Gostaria de saber mais sobre os serviços de investigação da investigaree."
+                  message="Olá! Gostaria de saber mais sobre os serviços de investigação digital."
                   source="footer"
                   variant="outline"
                   className="hover:text-green-400 transition inline-flex items-center gap-2 p-0"
@@ -69,7 +69,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="pt-8 border-t border-slate-200 dark:border-neutral-800 text-sm text-center">
-          <p>© 2025 investigaree. Todos os direitos reservados.</p>
+          <p>© 2025 investigação digital. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>

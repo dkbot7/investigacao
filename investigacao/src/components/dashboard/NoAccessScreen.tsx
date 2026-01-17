@@ -33,9 +33,9 @@ export default function NoAccessScreen({ userName, userEmail }: NoAccessScreenPr
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className="w-20 h-20 mx-auto mb-6 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center"
+            className="w-20 h-20 mx-auto mb-6 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center"
           >
-            <Clock className="w-10 h-10 text-blue-400" />
+            <Clock className="w-10 h-10 text-green-400" />
           </motion.div>
 
           {/* Titulo */}
@@ -46,7 +46,7 @@ export default function NoAccessScreen({ userName, userEmail }: NoAccessScreenPr
           {/* Saudacao */}
           {userName && (
             <p className="text-slate-900 dark:text-slate-800 dark:text-white/80 mb-4">
-              Ola, <span className="text-blue-400 font-medium">{userName}</span>!
+              Ola, <span className="text-green-400 font-medium">{userName}</span>!
             </p>
           )}
 
@@ -72,15 +72,15 @@ export default function NoAccessScreen({ userName, userEmail }: NoAccessScreenPr
             <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-3">Proximos passos:</h3>
             <ul className="space-y-2 text-sm text-slate-900 dark:text-slate-600 dark:text-white/60">
               <li className="flex items-start gap-2">
-                <span className="text-blue-400 font-bold">1.</span>
+                <span className="text-green-400 font-bold">1.</span>
                 Nossa equipe recebera uma notificacao da sua solicitacao
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-blue-400 font-bold">2.</span>
+                <span className="text-green-400 font-bold">2.</span>
                 Entraremos em contato para entender suas necessidades
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-blue-400 font-bold">3.</span>
+                <span className="text-green-400 font-bold">3.</span>
                 Apos a validacao, seu acesso sera liberado automaticamente
               </li>
             </ul>
@@ -103,7 +103,7 @@ export default function NoAccessScreen({ userName, userEmail }: NoAccessScreenPr
               </a>
               <a
                 href="mailto:contato@investigaree.com.br"
-                className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/30 rounded-lg text-blue-400 hover:bg-blue-500/20 transition-colors text-sm"
+                className="flex items-center justify-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400 hover:bg-green-500/20 transition-colors text-sm"
               >
                 <Mail className="w-4 h-4" />
                 Email
@@ -130,3 +130,4 @@ export default function NoAccessScreen({ userName, userEmail }: NoAccessScreenPr
     </div>
   );
 }
+

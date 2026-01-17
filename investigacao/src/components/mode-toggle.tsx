@@ -27,7 +27,7 @@ export function ModeToggle() {
 
   if (!mounted) {
     return (
-      <Button variant="ghost" size="sm" className="text-slate-900 dark:text-white/80 hover:text-blue-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10">
+      <Button variant="ghost" size="sm" className="text-slate-900 dark:text-white/80 hover:text-green-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10">
         <Sun className="w-4 h-4" />
         <span className="ml-2 hidden sm:inline text-sm">Tema</span>
       </Button>
@@ -55,7 +55,7 @@ export function ModeToggle() {
       variant="ghost"
       size="sm"
       onClick={cycleTheme}
-      className="text-slate-900 dark:text-white/80 hover:text-blue-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-all"
+      className="text-slate-900 dark:text-white/80 hover:text-green-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-all"
       title={`Tema atual: ${getLabel()}. Clique para alternar.`}
     >
       <AnimatePresence mode="wait">
@@ -73,3 +73,4 @@ export function ModeToggle() {
     </Button>
   )
 }
+

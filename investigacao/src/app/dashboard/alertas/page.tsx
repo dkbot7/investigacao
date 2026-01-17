@@ -28,14 +28,14 @@ export default function AlertasPage() {
         </div>
 
         {/* Info Card */}
-        <Card className="bg-blue-500/10 border-blue-500/20">
+        <Card className="bg-green-500/10 border-green-500/20">
           <CardHeader className="p-3 sm:p-4">
             <div className="flex items-start gap-3">
-              <Info className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 flex-shrink-0 mt-0.5" />
+              <Info className="w-5 h-5 sm:w-6 sm:h-6 text-green-400 flex-shrink-0 mt-0.5" />
               <div>
-                <CardTitle className="text-blue-400">Sistema de Polling Automático</CardTitle>
-                <CardDescription className="text-blue-400/80">
-                  Esta página utiliza o hook <code className="px-1.5 py-0.5 bg-blue-500/20 rounded">useAsyncPolling</code>
+                <CardTitle className="text-green-400">Sistema de Polling Automático</CardTitle>
+                <CardDescription className="text-green-400/80">
+                  Esta página utiliza o hook <code className="px-1.5 py-0.5 bg-green-500/20 rounded">useAsyncPolling</code>
                   {' '}para buscar novos alertas a cada 30 segundos automaticamente, sem necessidade de refresh manual.
                 </CardDescription>
               </div>
@@ -128,7 +128,7 @@ export default function AlertasPage() {
                   {`30000, // intervalo em ms`}
                 </div>
                 <div className="ml-8">
-                  {`{ autoStart: `}<span className="text-blue-400">true</span>{` }`}
+                  {`{ autoStart: `}<span className="text-green-400">true</span>{` }`}
                 </div>
                 <div className="ml-4">{')'}</div>
               </div>
@@ -139,3 +139,4 @@ export default function AlertasPage() {
     </div>
   )
 }
+

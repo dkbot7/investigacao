@@ -79,8 +79,8 @@ export default function BlogPageClient({
           <div className="mb-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-slate-100 dark:bg-navy-800 border border-blue-500/10">
-                  <Library className="w-5 h-5 text-blue-500" />
+                <div className="p-2 rounded-lg bg-slate-100 dark:bg-navy-800 border border-green-500/10">
+                  <Library className="w-5 h-5 text-green-500" />
                 </div>
                 <div>
                   <h2 className="text-xl font-bold text-slate-900 dark:text-white">Todos os Artigos</h2>
@@ -151,7 +151,7 @@ export default function BlogPageClient({
                           handleFiltersChange({});
                           setSearchValue("");
                         }}
-                        className="text-blue-500 hover:text-blue-400 font-medium"
+                        className="text-green-500 hover:text-green-400 font-medium"
                       >
                         Limpar filtros
                       </button>
@@ -183,3 +183,4 @@ export default function BlogPageClient({
     </>
   );
 }
+

@@ -29,7 +29,7 @@ const alertIcons = {
 }
 
 const alertStyles = {
-  info: 'bg-blue-500/10 border-blue-500/20 text-blue-400',
+  info: 'bg-green-500/10 border-green-500/20 text-green-400',
   warning: 'bg-yellow-500/10 border-yellow-500/20 text-yellow-400',
   error: 'bg-red-500/10 border-red-500/20 text-red-400',
   success: 'bg-green-500/10 border-green-500/20 text-green-400',
@@ -108,7 +108,7 @@ export function AlertsPanel({
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-navy-700">
         <div className="flex items-center gap-2">
-          <Bell className="w-5 h-5 text-blue-400" />
+          <Bell className="w-5 h-5 text-green-400" />
           <h3 className="text-lg font-semibold text-white">
             Alertas em Tempo Real
           </h3>
@@ -158,7 +158,7 @@ export function AlertsPanel({
           className={cn(
             'px-3 py-1.5 text-sm rounded-md transition-colors',
             filter === 'all'
-              ? 'bg-blue-500 text-white'
+              ? 'bg-green-500 text-white'
               : 'bg-navy-800 text-white/60 hover:bg-navy-700'
           )}
         >
@@ -191,7 +191,7 @@ export function AlertsPanel({
           className={cn(
             'px-3 py-1.5 text-sm rounded-md transition-colors',
             filter === 'info'
-              ? 'bg-blue-500 text-white'
+              ? 'bg-green-500 text-white'
               : 'bg-navy-800 text-white/60 hover:bg-navy-700'
           )}
         >
@@ -297,7 +297,7 @@ export function AlertsPanel({
                         {!alert.read && (
                           <button
                             onClick={() => handleMarkAsRead(alert.id)}
-                            className="text-xs text-blue-400 hover:text-blue-300"
+                            className="text-xs text-green-400 hover:text-green-300"
                           >
                             Marcar como lida
                           </button>
@@ -352,3 +352,4 @@ export function AlertsBadge({ onClick }: { onClick?: () => void }) {
     </button>
   )
 }
+

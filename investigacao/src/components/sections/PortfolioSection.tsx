@@ -20,7 +20,7 @@ export function PortfolioSection({ className }: PortfolioSectionProps) {
 
   const getCorTemaClasses = (corTema: string) => {
     const classes = {
-      blue: 'from-blue-600/20 to-blue-900/20 border-blue-500/30',
+      blue: 'from-green-600/20 to-green-900/20 border-green-500/30',
       purple: 'from-purple-600/20 to-purple-900/20 border-purple-500/30',
       green: 'from-green-600/20 to-green-900/20 border-green-500/30'
     };
@@ -164,3 +164,4 @@ export function PortfolioSection({ className }: PortfolioSectionProps) {
     </section>
   );
 }
+

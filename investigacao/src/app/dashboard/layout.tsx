@@ -52,7 +52,7 @@ const ADMIN_EMAILS = ['dkbotdani@gmail.com'];
 const navItems: NavItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Investigações", href: "/dashboard/investigacoes", icon: Users },
-  { label: "Relatórios", href: "/dashboard/analitico", icon: BarChart3, color: "text-blue-400" },
+  { label: "Relatórios", href: "/dashboard/analitico", icon: BarChart3, color: "text-green-400" },
 ];
 
 // Item admin (apenas para admins)
@@ -60,7 +60,7 @@ const adminNavItem: NavItem = {
   label: "Admin",
   href: "/dashboard/admin",
   icon: Shield,
-  color: "text-blue-400",
+  color: "text-green-400",
 };
 
 export default function DashboardLayout({
@@ -86,7 +86,7 @@ export default function DashboardLayout({
   if (authLoading || userLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500" />
       </div>
     );
   }
@@ -135,7 +135,7 @@ export default function DashboardLayout({
         <Link href="/" className="flex items-center gap-3 px-6 py-5 border-b border-slate-300 dark:border-navy-800 hover:bg-slate-100 dark:hover:bg-navy-800/50 transition-colors">
           <Image
             src="/favicon.svg"
-            alt="investigaree logo"
+            alt="investigação digital logo"
             width={36}
             height={36}
             className="w-9 h-9"
@@ -149,7 +149,7 @@ export default function DashboardLayout({
               backgroundClip: "text"
             }}
           >
-            investigaree
+            investigação digital
           </span>
         </Link>
 
@@ -166,18 +166,18 @@ export default function DashboardLayout({
                 href={item.href}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group ${
                   isActive
-                    ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
+                    ? "bg-green-500/10 text-green-400 border border-green-500/30"
                     : "text-slate-700 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-white"
                 }`}
               >
-                <Icon className={`w-5 h-5 ${isActive ? "text-blue-400" : item.color || "text-slate-500 dark:text-navy-400"}`} />
+                <Icon className={`w-5 h-5 ${isActive ? "text-green-400" : item.color || "text-slate-500 dark:text-navy-400"}`} />
                 <span className="flex-1 text-sm font-medium">{item.label}</span>
                 {item.badge && (
                   <span className="px-2 py-0.5 text-xs font-medium bg-red-500/20 text-red-400 rounded-full">
                     {item.badge}
                   </span>
                 )}
-                {isActive && <ChevronRight className="w-4 h-4 text-blue-400/50" />}
+                {isActive && <ChevronRight className="w-4 h-4 text-green-400/50" />}
               </Link>
             );
           })}
@@ -190,13 +190,13 @@ export default function DashboardLayout({
                 href={adminNavItem.href}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group ${
                   isActiveRoute(adminNavItem.href)
-                    ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
+                    ? "bg-green-500/10 text-green-400 border border-green-500/30"
                     : "text-slate-700 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-white"
                 }`}
               >
-                <adminNavItem.icon className={`w-5 h-5 ${isActiveRoute(adminNavItem.href) ? "text-blue-400" : adminNavItem.color || "text-slate-500 dark:text-navy-400"}`} />
+                <adminNavItem.icon className={`w-5 h-5 ${isActiveRoute(adminNavItem.href) ? "text-green-400" : adminNavItem.color || "text-slate-500 dark:text-navy-400"}`} />
                 <span className="flex-1 text-sm font-medium">{adminNavItem.label}</span>
-                {isActiveRoute(adminNavItem.href) && <ChevronRight className="w-4 h-4 text-blue-400/50" />}
+                {isActiveRoute(adminNavItem.href) && <ChevronRight className="w-4 h-4 text-green-400/50" />}
               </Link>
             </>
           )}
@@ -268,7 +268,7 @@ export default function DashboardLayout({
                     <Link
                       href="/dashboard/configuracoes/serpro"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 transition-colors"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-green-400 hover:text-green-300 hover:bg-green-500/10 transition-colors"
                     >
                       <Settings className="w-4 h-4" />
                       <span className="text-sm">Credenciais SERPRO</span>
@@ -306,12 +306,12 @@ export default function DashboardLayout({
           <Link href="/" className="flex items-center gap-2">
             <Image
               src="/favicon.svg"
-              alt="investigaree logo"
+              alt="investigação digital logo"
               width={28}
               height={28}
               className="w-7 h-7"
             />
-            <span className="font-bold text-slate-900 dark:text-white">investigaree</span>
+            <span className="font-bold text-slate-900 dark:text-white">investigação digital</span>
           </Link>
           <Button
             variant="ghost"
@@ -346,12 +346,12 @@ export default function DashboardLayout({
                 <Link href="/" className="flex items-center gap-2">
                   <Image
                     src="/favicon.svg"
-                    alt="investigaree logo"
+                    alt="investigação digital logo"
                     width={28}
                     height={28}
                     className="w-7 h-7"
                   />
-                  <span className="font-bold gradient-text">investigaree</span>
+                  <span className="font-bold gradient-text">investigação digital</span>
                 </Link>
                 <Button
                   variant="ghost"
@@ -375,11 +375,11 @@ export default function DashboardLayout({
                       onClick={() => setSidebarOpen(false)}
                       className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
                         isActive
-                          ? "bg-blue-500/10 text-blue-400 border border-blue-500/30"
+                          ? "bg-green-500/10 text-green-400 border border-green-500/30"
                           : "text-slate-700 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-white"
                       }`}
                     >
-                      <Icon className={`w-5 h-5 ${isActive ? "text-blue-400" : item.color || "text-slate-500 dark:text-navy-400"}`} />
+                      <Icon className={`w-5 h-5 ${isActive ? "text-green-400" : item.color || "text-slate-500 dark:text-navy-400"}`} />
                       <span className="flex-1 text-sm font-medium">{item.label}</span>
                     </Link>
                   );
@@ -418,3 +418,4 @@ export default function DashboardLayout({
     </div>
   );
 }
+

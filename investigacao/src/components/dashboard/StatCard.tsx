@@ -14,7 +14,7 @@ interface StatCardProps {
 }
 
 const colorClasses = {
-  blue: "text-blue-400",
+  blue: "text-green-400",
   emerald: "text-emerald-400",
   amber: "text-amber-400",
   red: "text-red-400",
@@ -24,7 +24,7 @@ const colorClasses = {
 };
 
 const hoverBorderColors = {
-  blue: "hover:border-blue-500/50",
+  blue: "hover:border-green-500/50",
   emerald: "hover:border-emerald-500/50",
   amber: "hover:border-amber-500/50",
   red: "hover:border-red-500/50",
@@ -57,7 +57,7 @@ export function StatCard({
         </div>
       </div>
       {badge && (
-        <span className="absolute top-2 right-2 px-2 py-0.5 text-xs font-medium bg-blue-500/20 text-blue-400 rounded">
+        <span className="absolute top-2 right-2 px-2 py-0.5 text-xs font-medium bg-green-500/20 text-green-400 rounded">
           {badge}
         </span>
       )}
@@ -99,3 +99,4 @@ export function StatCard({
     </motion.div>
   );
 }
+

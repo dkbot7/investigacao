@@ -110,7 +110,7 @@ export default function LeadCaptureCard({
   };
 
   return (
-    <div className="my-8 rounded-2xl overflow-hidden border border-blue-500/20 bg-gradient-to-br from-navy-900 to-navy-950">
+    <div className="my-8 rounded-2xl overflow-hidden border border-green-500/20 bg-gradient-to-br from-navy-900 to-navy-950">
       <div className="grid md:grid-cols-2 gap-0">
         {/* Left side - Resource info */}
         <div className="p-6 md:p-8">
@@ -168,7 +168,7 @@ export default function LeadCaptureCard({
                 className="w-full space-y-4"
               >
                 <div className="flex items-center gap-2 mb-4">
-                  <MessageCircle className="w-4 h-4 text-blue-500" />
+                  <MessageCircle className="w-4 h-4 text-green-500" />
                   <span className="text-sm text-slate-600 dark:text-navy-300">
                     Deixe seu contato para receber o material
                   </span>
@@ -182,7 +182,7 @@ export default function LeadCaptureCard({
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Seu nome"
-                    className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-blue-500/10 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-900 dark:text-navy-500 focus:outline-none focus:border-blue-500/30 transition-colors"
+                    className="w-full px-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-green-500/10 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-900 dark:text-navy-500 focus:outline-none focus:border-green-500/30 transition-colors"
                   />
                 </div>
 
@@ -199,7 +199,7 @@ export default function LeadCaptureCard({
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="seu@email.com"
                       required
-                      className="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-blue-500/10 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-900 dark:text-navy-500 focus:outline-none focus:border-blue-500/30 transition-colors"
+                      className="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-navy-800 border border-green-500/10 rounded-lg text-slate-900 dark:text-white placeholder:text-slate-900 dark:text-navy-500 focus:outline-none focus:border-green-500/30 transition-colors"
                     />
                   </div>
                 </div>
@@ -213,7 +213,7 @@ export default function LeadCaptureCard({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 disabled:bg-blue-500/50 text-navy-950 font-semibold rounded-lg transition-colors"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-400 disabled:bg-green-500/50 text-navy-950 font-semibold rounded-lg transition-colors"
                 >
                   {isSubmitting ? (
                     <>
@@ -250,7 +250,7 @@ export default function LeadCaptureCard({
                 </p>
                 <Link
                   href="/servicos"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 text-navy-950 font-semibold rounded-lg transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-400 text-navy-950 font-semibold rounded-lg transition-colors"
                 >
                   Conhecer Nossos Serviços
                   <ArrowRight className="w-4 h-4" />
@@ -263,3 +263,4 @@ export default function LeadCaptureCard({
     </div>
   );
 }
+

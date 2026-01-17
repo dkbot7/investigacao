@@ -171,13 +171,13 @@ export default function QuickFilters({
   return (
     <div className="space-y-4">
       {/* Abas de Tipo de Conteúdo */}
-      <div className="flex items-center gap-1 p-1 bg-white dark:bg-navy-900/50 rounded-xl border border-blue-500/10 overflow-x-auto">
+      <div className="flex items-center gap-1 p-1 bg-white dark:bg-navy-900/50 rounded-xl border border-green-500/10 overflow-x-auto">
         {/* Aba "Todos" */}
         <button
           onClick={() => handleContentTypeClick(undefined)}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
             !filters.contentType
-              ? "bg-blue-500 text-white"
+              ? "bg-green-500 text-white"
               : "text-navy-700 dark:text-navy-200 hover:text-navy-900 dark:hover:text-white hover:bg-navy-100 dark:hover:bg-navy-800/80"
           }`}
         >
@@ -219,7 +219,7 @@ export default function QuickFilters({
             className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
               selectedTopic
                 ? "text-navy-950"
-                : "text-navy-700 dark:text-navy-100 bg-white dark:bg-navy-900/50 hover:bg-navy-100 dark:hover:bg-navy-800/80 border border-blue-500/20 hover:border-blue-500/40"
+                : "text-navy-700 dark:text-navy-100 bg-white dark:bg-navy-900/50 hover:bg-navy-100 dark:hover:bg-navy-800/80 border border-green-500/20 hover:border-green-500/40"
             }`}
             style={selectedTopic ? {
               backgroundColor: selectedTopic.color,
@@ -237,16 +237,16 @@ export default function QuickFilters({
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="absolute top-full left-0 mt-2 w-72 max-h-80 overflow-y-auto bg-white dark:bg-navy-900 border border-blue-500/20 rounded-xl shadow-2xl z-50"
+                className="absolute top-full left-0 mt-2 w-72 max-h-80 overflow-y-auto bg-white dark:bg-navy-900 border border-green-500/20 rounded-xl shadow-2xl z-50"
               >
                 <div className="p-2">
-                  <div className="px-3 py-2 text-xs text-navy-900 dark:text-navy-200 uppercase tracking-wider border-b border-blue-500/10 mb-1">
+                  <div className="px-3 py-2 text-xs text-navy-900 dark:text-navy-200 uppercase tracking-wider border-b border-green-500/10 mb-1">
                     Filtrar por tópico
                   </div>
                   {selectedTopic && (
                     <button
                       onClick={() => handleTopicClick(selectedTopic.slug)}
-                      className="w-full flex items-center gap-2 px-3 py-2 text-sm text-blue-500 dark:text-blue-300 hover:bg-navy-100 dark:hover:bg-navy-800/50 rounded-lg transition-colors"
+                      className="w-full flex items-center gap-2 px-3 py-2 text-sm text-green-500 dark:text-green-300 hover:bg-navy-100 dark:hover:bg-navy-800/50 rounded-lg transition-colors"
                     >
                       <X className="w-4 h-4" />
                       Limpar seleção
@@ -290,7 +290,7 @@ export default function QuickFilters({
             className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
               selectedLevel
                 ? "text-navy-950"
-                : "text-navy-700 dark:text-navy-100 bg-white dark:bg-navy-900/50 hover:bg-navy-100 dark:hover:bg-navy-800/80 border border-blue-500/20 hover:border-blue-500/40"
+                : "text-navy-700 dark:text-navy-100 bg-white dark:bg-navy-900/50 hover:bg-navy-100 dark:hover:bg-navy-800/80 border border-green-500/20 hover:border-green-500/40"
             }`}
             style={selectedLevel ? {
               backgroundColor: selectedLevel.color,
@@ -317,16 +317,16 @@ export default function QuickFilters({
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="absolute top-full left-0 mt-2 w-56 bg-white dark:bg-navy-900 border border-blue-500/20 rounded-xl shadow-2xl z-50"
+                className="absolute top-full left-0 mt-2 w-56 bg-white dark:bg-navy-900 border border-green-500/20 rounded-xl shadow-2xl z-50"
               >
                 <div className="p-2">
-                  <div className="px-3 py-2 text-xs text-navy-900 dark:text-navy-200 uppercase tracking-wider border-b border-blue-500/10 mb-1">
+                  <div className="px-3 py-2 text-xs text-navy-900 dark:text-navy-200 uppercase tracking-wider border-b border-green-500/10 mb-1">
                     Nível de dificuldade
                   </div>
                   {selectedLevel && (
                     <button
                       onClick={() => handleSkillLevelClick(selectedLevel.id)}
-                      className="w-full flex items-center gap-2 px-3 py-2 text-sm text-blue-500 dark:text-blue-300 hover:bg-navy-100 dark:hover:bg-navy-800/50 rounded-lg transition-colors"
+                      className="w-full flex items-center gap-2 px-3 py-2 text-sm text-green-500 dark:text-green-300 hover:bg-navy-100 dark:hover:bg-navy-800/50 rounded-lg transition-colors"
                     >
                       <X className="w-4 h-4" />
                       Limpar seleção
@@ -373,7 +373,7 @@ export default function QuickFilters({
               setTopicDropdownOpen(false);
               setLevelDropdownOpen(false);
             }}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium bg-white dark:bg-navy-900/50 hover:bg-navy-100 dark:hover:bg-navy-800/80 border border-blue-500/20 hover:border-blue-500/40 text-navy-700 dark:text-navy-100 transition-all"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium bg-white dark:bg-navy-900/50 hover:bg-navy-100 dark:hover:bg-navy-800/80 border border-green-500/20 hover:border-green-500/40 text-navy-700 dark:text-navy-100 transition-all"
           >
             <ArrowUpDown className="w-4 h-4" />
             <span>
@@ -388,10 +388,10 @@ export default function QuickFilters({
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="absolute top-full right-0 mt-2 w-64 bg-white dark:bg-navy-900 border border-blue-500/20 rounded-xl shadow-2xl z-50"
+                className="absolute top-full right-0 mt-2 w-64 bg-white dark:bg-navy-900 border border-green-500/20 rounded-xl shadow-2xl z-50"
               >
                 <div className="p-2">
-                  <div className="px-3 py-2 text-xs text-navy-900 dark:text-navy-200 uppercase tracking-wider border-b border-blue-500/10 mb-1">
+                  <div className="px-3 py-2 text-xs text-navy-900 dark:text-navy-200 uppercase tracking-wider border-b border-green-500/10 mb-1">
                     Ordenar por
                   </div>
                   {SORT_OPTIONS.map((option) => {
@@ -413,7 +413,7 @@ export default function QuickFilters({
                         }}
                         className={`w-full flex items-start gap-3 px-3 py-2.5 rounded-lg transition-all ${
                           isActive
-                            ? "bg-blue-500/10 text-blue-500 dark:text-blue-300"
+                            ? "bg-green-500/10 text-green-500 dark:text-green-300"
                             : "text-navy-700 dark:text-navy-100 hover:bg-navy-100 dark:hover:bg-navy-800/50"
                         }`}
                       >
@@ -436,7 +436,7 @@ export default function QuickFilters({
         {/* Botão de filtros avançados */}
         <button
           onClick={onOpenFullFilters}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-navy-700 dark:text-navy-100 hover:text-blue-500 dark:hover:text-blue-300 bg-white dark:bg-navy-900/50 hover:bg-navy-100 dark:hover:bg-navy-800/80 border border-navy-200 dark:border-navy-600 hover:border-blue-500/30 transition-all"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-navy-700 dark:text-navy-100 hover:text-green-500 dark:hover:text-green-300 bg-white dark:bg-navy-900/50 hover:bg-navy-100 dark:hover:bg-navy-800/80 border border-navy-200 dark:border-navy-600 hover:border-green-500/30 transition-all"
         >
           <SlidersHorizontal className="w-4 h-4" />
           Mais filtros
@@ -451,7 +451,7 @@ export default function QuickFilters({
           {hasActiveFilters && (
             <button
               onClick={clearAllFilters}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-blue-500 dark:text-blue-300 hover:text-blue-600 dark:hover:text-blue-200 bg-blue-500/10 dark:bg-blue-500/20 hover:bg-blue-500/20 dark:hover:bg-blue-500/30 rounded-lg border border-blue-500/20 dark:border-blue-500/30 transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-green-500 dark:text-green-300 hover:text-green-600 dark:hover:text-green-200 bg-green-500/10 dark:bg-green-500/20 hover:bg-green-500/20 dark:hover:bg-green-500/30 rounded-lg border border-green-500/20 dark:border-green-500/30 transition-all"
             >
               <X className="w-4 h-4" />
               Limpar ({activeFiltersCount})
@@ -467,7 +467,7 @@ export default function QuickFilters({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="flex flex-wrap items-center gap-2 pt-3 border-t border-blue-500/10"
+            className="flex flex-wrap items-center gap-2 pt-3 border-t border-green-500/10"
           >
             <span className="text-xs text-navy-600 dark:text-navy-300">Filtros ativos:</span>
 
@@ -523,3 +523,4 @@ export default function QuickFilters({
     </div>
   );
 }
+

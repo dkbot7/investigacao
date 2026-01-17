@@ -21,7 +21,7 @@ const sizeClasses = {
 export function Loading({ className, size = "md", text, fullScreen = false }: LoadingProps) {
   const content = (
     <div className={cn("flex flex-col items-center justify-center gap-3", className)}>
-      <Loader2 className={cn("animate-spin text-blue-400", sizeClasses[size])} />
+      <Loader2 className={cn("animate-spin text-green-400", sizeClasses[size])} />
       {text && <p className="text-sm text-white/60">{text}</p>}
     </div>
   )
@@ -81,7 +81,7 @@ export function SectionLoading({ text, minHeight = "200px" }: { text?: string; m
  * Loading inline (para uso em textos)
  */
 export function InlineLoading() {
-  return <Loader2 className="inline w-4 h-4 animate-spin text-blue-400" />
+  return <Loader2 className="inline w-4 h-4 animate-spin text-green-400" />
 }
 
 /**
@@ -90,9 +90,9 @@ export function InlineLoading() {
 export function DotsLoading({ className }: { className?: string }) {
   return (
     <div className={cn("flex items-center gap-1", className)}>
-      <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce [animation-delay:-0.3s]" />
-      <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce [animation-delay:-0.15s]" />
-      <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" />
+      <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce [animation-delay:-0.3s]" />
+      <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce [animation-delay:-0.15s]" />
+      <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce" />
     </div>
   )
 }
@@ -114,7 +114,7 @@ export function SpinnerLoading({ className }: { className?: string }) {
     <div
       className={cn(
         "inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]",
-        "border-blue-400",
+        "border-green-400",
         className
       )}
       role="status"
@@ -125,3 +125,4 @@ export function SpinnerLoading({ className }: { className?: string }) {
     </div>
   )
 }
+

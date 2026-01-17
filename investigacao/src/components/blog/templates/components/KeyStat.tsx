@@ -16,8 +16,8 @@ interface KeyStatProps {
 const typeConfig: Record<StatType, { icon: typeof Info; color: string; bgColor: string }> = {
   info: {
     icon: Info,
-    color: "text-blue-400",
-    bgColor: "bg-blue-500/10 border-blue-500/30"
+    color: "text-green-400",
+    bgColor: "bg-green-500/10 border-green-500/30"
   },
   warning: {
     icon: AlertTriangle,
@@ -31,8 +31,8 @@ const typeConfig: Record<StatType, { icon: typeof Info; color: string; bgColor: 
   },
   trend: {
     icon: TrendingUp,
-    color: "text-blue-400",
-    bgColor: "bg-blue-500/10 border-blue-500/30"
+    color: "text-green-400",
+    bgColor: "bg-green-500/10 border-green-500/30"
   }
 };
 
@@ -94,3 +94,4 @@ export default function KeyStat({
     </motion.div>
   );
 }
+

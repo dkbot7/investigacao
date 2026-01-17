@@ -15,9 +15,9 @@ interface KeyStatProps {
 const statConfig = {
   info: {
     icon: Info,
-    bgColor: "bg-blue-50 dark:bg-navy-800",
-    borderColor: "border-blue-200 dark:border-blue-500/20",
-    valueColor: "text-blue-600 dark:text-blue-400",
+    bgColor: "bg-green-50 dark:bg-navy-800",
+    borderColor: "border-green-200 dark:border-green-500/20",
+    valueColor: "text-green-600 dark:text-green-400",
   },
   warning: {
     icon: AlertTriangle,
@@ -79,3 +79,4 @@ export default function KeyStat({
     </div>
   );
 }
+

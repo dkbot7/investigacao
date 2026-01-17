@@ -82,7 +82,7 @@ export function FichaFuncionarioModal({ funcionario, isOpen, onClose }: FichaFun
                 className="relative w-full max-w-4xl bg-white dark:bg-navy-900 rounded-2xl shadow-2xl"
               >
                 {/* Header */}
-                <div className="sticky top-0 z-10 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-700 dark:to-blue-800 px-6 py-4 rounded-t-2xl">
+                <div className="sticky top-0 z-10 bg-gradient-to-r from-green-600 to-green-700 dark:from-green-700 dark:to-green-800 px-6 py-4 rounded-t-2xl">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
@@ -203,7 +203,7 @@ export function FichaFuncionarioModal({ funcionario, isOpen, onClose }: FichaFun
                 <div className="sticky bottom-0 bg-slate-50 dark:bg-navy-800 px-6 py-4 rounded-b-2xl border-t border-slate-200 dark:border-navy-700">
                   <button
                     onClick={onClose}
-                    className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium"
+                    className="w-full px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors font-medium"
                   >
                     Fechar
                   </button>
@@ -232,7 +232,7 @@ function Section({
   return (
     <div className={`${highlight ? 'bg-orange-50 dark:bg-orange-900/10 border border-orange-200 dark:border-orange-800' : 'bg-slate-50 dark:bg-navy-800'} rounded-xl p-4`}>
       <div className="flex items-center gap-2 mb-3">
-        <Icon className={`w-5 h-5 ${highlight ? 'text-orange-600' : 'text-blue-600 dark:text-blue-400'}`} />
+        <Icon className={`w-5 h-5 ${highlight ? 'text-orange-600' : 'text-green-600 dark:text-green-400'}`} />
         <h3 className={`font-semibold ${highlight ? 'text-orange-900 dark:text-orange-400' : 'text-slate-900 dark:text-white'}`}>
           {title}
         </h3>
@@ -264,3 +264,4 @@ function InfoRow({
     </div>
   );
 }
+

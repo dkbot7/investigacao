@@ -315,3 +315,4 @@ export default function ObitosPage() {
     </div>
   );
 }
+

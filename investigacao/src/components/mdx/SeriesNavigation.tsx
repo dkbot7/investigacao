@@ -42,17 +42,17 @@ export default function SeriesNavigation({
   const progress = (currentPart / totalParts) * 100;
 
   return (
-    <div className="my-8 rounded-2xl overflow-hidden border border-blue-500/20 bg-gradient-to-br from-navy-900 to-navy-950">
+    <div className="my-8 rounded-2xl overflow-hidden border border-green-500/20 bg-gradient-to-br from-navy-900 to-navy-950">
       {/* Header */}
-      <div className="p-4 bg-white dark:bg-navy-900 border-b border-blue-500/10">
+      <div className="p-4 bg-white dark:bg-navy-900 border-b border-green-500/10">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-500/10">
-            <BookOpen className="w-5 h-5 text-blue-500" />
+          <div className="p-2 rounded-lg bg-green-100 dark:bg-green-500/10">
+            <BookOpen className="w-5 h-5 text-green-500" />
           </div>
           <div className="flex-1">
             <Link
               href={`/series/${seriesSlug}`}
-              className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
+              className="text-sm text-green-400 hover:text-green-300 transition-colors"
             >
               Série: {seriesName}
             </Link>
@@ -61,7 +61,7 @@ export default function SeriesNavigation({
             </p>
           </div>
           <div className="text-right">
-            <span className="text-2xl font-bold text-blue-500">{Math.round(progress)}%</span>
+            <span className="text-2xl font-bold text-green-500">{Math.round(progress)}%</span>
             <p className="text-xs text-slate-900 dark:text-navy-500">completo</p>
           </div>
         </div>
@@ -72,7 +72,7 @@ export default function SeriesNavigation({
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="h-full bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"
+            className="h-full bg-gradient-to-r from-green-600 to-green-400 rounded-full"
           />
         </div>
       </div>
@@ -92,7 +92,7 @@ export default function SeriesNavigation({
                 key={post.slug}
                 className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
                   isCurrent
-                    ? "bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20"
+                    ? "bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20"
                     : "hover:bg-slate-50 dark:hover:bg-navy-800/50"
                 }`}
               >
@@ -101,7 +101,7 @@ export default function SeriesNavigation({
                   {isCompleted ? (
                     <CheckCircle className="w-4 h-4 text-green-400" />
                   ) : isCurrent ? (
-                    <Circle className="w-4 h-4 text-blue-500 fill-blue-500" />
+                    <Circle className="w-4 h-4 text-green-500 fill-green-500" />
                   ) : post.isPublished ? (
                     <Circle className="w-4 h-4 text-slate-900 dark:text-navy-500" />
                   ) : (
@@ -113,7 +113,7 @@ export default function SeriesNavigation({
                 <span
                   className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium ${
                     isCurrent
-                      ? "bg-blue-500 text-navy-950"
+                      ? "bg-green-500 text-navy-950"
                       : isCompleted
                       ? "bg-green-500/20 text-green-400"
                       : "bg-slate-100 dark:bg-navy-800 text-slate-500 dark:text-navy-400"
@@ -146,7 +146,7 @@ export default function SeriesNavigation({
       </div>
 
       {/* Navigation buttons */}
-      <div className="p-4 bg-white dark:bg-navy-900 border-t border-blue-500/10 flex items-center justify-between gap-4">
+      <div className="p-4 bg-white dark:bg-navy-900 border-t border-green-500/10 flex items-center justify-between gap-4">
         {previousPost ? (
           <Link
             href={`/blog/${previousPost.slug}`}
@@ -161,7 +161,7 @@ export default function SeriesNavigation({
 
         <Link
           href={`/series/${seriesSlug}`}
-          className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
+          className="text-sm text-green-400 hover:text-green-300 transition-colors"
         >
           Ver série completa
         </Link>
@@ -169,7 +169,7 @@ export default function SeriesNavigation({
         {nextPost ? (
           <Link
             href={`/blog/${nextPost.slug}`}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-400 text-navy-950 font-medium transition-colors text-sm"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500 hover:bg-green-400 text-navy-950 font-medium transition-colors text-sm"
           >
             <span className="hidden sm:inline">Próximo</span>
             <ChevronRight className="w-4 h-4" />
@@ -184,3 +184,4 @@ export default function SeriesNavigation({
     </div>
   );
 }
+

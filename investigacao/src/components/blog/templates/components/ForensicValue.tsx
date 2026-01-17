@@ -82,7 +82,7 @@ export default function ForensicValue({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="p-5 rounded-xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-blue-500/10 hover:border-emerald-500/30 transition-colors group"
+              className="p-5 rounded-xl bg-white dark:bg-white/50 dark:bg-navy-900/50 border border-green-500/10 hover:border-emerald-500/30 transition-colors group"
             >
               <div className="flex items-start gap-4">
                 <div className="p-2.5 rounded-lg bg-emerald-500/10 group-hover:bg-emerald-500/20 transition-colors">
@@ -104,3 +104,4 @@ export default function ForensicValue({
     </motion.section>
   );
 }
+

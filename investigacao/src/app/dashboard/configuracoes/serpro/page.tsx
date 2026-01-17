@@ -303,7 +303,7 @@ export default function SerproCredentialsPage() {
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-3">
-              <Key className="w-6 h-6 text-blue-500" />
+              <Key className="w-6 h-6 text-green-500" />
               <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
                 Modo de Operação
               </h2>
@@ -314,9 +314,9 @@ export default function SerproCredentialsPage() {
 
             {/* Mode Info */}
             <div className="space-y-4">
-              <div className={`p-4 rounded-lg border-2 ${mode === 'managed' ? 'border-blue-500 bg-blue-50 dark:bg-blue-950/20' : 'border-slate-300 dark:border-navy-700 bg-slate-50 dark:bg-navy-800'}`}>
+              <div className={`p-4 rounded-lg border-2 ${mode === 'managed' ? 'border-green-500 bg-green-50 dark:bg-green-950/20' : 'border-slate-300 dark:border-navy-700 bg-slate-50 dark:bg-navy-800'}`}>
                 <div className="flex items-center gap-2 mb-2">
-                  <Lock className="w-5 h-5 text-blue-500" />
+                  <Lock className="w-5 h-5 text-green-500" />
                   <span className="font-semibold text-slate-900 dark:text-white">Modo Gerenciado</span>
                   {mode === 'managed' && <Badge variant="default">Ativo</Badge>}
                 </div>
@@ -326,9 +326,9 @@ export default function SerproCredentialsPage() {
                 </p>
               </div>
 
-              <div className={`p-4 rounded-lg border-2 ${mode === 'byo' ? 'border-blue-500 bg-blue-50 dark:bg-blue-950/20' : 'border-slate-300 dark:border-navy-700 bg-slate-50 dark:bg-navy-800'}`}>
+              <div className={`p-4 rounded-lg border-2 ${mode === 'byo' ? 'border-green-500 bg-green-50 dark:bg-green-950/20' : 'border-slate-300 dark:border-navy-700 bg-slate-50 dark:bg-navy-800'}`}>
                 <div className="flex items-center gap-2 mb-2">
-                  <Unlock className="w-5 h-5 text-blue-500" />
+                  <Unlock className="w-5 h-5 text-green-500" />
                   <span className="font-semibold text-slate-900 dark:text-white">Modo BYO (Bring Your Own)</span>
                   {mode === 'byo' && <Badge variant="default">Ativo</Badge>}
                 </div>
@@ -571,3 +571,5 @@ export default function SerproCredentialsPage() {
     </div>
   );
 }
+
+

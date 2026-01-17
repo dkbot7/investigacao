@@ -269,7 +269,7 @@ export default function SancionadosPage() {
         {/* Info adicional */}
         <div className="bg-white dark:bg-navy-900/50 border border-slate-400 dark:border-navy-700 rounded-xl p-4">
           <div className="flex items-start gap-3">
-            <Shield className="w-5 h-5 text-blue-400 mt-0.5" />
+            <Shield className="w-5 h-5 text-green-400 mt-0.5" />
             <div>
               <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">Sobre o CEIS e CNEP</h4>
               <ul className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 space-y-1">
@@ -297,3 +297,4 @@ export default function SancionadosPage() {
     </div>
   );
 }
+

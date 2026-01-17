@@ -49,7 +49,7 @@ export default function ExportarPage() {
       label: "Todos Funcionarios",
       description: "Lista completa com todas as verificacoes",
       icon: Users,
-      color: "text-blue-400",
+      color: "text-green-400",
       count: CLIENTE_01_STATS?.totalFuncionarios || 0,
     },
     {
@@ -97,7 +97,7 @@ export default function ExportarPage() {
       label: "Beneficiarios",
       description: "Funcionarios que receberam beneficios sociais",
       icon: FileText,
-      color: "text-blue-400",
+      color: "text-green-400",
       count: CLIENTE_01_STATS?.totais?.beneficiarios || 0,
     },
   ];
@@ -207,7 +207,7 @@ export default function ExportarPage() {
         {/* Header */}
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-            <Download className="w-6 h-6 sm:w-7 sm:h-7 text-blue-400" />
+            <Download className="w-6 h-6 sm:w-7 sm:h-7 text-green-400" />
             Exportar Dados
           </h1>
           <p className="text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">
@@ -226,7 +226,7 @@ export default function ExportarPage() {
               onClick={() => setGrupoFilter("todos")}
               className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all ${
                 grupoFilter === "todos"
-                  ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                  ? "bg-green-500/20 text-green-400 border border-green-500/30"
                   : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
               }`}
             >
@@ -238,7 +238,7 @@ export default function ExportarPage() {
                 onClick={() => setGrupoFilter(g.nome)}
                 className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all ${
                   grupoFilter === g.nome
-                    ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                    ? "bg-green-500/20 text-green-400 border border-green-500/30"
                     : "bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-white/60 hover:text-white border border-slate-400 dark:border-navy-700"
                 }`}
               >
@@ -289,7 +289,7 @@ export default function ExportarPage() {
                   className={`w-full ${
                     isSuccess
                       ? "bg-emerald-500 hover:bg-emerald-600"
-                      : "bg-blue-500/20 hover:bg-blue-500/30 text-blue-400"
+                      : "bg-green-500/20 hover:bg-green-500/30 text-green-400"
                   }`}
                 >
                   {isExporting ? (
@@ -317,7 +317,7 @@ export default function ExportarPage() {
         {/* Info */}
         <div className="bg-white dark:bg-navy-900/50 border border-slate-400 dark:border-navy-700 rounded-xl p-3 sm:p-4">
           <div className="flex items-start gap-3">
-            <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 mt-0.5" />
+            <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-green-400 mt-0.5" />
             <div>
               <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">Sobre os arquivos exportados</h4>
               <ul className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 space-y-1">
@@ -333,3 +333,4 @@ export default function ExportarPage() {
     </div>
   );
 }
+

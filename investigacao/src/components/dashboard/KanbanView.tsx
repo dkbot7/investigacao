@@ -72,9 +72,9 @@ const columns: KanbanColumn[] = [
   {
     id: "investigando",
     title: "Investigando",
-    color: "text-blue-400",
-    bgColor: "bg-blue-500/10",
-    borderColor: "border-blue-500/30",
+    color: "text-green-400",
+    bgColor: "bg-green-500/10",
+    borderColor: "border-green-500/30",
     icon: Shield,
   },
   {
@@ -88,9 +88,9 @@ const columns: KanbanColumn[] = [
   {
     id: "monitoramento",
     title: "Monitoramento",
-    color: "text-blue-400",
-    bgColor: "bg-blue-500/10",
-    borderColor: "border-blue-500/30",
+    color: "text-green-400",
+    bgColor: "bg-green-500/10",
+    borderColor: "border-green-500/30",
     icon: Shield,
   },
   {
@@ -201,15 +201,15 @@ export function KanbanView({ funcionarios, onSelectFuncionario }: KanbanViewProp
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
                     onClick={() => onSelectFuncionario(func)}
-                    className="bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg p-3 hover:border-blue-500/50 transition-all cursor-pointer group"
+                    className="bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-700 rounded-lg p-3 hover:border-green-500/50 transition-all cursor-pointer group"
                   >
                     {/* If it's a group */}
                     {func.is_grupo === 1 ? (
                       <>
                         {/* Group Icon and Name */}
                         <div className="flex items-center gap-2 mb-2">
-                          <FolderOpen className="w-5 h-5 text-blue-400" />
-                          <h4 className="font-medium text-slate-900 dark:text-white group-hover:text-blue-400 transition-colors truncate">
+                          <FolderOpen className="w-5 h-5 text-green-400" />
+                          <h4 className="font-medium text-slate-900 dark:text-white group-hover:text-green-400 transition-colors truncate">
                             {func.nome}
                           </h4>
                         </div>
@@ -221,7 +221,7 @@ export function KanbanView({ funcionarios, onSelectFuncionario }: KanbanViewProp
 
                         {/* Group Badge */}
                         <div className="mb-3">
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-green-500/20 text-green-400 border border-green-500/30">
                             <FolderOpen className="w-3 h-3" />
                             Análise em Lote
                           </span>
@@ -230,7 +230,7 @@ export function KanbanView({ funcionarios, onSelectFuncionario }: KanbanViewProp
                     ) : (
                       <>
                         {/* Name */}
-                        <h4 className="font-medium text-slate-900 dark:text-white group-hover:text-blue-400 transition-colors mb-2 truncate">
+                        <h4 className="font-medium text-slate-900 dark:text-white group-hover:text-green-400 transition-colors mb-2 truncate">
                           {func.nome}
                         </h4>
 
@@ -339,3 +339,4 @@ export function KanbanView({ funcionarios, onSelectFuncionario }: KanbanViewProp
     </div>
   );
 }
+

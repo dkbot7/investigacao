@@ -45,7 +45,7 @@ export function Pagination({
             <select
               value={pageSize}
               onChange={(e) => onPageSizeChange(Number(e.target.value))}
-              className="px-2 py-1 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-600 rounded text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-2 py-1 bg-slate-100 dark:bg-navy-800 border border-slate-400 dark:border-navy-600 rounded text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500"
             >
               {pageSizeOptions.map((size) => (
                 <option key={size} value={size}>
@@ -86,3 +86,4 @@ export function Pagination({
     </div>
   );
 }
+

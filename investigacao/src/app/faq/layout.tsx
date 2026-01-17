@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Perguntas Frequentes | investigaree",
+  title: "Perguntas Frequentes | investigação digital",
   description: "Dúvidas sobre investigação particular e due diligence digital? Encontre respostas sobre nossos serviços, metodologia, prazos e confidencialidade.",
   openGraph: {
-    title: "FAQ - Perguntas Frequentes | investigaree",
+    title: "FAQ - Perguntas Frequentes | investigação digital",
     description: "Tire suas dúvidas sobre investigação particular, due diligence e proteção patrimonial.",
   },
 };

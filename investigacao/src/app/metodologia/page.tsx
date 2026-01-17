@@ -61,13 +61,13 @@ const metodologias: MetodologiaCard[] = [
 ];
 
 const corClasses = {
-  blue: 'border-blue-200 dark:border-blue-900/30',
+  blue: 'border-green-200 dark:border-green-900/30',
   purple: 'border-purple-200 dark:border-purple-900/30',
   orange: 'border-orange-200 dark:border-orange-900/30',
 };
 
 const iconCorClasses = {
-  blue: 'text-blue-600 dark:text-blue-400',
+  blue: 'text-green-600 dark:text-green-400',
   purple: 'text-purple-600 dark:text-purple-400',
   orange: 'text-orange-600 dark:text-orange-400',
 };
@@ -92,10 +92,10 @@ export default function MetodologiaIndexPage() {
         {/* LGPD Disclaimer */}
         <section className="px-4 md:px-6 pb-8 md:pb-12">
           <div className="max-w-4xl mx-auto">
-            <Card className="border-blue-200 dark:border-blue-900/30 bg-blue-50 dark:bg-blue-950/20">
+            <Card className="border-green-200 dark:border-green-900/30 bg-green-50 dark:bg-green-950/20">
               <CardContent className="p-6">
                 <div className="flex items-start gap-3">
-                  <AlertCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                  <AlertCircle className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
                   <div className="text-sm text-slate-700 dark:text-navy-200">
                     <p className="font-semibold mb-1">Conformidade Legal</p>
                     <p>
@@ -157,7 +157,7 @@ export default function MetodologiaIndexPage() {
 
                       <Link
                         href={`/metodologia/${metodologia.id}`}
-                        className="text-sm text-slate-600 dark:text-navy-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors inline-flex items-center gap-2"
+                        className="text-sm text-slate-600 dark:text-navy-300 hover:text-green-600 dark:hover:text-green-400 transition-colors inline-flex items-center gap-2"
                       >
                         Acessar metodologia completa
                         <ArrowRight className="w-4 h-4" />
@@ -174,3 +174,5 @@ export default function MetodologiaIndexPage() {
     </>
   );
 }
+
+

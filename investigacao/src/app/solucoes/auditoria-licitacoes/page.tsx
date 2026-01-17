@@ -52,7 +52,7 @@ export default function AuditoriaLicitacoesPage() {
   return (
     <div className="min-h-screen">
       {/* HERO SECTION - One Hero, One Hook Layout (2025 Trend) */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white overflow-hidden">
+      <section className="relative bg-gradient-to-br from-slate-900 via-green-900 to-slate-900 text-white overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:60px_60px]" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
@@ -61,14 +61,14 @@ export default function AuditoriaLicitacoesPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               {/* Trust Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-400/30 rounded-full text-sm font-medium">
-                <Gavel className="w-4 h-4 text-blue-400" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-400/30 rounded-full text-sm font-medium">
+                <Gavel className="w-4 h-4 text-green-400" />
                 <span>Conformidade TCU/CGU • Lei 14.133/2021 (Nova Lei de Licitações)</span>
               </div>
 
               {/* Hero Headline (Bold, Large) */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                Elimine Fraudes em <span className="text-blue-400">Licitações Públicas</span>.
+                Elimine Fraudes em <span className="text-green-400">Licitações Públicas</span>.
               </h1>
 
               {/* Subheadline with stat */}
@@ -84,8 +84,8 @@ export default function AuditoriaLicitacoesPage() {
                   { icon: Clock, text: 'Resultados em 3-5 dias úteis (urgente: 24h)' },
                 ].map((benefit, idx) => (
                   <div key={idx} className="flex items-center gap-3">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 border border-blue-400/30 flex items-center justify-center">
-                      <benefit.icon className="w-5 h-5 text-blue-400" />
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-green-500/20 border border-green-400/30 flex items-center justify-center">
+                      <benefit.icon className="w-5 h-5 text-green-400" />
                     </div>
                     <span className="text-slate-200">{benefit.text}</span>
                   </div>
@@ -94,12 +94,12 @@ export default function AuditoriaLicitacoesPage() {
 
               {/* Primary CTA (Above the Fold) */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-6">
+                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white text-lg px-8 py-6">
                   <Shield className="w-5 h-5 mr-2" />
                   Solicitar Auditoria
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
-                <Button size="lg" variant="outline" className="border-blue-400/30 text-white hover:bg-blue-500/10 text-lg px-8 py-6">
+                <Button size="lg" variant="outline" className="border-green-400/30 text-white hover:bg-green-500/10 text-lg px-8 py-6">
                   Ver Casos de Fraude
                   <Eye className="w-5 h-5 ml-2" />
                 </Button>
@@ -140,7 +140,7 @@ export default function AuditoriaLicitacoesPage() {
                           {stat.value}
                         </span>
                       </div>
-                      <div className="text-2xl font-bold text-blue-400">{stat.impact}</div>
+                      <div className="text-2xl font-bold text-green-400">{stat.impact}</div>
                     </div>
                   ))}
                 </div>
@@ -263,8 +263,8 @@ export default function AuditoriaLicitacoesPage() {
                     </li>
                   </ul>
                 </div>
-                <div className="bg-blue-50 border border-blue-200 p-5 rounded-lg">
-                  <p className="text-sm text-blue-900">
+                <div className="bg-green-50 border border-green-200 p-5 rounded-lg">
+                  <p className="text-sm text-green-900">
                     <strong>Resultado:</strong> Relatório técnico apontando irregularidades, com fundamentação legal (Lei 14.133/2021, TCU Súmulas 473, 177, 347) para anulação, impugnação ou responsabilização.
                   </p>
                 </div>
@@ -363,8 +363,8 @@ export default function AuditoriaLicitacoesPage() {
             ].map((item, idx) => (
               <div key={idx} className="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
-                    <item.icon className="w-6 h-6 text-blue-600" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center">
+                    <item.icon className="w-6 h-6 text-green-600" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2 mb-2">
@@ -477,27 +477,27 @@ export default function AuditoriaLicitacoesPage() {
           </div>
 
           {/* Legal Framework Box */}
-          <div className="mt-12 bg-blue-50 border-l-4 border-blue-600 p-8 rounded-r-xl max-w-5xl mx-auto">
-            <h3 className="text-xl font-bold text-blue-900 mb-4 flex items-center gap-2">
+          <div className="mt-12 bg-green-50 border-l-4 border-green-600 p-8 rounded-r-xl max-w-5xl mx-auto">
+            <h3 className="text-xl font-bold text-green-900 mb-4 flex items-center gap-2">
               <Gavel className="w-6 h-6" />
               Fundamentação Legal para Anulação de Licitações Fraudulentas
             </h3>
-            <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-900">
+            <div className="grid md:grid-cols-2 gap-4 text-sm text-green-900">
               <div className="space-y-2">
                 <div className="flex items-start gap-2">
-                  <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5 text-blue-600" />
+                  <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5 text-green-600" />
                   <div>
                     <strong>Lei 14.133/2021, art. 156:</strong> Impedimentos de contratar (sanções CEIS/CNEP, falência, crimes)
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5 text-blue-600" />
+                  <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5 text-green-600" />
                   <div>
                     <strong>Súmula TCU 473:</strong> Administração pode anular licitação se comprovar superfaturamento
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5 text-blue-600" />
+                  <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5 text-green-600" />
                   <div>
                     <strong>Súmula TCU 177:</strong> Fracionamento para fugir da licitação é ilegal
                   </div>
@@ -505,19 +505,19 @@ export default function AuditoriaLicitacoesPage() {
               </div>
               <div className="space-y-2">
                 <div className="flex items-start gap-2">
-                  <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5 text-blue-600" />
+                  <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5 text-green-600" />
                   <div>
                     <strong>Súmula TCU 347:</strong> Edital excessivamente restritivo (direcionamento) é nulo
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5 text-blue-600" />
+                  <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5 text-green-600" />
                   <div>
                     <strong>Lei 12.846/2013 (Anticorrupção):</strong> Responsabilização objetiva de empresas por fraude
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5 text-blue-600" />
+                  <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5 text-green-600" />
                   <div>
                     <strong>Lei 8.429/1992 (Improbidade):</strong> Servidores que direcionam licitações respondem criminalmente
                   </div>
@@ -577,8 +577,8 @@ export default function AuditoriaLicitacoesPage() {
               },
             ].map((deliverable, idx) => (
               <div key={idx} className="bg-white border border-slate-200 rounded-xl p-8 hover:shadow-lg transition-shadow">
-                <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center mb-6">
-                  <deliverable.icon className="w-7 h-7 text-blue-600" />
+                <div className="w-14 h-14 rounded-xl bg-green-100 flex items-center justify-center mb-6">
+                  <deliverable.icon className="w-7 h-7 text-green-600" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-4">{deliverable.title}</h3>
                 <ul className="space-y-3">
@@ -596,19 +596,19 @@ export default function AuditoriaLicitacoesPage() {
       </section>
 
       {/* PRICING / CTA */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 text-white">
+      <section className="py-20 bg-gradient-to-br from-green-900 via-green-800 to-slate-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Proteja o Erário Público com Auditoria Preventiva
           </h2>
-          <p className="text-xl text-blue-200 mb-8 leading-relaxed">
+          <p className="text-xl text-green-200 mb-8 leading-relaxed">
             Detectar fraudes <strong className="text-white">antes da assinatura do contrato</strong> evita prejuízos milionários e responsabilização de gestores públicos.
           </p>
 
           <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 mb-8">
             <div className="grid md:grid-cols-2 gap-8 text-left mb-6">
               <div>
-                <div className="text-sm text-blue-300 mb-2">Auditoria Básica</div>
+                <div className="text-sm text-green-300 mb-2">Auditoria Básica</div>
                 <div className="text-4xl font-bold mb-4">Consulte</div>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
@@ -626,7 +626,7 @@ export default function AuditoriaLicitacoesPage() {
                 </ul>
               </div>
               <div className="border-l border-white/20 pl-8">
-                <div className="text-sm text-blue-300 mb-2">Auditoria Urgente</div>
+                <div className="text-sm text-green-300 mb-2">Auditoria Urgente</div>
                 <div className="text-4xl font-bold mb-4">Consulte</div>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
@@ -647,7 +647,7 @@ export default function AuditoriaLicitacoesPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50 text-lg px-8 py-6">
+            <Button size="lg" className="bg-white text-green-900 hover:bg-green-50 text-lg px-8 py-6">
               <Shield className="w-5 h-5 mr-2" />
               Solicitar Auditoria
               <ArrowRight className="w-5 h-5 ml-2" />
@@ -657,7 +657,7 @@ export default function AuditoriaLicitacoesPage() {
             </Button>
           </div>
 
-          <p className="text-sm text-blue-300 mt-6">
+          <p className="text-sm text-green-300 mt-6">
             <Lock className="w-4 h-4 inline mr-1" />
             Sigilo total garantido • Relatórios TCU/CGU compliant
           </p>
@@ -726,7 +726,7 @@ export default function AuditoriaLicitacoesPage() {
           <p className="text-lg text-slate-600 mb-8">
             Relatórios em 3-5 dias úteis • Conformidade TCU/CGU • Validade judicial plena
           </p>
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-6">
+          <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white text-lg px-8 py-6">
             <Shield className="w-5 h-5 mr-2" />
             Solicitar Auditoria de Licitação
             <ArrowRight className="w-5 h-5 ml-2" />
@@ -736,3 +736,4 @@ export default function AuditoriaLicitacoesPage() {
     </div>
   )
 }
+

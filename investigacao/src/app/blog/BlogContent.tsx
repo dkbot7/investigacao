@@ -103,8 +103,8 @@ export default function BlogContent({ initialFilters, initialPosts }: BlogConten
             <div className="mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-slate-100 dark:bg-navy-800 border border-blue-500/10">
-                    <Library className="w-5 h-5 text-blue-500" />
+                  <div className="p-2 rounded-lg bg-slate-100 dark:bg-navy-800 border border-green-500/10">
+                    <Library className="w-5 h-5 text-green-500" />
                   </div>
                   <div>
                     <h2 className="text-xl font-bold text-slate-900 dark:text-white">Todos os Artigos</h2>
@@ -157,10 +157,10 @@ export default function BlogContent({ initialFilters, initialPosts }: BlogConten
 
                             {/* Card promocional a cada 6 posts */}
                             {index === 5 && (
-                              <div className="sm:col-span-2 lg:col-span-3 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-navy-900 dark:to-purple-900/20 border-2 border-blue-500/20 rounded-xl p-6">
+                              <div className="sm:col-span-2 lg:col-span-3 bg-gradient-to-r from-green-50 to-purple-50 dark:from-navy-900 dark:to-purple-900/20 border-2 border-green-500/20 rounded-xl p-6">
                                 <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
-                                  <div className="p-3 bg-blue-500/10 rounded-xl flex-shrink-0">
-                                    <Shield className="w-8 h-8 text-blue-500" />
+                                  <div className="p-3 bg-green-500/10 rounded-xl flex-shrink-0">
+                                    <Shield className="w-8 h-8 text-green-500" />
                                   </div>
                                   <div className="flex-1">
                                     <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-1">
@@ -218,7 +218,7 @@ export default function BlogContent({ initialFilters, initialPosts }: BlogConten
                             setFilters({});
                             setSearchValue("");
                           }}
-                          className="text-blue-500 hover:text-blue-400 font-medium"
+                          className="text-green-500 hover:text-green-400 font-medium"
                         >
                           Limpar filtros
                         </button>
@@ -248,7 +248,7 @@ export default function BlogContent({ initialFilters, initialPosts }: BlogConten
         </section>
 
         {/* CTA para newsletter - Comunidade */}
-        <section className="py-20 border-t border-blue-500/10 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900">
+        <section className="py-20 border-t border-green-500/10 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-navy-950 dark:to-navy-900">
           <div className="container mx-auto px-4 sm:px-8 lg:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -257,9 +257,9 @@ export default function BlogContent({ initialFilters, initialPosts }: BlogConten
               className="max-w-3xl mx-auto text-center"
             >
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6">
-                <Mail className="w-4 h-4 text-blue-500" />
-                <span className="text-sm text-blue-400 font-medium">Newsletter DFIR</span>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 mb-6">
+                <Mail className="w-4 h-4 text-green-500" />
+                <span className="text-sm text-green-400 font-medium">Newsletter DFIR</span>
               </div>
 
               <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
@@ -267,20 +267,20 @@ export default function BlogContent({ initialFilters, initialPosts }: BlogConten
               </h3>
               <p className="text-slate-600 dark:text-navy-300 mb-8 text-lg">
                 Receba semanalmente as últimas inovações em forense digital +
-                <strong className="text-blue-500"> Checklist Gratuito de Due Diligence (PDF)</strong>
+                <strong className="text-green-500"> Checklist Gratuito de Due Diligence (PDF)</strong>
               </p>
 
               <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-6">
                 <input
                   type="email"
                   placeholder="Seu melhor email profissional"
-                  className="flex-1 px-5 py-3.5 rounded-xl bg-navy-100 dark:bg-navy-800/50 border border-blue-500/20 text-slate-900 dark:text-white placeholder:text-navy-600 dark:placeholder:text-navy-400 focus:outline-none focus:border-blue-500/50 transition-colors"
+                  className="flex-1 px-5 py-3.5 rounded-xl bg-navy-100 dark:bg-navy-800/50 border border-green-500/20 text-slate-900 dark:text-white placeholder:text-navy-600 dark:placeholder:text-navy-400 focus:outline-none focus:border-green-500/50 transition-colors"
                 />
                 <motion.button
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="px-8 py-3.5 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold rounded-xl transition-colors"
+                  className="px-8 py-3.5 bg-green-500 hover:bg-green-600 text-navy-950 font-semibold rounded-xl transition-colors"
                 >
                   Inscrever-se
                 </motion.button>
@@ -310,3 +310,4 @@ export default function BlogContent({ initialFilters, initialPosts }: BlogConten
     </>
   );
 }
+

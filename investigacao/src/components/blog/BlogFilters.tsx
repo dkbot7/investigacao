@@ -157,7 +157,7 @@ export default function BlogFiltersComponent({
               placeholder="Buscar artigos, tutoriais, cases..."
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-              className="pl-10 bg-white dark:bg-white/50 dark:bg-navy-900/50 border-blue-500/20 text-slate-900 dark:text-white placeholder:text-slate-500 dark:text-navy-400 focus:border-blue-500/50"
+              className="pl-10 bg-white dark:bg-white/50 dark:bg-navy-900/50 border-green-500/20 text-slate-900 dark:text-white placeholder:text-slate-500 dark:text-navy-400 focus:border-green-500/50"
             />
             {searchValue && (
               <button
@@ -178,14 +178,14 @@ export default function BlogFiltersComponent({
         <Button
           variant="outline"
           onClick={() => setIsExpanded(!isExpanded)}
-          className={`border-blue-500/30 text-slate-700 dark:text-navy-200 hover:bg-blue-500/10 hover:text-blue-400 ${
-            isExpanded || hasActiveFilters ? "border-blue-500/50 bg-blue-500/5" : ""
+          className={`border-green-500/30 text-slate-700 dark:text-navy-200 hover:bg-green-500/10 hover:text-green-400 ${
+            isExpanded || hasActiveFilters ? "border-green-500/50 bg-green-500/5" : ""
           }`}
         >
           <Filter className="w-4 h-4 mr-2" />
           Filtros
           {hasActiveFilters && (
-            <Badge className="ml-2 bg-blue-500 text-navy-950 text-xs">
+            <Badge className="ml-2 bg-green-500 text-navy-950 text-xs">
               {activeFiltersCount}
             </Badge>
           )}
@@ -217,49 +217,49 @@ export default function BlogFiltersComponent({
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="p-5 bg-white dark:bg-white/30 dark:bg-navy-900/30 rounded-xl border border-blue-500/10">
+            <div className="p-5 bg-white dark:bg-white/30 dark:bg-navy-900/30 rounded-xl border border-green-500/10">
               {/* Tabs de filtros */}
-              <div className="flex flex-wrap gap-2 mb-5 pb-4 border-b border-blue-500/10">
+              <div className="flex flex-wrap gap-2 mb-5 pb-4 border-b border-green-500/10">
                 <button
                   onClick={() => setActiveTab("topic")}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     activeTab === "topic"
-                      ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                      ? "bg-green-500/20 text-green-400 border border-green-500/30"
                       : "text-slate-600 dark:text-navy-300 hover:bg-slate-100 dark:bg-navy-800/50 border border-transparent"
                   }`}
                 >
                   <LayoutGrid className="w-4 h-4" />
                   Tópicos
                   {filters.topic && (
-                    <span className="w-2 h-2 rounded-full bg-blue-500" />
+                    <span className="w-2 h-2 rounded-full bg-green-500" />
                   )}
                 </button>
                 <button
                   onClick={() => setActiveTab("type")}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     activeTab === "type"
-                      ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                      ? "bg-green-500/20 text-green-400 border border-green-500/30"
                       : "text-slate-600 dark:text-navy-300 hover:bg-slate-100 dark:bg-navy-800/50 border border-transparent"
                   }`}
                 >
                   <Layers className="w-4 h-4" />
                   Tipo de Conteúdo
                   {filters.contentType && (
-                    <span className="w-2 h-2 rounded-full bg-blue-500" />
+                    <span className="w-2 h-2 rounded-full bg-green-500" />
                   )}
                 </button>
                 <button
                   onClick={() => setActiveTab("level")}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     activeTab === "level"
-                      ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                      ? "bg-green-500/20 text-green-400 border border-green-500/30"
                       : "text-slate-600 dark:text-navy-300 hover:bg-slate-100 dark:bg-navy-800/50 border border-transparent"
                   }`}
                 >
                   <BarChart3 className="w-4 h-4" />
                   Nível
                   {filters.skillLevel && (
-                    <span className="w-2 h-2 rounded-full bg-blue-500" />
+                    <span className="w-2 h-2 rounded-full bg-green-500" />
                   )}
                 </button>
               </div>
@@ -500,3 +500,4 @@ export default function BlogFiltersComponent({
     </div>
   );
 }
+

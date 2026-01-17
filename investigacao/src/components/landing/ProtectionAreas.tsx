@@ -83,14 +83,14 @@ export default function ProtectionAreas() {
       <div className="container max-w-7xl px-4">
         {/* Section Header */}
         <div className="text-center mb-12 space-y-4">
-          <Badge variant="outline" className="mb-4 text-blue-400 border-blue-500/30 bg-blue-500/10">
+          <Badge variant="outline" className="mb-4 text-green-400 border-green-500/30 bg-green-500/10">
             4 Áreas de Proteção
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white">
             Investigação Digital em Escala
           </h2>
           <p className="text-xl text-slate-700 dark:text-navy-200 max-w-4xl mx-auto">
-            Due diligence completa com <span className="text-blue-400">tecnologia de ponta</span> e metodologia forense
+            Due diligence completa com <span className="text-green-400">tecnologia de ponta</span> e metodologia forense
           </p>
         </div>
 
@@ -101,7 +101,7 @@ export default function ProtectionAreas() {
               key={area.name}
               className={`relative overflow-hidden transition-all hover:scale-105 ${
                 area.popular
-                  ? "border-2 border-blue-500 shadow-2xl bg-gradient-to-br from-white to-slate-50 dark:from-navy-800 dark:to-navy-900"
+                  ? "border-2 border-green-500 shadow-2xl bg-gradient-to-br from-white to-slate-50 dark:from-navy-800 dark:to-navy-900"
                   : "border border-slate-300 dark:border-navy-700 bg-gradient-to-br from-white to-slate-50 dark:from-navy-800/90 dark:to-navy-900/90"
               }`}
             >
@@ -109,7 +109,7 @@ export default function ProtectionAreas() {
               <div className="absolute top-3 left-3 z-10">
                 <Badge className={`${
                   area.popular
-                    ? "bg-blue-500 text-navy-900 font-bold px-3 py-1 text-xs"
+                    ? "bg-green-500 text-navy-900 font-bold px-3 py-1 text-xs"
                     : "bg-slate-700 dark:bg-navy-600 text-white font-bold px-3 py-1 text-xs"
                 }`}>
                   {area.badge}
@@ -120,10 +120,10 @@ export default function ProtectionAreas() {
                 {/* Icon Circle */}
                 <div className={`w-14 h-14 mx-auto mb-3 rounded-full flex items-center justify-center ${
                   area.popular
-                    ? "bg-blue-500/20 border-2 border-blue-500/50"
+                    ? "bg-green-500/20 border-2 border-green-500/50"
                     : "bg-slate-200 dark:bg-navy-700/50 border-2 border-slate-300 dark:border-navy-600"
                 }`}>
-                  <area.icon className={`w-7 h-7 ${area.popular ? "text-blue-400" : "text-slate-700 dark:text-white"}`} />
+                  <area.icon className={`w-7 h-7 ${area.popular ? "text-green-400" : "text-slate-700 dark:text-white"}`} />
                 </div>
 
                 <CardTitle className="text-lg mb-2 text-slate-900 dark:text-white font-bold">
@@ -139,7 +139,7 @@ export default function ProtectionAreas() {
                 <ul className="space-y-2">
                   {area.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <Check className={`w-4 h-4 flex-shrink-0 mt-0.5 ${area.popular ? "text-blue-400" : "text-success"}`} />
+                      <Check className={`w-4 h-4 flex-shrink-0 mt-0.5 ${area.popular ? "text-green-400" : "text-success"}`} />
                       <span className="text-slate-700 dark:text-navy-200 text-xs">
                         {feature}
                       </span>
@@ -153,7 +153,7 @@ export default function ProtectionAreas() {
                   <Button
                     className={`w-full py-2 text-sm ${
                       area.popular
-                        ? "bg-blue-500 hover:bg-blue-400 text-navy-900"
+                        ? "bg-green-500 hover:bg-green-400 text-navy-900"
                         : "bg-slate-700 dark:bg-navy-700 hover:bg-slate-600 dark:hover:bg-navy-600 text-white border border-slate-600 dark:border-navy-600"
                     } font-semibold rounded-lg transition-all`}
                   >
@@ -168,27 +168,9 @@ export default function ProtectionAreas() {
 
         {/* Team Badge */}
         <div className="text-center">
-          <div className="flex items-center justify-center gap-6">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/30">
-                <span className="text-blue-400 text-sm font-bold">DK</span>
-              </div>
-              <div className="text-left">
-                <p className="text-slate-900 dark:text-white text-sm font-semibold">Dani Kaloi</p>
-                <p className="text-blue-400 text-xs">Arquiteta de Sistemas</p>
-              </div>
-            </div>
-            <div className="h-8 w-px bg-slate-300 dark:bg-navy-700" />
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/30 overflow-hidden">
-                <img src="/images/ibsen-maciel.jpg" alt="Ibsen Maciel" className="w-full h-full object-cover" />
-              </div>
-              <div className="text-left">
-                <p className="text-slate-900 dark:text-white text-sm font-semibold">Ibsen Maciel</p>
-                <p className="text-blue-400 text-xs">Perito Criminal</p>
-              </div>
-            </div>
-          </div>
+          <p className="text-slate-700 dark:text-navy-300 text-sm">
+            Equipe especializada em investigação digital
+          </p>
         </div>
       </div>
     </section>

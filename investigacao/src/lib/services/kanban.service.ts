@@ -328,9 +328,9 @@ export function getStatusColor(status: InvestigationStatus): {
       border: 'border-amber-500/30',
     },
     investigando: {
-      text: 'text-blue-400',
-      bg: 'bg-blue-500/10',
-      border: 'border-blue-500/30',
+      text: 'text-green-400',
+      bg: 'bg-green-500/10',
+      border: 'border-green-500/30',
     },
     relatorio: {
       text: 'text-purple-400',
@@ -355,3 +355,4 @@ export function getStatusColor(status: InvestigationStatus): {
   };
   return colors[status] || colors.investigar;
 }
+

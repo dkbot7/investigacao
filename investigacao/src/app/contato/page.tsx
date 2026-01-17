@@ -13,9 +13,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 
-const EMAIL_IBSEN = "ibsenmaciel@gmail.com";
-const EMAIL_DANI = "kaloidani@gmail.com";
-const EMAIL_CONTATO = "contato@investigaree.com.br";
+const EMAIL_CONTATO = "contato@investigacaodigital.com.br";
 
 export default function ContatoPage() {
   const [formData, setFormData] = useState({
@@ -61,12 +59,12 @@ export default function ContatoPage() {
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               {/* Lado esquerdo - Padrão F */}
               <div className="flex items-center gap-4">
-                <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
-                  <MessageCircle className="w-6 h-6 text-blue-500" />
+                <div className="p-2.5 rounded-xl bg-green-500/10 border border-green-500/20">
+                  <MessageCircle className="w-6 h-6 text-green-500" />
                 </div>
                 <div>
                   <h1 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
-                    Fale <span className="text-blue-400">Conosco</span>
+                    Fale <span className="text-green-400">Conosco</span>
                   </h1>
                   <p className="text-sm text-slate-600 dark:text-navy-300">
                     +100 mil registros por investigação
@@ -86,9 +84,8 @@ export default function ContatoPage() {
         {/* Content */}
         <div className="container max-w-6xl mx-auto px-4 py-12">
 
-        {/* Options Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-
+        {/* Contact Options */}
+        <div className="max-w-md mx-auto mb-12">
           {/* WhatsApp Card */}
           <Card className="bg-white dark:bg-navy-900 border-slate-300 dark:border-navy-800 hover:border-green-500/50 transition-all">
             <CardHeader className="text-center pb-4">
@@ -104,7 +101,7 @@ export default function ContatoPage() {
             </CardHeader>
             <CardContent className="text-center">
               <WhatsAppButton
-                message="Olá! Gostaria de saber mais sobre os serviços de investigação da investigaree."
+                message="Olá! Gostaria de saber mais sobre os serviços de investigação digital."
                 source="contato-whatsapp"
               >
                 Iniciar conversa
@@ -114,78 +111,6 @@ export default function ContatoPage() {
               </p>
             </CardContent>
           </Card>
-
-          {/* Email Ibsen */}
-          <Card className="bg-white dark:bg-navy-900 border-slate-300 dark:border-navy-800 hover:border-primary-500/50 transition-all">
-            <CardHeader className="text-center pb-4">
-              <div className="relative w-16 h-16 mx-auto rounded-full overflow-hidden border-2 border-primary-500/50 mb-4">
-                <Image
-                  src="/images/ibsen-maciel.jpg"
-                  alt="Ibsen Maciel"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardTitle className="text-slate-900 dark:text-white">Ibsen Maciel</CardTitle>
-              <CardDescription className="text-slate-900 dark:text-slate-600 dark:text-white/60">
-                Perito Criminal • Advisory Board
-              </CardDescription>
-              <Badge variant="outline" className="mt-2 text-xs border-primary-500/50 text-primary-400">
-                Forense Computacional
-              </Badge>
-            </CardHeader>
-            <CardContent className="text-center">
-              <a
-                href={`mailto:${EMAIL_IBSEN}?subject=Contato%20via%20investigaree`}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-slate-900 dark:text-white font-semibold rounded-full transition-all"
-              >
-                <Mail className="w-4 h-4" />
-                Enviar email
-              </a>
-              <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-xs mt-4">
-                {EMAIL_IBSEN}
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Email Dani */}
-          <Card className="bg-white dark:bg-navy-900 border-slate-300 dark:border-navy-800 hover:border-blue-500/50 transition-all">
-            <CardHeader className="text-center pb-4">
-              <div className="relative w-16 h-16 mx-auto rounded-full overflow-hidden border-2 border-blue-500/50 mb-4">
-                <Image
-                  src="/dani-kaloi.png"
-                  alt="Dani Kaloi"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardTitle className="text-slate-900 dark:text-white">Dani Kaloi</CardTitle>
-              <CardDescription className="text-slate-900 dark:text-slate-600 dark:text-white/60">
-                Fundadora & Arquiteta de Sistemas
-              </CardDescription>
-              <div className="flex flex-wrap justify-center gap-1 mt-2">
-                <Badge variant="outline" className="text-xs border-blue-500/50 text-blue-400">
-                  <Brain className="w-3 h-3 mr-1" />Automacao
-                </Badge>
-                <Badge variant="outline" className="text-xs border-blue-500/50 text-blue-400">
-                  OSINT
-                </Badge>
-              </div>
-            </CardHeader>
-            <CardContent className="text-center">
-              <a
-                href={`mailto:${EMAIL_DANI}?subject=Contato%20via%20investigaree`}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold rounded-full transition-all"
-              >
-                <Mail className="w-4 h-4" />
-                Enviar email
-              </a>
-              <p className="text-slate-900 dark:text-slate-500 dark:text-white/50 text-xs mt-4">
-                {EMAIL_DANI}
-              </p>
-            </CardContent>
-          </Card>
-
         </div>
 
         {/* Divider */}
@@ -307,4 +232,5 @@ export default function ContatoPage() {
     </>
   );
 }
+
 

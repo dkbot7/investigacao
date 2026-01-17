@@ -17,7 +17,7 @@ export default function ColetaProvasDigitaisPage() {
   return (
     <div className="min-h-screen">
       {/* HERO SECTION */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white overflow-hidden">
+      <section className="relative bg-gradient-to-br from-slate-900 via-green-900 to-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[url('/patterns/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
         </div>
@@ -25,13 +25,13 @@ export default function ColetaProvasDigitaisPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-400/30 rounded-full text-sm font-medium">
-                <FileCheck className="w-4 h-4 text-blue-400" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-400/30 rounded-full text-sm font-medium">
+                <FileCheck className="w-4 h-4 text-green-400" />
                 <span>Validação Pericial</span>
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                Provas Digitais com <span className="text-blue-400">Validade</span> Jurídica.
+                Provas Digitais com <span className="text-green-400">Validade</span> Jurídica.
                 <br />
                 Metodologia Forense Certificada.
               </h1>
@@ -55,7 +55,7 @@ export default function ColetaProvasDigitaisPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link href="/contato">
-                  <Button size="lg" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold h-14 px-8 text-lg shadow-lg shadow-blue-500/50">
+                  <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white font-semibold h-14 px-8 text-lg shadow-lg shadow-green-500/50">
                     <Lock className="w-5 h-5 mr-2" />
                     Preservar Provas Digitais
                   </Button>
@@ -65,9 +65,9 @@ export default function ColetaProvasDigitaisPage() {
                 </Button>
               </div>
 
-              <div className="bg-blue-500/10 border border-blue-400/30 rounded-lg p-6 mt-8">
+              <div className="bg-green-500/10 border border-green-400/30 rounded-lg p-6 mt-8">
                 <div className="flex items-start gap-4">
-                  <Award className="w-8 h-8 text-blue-400 flex-shrink-0" />
+                  <Award className="w-8 h-8 text-green-400 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-white mb-2">Validado por Perito Criminal</h3>
                     <p className="text-slate-300 text-sm">
@@ -79,8 +79,8 @@ export default function ColetaProvasDigitaisPage() {
             </div>
 
             <div className="relative hidden lg:block">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-3xl"></div>
-              <div className="relative bg-slate-800/50 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-8 space-y-6">
+              <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-cyan-500/20 blur-3xl"></div>
+              <div className="relative bg-slate-800/50 backdrop-blur-sm border border-green-500/20 rounded-2xl p-8 space-y-6">
                 <h3 className="text-2xl font-bold text-white">Tipos de Provas Coletadas</h3>
                 <div className="space-y-4">
                   {[
@@ -92,9 +92,9 @@ export default function ColetaProvasDigitaisPage() {
                   ].map((item, idx) => {
                     const Icon = item.icon
                     return (
-                      <div key={idx} className="flex items-start gap-4 p-4 bg-slate-900/50 rounded-lg border border-blue-500/10 hover:border-blue-500/30 transition-colors">
-                        <div className="p-2 bg-blue-500/10 rounded-lg">
-                          <Icon className="w-5 h-5 text-blue-400" />
+                      <div key={idx} className="flex items-start gap-4 p-4 bg-slate-900/50 rounded-lg border border-green-500/10 hover:border-green-500/30 transition-colors">
+                        <div className="p-2 bg-green-500/10 rounded-lg">
+                          <Icon className="w-5 h-5 text-green-400" />
                         </div>
                         <div>
                           <h4 className="font-semibold text-white">{item.title}</h4>
@@ -130,7 +130,7 @@ export default function ColetaProvasDigitaisPage() {
               { step: '4', title: 'Validação', desc: 'Certificação por Perito Criminal para uso judicial' },
             ].map((item, idx) => (
               <div key={idx} className="relative">
-                <div className="text-6xl font-bold text-blue-100 dark:text-blue-900/20 mb-4">{item.step}</div>
+                <div className="text-6xl font-bold text-green-100 dark:text-green-900/20 mb-4">{item.step}</div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{item.title}</h3>
                 <p className="text-slate-600 dark:text-slate-400">{item.desc}</p>
               </div>
@@ -199,21 +199,21 @@ export default function ColetaProvasDigitaisPage() {
       </section>
 
       {/* CTA FINAL */}
-      <section className="py-20 bg-gradient-to-r from-blue-500 to-cyan-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-green-500 to-cyan-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <h2 className="text-3xl sm:text-4xl font-bold">
             Preserve Suas Provas com Metodologia Forense
           </h2>
-          <p className="text-xl text-blue-100">
+          <p className="text-xl text-green-100">
             Não arrisque ter suas provas questionadas em juízo. Garanta evidências com validade jurídica comprovada.
           </p>
           <Link href="/contato">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 font-semibold h-14 px-8 text-lg">
+            <Button size="lg" className="bg-white text-green-600 hover:bg-green-50 font-semibold h-14 px-8 text-lg">
               Solicitar Coleta de Provas
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </Link>
-          <p className="text-sm text-blue-100">
+          <p className="text-sm text-green-100">
             ✅ Entrega em 24-48h | ✅ 100% Confidencial | ✅ Validado por Perito Criminal Oficial
           </p>
         </div>
@@ -221,3 +221,4 @@ export default function ColetaProvasDigitaisPage() {
     </div>
   )
 }
+

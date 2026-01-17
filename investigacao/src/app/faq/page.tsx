@@ -34,19 +34,19 @@ const faqs = [
     perguntas: [
       {
         pergunta: "Como funciona a metodologia de vocês?",
-        resposta: "Nossa metodologia foi validada por perito criminal oficial e segue padrões de perícia forense. Utilizamos análise de fontes abertas (OSINT), consulta a bases de dados oficiais, análise de redes sociais, verificação de documentos e, quando necessário, entrevistas e investigação de campo."
+        resposta: "Nossa metodologia segue padrões profissionais de perícia forense. Utilizamos análise de fontes abertas (OSINT), consulta a bases de dados oficiais, análise de redes sociais, verificação de documentos e, quando necessário, entrevistas e investigação de campo."
       },
       {
         pergunta: "As informações obtidas são legais?",
         resposta: "Absolutamente. Trabalhamos exclusivamente com fontes legais e métodos éticos. Não acessamos informações protegidas sem autorização, não realizamos grampos ou interceptações, e todas as nossas práticas estão em conformidade com a LGPD e o Marco Civil da Internet."
       },
       {
-        pergunta: "Quem é o Advisory Board?",
-        resposta: "Nosso Advisory Board é composto por especialistas de alto nível que validam nossa metodologia. Inclui Ibsen Rodrigues Maciel, Perito Criminal Oficial e referência nacional em Forense Computacional. Foi 1º lugar no concurso da Polícia Científica do Pará (2019) e 1º lugar como Oficial do Exército (2017/18). Atualmente é Diretor Nacional de Perícias em Computação Forense da ANPAJ e membro do Comitê do Instituto de Defesa Cibernética."
+        pergunta: "Como garantem a qualidade das investigações?",
+        resposta: "Nossa equipe é composta por profissionais especializados em investigação digital, com experiência em análise forense e due diligence. Utilizamos metodologia validada e ferramentas profissionais para garantir a qualidade e precisão dos resultados."
       },
       {
         pergunta: "Qual a diferença entre vocês e um detetive particular comum?",
-        resposta: "Nosso diferencial é a metodologia forense validada por perito criminal oficial, o uso de tecnologia avançada de análise de dados, a expertise em investigações corporativas e digitais, e a entrega de relatórios estruturados com evidências documentadas."
+        resposta: "Nosso diferencial é a metodologia forense profissional validada, o uso de tecnologia avançada de análise de dados, a expertise em investigações corporativas e digitais, e a entrega de relatórios estruturados com evidências documentadas."
       }
     ]
   },
@@ -101,7 +101,7 @@ const faqs = [
       },
       {
         pergunta: "Posso usar o relatório de vocês como prova judicial?",
-        resposta: "Nossos relatórios são documentos técnicos detalhados que podem servir como elemento de convicção. Para uso como prova pericial em processos judiciais, recomendamos a contratação de um perito judicial que pode utilizar nossas informações como base."
+        resposta: "Nossos relatórios são documentos técnicos detalhados que podem servir como elemento de convicção. Para uso como prova em processos judiciais, recomendamos consultar um advogado sobre a melhor forma de apresentar as informações."
       },
       {
         pergunta: "Vocês investigam infidelidade conjugal?",
@@ -192,7 +192,7 @@ export default function FAQPage() {
           <div className="mt-16 text-center">
             <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 mb-4">Não encontrou o que procurava?</p>
             <WhatsAppButton
-              message="Olá! Tenho uma dúvida sobre os serviços da investigaree."
+              message="Olá! Tenho uma dúvida sobre os serviços de investigação digital."
               source="faq"
               className="font-bold"
             >

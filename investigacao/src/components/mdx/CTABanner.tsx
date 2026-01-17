@@ -72,10 +72,10 @@ export default function CTABanner({
 
   if (variant === "minimal") {
     return (
-      <div className="my-6 p-4 rounded-xl bg-blue-50 dark:bg-navy-800 border border-blue-200 dark:border-blue-500/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="my-6 p-4 rounded-xl bg-green-50 dark:bg-navy-800 border border-green-200 dark:border-green-500/20 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-500/10">
-            <Icon className="w-5 h-5 text-blue-600 dark:text-blue-500" />
+          <div className="p-2 rounded-lg bg-green-100 dark:bg-green-500/10">
+            <Icon className="w-5 h-5 text-green-600 dark:text-green-500" />
           </div>
           <div>
             <p className="font-medium text-slate-900 dark:text-white">{finalTitle}</p>
@@ -84,7 +84,7 @@ export default function CTABanner({
         </div>
         <Link
           href={finalButtonUrl}
-          className="flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-400 text-navy-950 font-medium rounded-lg transition-colors text-sm"
+          className="flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-400 text-navy-950 font-medium rounded-lg transition-colors text-sm"
         >
           {finalButtonText}
           <ArrowRight className="w-4 h-4" />
@@ -97,7 +97,7 @@ export default function CTABanner({
     return (
       <div className="my-8 relative overflow-hidden rounded-2xl">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400" />
+        <div className="absolute inset-0 bg-gradient-to-r from-green-600 via-green-500 to-green-400" />
 
         {/* Pattern overlay */}
         <div
@@ -146,13 +146,13 @@ export default function CTABanner({
 
   // Default variant
   return (
-    <div className="my-8 rounded-2xl overflow-hidden border border-blue-500/20 bg-gradient-to-br from-navy-900 via-navy-900 to-blue-500/5">
+    <div className="my-8 rounded-2xl overflow-hidden border border-green-500/20 bg-gradient-to-br from-navy-900 via-navy-900 to-green-500/5">
       <div className="p-6 md:p-8">
         <div className="flex flex-col md:flex-row md:items-center gap-6">
           {/* Icon */}
           <div className="flex-shrink-0">
-            <div className="w-14 h-14 rounded-xl bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center">
-              <Icon className="w-7 h-7 text-blue-600 dark:text-blue-500" />
+            <div className="w-14 h-14 rounded-xl bg-green-100 dark:bg-green-500/10 flex items-center justify-center">
+              <Icon className="w-7 h-7 text-green-600 dark:text-green-500" />
             </div>
           </div>
 
@@ -180,7 +180,7 @@ export default function CTABanner({
           <div className="flex-shrink-0">
             <Link
               href={finalButtonUrl}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 text-navy-950 font-semibold rounded-xl transition-colors whitespace-nowrap"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-400 text-navy-950 font-semibold rounded-xl transition-colors whitespace-nowrap"
             >
               {finalButtonText}
               <ArrowRight className="w-4 h-4" />
@@ -191,3 +191,4 @@ export default function CTABanner({
     </div>
   );
 }
+

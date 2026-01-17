@@ -28,9 +28,9 @@ export default function ComparisonTable({ headers, items, title }: ComparisonTab
   };
 
   return (
-    <div className="my-6 overflow-hidden rounded-xl border border-blue-500/10">
+    <div className="my-6 overflow-hidden rounded-xl border border-green-500/10">
       {title && (
-        <div className="px-4 py-3 bg-white dark:bg-navy-900 border-b border-blue-500/10">
+        <div className="px-4 py-3 bg-white dark:bg-navy-900 border-b border-green-500/10">
           <h4 className="font-medium text-slate-900 dark:text-white">{title}</h4>
         </div>
       )}
@@ -38,13 +38,13 @@ export default function ComparisonTable({ headers, items, title }: ComparisonTab
         <table className="w-full">
           <thead>
             <tr className="bg-slate-50 dark:bg-navy-900">
-              <th className="px-4 py-3 text-left text-sm font-medium text-slate-600 dark:text-navy-300 border-b border-blue-500/10">
+              <th className="px-4 py-3 text-left text-sm font-medium text-slate-600 dark:text-navy-300 border-b border-green-500/10">
                 Característica
               </th>
               {headers.map((header, index) => (
                 <th
                   key={index}
-                  className="px-4 py-3 text-center text-sm font-medium text-blue-400 border-b border-blue-500/10"
+                  className="px-4 py-3 text-center text-sm font-medium text-green-400 border-b border-green-500/10"
                 >
                   {header}
                 </th>
@@ -55,7 +55,7 @@ export default function ComparisonTable({ headers, items, title }: ComparisonTab
             {items.map((item, rowIndex) => (
               <tr
                 key={rowIndex}
-                className="border-b border-blue-500/5 hover:bg-slate-50 dark:hover:bg-navy-800/50 transition-colors"
+                className="border-b border-green-500/5 hover:bg-slate-50 dark:hover:bg-navy-800/50 transition-colors"
               >
                 <td className="px-4 py-3 text-sm text-slate-900 dark:text-white">{item.feature}</td>
                 {item.values.map((value, colIndex) => (
@@ -71,3 +71,4 @@ export default function ComparisonTable({ headers, items, title }: ComparisonTab
     </div>
   );
 }
+

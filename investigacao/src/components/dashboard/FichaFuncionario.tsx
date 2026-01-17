@@ -170,7 +170,7 @@ export function FichaFuncionario({
                   : "bg-navy-700"
               }`}>
                 <User className={`w-8 h-8 ${
-                  isFalecido ? "text-red-400" : temAlertas ? "text-amber-400" : "text-blue-400"
+                  isFalecido ? "text-red-400" : temAlertas ? "text-amber-400" : "text-green-400"
                 }`} />
               </div>
               <div>
@@ -203,7 +203,7 @@ export function FichaFuncionario({
                       router.push('/dashboard/comurgecedidos');
                       onClose();
                     }}
-                    className="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors text-sm font-medium"
+                    className="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors text-sm font-medium"
                   >
                     <Building2 className="w-4 h-4" />
                     Ver Funcionários Cedidos
@@ -475,13 +475,13 @@ export function FichaFuncionario({
               {beneficios.length > 0 ? (
                 <div className="space-y-3">
                   {beneficios.map((b, i) => (
-                    <div key={i} className="bg-blue-500/5 border border-blue-500/20 rounded-lg p-4">
+                    <div key={i} className="bg-green-500/5 border border-green-500/20 rounded-lg p-4">
                       <div className="flex justify-between items-center">
                         <div>
                           <h5 className="font-medium text-slate-900 dark:text-white">{formatBeneficio(b.tipo)}</h5>
                           <p className="text-sm text-slate-900 dark:text-slate-600 dark:text-white/60 mt-1">Ano: {b.ano}</p>
                         </div>
-                        <span className="text-blue-400 font-bold">
+                        <span className="text-green-400 font-bold">
                           R$ {b.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                         </span>
                       </div>
@@ -560,12 +560,12 @@ function Section({
   extra?: string;
 }) {
   const colorClasses: Record<string, string> = {
-    gold: "text-blue-400",
+    gold: "text-green-400",
     purple: "text-purple-400",
     emerald: "text-emerald-400",
     amber: "text-amber-400",
     red: "text-red-400",
-    cyan: "text-blue-400",
+    cyan: "text-green-400",
     orange: "text-orange-400",
   };
 
@@ -609,7 +609,7 @@ function InfoCard({
       <p className={`text-sm ${mono ? "font-mono" : ""} ${
         status === "success" ? "text-emerald-400" :
         status === "error" ? "text-red-400" :
-        highlight ? "text-blue-400 font-medium" : "text-white"
+        highlight ? "text-green-400 font-medium" : "text-white"
       }`}>
         {value}
       </p>
@@ -639,3 +639,4 @@ function formatBeneficio(tipo: string): string {
   };
   return tipos[tipo] || tipo;
 }
+
