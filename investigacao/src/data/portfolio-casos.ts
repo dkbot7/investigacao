@@ -88,7 +88,7 @@ export const CASOS_PORTFOLIO: CasoPortfolio[] = [
         icon: Zap
       },
       {
-        label: 'Precisão da Extração',
+        label: 'Precisão da Análise',
         valor: '98%',
         icon: CheckCircle
       },

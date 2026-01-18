@@ -148,7 +148,7 @@ export default function PrecosPage() {
       ]
     },
     {
-      nome: "Extração Profissional de Celular",
+      nome: "Análise Profissional de Dispositivos",
       descricao: "Avilla Forensics + IPED",
       preco: "Sob consulta",
       prazo: "7-10 dias",
@@ -156,7 +156,7 @@ export default function PrecosPage() {
       icon: Shield,
       color: "purple",
       includes: [
-        "Extração com Avilla",
+        "Análise com Avilla",
         "Indexação IPED",
         "Recuperação deletados",
         "Cadeia oficial",

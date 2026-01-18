@@ -125,7 +125,7 @@ const faqs = [
       },
       {
         pergunta: "[Advogados] Vocês fazem perícia profissional para processos judiciais?",
-        resposta: "Sim! Perícia profissional digital com: (1) Extração profissional de celular (Avilla Forensics + IPED); (2) Cadeia de custódia certificada; (3) Coleta e preservação de provas digitais; (4) Relatórios periciais admissíveis em juízo; (5) Metodologia profissional validada. Ideal para processos trabalhistas, cíveis, criminais e família. Validade judicial garantida."
+        resposta: "Sim! Perícia profissional digital com: (1) Análise profissional de dispositivos (Avilla Forensics + IPED); (2) Cadeia de custódia certificada; (3) Coleta e preservação de provas digitais; (4) Relatórios periciais admissíveis em juízo; (5) Metodologia profissional validada. Ideal para processos trabalhistas, cíveis, criminais e família. Validade judicial garantida."
       },
       {
         pergunta: "[Divórcio] Como rastrear patrimônio oculto do cônjuge?",
@@ -144,8 +144,8 @@ const faqs = [
         resposta: "Sim! Relatórios com metodologia profissional profissional, cadeia de custódia documentada, fontes rastreáveis e evidências verificáveis são admissíveis em processos judiciais. Advogados usam para: petições iniciais, investigação patrimonial em divórcios, ações trabalhistas, processos criminais e execuções. Tribunais aceitam como elemento de convicção. Para perícia oficial, recomendamos nomear perito pelo juízo."
       },
       {
-        pergunta: "Vocês fazem extração profissional de celular com WhatsApp deletado?",
-        resposta: "Sim! Perícia profissional digital com Avilla Forensics e IPED: (1) Extração de mensagens deletadas (WhatsApp, SMS, Telegram); (2) Recuperação de fotos e vídeos apagados; (3) Histórico de navegação; (4) Cadeia de custódia oficial; (5) Relatório técnico pericial. Dispositivo próprio ou com consentimento. Validade judicial garantida. Ideal para advogados em processos trabalhistas, criminais e família."
+        pergunta: "Vocês fazem análise profissional de dispositivos com WhatsApp deletado?",
+        resposta: "Sim! Perícia profissional digital com Avilla Forensics e IPED: (1) Análise de mensagens deletadas (WhatsApp, SMS, Telegram); (2) Recuperação de fotos e vídeos apagados; (3) Histórico de navegação; (4) Cadeia de custódia oficial; (5) Relatório técnico pericial. Dispositivo próprio ou com consentimento. Validade judicial garantida. Ideal para advogados em processos trabalhistas, criminais e família."
       }
     ]
   }

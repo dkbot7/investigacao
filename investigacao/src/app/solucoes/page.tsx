@@ -53,7 +53,7 @@ export default function SolucoesPage() {
       href: "/solucoes/coleta-provas-digitais",
       color: "purple",
       features: [
-        "Extração forense de celulares",
+        "Análise forense de dispositivos",
         "Cadeia de custódia certificada",
         "Relatórios periciais",
         "Metodologia profissional validada",

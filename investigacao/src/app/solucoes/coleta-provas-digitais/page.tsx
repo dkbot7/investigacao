@@ -91,7 +91,7 @@ export default function ColetaProvasDigitaisPage() {
                     { icon: MessageSquare, title: 'Conversas', desc: 'WhatsApp, Telegram, redes sociais' },
                     { icon: Camera, title: 'Fotos e Vídeos', desc: 'Prints de tela com metadata' },
                     { icon: Mail, title: 'E-mails', desc: 'Cabeçalhos e anexos completos' },
-                    { icon: Smartphone, title: 'Dispositivos', desc: 'Extração forense (Avilla Forensics + IPED)' },
+                    { icon: Smartphone, title: 'Dispositivos', desc: 'Análise forense (Avilla Forensics + IPED)' },
                     { icon: Scale, title: 'Documentos', desc: 'PDFs, contratos, áudios' },
                   ].map((item, idx) => {
                     const Icon = item.icon

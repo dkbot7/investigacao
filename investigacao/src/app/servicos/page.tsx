@@ -142,11 +142,11 @@ const SERVICOS_B2C: Servico[] = [
   },
   {
     id: "extracao-profissional-dispositivos",
-    nome: "Extração Profissional de Celular",
-    descricao: "Extração profissional com Avilla Forensics e indexação com IPED para dispositivo próprio",
+    nome: "Análise Profissional de Dispositivos",
+    descricao: "Análise profissional com Avilla Forensics e indexação com IPED para dispositivo próprio",
     icon: Smartphone,
     caracteristicas: [
-      "Extração com Avilla Forensics",
+      "Análise com Avilla Forensics",
       "Indexação e análise com IPED",
       "Recuperação de dados deletados",
       "Cadeia de custódia oficial",
@@ -312,11 +312,11 @@ const SERVICOS_LEGAL: Servico[] = [
   },
   {
     id: "extracao-profissional-dispositivos-legal",
-    nome: "Extração Profissional de Celular",
-    descricao: "Extração profissional com Avilla Forensics e indexação com IPED",
+    nome: "Análise Profissional de Dispositivos",
+    descricao: "Análise profissional com Avilla Forensics e indexação com IPED",
     icon: Smartphone,
     caracteristicas: [
-      "Extração com Avilla Forensics",
+      "Análise com Avilla Forensics",
       "Indexação e análise com IPED",
       "Recuperação de dados deletados",
       "Cadeia de custódia oficial",

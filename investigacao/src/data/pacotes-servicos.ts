@@ -64,12 +64,12 @@ export const PACOTES_SERVICOS: PacoteServico[] = [
   {
     id: 'pericia-forense',
     nome: 'Perícia Forense Digital',
-    descricao: 'Investigação forense validada por perito com extração de dispositivos e cadeia de custódia certificada.',
+    descricao: 'Investigação forense validada por perito com análise de dispositivos e cadeia de custódia certificada.',
     cor: 'red',
     icon: ShieldCheck,
-    servicos: ['pericia-forense-validada', 'extracao-forense-dispositivos', 'cadeia-custodia-certificada', 'seguranca-residencial'],
+    servicos: ['pericia-forense-validada', 'analise-forense-dispositivos', 'cadeia-custodia-certificada', 'seguranca-residencial'],
     caracteristicas: [
-      'Extração com Avilla Forensics e indexação com IPED',
+      'Análise com Avilla Forensics e indexação com IPED',
       'Validação por Perito Criminal Oficial (Ibsen Maciel)',
       'Cadeia de custódia certificada',
       'Recuperação de dados deletados',
