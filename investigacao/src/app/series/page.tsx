@@ -74,7 +74,7 @@ const SERIES_DATA = [
   },
   {
     ...BLOG_SERIES[3], // Na Visão do Perito
-    topic: BLOG_TOPICS.find(t => t.id === "metodologia-forense"),
+    topic: BLOG_TOPICS.find(t => t.id === "metodologia-profissional"),
     icon: Shield,
     posts: [
       { id: "1", title: "O que é Cadeia de Custódia Digital", status: "published", slug: "cadeia-custodia-digital" },
@@ -82,7 +82,7 @@ const SERIES_DATA = [
       { id: "3", title: "Evidências que Valem em Juízo", status: "draft", slug: "evidencias-valem-juizo" },
       { id: "4", title: "Diferença entre Perícia Oficial e Privada", status: "upcoming", slug: "pericia-oficial-privada" },
       { id: "5", title: "Ferramentas Usadas por Peritos", status: "upcoming", slug: "ferramentas-peritos" },
-      { id: "6", title: "Certificações em Forense Digital", status: "upcoming", slug: "certificacoes-forense" },
+      { id: "6", title: "Certificações em Profissional Digital", status: "upcoming", slug: "certificacoes-profissional" },
       { id: "7", title: "Ética na Investigação Digital", status: "upcoming", slug: "etica-investigacao" },
       { id: "8", title: "Tendências em Perícia para 2025", status: "upcoming", slug: "tendencias-pericia-2025" },
     ]

@@ -17,9 +17,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://investigacaodigital.com.br'),
-  title: "investigação digital - Due Diligence Digital com Rigor Forense",
+  title: "investigação digital - Due Diligence Digital com Rigor Profissional",
   description: "Investigação particular e due diligence digital com metodologia profissional validada. Proteja seu patrimônio com análise completa de startups, founders e parceiros. Entrega em 48h.",
-  keywords: ["due diligence", "investigação particular", "investigação digital", "background check", "perícia forense", "OSINT", "proteção patrimonial", "verificação de antecedentes"],
+  keywords: ["due diligence", "investigação particular", "investigação digital", "background check", "OSINT", "proteção patrimonial", "verificação de antecedentes"],
   authors: [{ name: "investigação digital" }],
   creator: "investigação digital",
   publisher: "investigação digital",
@@ -44,14 +44,14 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: "https://investigacaodigital.com.br",
     siteName: "investigação digital",
-    title: "investigação digital - Due Diligence Digital com Rigor Forense",
+    title: "investigação digital - Due Diligence Digital com Rigor Profissional",
     description: "Investigação particular com metodologia profissional validada. Resultados confiáveis em 48h.",
     images: [
       {
         url: "/web-app-manifest-512x512.png",
         width: 512,
         height: 512,
-        alt: "investigação digital - Due Diligence Forense",
+        alt: "investigação digital - Due Diligence Profissional",
       },
       {
         url: "/web-app-manifest-192x192.png",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@investigação digital",
     creator: "@investigação digital",
-    title: "investigação digital - Due Diligence Forense",
+    title: "investigação digital - Due Diligence Profissional",
     description: "Proteja seu patrimônio com investigação profissional em 48h. Metodologia validada e confiável",
     images: ["/web-app-manifest-512x512.png"],
   },

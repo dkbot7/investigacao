@@ -63,7 +63,7 @@ export default function SobrePage() {
                 <p className="text-slate-900 dark:text-slate-700 dark:text-white/70 leading-relaxed">
                   Ser a referência nacional em due diligence digital, reconhecida pela
                   excelência técnica, ética profissional e pela metodologia validada
-                  por especialistas em perícia forense.
+                  por especialistas em perícia profissional.
                 </p>
               </div>
 
@@ -103,10 +103,10 @@ export default function SobrePage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white dark:bg-navy-900 rounded-xl border border-slate-300 dark:border-navy-800 p-6">
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">Metodologia Forense</h3>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">Metodologia Profissional</h3>
                 <p className="text-slate-900 dark:text-slate-700 dark:text-white/70">
                   Nossa metodologia foi desenvolvida e validada por Perito Criminal Oficial
-                  em Forense Computacional, garantindo padrões de qualidade equivalentes
+                  em Profissional Computacional, garantindo padrões de qualidade equivalentes
                   aos utilizados em investigações criminais de nível nacional.
                 </p>
               </div>
@@ -116,7 +116,7 @@ export default function SobrePage() {
                 <p className="text-slate-900 dark:text-slate-700 dark:text-white/70">
                   Contamos com um conselho consultivo composto por especialistas renomados,
                   incluindo peritos criminais oficiais e profissionais com certificações
-                  internacionais em análise forense digital.
+                  internacionais em análise profissional digital.
                 </p>
               </div>
 

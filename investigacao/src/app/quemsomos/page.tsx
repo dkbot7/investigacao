@@ -28,7 +28,7 @@ export default function QuemSomosPage() {
                 Investigação Digital <span className="text-green-400">Profissional</span>
               </h1>
               <p className="text-xl text-slate-700 dark:text-navy-200 max-w-3xl mx-auto">
-                Servimos <strong className="text-green-400">empresas, investidores, advogados, famílias e governo</strong> com metodologia forense validada e conformidade LGPD.
+                Servimos <strong className="text-green-400">empresas, investidores, advogados, famílias e governo</strong> com metodologia profissional validada e conformidade LGPD.
               </p>
             </div>
           </div>
@@ -148,14 +148,14 @@ export default function QuemSomosPage() {
                 <CardHeader>
                   <BookOpen className="w-12 h-12 text-purple-600 dark:text-purple-400 mb-4" />
                   <CardTitle className="text-slate-900 dark:text-white">Advogados</CardTitle>
-                  <CardDescription>Provas digitais forenses</CardDescription>
+                  <CardDescription>Provas digitais profissionais</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-slate-700 dark:text-navy-200 mb-4">
                     Coleta de provas com cadeia de custódia certificada e validade judicial.
                   </p>
                   <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400">
-                    Perícia Forense
+                    Perícia Profissional
                   </Badge>
                 </CardContent>
               </Card>
@@ -186,7 +186,7 @@ export default function QuemSomosPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-slate-700 dark:text-navy-200 mb-4">
-                    Auditoria forense de licitações em conformidade TCU/CGU.
+                    Auditoria profissional de licitações em conformidade TCU/CGU.
                   </p>
                   <Badge className="bg-orange-100 text-orange-700 dark:bg-orange-900/20 dark:text-orange-400">
                     Governo

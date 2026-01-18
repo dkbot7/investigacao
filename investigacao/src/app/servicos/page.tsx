@@ -120,13 +120,13 @@ const SERVICOS_B2C: Servico[] = [
   },
   // INVESTIGAÇÃO FORENSE
   {
-    id: "investigacao-forense-profissional",
-    nome: "Investigação Forense Profissional",
-    descricao: "Relatório forense com metodologia profissional validada",
+    id: "investigacao-profissional-profissional",
+    nome: "Investigação Profissional Profissional",
+    descricao: "Relatório profissional com metodologia profissional validada",
     icon: ShieldCheck,
     destaque: true,
     caracteristicas: [
-      "Metodologia forense profissional",
+      "Metodologia profissional profissional",
       "Relatório técnico especializado",
       "Cadeia de custódia garantida",
       "Fontes públicas (OSINT)",
@@ -141,9 +141,9 @@ const SERVICOS_B2C: Servico[] = [
     categoria: "pericia"
   },
   {
-    id: "extracao-forense-dispositivos",
-    nome: "Extração Forense de Celular",
-    descricao: "Extração forense com Avilla Forensics e indexação com IPED para dispositivo próprio",
+    id: "extracao-profissional-dispositivos",
+    nome: "Extração Profissional de Celular",
+    descricao: "Extração profissional com Avilla Forensics e indexação com IPED para dispositivo próprio",
     icon: Smartphone,
     caracteristicas: [
       "Extração com Avilla Forensics",
@@ -287,16 +287,16 @@ const SERVICOS_B2B: Servico[] = [
   }
 ];
 
-// LEGAL - PARA ADVOGADOS (Perícia Forense)
+// LEGAL - PARA ADVOGADOS (Perícia Profissional)
 const SERVICOS_LEGAL: Servico[] = [
   {
-    id: "investigacao-forense-profissional-legal",
-    nome: "Investigação Forense Profissional",
-    descricao: "Relatório forense com metodologia profissional validada",
+    id: "investigacao-profissional-profissional-legal",
+    nome: "Investigação Profissional Profissional",
+    descricao: "Relatório profissional com metodologia profissional validada",
     icon: ShieldCheck,
     destaque: true,
     caracteristicas: [
-      "Metodologia forense profissional",
+      "Metodologia profissional profissional",
       "Relatório técnico especializado",
       "Cadeia de custódia garantida",
       "Fontes públicas (OSINT)",
@@ -311,9 +311,9 @@ const SERVICOS_LEGAL: Servico[] = [
     categoria: "pericia"
   },
   {
-    id: "extracao-forense-dispositivos-legal",
-    nome: "Extração Forense de Celular",
-    descricao: "Extração forense com Avilla Forensics e indexação com IPED",
+    id: "extracao-profissional-dispositivos-legal",
+    nome: "Extração Profissional de Celular",
+    descricao: "Extração profissional com Avilla Forensics e indexação com IPED",
     icon: Smartphone,
     caracteristicas: [
       "Extração com Avilla Forensics",
@@ -545,13 +545,13 @@ function ServicosContent() {
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4 text-center leading-tight">
             Serviços de Investigação Digital com<br />
-            <span className="text-green-500">Metodologia Forense</span>
+            <span className="text-green-500">Metodologia Profissional</span>
           </h1>
 
           <p className="text-lg md:text-xl text-slate-600 dark:text-navy-300 max-w-3xl mx-auto mb-8 text-center">
             Escolha o serviço ideal para sua necessidade. <strong className="text-green-500">Background check</strong>,
             <strong className="text-slate-900 dark:text-white"> proteção de privacidade</strong> ou
-            <strong className="text-purple-600"> perícia forense</strong>.
+            <strong className="text-purple-600"> perícia profissional</strong>.
           </p>
 
           {/* Category Pills */}
@@ -563,7 +563,7 @@ function ServicosContent() {
               🔐 Proteção & Privacidade
             </Badge>
             <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400 text-sm px-4 py-2">
-              ⚖️ Perícia Forense
+              ⚖️ Perícia Profissional
             </Badge>
           </div>
         </div>

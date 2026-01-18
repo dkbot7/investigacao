@@ -23,12 +23,12 @@ export default function Home() {
           <div className="container max-w-5xl mx-auto px-4 text-center space-y-8">
             {/* Badge Trust Signal */}
             <Badge className="bg-green-600 text-white font-bold px-6 py-3 text-lg">
-              🛡️ Metodologia Forense Profissional Validada
+              🛡️ Metodologia Profissional Validada
             </Badge>
 
             {/* Headline - O Que Fazemos */}
             <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white leading-tight">
-              Investigação Profissional com<br />Metodologia Forense Validada
+              Investigação Profissional com<br />Metodologia Validada
             </h1>
 
             {/* Subheadline */}
@@ -78,7 +78,7 @@ export default function Home() {
                 SOLUÇÕES POR PÚBLICO-ALVO
               </Badge>
               <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-                Quem Usa Investigação Forense Profissional?
+                Quem Usa Investigação Profissional?
               </h2>
               <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
                 Descubra a solução ideal para seu perfil e necessidade específica
@@ -139,7 +139,7 @@ export default function Home() {
                       Advogados
                     </h3>
                     <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-                      Provas digitais forenses para processos judiciais. Cadeia de custódia e relatórios admissíveis.
+                      Provas digitais para processos judiciais. Cadeia de custódia e relatórios admissíveis.
                     </p>
                     <Button className="w-full bg-purple-600 hover:bg-purple-700 group-hover:bg-purple-700">
                       Ver Soluções Jurídicas
@@ -233,13 +233,13 @@ export default function Home() {
           <div className="container max-w-6xl mx-auto px-4">
             <div className="text-center mb-16">
               <Badge className="mb-4 px-4 py-2 text-sm font-semibold bg-green-600 text-white">
-                METODOLOGIA FORENSE PROFISSIONAL
+                METODOLOGIA PROFISSIONAL
               </Badge>
               <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
                 Como Nossa Investigação Funciona?
               </h2>
               <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-                Metodologia forense validada com fontes oficiais do governo e conformidade total LGPD
+                Metodologia profissional validada com fontes oficiais do governo e conformidade total LGPD
               </p>
             </div>
 
@@ -265,7 +265,7 @@ export default function Home() {
                     2
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                    Investigação Forense
+                    Investigação Profissional
                   </h3>
                   <p className="text-lg text-slate-700 dark:text-slate-300">
                     Vasculhamos 27 tribunais, TSE, CNJ, Receita Federal, CEIS/CNEP e 100+ fontes oficiais do governo.

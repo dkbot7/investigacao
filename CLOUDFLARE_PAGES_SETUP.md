@@ -11,28 +11,37 @@
 1. Abra: https://dash.cloudflare.com/ce11d202b2917777965b5131b5edc627/pages
 2. Você verá o projeto **"investigacao"** listado
 
-### Passo 2: Conectar ao GitHub
-1. Clique no projeto **"investigacao"**
-2. Clique em **"Settings"** (menu lateral)
-3. Vá para **"Builds & deployments"**
-4. Clique em **"Connect to Git"**
-5. Selecione **"GitHub"**
-6. Autorize o Cloudflare a acessar sua conta GitHub
-7. Selecione o repositório: **dkbot7/investigacao**
-8. Branch de produção: **main**
+### Passo 2: Conectar ao GitHub (MÉTODO RECOMENDADO)
+1. Na página de Workers & Pages, clique em **"Create application"**
+2. Selecione aba **"Pages"**
+3. Clique em **"Connect to Git"**
+4. Autorize o Cloudflare a acessar sua conta GitHub (se necessário)
+5. Selecione o repositório: **dkbot7/investigacao**
+6. Configure:
+   - **Project name**: investigacao (ou deixe o default)
+   - **Production branch**: main
+   - Clique em **"Begin setup"**
 
 ### Passo 3: Build Settings
 Configure EXATAMENTE assim:
 
 ```
-Framework preset: Next.js (Pages Router)
+Framework preset: Next.js
 Build command: npx @cloudflare/next-on-pages
 Build output directory: .vercel/output/static
 Root directory: investigacao
-Node version: 18.17.0
+Node version: 18
 ```
 
-**Environment Variables** (deixe vazio por enquanto)
+**Environment Variables** (adicione estas):
+```
+NODE_VERSION = 18
+```
+
+**IMPORTANTE**:
+- NÃO selecione "Next.js (Static HTML Export)"
+- Selecione apenas "Next.js"
+- O comando `npx @cloudflare/next-on-pages` roda automaticamente `npm run build` primeiro
 
 ### Passo 4: Save and Deploy
 1. Clique em **"Save and Deploy"**

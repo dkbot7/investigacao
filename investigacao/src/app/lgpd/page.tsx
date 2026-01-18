@@ -184,7 +184,7 @@ export default function LGPDPage() {
                         Consentimento Informado (Quando Aplicável)
                       </h3>
                       <p className="text-slate-700 dark:text-navy-200 mb-3">
-                        Quando a investigação envolve dados fornecidos voluntariamente (perícia forense de dispositivos próprios, por exemplo), sempre solicitamos <strong className="text-orange-600">consentimento livre, informado e inequívoco</strong>.
+                        Quando a investigação envolve dados fornecidos voluntariamente (perícia profissional de dispositivos próprios, por exemplo), sempre solicitamos <strong className="text-orange-600">consentimento livre, informado e inequívoco</strong>.
                       </p>
                       <Badge className="bg-orange-100 text-orange-700 dark:bg-orange-900/20 dark:text-orange-400">
                         ✅ Base Legal: Art. 7º, I da LGPD (Consentimento)

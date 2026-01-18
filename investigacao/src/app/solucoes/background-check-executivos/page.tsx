@@ -79,7 +79,7 @@ export default function BackgroundCheckExecutivosPage() {
               <div className="grid grid-cols-1 gap-3">
                 {[
                   { icon: Search, text: '18 camadas de verificação (diplomas, sanções, reputação, offshore)' },
-                  { icon: Shield, text: 'Relatório confidencial com evidências forenses' },
+                  { icon: Shield, text: 'Relatório confidencial com evidências profissionals' },
                   { icon: Clock, text: 'Resultados em 5-10 dias úteis (urgente: 48h)' },
                 ].map((benefit, idx) => (
                   <div key={idx} className="flex items-center gap-3">
@@ -227,7 +227,7 @@ export default function BackgroundCheckExecutivosPage() {
               </h2>
               <div className="space-y-4 text-slate-700">
                 <p className="text-lg leading-relaxed">
-                  Nossa verificação profunda combina <strong>18 camadas de análise forense</strong> — desde validação de diplomas com universidades até rastreamento de offshore e reputação digital — para mapear 100% do histórico do executivo.
+                  Nossa verificação profunda combina <strong>18 camadas de análise profissional</strong> — desde validação de diplomas com universidades até rastreamento de offshore e reputação digital — para mapear 100% do histórico do executivo.
                 </p>
                 <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg">
                   <p className="font-semibold text-green-900 mb-2">O que verificamos (C-Level Premium):</p>
@@ -277,7 +277,7 @@ export default function BackgroundCheckExecutivosPage() {
               Metodologia: 18 Camadas de Verificação C-Level Premium
             </h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Vamos além do background check tradicional. Nossa verificação executiva cruza dados globais e utiliza OSINT forense para validar 100% do currículo.
+              Vamos além do background check tradicional. Nossa verificação executiva cruza dados globais e utiliza OSINT profissional para validar 100% do currículo.
             </p>
           </div>
 
@@ -305,7 +305,7 @@ export default function BackgroundCheckExecutivosPage() {
                 icon: FileSearch,
                 title: '4. LinkedIn Forensics',
                 desc: 'Análise de timeline: alterações retroativas, endorsements falsos, conexões suspeitas',
-                layer: 'Forense'
+                layer: 'Profissional'
               },
               {
                 icon: UserX,
@@ -329,7 +329,7 @@ export default function BackgroundCheckExecutivosPage() {
                 icon: AlertTriangle,
                 title: '8. Empresas Fantasmas',
                 desc: 'CNPJs inaptos, endereços falsos, sem funcionários (RAIS)',
-                layer: 'Forense'
+                layer: 'Profissional'
               },
               {
                 icon: DollarSign,
@@ -383,7 +383,7 @@ export default function BackgroundCheckExecutivosPage() {
                 icon: Lock,
                 title: '17. Deepfake Detection',
                 desc: 'Análise de fotos/vídeos do candidato com IA (face matching, liveness detection)',
-                layer: 'Forense'
+                layer: 'Profissional'
               },
               {
                 icon: FileText,
@@ -534,7 +534,7 @@ export default function BackgroundCheckExecutivosPage() {
               O Que Você Recebe
             </h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Relatório confidencial com análise forense completa, pronto para apresentação ao Conselho ou acionistas.
+              Relatório confidencial com análise profissional completa, pronto para apresentação ao Conselho ou acionistas.
             </p>
           </div>
 
@@ -703,7 +703,7 @@ export default function BackgroundCheckExecutivosPage() {
               },
               {
                 q: 'Qual a diferença entre Background Check Básico e C-Level Premium?',
-                a: 'Básico (10 camadas): diplomas, sanções nacionais, processos, vínculos societários. Premium (18 camadas): + offshore, OFAC, deepfake detection, OSINT forense, referências internacionais, análise de padrão de vida. Premium é essencial para CEO/CFO/COO ou cargos com acesso a informações estratégicas.',
+                a: 'Básico (10 camadas): diplomas, sanções nacionais, processos, vínculos societários. Premium (18 camadas): + offshore, OFAC, deepfake detection, OSINT profissional, referências internacionais, análise de padrão de vida. Premium é essencial para CEO/CFO/COO ou cargos com acesso a informações estratégicas.',
               },
             ].map((faq, idx) => (
               <div key={idx} className="border border-slate-200 rounded-xl p-6 hover:shadow-md transition-shadow">

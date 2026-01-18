@@ -51,7 +51,18 @@
       "Bash(tasklist:*)",
       "Bash(npx vercel --prod --yes)",
       "Bash(npx vercel --prod)",
-      "Bash(npx:*)"
+      "Bash(npx:*)",
+      "Bash(start https://dash.cloudflare.com/profile/api-tokens/create)",
+      "Bash(curl:*)",
+      "Bash(gh secret set:*)",
+      "Bash(gh secret list:*)",
+      "Bash(start https://github.com/dkbot7/investigacao/actions)",
+      "Bash(gh run list:*)",
+      "Bash(gh run:*)",
+      "Bash(gh workflow:*)",
+      "Bash(gh api:*)",
+      "Bash(test:*)",
+      "Bash(node compile-mdx-to-json.js:*)"
     ],
     "deny": [],
     "ask": []

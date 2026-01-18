@@ -132,7 +132,7 @@ export default function PrecosPage() {
 
   const servicosLegal = [
     {
-      nome: "Investigação Forense Profissional",
+      nome: "Investigação Profissional Profissional",
       descricao: "Relatório com metodologia validada",
       preco: "Sob consulta",
       prazo: "10-15 dias",
@@ -140,7 +140,7 @@ export default function PrecosPage() {
       icon: Scale,
       color: "gold",
       includes: [
-        "Metodologia forense",
+        "Metodologia profissional",
         "Cadeia de custódia",
         "Fontes públicas OSINT",
         "Validade judicial",
@@ -148,7 +148,7 @@ export default function PrecosPage() {
       ]
     },
     {
-      nome: "Extração Forense de Celular",
+      nome: "Extração Profissional de Celular",
       descricao: "Avilla Forensics + IPED",
       preco: "Sob consulta",
       prazo: "7-10 dias",
@@ -389,7 +389,7 @@ export default function PrecosPage() {
           </div>
         </section>
 
-        {/* Perícia Forense - Legal */}
+        {/* Perícia Profissional - Legal */}
         <section className="py-16 bg-white dark:bg-slate-950">
           <div className="container max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
@@ -397,7 +397,7 @@ export default function PrecosPage() {
                 ADVOGADOS E PROCESSOS JUDICIAIS
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                Perícia Forense Digital
+                Perícia Profissional Digital
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400">
                 Provas com cadeia de custódia e validade judicial garantida

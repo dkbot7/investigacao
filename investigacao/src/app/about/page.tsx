@@ -62,7 +62,7 @@ function StaticAboutSection() {
               <Award className="h-12 w-12 text-green-500 mb-4" />
               <h3 className="text-xl font-bold mb-2">Nossa Expertise</h3>
               <p className="text-gray-600">
-                Combinamos forense digital, análise de dados e compliance para entregar
+                Combinamos profissional digital, análise de dados e compliance para entregar
                 resultados precisos e confiáveis.
               </p>
             </div>
@@ -182,10 +182,10 @@ export default function AboutPage() {
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-4">Nossa Equipe</h2>
               <p className="text-gray-600 mb-8">
-                Profissionais experientes em forense digital, segurança da informação e compliance
+                Profissionais experientes em profissional digital, segurança da informação e compliance
               </p>
               <p className="text-gray-600">
-                Nossa equipe é composta por especialistas certificados em análise forense digital,
+                Nossa equipe é composta por especialistas certificados em análise profissional digital,
                 com vasta experiência em investigações corporativas, compliance regulatório e
                 segurança cibernética.
               </p>

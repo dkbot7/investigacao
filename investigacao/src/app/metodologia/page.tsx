@@ -8,11 +8,11 @@ import Header from '@/components/landing/Header';
 import Footer from '@/components/landing/Footer';
 
 export const metadata: Metadata = {
-  title: 'Metodologias Forenses Validadas | Investigaree',
-  description: 'Biblioteca técnica de metodologias forenses aplicadas: blindagem de privacidade, automação de due diligence e investigação defensiva criminal.',
+  title: 'Metodologias profissionals Validadas | Investigaree',
+  description: 'Biblioteca técnica de metodologias profissionals aplicadas: blindagem de privacidade, automação de due diligence e investigação defensiva criminal.',
   openGraph: {
-    title: 'Metodologias Forenses Validadas | Investigaree',
-    description: 'Biblioteca técnica de metodologias forenses aplicadas: blindagem de privacidade, automação de due diligence e investigação defensiva criminal.',
+    title: 'Metodologias profissionals Validadas | Investigaree',
+    description: 'Biblioteca técnica de metodologias profissionals aplicadas: blindagem de privacidade, automação de due diligence e investigação defensiva criminal.',
   },
 };
 
@@ -81,7 +81,7 @@ export default function MetodologiaIndexPage() {
         <section className="pt-20 md:pt-32 pb-12 md:pb-16 px-4 md:px-6 bg-gradient-to-b from-slate-50 to-white dark:from-navy-900 dark:to-navy-950">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 md:mb-6">
-              Metodologias Forenses Validadas
+              Metodologias profissionals Validadas
             </h1>
             <p className="text-base md:text-lg text-slate-600 dark:text-navy-300 max-w-2xl mx-auto">
               Biblioteca técnica de metodologias aplicadas em blindagem de privacidade, due diligence automatizada e investigação defensiva criminal.

@@ -27,7 +27,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'Auditoria de Licitações e Compliance Público | Detectar Fraudes em Contratos',
-  description: 'CGU apurou R$ 34 Mi em fraudes em licitações em 2025. Nossa auditoria forense detecta empresas fantasmas, superfaturamento, direcionamento e cartel. Conformidade TCU/CGU.',
+  description: 'CGU apurou R$ 34 Mi em fraudes em licitações em 2025. Nossa auditoria profissional detecta empresas fantasmas, superfaturamento, direcionamento e cartel. Conformidade TCU/CGU.',
   keywords: [
     'auditoria licitações',
     'fraude licitação',
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Auditoria de Licitações | Detectar Fraudes em Contratos Públicos',
-    description: 'R$ 34 Mi em fraudes detectadas pela CGU em 2025. Auditoria forense especializada em licitações públicas.',
+    description: 'R$ 34 Mi em fraudes detectadas pela CGU em 2025. Auditoria profissional especializada em licitações públicas.',
     type: 'website',
   },
 }
@@ -73,7 +73,7 @@ export default function AuditoriaLicitacoesPage() {
 
               {/* Subheadline with stat */}
               <p className="text-xl text-slate-300 leading-relaxed">
-                <strong className="text-white">CGU alcançou recorde histórico com 76 Processos Administrativos de Responsabilização em 2024.</strong> Nossa auditoria forense detecta empresas fantasmas, superfaturamento, direcionamento e cartéis — antes da assinatura do contrato.
+                <strong className="text-white">CGU alcançou recorde histórico com 76 Processos Administrativos de Responsabilização em 2024.</strong> Nossa auditoria profissional detecta empresas fantasmas, superfaturamento, direcionamento e cartéis — antes da assinatura do contrato.
               </p>
 
               {/* Key Benefits (3 items, concise) */}
@@ -228,11 +228,11 @@ export default function AuditoriaLicitacoesPage() {
                 A Solução
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
-                Auditoria Forense de Licitações: Detecção Preventiva de Fraudes
+                Auditoria Profissional de Licitações: Detecção Preventiva de Fraudes
               </h2>
               <div className="space-y-4 text-slate-700">
                 <p className="text-lg leading-relaxed">
-                  Nossa auditoria forense analisa <strong>12 camadas de dados</strong> — desde CNPJ dos licitantes até histórico de sanções, precificação de mercado e vínculos societários — para identificar red flags <strong>antes da assinatura do contrato</strong>.
+                  Nossa auditoria profissional analisa <strong>12 camadas de dados</strong> — desde CNPJ dos licitantes até histórico de sanções, precificação de mercado e vínculos societários — para identificar red flags <strong>antes da assinatura do contrato</strong>.
                 </p>
                 <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg">
                   <p className="font-semibold text-green-900 mb-2">O que nossa auditoria detecta:</p>
@@ -282,7 +282,7 @@ export default function AuditoriaLicitacoesPage() {
               Metodologia: 12 Camadas de Auditoria em Licitações
             </h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Nossa auditoria cruza dados de fontes oficiais (Receita, CGU, TCU, Juntas Comerciais) com análise forense para detectar fraudes antes da homologação.
+              Nossa auditoria cruza dados de fontes oficiais (Receita, CGU, TCU, Juntas Comerciais) com análise profissional para detectar fraudes antes da homologação.
             </p>
           </div>
 
@@ -316,7 +316,7 @@ export default function AuditoriaLicitacoesPage() {
                 icon: Database,
                 title: '5. Funcionários (RAIS)',
                 desc: 'Quantidade de empregados declarados vs. porte do contrato (empresa fantasma?)',
-                layer: 'Forense'
+                layer: 'Profissional'
               },
               {
                 icon: DollarSign,
@@ -328,7 +328,7 @@ export default function AuditoriaLicitacoesPage() {
                 icon: AlertTriangle,
                 title: '7. Red Flags de Cartel',
                 desc: 'Licitantes com mesmo endereço, sócios comuns, IPs de envio idênticos, rodízio suspeito',
-                layer: 'Forense'
+                layer: 'Profissional'
               },
               {
                 icon: FileText,

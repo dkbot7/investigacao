@@ -29,14 +29,14 @@ const RESOURCES = [
     id: "treinamento-cibercrimes-ibsen",
     name: "Cibercrimes e Investigação Digital",
     slug: "treinamento-cibercrimes-ibsen",
-    description: "Treinamento ministrado por Ibsen Maciel, Perito Criminal Oficial, abordando técnicas de investigação de crimes cibernéticos, cadeia de custódia e análise forense.",
+    description: "Treinamento ministrado por Ibsen Maciel, Perito Criminal Oficial, abordando técnicas de investigação de crimes cibernéticos, cadeia de custódia e análise profissional.",
     type: "curso" as const,
     url: "/contato",
     price: "pago" as const,
     provider: "Ibsen Maciel - Investigaree",
     rating: 5.0,
     featured: true,
-    tags: ["cibercrimes", "investigação", "forense", "perito criminal"],
+    tags: ["cibercrimes", "investigação", "profissional", "perito criminal"],
     internal: true
   },
   {
