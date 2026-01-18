@@ -4,12 +4,23 @@ import { Button } from '@/components/ui/button'
 import { Building2, Shield, FileSearch, AlertCircle, TrendingDown, CheckCircle2, ArrowRight, Download, BarChart3, Users } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Due Diligence Empresarial | Investigação de Empresas e Sócios | Investigaree',
-  description: 'Due diligence completa para fusões, aquisições e parcerias comerciais. Valide CNPJ, sócios, sanções, processos e riscos ocultos. Relatórios periciais em 48h.',
+  title: 'Due Diligence Empresarial Brasil | Investigação M&A | Análise de Empresas',
+  description: 'Due diligence em 12 camadas para M&A e investimentos. Valide CNPJ, sócios, processos, sanções CEIS/CNEP e passivos ocultos. Evite fraudes. 7-15 dias. LGPD compliant.',
+  keywords: ['due diligence brasil', 'due diligence empresarial', 'investigação de empresas', 'due diligence ma', 'verificar cnpj', 'análise de sócios', 'investigação societária', 'due diligence startup', 'background check empresa'],
   openGraph: {
-    title: 'Due Diligence Empresarial | Investigaree',
-    description: 'Valide empresas antes de fechar negócios. Identifique riscos ocultos, sócios sancionados e passivos trabalhistas.',
+    title: 'Due Diligence Empresarial Brasil | Investigação M&A',
+    description: 'Due diligence em 12 camadas. Valide empresas antes de investir ou comprar. Análise de CNPJ, sócios, processos e red flags.',
     images: ['/images/solutions/due-diligence-og.jpg'],
+    type: 'website',
+    locale: 'pt_BR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Due Diligence Empresarial Brasil',
+    description: 'Análise completa de empresas e sócios antes de investir. Due diligence em 12 camadas com LGPD.',
+  },
+  alternates: {
+    canonical: '/solucoes/due-diligence',
   },
 }
 

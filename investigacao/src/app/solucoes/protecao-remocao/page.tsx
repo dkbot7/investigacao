@@ -6,12 +6,23 @@ import { Badge } from '@/components/ui/badge'
 import { Shield, Trash2, Search, Globe, Scale, UserX, AlertTriangle, CheckCircle2, ArrowRight, Clock, Lock, FileText, MessageSquare } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Remoção de Conteúdos Online - Google, Jusbrasil, Escavador | Investigaree',
-  description: 'Remoção profissional de processos, notícias negativas e conteúdos ofensivos. 85% de taxa de sucesso. Google, Jusbrasil, Escavador e redes sociais. Decisão STF 2025.',
+  title: 'Remoção Google LGPD | Remover Processos Jusbrasil | Proteção Digital',
+  description: 'Remoção profissional LGPD de fotos íntimas, processos antigos e notícias negativas. Google, Jusbrasil, Escavador e redes sociais. 85% sucesso. Emergencial 24-72h. A partir de R$ 800.',
+  keywords: ['remoção google lgpd', 'remover processos jusbrasil', 'desindexação google', 'remoção de conteúdo internet', 'direito ao esquecimento', 'remover fotos íntimas', 'proteção privacidade lgpd', 'remoção jusbrasil escavador', 'deletar google'],
   openGraph: {
-    title: 'Remoção Profissional de Conteúdos Online | Investigaree',
-    description: 'Remova processos antigos, notícias negativas e conteúdos prejudiciais com base na LGPD e decisão STF 2025. 85% de taxa de sucesso.',
+    title: 'Remoção Google LGPD | Remover Processos e Conteúdos',
+    description: 'Remoção profissional baseada na LGPD. Google, Jusbrasil, Escavador e redes sociais. 85% taxa de sucesso. Atendimento emergencial 24-72h.',
     images: ['/images/solutions/protecao-remocao-og.jpg'],
+    type: 'website',
+    locale: 'pt_BR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Remoção LGPD | Google e Jusbrasil',
+    description: 'Remova processos antigos e conteúdos sensíveis com base na LGPD. 85% de taxa de sucesso.',
+  },
+  alternates: {
+    canonical: '/solucoes/protecao-remocao',
   },
 }
 

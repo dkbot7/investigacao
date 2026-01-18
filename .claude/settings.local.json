@@ -45,7 +45,8 @@
       "Bash([ \"$dir\" != \".\" ])",
       "Bash(then echo \"$dir\")",
       "Bash(fi)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(npm run deploy:*)"
     ],
     "deny": [],
     "ask": []

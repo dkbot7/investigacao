@@ -4,12 +4,23 @@ import { Button } from '@/components/ui/button'
 import { CheckCircle2, Shield, Users, FileCheck, AlertTriangle, TrendingUp, ArrowRight, Download, Play } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Investigação para RH e Compliance | Background Check Profissional | Investigaree',
-  description: 'Soluções de background check e due diligence para departamentos de RH e Compliance. Valide candidatos, mitigue riscos e contrate com segurança. Conformidade total com LGPD.',
+  title: 'Background Check Brasil | Verificação de Candidatos RH | Investigação Digital',
+  description: 'Background check profissional para RH e Compliance. Verifique antecedentes criminais, CPF, processos e sanções em 27 tribunais. Contratação segura com LGPD. A partir de R$ 500.',
+  keywords: ['background check brasil', 'verificação de candidatos', 'background check rh', 'antecedentes criminais', 'verificar cpf', 'due diligence candidatos', 'compliance rh', 'background check lgpd', 'verificação emprego'],
   openGraph: {
-    title: 'Investigação para RH e Compliance | Investigaree',
-    description: 'Background check profissional para RH. Valide candidatos e mitigue riscos de contratação com dados oficiais.',
+    title: 'Background Check Brasil | Verificação de Candidatos RH',
+    description: 'Background check profissional em 27 tribunais. Verifique antecedentes criminais, CPF e sanções antes de contratar. LGPD compliant.',
     images: ['/images/solutions/rh-compliance-og.jpg'],
+    type: 'website',
+    locale: 'pt_BR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Background Check Brasil para RH',
+    description: 'Verifique candidatos antes de contratar. Background check em 27 tribunais com LGPD.',
+  },
+  alternates: {
+    canonical: '/solucoes/rh-compliance',
   },
 }
 

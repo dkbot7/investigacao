@@ -12,20 +12,28 @@ const faqs = [
     categoria: "Sobre os Serviços",
     perguntas: [
       {
-        pergunta: "O que é due diligence?",
-        resposta: "Due diligence é um processo de investigação e análise detalhada realizado antes de tomar uma decisão importante, como investir em uma empresa, contratar um executivo ou fechar um negócio. Nosso serviço verifica antecedentes, situação financeira, processos judiciais, reputação e outros fatores de risco."
+        pergunta: "Quais tipos de investigação vocês realizam?",
+        resposta: "Atendemos 6 públicos principais: (1) RH & Compliance - background check de candidatos; (2) Investidores - due diligence M&A e análise de empresas; (3) Advogados - coleta de provas digitais forenses; (4) Divórcio & Família - investigação patrimonial; (5) Auditores Públicos - compliance em licitações; (6) Vítimas de Exposição - remoção de conteúdo LGPD. Cada serviço é adaptado à necessidade específica."
+      },
+      {
+        pergunta: "Vocês atendem empresas e pessoas físicas?",
+        resposta: "Sim! Atendemos tanto empresas (RH, investidores, auditores) quanto pessoas físicas (divórcios, vítimas de exposição digital). Nossos serviços B2B incluem background check profissional e due diligence. Serviços B2C incluem investigação patrimonial, remoção de conteúdo e proteção de privacidade. Também atendemos advogados com perícia forense."
       },
       {
         pergunta: "Quanto tempo leva uma investigação?",
-        resposta: "Depende do tipo de serviço. O Red Flag Express é entregue em até 48 horas. Due diligence corporativa completa leva de 5 a 7 dias úteis. Investigações mais complexas podem levar até 15 dias, dependendo da profundidade necessária."
+        resposta: "Varia por serviço: Background check de pessoas (24-48h), Background check de empresas (48-72h), Due diligence M&A completa (7-15 dias), Remoção emergencial de conteúdo (24-72h), Investigação forense profissional (10-15 dias), Investigação patrimonial (7-10 dias), Auditoria de licitações (3-5 dias). Casos urgentes podem ter prioridade."
+      },
+      {
+        pergunta: "Quanto custa uma investigação?",
+        resposta: "Varia por complexidade: Background check de pessoas (a partir de R$ 500), Background check de empresas (a partir de R$ 1.500), Due diligence M&A (sob consulta), Remoção emergencial (a partir de R$ 800), Remoção direcionada (a partir de R$ 1.500), Perícia forense (sob consulta). Entre em contato para orçamento personalizado."
+      },
+      {
+        pergunta: "O que é due diligence?",
+        resposta: "Due diligence é uma investigação profunda antes de decisões importantes: contratar executivos, investir em startups, comprar empresas, aceitar sócios ou firmar parcerias. Verificamos antecedentes criminais em 27 tribunais, processos judiciais, sanções governamentais (CEIS/CNEP), situação fiscal, participações societárias e red flags. Ideal para RH, investidores e M&A."
       },
       {
         pergunta: "Vocês atuam em todo o Brasil?",
-        resposta: "Sim, atuamos em todo o território nacional. Nossa metodologia combina análise de fontes abertas (OSINT), acesso a bases de dados oficiais e, quando necessário, investigação de campo através de nossa rede de parceiros em todos os estados."
-      },
-      {
-        pergunta: "Quais tipos de investigação vocês realizam?",
-        resposta: "Realizamos due diligence corporativa, verificação de antecedentes de pessoas físicas e jurídicas, investigação de fraudes, análise de risco para investimentos, checagem de funcionários domésticos, proteção digital familiar e investigações especiais sob demanda."
+        resposta: "Sim, atuamos em todo o território nacional. Nossa metodologia digital nos permite investigar em qualquer estado através de fontes oficiais do governo: 27 Tribunais de Justiça, Receita Federal, TSE, CNJ, TCU, CGU, CEIS, CNEP e centenas de outras bases públicas. Para casos especiais, temos rede de parceiros em campo."
       }
     ]
   },
@@ -33,20 +41,32 @@ const faqs = [
     categoria: "Metodologia e Qualidade",
     perguntas: [
       {
+        pergunta: "Como funciona a conformidade com a LGPD?",
+        resposta: "100% conformes com a LGPD. Utilizamos exclusivamente dados de fontes públicas (OSINT) - tribunais, Receita Federal, órgãos governamentais - base legal: Art. 7º, VI (exercício regular de direitos). Interesse legítimo para prevenção de fraudes e proteção de crédito (Art. 7º, IX). Quando necessário consentimento (perícia de dispositivos próprios), é obtido de forma livre e informada. Consulte nossa página /lgpd."
+      },
+      {
+        pergunta: "Quais fontes de dados vocês usam?",
+        resposta: "Apenas fontes oficiais do governo brasileiro: 27 Tribunais de Justiça estaduais, CNJ (Conselho Nacional de Justiça), TSE (Tribunal Superior Eleitoral), Receita Federal (CPF/CNPJ), CEIS (Cadastro de Empresas Inidôneas), CNEP (Cadastro de Entidades Punidas), TCU (Tribunal de Contas da União), CGU (Controladoria-Geral da União), OFAC (sanções internacionais), Juntas Comerciais, Detran, INSS e outras bases públicas."
+      },
+      {
+        pergunta: "Os relatórios têm validade judicial?",
+        resposta: "Sim! Nossos relatórios seguem metodologia forense profissional com cadeia de custódia documentada, fontes rastreáveis e evidências verificáveis. São admissíveis como prova em processos judiciais (trabalhistas, cíveis, criminais, família). Advogados usam nossos relatórios para fundamentar petições, investigação patrimonial em divórcios e execuções. Para perícia oficial, recomendamos nomear perito pelo juízo."
+      },
+      {
         pergunta: "Como funciona a metodologia de vocês?",
-        resposta: "Nossa metodologia segue padrões profissionais de perícia forense. Utilizamos análise de fontes abertas (OSINT), consulta a bases de dados oficiais, análise de redes sociais, verificação de documentos e, quando necessário, entrevistas e investigação de campo."
+        resposta: "3 passos: (1) Você informa CPF ou CNPJ do alvo; (2) Vasculhamos 27 tribunais, TSE, CNJ, Receita Federal, CEIS/CNEP e 100+ fontes oficiais com metodologia forense profissional; (3) Entregamos relatório completo em 24-48h com processos, sanções, dívidas, participações societárias, patrimônio e red flags identificadas. Tudo em conformidade LGPD."
       },
       {
         pergunta: "As informações obtidas são legais?",
-        resposta: "Absolutamente. Trabalhamos exclusivamente com fontes legais e métodos éticos. Não acessamos informações protegidas sem autorização, não realizamos grampos ou interceptações, e todas as nossas práticas estão em conformidade com a LGPD e o Marco Civil da Internet."
+        resposta: "Absolutamente. Trabalhamos exclusivamente com fontes públicas oficiais do governo (OSINT). NÃO acessamos: dados bancários, conversas privadas, e-mails, localização em tempo real, grampos telefônicos ou qualquer informação protegida. Todas as práticas em conformidade com LGPD, Marco Civil da Internet e legislação de investigação privada."
       },
       {
-        pergunta: "Como garantem a qualidade das investigações?",
-        resposta: "Nossa equipe é composta por profissionais especializados em investigação digital, com experiência em análise forense e due diligence. Utilizamos metodologia validada e ferramentas profissionais para garantir a qualidade e precisão dos resultados."
+        pergunta: "Como garantem sigilo absoluto?",
+        resposta: "Sigilo total garantido: (1) O investigado NÃO fica sabendo da investigação; (2) Não revelamos identidade de clientes; (3) Relatórios entregues via link criptografado e senha; (4) Servidores seguros com criptografia; (5) Equipe treinada em confidencialidade; (6) Políticas internas rígidas de proteção de dados. Para RH, investidores, divórcios e vítimas de exposição, sigilo é crítico."
       },
       {
         pergunta: "Qual a diferença entre vocês e um detetive particular comum?",
-        resposta: "Nosso diferencial é a metodologia forense profissional validada, o uso de tecnologia avançada de análise de dados, a expertise em investigações corporativas e digitais, e a entrega de relatórios estruturados com evidências documentadas."
+        resposta: "Diferencial: (1) Metodologia forense profissional validada (não empírica); (2) Análise digital avançada em 100+ fontes governamentais; (3) Relatórios estruturados com evidências documentadas e validade judicial; (4) Conformidade LGPD certificada; (5) Atendimento multi-segmento (B2B, B2C, Legal, Governo); (6) Tecnologia proprietária de análise de dados; (7) Equipe especializada em investigação corporativa e forense digital."
       }
     ]
   },
@@ -93,23 +113,39 @@ const faqs = [
     ]
   },
   {
-    categoria: "Casos Específicos",
+    categoria: "Casos Específicos por Público",
     perguntas: [
       {
-        pergunta: "Vocês investigam pessoas físicas ou só empresas?",
-        resposta: "Investigamos tanto pessoas físicas quanto jurídicas. Oferecemos serviços de verificação de antecedentes pessoais, checagem de funcionários, due diligence de founders e sócios, além de análise de empresas."
+        pergunta: "[RH] Posso fazer background check de candidatos antes de contratar?",
+        resposta: "Sim! Background check é legal e essencial para contratações seguras. Verificamos CPF, antecedentes criminais em 27 tribunais, processos trabalhistas, sanções CEIS/CNEP e vínculos empregatícios. Prazo: 24-48h. A partir de R$ 500. Conformidade LGPD total. Ideal para cargos de confiança, executivos e posições críticas. Evite contratar pessoas com passivo oculto."
       },
       {
-        pergunta: "Posso usar o relatório de vocês como prova judicial?",
-        resposta: "Nossos relatórios são documentos técnicos detalhados que podem servir como elemento de convicção. Para uso como prova em processos judiciais, recomendamos consultar um advogado sobre a melhor forma de apresentar as informações."
+        pergunta: "[Investidores] Como funciona due diligence antes de investir em startups?",
+        resposta: "Investigamos a fundo a empresa e founders: (1) CNPJ - situação cadastral, débitos fiscais, processos; (2) Sócios - antecedentes criminais, passivos trabalhistas, sanções; (3) Participações societárias ocultas; (4) Red flags empresariais. Prazo: 7-15 dias. Evite prejuízos milionários por fraudes, empresas fantasmas ou sócios com impedimentos. Análise em 12 camadas."
       },
       {
-        pergunta: "Vocês investigam infidelidade conjugal?",
-        resposta: "Nosso foco principal é em investigações corporativas, due diligence e proteção patrimonial. Para casos de natureza pessoal, podemos avaliar a demanda e indicar a melhor abordagem dentro dos limites legais e éticos."
+        pergunta: "[Advogados] Vocês fazem perícia forense para processos judiciais?",
+        resposta: "Sim! Perícia forense digital com: (1) Extração forense de celular (Avilla Forensics + IPED); (2) Cadeia de custódia certificada; (3) Coleta e preservação de provas digitais; (4) Relatórios periciais admissíveis em juízo; (5) Metodologia profissional validada. Ideal para processos trabalhistas, cíveis, criminais e família. Validade judicial garantida."
       },
       {
-        pergunta: "Vocês fazem recuperação de dados de celular?",
-        resposta: "Não realizamos serviços de perícia em dispositivos eletrônicos diretamente. Nosso Advisory Board inclui especialistas em forense computacional que podem orientar sobre esse tipo de necessidade através dos canais oficiais."
+        pergunta: "[Divórcio] Como rastrear patrimônio oculto do cônjuge?",
+        resposta: "Investigação patrimonial completa: (1) Imóveis em todo Brasil; (2) Veículos registrados; (3) Participações societárias (empresas em nome do cônjuge ou laranjas); (4) Análise de incompatibilidade patrimonial (renda declarada vs. patrimônio real); (5) Rastreamento de criptomoedas. Prazo: 7-10 dias. 100% confidencial. Evite partilha injusta. Advogados usam para fundamentar ações."
+      },
+      {
+        pergunta: "[Auditores] Como auditar licitações para detectar fraudes?",
+        resposta: "Auditoria forense em 12 camadas: (1) Verificação CEIS/CNEP de fornecedores; (2) Detecção de cartel (empresas coligadas); (3) Análise de superfaturamento; (4) Empresas fantasmas; (5) Impedimentos legais; (6) Sócios com sanções. Prazo: 3-5 dias. Conformidade TCU/CGU. Ideal para órgãos públicos, controladorias e auditorias internas. Previna fraudes antes da homologação."
+      },
+      {
+        pergunta: "[Vítimas] Como remover fotos íntimas vazadas do Google?",
+        resposta: "Remoção emergencial em 24-72h: (1) Desindexação Google (fundamentação LGPD Art. 18); (2) Remoção em redes sociais (Facebook, Instagram, Twitter); (3) Remoção Jusbrasil e Escavador; (4) Contenção rápida da circulação. A partir de R$ 800. 85% de taxa de sucesso. Atendimento emergencial 24h. Proteção de privacidade com base na LGPD. Sigilo absoluto."
+      },
+      {
+        pergunta: "Posso usar o relatório como prova judicial?",
+        resposta: "Sim! Relatórios com metodologia forense profissional, cadeia de custódia documentada, fontes rastreáveis e evidências verificáveis são admissíveis em processos judiciais. Advogados usam para: petições iniciais, investigação patrimonial em divórcios, ações trabalhistas, processos criminais e execuções. Tribunais aceitam como elemento de convicção. Para perícia oficial, recomendamos nomear perito pelo juízo."
+      },
+      {
+        pergunta: "Vocês fazem extração forense de celular com WhatsApp deletado?",
+        resposta: "Sim! Perícia forense digital com Avilla Forensics e IPED: (1) Extração de mensagens deletadas (WhatsApp, SMS, Telegram); (2) Recuperação de fotos e vídeos apagados; (3) Histórico de navegação; (4) Cadeia de custódia oficial; (5) Relatório técnico pericial. Dispositivo próprio ou com consentimento. Validade judicial garantida. Ideal para advogados em processos trabalhistas, criminais e família."
       }
     ]
   }
