@@ -33,20 +33,20 @@ export default function Home() {
 
             {/* Subheadline */}
             <p className="text-xl md:text-2xl text-slate-700 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed">
-              Proteja seu negócio, decisões de contratação e patrimônio com inteligência baseada em
+              Proteja seu negócio, decisões de contratação e patrimônio com inteligência baseada em consultas a
               <strong className="text-green-600"> 27 tribunais e fontes oficiais do governo</strong>.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-2xl mx-auto">
               <Link href="/contato" className="flex-1">
-                <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 text-white h-16 text-xl font-bold">
+                <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 text-white h-16 text-xl font-bold" aria-label="Solicitar investigação profissional">
                   Solicitar Investigação
-                  <ArrowRight className="ml-2 h-6 w-6" />
+                  <ArrowRight className="ml-2 h-6 w-6" aria-hidden="true" />
                 </Button>
               </Link>
               <Link href="/solucoes" className="flex-1">
-                <Button size="lg" variant="outline" className="w-full h-16 text-xl font-bold border-2">
+                <Button size="lg" variant="outline" className="w-full h-16 text-xl font-bold border-2" aria-label="Ver todas as soluções disponíveis">
                   Ver Soluções
                 </Button>
               </Link>

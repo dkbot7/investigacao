@@ -77,17 +77,17 @@ export default function AuditoriaLicitacoesPage() {
 
               {/* Subheadline with stat */}
               <p className="text-xl text-slate-300 leading-relaxed">
-                <strong className="text-white">CGU alcançou recorde histórico com 76 Processos Administrativos de Responsabilização em 2024.</strong> Nossa auditoria profissional detecta empresas fantasmas, superfaturamento, direcionamento e cartéis — antes da assinatura do contrato.
+                <strong className="text-white">CGU alcançou recorde histórico com 76 Processos Administrativos de Responsabilização em 2025.</strong> Nossa auditoria profissional detecta empresas fantasmas, superfaturamento, direcionamento e cartéis — antes da assinatura do contrato.
               </p>
 
               {/* Key Benefits (3 items, concise) */}
               <div className="grid grid-cols-1 gap-3">
                 {[
-                  { icon: Search, text: '12 red flags de fraude identificados automaticamente' },
-                  { icon: FileText, text: 'Relatório técnico em conformidade com TCU/CGU' },
-                  { icon: Clock, text: 'Resultados em 3-5 dias úteis (urgente: 24h)' },
-                ].map((benefit, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
+                  { id: 'red-flags', icon: Search, text: 'Doze red flags de fraude identificados automaticamente' },
+                  { id: 'relatorio', icon: FileText, text: 'Relatório técnico em conformidade com TCU/CGU' },
+                  { id: 'prazo', icon: Clock, text: 'Resultados em 3-5 dias úteis (urgente: 24h)' },
+                ].map((benefit) => (
+                  <div key={benefit.id} className="flex items-center gap-3">
                     <div className="flex-shrink-0 w-10 h-10 rounded-full bg-green-500/20 border border-green-400/30 flex items-center justify-center">
                       <benefit.icon className="w-5 h-5 text-green-400" />
                     </div>

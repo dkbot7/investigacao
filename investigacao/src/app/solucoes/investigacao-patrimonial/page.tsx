@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     'ocultação de bens divórcio',
     'partilha de bens investigação',
     'bens escondidos divórcio',
-    'investigação forense patrimônio',
+    'investigação profissional de patrimônio',
     'sobrepartilha',
     'pena de sonegados',
     'empresas laranjas divórcio',
