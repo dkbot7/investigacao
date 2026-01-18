@@ -1,17 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // ✅ OpenNext Cloudflare requires standalone output
-  output: "standalone",
   trailingSlash: true,
   // Extend pageExtensions to include MDX
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 
-  // Image optimization configuration for Cloudflare Workers
+  // Image optimization - Cloudflare Pages supports Next.js Image Optimization
   images: {
-    // Use unoptimized images to avoid Cloudflare Images costs
-    // External images from Unsplash are already optimized
-    unoptimized: true,
+    unoptimized: true, // Keep unoptimized for now
   },
 
   // ============================================================================
@@ -61,12 +57,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
-// ============================================================================
-// OPENNEXT CLOUDFLARE - DEV MODE INITIALIZATION
-// ============================================================================
-// Only init OpenNext Cloudflare in dev mode and NOT on Vercel
-if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
-  const { initOpenNextCloudflareForDev } = await import("@opennextjs/cloudflare");
-  initOpenNextCloudflareForDev();
-}
