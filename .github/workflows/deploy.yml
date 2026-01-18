@@ -4,17 +4,17 @@ on:
   push:
     branches: [main]
     paths:
-      - 'investigaree/**'
+      - 'investigacao/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 env:
   NODE_VERSION: '20'
-  PROJECT_NAME: investigaree
+  PROJECT_NAME: investigacao
 
 defaults:
   run:
-    working-directory: investigaree
+    working-directory: investigacao
 
 jobs:
   deploy:
@@ -31,7 +31,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-          cache-dependency-path: investigaree/package-lock.json
+          cache-dependency-path: investigacao/package-lock.json
 
       - name: Install dependencies
         run: npm ci --prefer-offline --no-audit
@@ -67,7 +67,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: investigaree
+          workingDirectory: investigacao
           command: pages deploy .open-next --project-name=${{ env.PROJECT_NAME }} --commit-dirty=true
 
       - name: Deploy Worker to investigaree.com.br
@@ -75,7 +75,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: investigaree
+          workingDirectory: investigacao
           command: deploy
 
       - name: Verify deployment
