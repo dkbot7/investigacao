@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Shield, Trash2, Search, Globe, Scale, UserX, AlertTriangle, CheckCircle2, ArrowRight, Clock, Lock, FileText, MessageSquare } from 'lucide-react'
+import Header from "@/components/landing/Header"
+import Footer from "@/components/landing/Footer"
 
 export const metadata: Metadata = {
   title: 'Remoção Google LGPD | Remover Processos Jusbrasil | Proteção Digital',
@@ -28,7 +30,9 @@ export const metadata: Metadata = {
 
 export default function ProtecaoRemocaoPage() {
   return (
-    <div className="min-h-screen">
+    <>
+      <Header />
+      <div className="min-h-screen">
       {/* HERO SECTION */}
       <section className="relative bg-gradient-to-br from-slate-900 via-red-900 to-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -549,7 +553,9 @@ export default function ProtecaoRemocaoPage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }
 

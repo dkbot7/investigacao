@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Building2, Shield, FileSearch, AlertCircle, TrendingDown, CheckCircle2, ArrowRight, Download, BarChart3, Users } from 'lucide-react'
+import Header from "@/components/landing/Header"
+import Footer from "@/components/landing/Footer"
 
 export const metadata: Metadata = {
   title: 'Due Diligence Empresarial Brasil | Investigação M&A | Análise de Empresas',
@@ -26,7 +28,9 @@ export const metadata: Metadata = {
 
 export default function DueDiligencePage() {
   return (
-    <div className="min-h-screen">
+    <>
+      <Header />
+      <div className="min-h-screen">
       {/* HERO SECTION */}
       <section className="relative bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -465,6 +469,8 @@ export default function DueDiligencePage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }

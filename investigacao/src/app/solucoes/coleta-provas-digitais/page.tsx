@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { FileCheck, Lock, Shield, Camera, MessageSquare, Mail, Smartphone, CheckCircle2, ArrowRight, Scale, Award, AlertCircle } from 'lucide-react'
+import Header from "@/components/landing/Header"
+import Footer from "@/components/landing/Footer"
 
 export const metadata: Metadata = {
   title: 'Coleta de Provas Digitais Forenses | Cadeia de Custódia Certificada | Investigaree',
@@ -15,7 +17,9 @@ export const metadata: Metadata = {
 
 export default function ColetaProvasDigitaisPage() {
   return (
-    <div className="min-h-screen">
+    <>
+      <Header />
+      <div className="min-h-screen">
       {/* HERO SECTION */}
       <section className="relative bg-gradient-to-br from-slate-900 via-green-900 to-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -218,7 +222,9 @@ export default function ColetaProvasDigitaisPage() {
           </p>
         </div>
       </section>
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }
 

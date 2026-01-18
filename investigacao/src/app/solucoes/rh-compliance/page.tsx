@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { CheckCircle2, Shield, Users, FileCheck, AlertTriangle, TrendingUp, ArrowRight, Download, Play } from 'lucide-react'
+import Header from "@/components/landing/Header"
+import Footer from "@/components/landing/Footer"
 
 export const metadata: Metadata = {
   title: 'Background Check Brasil | Verificação de Candidatos RH | Investigação Digital',
@@ -26,7 +28,9 @@ export const metadata: Metadata = {
 
 export default function RHCompliancePage() {
   return (
-    <div className="min-h-screen">
+    <>
+      <Header />
+      <div className="min-h-screen">
       {/* HERO SECTION - One Hero, One Hook Layout (2025 Trend) */}
       <section className="relative bg-gradient-to-br from-slate-900 via-green-900 to-slate-900 text-white overflow-hidden">
         {/* Background Pattern */}
@@ -384,6 +388,8 @@ export default function RHCompliancePage() {
         </div>
       </section>
     </div>
+    <Footer />
+    </>
   )
 }
 

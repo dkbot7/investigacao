@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { Shield, ArrowLeft } from "lucide-react";
+import Header from "@/components/landing/Header";
+import Footer from "@/components/landing/Footer";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade | investigaree",
@@ -9,7 +11,9 @@ export const metadata: Metadata = {
 
 export default function PrivacidadePage() {
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-navy-950">
+    <>
+      <Header />
+      <main className="min-h-screen bg-slate-50 dark:bg-navy-950">
       {/* Header - Compacto (UX: Padrão F) */}
       <header className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-navy-900 dark:to-navy-950 border-b border-slate-300 dark:border-navy-800">
         <div className="container max-w-4xl mx-auto px-4 py-6">
@@ -223,5 +227,7 @@ export default function PrivacidadePage() {
         </div>
       </footer>
     </main>
+    <Footer />
+    </>
   );
 }

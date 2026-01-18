@@ -25,6 +25,8 @@ import {
   Globe,
   Target
 } from 'lucide-react'
+import Header from "@/components/landing/Header"
+import Footer from "@/components/landing/Footer"
 
 export const metadata: Metadata = {
   title: 'Background Check Executivos C-Level | Verificação Antecedentes',
@@ -49,7 +51,9 @@ export const metadata: Metadata = {
 
 export default function BackgroundCheckExecutivosPage() {
   return (
-    <div className="min-h-screen">
+    <>
+      <Header />
+      <div className="min-h-screen">
       {/* HERO SECTION - One Hero, One Hook Layout (2025 Trend) */}
       <section className="relative bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 text-white overflow-hidden">
         {/* Background decoration */}
@@ -731,6 +735,8 @@ export default function BackgroundCheckExecutivosPage() {
           </Button>
         </div>
       </section>
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }

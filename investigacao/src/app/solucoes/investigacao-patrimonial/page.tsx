@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
 import { Button } from '@/components/ui/button'
+import Header from "@/components/landing/Header"
+import Footer from "@/components/landing/Footer"
 import {
   Shield,
   Search,
@@ -44,7 +46,9 @@ export const metadata: Metadata = {
 
 export default function InvestigacaoPatrimonialPage() {
   return (
-    <div className="min-h-screen">
+    <>
+      <Header />
+      <div className="min-h-screen">
       {/* HERO SECTION - One Hero, One Hook Layout (2025 Trend) */}
       <section className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-hidden">
         {/* Background decoration */}
@@ -689,6 +693,8 @@ export default function InvestigacaoPatrimonialPage() {
           </Button>
         </div>
       </section>
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }

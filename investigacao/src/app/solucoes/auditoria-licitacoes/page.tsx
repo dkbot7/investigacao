@@ -24,6 +24,8 @@ import {
   ChevronRight,
   Target
 } from 'lucide-react'
+import Header from "@/components/landing/Header"
+import Footer from "@/components/landing/Footer"
 
 export const metadata: Metadata = {
   title: 'Auditoria de Licitações e Compliance Público | Detectar Fraudes em Contratos',
@@ -50,7 +52,9 @@ export const metadata: Metadata = {
 
 export default function AuditoriaLicitacoesPage() {
   return (
-    <div className="min-h-screen">
+    <>
+      <Header />
+      <div className="min-h-screen">
       {/* HERO SECTION - One Hero, One Hook Layout (2025 Trend) */}
       <section className="relative bg-gradient-to-br from-slate-900 via-green-900 to-slate-900 text-white overflow-hidden">
         {/* Background decoration */}
@@ -733,7 +737,9 @@ export default function AuditoriaLicitacoesPage() {
           </Button>
         </div>
       </section>
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }
 
