@@ -153,7 +153,6 @@ export default function Header() {
 
   // Submenu items for Conteúdo dropdown
   const conteudoItems = [
-    { label: t.blog, href: "/blog", icon: FileText, description: language === "pt" ? "Artigos e tutoriais" : "Articles and tutorials" },
     { label: t.series, href: "/series", icon: Layers, description: language === "pt" ? "Conteúdo em série" : "Serial content" },
     { label: t.glossary, href: "/glossario", icon: BookOpen, description: language === "pt" ? "Termos técnicos" : "Technical terms" },
     { label: t.resources, href: "/recursos", icon: Wrench, description: language === "pt" ? "Ferramentas e cursos" : "Tools and courses" },

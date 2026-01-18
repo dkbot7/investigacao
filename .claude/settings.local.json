@@ -46,7 +46,12 @@
       "Bash(then echo \"$dir\")",
       "Bash(fi)",
       "Bash(done)",
-      "Bash(npm run deploy:*)"
+      "Bash(npm run deploy:*)",
+      "Bash(git push:*)",
+      "Bash(tasklist:*)",
+      "Bash(npx vercel --prod --yes)",
+      "Bash(npx vercel --prod)",
+      "Bash(npx:*)"
     ],
     "deny": [],
     "ask": []
