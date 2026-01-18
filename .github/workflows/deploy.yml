@@ -62,15 +62,7 @@ jobs:
           fi
           echo "✅ Build verified: OpenNext build complete"
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: investigacao
-          command: pages deploy .open-next --project-name=${{ env.PROJECT_NAME }} --commit-dirty=true
-
-      - name: Deploy Worker to investigaree.com.br
+      - name: Deploy Worker
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -82,9 +74,9 @@ jobs:
         run: |
           echo "⏳ Waiting for deployment to propagate..."
           sleep 10
-          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://investigaree.com.br)
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://investigacao-web.chatbotimoveis.workers.dev)
           if [ "$HTTP_STATUS" != "200" ]; then
             echo "⚠️ Warning: Site returned HTTP $HTTP_STATUS (may still be propagating)"
           else
-            echo "✅ Deployment verified: https://investigaree.com.br is live"
+            echo "✅ Deployment verified: https://investigacao-web.chatbotimoveis.workers.dev is live"
           fi
