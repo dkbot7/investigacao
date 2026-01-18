@@ -65,5 +65,8 @@ export default nextConfig;
 // ============================================================================
 // OPENNEXT CLOUDFLARE - DEV MODE INITIALIZATION
 // ============================================================================
-import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
-initOpenNextCloudflareForDev();
+// Only init OpenNext Cloudflare in dev mode and NOT on Vercel
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+  const { initOpenNextCloudflareForDev } = await import("@opennextjs/cloudflare");
+  initOpenNextCloudflareForDev();
+}
