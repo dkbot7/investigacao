@@ -24,17 +24,10 @@ export const metadata: Metadata = {
   creator: "investigação digital",
   publisher: "investigação digital",
 
-  // Favicons e ícones
+  // Favicons e ícones (temporário)
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
-    ],
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    ],
-    other: [
-      { rel: "manifest", url: "/site.webmanifest" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
     ],
   },
 
@@ -46,30 +39,15 @@ export const metadata: Metadata = {
     siteName: "investigação digital",
     title: "investigação digital - Due Diligence Digital com Rigor Profissional",
     description: "Investigação particular com metodologia profissional validada. Resultados confiáveis em 48h.",
-    images: [
-      {
-        url: "/web-app-manifest-512x512.png",
-        width: 512,
-        height: 512,
-        alt: "investigação digital - Due Diligence Profissional",
-      },
-      {
-        url: "/web-app-manifest-192x192.png",
-        width: 192,
-        height: 192,
-        alt: "investigação digital Logo",
-      },
-    ],
   },
 
   // Twitter Card
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     site: "@investigação digital",
     creator: "@investigação digital",
     title: "investigação digital - Due Diligence Profissional",
     description: "Proteja seu patrimônio com investigação profissional em 48h. Metodologia validada e confiável",
-    images: ["/web-app-manifest-512x512.png"],
   },
 
   // Robots e indexação
