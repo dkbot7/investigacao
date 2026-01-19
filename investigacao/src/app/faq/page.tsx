@@ -141,7 +141,7 @@ const faqs = [
       },
       {
         pergunta: "Posso usar o relatório como prova judicial?",
-        resposta: "Sim! Relatórios com metodologia profissional profissional, cadeia de custódia documentada, fontes rastreáveis e evidências verificáveis são admissíveis em processos judiciais. Advogados usam para: petições iniciais, investigação patrimonial em divórcios, ações trabalhistas, processos criminais e execuções. Tribunais aceitam como elemento de convicção. Para perícia oficial, recomendamos nomear perito pelo juízo."
+        resposta: "Sim! Relatórios com metodologia profissional, cadeia de custódia documentada, fontes rastreáveis e evidências verificáveis são admissíveis em processos judiciais. Advogados usam para: petições iniciais, investigação patrimonial em divórcios, ações trabalhistas, processos criminais e execuções. Tribunais aceitam como elemento de convicção. Para perícia oficial, recomendamos nomear perito pelo juízo."
       },
       {
         pergunta: "Vocês fazem análise profissional de dispositivos com WhatsApp deletado?",
