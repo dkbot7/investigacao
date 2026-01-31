@@ -194,7 +194,7 @@ export default function Header() {
                 transition={{ duration: 0.5 }}
               >
                 <Image
-                  src="/logo-investigaree.svg"
+                  src="/favicon.svg"
                   alt="investigaree logo"
                   width={40}
                   height={40}
