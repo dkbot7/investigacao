@@ -223,7 +223,7 @@ export default function DisclaimerPage() {
           <section className="mb-12">
             <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">9. Limitação de Danos</h2>
             <p className="text-slate-900 dark:text-slate-800 dark:text-white/80">
-              Em nenhuma circunstância a investigaree, seus diretores, funcionários, parceiros ou agentes
+              Em nenhuma circunstância a investigaree, seus diretores, sócios, parceiros ou agentes
               serão responsáveis por quaisquer danos indiretos, incidentais, especiais, consequenciais ou
               punitivos, incluindo, sem limitação, perda de lucros, dados, uso, goodwill ou outras perdas
               intangíveis, resultantes de:

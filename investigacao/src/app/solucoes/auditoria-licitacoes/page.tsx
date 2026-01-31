@@ -216,7 +216,7 @@ export default function AuditoriaLicitacoesPage() {
                   <p className="font-semibold text-slate-900 mb-2">Modalidades de fraude mais comuns:</p>
                   <ul className="space-y-1 text-sm text-slate-700">
                     <li>• Superfaturamento (preços 20-50% acima do mercado)</li>
-                    <li>• Empresas fantasmas (CNPJs com endereço falso, sem funcionários)</li>
+                    <li>• Empresas fantasmas (CNPJs com endereço falso, sem sócios)</li>
                     <li>• Direcionamento (edital feito sob medida para um fornecedor)</li>
                     <li>• Cartel (licitantes combinam propostas previamente)</li>
                     <li>• Fracionamento ilegal (dividir compra para fugir da licitação)</li>
@@ -243,7 +243,7 @@ export default function AuditoriaLicitacoesPage() {
                   <ul className="space-y-2 text-sm text-green-800">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5 text-green-600" />
-                      <span><strong>Empresas fantasmas:</strong> CNPJ inapto, endereço falso, sem funcionários (RAIS)</span>
+                      <span><strong>Empresas fantasmas:</strong> CNPJ inapto, endereço falso, sem sócios (RAIS)</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5 text-green-600" />
@@ -318,7 +318,7 @@ export default function AuditoriaLicitacoesPage() {
               },
               {
                 icon: Database,
-                title: '5. Funcionários (RAIS)',
+                title: '5. Sócios (RAIS)',
                 desc: 'Quantidade de empregados declarados vs. porte do contrato (empresa fantasma?)',
                 layer: 'Profissional'
               },
@@ -441,7 +441,7 @@ export default function AuditoriaLicitacoesPage() {
                 severity: 'Médio'
               },
               {
-                flag: '🚨 Empresa sem funcionários (RAIS zerada)',
+                flag: '🚨 Empresa sem sócios (RAIS zerada)',
                 risk: 'Incapacidade operacional — como executará o contrato sem pessoal?',
                 severity: 'Alto'
               },
@@ -563,7 +563,7 @@ export default function AuditoriaLicitacoesPage() {
                 items: [
                   'Consultas CNPJ (Receita Federal)',
                   'CEIS/CNEP (Portal da Transparência)',
-                  'RAIS (quantidade de funcionários)',
+                  'RAIS (quantidade de sócios)',
                   'Comparativos de preços (SINAPI, BEC)',
                   'Prints com hash SHA-256',
                 ],

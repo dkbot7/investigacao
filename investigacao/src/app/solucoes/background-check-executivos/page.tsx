@@ -332,7 +332,7 @@ export default function BackgroundCheckExecutivosPage() {
               {
                 icon: AlertTriangle,
                 title: '8. Empresas Fantasmas',
-                desc: 'CNPJs inaptos, endereços falsos, sem funcionários (RAIS)',
+                desc: 'CNPJs inaptos, endereços falsos, sem sócios (RAIS)',
                 layer: 'Profissional'
               },
               {
@@ -520,7 +520,7 @@ export default function BackgroundCheckExecutivosPage() {
                 <li>• <strong>Verificação pré-contratação</strong> (passou sem red flags)</li>
               </ul>
               <p>
-                <strong>Detecção:</strong> Após a contratação, o funcionário tentou carregar malware em sistemas da empresa, disparando alertas de segurança. Investigação revelou laptop enviado para endereço falso (farm de laptops norte-coreana).
+                <strong>Detecção:</strong> Após a contratação, o sócio tentou carregar malware em sistemas da empresa, disparando alertas de segurança. Investigação revelou laptop enviado para endereço falso (farm de laptops norte-coreana).
               </p>
               <p className="font-semibold text-indigo-950">
                 <strong>Lição:</strong> Background check tradicional NÃO é suficiente para cargos sensíveis. Verificação C-Level Premium inclui deepfake detection, validação de endereço físico e análise comportamental.

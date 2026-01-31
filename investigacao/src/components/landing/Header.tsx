@@ -193,7 +193,13 @@ export default function Header() {
                 whileHover={{ rotate: [0, -10, 10, -10, 0] }}
                 transition={{ duration: 0.5 }}
               >
-                <Shield className="w-9 h-9 text-green-500" />
+                <Image
+                  src="/logo-investigaree.svg"
+                  alt="investigaree logo"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10"
+                />
               </motion.div>
 
               {/* Text logo */}
@@ -201,7 +207,7 @@ export default function Header() {
                 className="text-2xl font-bold text-slate-900 dark:text-white relative z-10"
                 whileHover={{ scale: 1.02 }}
               >
-                investigacao digital
+                investigaree
               </motion.span>
             </Link>
           </motion.div>

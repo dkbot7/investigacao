@@ -254,7 +254,7 @@ export default function Home() {
                     Você Solicita
                   </h3>
                   <p className="text-lg text-slate-700 dark:text-slate-300">
-                    Informe o CPF ou CNPJ do alvo. Pode ser candidato, funcionário, empresa, parceiro ou qualquer pessoa/organização.
+                    Informe o CPF ou CNPJ do alvo. Pode ser candidato, sócio, empresa, parceiro ou qualquer pessoa/organização.
                   </p>
                 </CardContent>
               </Card>

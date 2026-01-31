@@ -14,7 +14,7 @@ const PLANS = [
     delivery: "48 horas garantidas",
     description: "Blindagem completa para sua família",
     features: [
-      "Verificação de funcionários domésticos",
+      "Verificação de sócios domésticos",
       "Proteção digital dos filhos",
       "Análise de vulnerabilidades da residência",
       "Score de risco 0-100",

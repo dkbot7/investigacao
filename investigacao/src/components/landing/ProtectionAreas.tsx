@@ -14,7 +14,7 @@ const AREAS = [
     delivery: "48 horas garantidas",
     description: "Blindagem completa para sua família",
     features: [
-      "Verificação de funcionários domésticos",
+      "Verificação de sócios domésticos",
       "Proteção digital dos filhos",
       "Análise de vulnerabilidades da residência",
       "Score de risco 0-100"
@@ -48,7 +48,7 @@ const AREAS = [
     delivery: "Due diligence corporativa",
     description: "Proteção contra fraudes e vazamentos",
     features: [
-      "Background check de funcionários",
+      "Background check de sócios",
       "Proteção contra espionagem",
       "Due diligence M&A",
       "Relatório forense blindado"
