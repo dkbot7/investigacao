@@ -54,6 +54,30 @@ const nextConfig: NextConfig = {
     // Power up compression
     poweredByHeader: false,
   }),
+
+  // ============================================================================
+  // REDIRECTS - Fix orphan routes
+  // ============================================================================
+  async redirects() {
+    return [
+      // Rotas não implementadas - redirecionar para contato
+      {
+        source: "/solucoes/campanhas",
+        destination: "/contato",
+        permanent: false,
+      },
+      {
+        source: "/solucoes/partidos",
+        destination: "/contato",
+        permanent: false,
+      },
+      {
+        source: "/solucoes/consultorias",
+        destination: "/contato",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
