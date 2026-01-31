@@ -16,38 +16,54 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://investigacaodigital.com.br'),
-  title: "investigação digital - Due Diligence Digital com Rigor Profissional",
-  description: "Investigação particular e due diligence digital com metodologia profissional validada. Proteja seu patrimônio com análise completa de startups, founders e parceiros. Entrega em 48h.",
-  keywords: ["due diligence", "investigação particular", "investigação digital", "background check", "OSINT", "proteção patrimonial", "verificação de antecedentes"],
-  authors: [{ name: "investigação digital" }],
-  creator: "investigação digital",
-  publisher: "investigação digital",
+  metadataBase: new URL('https://investigaree.com.br'),
+  title: "investigaree - Due Diligence Digital com Rigor Forense",
+  description: "Investigação particular e due diligence digital com metodologia validada por Perito Criminal Oficial",
+  keywords: ["due diligence", "investigação particular", "investigação digital", "background check", "perícia forense", "OSINT"],
+  authors: [{ name: "investigaree" }],
+  creator: "investigaree",
+  publisher: "investigaree",
 
-  // Favicons e ícones (temporário)
+  // Favicons e ícones
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
   },
+
+  // Web App Manifest
+  manifest: "/site.webmanifest",
 
   // Open Graph (Facebook, WhatsApp, LinkedIn)
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://investigacaodigital.com.br",
-    siteName: "investigação digital",
-    title: "investigação digital - Due Diligence Digital com Rigor Profissional",
-    description: "Investigação particular com metodologia profissional validada. Resultados confiáveis em 48h.",
+    url: "https://investigaree.com.br",
+    siteName: "investigaree",
+    title: "investigaree - Due Diligence Digital com Rigor Forense",
+    description: "Investigação particular com metodologia validada por Perito Criminal Oficial",
+    images: [
+      {
+        url: "https://investigaree.com.br/web-app-manifest-512x512.png",
+        width: 512,
+        height: 512,
+        alt: "investigaree logo",
+      },
+    ],
   },
 
   // Twitter Card
   twitter: {
-    card: "summary",
-    site: "@investigação digital",
-    creator: "@investigação digital",
-    title: "investigação digital - Due Diligence Profissional",
-    description: "Proteja seu patrimônio com investigação profissional em 48h. Metodologia validada e confiável",
+    card: "summary_large_image",
+    site: "@investigaree",
+    creator: "@investigaree",
+    title: "investigaree - Due Diligence Digital com Rigor Forense",
+    description: "Investigação particular com metodologia validada por Perito Criminal Oficial",
+    images: ["https://investigaree.com.br/web-app-manifest-512x512.png"],
   },
 
   // Robots e indexação
@@ -65,10 +81,10 @@ export const metadata: Metadata = {
 
   // Dados estruturados (Schema.org)
   other: {
-    "application-name": "investigação digital",
+    "application-name": "investigaree",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
-    "apple-mobile-web-app-title": "investigação digital",
+    "apple-mobile-web-app-title": "investigaree",
     "format-detection": "telephone=no",
     "mobile-web-app-capable": "yes",
     "msapplication-TileColor": "#0A1628",

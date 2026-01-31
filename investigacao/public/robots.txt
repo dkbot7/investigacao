@@ -1,8 +1,42 @@
 # Robots.txt - Investigaree
 # Controle de indexação para Eixo Autoridade Jurídico-Técnica
 
+# Content Signal Declaration
+# Reference: ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790
+# Default Signal: search=yes, ai-train=no
+
+# === CLOUDFLARE MANAGED SECTION ===
+# Block AI Training Bots
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+# === INVESTIGAREE SPECIFIC RULES ===
 # Regras gerais para todos os crawlers
 User-agent: *
+Crawl-delay: 0
+search: yes
+ai-train: no
 
 # Permitir acesso às páginas públicas
 Allow: /
