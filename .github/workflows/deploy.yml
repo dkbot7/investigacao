@@ -39,8 +39,8 @@ jobs:
       - name: Clear build cache
         run: rm -rf .next .open-next
 
-      - name: Build with OpenNext
-        run: npx @opennextjs/cloudflare build
+      - name: Build Next.js application
+        run: npm run build
         env:
           NODE_ENV: production
           NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
@@ -50,33 +50,33 @@ jobs:
           NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}
           NEXT_PUBLIC_FIREBASE_APP_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}
 
+      - name: Build for Cloudflare Pages
+        run: npx @cloudflare/next-on-pages
+
       - name: Verify build output
         run: |
-          if [ ! -d ".open-next" ]; then
-            echo "❌ Build failed: '.open-next' directory not found"
+          if [ ! -d ".vercel/output/static" ]; then
+            echo "❌ Build failed: '.vercel/output/static' directory not found"
             exit 1
           fi
-          if [ ! -f ".open-next/worker.js" ]; then
-            echo "❌ Build failed: worker.js not found"
-            exit 1
-          fi
-          echo "✅ Build verified: OpenNext build complete"
+          echo "✅ Build verified: Cloudflare Pages build complete"
 
-      - name: Deploy Worker
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: investigacao
-          command: deploy
+      - name: Deploy to Cloudflare Pages
+        run: |
+          npx wrangler pages deploy .vercel/output/static \
+            --project-name=investigaree \
+            --branch=main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Verify deployment
         run: |
           echo "⏳ Waiting for deployment to propagate..."
           sleep 10
-          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://investigacao-web.chatbotimoveis.workers.dev)
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://www.investigaree.com.br)
           if [ "$HTTP_STATUS" != "200" ]; then
             echo "⚠️ Warning: Site returned HTTP $HTTP_STATUS (may still be propagating)"
           else
-            echo "✅ Deployment verified: https://investigacao-web.chatbotimoveis.workers.dev is live"
+            echo "✅ Deployment verified: https://www.investigaree.com.br is live"
           fi
