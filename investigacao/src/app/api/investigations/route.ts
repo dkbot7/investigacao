@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { NextRequest, NextResponse } from 'next/server'
 
 // Sempre usar Worker deployado na Cloudflare (banco de dados de produção)
