@@ -93,6 +93,240 @@ export default function QuemSomosPage() {
           </div>
         </section>
 
+        {/* Nossa Equipe */}
+        <section className="py-16 bg-white dark:bg-navy-950">
+          <div className="container max-w-6xl px-4">
+            <div className="text-center mb-12">
+              <Badge className="mb-4 px-4 py-2 text-sm font-semibold bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400">
+                NOSSA EQUIPE
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                Quem Está Por Trás da Investigaree
+              </h2>
+              <p className="text-lg text-slate-700 dark:text-navy-200 max-w-3xl mx-auto">
+                Profissionais com experiência em perícia forense e tecnologia de dados
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {/* Ibsen Maciel */}
+              <Card className="border-2 border-green-500/30 hover:border-green-500 hover:shadow-2xl transition-all">
+                <CardHeader className="pb-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center flex-shrink-0">
+                      <Shield className="w-10 h-10 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <CardTitle className="text-2xl text-slate-900 dark:text-white mb-1">
+                        Ibsen Rodrigues Maciel
+                      </CardTitle>
+                      <Badge className="bg-green-600 text-white mb-2">
+                        Advisory Board
+                      </Badge>
+                      <p className="text-sm font-semibold text-green-600 dark:text-green-400">
+                        Perito Criminal Oficial
+                      </p>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                      <Award className="w-5 h-5 text-green-500" />
+                      Especialização
+                    </h4>
+                    <p className="text-slate-700 dark:text-navy-200 text-sm">
+                      Perícia Forense Computacional
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                      <Target className="w-5 h-5 text-green-500" />
+                      Descrição
+                    </h4>
+                    <p className="text-slate-700 dark:text-navy-200 text-sm">
+                      Referência nacional em Perícia Forense Computacional. Diretor Nacional de Perícias em Computação Forense da ANPAJ, com 6.000+ associados.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                      <Award className="w-5 h-5 text-green-500" />
+                      Conquistas
+                    </h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-slate-700 dark:text-navy-200 text-sm">
+                          <strong>1º Lugar</strong> Concurso PCE-PA (2019)
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-slate-700 dark:text-navy-200 text-sm">
+                          <strong>Diretor Nacional de Perícias</strong> - ANPAJ (6.000+ associados)
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-slate-700 dark:text-navy-200 text-sm">
+                          <strong>1º lugar</strong> como Oficial do Exército 2017/18
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-slate-700 dark:text-navy-200 text-sm">
+                          <strong>Integrante do LABCEDF</strong> - Laboratório de Computação e Extração de Dados Forenses (Polícia Civil do Estado do Pará)
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="pt-4">
+                    <Link href="/quemsomos/ibsen-maciel">
+                      <Button variant="outline" className="w-full border-green-500 text-green-600 hover:bg-green-500/10">
+                        Ver perfil completo
+                      </Button>
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Dani Kaloi */}
+              <Card className="border-2 border-blue-500/30 hover:border-blue-500 hover:shadow-2xl transition-all">
+                <CardHeader className="pb-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center flex-shrink-0">
+                      <Cpu className="w-10 h-10 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <CardTitle className="text-2xl text-slate-900 dark:text-white mb-1">
+                        Dani Kaloi
+                      </CardTitle>
+                      <Badge className="bg-blue-600 text-white mb-2">
+                        Fundadora & CTO
+                      </Badge>
+                      <p className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+                        Arquiteta de Sistemas
+                      </p>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                      <Award className="w-5 h-5 text-blue-500" />
+                      Especialização
+                    </h4>
+                    <p className="text-slate-700 dark:text-navy-200 text-sm">
+                      Investigação Digital & Automação
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                      <Target className="w-5 h-5 text-blue-500" />
+                      Descrição
+                    </h4>
+                    <p className="text-slate-700 dark:text-navy-200 text-sm">
+                      Desenvolvedora Full Stack e Arquiteta de Sistemas especializada em processamento massivo de dados. Processa <strong>+100.000 registros simultaneamente</strong>, cruzando múltiplas bases de dados - governamentais, autorais e sigilosas, nacionais e internacionais.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                      <Database className="w-5 h-5 text-blue-500" />
+                      Expertise Técnica
+                    </h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-slate-700 dark:text-navy-200 text-sm">
+                          Processamento de <strong>+100.000 registros/investigação</strong>
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-slate-700 dark:text-navy-200 text-sm">
+                          Múltiplas fontes de dados integradas (nacionais e internacionais)
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-slate-700 dark:text-navy-200 text-sm">
+                          Automações avançadas de investigação
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-slate-700 dark:text-navy-200 text-sm">
+                          Especialista em <strong>due diligence empresarial</strong> e <strong>proteção patrimonial para mulheres em divórcios</strong>
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="pt-4">
+                    <Link href="/quemsomos/dani-kaloi">
+                      <Button variant="outline" className="w-full border-blue-500 text-blue-600 hover:bg-blue-500/10">
+                        Ver perfil completo
+                      </Button>
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Métricas da Equipe */}
+            <div className="mt-12 grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+              <Card className="text-center border-green-500/30">
+                <CardContent className="pt-6">
+                  <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                    +100k
+                  </div>
+                  <p className="text-sm text-slate-700 dark:text-navy-200">
+                    Registros por Investigação
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center border-green-500/30">
+                <CardContent className="pt-6">
+                  <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                    6.000+
+                  </div>
+                  <p className="text-sm text-slate-700 dark:text-navy-200">
+                    Associados ANPAJ
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center border-green-500/30">
+                <CardContent className="pt-6">
+                  <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                    100%
+                  </div>
+                  <p className="text-sm text-slate-700 dark:text-navy-200">
+                    LGPD Compliance
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center border-green-500/30">
+                <CardContent className="pt-6">
+                  <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                    1º
+                  </div>
+                  <p className="text-sm text-slate-700 dark:text-navy-200">
+                    Lugar PCE-PA 2019
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* Quem Usa Nossa Plataforma */}
         <section className="py-16 bg-gradient-to-br from-green-50 to-blue-50 dark:from-navy-900 dark:to-green-900">
           <div className="container max-w-6xl px-4">
