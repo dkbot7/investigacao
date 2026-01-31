@@ -45,7 +45,6 @@ export async function GET(request: NextRequest) {
     const decoded = decodeFirebaseToken(token)
     const userEmail = decoded.email || 'unknown@example.com'
 
-    console.log('[API /userdata/info] Email do usuário:', userEmail)
 
     // Verificar se usuário é do tenant COMURG
     const isCOMURG = userEmail === 'cliente01@investigaree.com.br'

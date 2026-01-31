@@ -154,11 +154,6 @@ export default function FuncionariosPage() {
       setFuncionarios(convertedFuncionarios);
       setCacheStats(null);
       setUsingBackend(true);
-
-      console.log('[Funcionarios] ✅ Dados carregados do backend (USER):', {
-        total: response.total || investigations.length,
-        cache_stats: response.cache_stats,
-      });
     } catch (err: any) {
       console.error('[Funcionarios] ❌ Erro ao carregar do backend:', err);
 
@@ -444,7 +439,6 @@ export default function FuncionariosPage() {
             refreshInterval={3000}
             showCompleted={false}
             onJobComplete={(job) => {
-              console.log('[FuncionariosPage] Job completed:', job);
               loadFuncionarios(); // Reload data when job completes
             }}
           />

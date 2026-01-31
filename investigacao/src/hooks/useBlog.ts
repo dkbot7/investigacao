@@ -46,22 +46,16 @@ export function useBlog(options?: UseBlogOptions): UseBlogReturn {
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [debugLog, setDebugLog] = useState<string[]>(() => {
-    console.log('[useBlog] 🔵 STATE INITIALIZING');
     return ['🔵 useBlog hook initialized'];
   });
   const limit = 9;
 
   // Helper to add debug logs
   const addDebugLog = (msg: string) => {
-    console.log(msg);
     setDebugLog(prev => [...prev, `${new Date().toISOString().split('T')[1]}: ${msg}`]);
   };
 
   // Debug: Log on every render
-  console.log('[useBlog] ===== RENDER =====');
-  console.log('[useBlog] allPosts.length:', allPosts.length);
-  console.log('[useBlog] loading:', loading);
-  console.log('[useBlog] error:', error);
 
   // Ler filtros da URL se syncWithUrl=true
   const urlFilters = useMemo(() => {
@@ -92,7 +86,6 @@ export function useBlog(options?: UseBlogOptions): UseBlogReturn {
 
   // Initialize posts - fetch from API
   useEffect(() => {
-    console.log('[useBlog] ⚠️ useEffect STARTING');
     addDebugLog('✅ useEffect FIRED!');
     addDebugLog(`allPosts.length: ${allPosts.length}`);
 
@@ -136,7 +129,6 @@ export function useBlog(options?: UseBlogOptions): UseBlogReturn {
 
   // Process posts with useMemo for synchronous filtering/sorting/pagination
   const { posts, pagination } = useMemo(() => {
-    console.log('[useBlog useMemo] Processing allPosts:', allPosts.length);
 
     if (allPosts.length === 0) {
       return {
@@ -249,7 +241,6 @@ export function useBlog(options?: UseBlogOptions): UseBlogReturn {
     const startIndex = (currentPage - 1) * limit;
     const paginatedPosts = filteredPosts.slice(startIndex, startIndex + limit);
 
-    console.log('[useBlog useMemo] Returning posts:', paginatedPosts.length, 'of', total);
 
     return {
       posts: paginatedPosts,

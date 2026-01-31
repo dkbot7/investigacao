@@ -499,7 +499,6 @@ export default function AdminPage() {
 
     const promise = (async () => {
       // Em modo mock, apenas simula a criação
-      console.log('[Admin] Criando tenant (mock):', createTenantForm);
 
       // Adiciona tenant aos dados locais (simulação)
       const newTenant: AdminTenant = {
@@ -562,7 +561,6 @@ export default function AdminPage() {
 
     const promise = (async () => {
       // Em modo mock, apenas simula a atualização
-      console.log('[Admin] Atualizando tenant (mock):', selectedTenant.code, editTenantForm);
 
       // Atualiza tenant nos dados locais (simulação)
       const updatedTenants = tenants.map(t =>
@@ -608,7 +606,6 @@ export default function AdminPage() {
 
     const promise = (async () => {
       // Em modo mock, apenas simula a mudança de status
-      console.log('[Admin] Alterando status do tenant (mock):', selectedTenant.code, newStatus);
 
       // Atualiza status nos dados locais (simulação)
       const updatedTenants = tenants.map(t =>

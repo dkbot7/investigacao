@@ -20,7 +20,6 @@ export const auth = getAuth(app);
 if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATOR === 'true') {
   try {
     connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true });
-    console.log('🔥 Firebase Auth Emulator connected at http://127.0.0.1:9099');
   } catch (error) {
     console.error('Error connecting to Firebase Auth Emulator:', error);
   }

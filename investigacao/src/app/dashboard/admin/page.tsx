@@ -725,7 +725,6 @@ export default function AdminPage() {
 
     const promise = (async () => {
       // Em modo mock, apenas simula a criação
-      console.log('[Admin] Criando tenant (mock):', createTenantForm);
 
       // Adiciona tenant aos dados locais (simulação)
       const newTenant: AdminTenant = {

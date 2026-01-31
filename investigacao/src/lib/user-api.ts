@@ -286,7 +286,6 @@ export async function getUserInfo(): Promise<UserInfo> {
       userInfo.tenant = tenantInfo.tenant
     }
   } catch (err) {
-    console.warn('Erro ao buscar info do tenant:', err)
   }
 
   return userInfo

@@ -125,7 +125,6 @@ export function useInvestigations() {
 
       // Handle 404 gracefully (endpoint not deployed yet)
       if (response.status === 404) {
-        console.log('API endpoint not available yet - showing empty state')
         setInvestigacoes([])
         setError(null)
         setLoading(false)
@@ -143,7 +142,6 @@ export function useInvestigations() {
       console.error('Error fetching investigations:', err)
       // Show empty state on any error (API not deployed yet)
       // This is temporary - remove when backend is deployed
-      console.log('API not available - showing empty state')
       setInvestigacoes([])
       setError(null)
     } finally {

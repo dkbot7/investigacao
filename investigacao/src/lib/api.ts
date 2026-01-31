@@ -36,7 +36,6 @@ export async function fetchAPI<T>(
 
   // Handle 401 errors by forcing token refresh and retrying once
   if (response.status === 401 && retryOnAuthError) {
-    console.log('[API] Token expirado, forçando refresh...')
 
     // Force token refresh
     const newToken = await user.getIdToken(true)

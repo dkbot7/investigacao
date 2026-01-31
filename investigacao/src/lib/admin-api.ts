@@ -83,7 +83,6 @@ function getMockUsers(): AdminUser[] {
         currentUserName = userData.displayName || userData.email?.split('@')[0] || currentUserName;
       }
     } catch (e) {
-      console.log('Não conseguiu pegar dados do Firebase, usando mock padrão');
     }
   }
 

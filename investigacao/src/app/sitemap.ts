@@ -1,20 +1,16 @@
 import { MetadataRoute } from 'next';
+import { MOCK_POSTS } from '@/data/mockPosts';
 
 /**
- * Sitemap dinâmico - Investigaree
+ * Sitemap dinâmico completo - Investigaree
  *
- * PRINCÍPIO: "Se a página não sustenta autoridade sozinha, ela não merece sitemap."
+ * Inclui:
+ * - Páginas institucionais e de conteúdo
+ * - Páginas de serviços e soluções
+ * - Posts individuais do blog (todos os 36 posts)
+ * - Páginas legais e suporte
  *
- * Arquitetura baseada em:
- * - Eixo Autoridade Jurídico-Técnica (Ciclo 3)
- * - Governança de conteúdo aprovada (Ciclo 4)
- * - Biblioteca técnica como core (não motor de tráfego)
- *
- * EXCLUÍDOS INTENCIONALMENTE:
- * - /servicos e /solucoes/* (arquitetura antiga)
- * - Posts individuais do blog (indexação seletiva futura)
- * - Conteúdo mock ou temporário
- * - Páginas enterradas ou sem autoridade própria
+ * Atualizado: 2026-01-30 - Incluídas todas as páginas públicas
  */
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -102,6 +98,94 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
 
+    // Páginas de Serviços e Soluções (importantes para SEO)
+    {
+      url: `${baseUrl}/servicos`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/solucoes`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/solucoes/due-diligence`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/solucoes/background-check-executivos`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/solucoes/investigacao-patrimonial`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/solucoes/rh-compliance`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/solucoes/auditoria-licitacoes`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/solucoes/protecao-remocao`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/solucoes/coleta-provas-digitais`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/solucoes/due-diligence-divorcios`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+
+    // Outras páginas importantes
+    {
+      url: `${baseUrl}/precos`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/sobre`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/lgpd`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly',
+      priority: 0.5,
+    },
+
     // Legal (conformidade)
     {
       url: `${baseUrl}/privacidade`,
@@ -127,5 +211,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
+
+    // Posts individuais do blog (todos os 36 posts)
+    ...MOCK_POSTS.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt || post.publishedAt),
+      changeFrequency: 'monthly' as const,
+      priority: post.featured ? 0.7 : 0.6,
+    })),
   ];
 }

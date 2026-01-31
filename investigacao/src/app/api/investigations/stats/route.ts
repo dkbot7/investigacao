@@ -20,7 +20,6 @@ export async function GET(request: NextRequest) {
   try {
     const workerUrl = `${WORKER_URL}/api/investigacoes/stats`
 
-    console.log('[API Proxy Stats] Forwarding to:', workerUrl)
 
     const response = await fetch(workerUrl, {
       method: 'GET',

@@ -22,7 +22,6 @@ async function proxyToWorker(request: NextRequest, endpoint: string, options: Re
     const url = new URL(request.url)
     const workerUrl = `${WORKER_URL}${endpoint}${url.search}`
 
-    console.log('[API Proxy] Forwarding to:', workerUrl)
 
     const response = await fetch(workerUrl, {
       ...options,

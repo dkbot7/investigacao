@@ -71,7 +71,6 @@ export class ApiClient {
 
     // Handle 401 errors by forcing token refresh and retrying once
     if (response.status === 401 && retryOnAuthError) {
-      console.log('[ApiClient] Token expirado, forçando refresh...')
 
       const user = auth.currentUser
       if (!user) {

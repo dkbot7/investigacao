@@ -76,11 +76,6 @@ export default function RelatoriosPage() {
           }));
 
         setRelatorios(relatoriosData);
-
-        console.log(`[Relatórios] ✅ Dados carregados (${isAdmin ? 'ADMIN - GLOBAL' : 'USER'}):`, {
-          total: relatoriosData.length,
-          isAdmin
-        });
       } catch (err: any) {
         console.error('[Relatórios] ❌ Erro ao carregar:', err);
         setRelatorios([]);
