@@ -41,3 +41,39 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# claude settings local
+.claude/settings.local.json
+
+# documentação temporária e de sessão
+*_STATUS*.md
+*_DEBUG*.md
+VERIFICACAO_*.md
+MELHORIAS_*.md
+TESTE_*.md
+SESSAO_*.md
+DEPLOY_*.md
+ETAPA-*.md
+CANONICAL_*.md
+IMPLEMENTACAO_*.md
+INSTALACAO_*.md
+CONFIGURACAO_*.md
+ADMIN-PANEL-*.md
+BACKEND-*.md
+FRONTEND-*.md
+E2E-*.md
+ESTADO-DO-PROJETO.md
+FECHAMENTO-*.md
+PRE-GO-LIVE-*.md
+PROXIMOS-PASSOS-*.md
+REVISAO_*.md
+SOLUCAO-*.md
+TESTES-*.md
+TESTING-*.md
+FIREBASE-EMULATOR.md
+IMAGENS-BLOG.md
+MOBILE_FIRST_GUIDE.md
+MCP-*.md
+CREDENCIAIS-*.md
+CRIACAO-*.md
+PREPARACAO_*.md
