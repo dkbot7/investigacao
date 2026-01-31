@@ -2,6 +2,7 @@
 name = "investigacao-api"
 main = "src/index.ts"
 compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
 
 # Cron Trigger para alertas automáticos
 # Executa diariamente às 9h UTC (6h BRT)
@@ -54,6 +55,6 @@ namespace_id = "1004"
 simple = { limit = 5, period = 60 }
 
 # Routes (configurar no Cloudflare Dashboard ou aqui)
-[[routes]]
-pattern = "api.investigacao.com.br/*"
-zone_name = "investigacao.com.br"
+# [[routes]]
+# pattern = "api.investigacao.com.br/*"
+# zone_name = "investigacao.com.br"
