@@ -3,6 +3,8 @@ import { Metadata } from 'next'
 import { Shield, FileText, UserCheck, AlertCircle, CheckCircle, Settings } from 'lucide-react'
 import { ComplianceErrorBoundary } from '@/components/compliance/ComplianceErrorBoundary'
 
+export const runtime = 'edge'
+
 /**
  * LGPD Dashboard Page (Server Component)
  *

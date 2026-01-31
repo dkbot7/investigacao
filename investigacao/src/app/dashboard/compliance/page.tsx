@@ -9,6 +9,8 @@ import {
   ComplianceSearchLoading,
 } from '@/components/compliance/ComplianceLoadingSkeleton'
 
+export const runtime = 'edge'
+
 /**
  * Compliance Dashboard Page (Server Component)
  *
