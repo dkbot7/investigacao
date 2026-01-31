@@ -369,9 +369,10 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            {/* Services & About */}
+            {/* Services, Blog & About */}
             {[
               { label: t.services, href: "/servicos" },
+              { label: t.blog, href: "/blog" },
               { label: t.about, href: "/quemsomos" },
             ].map((item, index) => (
               <motion.div key={item.href}>
@@ -689,7 +690,7 @@ export default function Header() {
                     </div>
                   </motion.div>
 
-                  {/* Services & About */}
+                  {/* Services, Blog & About */}
                   <motion.div
                     initial={{ x: 50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -701,6 +702,20 @@ export default function Header() {
                       className="block text-slate-900 dark:text-white text-2xl font-semibold py-4 px-6 rounded-lg hover:bg-white/5 transition-all border-b border-green-500/10"
                     >
                       {t.services}
+                    </Link>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.22, duration: 0.3 }}
+                  >
+                    <Link
+                      href="/blog"
+                      onClick={closeMobileMenu}
+                      className="block text-slate-900 dark:text-white text-2xl font-semibold py-4 px-6 rounded-lg hover:bg-white/5 transition-all border-b border-green-500/10"
+                    >
+                      {t.blog}
                     </Link>
                   </motion.div>
 
